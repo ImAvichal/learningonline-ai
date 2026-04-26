@@ -51,6 +51,7 @@ export function Nav({ transparent = false }) {
           <NavLink href="/#curriculum">Curriculum</NavLink>
           <NavLink href="/#industries">Industries</NavLink>
           <NavLink href="/pricing">Pricing</NavLink>
+          <NavLink href="/roi-calculator">ROI Calculator</NavLink>
         </div>
 
         <div className="hidden md:flex items-center gap-3">

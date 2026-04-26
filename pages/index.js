@@ -349,7 +349,7 @@ export default function Home() {
           <div className="max-w-3xl">
             <div className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full border border-blue/30 bg-blue/10 text-blue-bright text-xs font-display font-bold mb-10 tracking-wide">
               <span className="w-1.5 h-1.5 bg-blue rounded-full animate-pulse" />
-              learningonline.ai · 8 Modules · 3 Tiers · 8 Industries
+              learningonline.ai · 14 Modules · 3 Tiers · 8 Industries
             </div>
 
             <h1 className="font-display font-black leading-[1.0] tracking-tight mb-3"
@@ -381,7 +381,7 @@ export default function Home() {
 
             <div className="flex flex-wrap gap-10 pt-8 border-t border-white/5">
               {[
-                { val: '8',   unit: ' modules',    desc: 'End-to-end curriculum' },
+                { val: '14',  unit: ' modules',    desc: 'End-to-end curriculum' },
                 { val: '3',   unit: ' tiers',      desc: 'Individual · Business · Enterprise' },
                 { val: '8',   unit: ' industries', desc: 'Sector-specific playbooks' },
                 { val: '90',  unit: ' days',       desc: 'To first live use case' },

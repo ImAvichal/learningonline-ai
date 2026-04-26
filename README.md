@@ -1,60 +1,55 @@
-# Le On AI — learningonline.ai
+# Le On AI — learningonline.ai (v5)
 
-Standalone Next.js SaaS platform. Le On AI = Learning Online · Artificial Intelligence.
+Premium AI execution platform. 14 modules, Q&A scoring, ROI calculator, real-world practice sections.
 
----
+## What's New in v5
+- **14 modules** (was 8) — added: Use Case Prioritisation, Data Readiness, Responsible AI, Sustainability, People & Change, Multimodal AI & Orchestration
+- **Updated pricing**: Individual $199 / Business $899 / Enterprise Custom
+- **Q&A scoring system**: 5 scenario-based questions per module with instant feedback and Beginner/Intermediate/Advanced scoring
+- **ROI Calculator**: standalone page at /roi-calculator with real-time calculation
+- **Real-world practice sections**: every lesson includes insight, example, business impact, implementation tip, and "What This Saves You"
+- **Token cost education**: Module 1 dedicated lesson on tokens, cost modelling, and optimisation
+- **No GST on checkout**
 
 ## Routes
+```
+/                    Homepage
+/pricing             Pricing ($199 / $899 / Custom)
+/roi-calculator      Standalone ROI calculator
+/login               Sign in
+/signup              Create account
+/checkout            Stripe payment
+/dashboard           Gated dashboard
+  #home              Progress overview
+  #course            14-module course player with Q&A
+  #templates         22 templates
+  #account           Profile and subscription
+```
 
-```
-/                  Homepage (decision tree + industry matcher)
-/pricing           Pricing
-/login             Sign in
-/signup            Create account
-/checkout          Stripe payment
-/dashboard         Gated: auth + tier required
-```
+## Pricing (v5)
+| Tier | Price | Internal ID |
+|---|---|---|
+| Individual | $199 | individual |
+| Business | $899 | smb |
+| Enterprise | Custom | enterprise |
+
+Update Stripe products to match new prices.
 
 ## Dev Bypass
-
 ```
 https://learningonline.ai/dashboard?dev_key=loa_dev_avi_2025
 ```
 
-Full enterprise access without payment. Change key in `lib/auth.js` line 14.
-
 ## Local Setup
-
 ```bash
 npm install && npm run dev
-# http://localhost:3000
 ```
 
-## Stripe Products
-
-| Product | Price | Currency |
-|---|---|---|
-| Le On AI — Individual | $499 | AUD |
-| Le On AI — Business | $1,499 | AUD |
-| Le On AI — Enterprise | $5,000 | AUD |
-
-Webhook: `https://learningonline.ai/api/stripe-webhook`
-Event: `checkout.session.completed`
-
-## Internal Tier IDs (code only)
-
-`individual` · `smb` (displayed as "Business") · `enterprise`
-
 ## Edit Content
-
 | Task | File |
 |---|---|
-| Add a lesson | `data/modules.js` |
-| Change prices | `data/tiers.js` |
-| Add template | `data/templates.js` |
-| Add industry | `data/tiers.js` → INDUSTRIES array |
-| Update brand | `components/ui.js` → BRAND constant |
-
-## Contact
-
-hello@learningonline.ai
+| Add/edit lessons | data/modules.js |
+| Edit quiz questions | data/modules.js → quiz.questions |
+| Change prices | data/tiers.js |
+| Add templates | data/templates.js |
+| Add industries | data/tiers.js → INDUSTRIES |

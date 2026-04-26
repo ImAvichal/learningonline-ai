@@ -73,3 +73,28 @@ body  {
 @keyframes pulseDot { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.5;transform:scale(1.3)} }
 .fade-up   { animation: fadeUp .6s ease forwards; }
 .pulse-dot { animation: pulseDot 2s infinite; }
+
+/* Real-world practice box */
+.real-world-box {
+  background: rgba(0,200,150,0.05);
+  border: 1px solid rgba(0,200,150,0.2);
+  border-left: 4px solid var(--success);
+  border-radius: 0 12px 12px 0;
+  padding: 1.25rem 1.5rem;
+  margin: 1.5rem 0;
+}
+.real-world-box h3 {
+  font-family: 'Syne', sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--success);
+  margin: 0 0 0.85rem !important;
+  border-bottom: none !important;
+  padding-bottom: 0 !important;
+}
+.real-world-box p {
+  font-size: 0.875rem;
+  color: rgba(232,237,248,0.85);
+  margin-bottom: 0.6rem;
+}
+.real-world-box p:last-child { margin-bottom: 0; }
