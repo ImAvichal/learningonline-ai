@@ -199,7 +199,7 @@ export function SectionLabel({ children, className = '' }) {
 export function TierBadge({ tier, label, className = '' }) {
   const cfg = {
     individual: { cls: 'tier-individual', text: label || 'Individual' },
-    smb:        { cls: 'tier-smb',        text: label || 'Small & Medium Business' },
+    smb:        { cls: 'tier-smb',        text: label || 'Business' },
     enterprise: { cls: 'tier-enterprise', text: label || 'Enterprise' },
   }
   const c = cfg[tier] || cfg.individual

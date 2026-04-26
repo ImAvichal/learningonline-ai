@@ -506,23 +506,23 @@ export default function Home() {
           <Reveal>
             <div className="text-center mb-12">
               <SectionLabel>Full Curriculum</SectionLabel>
-              <h2 className="font-display font-bold text-4xl mb-4">8 modules. Zero filler.</h2>
+              <h2 className="font-display font-bold text-4xl mb-4">14 modules. Zero filler.</h2>
               <p className="text-muted max-w-xl mx-auto">Every lesson produces a real deliverable. Every module builds on the last.</p>
             </div>
           </Reveal>
 
           <div className="flex flex-col lg:flex-row gap-6">
-            <div className="lg:w-72 space-y-2 flex-shrink-0">
+            <div className="lg:w-80 space-y-2 flex-shrink-0 lg:max-h-[600px] lg:overflow-y-auto lg:pr-1">
               {MODULES.map((mod, i) => (
                 <button key={mod.id} onClick={() => setActiveModule(i)}
-                  className={`w-full text-left p-4 rounded-xl border transition-all duration-200 ${
+                  className={`w-full text-left p-3 rounded-xl border transition-all duration-200 ${
                     activeModule === i ? 'border-blue/40 bg-blue/10' : 'border-white/5 bg-white/[0.02] hover:border-white/10'
                   }`}>
-                  <div className="flex items-center gap-3">
-                    <span className="text-xl flex-shrink-0">{mod.icon}</span>
+                  <div className="flex items-start gap-3">
+                    <span className="text-lg flex-shrink-0 mt-0.5">{mod.icon}</span>
                     <div className="flex-1 min-w-0">
-                      <div className="text-[10px] font-display font-bold text-muted">Module {mod.number}</div>
-                      <div className={`text-sm font-display font-bold truncate ${activeModule === i ? 'text-white' : 'text-white/80'}`}>
+                      <div className="text-[10px] font-display font-bold text-muted mb-0.5">Module {mod.number}</div>
+                      <div className={`text-sm font-display font-bold leading-snug ${activeModule === i ? 'text-white' : 'text-white/80'}`}>
                         {mod.title}
                       </div>
                     </div>
@@ -532,7 +532,7 @@ export default function Home() {
             </div>
 
             <div className="flex-1">
-              <Card glow className="p-8">
+              <Card glow className="p-8" style={{ minHeight: '480px' }}>
                 <div className="flex items-start gap-4 mb-6">
                   <span className="text-4xl">{MODULES[activeModule].icon}</span>
                   <div>

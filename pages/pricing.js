@@ -55,8 +55,8 @@ export default function Pricing() {
                       </div>
                     )}
 
-                    <TierBadge tier={tid} className="mb-4" />
-                    <div className="font-display font-black text-5xl mb-1">{t.priceDisplay}</div>
+                    <TierBadge tier={tid} label={tid === 'smb' ? 'Business' : tid === 'individual' ? 'Individual' : 'Enterprise'} className="mb-4" />
+                    <div className={`font-display font-black mb-1 ${t.price === null ? 'text-4xl' : 'text-5xl'}`}>{t.priceDisplay}</div>
                     <div className="text-xs text-muted mb-1">{t.priceRange}</div>
                     <div className="text-xs text-muted mb-5 font-display">{t.billing}</div>
                     <p className="text-sm text-muted leading-relaxed mb-4 flex-1">{t.description}</p>

@@ -251,24 +251,9 @@ export default function Checkout() {
                   ))}
                 </div>
 
-                <div className="space-y-2 pt-4 border-t border-white/5 mb-4">
-                  <div className="flex justify-between text-sm">
-                    <span className="text-muted">Subtotal</span>
-                    <span>{tier.priceDisplay}</span>
-                  </div>
-                  <div className="flex justify-between text-sm">
-                    <span className="text-muted">GST (10%)</span>
-                    <span className="text-muted">
-                      {tier.price ? `$${(tier.price * 0.1).toFixed(0)}` : 'Calculated at checkout'}
-                    </span>
-                  </div>
-                </div>
-
                 <div className="flex justify-between items-baseline pt-4 border-t border-white/5 mb-6">
-                  <span className="font-display font-bold">Total (inc. GST)</span>
-                  <span className="font-display font-black text-2xl">
-                    {tier.price ? `$${(tier.price * 1.1).toFixed(0)}` : tier.priceDisplay}
-                  </span>
+                  <span className="font-display font-bold">Total</span>
+                  <span className="font-display font-black text-2xl">{tier.priceDisplay}</span>
                 </div>
 
                 <div className="space-y-1.5">
