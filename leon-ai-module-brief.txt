@@ -1,0 +1,1096 @@
+# Le On AI — Complete Module Content & Downloadables Brief
+# For use with ChatGPT to generate course content and template files
+# Platform: learningonline.ai
+
+==================================================
+PLATFORM CONTEXT
+==================================================
+
+Product: Le On AI (learningonline.ai)
+Tagline: "AI That Actually Works In Your Business"
+
+This is a premium AI execution and learning platform — NOT a generic course.
+Every module must produce real, usable deliverables that practitioners can
+apply immediately in their organisations.
+
+Tone: Authoritative, practical, direct. No fluff. No generic AI hype.
+Audience: Business professionals, SMB owners, and enterprise leaders in Australia and globally.
+
+==================================================
+TIER STRUCTURE
+==================================================
+
+TIER 1 — Individual Upskill ($99)
+Target: Business professionals wanting AI literacy and leadership readiness.
+Modules: 1, 2, 3
+Access: Foundational content only
+
+TIER 2 — Business Owner ($299)
+Target: SMB owners and department heads implementing AI.
+Modules: 1, 2, 3, 4, 5, 6, 7, 8, 9, 12
+Access: Everything in Individual + implementation frameworks
+
+TIER 3 — Enterprise Leader ($399)
+Target: CIOs, transformation directors, program leads.
+Modules: 1–14 (all modules)
+Access: Full curriculum including governance, sustainability, multimodal, orchestration
+
+==================================================
+MODULE OVERVIEW
+==================================================
+
+Module  | Title                              | Tier Access
+--------|------------------------------------|-----------------
+1       | AI Foundations                     | Individual+
+2       | Key Roles in AI Implementation     | Individual+
+3       | Identifying AI Use Cases           | Individual+
+4       | Use Case Prioritisation            | Business Owner+
+5       | Workflow Design                    | Business Owner+
+6       | Data Readiness & Structuring       | Business Owner+
+7       | Tools & Infrastructure             | Business Owner+
+8       | Building AI Use Cases              | Business Owner+
+9       | ROI & Measurement                  | Business Owner+
+10      | Responsible AI                     | Enterprise Leader
+11      | Sustainability & AI                | Enterprise Leader
+12      | People, Change & Adoption          | Business Owner+
+13      | Multimodal AI & Orchestration      | Enterprise Leader
+14      | 90-Day Execution Plan              | Enterprise Leader
+
+==================================================
+DETAILED MODULE BRIEFS
+==================================================
+
+------------------------------------------------------------
+MODULE 1: AI FOUNDATIONS
+Tier: Individual Upskill and above
+------------------------------------------------------------
+
+PURPOSE:
+Cut through the hype. Give learners a clear, practical understanding of
+what AI actually is, how it works, what it costs, and where value lives.
+
+LESSONS REQUIRED:
+
+Lesson 1.1 — Introduction to AI: What It Is and Isn't
+- Define AI clearly: pattern recognition at scale, not magic
+- Three categories: Narrow AI (now), General AI (approaching), Agentic AI (emerging)
+- The 5 most common AI failure modes in business (with examples)
+- Why AI projects fail: expectation vs reality
+- The workflow gap concept — where AI value is created
+- Real-world examples: customer service, finance, healthcare, professional services
+
+Lesson 1.2 — Types of AI Models and When to Use Each
+- Large Language Models (LLMs): what they do, best use cases, key players (GPT-4o, Claude, Gemini, Llama)
+- Embedding models: semantic search, RAG systems
+- Image/vision models: document processing, quality inspection, OCR
+- Speech models: transcription, voice-enabled workflows
+- Structured action / Agentic AI: multi-step autonomous tasks
+- Decision framework: input type → correct model type
+- Cost and complexity trade-offs across model types
+
+Lesson 1.3 — Tokens: The Currency of AI
+- What is a token: ~4 characters, ~0.75 words
+- Input tokens vs output tokens — definition and cost difference
+- Real cost formula with worked examples
+- Token cost table: GPT-4o, GPT-4o-mini, Claude Sonnet, Claude Haiku
+- Monthly cost modelling at business scale
+- Token optimisation strategies: prompt compression, caching, model right-sizing, batching
+- The compounding cost problem at scale
+
+REAL-WORLD PRACTICE SECTION (each lesson):
+Must include:
+1. Real-world insight from implementation experience
+2. Practical example with numbers
+3. Why it matters (business impact)
+4. Implementation tip
+5. "What This Saves You" — concrete cost/risk avoided
+
+Q&A (5 questions per module, scenario-based):
+Question themes for Module 1:
+- Cost calculation: given tokens × volume × price, calculate monthly cost
+- Model selection: given a use case description, pick the right model type
+- Hallucination identification: scenario where AI output is confidently wrong
+- RAG architecture: when to use embedding + LLM vs LLM alone
+- Context window: practical implications for workflow design
+
+Scoring Categories: Beginner | Developing | Ready to Apply | Advanced
+
+DELIVERABLES (downloadable files):
+
+File 1: AI Basics Cheat Sheet (PDF, 2 pages)
+Content required:
+- What AI is and isn't (5 bullet points each)
+- The 3 AI categories with definitions
+- 5 AI failure modes and how to avoid them
+- The workflow gap diagram
+- 10 questions to ask before any AI project
+- Quick reference: AI terminology glossary (15–20 terms)
+Format: Clean, professional PDF. Designed for printing and desk reference.
+Use: Learner keeps this as a reference card. Can be shared with colleagues.
+
+File 2: Model Types Guide (PDF, 3–4 pages)
+Content required:
+- Model type comparison table: LLM / Embedding / Vision / Speech / Agent
+- For each type: what it does, best use cases, key providers, approximate cost range
+- Decision flowchart: "Which model type do I need?"
+- Red flags: when NOT to use AI at all
+- 3 worked examples: input type → model selection → integration approach
+Format: PDF with tables and simple diagrams.
+Use: Reference when scoping any AI initiative.
+
+File 3: Token Awareness Guide (PDF/XLSX, 2 pages + calculator tab)
+Content required:
+- What tokens are with visual examples (show words → token counts)
+- Input vs output cost difference explained
+- Cost table for major models (AUD and USD)
+- Monthly cost calculator (XLSX tab): inputs = calls/day, tokens/call, cost/token → outputs = daily/monthly/annual cost
+- Top 5 token optimisation techniques with implementation steps
+- "Before and after" example: unoptimised vs optimised prompt cost
+Format: PDF overview + XLSX calculator tab.
+Use: Practical cost modelling before any AI implementation decision.
+
+File 4: Prompt Tips & Tricks (PDF, 4 pages)
+Content required:
+- The anatomy of an effective prompt: role, context, task, format, constraints
+- 10 prompt engineering principles with examples
+- Before/after prompt comparisons (3 business scenarios)
+- Common prompt mistakes and how to fix them
+- Prompt templates for: summarisation, classification, report generation, Q&A, data extraction
+- Testing checklist: how to evaluate prompt quality
+Format: PDF with code-style prompt examples clearly formatted.
+Use: Immediate practical application across any business AI use case.
+
+------------------------------------------------------------
+MODULE 2: KEY ROLES IN AI IMPLEMENTATION
+Tier: Individual Upskill and above
+------------------------------------------------------------
+
+PURPOSE:
+Every failed AI program has unclear ownership. Map the 5 roles
+that make the difference between success and abandonment.
+
+LESSONS REQUIRED:
+
+Lesson 2.1 — The Five Roles Every AI Program Needs
+- Role 1: Business Sponsor — accountability, budget, blockers
+- Role 2: Data Owner — quality, access, compliance, governance
+- Role 3: Process Owner — workflow definition, output validation
+- Role 4: Technical/AI Role — model selection, integration, cost management, monitoring
+- Role 5: Change Lead — adoption, training, resistance, behavioural measurement
+- For each role: what they own, why they matter, common failure modes, red flags
+- Small team note: how to cover 5 roles with 2–3 people
+- The role gap diagnostic: which role is your program missing?
+
+Q&A (5 questions, scenario-based):
+- Scenario: compliance concern raised late — which role failed?
+- Scenario: AI working but adoption at 15% — which role owns it?
+- Scenario: budget overrun on token costs — which role responsible?
+- Scenario: process changed and AI now routes to wrong queue — which role?
+- Scenario: small business of 8 people — how to assign the 5 roles?
+
+DELIVERABLES:
+
+File 5: Role Mapping Template (DOCX, 2 pages)
+Content required:
+- Table with 5 rows (one per role)
+- Columns: Role Name | Named Owner | Department | Accountability Summary | Escalation Path | Review Frequency
+- Pre-filled example row (customer service AI implementation context)
+- Instructions: how to complete the template, what to do if a role is unfilled
+- Warning box: "What happens when this role is vacant" for each role
+Format: DOCX table — editable, professional, ready to share with leadership.
+Use: Completed in Week 1 of any AI program before any technical work begins.
+
+File 6: Leadership Conversation Guide (PDF, 3 pages)
+Content required:
+- How to introduce AI strategy to a board or executive team
+- The 5 questions every leader will ask (with recommended answers)
+- Common executive objections and evidence-based responses
+- The "AI readiness conversation" framework: 3 questions to open the discussion
+- How to frame AI as risk management, not just efficiency
+- Suggested agenda for a 30-minute AI strategy briefing
+- One-page executive summary template (editable section)
+Format: PDF. Professional tone. Designed to be used as a briefing document.
+Use: Prepare for and run the first AI leadership conversation.
+
+------------------------------------------------------------
+MODULE 3: IDENTIFYING AI USE CASES
+Tier: Individual Upskill and above
+------------------------------------------------------------
+
+PURPOSE:
+Find AI opportunities that are real, valuable, and achievable —
+before committing time and budget.
+
+LESSONS REQUIRED:
+
+Lesson 3.1 — Value vs Complexity: Finding the Right Starting Point
+- The Value-Complexity Matrix (4 quadrants) with explanation
+- Quick Win quadrant: characteristics of ideal first use cases
+- How to run a time audit: the fastest path to AI opportunities
+- Ideal AI use case characteristics (checklist)
+- Where NOT to start: high complexity, low value, undocumented judgment
+- Industry-specific examples for each quadrant
+
+Lesson 3.2 — How to Identify Use Cases in Practice
+- The 4 signals: repetition, pain, data, decisions
+- The time audit method: step-by-step process
+- Stakeholder interview framework: 5 questions to ask any team
+- How to document a use case: standard format
+- Qualifying criteria: what makes a use case "AI-ready"
+
+Q&A (5 questions, scenario-based):
+- Marketing team, 3 hours/week on summaries, 2-week build time → quadrant?
+- Which signals indicate strongest AI viability?
+- 12 use cases identified — how to narrow to 3?
+- Data exists in 3 systems, inconsistent formats — good first use case?
+- Expert judgment, undocumented criteria — early use case?
+
+DELIVERABLES:
+
+File 7: Use Case Identification Template (DOCX, 3 pages)
+Content required:
+- Standard use case capture form with fields:
+  * Use case name
+  * Process being automated/augmented
+  * Current manual effort (hours/week, people, cost)
+  * AI approach (summarisation / classification / generation / detection)
+  * Data available (type, quality rating 1–5, location)
+  * Estimated build effort (weeks)
+  * Key stakeholders
+  * Primary risk
+  * Initial value estimate ($/year)
+- Instructions for completing each field
+- 2 pre-filled examples (customer service triage, weekly reporting)
+Format: DOCX form. Designed to complete in 30 minutes per use case.
+Use: Capture and qualify each potential AI opportunity before scoring.
+
+File 8: Opportunity Canvas (PPTX, 1 slide)
+Content required:
+- Visual one-page canvas showing the AI opportunity landscape
+- 4 sections: Process | Data | People | Technology
+- For each section: guiding questions to surface opportunities
+- Space to write top 3 opportunities per section
+- Summary section: "Our top 5 AI opportunities"
+- Value-Complexity Matrix pre-drawn for mapping
+Format: PPTX — single slide, A3-printable. Professional visual design.
+Use: Workshop facilitation. Run with a team to generate and map opportunities visually.
+
+File 9: AI Example Library (PDF, 12–15 pages)
+Content required:
+50+ real AI use case examples organised by industry:
+- Government & Public Sector (6 examples)
+- Healthcare & Medical (6 examples)
+- Financial Services (6 examples)
+- Retail & E-commerce (6 examples)
+- Professional Services (6 examples)
+- Hospitality & Tourism (5 examples)
+- Travel & Transport (5 examples)
+- Education & Training (5 examples)
+
+For each example:
+- Use case name
+- What AI does in this workflow
+- Data required
+- Model type used
+- Approximate time saving
+- Complexity rating (Low/Medium/High)
+- Tier applicability (Individual/Business/Enterprise)
+
+Format: PDF reference document. Searchable and printable.
+Use: Shortcut the use case identification process by referencing proven examples.
+
+------------------------------------------------------------
+MODULE 4: USE CASE PRIORITISATION
+Tier: Business Owner and above
+------------------------------------------------------------
+
+PURPOSE:
+Turn a list of AI ideas into a ranked, financially justified investment decision.
+
+LESSONS REQUIRED:
+
+Lesson 4.1 — The Prioritisation Scoring Framework
+- 5 scoring factors: Business Value (1–5), Complexity (inverted), Adoption Effort (inverted), Implementation Cost, Maintenance Cost
+- Priority Score formula with worked example
+- How to score objectively (avoid politics)
+- Facilitating a scoring workshop
+
+Lesson 4.2 — The 5-Year AI Cost Model
+- Implementation Cost = Build Cost + Setup Cost
+- Annual Maintenance Cost = (Token Cost × Volume) + Support + Data Maintenance + Governance
+- 5-Year Cost formula
+- Annual Value = Time Saved × Cost per Hour × Volume
+- 5-Year Value formula
+- Net Benefit and ROI% formulas
+- Three scenarios: conservative / base / optimistic
+- Full worked example with real numbers
+
+Q&A (5 questions):
+- Priority score calculation from given inputs
+- Token cost at scale calculation
+- 5-year ROI calculation from given values
+- Why adoption effort is a scoring factor
+- When to present 5-year vs 1-year model
+
+DELIVERABLES:
+
+File 10: Prioritisation Scorecard (XLSX, 3 tabs)
+Tab 1 — Score Input:
+- Row per use case (up to 10)
+- Columns: Use Case Name | Business Value (1–5) | Complexity (1–5) | Adoption Effort (1–5) | Impl. Cost ($) | Annual Maint. Cost ($/yr)
+- Priority Score auto-calculated
+- Rank auto-generated
+
+Tab 2 — 5-Year Cost Model:
+- Input fields: Build Cost, Setup Cost, Token Cost/call, Calls/day, Support hrs/month, Data maintenance $/yr, Governance $/yr
+- Auto-calculates: Implementation Cost, Annual Maintenance, 5-Year Cost
+
+Tab 3 — ROI Summary:
+- Input: Time saved/person/day, Number of people, Hourly cost, Volume/day
+- Auto-calculates: Annual Value, 5-Year Value, Net Benefit, ROI %
+- Output: Traffic light (Green/Amber/Red) based on ROI threshold
+
+Format: XLSX with formulas. No macros. Works in Excel and Google Sheets.
+Use: The primary decision tool for all AI investment prioritisation.
+
+File 11: 5-Year Financial Model (XLSX, detailed)
+Content: Extended version of the cost model with:
+- Sensitivity analysis tab (best/base/worst case)
+- Cost breakdown chart (auto-generated)
+- Cumulative benefit curve chart
+- Monthly payback period calculation
+- Model assumptions log (editable)
+Format: XLSX, professional, ready for CFO presentation.
+Use: When presenting AI investment cases to finance or board.
+
+File 12: Use Case Ranking Sheet (XLSX, 1 tab)
+Content: Simple comparison table for up to 8 use cases side by side:
+- Rows: each scoring dimension
+- Columns: each use case
+- Auto-highlight: top 3 performers per dimension
+- Final rank with recommendation
+Format: XLSX, print-ready (A3 landscape).
+Use: Workshop output — visible ranking of all use cases for group decision.
+
+------------------------------------------------------------
+MODULE 5: WORKFLOW DESIGN
+Tier: Business Owner and above
+------------------------------------------------------------
+
+PURPOSE:
+Design the human + AI workflow before touching a single tool.
+The blueprint that prevents expensive rebuilds.
+
+LESSONS REQUIRED:
+
+Lesson 5.1 — Process Mapping and AI Placement
+- The Current State Map: how to document the real process (not the assumed one)
+- Never automate a broken process
+- AI placement principle: find the workflow gap
+- Exception path design: design this first
+- The 5 Human-AI Interaction Patterns:
+  1. AI Reads → Human Acts (summarisation, briefing)
+  2. AI Classifies → Human Routes (triage)
+  3. AI Drafts → Human Edits (content generation)
+  4. AI Alerts → Human Investigates (anomaly detection)
+  5. AI Decides → Human Monitors (autonomous within guardrails)
+- How to validate a workflow blueprint before build
+
+Q&A (5 questions):
+- AI auto-sends refunds — which pattern, what risk?
+- Process has 3 undocumented workarounds — what first?
+- Blueprint complete — most valuable next step?
+- When to design exception handling?
+- Nuanced customer judgment — which AI pattern?
+
+DELIVERABLES:
+
+File 13: Workflow Design Templates (PPTX, 6 slides)
+Slide 1: Current State Swim-Lane (blank template, 3 lanes: Customer / Staff / System)
+Slide 2: Future State Swim-Lane with AI placement markers
+Slide 3: Exception Handling Flow (decision tree format)
+Slide 4: Human-AI Interaction Pattern selector (5 patterns with decision guide)
+Slide 5: Workflow Validation Checklist (10 items)
+Slide 6: Completed Example (customer service triage workflow)
+Format: PPTX, editable shapes, professional design. A3-printable.
+Use: Design and communicate the AI workflow to stakeholders and developers.
+
+File 14: Exception Handling Checklist (PDF, 2 pages)
+Content:
+- Definition of each exception type (low confidence, missing data, system failure, out-of-scope input)
+- For each exception: What triggers it? Who is notified? What is the fallback? Who owns it?
+- Exception design worksheet (fillable)
+- 10 questions to test exception robustness
+- Red flags: signs your exception handling is insufficient
+Format: PDF, designed to be completed per use case.
+Use: Pre-deployment quality gate. Every AI workflow must pass this before go-live.
+
+------------------------------------------------------------
+MODULE 6: DATA READINESS & STRUCTURING
+Tier: Business Owner and above
+------------------------------------------------------------
+
+PURPOSE:
+AI is only as good as its data. Assess, clean, standardise,
+and structure your data for AI consumption.
+
+LESSONS REQUIRED:
+
+Lesson 6.1 — The 5 Dimensions of Data Readiness
+- Availability: where does it live, who owns it
+- Quality: complete, accurate, consistent, current
+- Structure: structured vs unstructured, preprocessing needs
+- Accessibility: API access, query capability, export options
+- Governance: what data can be used for what purpose, privacy, compliance
+
+Lesson 6.2 — Data Sanitisation, Standardisation and Structuring
+- The 6-step sanitisation pipeline: Profile → Clean → Standardise → Enrich → Validate → Monitor
+- Common data problems and their AI impact
+- Data mapping: source to AI consumption layer
+- Data quality scoring methodology
+- When to fix data vs work around it
+
+Q&A (5 questions):
+- Low accuracy root cause → which readiness dimension?
+- Most valuable pre-build action?
+- Multiple legacy systems, inconsistent formats → first step?
+- Health data in AI use case → which dimension critical?
+- What is data mapping and why does it matter?
+
+DELIVERABLES:
+
+File 15: Data Readiness Checklist (PDF, 3 pages)
+Content:
+- Scoring grid: 5 dimensions × 5 rating levels (1–5)
+- For each dimension: 5 specific assessment questions
+- Scoring interpretation: what scores mean for AI readiness
+- Minimum viable scores for each AI implementation type
+- Remediation priority guide: which dimension to fix first
+- Sign-off section: Data Owner approval
+Format: PDF, fillable, printable. One per data source assessed.
+Use: Complete before any AI build decision. Data Owner signs off.
+
+File 16: Data Cleaning Checklist (PDF, 2 pages)
+Content:
+- Step-by-step cleaning process (profile → clean → validate)
+- Checklist for each step with specific actions
+- Common data problems with example fixes:
+  * Duplicate records
+  * Inconsistent date formats
+  * Missing values
+  * Inconsistent naming conventions
+  * Currency/unit discrepancies
+  * Encoding issues
+- Quality gate: criteria for declaring data "AI-ready"
+Format: PDF, checklist format, one per data source.
+Use: Guide the data preparation process before AI ingestion.
+
+File 17: Data Mapping Template (XLSX, 2 tabs)
+Tab 1 — Data Element Map:
+- Source system | Field name | Data type | Format | Sample value | Target field | Transformation rule | Governance note | Owner
+- One row per field
+- Colour coding: Green (ready), Amber (needs work), Red (blocker)
+
+Tab 2 — System Integration Map:
+- Source systems → transformation layer → AI model → output system
+- Data flow diagram (shape-based, editable)
+- Connection type (API, export, direct query)
+- Frequency (real-time, batch, on-demand)
+Format: XLSX, works in Excel and Google Sheets.
+Use: Document the data journey from source to AI. Essential for debugging and compliance.
+
+File 18: Data Quality Scorecard (XLSX, Enterprise tier)
+Content:
+- Automated scoring across 5 dimensions
+- Dashboard view: traffic light status per data source
+- Trend tracking: quality improvement over time
+- Executive summary tab: one-page data health report
+Format: XLSX with conditional formatting.
+Use: Ongoing data quality monitoring for enterprise AI programs.
+
+------------------------------------------------------------
+MODULE 7: TOOLS & INFRASTRUCTURE
+Tier: Business Owner and above
+------------------------------------------------------------
+
+PURPOSE:
+Select the right models and architecture. The most expensive AI decisions
+are made in week one — make them well.
+
+LESSONS REQUIRED:
+
+Lesson 7.1 — Build vs Buy vs Configure
+- Buy (SaaS AI): when speed matters, standard use cases
+- Configure (Platform AI): Microsoft Copilot, Salesforce Einstein, ServiceNow AI
+- Build (Custom/API): unique use cases, data privacy, maximum flexibility
+- 4 integration patterns: Direct API, Middleware, RAG, Agent
+- Model selection framework: benchmark before committing
+- Cost at scale: how model choice affects 5-year cost
+
+Q&A (5 questions):
+- Microsoft 365 org wants AI document search → best approach?
+- 5-year archive Q&A → which architecture?
+- Primary driver of model selection?
+- AI agent for financial decisions → key design consideration?
+- Customer data must not leave Australia → what architecture consideration?
+
+DELIVERABLES:
+
+File 19: Tool Decision Tree (PDF, 2 pages)
+Content:
+- Flowchart: Build vs Buy vs Configure decision
+- Questions at each node: use case uniqueness, data privacy needs, budget, timeline, team capability
+- Output: recommended approach with reasoning
+- Vendor comparison table: top 5 tools per category (LLM API, workflow automation, enterprise platform, vector DB)
+- Total cost of ownership comparison template
+- Red flags: when to challenge a vendor recommendation
+Format: PDF, A3-printable flowchart.
+Use: First meeting with any AI vendor or internal architecture discussion.
+
+File 20: Architecture Decision Template (DOCX, Enterprise tier)
+Content:
+- Architecture Decision Record (ADR) format
+- Sections: Context, Decision, Alternatives considered, Rationale, Consequences, Risks, Review date
+- Integration pattern selection guide (4 patterns with diagrams)
+- Model evaluation matrix: score each candidate on accuracy, speed, cost, privacy, support
+- Infrastructure checklist: what to confirm before signing any contract
+Format: DOCX, professional, designed for sign-off by CTO/CIO.
+Use: Formal documentation of architecture decisions for governance and audit.
+
+------------------------------------------------------------
+MODULE 8: BUILDING AI USE CASES
+Tier: Business Owner and above
+------------------------------------------------------------
+
+PURPOSE:
+Build the three highest-impact enterprise AI use cases:
+summarisation, triage, and reporting. With prompt design and testing frameworks.
+
+LESSONS REQUIRED:
+
+Lesson 8.1 — Prompt Design and Testing
+- Prompt as a program: role, context, task, format, constraints
+- Few-shot prompting: how and when
+- Output format specification: JSON, structured text, specific fields
+- 3-phase testing: unit (50 examples), edge case (100+), volume testing
+- Production vs testing data: why they differ
+- Prompt versioning and change management
+
+Lesson 8.2 — The Three Core Use Cases
+- Case Summarisation: architecture, system prompt design, integration points
+- Ticket Triage: classification approach, confidence thresholds, routing logic
+- Reporting Automation: data → AI narrative → formatted output pipeline
+
+Q&A (5 questions):
+- Inconsistent output format → root cause?
+- Minimum pilot size?
+- Few-shot prompting benefit?
+- Triage system 40% false positive rate → fix?
+- When to measure token costs in testing?
+
+DELIVERABLES:
+
+File 21: Use Case Build Plan (XLSX, 2 tabs)
+Tab 1 — Sprint Plan:
+- Week-by-week delivery plan (12 weeks)
+- Milestone per week
+- Owner column
+- Status (Not started / In progress / Complete / Blocked)
+- Notes and dependencies
+
+Tab 2 — Resource Plan:
+- People, tools, and infrastructure required
+- Cost estimate per resource
+- Total project cost summary
+Format: XLSX, project management ready.
+Use: Plan and track AI use case implementation from day one.
+
+File 22: Prompt Engineering Guide (PDF, 5 pages)
+Content:
+- The anatomy of a production prompt (labelled diagram)
+- 10 prompt engineering principles with before/after examples
+- Production prompt templates for:
+  * Case/document summarisation
+  * Ticket/enquiry classification and triage
+  * Report generation from structured data
+  * Q&A over documents (RAG)
+  * Email drafting from brief
+  * Data extraction from unstructured text
+- Prompt testing protocol: how to evaluate quality systematically
+- Prompt versioning guide: how to manage changes in production
+Format: PDF, code-formatted examples, printable.
+Use: Reference for anyone writing or reviewing AI prompts.
+
+File 23: AI Testing Checklist (PDF, 2 pages)
+Content:
+- Phase 1: Unit testing checklist (50 examples minimum)
+- Phase 2: Edge case testing checklist (100+ examples)
+- Phase 3: Volume and cost testing checklist
+- Accuracy threshold guide: minimum acceptable accuracy by use case type
+- Production readiness gate: criteria for go-live approval
+- Post-deployment monitoring checklist (first 30 days)
+Format: PDF, checklist format with sign-off boxes.
+Use: Quality gate before any AI system goes live.
+
+------------------------------------------------------------
+MODULE 9: ROI & MEASUREMENT
+Tier: Business Owner and above
+------------------------------------------------------------
+
+PURPOSE:
+Build the financial case for AI investment. Prove value with data.
+
+LESSONS REQUIRED:
+
+Lesson 9.1 — The AI ROI Model
+- 3 value categories: Efficiency, Quality, Revenue
+- Efficiency formula: time saved × people × hourly cost × working days
+- Quality formula: error rate reduction × cost per error × volume
+- Revenue formula: hours recovered → revenue-generating activity
+- KPI framework: Primary, Secondary, Guardrail, Financial KPIs
+- Baseline measurement: why it must happen before deployment
+- Review cadence: daily (week 1–2), weekly (month 1), monthly (ongoing)
+
+Q&A (5 questions):
+- Annual efficiency value calculation from given inputs
+- Why baseline metrics before go-live?
+- Net daily benefit calculation
+- CSAT drop after deployment → which KPI type, what action?
+- Most credible ROI presentation approach for CFO?
+
+DELIVERABLES:
+
+File 24: ROI Calculator Template (XLSX, 3 tabs)
+Tab 1 — Efficiency Value:
+- Inputs: hours saved/person/day, number of people, hourly cost, working days/year
+- Output: Annual efficiency value
+
+Tab 2 — Full ROI Model:
+- All 3 value streams
+- Token cost input
+- Implementation cost
+- Annual maintenance cost
+- Net benefit (annual and 5-year)
+- ROI % and payback period
+
+Tab 3 — Sensitivity Analysis:
+- Conservative / Base / Optimistic scenarios
+- Automated chart: cumulative benefit over 5 years
+Format: XLSX with formulas and charts, CFO-ready.
+Use: The primary ROI tool for all AI investment decisions.
+
+File 25: KPI Framework Template (XLSX, 2 tabs)
+Tab 1 — KPI Definition:
+- Rows: each KPI
+- Columns: KPI Name | Type (Primary/Secondary/Guardrail/Financial) | Baseline | Target | Measurement Method | Owner | Review Frequency
+- Pre-filled examples for common AI use cases
+
+Tab 2 — Monthly Tracking:
+- KPI dashboard with traffic light status
+- Trend line per KPI
+- Notes column for context
+Format: XLSX, designed for monthly reporting.
+Use: Define KPIs before deployment and track monthly thereafter.
+
+File 26: Token Cost Sheet (XLSX)
+Content:
+- Major model pricing table (updated to current pricing)
+- Calculator: calls/day × tokens/call × cost/token → daily/monthly/annual cost
+- Comparison: cost across 5 models for the same workload
+- Optimisation impact calculator: show savings from caching, right-sizing
+Format: XLSX, simple inputs and clear outputs.
+Use: Token cost modelling before any implementation commitment.
+
+File 27: AI Business Case Template (PPTX, 8 slides)
+Slide 1: Executive Summary (problem, solution, ROI headline)
+Slide 2: Current State (process, manual cost, pain points)
+Slide 3: Proposed AI Solution (what it does, how it works, what changes)
+Slide 4: Financial Case (cost model, value model, ROI, payback period)
+Slide 5: Implementation Plan (phases, timeline, resources)
+Slide 6: Risk Assessment (key risks and mitigations)
+Slide 7: Governance and Measurement (KPIs, review cadence, oversight)
+Slide 8: Recommended Next Steps (decision required, timeline, owner)
+Format: PPTX, professional design, ready for executive presentation.
+Use: Present AI investment case to leadership, board, or CFO.
+
+------------------------------------------------------------
+MODULE 10: RESPONSIBLE AI
+Tier: Enterprise Leader only
+------------------------------------------------------------
+
+PURPOSE:
+Build AI that is trustworthy, fair, explainable, and compliant.
+From day one, not as an afterthought.
+
+LESSONS REQUIRED:
+
+Lesson 10.1 — Bias, Hallucination, Governance, Guardrails
+- Bias: training data bias, measurement bias, feedback loop bias — detection methods
+- Hallucination: design for it, don't hope against it — RAG as mitigation
+- The 5-pillar governance framework: Accountability, Transparency, Explainability, Control, Improvement
+- Guardrail design: confidence thresholds, human-in-the-loop, kill switch
+- Australian regulatory context: Privacy Act, sector-specific requirements
+
+Q&A (5 questions):
+- 78% vs 43% approval rates across groups → what is this?
+- RAG as hallucination mitigation → why does it work?
+- Customer wants to challenge AI credit decision → what governance required?
+- 3 days of bad outputs → what governance capability needed?
+- Minimum governance requirements for any production AI system?
+
+DELIVERABLES:
+
+File 28: Responsible AI Checklist (PDF, 3 pages)
+Content:
+Pre-deployment checklist covering:
+Section 1 — Bias Assessment
+- Training data review: was historical data audited for bias?
+- Demographic performance testing: has accuracy been tested across key groups?
+- Feedback loop risk: does AI output influence future training data?
+
+Section 2 — Hallucination Controls
+- Is AI grounded in retrieved documents (RAG)?
+- Are confidence thresholds set and documented?
+- Is human review required for consequential decisions?
+- Are source citations required in outputs?
+
+Section 3 — Governance
+- Is there a named accountable owner?
+- Is this system in the AI Use Register?
+- Is there an explainability mechanism for decisions?
+- Is there a documented kill switch procedure?
+- When is the first scheduled review?
+
+Section 4 — Compliance
+- Has legal reviewed data usage?
+- Is data residency compliant with regulatory requirements?
+- Has Privacy Act impact been assessed?
+
+Sign-off: Data Owner, Process Owner, Business Sponsor
+Format: PDF, fillable, designed for pre-deployment sign-off.
+Use: Mandatory gate before any AI system goes live.
+
+File 29: AI Risk Assessment Template (DOCX)
+Content:
+- Risk register format: Risk | Likelihood (1–5) | Impact (1–5) | Risk Score | Current Controls | Additional Mitigations | Owner | Review Date
+- Pre-populated with 12 standard AI risks (bias, hallucination, data breach, dependency failure, regulatory breach, etc.)
+- Risk appetite guide: which risks are acceptable vs require escalation
+- Risk review cadence recommendation
+Format: DOCX table, professional, sign-off ready.
+Use: Complete as part of governance process for every AI use case.
+
+------------------------------------------------------------
+MODULE 11: SUSTAINABILITY & AI
+Tier: Enterprise Leader only
+------------------------------------------------------------
+
+PURPOSE:
+Understand the energy and carbon footprint of AI at scale.
+Build practices that optimise impact and meet ESG requirements.
+
+LESSONS REQUIRED:
+
+Lesson 11.1 — The Environmental Impact of AI
+- Training vs inference energy consumption
+- Per-query energy comparisons (AI query vs Google search)
+- Water usage in AI data centres
+- Optimisation strategies: right-sizing, caching, batching, green infrastructure
+- ESG reporting requirements for AI
+- How sustainability and cost efficiency are aligned
+
+Q&A (5 questions):
+- 200K calls/month, 60% similar queries → most impactful sustainability action?
+- Using GPT-4o for simple classification → sustainability problem?
+- What metrics for sustainability disclosure?
+- Batch vs real-time processing → sustainability benefit?
+- Why cost optimisation and sustainability are aligned?
+
+DELIVERABLES:
+
+File 30: AI Sustainability Checklist (PDF, 2 pages)
+Content:
+Section 1 — Model Right-Sizing
+- Is the model the minimum size that meets accuracy requirements?
+- Has a smaller model been benchmarked against the task?
+- What is the cost and energy delta between current and smaller model?
+
+Section 2 — Usage Optimisation
+- Is response caching implemented for repeated queries?
+- Are requests batched where real-time is not required?
+- Are system prompts compressed to minimum effective length?
+
+Section 3 — Infrastructure
+- Is the cloud region selected for renewable energy availability?
+- What is the provider's carbon commitment?
+- Is there a compute carbon dashboard configured?
+
+Section 4 — Measurement & Reporting
+- What is the monthly token volume?
+- What is the estimated carbon equivalent?
+- Is AI included in annual sustainability disclosure?
+
+Format: PDF, checklist with calculation guidance.
+Use: Annual review of AI program sustainability practices.
+
+File 31: Resource Awareness Guide (PDF, 3 pages)
+Content:
+- Energy consumption per AI model type (comparative table)
+- Carbon equivalent calculations: tokens → grams CO2
+- Water usage reference: major cloud providers
+- Optimisation ROI calculator: energy saved × carbon price → cost value of sustainability
+- Case study: retailer reduces AI carbon footprint 55% while saving $180K/year
+- ESG disclosure framework: what to report, how to measure, who is responsible
+Format: PDF reference document.
+Use: Brief sustainability and ESG teams on AI environmental impact.
+
+------------------------------------------------------------
+MODULE 12: PEOPLE, CHANGE & ADOPTION
+Tier: Business Owner and above
+------------------------------------------------------------
+
+PURPOSE:
+Technology is 20% of an AI program. People are 80%.
+Build the adoption strategy that makes AI stick.
+
+LESSONS REQUIRED:
+
+Lesson 12.1 — Adoption Strategy and Resistance Management
+- Why people resist AI (and why it's rational)
+- The 5-phase adoption framework: Awareness → Demonstration → Involvement → Support → Embedding
+- Stakeholder mapping: attitude, concern, WIIFM, engagement approach
+- Resistance management: objection types and evidence-based responses
+- Champions: how to identify, recruit, and support them
+
+Lesson 12.2 — Opportunity Creation and Role Evolution
+- The opportunity map: showing people what they'll do with recovered time
+- Role evolution framework: current activities → AI handles → human focuses on
+- Future skills made more valuable by AI
+- How to frame AI as career enabler, not job eliminator
+- The communication strategy: what to say, when, and to whom
+
+Q&A (5 questions):
+- Working AI tool, 22% adoption → most likely cause?
+- Best response to "AI is going to take my job"?
+- Highest adoption rate approach?
+- What is an "opportunity map"?
+- When to begin stakeholder mapping?
+
+DELIVERABLES:
+
+File 32: Stakeholder Map Template (PPTX, 2 slides)
+Slide 1 — Stakeholder Grid:
+- 2×2 grid: Influence (high/low) × Attitude (advocate/resistant)
+- Space to place each stakeholder group with sticky-note format
+- Legend: colour coding by engagement priority
+
+Slide 2 — Stakeholder Detail Table:
+- Columns: Stakeholder Group | Current Attitude | Primary Concern | WIIFM | Communication Approach | Engagement Owner | Key Touchpoints
+- Pre-filled example row
+Format: PPTX, workshop-ready, A0-printable.
+Use: Complete in the first week. Review monthly throughout the program.
+
+File 33: AI Adoption Plan (DOCX, 4 pages)
+Content:
+- Phase 1 (Awareness): activities, timeline, owner, success measure
+- Phase 2 (Demonstration): pilot group selection, demo approach, feedback capture
+- Phase 3 (Involvement): co-design activities, feedback loops, champion recruitment
+- Phase 4 (Support): training plan, champion network, help desk, escalation
+- Phase 5 (Embedding): workflow integration, adoption metrics, milestone celebration
+- Adoption KPIs: target adoption rate, usage frequency, satisfaction score
+- Budget estimate for change management activities
+Format: DOCX, professional, ready for program plan submission.
+Use: The living change management plan for any AI program.
+
+File 34: Communication Plan Template (DOCX, 3 pages)
+Content:
+- Communication matrix: Who | Message | Channel | Frequency | Owner | Purpose
+- Message library: pre-written messages for key program milestones
+  * Program announcement
+  * Pilot invitation
+  * Launch announcement
+  * First month results
+  * Success story
+- FAQ document template (for staff)
+- Executive briefing template (1 page)
+Format: DOCX with pre-written content to adapt.
+Use: Ensure consistent, planned communication throughout the AI program.
+
+File 35: Role Evolution Guide (PDF, Enterprise tier, 4 pages)
+Content:
+- Framework: Current Role Activities → AI Handles → Human Focuses On
+- Role evolution examples for 10 common business roles:
+  * Customer Service Agent
+  * Operations Analyst
+  * Financial Analyst
+  * HR Business Partner
+  * Marketing Manager
+  * IT Support Specialist
+  * Sales Representative
+  * Legal/Compliance Officer
+  * Project Manager
+  * Executive Assistant
+- Future skills matrix: which skills become more valuable with AI
+- How to run a "role evolution workshop" with your team
+- Opportunity map template: one per role
+Format: PDF, designed to be shared with staff.
+Use: Present to individuals and teams to show their future with AI.
+
+------------------------------------------------------------
+MODULE 13: MULTIMODAL AI & ORCHESTRATION
+Tier: Enterprise Leader only
+------------------------------------------------------------
+
+PURPOSE:
+Go beyond text. Design multi-model workflows using text, image,
+voice, and agentic AI — with cost trade-offs and fallback strategies.
+
+LESSONS REQUIRED:
+
+Lesson 13.1 — Text, Image, Voice and Agentic AI
+- The four modalities and their business applications
+- Multimodal workflow design: combining modalities
+- Cost trade-offs: image and voice token pricing vs text
+- Orchestration layer: routing, context management, error handling, monitoring
+- Fallback strategy design
+
+Q&A (5 questions):
+- Customer sends photo + complaint → best architecture?
+- Orchestrated workflow vs text-only → cost comparison?
+- Purpose of orchestration layer?
+- Voice AI 72% accuracy for accented speech → what to do?
+- Starting multimodal in AI-new organisation → recommended approach?
+
+DELIVERABLES:
+
+File 36: Multimodal Workflow Template (PPTX, 4 slides)
+Slide 1 — Modality Selection Guide: flowchart for choosing text/image/voice/agent per workflow step
+Slide 2 — Multimodal Workflow Canvas (blank): swim-lane with modality lanes
+Slide 3 — Orchestration Layer Design: components diagram (router, context mgr, error handler, monitor, guardrails)
+Slide 4 — Completed Example: invoice processing multimodal workflow
+Format: PPTX, editable shapes.
+Use: Design and present multimodal AI workflow architecture.
+
+File 37: Model Selection Map (PDF, 3 pages)
+Content:
+- Decision framework: task type → modality → model options → cost → recommendation
+- Model comparison table across text, image, voice, and agent categories
+- Cost-per-task comparison for 5 common enterprise scenarios
+- When to use multiple models vs single model
+- Vendor lock-in risk assessment: how to build portable architecture
+Format: PDF reference document.
+Use: Model selection decisions in enterprise AI architecture.
+
+File 38: Orchestration Blueprint (PPTX, 3 slides)
+Slide 1 — Orchestration Architecture Template (blank, editable shapes)
+Slide 2 — Component Specifications: define each orchestration component
+Slide 3 — Cost and Performance Monitoring Framework
+Format: PPTX, technical audience, design-ready.
+Use: Design and document multi-model orchestration systems.
+
+------------------------------------------------------------
+MODULE 14: 90-DAY EXECUTION PLAN
+Tier: Enterprise Leader only
+------------------------------------------------------------
+
+PURPOSE:
+Build a week-by-week plan from approved use case to live,
+measured AI in production. Sequenced. Realistic. Delivered.
+
+LESSONS REQUIRED:
+
+Lesson 14.1 — Prioritisation, Sequencing, and the 90-Day Roadmap
+- Phase 1 Foundation (Weeks 1–4): discovery, design, financial case, setup
+- Phase 2 Build (Weeks 5–10): build, pilot, hardening
+- Phase 3 Launch (Weeks 11–12): rollout, measurement, planning next use case
+- Sequencing principles: quick win first, reusable infrastructure, prove before scaling
+- Scope management: the parking lot technique
+- Compounding AI value: how each use case reduces cost of the next
+
+Q&A (5 questions):
+- CEO adds scope at week 6 → correct response?
+- Why baseline metrics in Week 3?
+- Minimum pilot size?
+- When to begin use case 2?
+- What infrastructure should every use case leave behind?
+
+DELIVERABLES:
+
+File 39: 90-Day Execution Roadmap (XLSX, 3 tabs)
+Tab 1 — Week-by-Week Plan:
+- Rows: each week (1–12)
+- Columns: Phase | Week | Key Activities | Deliverable | Owner | Status | Notes
+- Pre-populated activities per week
+- Phase colour coding
+- Milestone markers (diamonds)
+
+Tab 2 — Dependency Map:
+- What must be complete before each milestone
+- Critical path highlighted
+
+Tab 3 — Programme Dashboard:
+- % complete (automated)
+- Weeks ahead/behind
+- Blockers log
+- RAG status (Red/Amber/Green) per milestone
+Format: XLSX, project management ready. Works as standalone tracker.
+Use: The primary delivery management tool for the 90-day program.
+
+File 40: Execution Tracker (XLSX, daily use)
+Content:
+- Daily activity log: Date | Activity | Owner | Time Spent | Status | Blocker | Notes
+- Weekly summary auto-calculated
+- Burndown chart (automated)
+- Blockers register with resolution tracking
+- Issue log
+Format: XLSX, simple, designed for daily 5-minute updates.
+Use: Operational tracking tool for the delivery team throughout the 90 days.
+
+==================================================
+CONTENT GENERATION INSTRUCTIONS FOR CHATGPT
+==================================================
+
+When generating content for any module, follow these rules:
+
+1. TONE
+- Authoritative and direct. No hedging.
+- Use active voice.
+- Write as if the author has implemented this in real organisations.
+- No generic AI hype phrases ("revolutionise", "transform", "unlock").
+- Use specific numbers and examples wherever possible.
+
+2. REAL-WORLD PRACTICE SECTION (mandatory in every lesson)
+Each lesson must end with this section:
+- Title: "From Real-World Practice"
+- Insight: one specific insight from real implementation
+- Example: a specific business scenario with numbers (organisation type, size, outcome)
+- Why it matters: business impact in concrete terms
+- Implementation tip: one specific, actionable step
+- "What This Saves You": one sentence stating the concrete cost or risk avoided
+
+3. DOWNLOADABLE TEMPLATES
+When generating template content:
+- Every field must have a clear label and instructions
+- Include at least one pre-filled example row
+- Use consistent professional formatting
+- Designed for immediate use — not just illustration
+
+4. Q&A QUESTIONS
+- Must be scenario-based (not conceptual)
+- 4 answer options per question
+- One clearly correct answer
+- Explanation for why the correct answer is right
+- Explanation must teach, not just confirm
+
+5. SCORING CATEGORIES
+- Beginner: 0–44%
+- Developing: 45–64%
+- Ready to Apply: 65–84%
+- Advanced: 85–100%
+
+For each category, provide:
+- What this score means
+- Recommended next step
+
+==================================================
+END OF BRIEF
+==================================================

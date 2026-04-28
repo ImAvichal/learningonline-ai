@@ -1,0 +1,138 @@
+// data/tiers.js — Updated pricing: $99 / $299 / $399
+
+export const TIERS = {
+  individual: {
+    id: 'individual',
+    name: 'Individual Upskill',
+    label: 'Upskill',
+    price: 99,
+    priceDisplay: '$99',
+    billing: 'One-time · Lifetime access',
+    colorClass: 'tier-individual',
+    description: 'For business professionals who want to upskill, participate in AI leadership conversations, and understand what AI means for their role.',
+    idealFor: 'Business professionals, team members, and people managers who need AI literacy without technical depth.',
+    notFor: 'Business owners implementing AI across operations or enterprise leaders driving transformation.',
+    features: [
+      'AI Foundations incl. token awareness',
+      'Key roles and model types',
+      'Practical examples and use cases',
+      'Leadership conversation frameworks',
+      'Module Q&A scoring system',
+      'Downloadable cheat sheets and guides',
+      'Lifetime access + all future updates',
+    ],
+    modules: [1, 2, 3],
+    cta: 'Enrol Now — $99',
+    highlighted: false,
+    stripeEnvKey: 'STRIPE_PRICE_INDIVIDUAL',
+  },
+  smb: {
+    id: 'smb',
+    name: 'Business Owner',
+    label: 'Business Owner',
+    price: 299,
+    priceDisplay: '$299',
+    billing: 'One-time · Up to 5 team seats',
+    colorClass: 'tier-smb',
+    description: 'For small to medium business owners preparing to adopt AI — with use case identification, workflow design, data readiness, and ROI frameworks.',
+    idealFor: 'Business owners, operations managers, and department heads in organisations of 10–200 people ready to implement AI.',
+    notFor: 'Individuals needing personal upskilling only, or large enterprises requiring governance operating models.',
+    features: [
+      'Everything in Individual Upskill',
+      'Use case identification & prioritisation',
+      'Workflow design frameworks',
+      'Data readiness & structuring program',
+      'ROI modelling and measurement',
+      'People & change adoption toolkit',
+      'Up to 5 team seats',
+      'Priority email support',
+    ],
+    modules: [1, 2, 3, 4, 5, 6, 7, 8, 9, 12],
+    cta: 'Enrol Now — $299',
+    highlighted: true,
+    stripeEnvKey: 'STRIPE_PRICE_SMB',
+  },
+  enterprise: {
+    id: 'enterprise',
+    name: 'Enterprise Leader',
+    label: 'Enterprise',
+    price: 399,
+    priceDisplay: '$399',
+    billing: 'One-time · Unlimited team seats',
+    colorClass: 'tier-enterprise',
+    description: 'For enterprise leaders driving AI transformation — with operating model design, governance, sustainability, multimodal AI, and the full 90-day execution roadmap.',
+    idealFor: 'CIOs, transformation directors, and program leads in organisations of 200+ people requiring a full AI operating model.',
+    notFor: 'Individuals or SMBs who don\'t yet need enterprise-scale governance and orchestration frameworks.',
+    features: [
+      'Everything in Individual Upskill',
+      'Enterprise AI operating model',
+      'Responsible AI & governance framework',
+      'Sustainability & AI impact planning',
+      'Multimodal AI & orchestration strategy',
+      'Full 90-Day execution roadmap',
+      'Unlimited team seats',
+      'All 14 modules',
+      'Priority support',
+    ],
+    modules: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14],
+    cta: 'Enrol Now — $399',
+    highlighted: false,
+    stripeEnvKey: 'STRIPE_PRICE_ENTERPRISE',
+  },
+}
+
+export const TIER_ORDER = ['individual', 'smb', 'enterprise']
+
+export const canAccessTier = (userTier, contentTier) =>
+  TIER_ORDER.indexOf(userTier) >= TIER_ORDER.indexOf(contentTier)
+
+export const INDUSTRIES = [
+  {
+    id: 'government', icon: '🏛️', name: 'Government & Public Sector',
+    useCases: ['FOI request summarisation and triage', 'Policy document compliance checking', 'Constituent enquiry routing and response drafting', 'Procurement document review and risk flagging', 'Cross-department reporting automation'],
+    recommendedTier: 'enterprise',
+    outcome: 'Reduce administrative burden by 40–60% while improving service delivery consistency.',
+  },
+  {
+    id: 'healthcare', icon: '🏥', name: 'Healthcare & Medical',
+    useCases: ['Clinical notes summarisation for handover', 'Patient enquiry triage and routing', 'Compliance and audit documentation', 'Medical record review and flagging', 'Staff rostering and scheduling optimisation'],
+    recommendedTier: 'enterprise',
+    outcome: 'Reduce clinician administrative time by up to 30%, freeing capacity for patient care.',
+  },
+  {
+    id: 'hospitality', icon: '🏨', name: 'Hospitality & Tourism',
+    useCases: ['Guest enquiry and booking response automation', 'Review sentiment analysis and response drafting', 'Staff shift handover summaries', 'Supplier and inventory communication', 'Personalised guest experience recommendations'],
+    recommendedTier: 'smb',
+    outcome: 'Improve guest response times by 70% and free staff for high-value interactions.',
+  },
+  {
+    id: 'travel', icon: '✈️', name: 'Travel & Transport',
+    useCases: ['Disruption communication drafting and sending', 'Customer rebooking triage and prioritisation', 'Complaint summarisation and escalation routing', 'Route and schedule optimisation insights', 'Regulatory reporting automation'],
+    recommendedTier: 'smb',
+    outcome: 'Handle 3× the disruption volume with the same team during peak periods.',
+  },
+  {
+    id: 'financial', icon: '🏦', name: 'Financial Services',
+    useCases: ['KYC document review and risk summarisation', 'Customer complaint triage and response', 'Regulatory report drafting and checking', 'Fraud signal detection and alerting', 'Advisor meeting notes and action extraction'],
+    recommendedTier: 'enterprise',
+    outcome: 'Reduce compliance processing time by 50% while improving audit trail quality.',
+  },
+  {
+    id: 'retail', icon: '🛒', name: 'Retail & E-commerce',
+    useCases: ['Customer service enquiry automation', 'Product description and content generation', 'Inventory demand forecasting signals', 'Returns and refund triage', 'Competitor and market monitoring summaries'],
+    recommendedTier: 'smb',
+    outcome: 'Automate 60% of routine customer interactions and halve returns processing time.',
+  },
+  {
+    id: 'professional', icon: '💼', name: 'Professional Services',
+    useCases: ['Proposal and tender document drafting', 'Meeting notes and action item extraction', 'Client report generation from data', 'Contract review and risk summarisation', 'Billing narrative and timesheet generation'],
+    recommendedTier: 'smb',
+    outcome: 'Reclaim 6–8 hours per consultant per week from administrative work.',
+  },
+  {
+    id: 'education', icon: '📚', name: 'Education & Training',
+    useCases: ['Student enquiry routing and FAQ automation', 'Course content summarisation and adaptation', 'Assessment feedback generation assistance', 'Administrative reporting and compliance', 'Staff onboarding and knowledge management'],
+    recommendedTier: 'smb',
+    outcome: 'Reduce administrative burden on educators by 40%, improving focus on student outcomes.',
+  },
+]
