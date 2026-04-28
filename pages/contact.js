@@ -3,7 +3,7 @@ import Head from 'next/head'
 import { useState } from 'react'
 import { Nav, Card, SectionLabel, Input, Spinner } from '../components/ui'
 
-const QUERY_TYPES = ['General', 'Individual Upskill', 'SMB Owner', 'Enterprise Leader', 'Bespoke Support']
+const QUERY_TYPES = ['General', 'Individual Upskill', 'Business Owner', 'Enterprise Leader', 'Bespoke Support']
 
 export default function Contact() {
   const [form, setForm] = useState({ name: '', email: '', company: '', query_type: '', message: '' })
@@ -115,7 +115,7 @@ export default function Contact() {
                 <div className="space-y-4">
                   {[
                     { icon: '🎓', title: 'Individual Upskill', desc: 'Questions about the $99 individual program and what\'s included.' },
-                    { icon: '🏢', title: 'SMB Owner', desc: 'Implementing AI in your business — use the $299 SMB tier or speak to us first.' },
+                    { icon: '🏢', title: 'Business Owner', desc: 'Implementing AI in your business — use the $299 Business Owner tier or speak to us first.' },
                     { icon: '🏛️', title: 'Enterprise Leader', desc: 'Large-scale AI transformation, operating model, governance frameworks.' },
                     { icon: '🤝', title: 'Bespoke Support', desc: 'Custom engagements beyond the platform — advisory, implementation, or tailored programs.' },
                   ].map(item => (

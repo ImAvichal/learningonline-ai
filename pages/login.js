@@ -64,11 +64,6 @@ export default function Login() {
               <div className="mb-5 p-4 rounded-lg bg-red-500/10 border border-red-500/25 text-red-400 text-sm">{error}</div>
             )}
 
-            <div className="mb-5 p-4 rounded-lg bg-blue/10 border border-blue/20 text-sm">
-              <div className="font-display font-bold text-blue-bright text-xs uppercase tracking-wider mb-1">Demo Mode</div>
-              <div className="text-muted text-xs">Enter any email + password to explore the platform.</div>
-            </div>
-
             <form onSubmit={submit} className="space-y-4">
               <Input label="Email"    type="email"    placeholder="you@company.com" value={form.email}    onChange={e => setForm(p => ({ ...p, email: e.target.value }))} />
               <Input label="Password" type="password" placeholder="••••••••"       value={form.password} onChange={e => setForm(p => ({ ...p, password: e.target.value }))} />

@@ -157,7 +157,7 @@ export default function Pricing() {
               {[
                 ['Is this self-paced?', 'Yes — fully self-paced with no live sessions. Learn on your schedule and access everything forever.'],
                 ['Do I need technical knowledge?', 'No. Designed for business professionals and leaders. Zero coding required.'],
-                ['What\'s the difference between the tiers?', 'Individual Upskill is AI literacy for professionals. SMB Owner adds implementation tools and frameworks. Enterprise Leader adds governance, orchestration, and the full transformation roadmap.'],
+                ['What\'s the difference between the tiers?', 'Individual Upskill is AI literacy for professionals. Business Owner adds implementation tools and frameworks. Enterprise Leader adds governance, orchestration, and the full transformation roadmap.'],
                 ['Can I upgrade later?', 'Yes — email us and we\'ll apply your previous payment as credit toward the higher tier.'],
                 ['Are payments secure?', 'Yes. All payments are processed by Stripe. We never see or store your card details.'],
                 ['Can I expense this?', 'Yes. We provide a tax invoice for professional development expenses on request.'],

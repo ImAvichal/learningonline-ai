@@ -224,7 +224,7 @@ function IndustryMatcher() {
                   : t === 'smb' ? 'tier-smb' : `tier-${t}`
                 : 'border-white/10 text-muted hover:border-white/20 hover:text-white'
             }`}>
-            {t === null ? 'All Industries' : t === 'smb' ? 'Business Tier' : TIERS[t]?.name}
+            {t === null ? 'All Industries' : t === 'smb' ? 'Business Owner' : TIERS[t]?.name}
           </button>
         ))}
       </div>
@@ -268,7 +268,7 @@ function IndustryMatcher() {
                   <div className="flex items-center gap-2 flex-wrap">
                     <span className="text-sm text-muted">Recommended:</span>
                     <TierBadge tier={industry.recommendedTier}
-                      label={industry.recommendedTier === 'smb' ? 'Business Tier' : tier.name} />
+                      label={industry.recommendedTier === 'smb' ? 'Business Owner' : tier.name} />
                     <span className="text-sm font-display font-bold text-white">{tier.priceDisplay}</span>
                   </div>
                 </div>
@@ -652,7 +652,7 @@ export default function Home() {
                 <div className="text-xs font-display font-bold text-muted uppercase tracking-wider mb-3">Contact</div>
                 <div className="space-y-2">
                   <a href="mailto:hello@learningonline.ai" className="block text-sm text-muted hover:text-white transition-colors">hello@learningonline.ai</a>
-                  <a href="mailto:hello@learningonline.ai?subject=Enterprise Enquiry" className="block text-sm text-muted hover:text-white transition-colors">Enterprise enquiries</a>
+                  <a href="/contact" className="block text-sm text-muted hover:text-white transition-colors">Enterprise enquiries</a>
                 </div>
               </div>
             </div>
