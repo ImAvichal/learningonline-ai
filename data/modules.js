@@ -152,8 +152,6 @@ At 10,000 calls per day: $75/day · $2,250/month</pre>
 <p><strong>💡 What This Saves You:</strong> Clear role mapping prevents the two most common and expensive AI program failures: governance blockers and adoption collapse.</p>
 </div>`,
       },
-    ],
-
       {
         id: 'm2-l2', number: 2, tier: 'individual', duration: '20 min',
         title: 'The AI Execution Triad',
