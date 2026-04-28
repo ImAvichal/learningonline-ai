@@ -82,3 +82,5 @@ export const getResourcesByModule = (moduleId, tier) => {
   const all = getResourcesForTier(tier)
   return all.filter(r => r.moduleId === moduleId)
 }
+export const getTemplatesForTier = getResourcesForTier
+export const TEMPLATES = RESOURCES
