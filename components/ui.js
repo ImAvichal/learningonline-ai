@@ -2,12 +2,54 @@
 import Link from 'next/link'
 import { useState, useEffect, useRef } from 'react'
 import { useAuth } from '../lib/auth'
+import { useTheme } from '../lib/theme'
 
 export const BRAND = {
   name:    'Le On AI',
   tagline: 'AI That Actually Works In Your Business',
   domain:  'learningonline.ai',
   email:   'hello@learningonline.ai',
+}
+
+
+// ── Theme Toggle ──────────────────────────────────────────────────────────────
+export function ThemeToggle() {
+  const { theme, setTheme } = useTheme()
+  const options = [
+    { value: 'dark',   icon: '🌙', label: 'Dark' },
+    { value: 'light',  icon: '☀️', label: 'Light' },
+    { value: 'system', icon: '💻', label: 'System' },
+  ]
+  const current = options.find(o => o.value === theme) || options[0]
+  const [open, setOpen] = useState(false)
+
+  return (
+    <div className="relative">
+      <button
+        onClick={() => setOpen(v => !v)}
+        className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg border border-white/10 text-muted hover:text-white hover:border-white/20 transition-all text-xs font-display font-bold"
+        title="Toggle theme"
+      >
+        <span>{current.icon}</span>
+        <span className="hidden sm:inline">{current.label}</span>
+      </button>
+      {open && (
+        <div className="absolute right-0 top-full mt-2 bg-navy-mid border border-white/10 rounded-xl shadow-xl overflow-hidden z-50 min-w-[120px]">
+          {options.map(opt => (
+            <button
+              key={opt.value}
+              onClick={() => { setTheme(opt.value); setOpen(false) }}
+              className={`w-full flex items-center gap-2.5 px-4 py-2.5 text-xs font-display font-bold transition-colors ${
+                theme === opt.value ? 'text-white bg-blue/20' : 'text-muted hover:text-white hover:bg-white/5'
+              }`}
+            >
+              <span>{opt.icon}</span>{opt.label}
+            </button>
+          ))}
+        </div>
+      )}
+    </div>
+  )
 }
 
 // ── Logo ─────────────────────────────────────────────────────────────────────
@@ -50,6 +92,7 @@ export function Nav({ transparent = false }) {
           <NavLink href="/contact">Contact</NavLink>
         </div>
         <div className="hidden md:flex items-center gap-3">
+          <ThemeToggle />
           {user?.tier ? (
             <>
               <NavLink href="/dashboard">Dashboard</NavLink>
