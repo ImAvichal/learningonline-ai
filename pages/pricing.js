@@ -1,5 +1,6 @@
-// pages/pricing.js
+// pages/pricing.js — Updated pricing: $99 / $299 / $399
 import Head from 'next/head'
+import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { Nav, Reveal, Card, SectionLabel, Button, TierBadge } from '../components/ui'
 import { TIERS, TIER_ORDER } from '../data/tiers'
@@ -10,17 +11,13 @@ export default function Pricing() {
   const router   = useRouter()
 
   const handleEnrol = (tierId) => {
-    if (tierId === 'enterprise') {
-      window.location.href = 'mailto:hello@learningonline.ai?subject=Enterprise Enquiry — Le On AI'
-      return
-    }
     if (!user) { router.push(`/signup?tier=${tierId}`); return }
     router.push(`/checkout?tier=${tierId}`)
   }
 
   return (
     <>
-      <Head><title>Pricing — Le On AI · Le On AI</title></Head>
+      <Head><title>Pricing — Le On AI</title></Head>
       <Nav />
       <div className="pt-28 pb-20">
         <div className="max-w-5xl mx-auto px-6">
@@ -32,7 +29,7 @@ export default function Pricing() {
                 Choose your tier
               </h1>
               <p className="text-muted text-xl max-w-lg mx-auto">
-                One program. Three levels of depth. Pick the tier that matches where you are and where you're going.
+                One program. Three levels of depth. Priced on value — not seat count.
               </p>
             </div>
           </Reveal>
@@ -55,10 +52,9 @@ export default function Pricing() {
                       </div>
                     )}
 
-                    <TierBadge tier={tid} label={tid === 'smb' ? 'Business' : tid === 'individual' ? 'Individual' : 'Enterprise'} className="mb-4" />
-                    <div className={`font-display font-black mb-1 ${t.price === null ? 'text-4xl' : 'text-5xl'}`}>{t.priceDisplay}</div>
-                    <div className="text-xs text-muted mb-1">{t.priceRange}</div>
-                    <div className="text-xs text-muted mb-5 font-display">{t.billing}</div>
+                    <TierBadge tier={tid} label={t.label} className="mb-4" />
+                    <div className="font-display font-black text-5xl mb-1">{t.priceDisplay}</div>
+                    <div className="text-xs text-muted mb-5">{t.billing}</div>
                     <p className="text-sm text-muted leading-relaxed mb-4 flex-1">{t.description}</p>
 
                     <div className="p-3 rounded-lg bg-white/[0.03] border border-white/5 mb-5">
@@ -85,7 +81,7 @@ export default function Pricing() {
                           t.highlighted
                             ? 'bg-amber-400 hover:bg-amber-300 text-navy shadow-[0_0_24px_rgba(245,158,11,0.3)]'
                             : tid === 'enterprise'
-                            ? 'border border-purple-400/40 text-purple-300 hover:bg-purple-400/10'
+                            ? 'bg-blue hover:bg-blue-bright text-white shadow-[0_0_20px_rgba(26,110,255,0.3)]'
                             : 'border border-blue/40 text-blue-bright hover:bg-blue/10'
                         }`}>
                         {t.cta}
@@ -99,39 +95,41 @@ export default function Pricing() {
 
           {/* Comparison table */}
           <Reveal>
-            <h3 className="font-display font-bold text-2xl text-center mb-6">What's included at each tier</h3>
-            <Card className="overflow-hidden mb-12">
+            <h3 className="font-display font-bold text-2xl text-center mb-6">What's included</h3>
+            <Card className="overflow-hidden mb-8">
               <div className="overflow-x-auto">
                 <table className="w-full text-sm">
                   <thead>
                     <tr className="border-b border-white/5">
                       <th className="p-4 text-left text-muted font-display font-bold text-xs uppercase tracking-wider w-1/2">Feature</th>
-                      <th className="p-4 text-center"><TierBadge tier="individual" label="Individual" /></th>
-                      <th className="p-4 text-center"><TierBadge tier="smb" label="Business" /></th>
+                      <th className="p-4 text-center"><TierBadge tier="individual" label="Upskill" /></th>
+                      <th className="p-4 text-center"><TierBadge tier="smb" label="SMB" /></th>
                       <th className="p-4 text-center"><TierBadge tier="enterprise" label="Enterprise" /></th>
                     </tr>
                   </thead>
                   <tbody>
                     {[
-                      ['Core 8-module curriculum',            '✓','✓','✓'],
-                      ['Basic template library (8)',          '✓','✓','✓'],
-                      ['ROI Calculator',                      '✓','✓','✓'],
-                      ['90-Day Execution Plan template',      '✓','✓','✓'],
-                      ['Business examples per module',        '—','✓','✓'],
-                      ['Use case playbooks by industry',      '—','✓','✓'],
-                      ['Implementation templates',            '—','✓','✓'],
+                      ['AI Foundations & token awareness',    '✓','✓','✓'],
+                      ['Key roles & leadership frameworks',   '✓','✓','✓'],
+                      ['Use case identification',             '✓','✓','✓'],
+                      ['Module Q&A scoring',                  '✓','✓','✓'],
+                      ['Cheat sheets & prompt guides',        '✓','✓','✓'],
+                      ['Use case prioritisation & 5-yr model','—','✓','✓'],
+                      ['Workflow design templates',           '—','✓','✓'],
+                      ['Data readiness program',              '—','✓','✓'],
+                      ['ROI modelling & business case',       '—','✓','✓'],
+                      ['People & change adoption toolkit',    '—','✓','✓'],
                       ['Up to 5 team seats',                  '—','✓','✓'],
-                      ['Data readiness program',              '—','—','✓'],
-                      ['Enterprise AI operating model',       '—','—','✓'],
-                      ['Governance & ethics framework',       '—','—','✓'],
-                      ['AI command centre design',            '—','—','✓'],
+                      ['Responsible AI framework',            '—','—','✓'],
+                      ['Sustainability & AI program',         '—','—','✓'],
+                      ['Multimodal AI & orchestration',       '—','—','✓'],
+                      ['90-Day execution roadmap',            '—','—','✓'],
                       ['Unlimited team seats',                '—','—','✓'],
-                      ['Monthly advisory session (1hr)',      '—','—','✓'],
                     ].map(([feature, a, b, c]) => (
                       <tr key={feature} className="border-b border-white/[0.04] hover:bg-white/[0.02]">
                         <td className="p-4 text-muted text-sm">{feature}</td>
-                        {[a, b, c].map((v, i) => (
-                          <td key={i} className={`p-4 text-center font-bold text-sm ${v === '✓' ? 'text-success' : 'text-white/20'}`}>{v}</td>
+                        {[a,b,c].map((v, i) => (
+                          <td key={i} className={`p-4 text-center font-bold text-sm ${v==='✓'?'text-success':'text-white/15'}`}>{v}</td>
                         ))}
                       </tr>
                     ))}
@@ -143,11 +141,11 @@ export default function Pricing() {
 
           {/* Guarantee */}
           <Reveal>
-            <Card className="p-8 text-center mb-12">
+            <Card className="p-8 text-center mb-8">
               <div className="text-4xl mb-4">🛡️</div>
               <h3 className="font-display font-bold text-xl mb-3">14-Day Money-Back Guarantee</h3>
               <p className="text-muted max-w-md mx-auto text-sm leading-relaxed">
-                Complete Module 1 and don't believe this will deliver measurable value to your organisation — we'll refund you in full. No questions asked.
+                Complete Module 1 and don't believe this will deliver measurable value — we'll refund you in full. No questions asked.
               </p>
             </Card>
           </Reveal>
@@ -155,22 +153,32 @@ export default function Pricing() {
           {/* FAQ */}
           <Reveal>
             <h3 className="font-display font-bold text-2xl text-center mb-8">Common questions</h3>
-            <div className="grid md:grid-cols-2 gap-5">
+            <div className="grid md:grid-cols-2 gap-5 mb-12">
               {[
-                ['Is this live or self-paced?', 'Fully self-paced. No live sessions to attend. Learn on your schedule — access forever.'],
-                ['Do I need technical AI knowledge?', 'No. Designed for business leaders, operators, and transformation professionals. Zero coding required.'],
-                ['What\'s the difference between Individual and Small & Medium Business?', 'The Business tier adds industry-specific playbooks, implementation templates, and up to 5 team seats — so your team can learn together.'],
-                ['What does Enterprise include beyond Business?', 'The full enterprise operating model, data readiness program, governance frameworks, unlimited team seats, and monthly advisory sessions.'],
-                ['Can I upgrade tiers later?', 'Yes. Email us and we\'ll apply your previous payment as a credit toward the higher tier.'],
-                ['Are payments secure?', 'Yes. All payments are processed by Stripe — the same platform used by Amazon, Shopify, and millions of businesses worldwide. We never see your card details.'],
-                ['Can I expense this course?', 'Yes. We provide a tax invoice for professional development expenses on request.'],
-                ['Is GST included?', 'GST is calculated and added at checkout for Australian buyers. International buyers pay the listed price with no GST.'],
+                ['Is this self-paced?', 'Yes — fully self-paced with no live sessions. Learn on your schedule and access everything forever.'],
+                ['Do I need technical knowledge?', 'No. Designed for business professionals and leaders. Zero coding required.'],
+                ['What\'s the difference between the tiers?', 'Individual Upskill is AI literacy for professionals. SMB Owner adds implementation tools and frameworks. Enterprise Leader adds governance, orchestration, and the full transformation roadmap.'],
+                ['Can I upgrade later?', 'Yes — email us and we\'ll apply your previous payment as credit toward the higher tier.'],
+                ['Are payments secure?', 'Yes. All payments are processed by Stripe. We never see or store your card details.'],
+                ['Can I expense this?', 'Yes. We provide a tax invoice for professional development expenses on request.'],
               ].map(([q, a]) => (
                 <Card key={q} className="p-6">
                   <h4 className="font-display font-bold text-sm text-white mb-2">{q}</h4>
                   <p className="text-sm text-muted leading-relaxed">{a}</p>
                 </Card>
               ))}
+            </div>
+          </Reveal>
+
+          {/* Bespoke enterprise link */}
+          <Reveal>
+            <div className="text-center pt-4 border-t border-white/5">
+              <p className="text-sm text-muted">
+                Need bespoke enterprise support?{' '}
+                <Link href="/contact" className="text-blue-bright hover:underline font-display font-bold">
+                  Contact us →
+                </Link>
+              </p>
             </div>
           </Reveal>
         </div>
