@@ -98,3 +98,95 @@ body  {
   margin-bottom: 0.6rem;
 }
 .real-world-box p:last-child { margin-bottom: 0; }
+
+/* ── AI Execution Triad Diagram ── */
+.triad-diagram {
+  margin: 1.5rem 0;
+}
+.triad-circles {
+  display: flex;
+  gap: 0;
+  justify-content: center;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+.triad-circle {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  padding: 1rem;
+  text-align: center;
+  position: relative;
+}
+.triad-business  { background: rgba(26,110,255,0.15); border: 2px solid rgba(26,110,255,0.4); }
+.triad-architect { background: rgba(245,158,11,0.15); border: 2px solid rgba(245,158,11,0.4); }
+.triad-delivery  { background: rgba(0,200,150,0.15);  border: 2px solid rgba(0,200,150,0.4); }
+.triad-label { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.75rem; color: white; }
+.triad-sub   { font-size: 0.65rem; color: rgba(232,237,248,0.6); margin-top: 0.25rem; }
+.triad-intersections {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+@media (max-width: 768px) {
+  .triad-intersections { grid-template-columns: 1fr 1fr; }
+}
+.triad-intersection {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 10px;
+  padding: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+.triad-intersection strong { font-size: 0.7rem; color: white; font-family: 'Syne', sans-serif; }
+.triad-intersection span   { font-size: 0.7rem; color: rgba(26,110,255,0.9); font-weight: 600; }
+.triad-intersection .triad-def { font-size: 0.65rem; color: rgba(232,237,248,0.6); font-weight: 400; }
+.triad-center {
+  background: rgba(26,110,255,0.12);
+  border: 1px solid rgba(26,110,255,0.3);
+  border-radius: 10px;
+  padding: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+.triad-center strong { font-size: 0.75rem; color: white; font-family: 'Syne', sans-serif; }
+.triad-center span   { font-size: 0.65rem; color: rgba(232,237,248,0.6); }
+
+/* ── Accountability table in lessons ── */
+.accountability-table { margin: 1rem 0; overflow-x: auto; }
+.accountability-table table { width: 100%; border-collapse: collapse; font-size: 0.8rem; }
+.accountability-table th { background: rgba(255,255,255,0.06); color: rgba(232,237,248,0.6); font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.05em; padding: 0.6rem 0.75rem; text-align: left; border-bottom: 1px solid rgba(255,255,255,0.08); }
+.accountability-table td { padding: 0.6rem 0.75rem; border-bottom: 1px solid rgba(255,255,255,0.04); color: rgba(232,237,248,0.8); vertical-align: top; line-height: 1.5; }
+.accountability-table tr:hover td { background: rgba(255,255,255,0.02); }
+
+/* ── Light mode theme ── */
+:root { --theme: dark; }
+
+html.light-mode body {
+  background: #f4f6fb;
+  color: #0f1724;
+}
+html.light-mode .prose-lesson h2,
+html.light-mode .prose-lesson h3       { color: #0f1724; border-color: rgba(0,0,0,0.08); }
+html.light-mode .prose-lesson p        { color: #2d3748; }
+html.light-mode .prose-lesson strong   { color: #0f1724; }
+html.light-mode .prose-lesson pre      { background: #e8ecf4; border-color: rgba(0,0,0,0.08); color: #1a2035; }
+html.light-mode .prose-lesson code     { background: rgba(26,110,255,0.08); color: #1a4ed8; }
+html.light-mode .prose-lesson blockquote { background: rgba(26,110,255,0.05); }
+html.light-mode .real-world-box        { background: rgba(0,200,150,0.05); }
+html.light-mode .accountability-table th { background: rgba(0,0,0,0.04); color: #6b7280; }
+html.light-mode .accountability-table td { color: #374151; border-color: rgba(0,0,0,0.05); }
+html.light-mode .triad-circle          { border-color: rgba(0,0,0,0.15); }
+html.light-mode .triad-label           { color: #0f1724; }
+html.light-mode .triad-intersection    { background: rgba(0,0,0,0.03); border-color: rgba(0,0,0,0.08); }
+html.light-mode .triad-intersection strong { color: #0f1724; }
+html.light-mode .triad-def             { color: #6b7280; }
