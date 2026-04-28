@@ -49,7 +49,7 @@ export function Nav({ transparent = false }) {
 
         <div className="hidden md:flex items-center gap-7">
           <NavLink href="/#curriculum">Curriculum</NavLink>
-          <NavLink href="/#industries">Industries</NavLink>
+          <NavLink href="/#find-your-path">Industries</NavLink>
           <NavLink href="/pricing">Pricing</NavLink>
           <NavLink href="/contact">Contact</NavLink>
           <NavLink href="/roi-calculator">ROI Calculator</NavLink>
@@ -82,7 +82,7 @@ export function Nav({ transparent = false }) {
       {open && (
         <div className="md:hidden bg-navy-mid border-t border-white/5 px-6 py-4 space-y-3">
           <MobileLink href="/#curriculum"  onClick={() => setOpen(false)}>Curriculum</MobileLink>
-          <MobileLink href="/#industries"  onClick={() => setOpen(false)}>Industries</MobileLink>
+          <MobileLink href="/#find-your-path" onClick={() => setOpen(false)}>Industries</MobileLink>
           <MobileLink href="/pricing" onClick={() => setOpen(false)}>Pricing</MobileLink>
           <MobileLink href="/contact" onClick={() => setOpen(false)}>Contact</MobileLink>
           {user?.tier
