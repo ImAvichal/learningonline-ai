@@ -153,13 +153,180 @@ At 10,000 calls per day: $75/day · $2,250/month</pre>
 </div>`,
       },
     ],
+
+      {
+        id: 'm2-l2', number: 2, tier: 'individual', duration: '20 min',
+        title: 'The AI Execution Triad',
+        content: `<h2>Three Roles. One Outcome.</h2>
+<p>The five-role model tells you who needs to exist in an AI program. The AI Execution Triad tells you how those roles relate to each other and why misalignment between them is the single biggest cause of AI program failure.</p>
+<p>Every successful AI initiative requires alignment across three core accountabilities. These aren't departments — they're lenses through which the work must be seen simultaneously.</p>
+
+<h3>The Three Roles of the Triad</h3>
+
+<p><strong>Business Leader — owns WHAT and WHY</strong><br/>
+Defines the problem worth solving. Sets the vision. Is accountable for business outcomes: revenue acceleration, cost reduction, improved customer experience, operational growth.<br/>
+<em>Key question they answer:</em> "What problem are we solving and what does success look like in business terms?"</p>
+
+<p><strong>Solution Architect — owns HOW</strong><br/>
+Translates business intent into AI capability. Selects models, designs workflows, evaluates build vs buy, balances cost vs performance. Bridges the gap between business aspiration and technical reality.<br/>
+<em>Key question they answer:</em> "How do we build this in a way that works, scales, and doesn't cost more than it saves?"</p>
+
+<p><strong>Delivery Lead — owns EXECUTION</strong><br/>
+Ensures the solution gets built and adopted. Defines requirements, manages timelines, coordinates dependencies, tracks milestones. Owns the gap between "designed" and "done".<br/>
+<em>Key question they answer:</em> "Are we on track, and will this actually be delivered to the people who need it?"</p>
+
+<h3>The Venn Diagram — Where the Magic Happens</h3>
+<p>The three roles overlap in three critical zones — and at the centre, all three converge:</p>
+
+<div class="triad-diagram">
+  <div class="triad-circles">
+    <div class="triad-circle triad-business">
+      <span class="triad-label">Business Leader</span>
+      <span class="triad-sub">What &amp; Why</span>
+    </div>
+    <div class="triad-circle triad-architect">
+      <span class="triad-label">Solution Architect</span>
+      <span class="triad-sub">How</span>
+    </div>
+    <div class="triad-circle triad-delivery">
+      <span class="triad-label">Delivery Lead</span>
+      <span class="triad-sub">Execution</span>
+    </div>
+  </div>
+  <div class="triad-intersections">
+    <div class="triad-intersection">
+      <strong>Business + Solution</strong>
+      <span>Strategic Fit</span>
+      <span class="triad-def">Is the AI solution actually solving the right problem?</span>
+    </div>
+    <div class="triad-intersection">
+      <strong>Solution + Delivery</strong>
+      <span>Execution Feasibility</span>
+      <span class="triad-def">Is the designed solution actually buildable within constraints?</span>
+    </div>
+    <div class="triad-intersection">
+      <strong>Business + Delivery</strong>
+      <span>Operational Alignment</span>
+      <span class="triad-def">Is delivery producing what operations actually needs?</span>
+    </div>
+    <div class="triad-center">
+      <strong>🎯 AI Success Zone</strong>
+      <span>All three aligned = program succeeds</span>
+    </div>
+  </div>
+</div>
+
+<h3>What Happens When One is Missing</h3>
+<p><strong>No Business Leader:</strong> Technically impressive solutions that solve the wrong problem. Budget gets cut because nobody can articulate the business case.</p>
+<p><strong>No Solution Architect:</strong> Business enthusiasm meets implementation chaos. Scope balloons. Costs blow out. The team builds the first thing that comes to mind, not the right thing.</p>
+<p><strong>No Delivery Lead:</strong> Designed but never delivered. Good ideas trapped in PowerPoint. No one owns the timeline, so nobody meets it.</p>
+
+<h3>Decision Checklist</h3>
+<p>Before starting any AI initiative:</p>
+<pre>□ Is the Business Leader named — not a department, a person?
+□ Can they articulate the outcome in one sentence?
+□ Is the Solution Architect named and engaged?
+□ Have they reviewed the business problem (not just the solution)?
+□ Is the Delivery Lead named?
+□ Do they have authority to say no to scope changes?
+□ Have all three met together and agreed on the definition of success?</pre>
+
+<div class="real-world-box">
+<h3>🌍 From Real-World Practice</h3>
+<p><strong>Insight:</strong> The triad doesn't require three separate people — but it requires three distinct conversations. In small teams, one person may cover two roles. What matters is that all three perspectives are actively represented.</p>
+<p><strong>Example:</strong> A $2.4M enterprise AI program stalled for 7 months. Investigation revealed the Business Leader had delegated to a committee (no single voice), the Solution Architect was chosen based on vendor relationship (not capability), and the Delivery Lead reported to IT — not to the program sponsor. All three accountabilities existed on paper. None worked as designed. Restructuring the triad delivered the first use case in 11 weeks.</p>
+<p><strong>Why it matters:</strong> The triad is not about org charts. It's about clear accountability for three fundamentally different types of decision.</p>
+<p><strong>Implementation tip:</strong> At the start of every AI initiative, run a 30-minute "Triad Clarity Session." Three questions: Who owns the problem definition? Who owns the solution design? Who owns delivery? If any answer is "the team" or "we all do" — you have a problem.</p>
+<p><strong>💡 What This Saves You:</strong> Organisations that establish clear triad roles before build begin are 3× more likely to deliver on time and within budget. Unclear triad = guaranteed scope creep, rework, and stakeholder conflict.</p>
+</div>`,
+      },
+      {
+        id: 'm2-l3', number: 3, tier: 'individual', duration: '15 min',
+        title: 'The Role Overlap Trap',
+        content: `<h2>Collaboration Is Not the Same as Shared Ownership</h2>
+<p>The most dangerous moment in an AI program is when it's going well enough that everyone wants to be involved in everything. This is where the Role Overlap Trap springs.</p>
+
+<blockquote><p><strong>"Alignment does not mean overlap. Collaboration does not mean shared ownership of everything."</strong></p></blockquote>
+
+<h3>What the Overlap Trap Looks Like</h3>
+
+<p><strong>The Business Leader starts designing the solution:</strong><br/>
+"We should use GPT-4o for this. I've seen what it can do."<br/>
+Result: The solution is selected before the problem is properly defined. Architecture decisions made by someone without technical context.</p>
+
+<p><strong>The Solution Architect redefines the business problem:</strong><br/>
+"Actually, what you really need is a recommendation engine, not a summarisation tool."<br/>
+Result: Months of work redone. Business stakeholders lose confidence. The original problem remains unsolved.</p>
+
+<p><strong>The Delivery Lead reshapes scope independently:</strong><br/>
+"We've added a reporting dashboard — seemed useful while we were building."<br/>
+Result: Timeline blows out. Budget exceeded. Features nobody asked for shipped instead of features people need.</p>
+
+<h3>The Warning Signs Checklist</h3>
+<pre>□ Business leader prescribing exact technology or vendor choice
+□ Solution architect questioning whether the business problem is real
+□ Delivery lead adding features not in the approved scope
+□ All three roles in every meeting without clear agenda ownership
+□ Decisions made by consensus rather than by the role that owns them
+□ "We" language replacing "I own this" language in status updates</pre>
+
+<h3>The Correct Accountability Model</h3>
+<p>Each role has a domain. The boundaries are deliberate:</p>
+
+<div class="accountability-table">
+<table>
+<thead><tr><th>Role</th><th>Owns</th><th>Does NOT Own</th></tr></thead>
+<tbody>
+<tr>
+  <td><strong>Business Leader</strong></td>
+  <td>Problem definition · Success criteria · Business case · Stakeholder alignment · Budget authority</td>
+  <td>Solution design · Technology selection · Build timeline · Technical trade-offs</td>
+</tr>
+<tr>
+  <td><strong>Solution Architect</strong></td>
+  <td>Technical design · Model selection · Workflow architecture · Cost vs performance · Build vs buy</td>
+  <td>Business problem definition · Delivery timelines · Stakeholder management · Budget approval</td>
+</tr>
+<tr>
+  <td><strong>Delivery Lead</strong></td>
+  <td>Requirements definition · Timeline · Dependencies · Risk management · Milestone delivery</td>
+  <td>Changing scope without approval · Redefining the solution · Overriding business priorities</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+<h3>The Escalation Path When Overlap Occurs</h3>
+<p>When a role steps outside its boundary — and it will — the response is a structured conversation, not conflict:</p>
+<pre>Step 1: Name it directly.
+  "I notice we're making solution decisions in a business problem meeting."
+
+Step 2: Return to role ownership.
+  "Let's separate these. [Business Leader], can you confirm the problem we're solving?
+   [Solution Architect], we'll schedule a separate session for solution design."
+
+Step 3: Document the decision and who made it.
+  Every key decision should have a named owner — not "the team decided."</pre>
+
+<div class="real-world-box">
+<h3>🌍 From Real-World Practice</h3>
+<p><strong>Insight:</strong> Role overlap is most common at the beginning of AI programs (excitement leads to everyone wanting to shape everything) and at crisis points (when things go wrong, everyone tries to fix everything simultaneously).</p>
+<p><strong>Example:</strong> A financial services firm's AI credit decisioning project had 11 stakeholders attending every meeting. The Business Leader changed the success criteria three times. The Solution Architect redesigned the architecture twice based on stakeholder feedback that wasn't their responsibility to incorporate. The Delivery Lead padded the timeline without informing the business. At 8 months in, no code had been shipped. A role clarity workshop, a RACI matrix, and reduced meeting attendees solved the problem. First delivery: 6 weeks later.</p>
+<p><strong>Why it matters:</strong> Role overlap isn't a sign of a collaborative culture — it's a sign of unclear accountability. The most collaborative programs have the clearest role boundaries.</p>
+<p><strong>Implementation tip:</strong> Run a "Role Clarity Audit" at month 1 and month 3 of every AI program. Ask each role: "What decisions have you made this month that weren't yours to make?" The answers reveal where the boundaries have eroded before they cause real damage.</p>
+<p><strong>💡 What This Saves You:</strong> Role overlap is the primary cause of AI program scope creep and budget overruns. Programs with clear role boundaries consistently deliver 40–60% faster than those without.</p>
+</div>`,
+      },
+    ],
     quiz: {
       questions: [
         { id: 'q2-1', text: 'An AI program has been approved and funded. Six months in, a compliance team raises concerns about how customer data is being used in the AI model. Which role should have prevented this?', options: ['Business Sponsor', 'Data Owner', 'Change Lead', 'Technical AI Role'], correct: 1, explanation: 'The Data Owner is responsible for ensuring data governance and compliance from the outset. This failure is a classic symptom of an absent or disempowered Data Owner.' },
         { id: 'q2-2', text: 'The AI tool has been deployed but only 15% of the team is using it three months later. Which role owns this problem?', options: ['Process Owner', 'Business Sponsor', 'Change Lead', 'Technical AI Role'], correct: 2, explanation: 'Low adoption is the Change Lead\'s accountability. Technology deployment without adoption strategy consistently produces this outcome.' },
         { id: 'q2-3', text: 'In a 12-person business, how should the five AI roles typically be distributed?', options: ['One person handles all five roles', 'Hire five dedicated people before starting', 'Assign existing people with relevant accountability to each role — one person may cover two', 'Only fill roles as problems arise'], correct: 2, explanation: 'In smaller organisations, roles can be combined but should still be explicitly assigned. Ambiguity creates gaps. A sales director can be Process Owner. An operations manager can be Change Lead.' },
         { id: 'q2-4', text: 'Your AI model is producing good outputs but the underlying workflow has changed — outputs are now going to the wrong place. Which role should have caught this?', options: ['Data Owner', 'Process Owner', 'Technical AI Role', 'Business Sponsor'], correct: 1, explanation: 'The Process Owner monitors the workflow for which AI has been deployed. Changes to the process must be reflected in the AI integration.' },
-        { id: 'q2-5', text: 'Who is responsible for ensuring AI projects stay within budget and that token costs don\'t exceed projections?', options: ['Business Sponsor', 'Process Owner', 'Technical AI Role', 'Change Lead'], correct: 2, explanation: 'The Technical AI Role owns cost management including token usage monitoring, model selection optimisation, and alerting when costs exceed thresholds.' },
+        { id: 'q2-6', text: 'A Business Leader insists on using a specific AI vendor they saw at a conference, before the Solution Architect has reviewed the requirements. Which trap does this represent?', options: ['Normal stakeholder input', 'The Role Overlap Trap — Business Leader stepping into Solution Architect territory', 'Good practice — leadership should guide technology decisions', 'A sign the Solution Architect is underperforming'], correct: 1, explanation: 'Vendor and technology selection is the Solution Architect\'s domain. When Business Leaders prescribe solutions before problems are properly defined, architecture decisions are made without technical context — a classic overlap trap.' },
+        { id: 'q2-7', text: 'The AI Execution Triad intersection of Business Leader and Solution Architect is called "Strategic Fit." What does this mean in practice?', options: ['The business and technical teams get along well', 'The AI solution is actually solving the right problem in a technically viable way', 'The project has been approved by leadership', 'The solution uses the latest AI models'], correct: 1, explanation: 'Strategic Fit is the alignment zone where business intent meets technical design. It answers: "Are we solving the right problem in the right way?" Without it, technically brilliant solutions address the wrong business problem.' },
+                { id: 'q2-5', text: 'Who is responsible for ensuring AI projects stay within budget and that token costs don\'t exceed projections?', options: ['Business Sponsor', 'Process Owner', 'Technical AI Role', 'Change Lead'], correct: 2, explanation: 'The Technical AI Role owns cost management including token usage monitoring, model selection optimisation, and alerting when costs exceed thresholds.' },
       ],
     },
   },

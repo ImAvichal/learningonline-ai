@@ -9,6 +9,10 @@ export const RESOURCES = [
   { id: 'token-awareness',     moduleId: 'module-1',  tier: 'individual', title: 'Token Awareness Guide',        format: 'PDF',  icon: '🔢', desc: 'Understand tokens, input vs output costs, and optimisation strategies.' },
   { id: 'prompt-tips',         moduleId: 'module-1',  tier: 'individual', title: 'Prompt Tips & Tricks',         format: 'PDF',  icon: '💡', desc: 'Practical prompt engineering techniques for business use cases.' },
 
+
+  // Module 2 — Triad additions
+  { id: 'ai-execution-triad',      moduleId: 'module-2', tier: 'individual', title: 'AI Execution Triad Template',          format: 'DOCX', icon: '🔺', desc: 'Define Business, Solution, and Delivery accountability for any AI initiative.' },
+  { id: 'role-clarity-matrix',     moduleId: 'module-2', tier: 'individual', title: 'Role Clarity & Accountability Matrix',  format: 'DOCX', icon: '📋', desc: 'Ownership table, boundaries, alignment checklist, and escalation path.' },
   // Module 2 — Key Roles
   { id: 'role-mapping',        moduleId: 'module-2',  tier: 'individual', title: 'Role Mapping Template',        format: 'DOCX', icon: '👥', desc: 'Map the 5 key AI roles to named owners in your organisation.' },
   { id: 'leadership-guide',    moduleId: 'module-2',  tier: 'individual', title: 'Leadership Conversation Guide', format: 'PDF',  icon: '🗣️', desc: 'How to discuss AI strategy with executives and board members.' },
@@ -85,3 +89,6 @@ export const getResourcesByModule = (moduleId, tier) => {
 
 export const getTemplatesForTier = getResourcesForTier
 export const TEMPLATES = RESOURCES
+
+// AI Execution Triad templates (appended)
+// These are in addition to getTemplatesForTier alias exports at bottom
