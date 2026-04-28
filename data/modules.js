@@ -218,7 +218,7 @@ Low Value   │ Avoid        │ Low-hanging
     templateId: 'prioritisation-model',
     lessons: [
       {
-        id: 'm4-l1', number: 1, tier: 'individual', duration: '25 min',
+        id: 'm4-l1', number: 1, tier: 'smb', duration: '25 min',
         title: 'The Prioritisation Scoring Framework',
         content: `<h2>From Ideas to Investment Decisions</h2>
 <p>Prioritisation turns subjective enthusiasm into objective investment decisions. It removes politics from the conversation and replaces it with evidence.</p>
@@ -237,7 +237,7 @@ Where Complexity Score = (6 - Implementation Complexity)
       Cost Score       = scaled 1–5 from cost estimate</pre>`,
       },
       {
-        id: 'm4-l2', number: 2, tier: 'individual', duration: '30 min',
+        id: 'm4-l2', number: 2, tier: 'smb', duration: '30 min',
         title: 'The 5-Year AI Cost Model',
         content: `<h2>Why 5 Years?</h2>
 <p>Point-in-time ROI calculations miss the compounding nature of AI costs and benefits. A use case that looks profitable in year one may be underwater by year three if token costs scale with volume. The 5-year model gives you the full picture.</p>
@@ -312,7 +312,7 @@ ROI % = (Net Benefit / 5-Year Cost) × 100
     templateId: 'workflow-design',
     lessons: [
       {
-        id: 'm5-l1', number: 1, tier: 'individual', duration: '25 min',
+        id: 'm5-l1', number: 1, tier: 'smb', duration: '25 min',
         title: 'Process Mapping and AI Placement',
         content: `<h2>Map Before You Build</h2>
 <p>Every AI implementation failure has one thing in common: the team started building before they finished designing. The Workflow Blueprint is your insurance policy against that failure.</p>
@@ -370,7 +370,7 @@ Pattern 5: AI Decides → Human Monitors
     templateId: 'data-readiness',
     lessons: [
       {
-        id: 'm6-l1', number: 1, tier: 'individual', duration: '28 min',
+        id: 'm6-l1', number: 1, tier: 'smb', duration: '28 min',
         title: 'Data Sanitisation, Standardisation, and Structuring',
         content: `<h2>Data Is the Foundation</h2>
 <p>Bad data doesn't just produce bad AI outputs — it produces confidently bad AI outputs. An AI model with dirty data will answer questions with high certainty and be consistently wrong. This is worse than no AI at all.</p>
@@ -417,7 +417,7 @@ Step 6: MONITOR    → Ongoing quality tracking in production</pre>
     templateId: 'architecture-decision',
     lessons: [
       {
-        id: 'm7-l1', number: 1, tier: 'individual', duration: '28 min',
+        id: 'm7-l1', number: 1, tier: 'smb', duration: '28 min',
         title: 'Build vs Buy vs Configure — and Which Model to Choose',
         content: `<h2>The Most Expensive Decision in AI</h2>
 <p>Architecture decisions made in week one lock in costs and constraints for years. This lesson gives you the framework to make them well.</p>
@@ -469,7 +469,7 @@ Pattern 4 — Agent Pattern
     templateId: 'use-case-build',
     lessons: [
       {
-        id: 'm8-l1', number: 1, tier: 'individual', duration: '30 min',
+        id: 'm8-l1', number: 1, tier: 'smb', duration: '30 min',
         title: 'Prompt Design, Testing, and Production Deployment',
         content: `<h2>From Prompt to Production</h2>
 <p>A prompt is a program. It defines inputs, constraints, output format, and behaviour. Like all programs, it needs to be designed, tested, and versioned — not improvised.</p>
@@ -540,7 +540,7 @@ User: [case history text]</pre>
     templateId: 'roi-model',
     lessons: [
       {
-        id: 'm9-l1', number: 1, tier: 'individual', duration: '28 min',
+        id: 'm9-l1', number: 1, tier: 'smb', duration: '28 min',
         title: 'Building the Complete AI ROI Model',
         content: `<h2>ROI Is Your Proof</h2>
 <p>Without a credible ROI model, AI programs remain vulnerable to budget cuts the moment a more urgent priority emerges. With one, they become defensible investments with committed stakeholders.</p>
@@ -593,7 +593,7 @@ User: [case history text]</pre>
     templateId: 'responsible-ai',
     lessons: [
       {
-        id: 'm10-l1', number: 1, tier: 'individual', duration: '25 min',
+        id: 'm10-l1', number: 1, tier: 'enterprise', duration: '25 min',
         title: 'Bias, Hallucination, Governance, and Guardrails',
         content: `<h2>Responsible AI Is Not Optional</h2>
 <p>Responsible AI isn't ethics for its own sake — it's risk management. AI systems that are biased, opaque, or ungoverned create legal, reputational, and operational liabilities that dwarf the cost of getting it right upfront.</p>
@@ -640,7 +640,7 @@ User: [case history text]</pre>
     templateId: 'sustainability-checklist',
     lessons: [
       {
-        id: 'm11-l1', number: 1, tier: 'individual', duration: '20 min',
+        id: 'm11-l1', number: 1, tier: 'enterprise', duration: '20 min',
         title: 'The Environmental Impact of AI and How to Optimise It',
         content: `<h2>AI Has a Carbon Footprint</h2>
 <p>Every AI inference — every call to a language model — consumes energy. At individual scale, this is negligible. At enterprise scale, with millions of calls per month, it becomes a meaningful part of your organisation's environmental footprint.</p>
@@ -682,7 +682,7 @@ User: [case history text]</pre>
     templateId: 'adoption-plan',
     lessons: [
       {
-        id: 'm12-l1', number: 1, tier: 'individual', duration: '28 min',
+        id: 'm12-l1', number: 1, tier: 'smb', duration: '28 min',
         title: 'Adoption Strategy, Resistance Management, and Role Evolution',
         content: `<h2>Why People Resist AI — and How to Change That</h2>
 <p>Resistance to AI is rational. People protecting their roles, their expertise, and their value are doing exactly what they should be doing. Your job isn't to overcome that resistance — it's to show them a better version of the future that includes them.</p>
@@ -739,7 +739,7 @@ Standard Q&A responses   → Automated   → Escalations & experience design</pr
     templateId: 'orchestration-blueprint',
     lessons: [
       {
-        id: 'm13-l1', number: 1, tier: 'smb', duration: '30 min',
+        id: 'm13-l1', number: 1, tier: 'enterprise', duration: '30 min',
         title: 'Text, Image, Voice: Designing Multimodal Workflows',
         content: `<h2>Beyond Text: The Multimodal Opportunity</h2>
 <p>The next wave of AI value in business doesn't come from better text models — it comes from combining modalities. Text plus image plus voice plus action creates workflows that weren't possible two years ago.</p>
@@ -794,7 +794,7 @@ Standard Q&A responses   → Automated   → Escalations & experience design</pr
     templateId: '90-day-plan',
     lessons: [
       {
-        id: 'm14-l1', number: 1, tier: 'individual', duration: '30 min',
+        id: 'm14-l1', number: 1, tier: 'enterprise', duration: '30 min',
         title: 'Prioritisation, Sequencing, and the 90-Day Roadmap',
         content: `<h2>From Plan to Production in 90 Days</h2>
 <p>90 days is enough to take a prioritised use case from approved investment to live, measured AI in production. The teams that fail this timeline share one characteristic: they underestimate the non-technical work.</p>

@@ -28,8 +28,8 @@ export const TIERS = {
   },
   smb: {
     id: 'smb',
-    name: 'SMB Owner',
-    label: 'SMB',
+    name: 'Business Owner',
+    label: 'Business Owner',
     price: 299,
     priceDisplay: '$299',
     billing: 'One-time · Up to 5 team seats',
@@ -48,7 +48,7 @@ export const TIERS = {
       'Priority email support',
     ],
     modules: [1, 2, 3, 4, 5, 6, 7, 8, 9, 12],
-    cta: 'Enrol Your Team — $299',
+    cta: 'Enrol Now — $299',
     highlighted: true,
     stripeEnvKey: 'STRIPE_PRICE_SMB',
   },
@@ -64,7 +64,7 @@ export const TIERS = {
     idealFor: 'CIOs, transformation directors, and program leads in organisations of 200+ people requiring a full AI operating model.',
     notFor: 'Individuals or SMBs who don\'t yet need enterprise-scale governance and orchestration frameworks.',
     features: [
-      'Everything in SMB Owner',
+      'Everything in Individual Upskill',
       'Enterprise AI operating model',
       'Responsible AI & governance framework',
       'Sustainability & AI impact planning',
