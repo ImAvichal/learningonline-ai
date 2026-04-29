@@ -7,9 +7,9 @@ export default async function handler(req, res) {
   const stripe = new Stripe(process.env.STRIPE_SECRET_KEY)
 
   const priceMap = {
-    individual: process.env.STRIPE_PRICE_INDIVIDUAL, // $99
-    smb:        process.env.STRIPE_PRICE_SMB,        // $299
-    enterprise: process.env.STRIPE_PRICE_ENTERPRISE, // $399
+    individual: process.env.STRIPE_PRICE_INDIVIDUAL, // $49
+    smb:        process.env.STRIPE_PRICE_SMB,        // $99
+    enterprise: process.env.STRIPE_PRICE_ENTERPRISE, // $149
   }
 
   const { tierId, userId, email, name, promoCode } = req.body
