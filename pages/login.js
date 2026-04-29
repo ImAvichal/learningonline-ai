@@ -9,7 +9,7 @@ import { Input, Spinner } from '../components/ui'
 export default function Login() {
   const { login, loginWithGoogle } = useAuth()
   const router    = useRouter()
-  const { redirect = '/dashboard' } = router.query
+  const { redirect } = router.query
 
   const [form,    setForm]    = useState({ email: '', password: '' })
   const [loading, setLoading] = useState(false)
@@ -20,7 +20,10 @@ export default function Login() {
     if (!form.email || !form.password) { setError('Please fill in all fields.'); return }
     setLoading(true); setError('')
     const res = await login(form.email, form.password)
-    if (res.success) router.push(redirect)
+    if (res.success) {
+      // withAuth on /dashboard handles the unpaid → /preview redirect
+      router.push(redirect || '/dashboard')
+    }
     else { setError('Invalid credentials. Try again.'); setLoading(false) }
   }
 
