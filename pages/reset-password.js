@@ -68,7 +68,9 @@ export default function ResetPassword() {
     }
 
     setSuccess(true)
-    setTimeout(() => router.push('/dashboard'), 3000)
+    // Sign out first so user logs in fresh with new password
+    await supabase.auth.signOut()
+    setTimeout(() => router.push('/login'), 3000)
   }
 
   return (
@@ -85,9 +87,9 @@ export default function ResetPassword() {
               <div className="text-5xl mb-4">✅</div>
               <h1 className="font-display font-bold text-2xl mb-2">Password updated</h1>
               <p className="text-muted text-sm mb-4">Your password has been changed successfully.</p>
-              <p className="text-muted text-sm">Redirecting to your dashboard...</p>
-              <Link href="/dashboard" className="block mt-4 text-blue-bright hover:underline text-sm font-display font-bold">
-                Go now →
+              <p className="text-muted text-sm">Redirecting to sign in...</p>
+              <Link href="/login" className="block mt-4 text-blue-bright hover:underline text-sm font-display font-bold">
+                Sign in now →
               </Link>
             </div>
           ) : tokenError ? (
