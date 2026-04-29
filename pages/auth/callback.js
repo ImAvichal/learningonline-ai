@@ -104,9 +104,9 @@ export default function AuthCallback() {
         setStatus('Access confirmed. Loading dashboard...')
         router.push('/dashboard')
       } else {
-        // Authenticated but no purchase — go to pricing
-        setStatus('No active subscription. Redirecting to pricing...')
-        router.push('/pricing')
+        // Authenticated but no purchase — go to preview
+        setStatus('Signed in. Redirecting to preview...')
+        router.push('/preview')
       }
     } catch (err) {
       console.error('Auth callback error:', err)
