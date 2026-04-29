@@ -2,6 +2,7 @@
 import Head from 'next/head'
 import { useState, useEffect } from 'react'
 import { useAuth, useProgress, withAuth } from '../../lib/auth'
+import NoEnrolmentMessage from '../../components/NoEnrolmentMessage'
 import { MODULES } from '../../data/modules'
 import { getResourcesForTier } from '../../data/templates'
 import { Sidebar, Card, ProgressBar, Button, SectionLabel, TierBadge, Reveal } from '../../components/ui'
@@ -22,6 +23,11 @@ function Dashboard() {
   }, [])
 
   const switchTab = (t) => { setTab(t); window.location.hash = t }
+
+  // Patch 7: unpaid users see NoEnrolmentMessage
+  if (!user?.tier && !user?.isDevUser) {
+    return <NoEnrolmentMessage context="dashboard" />
+  }
 
   const tierOrder = ['individual','smb','enterprise']
   const userLevel  = tierOrder.indexOf(user.tier || 'individual')
