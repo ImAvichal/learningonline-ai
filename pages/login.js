@@ -67,6 +67,11 @@ export default function Login() {
             <form onSubmit={submit} className="space-y-4">
               <Input label="Email"    type="email"    placeholder="you@company.com" value={form.email}    onChange={e => setForm(p => ({ ...p, email: e.target.value }))} />
               <Input label="Password" type="password" placeholder="••••••••"       value={form.password} onChange={e => setForm(p => ({ ...p, password: e.target.value }))} />
+              <div className="text-right">
+                <Link href="/forgot-password" className="text-xs text-muted hover:text-blue-bright transition-colors">
+                  Forgot your password?
+                </Link>
+              </div>
               <button type="submit" disabled={loading}
                 className="w-full py-3.5 bg-blue hover:bg-blue-bright text-white font-display font-bold rounded-lg transition-all shadow-[0_0_24px_rgba(26,110,255,0.4)] disabled:opacity-50 flex items-center justify-center gap-2">
                 {loading ? <><Spinner /> Signing in...</> : 'Sign In'}
