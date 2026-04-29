@@ -67,10 +67,10 @@ export default function ResetPassword() {
       return
     }
 
+    // Sign out first, then show success — no auto-redirect (causes stuck spinner)
+    try { await supabase.auth.signOut() } catch(e) {}
     setSuccess(true)
-    // Sign out first so user logs in fresh with new password
-    await supabase.auth.signOut()
-    setTimeout(() => router.push('/login'), 3000)
+    setLoading(false)
   }
 
   return (
@@ -86,10 +86,10 @@ export default function ResetPassword() {
             <div className="text-center">
               <div className="text-5xl mb-4">✅</div>
               <h1 className="font-display font-bold text-2xl mb-2">Password updated</h1>
-              <p className="text-muted text-sm mb-4">Your password has been changed successfully.</p>
-              <p className="text-muted text-sm">Redirecting to sign in...</p>
-              <Link href="/login" className="block mt-4 text-blue-bright hover:underline text-sm font-display font-bold">
-                Sign in now →
+              <p className="text-muted text-sm mb-6">Your password has been changed successfully. Click below to sign in.</p>
+              <Link href="/login"
+                className="block w-full py-3.5 bg-blue hover:bg-blue-bright text-white font-display font-bold text-sm rounded-lg transition-all text-center">
+                Sign In Now →
               </Link>
             </div>
           ) : tokenError ? (
