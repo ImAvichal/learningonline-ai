@@ -12,21 +12,31 @@ export default async function handler(req, res) {
     enterprise: process.env.STRIPE_PRICE_ENTERPRISE, // $399
   }
 
-  const { tierId, userId, email, name } = req.body
+  const { tierId, userId, email, name, promoCode } = req.body
   const priceId = priceMap[tierId]
   if (!priceId) return res.status(400).json({ error: 'Invalid tier' })
 
   try {
-    const session = await stripe.checkout.sessions.create({
+    // Build session params — allow_promotion_codes lets Stripe handle discount codes natively
+    const sessionParams = {
       payment_method_types: ['card'],
       line_items: [{ price: priceId, quantity: 1 }],
       mode: 'payment',
       customer_email: email,
       client_reference_id: userId,
-      metadata: { userId, tierId, name },
+      metadata: { userId, tierId, name, promoCode: promoCode || '' },
+      allow_promotion_codes: true,  // Enables promo code field in Stripe Checkout UI
       success_url: `${process.env.NEXT_PUBLIC_APP_URL}/checkout?tier=${tierId}&payment_success=true`,
       cancel_url:  `${process.env.NEXT_PUBLIC_APP_URL}/checkout?tier=${tierId}&cancelled=true`,
-    })
+    }
+
+    // If a specific Stripe promotion code ID is passed, apply it directly
+    if (promoCode && promoCode.startsWith('promo_')) {
+      sessionParams.discounts = [{ promotion_code: promoCode }]
+      delete sessionParams.allow_promotion_codes
+    }
+
+    const session = await stripe.checkout.sessions.create(sessionParams)
     res.status(200).json({ url: session.url })
   } catch (err) {
     console.error('Stripe error:', err)
