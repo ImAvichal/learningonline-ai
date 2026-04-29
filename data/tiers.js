@@ -32,7 +32,7 @@ export const TIERS = {
     label: 'Business Owner',
     price: 99,
     priceDisplay: '$99',
-    billing: 'One-time · Up to 5 team seats',
+    billing: 'One-time · More content to get you going',
     colorClass: 'tier-smb',
     description: 'For small to medium business owners preparing to adopt AI — with use case identification, workflow design, data readiness, and ROI frameworks.',
     idealFor: 'Business owners, operations managers, and department heads in organisations of 10–200 people ready to implement AI.',
