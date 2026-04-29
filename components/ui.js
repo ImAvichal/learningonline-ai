@@ -122,6 +122,7 @@ export function Nav({ transparent = false }) {
           )}
           {user && !user.tier && !user.isDevUser && (
             <>
+              <NavLink href="/preview">Preview</NavLink>
               <NavLink href="/pricing">View Courses</NavLink>
               <button onClick={logout} className="text-sm text-muted hover:text-white transition-colors">Sign Out</button>
             </>
@@ -155,8 +156,10 @@ export function Nav({ transparent = false }) {
           )}
           {user && !user.tier && !user.isDevUser && (
             <>
+              <MobileLink href="/preview" onClick={() => setOpen(false)}>Preview</MobileLink>
               <MobileLink href="/pricing" onClick={() => setOpen(false)}>View Courses</MobileLink>
-              <MobileLink href="/preview" onClick={() => setOpen(false)}>Free Preview</MobileLink>
+              <button onClick={() => { logout(); setOpen(false) }}
+                className="block text-sm text-muted text-left w-full">Sign Out</button>
             </>
           )}
           {(user?.tier || user?.isDevUser) && (
