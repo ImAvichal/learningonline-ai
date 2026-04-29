@@ -478,6 +478,49 @@ export default function Home() {
         </div>
       </section>
 
+
+      {/* ── Preview Section ── Patch 4 */}
+      <section className="py-20 border-b border-white/5">
+        <div className="max-w-6xl mx-auto px-6">
+          <Reveal>
+            <div className="text-center mb-10">
+              <SectionLabel>Free Preview</SectionLabel>
+              <h2 className="font-display font-bold text-4xl mb-4">Preview what you'll learn</h2>
+              <p className="text-muted max-w-xl mx-auto">Two real lessons from Module 1, available free. No sign-up required.</p>
+            </div>
+          </Reveal>
+          <div className="grid md:grid-cols-3 gap-5 mb-8">
+            {[
+              { icon:'🧠', module:'Module 1', title:'AI Foundations', teaser:'What AI actually is, what it isn't, and the 5 failure modes that sink most business AI projects before they start.', free: true },
+              { icon:'💰', module:'Modules 3–4', title:'Use Cases & ROI', teaser:'How to identify, score, and build the financial case for your highest-value AI opportunities using a proven 5-factor model.', free: false },
+              { icon:'⚡', module:'Modules 5–12', title:'Workflows, Data & Adoption', teaser:'Design the human + AI workflow, prepare your data, and build the change program that makes AI actually stick.', free: false },
+            ].map((card, i) => (
+              <Reveal key={i} delay={i * 80}>
+                <Card hover className="p-6 h-full flex flex-col">
+                  <div className="flex items-center gap-2 mb-3">
+                    <span className="text-2xl">{card.icon}</span>
+                    <span className="text-xs font-display font-bold text-muted">{card.module}</span>
+                    {card.free
+                      ? <span className="ml-auto px-2 py-0.5 bg-success/10 border border-success/25 rounded-full text-[10px] font-display font-bold text-success">FREE</span>
+                      : <span className="ml-auto text-muted text-sm">🔒</span>
+                    }
+                  </div>
+                  <h3 className="font-display font-bold text-base mb-2">{card.title}</h3>
+                  <p className="text-sm text-muted leading-relaxed flex-1 mb-4">{card.teaser}</p>
+                  {card.free
+                    ? <Link href="/preview" className="text-sm font-display font-bold text-blue-bright hover:underline flex items-center gap-1">Preview lesson →</Link>
+                    : <span className="text-xs text-muted font-display">Included with enrolment</span>
+                  }
+                </Card>
+              </Reveal>
+            ))}
+          </div>
+          <div className="text-center">
+            <Button href="/preview">Try Free Preview →</Button>
+          </div>
+        </div>
+      </section>
+
       {/* ── Social proof ── */}
       <section className="py-20 bg-navy-mid border-y border-white/5">
         <div className="max-w-6xl mx-auto px-6">
