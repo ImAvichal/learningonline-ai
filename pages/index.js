@@ -491,7 +491,7 @@ export default function Home() {
           </Reveal>
           <div className="grid md:grid-cols-3 gap-5 mb-8">
             {[
-              { icon:'🧠', module:'Module 1', title:'AI Foundations', teaser:'What AI actually is, what it isn't, and the 5 failure modes that sink most business AI projects before they start.', free: true },
+              { icon:'🧠', module:'Module 1', title:'AI Foundations', teaser:'What AI actually is, what it isn\'t, and the 5 failure modes that sink most business AI projects before they start.', free: true },
               { icon:'💰', module:'Modules 3–4', title:'Use Cases & ROI', teaser:'How to identify, score, and build the financial case for your highest-value AI opportunities using a proven 5-factor model.', free: false },
               { icon:'⚡', module:'Modules 5–12', title:'Workflows, Data & Adoption', teaser:'Design the human + AI workflow, prepare your data, and build the change program that makes AI actually stick.', free: false },
             ].map((card, i) => (
