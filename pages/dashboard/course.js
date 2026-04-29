@@ -2,7 +2,7 @@
 import { useState, useRef } from 'react'
 import { useAuth, useProgress } from '../../lib/auth'
 import { MODULES } from '../../data/modules'
-import { ProgressBar, TierBadge, Spinner } from '../../components/ui'
+import { ProgressBar, TierBadge, Spinner, ThemeToggle } from '../../components/ui'
 
 // ── Quiz Component ────────────────────────────────────────────────────────────
 function ModuleQuiz({ quiz, moduleId, onComplete }) {
@@ -333,11 +333,14 @@ export default function CoursePage() {
           ) : activeLesson ? (
             <>
               <div className="mb-8">
-                <div className="flex items-center gap-2 mb-3 flex-wrap">
-                  <span className="px-3 py-1 bg-blue/10 border border-blue/25 rounded-full text-xs font-display font-bold text-blue-bright">Module {activeLesson.moduleNumber}</span>
-                  {activeLesson.duration && <span className="text-xs text-muted">{activeLesson.duration}</span>}
-                  {activeLesson.tier !== 'individual' && <TierBadge tier={activeLesson.tier} label={activeLesson.tier === 'smb' ? 'Business' : 'Enterprise'} />}
-                  {isCompleted(activeLessonId) && <span className="px-3 py-1 bg-success/10 border border-success/25 rounded-full text-xs font-display font-bold text-success">✓ Complete</span>}
+                <div className="flex items-center justify-between gap-2 mb-3 flex-wrap">
+                  <div className="flex items-center gap-2 flex-wrap">
+                    <span className="px-3 py-1 bg-blue/10 border border-blue/25 rounded-full text-xs font-display font-bold text-blue-bright">Module {activeLesson.moduleNumber}</span>
+                    {activeLesson.duration && <span className="text-xs text-muted">{activeLesson.duration}</span>}
+                    {activeLesson.tier !== 'individual' && <TierBadge tier={activeLesson.tier} label={activeLesson.tier === 'smb' ? 'Business' : 'Enterprise'} />}
+                    {isCompleted(activeLessonId) && <span className="px-3 py-1 bg-success/10 border border-success/25 rounded-full text-xs font-display font-bold text-success">✓ Complete</span>}
+                  </div>
+                  <ThemeToggle compact />
                 </div>
                 <h1 className="font-display font-black leading-tight mb-2" style={{ fontSize: 'clamp(22px,3vw,34px)' }}>{activeLesson.title}</h1>
                 <p className="text-muted">{activeLesson.moduleTitle}</p>
