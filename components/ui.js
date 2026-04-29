@@ -114,18 +114,22 @@ export function Nav({ transparent = false }) {
         </div>
         <div className="hidden md:flex items-center gap-3">
           <ThemeToggle />
-          {user?.tier ? (
+          {!user && (
+            <>
+              <NavLink href="/pricing">View Courses</NavLink>
+              <NavLink href="/login">Sign In</NavLink>
+            </>
+          )}
+          {user && !user.tier && !user.isDevUser && (
+            <>
+              <NavLink href="/pricing">View Courses</NavLink>
+              <button onClick={logout} className="text-sm text-muted hover:text-white transition-colors">Sign Out</button>
+            </>
+          )}
+          {(user?.tier || user?.isDevUser) && (
             <>
               <NavLink href="/dashboard">Dashboard</NavLink>
               <button onClick={logout} className="text-sm text-muted hover:text-white transition-colors">Sign Out</button>
-            </>
-          ) : (
-            <>
-              <NavLink href="/login">Sign In</NavLink>
-              <Link href="/pricing"
-                className="px-5 py-2.5 bg-blue hover:bg-blue-bright text-white text-sm font-display font-bold rounded-lg transition-all shadow-[0_0_20px_rgba(26,110,255,0.35)] hover:-translate-y-px">
-                Enrol
-              </Link>
             </>
           )}
         </div>
@@ -143,10 +147,21 @@ export function Nav({ transparent = false }) {
           <MobileLink href="/roi-calculator"    onClick={() => setOpen(false)}>ROI Calculator</MobileLink>
           <MobileLink href="/pricing"           onClick={() => setOpen(false)}>Pricing</MobileLink>
           <MobileLink href="/contact"           onClick={() => setOpen(false)}>Contact</MobileLink>
-          {user?.tier
-            ? <MobileLink href="/dashboard" onClick={() => setOpen(false)}>Dashboard</MobileLink>
-            : <MobileLink href="/pricing"   onClick={() => setOpen(false)} bold>Enrol →</MobileLink>
-          }
+          {!user && (
+            <>
+              <MobileLink href="/pricing" onClick={() => setOpen(false)}>View Courses</MobileLink>
+              <MobileLink href="/login"   onClick={() => setOpen(false)} bold>Sign In →</MobileLink>
+            </>
+          )}
+          {user && !user.tier && !user.isDevUser && (
+            <>
+              <MobileLink href="/pricing" onClick={() => setOpen(false)}>View Courses</MobileLink>
+              <MobileLink href="/preview" onClick={() => setOpen(false)}>Free Preview</MobileLink>
+            </>
+          )}
+          {(user?.tier || user?.isDevUser) && (
+            <MobileLink href="/dashboard" onClick={() => setOpen(false)}>Dashboard</MobileLink>
+          )}
         </div>
       )}
     </nav>
