@@ -13,37 +13,58 @@ export const BRAND = {
 
 
 // ── Theme Toggle ──────────────────────────────────────────────────────────────
-export function ThemeToggle() {
-  const { theme, setTheme } = useTheme()
+export function ThemeToggle({ compact = false }) {
+  const { theme, setTheme, resolvedTheme } = useTheme()
   const options = [
-    { value: 'dark',   icon: '🌙', label: 'Dark' },
-    { value: 'light',  icon: '☀️', label: 'Light' },
-    { value: 'system', icon: '💻', label: 'System' },
+    { value: 'dark',   icon: '🌙', label: 'Dark',   desc: 'Always dark' },
+    { value: 'light',  icon: '☀️', label: 'Light',  desc: 'Always light' },
+    { value: 'system', icon: '💻', label: 'System', desc: 'Follow OS' },
   ]
   const current = options.find(o => o.value === theme) || options[0]
   const [open, setOpen] = useState(false)
 
+  // Close on outside click
+  useEffect(() => {
+    if (!open) return
+    const handler = (e) => { if (!e.target.closest('[data-theme-toggle]')) setOpen(false) }
+    document.addEventListener('mousedown', handler)
+    return () => document.removeEventListener('mousedown', handler)
+  }, [open])
+
   return (
-    <div className="relative">
+    <div className="relative" data-theme-toggle>
       <button
         onClick={() => setOpen(v => !v)}
-        className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg border border-white/10 text-muted hover:text-white hover:border-white/20 transition-all text-xs font-display font-bold"
-        title="Toggle theme"
+        className={`flex items-center gap-1.5 rounded-lg border border-white/10 text-muted hover:text-white hover:border-white/20 transition-all font-display font-bold ${
+          compact ? 'px-2 py-1.5 text-xs' : 'px-2.5 py-1.5 text-xs'
+        }`}
+        title={`Theme: ${current.label} — click to change`}
       >
-        <span>{current.icon}</span>
-        <span className="hidden sm:inline">{current.label}</span>
+        <span style={{fontSize:'14px'}}>{current.icon}</span>
+        {!compact && <span className="hidden sm:inline">{current.label}</span>}
       </button>
       {open && (
-        <div className="absolute right-0 top-full mt-2 bg-navy-mid border border-white/10 rounded-xl shadow-xl overflow-hidden z-50 min-w-[120px]">
+        <div className="absolute right-0 top-full mt-2 rounded-xl overflow-hidden z-50 min-w-[150px]"
+          style={{background:'var(--navy-mid)',border:'1px solid rgba(255,255,255,0.1)',boxShadow:'0 8px 32px rgba(0,0,0,0.3)'}}>
+          <div className="px-3 py-2 border-b border-white/5">
+            <span className="text-[10px] font-display font-bold text-muted uppercase tracking-wider">Display Theme</span>
+          </div>
           {options.map(opt => (
             <button
               key={opt.value}
               onClick={() => { setTheme(opt.value); setOpen(false) }}
-              className={`w-full flex items-center gap-2.5 px-4 py-2.5 text-xs font-display font-bold transition-colors ${
-                theme === opt.value ? 'text-white bg-blue/20' : 'text-muted hover:text-white hover:bg-white/5'
+              className={`w-full flex items-center gap-2.5 px-3 py-2.5 text-xs font-display font-bold transition-colors ${
+                theme === opt.value
+                  ? 'bg-blue/15 text-white'
+                  : 'text-muted hover:text-white hover:bg-white/5'
               }`}
             >
-              <span>{opt.icon}</span>{opt.label}
+              <span style={{fontSize:'14px'}}>{opt.icon}</span>
+              <div className="text-left">
+                <div>{opt.label}</div>
+                <div className="text-[10px] opacity-60 font-normal">{opt.desc}</div>
+              </div>
+              {theme === opt.value && <span className="ml-auto text-blue text-xs">✓</span>}
             </button>
           ))}
         </div>
