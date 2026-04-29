@@ -13,9 +13,11 @@ export default function Checkout() {
   const { tier: tierId = 'smb', payment_success, cancelled } = router.query
   const tier    = TIERS[tierId] || TIERS.smb
 
-  const [loading, setLoading] = useState(false)
-  const [success, setSuccess] = useState(false)
-  const [error,   setError]   = useState('')
+  const [loading,   setLoading]   = useState(false)
+  const [success,   setSuccess]   = useState(false)
+  const [error,     setError]     = useState('')
+  const [promoCode, setPromoCode] = useState('')
+  const [promoMsg,  setPromoMsg]  = useState('')   // 'valid' | 'invalid' | ''
 
   useEffect(() => {
     if (router.isReady && !user) router.push(`/signup?tier=${tierId}`)
@@ -42,7 +44,7 @@ export default function Checkout() {
         const res = await fetch('/api/create-checkout-session', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ tierId, userId: user.id, email: user.email, name: user.name }),
+          body: JSON.stringify({ tierId, userId: user.id, email: user.email, name: user.name, promoCode: promoCode.trim() }),
         })
         if (!res.ok) { const b = await res.json(); throw new Error(b.error || 'Server error') }
         const { url } = await res.json()
