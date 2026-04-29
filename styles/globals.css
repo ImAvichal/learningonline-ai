@@ -190,3 +190,211 @@ html.light-mode .triad-label           { color: #0f1724; }
 html.light-mode .triad-intersection    { background: rgba(0,0,0,0.03); border-color: rgba(0,0,0,0.08); }
 html.light-mode .triad-intersection strong { color: #0f1724; }
 html.light-mode .triad-def             { color: #6b7280; }
+
+/* ═══════════════════════════════════════════════════════════════
+   LIGHT MODE — triggered by [data-theme="light"] on <html>
+   Covers: all pages, dashboard, course player, Q&A, downloads
+   ═══════════════════════════════════════════════════════════════ */
+
+[data-theme="light"] {
+  /* Redefine CSS variables for light mode */
+  --navy:      #F0F2F8;
+  --navy-mid:  #FFFFFF;
+  --navy-light:#E8EBF4;
+  --blue:      #1A6EFF;
+  --blue-b:    #0050D8;
+  --blue-g:    rgba(26,110,255,0.08);
+  --success:   #008C6A;
+  --muted:     #5A6480;
+  --border:    rgba(0,0,0,0.08);
+  --card:      rgba(0,0,0,0.03);
+}
+
+/* ── Base ── */
+[data-theme="light"] body {
+  background: #F0F2F8;
+  color: #0F1724;
+}
+
+/* ── Scrollbar ── */
+[data-theme="light"] ::-webkit-scrollbar-track { background: #F0F2F8; }
+[data-theme="light"] ::-webkit-scrollbar-thumb { background: #1A6EFF; }
+
+/* ── Nav ── */
+[data-theme="light"] nav {
+  background: rgba(240,242,248,0.92) !important;
+  border-color: rgba(0,0,0,0.08) !important;
+}
+[data-theme="light"] nav a,
+[data-theme="light"] nav button { color: #5A6480; }
+[data-theme="light"] nav a:hover,
+[data-theme="light"] nav button:hover { color: #0F1724; }
+
+/* ── Cards ── */
+[data-theme="light"] .bg-white\/\[0\.02\],
+[data-theme="light"] .bg-white\/\[0\.03\],
+[data-theme="light"] .bg-white\/\[0\.04\] {
+  background: rgba(255,255,255,0.9) !important;
+}
+[data-theme="light"] .border-white\/8,
+[data-theme="light"] .border-white\/\[0\.07\],
+[data-theme="light"] .border-white\/\[0\.08\] {
+  border-color: rgba(0,0,0,0.08) !important;
+}
+[data-theme="light"] .border-white\/5,
+[data-theme="light"] .border-white\/\[0\.04\],
+[data-theme="light"] .border-white\/\[0\.05\] {
+  border-color: rgba(0,0,0,0.06) !important;
+}
+[data-theme="light"] .border-white\/10 { border-color: rgba(0,0,0,0.10) !important; }
+[data-theme="light"] .border-white\/15 { border-color: rgba(0,0,0,0.15) !important; }
+
+/* ── Text colours ── */
+[data-theme="light"] .text-white     { color: #0F1724 !important; }
+[data-theme="light"] .text-white\/80 { color: #1E2A3A !important; }
+[data-theme="light"] .text-white\/70 { color: #2D3A4E !important; }
+[data-theme="light"] .text-white\/60 { color: #3C4A60 !important; }
+[data-theme="light"] .text-muted     { color: #5A6480 !important; }
+
+/* Keep blue and success colours as-is in light mode */
+[data-theme="light"] .text-blue-bright { color: #1A6EFF !important; }
+[data-theme="light"] .text-success     { color: #008C6A !important; }
+[data-theme="light"] .text-blue        { color: #1A6EFF !important; }
+
+/* ── Backgrounds ── */
+[data-theme="light"] .bg-navy     { background: #F0F2F8 !important; }
+[data-theme="light"] .bg-navy-mid { background: #FFFFFF !important; }
+
+/* ── Section backgrounds ── */
+[data-theme="light"] section,
+[data-theme="light"] footer {
+  background: inherit;
+}
+[data-theme="light"] .border-white\/5,
+[data-theme="light"] .border-t { border-color: rgba(0,0,0,0.08) !important; }
+[data-theme="light"] .border-b  { border-color: rgba(0,0,0,0.08) !important; }
+[data-theme="light"] .border-y  { border-color: rgba(0,0,0,0.08) !important; }
+
+/* ── Inputs / selects / textareas ── */
+[data-theme="light"] input,
+[data-theme="light"] select,
+[data-theme="light"] textarea {
+  background: #FFFFFF !important;
+  border-color: rgba(0,0,0,0.12) !important;
+  color: #0F1724 !important;
+}
+[data-theme="light"] input::placeholder,
+[data-theme="light"] textarea::placeholder { color: #9BA8BF !important; }
+[data-theme="light"] input:focus,
+[data-theme="light"] select:focus,
+[data-theme="light"] textarea:focus {
+  border-color: #1A6EFF !important;
+  background: #FFFFFF !important;
+}
+
+/* ── Buttons ── */
+[data-theme="light"] .bg-blue { background: #1A6EFF !important; }
+[data-theme="light"] .hover\:bg-blue-bright:hover { background: #0050D8 !important; }
+
+/* ── Tier badges ── */
+[data-theme="light"] .tier-individual { background:rgba(26,110,255,0.08);  border-color:rgba(26,110,255,0.2);  color:#1A6EFF; }
+[data-theme="light"] .tier-smb        { background:rgba(217,119,6,0.08);   border-color:rgba(217,119,6,0.2);   color:#B45309; }
+[data-theme="light"] .tier-enterprise { background:rgba(109,40,217,0.08);  border-color:rgba(109,40,217,0.2);  color:#6D28D9; }
+
+/* ── Dashboard sidebar ── */
+[data-theme="light"] aside {
+  background: #FFFFFF !important;
+  border-color: rgba(0,0,0,0.08) !important;
+}
+[data-theme="light"] aside nav button { color: #5A6480; }
+[data-theme="light"] aside nav button:hover { color: #0F1724; background: rgba(0,0,0,0.04) !important; }
+[data-theme="light"] aside nav button.bg-blue\/10 {
+  background: rgba(26,110,255,0.08) !important;
+  color: #0F1724 !important;
+  border-color: rgba(26,110,255,0.2) !important;
+}
+
+/* ── Course player / prose ── */
+[data-theme="light"] .prose-lesson h2,
+[data-theme="light"] .prose-lesson h3 {
+  color: #0F1724;
+  border-color: rgba(0,0,0,0.08);
+}
+[data-theme="light"] .prose-lesson p       { color: #2D3A4E; }
+[data-theme="light"] .prose-lesson strong  { color: #0F1724; }
+[data-theme="light"] .prose-lesson li      { color: #2D3A4E; }
+[data-theme="light"] .prose-lesson pre {
+  background: #EFF1F7;
+  border-color: rgba(0,0,0,0.08);
+  color: #1E2A3A;
+}
+[data-theme="light"] .prose-lesson code {
+  background: rgba(26,110,255,0.08);
+  color: #1A4ED8;
+}
+[data-theme="light"] .prose-lesson blockquote {
+  background: rgba(26,110,255,0.05);
+  border-color: rgba(26,110,255,0.3);
+}
+[data-theme="light"] .prose-lesson blockquote p { color: #1E2A3A; }
+[data-theme="light"] .real-world-box {
+  background: rgba(0,200,150,0.05) !important;
+  border-color: rgba(0,200,150,0.2) !important;
+}
+[data-theme="light"] .real-world-box h3 { color: #0F1724; }
+[data-theme="light"] .real-world-box p  { color: #2D3A4E; }
+
+/* ── Q&A / Quiz ── */
+[data-theme="light"] .quiz-option {
+  background: #FFFFFF;
+  border-color: rgba(0,0,0,0.10);
+  color: #2D3A4E;
+}
+[data-theme="light"] .quiz-option:hover {
+  border-color: rgba(26,110,255,0.3);
+  background: rgba(26,110,255,0.04);
+}
+
+/* ── Progress bars ── */
+[data-theme="light"] .bg-white\/5 { background: rgba(0,0,0,0.06) !important; }
+
+/* ── Score / result cards ── */
+[data-theme="light"] .bg-success\/5  { background: rgba(0,140,106,0.06) !important; }
+[data-theme="light"] .bg-success\/10 { background: rgba(0,140,106,0.10) !important; }
+[data-theme="light"] .bg-blue\/5     { background: rgba(26,110,255,0.05) !important; }
+[data-theme="light"] .bg-blue\/8     { background: rgba(26,110,255,0.06) !important; }
+[data-theme="light"] .bg-blue\/10    { background: rgba(26,110,255,0.08) !important; }
+
+/* ── Red error states ── */
+[data-theme="light"] .bg-red-500\/10 {
+  background: rgba(220,38,38,0.06) !important;
+  border-color: rgba(220,38,38,0.15) !important;
+}
+
+/* ── Amber / warning states ── */
+[data-theme="light"] .bg-amber-400\/10 { background: rgba(251,191,36,0.08) !important; }
+[data-theme="light"] .border-amber-400\/30 { border-color: rgba(245,158,11,0.3) !important; }
+[data-theme="light"] .text-amber-400 { color: #B45309 !important; }
+
+/* ── Triad diagram ── */
+[data-theme="light"] .triad-circle        { border-color: rgba(0,0,0,0.15) !important; }
+[data-theme="light"] .triad-label         { color: #0F1724 !important; }
+[data-theme="light"] .triad-sub           { color: #5A6480 !important; }
+[data-theme="light"] .triad-intersection  { background: rgba(0,0,0,0.03) !important; border-color: rgba(0,0,0,0.08) !important; }
+[data-theme="light"] .triad-intersection strong { color: #0F1724 !important; }
+[data-theme="light"] .triad-def           { color: #5A6480 !important; }
+[data-theme="light"] .triad-center        { background: rgba(26,110,255,0.06) !important; border-color: rgba(26,110,255,0.2) !important; }
+
+/* ── Accountability table ── */
+[data-theme="light"] .accountability-table th { background: rgba(0,0,0,0.04); color: #5A6480; }
+[data-theme="light"] .accountability-table td { color: #2D3A4E; border-color: rgba(0,0,0,0.05); }
+
+/* ── Gradient/glow sections (hero etc) ── */
+[data-theme="light"] .shadow-\[0_0_40px_rgba\(26\,110\,255\,0\.08\)\] {
+  box-shadow: 0 0 40px rgba(26,110,255,0.06) !important;
+}
+
+/* ── ROI calculator / model selection special panels ── */
+[data-theme="light"] .bg-navy-mid { background: #FFFFFF !important; }
+[data-theme="light"] .bg-navy-light { background: #E8EBF4 !important; }
+
