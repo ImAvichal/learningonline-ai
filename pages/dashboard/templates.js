@@ -1,12 +1,28 @@
 // pages/dashboard/templates.js
 import { useAuth } from '../../lib/auth'
+import { useEffect } from 'react'
+import { useRouter } from 'next/router'
+import NoEnrolmentMessage from '../../components/NoEnrolmentMessage'
 import { getResourcesForTier } from '../../data/templates'
 import { MODULES } from '../../data/modules'
 import { Card, SectionLabel, TierBadge } from '../../components/ui'
 
 export default function TemplatesPage() {
-  const { user } = useAuth()
-  const tier      = user?.tier || 'individual'
+  const { user, loading } = useAuth()
+  const router = useRouter()
+
+  useEffect(() => {
+    if (loading) return
+    if (!user) router.push('/login')
+  }, [user, loading])
+
+  if (loading) return null
+  if (!user) return null
+  if (!user.tier && !user.isDevUser) {
+    return <NoEnrolmentMessage context="course" />
+  }
+
+  const tier = user?.tier || 'individual'
   const resources = getResourcesForTier(tier)
   const tierOrder = ['individual', 'smb', 'enterprise']
 

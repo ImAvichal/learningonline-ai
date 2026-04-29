@@ -1,6 +1,8 @@
 // pages/dashboard/course.js — Course player with Q&A scoring
-import { useState, useRef } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import { useAuth, useProgress } from '../../lib/auth'
+import NoEnrolmentMessage from '../../components/NoEnrolmentMessage'
+import { useRouter } from 'next/router'
 import { MODULES } from '../../data/modules'
 import { ProgressBar, TierBadge, Spinner, ThemeToggle } from '../../components/ui'
 
@@ -152,8 +154,23 @@ function LessonContent({ content }) {
 
 // ── Main Course Page ──────────────────────────────────────────────────────────
 export default function CoursePage() {
-  const { user }  = useAuth()
+  const { user, loading } = useAuth()
   const { isCompleted, markLessonComplete, getModuleProgress, getTotalProgress } = useProgress()
+  const router = useRouter()
+
+  useEffect(() => {
+    if (loading) return
+    if (!user) router.push('/login')
+  }, [user, loading])
+
+  // Unauthenticated — wait for redirect
+  if (loading) return null
+  if (!user) return null
+
+  // Authenticated but not enrolled — show preview message
+  if (!user.tier && !user.isDevUser) {
+    return <NoEnrolmentMessage context="course" />
+  }
 
   const tierOrder = ['individual', 'smb', 'enterprise']
   const userLevel  = tierOrder.indexOf(user?.tier || 'individual')
