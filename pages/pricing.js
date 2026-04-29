@@ -1,4 +1,4 @@
-// pages/pricing.js — Updated pricing: $99 / $299 / $399
+// pages/pricing.js — Updated pricing: $49 / $99 / $149
 import Head from 'next/head'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
