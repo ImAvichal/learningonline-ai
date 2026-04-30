@@ -3,7 +3,7 @@ import Head from 'next/head'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { Nav, Reveal, Card, SectionLabel, Button, TierBadge } from '../components/ui'
-import { TIERS, TIER_ORDER } from '../data/tiers'
+import { TIERS, TIER_ORDER, DISPLAY_ORDER } from '../data/tiers'
 import { useAuth } from '../lib/auth'
 
 export default function Pricing() {
@@ -35,8 +35,8 @@ export default function Pricing() {
           </Reveal>
 
           {/* Tier cards */}
-          <div className="grid md:grid-cols-3 gap-5 mb-14">
-            {TIER_ORDER.map((tid, i) => {
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-5 mb-14">
+            {DISPLAY_ORDER.map((tid, i) => {
               const t     = TIERS[tid]
               const owned = user?.tier === tid
               return (
@@ -71,7 +71,12 @@ export default function Pricing() {
                       ))}
                     </ul>
 
-                    {owned ? (
+                    {t.free ? (
+                      <Link href={user ? '/parents' : '/login?redirect=/parents'}
+                        className="w-full py-3.5 rounded-xl font-display font-bold text-sm transition-all text-center block bg-success/10 border border-success/30 text-success hover:bg-success/20">
+                        {user ? 'Start Free Module →' : 'Sign In to Access →'}
+                      </Link>
+                    ) : owned ? (
                       <Button variant="success" href="/dashboard" className="w-full justify-center">
                         ✓ Your Current Tier → Dashboard
                       </Button>
