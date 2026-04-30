@@ -479,6 +479,34 @@ export default function Home() {
       </section>
 
 
+
+      {/* ── AI for Parents Section ── */}
+      <section className="py-20 border-b border-white/5">
+        <div className="max-w-6xl mx-auto px-6">
+          <Reveal>
+            <div className="grid md:grid-cols-[1fr_auto] gap-8 items-center">
+              <div>
+                <SectionLabel>Free Module</SectionLabel>
+                <h2 className="font-display font-bold text-3xl mb-4">AI for Parents</h2>
+                <p className="text-muted leading-relaxed max-w-xl mb-6">
+                  Understand how AI is shaping how kids learn and interact — and how to guide them responsibly.
+                  8 practical lessons, no technical background needed. Free with sign-up.
+                </p>
+                <div className="flex flex-wrap gap-3 mb-6">
+                  {['What AI is (for parents)','How kids use AI','Benefits vs risks','Setting boundaries at home'].map(f => (
+                    <span key={f} className="text-xs font-display font-bold px-3 py-1.5 rounded-full bg-success/10 border border-success/20 text-success">{f}</span>
+                  ))}
+                </div>
+                <Button href="/parents" variant="primary">Start Free Module →</Button>
+              </div>
+              <div className="hidden md:flex flex-col items-center justify-center w-48 h-48 rounded-2xl border border-white/10 bg-white/[0.02] text-6xl">
+                👨‍👩‍👧‍👦
+              </div>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
       {/* ── Preview Section ── Patch 4 */}
       <section className="py-20 border-b border-white/5">
         <div className="max-w-6xl mx-auto px-6">
