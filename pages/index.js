@@ -239,81 +239,45 @@ export default function Home() {
       <Nav transparent />
 
       {/* ── Hero ── */}
-      <section className="min-h-screen flex items-center pt-16 relative overflow-hidden">
+      <section className="flex items-center pt-16 relative overflow-hidden">
         <div className="absolute inset-0 opacity-40" style={{ backgroundImage:'linear-gradient(rgba(26,110,255,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(26,110,255,0.04) 1px,transparent 1px)', backgroundSize:'60px 60px' }} />
-        <div className="absolute top-0 right-0 w-[700px] h-[700px] bg-blue/10 rounded-full blur-[140px] pointer-events-none" />
-        <div className="max-w-6xl mx-auto px-6 py-28 relative z-10">
+        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-blue/10 rounded-full blur-[140px] pointer-events-none" />
+        <div className="max-w-6xl mx-auto px-6 py-14 md:py-20 relative z-10 w-full">
           <div className="max-w-3xl">
-            <div className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full border border-blue/30 bg-blue/10 text-blue-bright text-xs font-display font-bold mb-10 tracking-wide">
+            <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full border border-blue/30 bg-blue/10 text-blue-bright text-xs font-display font-bold mb-6 tracking-wide">
               <span className="w-1.5 h-1.5 bg-blue rounded-full animate-pulse" />
-              learningonline.ai · 14 Modules · 3 Tiers · 40 Templates · 8 Industries
+              learningonline.ai
             </div>
-            <h1 className="font-display font-black leading-[1.0] tracking-tight mb-4" style={{ fontSize:'clamp(48px,6.5vw,82px)' }}>
+            <h1 className="font-display font-black leading-[1.05] tracking-tight mb-4" style={{ fontSize:'clamp(40px,6vw,72px)' }}>
               From AI Anxiety<br/>to <span className="text-blue">AI Awareness</span>
             </h1>
-            <p className="text-xl text-white/60 font-light mb-3 tracking-wide">Le On AI · learningonline.ai</p>
-            <p className="text-lg text-muted leading-relaxed max-w-xl mb-10">
-              Practical learning for professionals, parents, businesses and enterprise leaders looking to understand AI — without the hype.
+            <p className="text-base text-muted leading-relaxed max-w-lg mb-2">
+              Practical learning for professionals, parents, businesses and enterprise leaders — without the hype.
             </p>
-            <div className="flex flex-wrap gap-4 mb-14">
+            <p className="text-xs text-white/30 mb-7 font-display tracking-widest uppercase">
+              14 modules · 3 tiers · 40 templates · first live use case in 14 days
+            </p>
+            <div className="flex flex-wrap gap-3">
               {user?.tier
                 ? <Button variant="large" href="/dashboard">Go to Dashboard →</Button>
                 : <>
-                    <Button variant="large" href="#find-your-path">Find My Program ↓</Button>
-                    <Button variant="ghost" href="/pricing" className="text-base px-8 py-4">View Pricing</Button>
+                    <Button variant="large" href="#learning-tracks">Start Learning ↓</Button>
+                    <Button variant="ghost" href="/pricing" className="text-sm px-6 py-3">View Courses</Button>
                   </>
               }
             </div>
-            <div className="flex flex-wrap gap-10 pt-8 border-t border-white/5">
-              {[
-                { val:'14',  unit:' modules',    desc:'End-to-end curriculum' },
-                { val:'3',   unit:' tiers',      desc:'Upskill · Business · Enterprise' },
-                { val:'40',  unit:' templates',  desc:'Production-ready downloads' },
-                { val:'90',  unit:' days',       desc:'To first live use case' },
-              ].map(s => (
-                <div key={s.unit}>
-                  <div className="font-display font-black text-3xl">{s.val}<span className="text-blue">{s.unit}</span></div>
-                  <div className="text-xs text-muted mt-0.5">{s.desc}</div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ── Quick Value Hook ── */}
-      <section className="py-16 border-b border-white/5">
-        <div className="max-w-6xl mx-auto px-6">
-          <div className="text-center mb-10">
-            <h2 className="font-display font-bold text-3xl mb-3">Practical AI Learning Built for Real-World Use</h2>
-            <p className="text-muted text-lg max-w-2xl mx-auto">Learn how to use AI in business, workflows, automation, and daily life — using practical frameworks, templates, and implementation guides. First use case live in 14 days.</p>
-          </div>
-          <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
-            {[
-              { icon:'🎓', stat:'14+', label:'Practical Modules' },
-              { icon:'📥', stat:'40+', label:'Downloadable Templates' },
-              { icon:'🏭', stat:'8',   label:'Industry Use Cases' },
-              { icon:'🗺️', stat:'3',   label:'Learning Tracks' },
-              { icon:'⚡', stat:'14',  label:'Days to Go Live' },
-            ].map((s, i) => (
-              <div key={i} className="p-5 rounded-xl border border-white/8 bg-white/[0.02] text-center">
-                <div className="text-2xl mb-2">{s.icon}</div>
-                <div className="font-display font-black text-2xl text-blue mb-0.5">{s.stat}</div>
-                <div className="text-xs text-muted font-display">{s.label}</div>
-              </div>
-            ))}
           </div>
         </div>
       </section>
 
       {/* ── Learning Tracks (4 cards: Parents free + 3 paid tiers) ── */}
-      <section className="py-24">
+      <section id="learning-tracks" className="py-14">
         <div className="max-w-6xl mx-auto px-6">
           <Reveal>
             <div className="text-center mb-12">
               <SectionLabel>Learning Tracks</SectionLabel>
-              <h2 className="font-display font-bold text-4xl mb-4">Start where you are.</h2>
-              <p className="text-muted max-w-xl mx-auto">Free guidance for parents. Practical depth for professionals, business owners, and enterprise leaders.</p>
+              <h2 className="font-display font-bold text-3xl mb-3">Start Where You Are</h2>
+              <p className="text-muted max-w-xl mx-auto text-sm">Free guidance for parents. Practical depth for professionals, business owners, and enterprise leaders.</p>
             </div>
           </Reveal>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
