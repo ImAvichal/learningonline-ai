@@ -657,7 +657,7 @@ export default function ParentsModule() {
                     <h2 className="font-display font-bold text-2xl">{lesson.title}</h2>
                   </div>
                 </div>
-                <div dangerouslySetInnerHTML={{ __html: lesson.content }} />
+                <div className="overflow-x-auto" dangerouslySetInnerHTML={{ __html: lesson.content }} />
               </div>
 
               {/* Navigation */}
