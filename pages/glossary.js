@@ -938,7 +938,7 @@ export default function Glossary() {
   return (
     <>
       <Head>
-        <title>AI Glossary — Le On AI</title>
+        <title>AI Terms Explained — Le On AI</title>
         <meta name="description" content="The plain-English AI glossary for business professionals. 70+ terms explained simply with real-world examples." />
       </Head>
       <Nav />
@@ -949,7 +949,7 @@ export default function Glossary() {
           {/* Header */}
           <div className="mb-12">
             <SectionLabel>Reference Guide</SectionLabel>
-            <h1 className="font-display font-black text-5xl tracking-tight mb-4">AI Glossary</h1>
+            <h1 className="font-display font-black text-5xl tracking-tight mb-4">AI Terms Explained</h1>
             <div className="max-w-2xl">
               <p className="text-muted text-lg leading-relaxed mb-4">
                 Plain-English definitions for every AI term you'll encounter — with real-world business examples.

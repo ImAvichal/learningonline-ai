@@ -233,7 +233,7 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>Le On AI — From AI Anxiety to AI Awareness</title>
+        <title>Le On AI — AI Anxiety → AI Awareness</title>
         <meta name="description" content="The execution-focused AI program for professionals, business owners, and enterprise leaders. 14 modules, 40 templates, ROI calculator, and model selection framework." />
       </Head>
       <Nav transparent />
@@ -248,8 +248,8 @@ export default function Home() {
               <span className="w-1.5 h-1.5 bg-blue rounded-full animate-pulse" />
               learningonline.ai
             </div>
-            <h1 className="font-display font-black leading-[1.05] tracking-tight mb-4" style={{ fontSize:'clamp(40px,6vw,72px)' }}>
-              From AI Anxiety<br/>to <span className="text-blue">AI Awareness</span>
+            <h1 className="font-display font-black leading-[1.05] tracking-tight mb-4" style={{ fontSize:'clamp(36px,5.5vw,62px)' }}>
+              AI Anxiety <span className="text-blue">→</span> AI Awareness
             </h1>
             <p className="text-base text-muted leading-relaxed max-w-lg mb-2">
               Practical learning for professionals, parents, businesses and enterprise leaders — without the hype.
@@ -352,9 +352,9 @@ export default function Home() {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {[
               { icon:'🎯', title:'Model Selection Guide', desc:'Choose the right AI model', href:'/model-selection' },
-              { icon:'📊', title:'ROI Calculator',        desc:'Model your investment',     href:'/roi-calculator' },
+              { icon:'📊', title:'AI Value Calculator',        desc:'Model your investment',     href:'/roi-calculator' },
               { icon:'🏭', title:'Industry Matcher',      desc:'Use cases for your sector', href:'/#find-your-path' },
-              { icon:'🎓', title:'14-Module Curriculum',  desc:'From foundations to 14-day plan', href:'/#curriculum' },
+              { icon:'🎓', title:'Learning Paths',  desc:'From foundations to 14-day plan', href:'/#curriculum' },
             ].map((tool, i) => (
               <Link key={i} href={tool.href}
                 className="p-5 rounded-xl border border-white/8 bg-white/[0.02] hover:border-blue/40 hover:bg-blue/[0.03] transition-all group">
@@ -420,7 +420,7 @@ export default function Home() {
         <div className="max-w-6xl mx-auto px-6">
           <Reveal>
             <div className="text-center mb-12">
-              <SectionLabel>Full Curriculum</SectionLabel>
+              <SectionLabel>Learning Paths</SectionLabel>
               <h2 className="font-display font-bold text-4xl mb-4">14 modules. Zero filler.</h2>
               <p className="text-muted max-w-xl mx-auto">Every lesson produces a real deliverable. Every module builds on the last.</p>
             </div>
@@ -583,10 +583,10 @@ export default function Home() {
               <div>
                 <div className="text-xs font-display font-bold text-muted uppercase tracking-wider mb-3">Platform</div>
                 <div className="space-y-2">
-                  <Link href="#curriculum"      className="block text-sm text-muted hover:text-white">Curriculum</Link>
+                  <Link href="#curriculum"      className="block text-sm text-muted hover:text-white">Learning Paths</Link>
                   <Link href="#find-your-path"  className="block text-sm text-muted hover:text-white">Find My Tier</Link>
                   <Link href="/model-selection" className="block text-sm text-muted hover:text-white">Model Guide</Link>
-                  <Link href="/roi-calculator"  className="block text-sm text-muted hover:text-white">ROI Calculator</Link>
+                  <Link href="/roi-calculator"  className="block text-sm text-muted hover:text-white">AI Value Calculator</Link>
                   <Link href="/pricing"         className="block text-sm text-muted hover:text-white">Pricing</Link>
                 </div>
               </div>
@@ -599,11 +599,11 @@ export default function Home() {
                 </div>
               </div>
               <div>
-                <div className="text-xs font-display font-bold text-muted uppercase tracking-wider mb-3">Contact</div>
+                <div className="text-xs font-display font-bold text-muted uppercase tracking-wider mb-3">Get in Touch</div>
                 <div className="space-y-2">
                   <a href="mailto:hello@learningonline.ai"    className="block text-sm text-muted hover:text-white">hello@learningonline.ai</a>
                   <Link href="/contact"                        className="block text-sm text-muted hover:text-white">Enterprise enquiries</Link>
-                  <Link href="/contact"                        className="block text-sm text-muted hover:text-white">Contact us</Link>
+                  <Link href="/contact"                        className="block text-sm text-muted hover:text-white">Talk to Us</Link>
                 </div>
               </div>
             </div>
