@@ -105,9 +105,10 @@ export function Nav({ transparent = false }) {
       <div className="max-w-6xl mx-auto px-6 h-full flex items-center justify-between gap-6">
         <Logo />
         <div className="hidden md:flex items-center gap-6">
-          <NavLink href="/#curriculum">Curriculum</NavLink>
-          <NavLink href="/roi-calculator">ROI Calculator</NavLink>
-          <NavLink href="/contact">Contact</NavLink>
+          <NavLink href="/#curriculum">Learning Paths</NavLink>
+          <NavLink href="/roi-calculator">AI Value Calculator</NavLink>
+          <NavLink href="/glossary">AI Terms Explained</NavLink>
+          <NavLink href="/contact">Talk to Us</NavLink>
         </div>
         <div className="hidden md:flex items-center gap-3">
           <ThemeToggle />
@@ -140,12 +141,13 @@ export function Nav({ transparent = false }) {
       {open && (
         <div className="md:hidden bg-navy-mid border-t border-white/5 px-6 py-4 space-y-3">
           <MobileLink href="/#find-your-path"  onClick={() => setOpen(false)}>Industries</MobileLink>
-          <MobileLink href="/#curriculum"       onClick={() => setOpen(false)}>Curriculum</MobileLink>
+          <MobileLink href="/#curriculum"       onClick={() => setOpen(false)}>Learning Paths</MobileLink>
           <MobileLink href="/model-selection"   onClick={() => setOpen(false)}>Model Guide</MobileLink>
-          <MobileLink href="/roi-calculator"    onClick={() => setOpen(false)}>ROI Calculator</MobileLink>
+          <MobileLink href="/roi-calculator"    onClick={() => setOpen(false)}>AI Value Calculator</MobileLink>
+          <MobileLink href="/glossary" onClick={() => setOpen(false)}>AI Terms Explained</MobileLink>
           <MobileLink href="/pricing"           onClick={() => setOpen(false)}>Pricing</MobileLink>
           <MobileLink href="/glossary"          onClick={() => setOpen(false)}>Glossary</MobileLink>
-          <MobileLink href="/contact"           onClick={() => setOpen(false)}>Contact</MobileLink>
+          <MobileLink href="/contact"           onClick={() => setOpen(false)}>Talk to Us</MobileLink>
           {!user && (
             <>
               <MobileLink href="/pricing" onClick={() => setOpen(false)}>View Courses</MobileLink>
