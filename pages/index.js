@@ -244,11 +244,7 @@ export default function Home() {
         <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-blue/10 rounded-full blur-[140px] pointer-events-none" />
         <div className="max-w-6xl mx-auto px-6 py-14 md:py-20 relative z-10 w-full">
           <div className="max-w-3xl">
-            <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full border border-blue/30 bg-blue/10 text-blue-bright text-xs font-display font-bold mb-6 tracking-wide">
-              <span className="w-1.5 h-1.5 bg-blue rounded-full animate-pulse" />
-              learningonline.ai
-            </div>
-            <h1 className="font-display font-black leading-[1.05] tracking-tight mb-4" style={{ fontSize:'clamp(36px,5.5vw,62px)' }}>
+            <h1 className="font-display font-black leading-[1.05] tracking-tight mb-4" style={{ fontSize:'clamp(32px,5vw,56px)' }}>
               AI Anxiety <span className="text-blue">→</span> AI Awareness
             </h1>
             <p className="text-base text-muted leading-relaxed max-w-lg mb-2">
