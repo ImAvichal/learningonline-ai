@@ -106,6 +106,7 @@ export function Nav({ transparent = false }) {
         <Logo />
         <div className="hidden md:flex items-center gap-6">
           <NavLink href="/#curriculum">Learning Paths</NavLink>
+          <NavLink href="/model-selection">Choosing the Right AI</NavLink>
           <NavLink href="/roi-calculator">AI Value Calculator</NavLink>
           <NavLink href="/glossary">AI Terms Explained</NavLink>
           <NavLink href="/contact">Talk to Us</NavLink>
@@ -142,6 +143,7 @@ export function Nav({ transparent = false }) {
         <div className="md:hidden bg-navy-mid border-t border-white/5 px-6 py-4 space-y-3">
           <MobileLink href="/#find-your-path"  onClick={() => setOpen(false)}>Industries</MobileLink>
           <MobileLink href="/#curriculum"       onClick={() => setOpen(false)}>Learning Paths</MobileLink>
+          <MobileLink href="/model-selection" onClick={() => setOpen(false)}>Choosing the Right AI</MobileLink>
           <MobileLink href="/model-selection"   onClick={() => setOpen(false)}>Model Guide</MobileLink>
           <MobileLink href="/roi-calculator"    onClick={() => setOpen(false)}>AI Value Calculator</MobileLink>
           <MobileLink href="/glossary" onClick={() => setOpen(false)}>AI Terms Explained</MobileLink>
