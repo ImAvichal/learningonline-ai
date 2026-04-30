@@ -1016,64 +1016,6 @@ Where Complexity Score = (6 - Implementation Complexity)
       Cost Score       = scaled 1–5 from cost estimate</pre>`,
       },
       {
-        id: 'm4-l2', number: 2, tier: 'smb', duration: '30 min',
-        title: 'The 5-Year AI Cost Model',
-        content: `<h2>Why 5 Years?</h2>
-<p>Point-in-time ROI calculations miss the compounding nature of AI costs and benefits. A use case that looks profitable in year one may be underwater by year three if token costs scale with volume. The 5-year model gives you the full picture.</p>
-<h3>The Cost Components</h3>
-<p><strong>Implementation Cost (one-time):</strong></p>
-<pre>Implementation Cost = People cost + Tool/platform cost + Infrastructure setup
-Example:
-  Developer: 4 weeks × $2,000/week  = $8,000
-  Platform:  3 months setup          = $1,500
-  Total implementation:               = $9,500</pre>
-<p><strong>Annual Maintenance Cost:</strong></p>
-<pre>Annual Maintenance = Token cost + Support effort + Data maintenance + Governance
-
-Token cost = (calls per day × avg tokens per call × cost per token) × 365
-
-Example:
-  500 calls/day × 2,000 tokens × $0.000005/token × 365 = $1,825/year
-
-Support effort: 2 hrs/week × $65/hr × 52 = $6,760/year
-Data maintenance: $2,000/year
-Governance review: $1,500/year
-Total annual maintenance: $12,085/year</pre>
-<p><strong>5-Year Total Cost:</strong></p>
-<pre>5-Year Cost = Implementation + (Annual Maintenance × 5)
-            = $9,500 + ($12,085 × 5)
-            = $9,500 + $60,425
-            = $69,925</pre>
-<h3>The Value Model</h3>
-<pre>Annual Value = Time saved per person per day (hrs)
-             × Number of people
-             × Working days per year
-             × Hourly cost
-
-Example:
-  1.5 hrs/day × 8 people × 250 days × $65/hr
-  = $195,000/year
-
-5-Year Value = $195,000 × 5 = $975,000</pre>
-<h3>Net Benefit and ROI</h3>
-<pre>Net Benefit = 5-Year Value − 5-Year Cost
-            = $975,000 − $69,925
-            = $905,075
-
-ROI % = (Net Benefit / 5-Year Cost) × 100
-      = ($905,075 / $69,925) × 100
-      = 1,294% ROI over 5 years</pre>
-<div class="real-world-box">
-<h3>🌍 From Real-World Practice</h3>
-<p><strong>Insight:</strong> Organisations that model AI costs over 5 years make fundamentally better vendor and architecture decisions than those who only look at year one.</p>
-<p><strong>Example:</strong> A professional services firm chose a premium AI platform because year-one cost looked competitive. By year three, as their usage scaled 8×, annual costs exceeded the value delivered. A 5-year model at the outset would have revealed this and driven a different architecture choice.</p>
-<p><strong>Why it matters:</strong> Token costs scale with usage. Support costs scale with complexity. A use case that looks like a 300% ROI in year one can turn negative by year four without proper modelling.</p>
-<p><strong>Implementation tip:</strong> Build three scenarios — conservative (50% of expected volume), base (expected volume), and optimistic (200% of expected volume). Present all three to your decision-makers.</p>
-<p><strong>💡 What This Saves You:</strong> The 5-year model prevents the most common AI investment regret — committing to an architecture or vendor that becomes unaffordable at scale.</p>
-</div>`,
-      },
-      },
-      {
         id: 'm4-l2', number: 2, tier: 'smb', duration: '28 min',
         title: 'Building the Business Case: From Score to Approved Investment',
         content: `<h2>Turning a Priority Score Into an Approved Decision</h2>
@@ -1166,7 +1108,7 @@ Break-Even            = Implementation Cost / Monthly Net Benefit
 </div>`,
       },
     ],
-    quiz: { {
+    quiz: {
       questions: [
         { id: 'q4-1', text: 'A use case has high business value (5), low implementation complexity (2), but very high adoption effort (5). What is its Priority Score using the formula?', options: ['12', '9', '8', '14'], correct: 1, explanation: 'Score = (5×2) + (6-2) + (6-5) = 10 + 4 + 1 = 15. Then subtract cost score. High adoption effort significantly reduces the attractiveness of otherwise strong use cases.' },
         { id: 'q4-2', text: 'Your AI use case processes 1,000 requests per day, averaging 3,000 tokens each at $0.000005 per token. What is the annual token cost?', options: ['$547.50', '$5,475', '$54,750', '$547,500'], correct: 1, explanation: '1,000 × 3,000 × $0.000005 × 365 = $5,475/year. Understanding this calculation is essential for accurate cost modelling.' },
@@ -1311,7 +1253,7 @@ Pattern 5: AI Decides → Human Monitors
 </div>`,
       },
     ],
-    quiz: { {
+    quiz: {
       questions: [
         { id: 'q5-1', text: 'An AI system automatically sends customer refunds when it detects certain patterns in complaint data. No human reviews the decision. Which pattern does this represent and what is the primary risk?', options: ['AI Drafts → Human Edits — risk is poor quality drafts', 'AI Decides → Human Monitors — risk is errors going undetected until they scale', 'AI Classifies → Human Routes — risk is misclassification', 'AI Reads → Human Acts — risk is slow response times'], correct: 1, explanation: 'Full autonomy (Pattern 5) is highest risk. Without human review for consequential financial decisions, errors compound before they\'re caught. Confidence thresholds and human escalation are essential.' },
         { id: 'q5-2', text: 'Before implementing AI in a customer onboarding process, you discover the current process has 3 undocumented workarounds. What should you do?', options: ['Build the AI anyway — it will work around them', 'Document and resolve the workarounds before building the AI workflow', 'Ignore them — they\'re edge cases', 'Build the AI to handle the workarounds automatically'], correct: 1, explanation: 'Automating a broken process accelerates the problem. Resolve process issues before AI implementation — otherwise you\'re encoding workarounds into permanent infrastructure.' },
@@ -1447,7 +1389,7 @@ Step 6: MONITOR    → Ongoing quality tracking in production</pre>
 </div>`,
       },
     ],
-    quiz: { {
+    quiz: {
       questions: [
         { id: 'q6-1', text: 'Your AI model is producing outputs with 65% accuracy when you expected 90%+. After investigation, you find customer names are stored in 4 different formats across source systems. What dimension of data readiness has failed?', options: ['Availability', 'Governance', 'Standardisation / Consistency', 'Accessibility'], correct: 2, explanation: 'Inconsistent data formats are a standardisation failure. AI models learn patterns — if the same entity appears in 4 formats, the model learns 4 different patterns for the same thing, degrading accuracy.' },
         { id: 'q6-2', text: 'Before starting an AI project, what is the most valuable data readiness action you can take?', options: ['Buy more data storage', 'Profile your existing data across the 5 readiness dimensions before committing to a build timeline', 'Assume the data is good enough and start building', 'Hire a data scientist'], correct: 1, explanation: 'Profiling first gives you an objective baseline. It reveals the real timeline and cost of data preparation — which is almost always longer than initial estimates.' },
@@ -1698,7 +1640,7 @@ User: [case history text]</pre>
 </div>`,
       },
     ],
-    quiz: { {
+    quiz: {
       questions: [
         { id: 'q9-1', text: 'A team of 12 analysts each saves 2 hours per day due to AI automation. Their fully loaded cost is $80/hour and they work 250 days/year. What is the annual efficiency value?', options: ['$384,000', '$480,000', '$560,000', '$768,000'], correct: 1, explanation: '2 hrs × 12 people × 250 days × $80/hr = $480,000/year. This is the core efficiency value formula used in every AI business case.' },
         { id: 'q9-2', text: 'Why must baseline metrics be established BEFORE AI deployment?', options: ['They don\'t need to be — estimates are fine', 'Because you can\'t prove improvement without a starting point to compare against', 'Because regulators require it', 'To satisfy vendor contracts'], correct: 1, explanation: 'Without a pre-deployment baseline, you have no evidence of improvement. This is the single most common measurement failure in AI programs.' },
@@ -1919,7 +1861,7 @@ Standard Q&A responses   → Automated   → Escalations & experience design</pr
 </div>`,
       },
     ],
-    quiz: { {
+    quiz: {
       questions: [
         { id: 'q12-1', text: 'Three months after deploying an AI tool that genuinely works, only 22% of the team is using it. What is the most likely cause?', options: ['The AI isn\'t good enough', 'Insufficient change management — adoption strategy, communication, and support were inadequate', 'The tool is too complex', 'The team wasn\'t informed about the tool'], correct: 1, explanation: 'A working tool with low adoption is almost always a change management failure. Technology readiness and people readiness are separate problems requiring separate solutions.' },
         { id: 'q12-2', text: 'A team member says "AI is going to take my job." What is the most effective response?', options: ['Reassure them that won\'t happen without evidence', 'Show them a concrete opportunity map — what their role looks like with AI handling the routine work, and what higher-value activities become available', 'Explain the technology limitations', 'Ask HR to manage the conversation'], correct: 1, explanation: 'Concrete opportunity mapping — showing specifically what higher-value work becomes available — is significantly more effective than general reassurance. People need to see their future role, not just be told it exists.' },
