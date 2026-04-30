@@ -1,5 +1,6 @@
 // pages/dashboard/index.js — /dashboard
 import Head from 'next/head'
+import Link from 'next/link'
 import { useState, useEffect } from 'react'
 import { useAuth, useProgress, withAuth } from '../../lib/auth'
 import NoEnrolmentMessage from '../../components/NoEnrolmentMessage'
