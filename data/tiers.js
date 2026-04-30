@@ -1,6 +1,34 @@
-// data/tiers.js — Updated pricing: $99 / $299 / $399
+// data/tiers.js — Updated pricing: $49 / $99 / $149 + free Parents tier
 
 export const TIERS = {
+  parents: {
+    id: 'parents',
+    name: 'AI for Parents',
+    label: 'Free',
+    price: 0,
+    priceDisplay: 'Free',
+    billing: 'Free · Sign in required',
+    colorClass: 'tier-parents',
+    description: 'A practical, calm guide for parents navigating how AI is shaping how children learn, communicate, and grow. No technical background needed.',
+    idealFor: 'Parents and caregivers who want to understand AI, have better conversations with their children, and set sensible boundaries at home.',
+    notFor: 'Business professionals looking for AI implementation guidance — see the paid tracks below.',
+    features: [
+      '8 practical lessons for parents',
+      'What AI is and how kids use it',
+      'Benefits vs risks — the honest picture',
+      'Warning signs and conversation starters',
+      'Practical household rules and boundaries',
+      'AI for Parents downloadable guide',
+      'No cost — just sign in',
+    ],
+    modules: [],
+    cta: 'Start Free — Sign In',
+    highlighted: false,
+    stripeEnvKey: null,
+    free: true,
+    route: '/parents',
+  },
+
   individual: {
     id: 'individual',
     name: 'Individual Upskill',
@@ -32,7 +60,7 @@ export const TIERS = {
     label: 'Business Owner',
     price: 99,
     priceDisplay: '$99',
-    billing: 'One-time · More content to get you going',
+    billing: 'One-time · Up to 5 team seats',
     colorClass: 'tier-smb',
     description: 'For small to medium business owners preparing to adopt AI — with use case identification, workflow design, data readiness, and ROI frameworks.',
     idealFor: 'Business owners, operations managers, and department heads in organisations of 10–200 people ready to implement AI.',
@@ -82,6 +110,8 @@ export const TIERS = {
 }
 
 export const TIER_ORDER = ['individual', 'smb', 'enterprise']
+export const DISPLAY_ORDER = ['parents', 'individual', 'smb', 'enterprise']
+export const FREE_TIERS = ['parents']
 
 export const canAccessTier = (userTier, contentTier) =>
   TIER_ORDER.indexOf(userTier) >= TIER_ORDER.indexOf(contentTier)
