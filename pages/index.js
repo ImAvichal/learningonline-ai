@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { useState } from 'react'
 import { Nav, Reveal, Card, SectionLabel, Button, TierBadge } from '../components/ui'
 import { MODULES } from '../data/modules'
-import { TIERS, TIER_ORDER, INDUSTRIES } from '../data/tiers'
+import { TIERS, TIER_ORDER, INDUSTRIES, DISPLAY_ORDER } from '../data/tiers'
 import { useAuth } from '../lib/auth'
 
 // ── Decision Tree ─────────────────────────────────────────────────────────────
@@ -233,7 +233,7 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>Le On AI — AI That Actually Works In Your Business</title>
+        <title>Le On AI — From AI Anxiety to AI Awareness</title>
         <meta name="description" content="The execution-focused AI program for professionals, business owners, and enterprise leaders. 14 modules, 40 templates, ROI calculator, and model selection framework." />
       </Head>
       <Nav transparent />
@@ -248,16 +248,12 @@ export default function Home() {
               <span className="w-1.5 h-1.5 bg-blue rounded-full animate-pulse" />
               learningonline.ai · 14 Modules · 3 Tiers · 40 Templates · 8 Industries
             </div>
-            <h1 className="font-display font-black leading-[1.0] tracking-tight mb-3" style={{ fontSize:'clamp(52px,7vw,90px)' }}>
-              Le On <span className="text-blue">AI</span>
+            <h1 className="font-display font-black leading-[1.0] tracking-tight mb-4" style={{ fontSize:'clamp(48px,6.5vw,82px)' }}>
+              From AI Anxiety<br/>to <span className="text-blue">AI Awareness</span>
             </h1>
-            <p className="text-xl text-white/60 font-light mb-3 tracking-wide">Learning Online · Artificial Intelligence</p>
-            <p className="text-xl text-white/80 italic mb-3" style={{ fontFamily:'DM Sans, sans-serif' }}>
-              "AI That Actually Works In Your Business"
-            </p>
+            <p className="text-xl text-white/60 font-light mb-3 tracking-wide">Le On AI · learningonline.ai</p>
             <p className="text-lg text-muted leading-relaxed max-w-xl mb-10">
-              The execution-focused program that takes professionals, business owners, and enterprise teams
-              from AI theory to live, measured results — in weeks, not months.
+              Practical learning for professionals, parents, businesses and enterprise leaders looking to understand AI — without the hype.
             </p>
             <div className="flex flex-wrap gap-4 mb-14">
               {user?.tier
@@ -310,62 +306,50 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── Three Tiers ── */}
+      {/* ── Learning Tracks (4 cards: Parents free + 3 paid tiers) ── */}
       <section className="py-24">
         <div className="max-w-6xl mx-auto px-6">
           <Reveal>
             <div className="text-center mb-12">
-              <SectionLabel>Three Tiers</SectionLabel>
-              <h2 className="font-display font-bold text-4xl mb-4">One program. Three levels of depth.</h2>
-              <p className="text-muted max-w-xl mx-auto">Priced on value, not seat count. Start where you are.</p>
+              <SectionLabel>Learning Tracks</SectionLabel>
+              <h2 className="font-display font-bold text-4xl mb-4">Start where you are.</h2>
+              <p className="text-muted max-w-xl mx-auto">Free guidance for parents. Practical depth for professionals, business owners, and enterprise leaders.</p>
             </div>
           </Reveal>
-          <div className="grid md:grid-cols-3 gap-5 mb-8">
-            {TIER_ORDER.map((tid, i) => {
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+            {DISPLAY_ORDER.map((tid, i) => {
               const t = TIERS[tid]
+              const isFree = t.free
               return (
                 <Reveal key={tid} delay={i * 80}>
-                  <Card hover className={`p-7 h-full flex flex-col ${t.highlighted ? 'border-amber-400/30 bg-amber-400/[0.02]' : ''}`}>
-                    <TierBadge tier={tid} label={t.label} className="mb-4" />
-                    <div className="font-display font-black text-5xl mb-1">{t.priceDisplay}</div>
-                    <div className="text-xs text-muted mb-5">{t.billing}</div>
+                  <Card hover className={`p-6 h-full flex flex-col ${
+                    isFree ? 'border-success/25 bg-success/[0.02]' :
+                    t.highlighted ? 'border-amber-400/30 bg-amber-400/[0.02]' : ''
+                  }`}>
+                    {isFree ? (
+                      <span className="self-start mb-4 px-2.5 py-1 bg-success/15 border border-success/30 rounded-full text-[10px] font-display font-bold text-success">FREE MODULE</span>
+                    ) : (
+                      <TierBadge tier={tid} label={t.label} className="mb-4" />
+                    )}
+                    <div className="font-display font-black text-4xl mb-1">{t.priceDisplay}</div>
+                    <div className="text-xs text-muted mb-4">{t.billing}</div>
                     <p className="text-sm text-muted leading-relaxed flex-1 mb-4">{t.description}</p>
                     <div className="p-3 rounded-lg bg-white/[0.03] border border-white/5 mb-5">
                       <div className="text-[10px] font-display font-bold text-muted uppercase tracking-wider mb-1">Ideal for</div>
                       <p className="text-xs text-white/70 leading-relaxed">{t.idealFor}</p>
                     </div>
-                    <Button href="/pricing" variant={t.highlighted ? 'primary' : 'ghost'} className="w-full justify-center">{t.cta}</Button>
+                    {isFree ? (
+                      <Link href={user ? '/parents' : '/login?redirect=/parents'}
+                        className="w-full text-center py-2.5 rounded-lg font-display font-bold text-sm bg-success/10 border border-success/30 text-success hover:bg-success/20 transition-all">
+                        {user ? 'Continue →' : 'Start Free Module →'}
+                      </Link>
+                    ) : (
+                      <Button href="/pricing" variant={t.highlighted ? 'primary' : 'ghost'} className="w-full justify-center">{t.cta}</Button>
+                    )}
                   </Card>
                 </Reveal>
               )
             })}
-          </div>
-        </div>
-      </section>
-
-      {/* ── AI for Parents — Free Module Card ── */}
-      <section className="pb-12">
-        <div className="max-w-6xl mx-auto px-6">
-          <div className="p-6 rounded-2xl border border-success/20 bg-success/[0.03] flex flex-col md:flex-row items-start md:items-center justify-between gap-5">
-            <div className="flex items-start gap-4">
-              <span className="text-4xl flex-shrink-0">👨‍👩‍👧‍👦</span>
-              <div>
-                <div className="flex items-center gap-2 mb-1 flex-wrap">
-                  <span className="font-display font-bold text-base text-white">AI for Parents</span>
-                  <span className="px-2 py-0.5 bg-success/15 border border-success/30 rounded-full text-[10px] font-display font-bold text-success">FREE MODULE</span>
-                </div>
-                <p className="text-sm text-muted leading-relaxed max-w-xl">Understand how AI is shaping how kids learn and interact — and how to guide them responsibly. 8 practical lessons, no technical background needed.</p>
-                <div className="flex flex-wrap gap-3 mt-2">
-                  {['Free Access','Practical Parent Guidance','Requires Free Sign-in'].map(f => (
-                    <span key={f} className="text-xs text-success flex items-center gap-1">✓ {f}</span>
-                  ))}
-                </div>
-              </div>
-            </div>
-            <Link href={user ? '/parents' : '/login?redirect=/parents'}
-              className="flex-shrink-0 px-6 py-3 bg-success/10 border border-success/30 text-success font-display font-bold text-sm rounded-xl hover:bg-success/20 transition-all whitespace-nowrap">
-              {user ? 'Continue →' : 'Start Free Module →'}
-            </Link>
           </div>
         </div>
       </section>
@@ -406,7 +390,7 @@ export default function Home() {
               { icon:'🎯', title:'Model Selection Guide', desc:'Choose the right AI model', href:'/model-selection' },
               { icon:'📊', title:'ROI Calculator',        desc:'Model your investment',     href:'/roi-calculator' },
               { icon:'🏭', title:'Industry Matcher',      desc:'Use cases for your sector', href:'/#find-your-path' },
-              { icon:'🎓', title:'14-Module Curriculum',  desc:'From foundations to 90-day plan', href:'/#curriculum' },
+              { icon:'🎓', title:'14-Module Curriculum',  desc:'From foundations to 14-day plan', href:'/#curriculum' },
             ].map((tool, i) => (
               <Link key={i} href={tool.href}
                 className="p-5 rounded-xl border border-white/8 bg-white/[0.02] hover:border-blue/40 hover:bg-blue/[0.03] transition-all group">
@@ -613,7 +597,7 @@ export default function Home() {
           <Reveal>
             <div className="text-5xl mb-6">🚀</div>
             <h2 className="font-display font-bold text-4xl mb-4">Stop experimenting. Start delivering.</h2>
-            <p className="text-muted text-lg mb-8">First use case live within 90 days — or your money back.</p>
+            <p className="text-muted text-lg mb-8">First use case live within 14 days — or your money back.</p>
             <div className="flex flex-wrap gap-4 justify-center">
               <Button variant="large" href="#find-your-path">Find My Program ↑</Button>
               <Button variant="ghost" href="/pricing" className="text-base px-8 py-4">View All Pricing</Button>
