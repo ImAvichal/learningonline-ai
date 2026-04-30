@@ -294,7 +294,6 @@ Action: Identify which use cases are batch-compatible and schedule accordingly.<
 <p><strong>💡 What This Saves You:</strong> A quarterly token cost review across a 10-use-case portfolio typically identifies $15,000–$60,000 in annual savings. The review takes half a day.</p>
 </div>`,
       },
-      },
       {
         id: 'm1-l4', number: 4, tier: 'individual', duration: '20 min',
         title: 'Prompts: The Skill That Multiplies Everything Else',
@@ -877,7 +876,6 @@ LOW VALUE  │ AVOID              │ FILLER
 <p><strong>💡 What This Saves You:</strong> Organisations that select their first use case using a structured scoring methodology rather than intuition or politics are 4× more likely to deliver measurable ROI within 6 months. That's the difference between a programme that builds momentum and one that consumes it.</p>
 </div>`,
       },
-      },
       {
         id: 'm3-l2', number: 2, tier: 'individual', duration: '22 min',
         title: 'How to Qualify, Score and Document a Use Case',
@@ -1165,7 +1163,6 @@ Pattern 5: AI Decides → Human Monitors
 <p><strong>💡 What This Saves You:</strong> Proper workflow design prevents the most common post-deployment failure — a working AI tool that nobody uses because the workflow wasn't designed for real conditions.</p>
 </div>`,
       },
-      },
       {
         id: 'm5-l2', number: 2, tier: 'smb', duration: '24 min',
         title: 'Exception Handling, Testing, and Workflow Validation',
@@ -1298,7 +1295,6 @@ Step 6: MONITOR    → Ongoing quality tracking in production</pre>
 <p><strong>Implementation tip:</strong> Run a data quality audit on your intended AI data source before writing a single line of code or prompt. Score it across the 5 dimensions. Anything below 3/5 on quality or structure needs remediation before proceeding.</p>
 <p><strong>💡 What This Saves You:</strong> A data readiness assessment before build typically saves 2–4 months of rework and prevents the most demoralising outcome in AI programs — a technically correct system producing wrong answers.</p>
 </div>`,
-      },
       },
       {
         id: 'm6-l2', number: 2, tier: 'smb', duration: '26 min',
@@ -1564,7 +1560,6 @@ User: [case history text]</pre>
 <p><strong>💡 What This Saves You:</strong> A properly measured AI program is virtually immune to budget cuts. An unmeasured one is cancelled at the first sign of organisational pressure.</p>
 </div>`,
       },
-      },
       {
         id: 'm9-l2', number: 2, tier: 'smb', duration: '24 min',
         title: 'KPI Framework, Baseline Measurement, and Continuous Improvement',
@@ -1784,7 +1779,6 @@ Standard Q&A responses   → Automated   → Escalations & experience design</pr
 <p><strong>Implementation tip:</strong> Before announcing any AI initiative, draft the "opportunity map" — a concrete description of what people will do with the time recovered. Make this the centrepiece of your communication, not the technology.</p>
 <p><strong>💡 What This Saves You:</strong> Effective change management prevents the 40–70% of AI programs that technically succeed but fail through non-adoption — delivering none of the projected value despite full investment.</p>
 </div>`,
-      },
       },
       {
         id: 'm12-l2', number: 2, tier: 'smb', duration: '22 min',
