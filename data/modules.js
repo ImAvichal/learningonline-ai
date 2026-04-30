@@ -5,106 +5,494 @@ export const MODULES = [
   {
     id: 'module-1', number: 1, icon: '🧠',
     title: 'AI Foundations',
-    description: 'Cut through the noise. Understand what AI actually is, how models work, what tokens cost, and where the real value lives.',
-    deliverable: 'AI Readiness & Token Awareness Assessment',
+    description: 'Cut through the noise. Understand what AI is, how models work, what tokens cost, how to write production-quality prompts, and how to apply AI in your daily work this week.',
+    deliverable: 'AI Readiness Assessment + Prompt Library Starter',
     templateId: 'ai-readiness',
     lessons: [
       {
         id: 'm1-l1', number: 1, tier: 'individual', duration: '20 min',
         title: 'Introduction to AI: What It Is and Isn\'t',
         content: `<h2>What AI Actually Is</h2>
-<p>Artificial Intelligence is pattern recognition at scale. At its core, AI learns from examples and applies what it has learned to new situations. It does not think, reason, or understand in the way humans do — it predicts.</p>
+<p>Artificial Intelligence is pattern recognition at scale. Every AI system — from ChatGPT to Netflix recommendations to fraud detection — does one thing: it finds patterns in data and uses those patterns to predict the most useful output. It does not think. It does not understand. It predicts.</p>
+<p>That distinction is not academic. It determines what AI can and cannot do, where it succeeds and where it fails, and why "just ask the AI" is not a strategy.</p>
+
 <h3>The Three Categories You Need to Know</h3>
-<p><strong>Narrow AI (where we are now):</strong> AI designed for specific tasks. GPT-4o writes text. DALL-E generates images. AlphaFold predicts protein structures. Each is exceptional at its task and useless at others.</p>
-<p><strong>General AI (where we're heading):</strong> Systems that can perform any intellectual task a human can. Not here yet — but approaching faster than most organisations are prepared for.</p>
-<p><strong>Agentic AI (emerging now):</strong> AI that takes sequences of actions autonomously to achieve a goal. Already in production in leading organisations.</p>
-<h3>The Gotchas Nobody Tells You</h3>
-<p><strong>Hallucination:</strong> AI confidently states things that are false. It doesn't know what it doesn't know. Always verify consequential outputs.</p>
-<p><strong>Context window limits:</strong> AI can only process a limited amount of text at once. Large documents need chunking strategies.</p>
-<p><strong>Training data cutoffs:</strong> Models don't know about events after their training date. Supplement with retrieval systems for current information.</p>
-<p><strong>Inconsistency:</strong> The same prompt can produce different outputs. Design for variability — don't assume deterministic results.</p>
+<table>
+<thead><tr><th>Category</th><th>What It Is</th><th>Where We Are</th><th>Your Action</th></tr></thead>
+<tbody>
+<tr><td><strong>Narrow AI</strong></td><td>Designed for one specific task. Exceptional at it. Useless at everything else.</td><td>Here now. GPT-4o, DALL-E, Whisper, AlphaFold.</td><td>This is what you build with today.</td></tr>
+<tr><td><strong>Agentic AI</strong></td><td>Takes sequences of autonomous actions to achieve a goal using tools and reasoning.</td><td>Emerging in 2024–2025. In production at leading orgs.</td><td>Pilot now. Govern carefully.</td></tr>
+<tr><td><strong>General AI</strong></td><td>Performs any intellectual task a human can.</td><td>Not here yet.</td><td>Ignore for your 90-day plan.</td></tr>
+</tbody>
+</table>
+
+<h3>The Workflow Gap — Where AI Value Actually Lives</h3>
+<p>Most organisations ask "what can AI do?" The better question is "where in our workflows is there a gap between manual effort and business value?"</p>
+<p>AI value isn't in the model. It's in identifying a specific process step where:</p>
+<ul>
+<li>The input is consistent enough for AI to process reliably</li>
+<li>The output is defined clearly enough to be measurable</li>
+<li>The volume is high enough that automation has meaningful impact</li>
+<li>The manual cost is high enough that savings justify implementation</li>
+</ul>
+<p>Find that gap first. Then choose the AI. Not the other way around.</p>
+
+<h3>AI Myths vs Reality — The 8 You Will Encounter</h3>
+<table>
+<thead><tr><th>The Myth</th><th>The Reality</th><th>What To Do Instead</th></tr></thead>
+<tbody>
+<tr><td>"AI understands our business"</td><td>AI predicts based on patterns. It has no understanding. It needs explicit instructions for every context.</td><td>Write precise prompts. Assume nothing is implied.</td></tr>
+<tr><td>"Bigger model = better results"</td><td>For most business tasks, smaller cheaper models match frontier quality.</td><td>Benchmark 3 models before committing to one.</td></tr>
+<tr><td>"AI will replace our team"</td><td>AI replaces specific tasks within roles. Roles evolve — they rarely disappear in the first wave.</td><td>Map tasks to automation. Plan role evolution.</td></tr>
+<tr><td>"We need to wait for AI to mature"</td><td>GPT-4 level capability has existed since 2023. The cost of waiting is real and measurable.</td><td>Calculate the annual cost of your top 3 manual processes. That's your delay cost.</td></tr>
+<tr><td>"AI is objective and unbiased"</td><td>AI reflects its training data. Biased historical data produces biased outputs.</td><td>Test accuracy across demographic groups for any consequential AI decision.</td></tr>
+<tr><td>"You need data scientists"</td><td>No-code AI tools handle most SMB use cases. API-level integration requires one developer, not a team.</td><td>Start with turnkey tools. Custom build only when off-the-shelf fails.</td></tr>
+<tr><td>"AI is always right"</td><td>It hallucinates. It's confidently wrong. Design your workflow around this — not around the assumption it won't happen.</td><td>Build confidence thresholds and human review into every consequential workflow.</td></tr>
+<tr><td>"Implementation takes years"</td><td>Simple use cases: 4–8 weeks. Data preparation is almost always the bottleneck — not the AI.</td><td>Start with data readiness. Assess before you plan the timeline.</td></tr>
+</tbody>
+</table>
+
+<h3>When NOT to Use AI — 7 Disqualifiers</h3>
+<ul>
+<li><strong>You can't define "correct" in one sentence.</strong> If you can't tell a human what good looks like, you can't tell AI either.</li>
+<li><strong>The process changes more than monthly.</strong> AI learns patterns. Changing processes break those patterns.</li>
+<li><strong>Errors have catastrophic consequences with no human review.</strong> Medical diagnosis, legal liability, financial decisions — AI augments, it doesn't replace oversight.</li>
+<li><strong>You have less than 6 months of historical data.</strong> AI needs examples. Without data, you're deploying guesswork.</li>
+<li><strong>The AI cost exceeds 70% of the manual cost.</strong> If the economics don't work, don't build it.</li>
+<li><strong>The task requires deep relational trust.</strong> Grief counselling, complex negotiation, crisis management — these remain human.</li>
+<li><strong>The process isn't documented.</strong> Never automate a process you can't describe. Fix the process first.</li>
+</ul>
+
+<h3>The 5 Failure Modes — Memorise These</h3>
+<table>
+<thead><tr><th>Failure Mode</th><th>What Happens</th><th>How to Prevent It</th></tr></thead>
+<tbody>
+<tr><td>Wrong starting point</td><td>Organisation buys platform before defining use case</td><td>Define the specific process problem before evaluating any technology</td></tr>
+<tr><td>Automating a broken process</td><td>AI now runs a broken process faster and at scale</td><td>Map and optimise the process first. Then automate.</td></tr>
+<tr><td>No baseline measurement</td><td>AI deployed — nobody can prove it worked</td><td>Measure current state for 4 weeks before deployment</td></tr>
+<tr><td>No adoption plan</td><td>Working AI. 18% adoption. Declared "failed."</td><td>Build change management in parallel with technical build</td></tr>
+<tr><td>No human fallback</td><td>AI error causes real harm with no correction path</td><td>Every AI workflow needs a confidence threshold and human escalation path</td></tr>
+</tbody>
+</table>
+
+<h3>Decision Checklist</h3>
+<pre>□ Have I identified a SPECIFIC process problem (not "we need AI")?
+□ Can I define what a correct AI output looks like in one sentence?
+□ Do I know what data exists and where it lives?
+□ Have I identified who owns this AI system when it goes live?
+□ Have I calculated the annual cost of NOT automating this process?</pre>
+
 <div class="real-world-box">
 <h3>🌍 From Real-World Practice</h3>
-<p><strong>Insight:</strong> Most AI failures in business aren't technical — they're expectational. Teams deploy AI expecting a human-like understanding of context and get confused outputs instead.</p>
-<p><strong>Example:</strong> A legal team deployed an AI to review contracts. It performed well on standard clauses but hallucinated precedents that didn't exist. Nobody checked — and two contracts were sent to clients with fabricated legal references.</p>
-<p><strong>Why it matters:</strong> Without understanding AI's fundamental limitations, you design workflows that create liability rather than value.</p>
-<p><strong>Implementation tip:</strong> Before any deployment, document your "failure modes" — what happens when AI is wrong? Design for that scenario first.</p>
-<p><strong>💡 What This Saves You:</strong> Understanding AI limitations before deployment prevents costly rework, reputational risk, and the single most common cause of AI project abandonment.</p>
+<p><strong>Insight:</strong> Most AI failures aren't technical — they're expectational. Teams deploy AI expecting human-like contextual understanding and get inconsistent outputs they weren't designed to handle.</p>
+<p><strong>Example:</strong> A 350-person professional services firm spent $180K building an AI to "improve proposal quality." After 6 months, adoption was 4%. The root cause: nobody could define what "quality" meant in measurable terms. Without a definition, the AI had nothing to optimise for. The project was shelved. A $5K workshop to define quality criteria upfront would have changed the outcome.</p>
+<p><strong>Why it matters:</strong> Specificity of problem definition is the single highest-leverage activity before any AI project. It costs nothing and determines everything.</p>
+<p><strong>Implementation tip:</strong> Before any AI initiative, complete this sentence in one sentence: "We will know AI is working when [specific measurable outcome] improves from [baseline] to [target] within [timeframe]." If you cannot complete it, do not start.</p>
+<p><strong>💡 What This Saves You:</strong> Organisations that define success criteria before build begin are 3× more likely to deliver on time and within budget. That's the difference between a $45K successful deployment and a $180K shelved project.</p>
 </div>`,
       },
       {
         id: 'm1-l2', number: 2, tier: 'individual', duration: '25 min',
         title: 'Types of AI Models and When to Use Each',
         content: `<h2>The Model Landscape</h2>
-<p>Choosing the wrong model is like using a forklift to move a coffee cup — technically possible, expensive, and unnecessary. Here's the framework for picking the right tool.</p>
-<h3>Large Language Models (LLMs)</h3>
-<p>Best for: text generation, summarisation, classification, question answering, code generation, translation.</p>
-<p>Key players: GPT-4o (OpenAI) · Claude 3.5 (Anthropic) · Gemini 1.5 (Google) · Llama 3 (Meta, open source)</p>
-<p>When to choose: Any task involving reading, writing, classifying, or reasoning over text.</p>
-<h3>Embedding Models</h3>
-<p>Best for: semantic search, similarity matching, document retrieval (RAG systems).</p>
-<p>When to choose: When you need AI to search your own documents or knowledge base intelligently.</p>
-<h3>Image Models</h3>
-<p>Best for: image generation, image classification, object detection, document OCR.</p>
-<p>When to choose: Visual content creation, quality inspection, document digitisation.</p>
-<h3>Speech Models</h3>
-<p>Best for: speech-to-text transcription, text-to-speech, voice assistants.</p>
-<p>When to choose: Call centre analytics, meeting transcription, voice-enabled workflows.</p>
-<h3>The Decision Framework</h3>
-<pre>What's the input?
-  Text → LLM
-  Documents to search → Embedding + LLM (RAG)
-  Images → Vision model
-  Audio → Speech model
-  Multiple inputs → Multimodal or orchestrated pipeline</pre>
+<p>Choosing the wrong model is like using a forklift to move a coffee cup — technically possible, expensive, and unnecessary. Most organisations default to the frontier model they've heard of (usually GPT-4) for everything. This typically costs 10–20× more than necessary for the majority of tasks.</p>
+<p>The right question is never "which model is best?" It's "which model is sufficient for this specific task at this volume and this accuracy requirement?"</p>
+
+<h3>The 5 Model Types You Need to Know</h3>
+<table>
+<thead><tr><th>Model Type</th><th>Best For</th><th>Key Examples</th><th>Business Use Cases</th></tr></thead>
+<tbody>
+<tr><td><strong>Large Language Models (LLMs)</strong></td><td>Text generation, summarisation, classification, reasoning, Q&A</td><td>GPT-4o, Claude 3.5 Sonnet, Gemini 1.5 Pro, Llama 3</td><td>Email drafting, document review, report generation, customer service responses</td></tr>
+<tr><td><strong>Efficient LLMs</strong></td><td>Same tasks as above at high volume, lower cost</td><td>GPT-4o-mini, Claude 3 Haiku, Gemini 1.5 Flash</td><td>High-volume classification, extraction, triage — where cost matters</td></tr>
+<tr><td><strong>Embedding Models</strong></td><td>Semantic search, document similarity, RAG systems</td><td>text-embedding-3-large (OpenAI), embed-v3 (Cohere)</td><td>Searching your documents, finding similar cases, knowledge base Q&A</td></tr>
+<tr><td><strong>Vision/Multimodal Models</strong></td><td>Processing images, PDFs with visual content, forms</td><td>GPT-4o Vision, Claude 3.5 Sonnet Vision</td><td>Invoice extraction, quality inspection, form processing, document scanning</td></tr>
+<tr><td><strong>Speech Models</strong></td><td>Transcription, voice-to-text, speech analysis</td><td>Whisper (OpenAI), Azure Speech, Google STT</td><td>Meeting transcription, call centre analysis, voice interfaces</td></tr>
+</tbody>
+</table>
+
+<h3>The 3-Question Model Selection Framework</h3>
+<p>Before selecting any model, answer these three questions:</p>
+
+<p><strong>Question 1: Is accuracy critical or threshold-acceptable?</strong><br>
+Critical (errors have significant consequences) → Use frontier models: GPT-4o, Claude Sonnet<br>
+Threshold-acceptable (85%+ is fine) → Use efficient models: GPT-4o-mini, Claude Haiku</p>
+
+<p><strong>Question 2: What is the volume?</strong><br>
+Low (under 1,000 calls/day) → Cost barely matters. Choose on quality.<br>
+High (over 10,000 calls/day) → Cost matters significantly. Benchmark first.</p>
+
+<p><strong>Question 3: Does data need to stay in-region?</strong><br>
+Yes (regulated data, data sovereignty) → Azure OpenAI (Australia East) or AWS Bedrock (Sydney)<br>
+No → Any provider works</p>
+
+<h3>Real-World Model Selection Examples</h3>
+<table>
+<thead><tr><th>Use Case</th><th>Volume</th><th>Recommended Model</th><th>Annual Cost</th><th>Why</th></tr></thead>
+<tbody>
+<tr><td>Email classification (12 categories)</td><td>800/day</td><td>GPT-4o-mini or Claude Haiku</td><td>$13–22/yr</td><td>Classification is proven for smaller models. 91–93% accuracy — sufficient.</td></tr>
+<tr><td>Executive report generation</td><td>1/week</td><td>GPT-4o or Claude Sonnet</td><td>$1.40–1.70/yr</td><td>Low volume makes cost irrelevant. Choose quality.</td></tr>
+<tr><td>Document Q&A (RAG)</td><td>200 queries/day</td><td>GPT-4o-mini with RAG architecture</td><td>$55/yr</td><td>RAG retrieval does the heavy lifting. Model just synthesises clean chunks.</td></tr>
+<tr><td>Meeting transcription + action items</td><td>20 meetings/day</td><td>Whisper + Claude Haiku</td><td>$1,978/yr</td><td>Whisper is the cheapest accurate transcription. Haiku handles extraction.</td></tr>
+<tr><td>Invoice data extraction</td><td>500 invoices/day</td><td>GPT-4o Vision</td><td>~$2,400/yr</td><td>Visual processing required. No cheaper multimodal option with same accuracy.</td></tr>
+</tbody>
+</table>
+
+<h3>The RAG Pattern — Your Most Important Architecture Decision</h3>
+<p>RAG (Retrieval-Augmented Generation) is the most important AI architecture pattern for business. It solves the three biggest problems with raw LLMs:</p>
+<ul>
+<li><strong>Hallucination:</strong> AI answers from retrieved documents, not invented knowledge</li>
+<li><strong>Knowledge cutoff:</strong> Your documents are always current, regardless of model training date</li>
+<li><strong>Data privacy:</strong> Your documents never leave your infrastructure unless you send them explicitly</li>
+</ul>
+<p><strong>How RAG works (simply):</strong> Documents are converted to numerical representations (embeddings) and stored in a vector database. When a user asks a question, the question is also converted to an embedding, the most relevant document sections are retrieved, and only those sections are sent to the LLM to answer the question.</p>
+<p><strong>Result:</strong> AI that answers questions about your specific documents, accurately, with citations, without hallucinating.</p>
+
+<h3>The Mixing Strategy — When to Use Multiple Models</h3>
+<p>The highest-ROI AI architectures often use different models for different steps:</p>
+<ul>
+<li>Use a small model for first-pass classification (99% of volume, very cheap)</li>
+<li>Route low-confidence outputs to a frontier model for review (1% of volume)</li>
+<li>Use embedding models for search, LLMs only for final answer synthesis</li>
+<li>Use Whisper for transcription, then a small LLM for extraction</li>
+</ul>
+<p>Result: frontier-model accuracy at efficient-model cost.</p>
+
+<h3>The Enterprise Model Governance Principle</h3>
+<p><strong>Wrong approach:</strong> "We standardise on GPT-4o for all use cases." — Over-engineered for simple tasks. Over-budget at scale. Vendor lock-in.</p>
+<p><strong>Right approach:</strong> "We standardise on our orchestration layer and abstract model selection." — Switch models without changing code. A/B test in production. Apply cost governance centrally.</p>
+
+<h3>Decision Checklist</h3>
+<pre>□ Have I identified the task type (classification/generation/extraction/search)?
+□ Have I determined whether accuracy is critical or threshold-acceptable?
+□ Have I estimated daily volume to assess cost significance?
+□ Have I checked data residency requirements?
+□ Have I benchmarked at least 2 models before committing to one?</pre>
+
 <div class="real-world-box">
 <h3>🌍 From Real-World Practice</h3>
-<p><strong>Insight:</strong> Organisations routinely pay 10–50× more than necessary by using frontier models for tasks that smaller, cheaper models handle equally well.</p>
-<p><strong>Example:</strong> A retail business was using GPT-4o to classify customer support tickets into 12 categories — at $0.015 per 1K tokens. Switching to a fine-tuned GPT-4o-mini for the same task reduced cost by 90% with equivalent accuracy.</p>
-<p><strong>Why it matters:</strong> At scale, model selection is a financial decision, not just a technical one.</p>
-<p><strong>Implementation tip:</strong> Always benchmark 2–3 models against your specific task before committing to production. Cost and quality don't always correlate.</p>
-<p><strong>💡 What This Saves You:</strong> Correct model selection typically reduces AI running costs by 40–80% without any loss in output quality.</p>
+<p><strong>Insight:</strong> Most organisations choose their AI model based on marketing demos and brand recognition, not performance benchmarks on their actual task. This is the most common source of unnecessary AI cost.</p>
+<p><strong>Example:</strong> A retail company with 800 customer service emails per day defaulted to GPT-4o without benchmarking. Annual token cost: $219. After a 2-hour benchmark exercise comparing GPT-4o-mini: 91% accuracy vs 94% — a 3% difference that doesn't affect routing quality. Switch to mini. Annual saving: $206. Small individually — but they had 14 other use cases in the pipeline. Right-sizing across all 15 saved $38,000 per year.</p>
+<p><strong>Why it matters:</strong> Model selection is the highest-ROI 2-hour investment in any AI implementation. It compounds across every use case you build.</p>
+<p><strong>Implementation tip:</strong> Before finalising any AI build, run 500 real production examples through 3 models side by side. Score accuracy manually on 50 samples. The cheapest model meeting your accuracy threshold is always the right choice.</p>
+<p><strong>💡 What This Saves You:</strong> Benchmarking before committing to a model takes 2 hours and typically saves $5,000–$50,000 per year across a portfolio of use cases. At scale, this is the most valuable habit in AI program management.</p>
 </div>`,
       },
       {
         id: 'm1-l3', number: 3, tier: 'individual', duration: '22 min',
-        title: 'Tokens: The Currency of AI',
-        content: `<h2>Understanding Tokens</h2>
-<p>Every time you use an AI model, you're spending tokens. Tokens are the fundamental unit of AI computation — and misunderstanding them is one of the most common causes of budget overruns in AI programs.</p>
+        title: 'Tokens, Cost & the Economics of AI',
+        content: `<h2>Why Token Economics Determine AI Program Success</h2>
+<p>Token costs look tiny — fractions of a cent per call. But at business scale they compound fast. The difference between choosing the right model and the wrong one, across a portfolio of 10 use cases, is typically $20,000–$100,000 per year. Understanding token economics is not a technical detail — it's a financial decision.</p>
+
 <h3>What Is a Token?</h3>
-<p>A token is approximately 4 characters of text, or about ¾ of a word. The sentence "The quick brown fox" is roughly 5 tokens. A typical business email is 100–300 tokens. A 10-page report is 3,000–5,000 tokens.</p>
-<h3>Input vs Output Tokens</h3>
-<p><strong>Input tokens:</strong> Everything you send to the model — your system prompt, the user message, any documents or context. You pay for every token the model reads.</p>
-<p><strong>Output tokens:</strong> Everything the model generates in response. Output tokens typically cost 3–5× more than input tokens.</p>
-<h3>The Cost Formula</h3>
-<pre>Total cost = (input tokens × input price) + (output tokens × output price)
+<p>A token is the basic unit AI models use to read and generate text. Approximately:</p>
+<ul>
+<li>1 token ≈ 4 characters ≈ ¾ of an English word</li>
+<li>"The quick brown fox" = 5 tokens</li>
+<li>A 200-word email ≈ 270 tokens</li>
+<li>A 10-page PDF document ≈ 5,000–8,000 tokens</li>
+<li>GPT-4o's context window (128K tokens) ≈ a 96,000-word novel</li>
+</ul>
+<p>You are charged separately for <strong>input tokens</strong> (everything you send) and <strong>output tokens</strong> (everything the model generates back). Output tokens cost 4–6× more than input tokens. This matters when designing what format you ask AI to respond in.</p>
 
-Example — GPT-4o pricing (approx):
-Input:  $2.50 per million tokens
-Output: $10.00 per million tokens
+<h3>Model Pricing Reference (Q1 2025)</h3>
+<table>
+<thead><tr><th>Model</th><th>Input (per 1M tokens)</th><th>Output (per 1M tokens)</th><th>AUD Input</th><th>AUD Output</th><th>Tier</th></tr></thead>
+<tbody>
+<tr><td>GPT-4o</td><td>$2.50</td><td>$10.00</td><td>$3.88</td><td>$15.50</td><td>Frontier</td></tr>
+<tr><td>GPT-4o-mini</td><td>$0.15</td><td>$0.60</td><td>$0.23</td><td>$0.93</td><td>Efficient</td></tr>
+<tr><td>Claude 3.5 Sonnet</td><td>$3.00</td><td>$15.00</td><td>$4.65</td><td>$23.25</td><td>Frontier</td></tr>
+<tr><td>Claude 3 Haiku</td><td>$0.25</td><td>$1.25</td><td>$0.39</td><td>$1.94</td><td>Efficient</td></tr>
+<tr><td>Gemini 1.5 Pro</td><td>$1.25</td><td>$5.00</td><td>$1.94</td><td>$7.75</td><td>Frontier</td></tr>
+<tr><td>Gemini 1.5 Flash</td><td>$0.075</td><td>$0.30</td><td>$0.12</td><td>$0.47</td><td>Efficient</td></tr>
+</tbody>
+</table>
+<p>Prices as of Q1 2025. AUD at 1.55× USD. Always verify at provider pricing pages before financial commitments.</p>
 
-A task with 1,000 input tokens + 500 output tokens:
-= (1,000 × $0.0000025) + (500 × $0.00001)
-= $0.0025 + $0.005
-= $0.0075 per call
+<h3>Monthly Cost Simulations — The Numbers That Matter</h3>
+<p><strong>Scenario A: Email Classification (800 emails/day, 300 tokens/email)</strong></p>
+<table>
+<thead><tr><th>Model</th><th>Daily Cost</th><th>Monthly Cost</th><th>Annual Cost</th></tr></thead>
+<tbody>
+<tr><td>GPT-4o</td><td>$0.60</td><td>$18</td><td>$219</td></tr>
+<tr><td>GPT-4o-mini</td><td>$0.04</td><td>$1.10</td><td>$13</td></tr>
+<tr><td>Claude Haiku</td><td>$0.06</td><td>$1.80</td><td>$22</td></tr>
+</tbody>
+</table>
+<p>GPT-4o costs 17× more than mini for this task. If mini achieves ≥ 90% accuracy (benchmark this): use mini.</p>
 
-At 10,000 calls per day: $75/day · $2,250/month</pre>
-<h3>Token Optimisation Strategies</h3>
-<p><strong>Compress your prompts:</strong> Remove unnecessary words from system prompts. A 500-token prompt run 10,000 times costs as much as 5 million extra input tokens monthly.</p>
-<p><strong>Use cheaper models for simple tasks:</strong> Classification, simple extraction, and formatting tasks don't need frontier models.</p>
-<p><strong>Implement caching:</strong> Cache responses for identical or near-identical inputs. Reduces costs dramatically for FAQ-style use cases.</p>
-<p><strong>Chunk strategically:</strong> Don't send entire documents when only sections are relevant. Retrieve only the necessary context.</p>
+<p><strong>Scenario B: Document Summarisation (50 docs/day, 4,000 tokens/doc)</strong></p>
+<table>
+<thead><tr><th>Model</th><th>Monthly Cost</th><th>Annual Cost</th></tr></thead>
+<tbody>
+<tr><td>GPT-4o</td><td>$135</td><td>$1,825</td></tr>
+<tr><td>Claude 3.5 Sonnet</td><td>$180</td><td>$2,160</td></tr>
+<tr><td>Claude Haiku</td><td>$11.25</td><td>$135</td></tr>
+</tbody>
+</table>
+<p>For complex document summarisation requiring nuance and structure: Claude Sonnet or GPT-4o. For straightforward summaries: benchmark Haiku first.</p>
+
+<p><strong>Scenario C: Executive Reporting (1 report/week, 8,000 tokens)</strong></p>
+<table>
+<thead><tr><th>Model</th><th>Annual Cost</th></tr></thead>
+<tbody>
+<tr><td>GPT-4o</td><td>$1.69</td></tr>
+<tr><td>Claude Sonnet</td><td>$1.40</td></tr>
+</tbody>
+</table>
+<p>At this volume, cost is irrelevant. Choose entirely on output quality. Benchmark on your actual reports.</p>
+
+<h3>The 5 Token Optimisation Techniques</h3>
+<p><strong>1. Compress your system prompt</strong><br>
+Every token in your system prompt is charged on every single API call.<br>
+Example: 500-token system prompt × 10,000 calls/day = 5M extra input tokens/day.<br>
+At GPT-4o: $12.50/day = $4,562/year from the prompt alone.<br>
+Action: Audit and compress system prompts quarterly.</p>
+
+<p><strong>2. Implement response caching</strong><br>
+Store AI responses for identical or near-identical queries. Return the cached response instead of making a new API call.<br>
+FAQ applications: 40–70% cache hit rates achievable.<br>
+A 50% cache hit rate at 1,000 calls/day = 500 free calls/day.<br>
+Action: Implement Redis or similar caching layer from day one.</p>
+
+<p><strong>3. Right-size your model</strong><br>
+Use the smallest model that meets your accuracy requirement.<br>
+Action: Benchmark before committing. The cheapest model meeting 90%+ accuracy is always the right choice.</p>
+
+<p><strong>4. Truncate inputs intelligently (use RAG)</strong><br>
+Don't send a 200-page document when only 3 sections are relevant.<br>
+RAG: retrieve only relevant chunks (2–5K tokens vs 100K+ for the full document).<br>
+Action: For any use case involving large documents, implement RAG before building.</p>
+
+<p><strong>5. Batch non-real-time requests</strong><br>
+For tasks that don't require immediate response (nightly reports, daily summaries):<br>
+OpenAI Batch API: 50% discount.<br>
+Action: Identify which use cases are batch-compatible and schedule accordingly.</p>
+
+<h3>The Cost-Optimisation Compounding Effect</h3>
+<p>These techniques compound. A typical 10-use-case AI program applying all five techniques achieves:</p>
+<ul>
+<li>Model right-sizing: 40–70% cost reduction on affected use cases</li>
+<li>Caching: 30–50% reduction on repetitive queries</li>
+<li>Prompt compression: 10–20% reduction across all use cases</li>
+<li>RAG vs full document: 60–90% reduction on document-heavy use cases</li>
+</ul>
+<p>Combined: total AI operating cost typically 60–80% lower than an unoptimised program at equivalent capability.</p>
+
+<h3>Decision Checklist</h3>
+<pre>□ Have I calculated the annual token cost at expected production volume?
+□ Have I compared at least 2 models on cost for high-volume use cases?
+□ Have I specified output format to minimise unnecessary output tokens?
+□ Is my system prompt as compressed as possible?
+□ Have I identified which use cases are cacheable or batch-compatible?</pre>
+
 <div class="real-world-box">
 <h3>🌍 From Real-World Practice</h3>
-<p><strong>Insight:</strong> Teams that don't model token costs before deployment routinely discover their "cheap" AI solution costs more than the headcount it was meant to replace.</p>
-<p><strong>Example:</strong> A financial services firm built an AI document review tool. Initial testing on 50 documents worked fine. When scaled to 5,000 documents per day — each averaging 8,000 tokens — monthly AI costs hit $180,000. They hadn't modelled volume.</p>
-<p><strong>Why it matters:</strong> Token costs are the hidden variable in every AI business case. Missing them invalidates your ROI model.</p>
-<p><strong>Implementation tip:</strong> Always calculate your expected monthly token spend before building. Use the formula in Module 4's cost model.</p>
-<p><strong>💡 What This Saves You:</strong> Understanding tokens before deployment prevents the single most common AI budget shock — discovering real costs only after going live.</p>
+<p><strong>Insight:</strong> Organisations that don't monitor token costs in production consistently overspend by 3–5× compared to optimised programs. The cost looks trivial per call and becomes significant at scale — the classic "boiling frog" pattern.</p>
+<p><strong>Example:</strong> A financial services firm's AI program started at $800/month in token costs. After 12 months of adding use cases without optimisation: $14,200/month. A 2-day cost optimisation exercise identified: system prompts that had grown to 800+ tokens each (compressible to 280), no caching implemented, frontier model used for all 18 use cases regardless of task complexity. After optimisation: $3,100/month — a $134,400/year saving. The optimisation took 16 hours of engineering time.</p>
+<p><strong>Why it matters:</strong> AI economics are invisible until they're painful. Monthly token cost reviews should be a standard operating procedure for any organisation running more than 3 AI use cases in production.</p>
+<p><strong>Implementation tip:</strong> Set up token usage alerts from day one. OpenAI, Anthropic, and Google all provide usage dashboards. Review monthly. If any use case exceeds its cost projection by 20%, investigate before the next billing cycle.</p>
+<p><strong>💡 What This Saves You:</strong> A quarterly token cost review across a 10-use-case portfolio typically identifies $15,000–$60,000 in annual savings. The review takes half a day.</p>
 </div>`,
       },
     ],
-    quiz: {
+      {
+        id: 'm1-l4', number: 4, tier: 'individual', duration: '20 min',
+        title: 'Prompts: The Skill That Multiplies Everything Else',
+        content: `<h2>Your Prompt Is Your Program</h2>
+<p>Every AI output you'll ever get starts with a prompt. The quality gap between a mediocre prompt and a production-quality prompt is not small — it's the difference between 60% accuracy and 95% accuracy on the same model, the same task, and the same data.</p>
+<p>Prompt engineering is the highest-ROI skill in AI adoption. A 2-hour investment in prompt quality saves hundreds of hours of manual correction downstream.</p>
+
+<h3>The 5-Component Prompt Framework</h3>
+<table>
+<thead><tr><th>Component</th><th>What It Does</th><th>Bad Version</th><th>Good Version</th></tr></thead>
+<tbody>
+<tr><td><strong>Role / Persona</strong></td><td>Anchors the AI's expertise, tone, and perspective</td><td>(no persona)</td><td>"You are a senior customer service quality analyst with 10 years in financial services."</td></tr>
+<tr><td><strong>Context</strong></td><td>Background the AI needs that it can't assume</td><td>"Summarise this."</td><td>"The document below is a customer complaint. We have 8 escalation categories. The customer is a VIP account holder."</td></tr>
+<tr><td><strong>Task</strong></td><td>Exactly one thing to do — no multitasking</td><td>"Summarise and tell me what to do and rate sentiment."</td><td>"Categorise this complaint into exactly one of the 8 categories below."</td></tr>
+<tr><td><strong>Format</strong></td><td>Exactly how the output must be structured</td><td>(no format)</td><td>"Return JSON only: {category: string, confidence: 0.0-1.0, urgency: high/medium/low}"</td></tr>
+<tr><td><strong>Constraints</strong></td><td>What NOT to do — prevents hallucination and scope creep</td><td>(no constraints)</td><td>"Use only information in the complaint. If confidence &lt; 0.7, set category to Needs-Review. No commentary."</td></tr>
+</tbody>
+</table>
+
+<h3>5 Before/After Prompt Transformations</h3>
+
+<p><strong>Example 1: Email Classification</strong></p>
+<pre>BEFORE: "What type of email is this?"
+
+AFTER:
+You are a customer service routing specialist.
+Context: The email below is an inbound support request.
+Our 6 routing categories are: Billing, Technical, Account, Complaint, General, Escalation.
+Task: Classify this email into exactly one category.
+Format: Return JSON — {"category": string, "confidence": float 0-1, "reason": string max 15 words}
+Constraints: Use only information stated in the email. If confidence below 0.75, set category to "Escalation".</pre>
+
+<p><strong>Example 2: Meeting Notes → Action Items</strong></p>
+<pre>BEFORE: "Get the action items from this transcript."
+
+AFTER:
+You are an executive assistant extracting action items.
+Context: This is a transcript from a project status meeting.
+Task: Extract all explicitly agreed action items.
+Format: Return a JSON array. Each item: {"action": string, "owner": string or "Unassigned", "due": "YYYY-MM-DD" or null, "priority": "High/Medium/Low"}
+Constraints: Only include items explicitly agreed — not discussed possibilities. If owner not stated: "Unassigned".</pre>
+
+<p><strong>Example 3: Weekly Report Generation</strong></p>
+<pre>BEFORE: "Write a report on our sales data."
+
+AFTER:
+You are a business intelligence analyst writing for a CFO audience.
+Context: Below is last week's sales data across 4 regions. The prior week's data follows for comparison.
+Task: Write a 250-word weekly performance narrative.
+Format: 3 paragraphs: (1) Performance vs prior week (2) Top 3 concerns with specific numbers (3) Recommended actions
+Constraints: Every claim must reference a specific number from the data. No editorialising. Active voice. Maximum 250 words.</pre>
+
+<p><strong>Example 4: Contract Risk Review</strong></p>
+<pre>BEFORE: "Check this contract for problems."
+
+AFTER:
+You are a commercial lawyer reviewing contracts for an Australian SMB.
+Task: Identify clauses representing elevated commercial or legal risk.
+Format: JSON array. Each item: {"clause_ref": string, "risk_type": string, "severity": "High/Medium/Low", "explanation": string max 25 words, "action": string max 20 words}
+Constraints: Only flag clauses explicitly present. Do not infer risk from absent clauses. If no elevated risk: return empty array [].</pre>
+
+<p><strong>Example 5: Customer Response Drafting</strong></p>
+<pre>BEFORE: "Write a reply to this customer."
+
+AFTER:
+You are a senior customer service representative for [Company].
+Tone: Professional, empathetic, solution-focused. Never defensive.
+Context: The customer complaint is below. Their account history: VIP tier, customer since 2019, 2 prior escalations this year.
+Task: Draft a response that acknowledges the issue, explains the resolution, and offers a goodwill gesture appropriate to VIP tier.
+Format: Email format. Max 150 words. No bullet points.
+Constraints: Never admit liability. Never promise a specific resolution timeline unless confirmed. Always offer to call if needed.</pre>
+
+<h3>The Most Common Prompt Mistakes</h3>
+<table>
+<thead><tr><th>Mistake</th><th>Consequence</th><th>Fix</th></tr></thead>
+<tbody>
+<tr><td>No persona</td><td>Generic, inconsistent tone and expertise level</td><td>Always name who the AI is for this task</td></tr>
+<tr><td>Multiple tasks in one prompt</td><td>Accuracy drops on each task when combined</td><td>One prompt, one task. Chain prompts for multi-step workflows.</td></tr>
+<tr><td>No output format specified</td><td>Inconsistent structure that breaks downstream systems</td><td>Always specify format explicitly — JSON, table, numbered list, max word count</td></tr>
+<tr><td>No constraints</td><td>AI adds unsolicited commentary, caveats, or wanders off-topic</td><td>Explicit "do not" instructions are as important as "do" instructions</td></tr>
+<tr><td>Tested on ideal examples only</td><td>Works in testing. Fails on messy production data.</td><td>Test on 50 real examples including edge cases before going live</td></tr>
+</tbody>
+</table>
+
+<h3>Prompt Iteration Protocol</h3>
+<p>A prompt is never finished. It's always in a version. Follow this cycle:</p>
+<ol>
+<li>Write v1 using the 5-component framework</li>
+<li>Test on 20 real examples — score each output 1–5</li>
+<li>Identify the failure pattern (wrong format? wrong category? hallucination?)</li>
+<li>Add one constraint that addresses the pattern</li>
+<li>Retest on the same 20 examples</li>
+<li>Repeat until accuracy &gt; 90% on test set</li>
+<li>Test on 100 new examples never seen in development</li>
+<li>Production threshold: 90%+ on unseen examples</li>
+</ol>
+
+<h3>Decision Checklist</h3>
+<pre>□ Have I given the AI a specific role/persona?
+□ Have I provided all necessary context — nothing assumed?
+□ Is there exactly ONE task in this prompt?
+□ Have I specified output format precisely (including field names if JSON)?
+□ Have I added at least 2 "do not" constraints?
+□ Have I tested on 20+ real production examples?</pre>
+
+<div class="real-world-box">
+<h3>🌍 From Real-World Practice</h3>
+<p><strong>Insight:</strong> The performance gap between a first-draft prompt and a production-ready prompt is consistently 25–40 percentage points on real business tasks. Most teams stop at the first draft.</p>
+<p><strong>Example:</strong> A professional services firm's first prompt for proposal classification achieved 67% accuracy. After applying the 5-component framework and running 3 iteration cycles (total: 4 hours of work), accuracy reached 94%. The firm processes 800 proposals/year. At 67% accuracy, 264 needed manual correction — 3 hours each = 792 hours/year. At 94%: 48 needed correction = 144 hours/year. The 4-hour prompt investment saved 648 hours/year at $120/hour = $77,760/year. Every year.</p>
+<p><strong>Why it matters:</strong> Prompt quality is not a technical problem — it's a communication problem. Every business professional can learn to write excellent prompts. It is the highest-leverage skill in AI adoption.</p>
+<p><strong>Implementation tip:</strong> Keep a Prompt Library. Every prompt that reaches 90%+ accuracy in production gets saved with its version number, test results, and the context it was designed for. This library becomes a competitive asset — the institutional knowledge of what works in your specific business context.</p>
+<p><strong>💡 What This Saves You:</strong> A well-maintained Prompt Library prevents teams from starting from scratch on every new AI use case. Each new use case starts from a tested template rather than a blank page — typically cutting prompt development time by 60–70%.</p>
+</div>`,
+      },
+      {
+        id: 'm1-l5', number: 5, tier: 'individual', duration: '18 min',
+        title: 'AI in Your Daily Work — Practical Application',
+        content: `<h2>From Understanding to Doing — Starting This Week</h2>
+<p>This lesson is different from the others. It's not conceptual. It's a practical guide to the AI tools and workflows you can implement in your daily work today — with no technical setup, no developer, and minimal cost.</p>
+
+<h3>The 6 Categories of Turnkey AI Tools</h3>
+<table>
+<thead><tr><th>Category</th><th>What It Does</th><th>Best Tools</th><th>Monthly Cost</th><th>Time to Value</th></tr></thead>
+<tbody>
+<tr><td><strong>AI Writing Assistants</strong></td><td>Draft, edit, summarise, rewrite</td><td>ChatGPT, Claude, Gemini</td><td>$20–$30/user</td><td>Same day</td></tr>
+<tr><td><strong>Meeting AI</strong></td><td>Transcribe, summarise, extract actions</td><td>Otter.ai, Fireflies, Notion AI</td><td>$10–$20/user</td><td>First meeting</td></tr>
+<tr><td><strong>AI in Your Existing Tools</strong></td><td>AI within tools you already use</td><td>Microsoft 365 Copilot, Google Workspace AI</td><td>$20–$30/user add-on</td><td>1–2 days setup</td></tr>
+<tr><td><strong>AI Research Tools</strong></td><td>Search, summarise, synthesise</td><td>Perplexity, ChatGPT Browse, Claude</td><td>Free–$20</td><td>Same day</td></tr>
+<tr><td><strong>AI for Documents</strong></td><td>Q&A over your files, contracts, reports</td><td>Claude, ChatGPT, NotebookLM</td><td>Free–$20</td><td>Same day</td></tr>
+<tr><td><strong>AI Automation (No-Code)</strong></td><td>Connect apps, automate workflows</td><td>Zapier AI, Make, n8n</td><td>$20–$50/month</td><td>1–2 days</td></tr>
+</tbody>
+</table>
+
+<h3>The "Start This Week" Task List by Role</h3>
+
+<p><strong>For any knowledge worker:</strong></p>
+<ul>
+<li>Upload your next long report to Claude or ChatGPT. Ask it to summarise, then ask 3 specific questions about it. Compare to reading it yourself. (Time: 10 minutes to set up. Time saved: 45–90 minutes per report)</li>
+<li>Enable Otter.ai or Fireflies for your next meeting. Review the action item list it generates. Edit what's wrong. Discard what you would have done manually. (Setup: 15 minutes. Time saved: 20–30 minutes per meeting)</li>
+<li>Draft your next difficult email in 2 bullet points. Ask Claude to turn it into a professional email. Edit the output. Send. (Time: 3 minutes. Versus: 20 minutes of staring at a blank page)</li>
+</ul>
+
+<p><strong>For managers and team leads:</strong></p>
+<ul>
+<li>Take your last 5 weekly status reports. Ask AI to identify the 3 most common recurring issues and suggest a single root cause. (Time: 15 minutes. Value: insight that might have taken a strategy day to surface)</li>
+<li>Draft your next performance review template by giving AI your role's key competencies and asking for a structured review framework. (Time: 20 minutes. Versus: 2 hours of blank-page writing)</li>
+<li>Ask AI to generate 5 interview questions for your next hire based on the job description and your top 3 quality concerns. (Time: 5 minutes. Value: more structured, consistent interview process immediately)</li>
+</ul>
+
+<p><strong>For business owners and executives:</strong></p>
+<ul>
+<li>Give AI your last board report and ask: "What are the 3 questions a board member would most likely challenge?" (Time: 10 minutes. Value: pre-meeting preparation that used to take an hour)</li>
+<li>Ask AI to analyse your top 3 competitor websites and summarise their positioning, pricing approach, and what they say better than you. (Time: 30 minutes. Value: competitive intelligence that took a junior analyst a day)</li>
+<li>Upload your last 10 customer complaints. Ask AI to identify the most common root causes and rank them by frequency. (Time: 15 minutes. Value: product/service insight usually buried in a quarterly review)</li>
+</ul>
+
+<h3>The 3 Daily AI Habits That Compound</h3>
+<p>Individual AI tools save individual hours. Daily habits change how you work permanently.</p>
+
+<p><strong>Habit 1: First Draft by AI</strong><br>
+Before writing anything that takes more than 10 minutes: give AI a brief and let it produce the first draft. Edit the output rather than writing from scratch. This works for emails, reports, proposals, meeting agendas, job descriptions — anything.<br>
+Time saved: 60–70% of writing time. At 2 hours of writing/day: saves 70–85 minutes daily.</p>
+
+<p><strong>Habit 2: Document Q&A Before the Meeting</strong><br>
+Before any meeting where you need to review a document: upload it to AI and ask the 3 questions you would ask in the meeting. Arrive already knowing the answers.<br>
+Time saved: Reduces meeting time by 20–30% and eliminates follow-up "I'll check and get back to you" loops.</p>
+
+<p><strong>Habit 3: End-of-Week Synthesis</strong><br>
+Friday afternoon: paste your email thread summaries or notes from the week into AI. Ask: "What were the 3 most important decisions made this week, what's unresolved, and what needs attention Monday?" Review takes 5 minutes instead of 45.<br>
+Value: Clarity and continuity that most knowledge workers never achieve.</p>
+
+<h3>What to Do When AI Output Is Wrong</h3>
+<p>AI will produce wrong, incomplete, or mediocre output. This is normal. The response is not to stop using it — it's to iterate.</p>
+<ol>
+<li><strong>Name the specific problem.</strong> "This is too formal" or "it missed the key financial figure" — not "this is bad."</li>
+<li><strong>Give the specific correction in the same session.</strong> "Rewrite in a more direct tone, reduce to 100 words, and include the Q3 revenue figure from the data I provided."</li>
+<li><strong>If it fails twice, improve the prompt.</strong> The problem is in your instructions, not the model. Add the missing constraint.</li>
+<li><strong>Track what worked.</strong> When a prompt produces great output, save it. You now have a template.</li>
+</ol>
+
+<h3>Decision Checklist</h3>
+<pre>□ Have I identified 3 tasks in my weekly work that AI could handle or accelerate?
+□ Have I set up at least one AI writing assistant (ChatGPT or Claude)?
+□ Have I tried AI on at least one document I would normally read manually?
+□ Have I started a Prompt Library — even just a Notes document?
+□ Have I calculated the weekly hours I could recover if AI handled my 3 target tasks?</pre>
+
+<div class="real-world-box">
+<h3>🌍 From Real-World Practice</h3>
+<p><strong>Insight:</strong> The professionals who get the most from AI are not the most technical ones. They're the ones with the clearest sense of where their time goes and the discipline to actually change their habits. The technology is not the constraint — the behaviour change is.</p>
+<p><strong>Example:</strong> A senior consultant at a professional services firm tracked her time for two weeks before and after adopting 3 AI habits (first-draft by AI, document Q&A, end-of-week synthesis). Before: 2.8 hours/day on writing and document review. After: 1.1 hours/day. Time recovered: 1.7 hours/day = 8.5 hours/week = 442 hours/year. At her billing rate of $280/hour, that's $123,760/year in reclaimed capacity — from three habits, with a $30/month tool investment. She used the recovered time for two additional client relationships.</p>
+<p><strong>Why it matters:</strong> AI adoption is not a technology program — it's a personal productivity program with technology as the enabler. The ROI comes from changed behaviour, not from the subscription.</p>
+<p><strong>Implementation tip:</strong> Pick one habit this week — just one. Do it for 5 consecutive working days before adding a second. Habit stacking doesn't work if habits aren't embedded individually first. Which 10-minute task will you give to AI first?</p>
+<p><strong>💡 What This Saves You:</strong> Three embedded AI habits for a knowledge worker typically recover 1.5–2.5 hours per day. At an average knowledge worker cost of $80/hour fully loaded, that's $30,000–$50,000 per person per year in reclaimed productive capacity.</p>
+</div>`,
+      },
+    ],
+    quiz: {    quiz: {    quiz: {
       questions: [
         { id: 'q1-1', text: 'A customer service team wants to automatically classify 2,000 support tickets per day into 8 categories. Which approach gives the best cost-to-quality ratio?', options: ['Use GPT-4o for maximum accuracy', 'Use a fine-tuned smaller model for classification', 'Use keyword matching rules instead', 'Use GPT-4o-mini with a well-crafted prompt and test accuracy first'], correct: 3, explanation: 'Testing a cheaper model first is the right approach. Classification is a task where smaller models often match frontier model performance at a fraction of the cost.' },
         { id: 'q1-2', text: 'Your system prompt is 800 tokens and runs 50,000 times per month. At $2.50 per million input tokens, what is your monthly prompt cost alone?', options: ['$1.00', '$10.00', '$100.00', '$1,000.00'], correct: 2, explanation: '800 tokens × 50,000 = 40,000,000 tokens. At $2.50/million = $100/month. This is why prompt compression matters at scale.' },
@@ -123,33 +511,86 @@ At 10,000 calls per day: $75/day · $2,250/month</pre>
     lessons: [
       {
         id: 'm2-l1', number: 1, tier: 'individual', duration: '18 min',
-        title: 'The Five Roles Every AI Program Needs',
-        content: `<h2>Role Clarity is Infrastructure</h2>
-<p>AI programs don't fail because of bad technology. They fail because nobody owns the outcome. The five roles below aren't job titles — they're accountabilities. In small teams, one person may cover multiple roles. In large organisations, each needs a dedicated owner.</p>
-<h3>Role 1: Business Sponsor</h3>
-<p><strong>What they own:</strong> Strategic alignment, budget approval, executive visibility, and removing blockers.</p>
-<p><strong>Why they matter:</strong> Without sponsorship, AI programs stall at the first obstacle. The sponsor converts organisational resistance into resource.</p>
-<p><strong>Common failure:</strong> Sponsor approves the budget then disappears. Without ongoing engagement, teams lose authority to make decisions.</p>
-<h3>Role 2: Data Owner</h3>
-<p><strong>What they own:</strong> Data quality, access, governance, and compliance for data used in AI.</p>
-<p><strong>Why they matter:</strong> AI is only as good as its data. The data owner ensures the inputs are trustworthy and legally permissible.</p>
-<p><strong>Common failure:</strong> Data ownership assumed but never assigned. AI trained on unvalidated, inconsistent, or non-compliant data.</p>
-<h3>Role 3: Process Owner</h3>
-<p><strong>What they own:</strong> The workflow being automated or augmented. Defines what "good" looks like and validates AI outputs.</p>
-<p><strong>Why they matter:</strong> AI built without process ownership optimises the wrong thing or creates new problems downstream.</p>
-<h3>Role 4: Technical / AI Role</h3>
-<p><strong>What they own:</strong> Model selection, integration, prompt engineering, performance monitoring, and cost management.</p>
-<p><strong>Why they matter:</strong> Translates business requirements into working AI systems. Without this role, business ideas stay ideas.</p>
-<h3>Role 5: Change Lead</h3>
-<p><strong>What they own:</strong> Adoption strategy, training, communication, resistance management, and measuring behavioural change.</p>
-<p><strong>Why they matter:</strong> Technology is 20% of an AI program. Adoption is 80%. Without a change lead, tools get built and ignored.</p>
+        title: 'Why AI Requires Multiple Roles — The 5-Role Framework',
+        content: `<h2>The Single Biggest Cause of AI Program Failure</h2>
+<p>Surveys of failed AI programs consistently identify the same root cause: unclear ownership. Not bad technology. Not poor data. Not insufficient budget. Unclear ownership.</p>
+<p>Every AI program that fails can be traced to one of five ownership gaps. These five roles don't require five separate people — but they require five distinct conversations, and one named person accountable for each.</p>
+
+<h3>The 5 Roles Every AI Program Needs</h3>
+<table>
+<thead><tr><th>Role</th><th>Owns</th><th>Key Question They Answer</th><th>What Failure Looks Like</th></tr></thead>
+<tbody>
+<tr><td><strong>Business Sponsor</strong></td><td>Problem definition, success criteria, budget authority, stakeholder alignment</td><td>"Why are we doing this and what does success look like in business terms?"</td><td>Delegated to a committee. Nobody can approve a change or kill a failing project.</td></tr>
+<tr><td><strong>Data Owner</strong></td><td>Data quality, access, governance, compliance</td><td>"Is our data ready for this and what can it legally be used for?"</td><td>Build completes. Data is in 3 formats across 4 systems with no reconciliation process. 60% accuracy.</td></tr>
+<tr><td><strong>Process Owner</strong></td><td>Workflow design, exception path, output validation</td><td>"Does this actually work in practice, and what happens when it doesn't?"</td><td>AI built against the documented process. Actual process has 8 undocumented workarounds the AI doesn't handle.</td></tr>
+<tr><td><strong>Technical / AI Role</strong></td><td>Model selection, integration, cost management, monitoring</td><td>"How do we build this well, at the right cost, with the right safeguards?"</td><td>Selected based on vendor relationship. Architecture decisions made by someone who hasn't deployed production AI before.</td></tr>
+<tr><td><strong>Change Lead</strong></td><td>Adoption, training, communication, resistance management</td><td>"Will people actually use this, and what do we do about those who won't?"</td><td>Working system. 22% adoption at month 3. No change plan, no training, no champion network.</td></tr>
+</tbody>
+</table>
+
+<h3>The Role Gap Diagnostic — 5 Warning Signs Per Role</h3>
+<p><strong>Business Sponsor role is vacant when:</strong></p>
+<ul>
+<li>Nobody can define success in a single measurable sentence</li>
+<li>Scope changes happen without formal approval</li>
+<li>The program is "sponsored" by a committee that meets quarterly</li>
+<li>There's no budget owner — costs are absorbed from multiple department budgets</li>
+<li>The program continues past its review date without a go/no-go decision</li>
+</ul>
+<p><strong>Data Owner role is vacant when:</strong></p>
+<ul>
+<li>Nobody knows exactly where the training data lives</li>
+<li>Data access requests sit in IT queues for weeks</li>
+<li>Privacy impact assessments haven't been done</li>
+<li>Data quality hasn't been assessed before the build starts</li>
+<li>Multiple people claim to own the data but nobody owns quality</li>
+</ul>
+<p><strong>Process Owner role is vacant when:</strong></p>
+<ul>
+<li>The "documented process" hasn't been reviewed in 2+ years</li>
+<li>Nobody from the operational team is involved in the design</li>
+<li>Exception handling paths aren't defined before build</li>
+<li>The AI is tested against ideal examples, not messy production ones</li>
+<li>Nobody is accountable for validating AI outputs day-to-day</li>
+</ul>
+
+<h3>The Small Team Reality</h3>
+<p>In a 10-person business, one person may cover multiple roles. What matters is not five separate people — it's that all five conversations happen explicitly.</p>
+<p>The minimum viable version:</p>
+<ul>
+<li>Business owner covers: Business Sponsor + Process Owner (they know both the why and the how)</li>
+<li>Developer/contractor covers: Technical role + Data Owner (with input from business owner on data access)</li>
+<li>Business owner also drives: Change Lead activities (they own the team)</li>
+</ul>
+<p>This works for simple use cases. For programs affecting 50+ people or carrying regulatory risk, separate role ownership is non-negotiable.</p>
+
+<h3>The Accountability Matrix</h3>
+<table>
+<thead><tr><th>Decision</th><th>Accountable</th><th>Consulted</th><th>Informed</th></tr></thead>
+<tbody>
+<tr><td>Problem definition and success criteria</td><td>Business Sponsor</td><td>Process Owner</td><td>All roles</td></tr>
+<tr><td>Data access and usage approval</td><td>Data Owner</td><td>Business Sponsor</td><td>Technical role</td></tr>
+<tr><td>Workflow design and exception paths</td><td>Process Owner</td><td>Technical, Change Lead</td><td>Business Sponsor</td></tr>
+<tr><td>Model selection and architecture</td><td>Technical role</td><td>Data Owner</td><td>Business Sponsor</td></tr>
+<tr><td>Training and communication approach</td><td>Change Lead</td><td>Process Owner</td><td>Business Sponsor</td></tr>
+<tr><td>Go/no-go for production deployment</td><td>Business Sponsor</td><td>All roles</td><td>Affected teams</td></tr>
+</tbody>
+</table>
+
+<h3>Decision Checklist</h3>
+<pre>□ Is there a named Business Sponsor with budget authority?
+□ Is there a named Data Owner who has approved data usage?
+□ Is there a named Process Owner who has mapped the actual current process?
+□ Is there a named Technical role with relevant AI deployment experience?
+□ Is there a named Change Lead with a plan that started before the build?</pre>
+
 <div class="real-world-box">
 <h3>🌍 From Real-World Practice</h3>
-<p><strong>Insight:</strong> In 90% of stalled AI programs, at least two of these five roles are either unfilled or held by people without genuine authority.</p>
-<p><strong>Example:</strong> A government agency built an AI document classifier over 6 months. When they tried to deploy, IT blocked it citing data governance concerns. There was no Data Owner in the program — data governance hadn't been included from day one. The project was delayed by 4 months.</p>
-<p><strong>Why it matters:</strong> Each missing role creates a specific type of failure. Knowing which role is weak tells you exactly where your program will break.</p>
-<p><strong>Implementation tip:</strong> Complete the Role Mapping template before writing a single line of code or prompt. Names against each role — not departments.</p>
-<p><strong>💡 What This Saves You:</strong> Clear role mapping prevents the two most common and expensive AI program failures: governance blockers and adoption collapse.</p>
+<p><strong>Insight:</strong> The most expensive AI programs are rarely those with the worst technology. They're the ones where ownership was assumed rather than assigned. "Everyone owns it" means nobody owns it.</p>
+<p><strong>Example:</strong> A $2.4M government AI program stalled for 7 months. Investigation revealed: the Business Sponsor had delegated to a 9-person steering committee with no individual authority. The Data Owner was a team title, not a person — nobody had approved data access. The Process Owner was "the operations division" — no single person accountable. The Technical role was a vendor whose contract didn't cover post-deployment support. The Change Lead role didn't exist at all. Restructuring: named individuals in all 5 roles, clear accountability matrix, weekly 30-minute triad call. First use case delivered 11 weeks later.</p>
+<p><strong>Why it matters:</strong> Clear role ownership is the highest-leverage governance action before any AI program begins. It costs nothing and determines whether $2M gets spent effectively or wasted.</p>
+<p><strong>Implementation tip:</strong> In your first programme meeting, put 5 role names on a whiteboard. Don't leave the room until every role has one name next to it — not a team name, not a title. A person's name.</p>
+<p><strong>💡 What This Saves You:</strong> Programmes with clearly named role owners in all 5 positions deliver 3× more often on time and within budget than those with ambiguous ownership. On a $500K programme, that's the difference between delivery and waste.</p>
 </div>`,
       },
       {
@@ -331,41 +772,214 @@ Step 3: Document the decision and who made it.
   {
     id: 'module-3', number: 3, icon: '🔍',
     title: 'Identifying Use Cases',
-    description: 'Find AI opportunities that are real, valuable, and achievable — before committing time and budget.',
-    deliverable: 'Top 3 AI Opportunities',
+    description: 'Find AI opportunities that are real and valuable. Score them systematically. Build the business case that gets approved — with a framework used in real programmes.',
+    deliverable: 'Top 3 Scored AI Use Cases with 5-Year ROI Model',
     templateId: 'use-case-identification',
     lessons: [
       {
         id: 'm3-l1', number: 1, tier: 'individual', duration: '20 min',
-        title: 'Value vs Complexity: Finding the Right Starting Point',
+        title: 'Finding AI Opportunities That Actually Deliver',
         content: `<h2>The Opportunity Landscape</h2>
-<p>Not every AI idea is worth pursuing. The art of use case identification is finding the intersection of three things: high business value, achievable complexity, and data that actually exists.</p>
-<h3>The Value-Complexity Matrix</h3>
-<p>Plot every AI idea on two axes: business value (low to high) and implementation complexity (low to high). The quadrant you want to start in is high value, low complexity — your quick wins.</p>
-<pre>High Value  │ Strategic    │ Quick Wins ←START HERE
-            │ (Horizon 2)  │
-            │──────────────│──────────────
-Low Value   │ Avoid        │ Low-hanging
-            │              │ (Horizon 1)
-            └──────────────┴──────────────
-              High          Low
-              Complexity    Complexity</pre>
-<h3>Where to Look for Opportunities</h3>
-<p><strong>Follow the repetition:</strong> Any task done the same way more than 10 times per week is a candidate. Repetition is AI's natural habitat.</p>
-<p><strong>Follow the pain:</strong> What do people in your organisation complain about most? Pain points reveal where time and money are being lost.</p>
-<p><strong>Follow the data:</strong> What data do you have that nobody is fully using? Underutilised data often signals underserved processes.</p>
-<p><strong>Follow the decisions:</strong> What decisions require pulling together information from multiple places? AI excels at synthesis and pattern recognition across data sources.</p>
+<p>The average knowledge worker has 15–20 tasks per week that are potential AI candidates. Most organisations focus on the most visible or exciting ones — and miss the highest-value ones, which are usually invisible, repetitive, and boring.</p>
+<p>This lesson gives you the systematic method for finding, qualifying, and ranking AI opportunities so you spend time on the ones that deliver real returns.</p>
+
+<h3>The 4 Signals of a Strong AI Opportunity</h3>
+<table>
+<thead><tr><th>Signal</th><th>What It Means</th><th>Strong Signal</th><th>Weak Signal</th></tr></thead>
+<tbody>
+<tr><td><strong>Repetition</strong></td><td>The task is done the same way, many times</td><td>"We process 400 of these every week and they're all structured the same way"</td><td>"We do this occasionally and it varies each time"</td></tr>
+<tr><td><strong>Pain</strong></td><td>The task causes measurable friction — time, cost, errors, or staff frustration</td><td>"This takes 45 minutes and our team hates it. Errors here cost us $8K last quarter."</td><td>"It takes a while but it's fine. No major issues."</td></tr>
+<tr><td><strong>Data</strong></td><td>Historical examples of the task exist in a usable format</td><td>"We have 3 years of labelled examples in Salesforce, accessible via API"</td><td>"We've been doing this for 6 weeks and it's all in email threads"</td></tr>
+<tr><td><strong>Defined Decision</strong></td><td>You can describe what "correct" looks like in one sentence</td><td>"A complaint is urgent if it mentions legal action, regulator contact, or cancellation intent"</td><td>"Our experienced staff just know when something needs escalation"</td></tr>
+</tbody>
+</table>
+<p><strong>Scoring guide:</strong> Count how many signals are present. 4/4 = immediate candidate. 3/4 = strong candidate. 2/4 = possible with preparation. 1/4 = not yet ready.</p>
+
+<h3>The Value vs Complexity Matrix</h3>
+<pre>
+HIGH VALUE │ STRATEGIC          │ QUICK WIN ← START HERE
+           │ Plan for wave 2–3  │ Build first. Prove value.
+           │────────────────────│────────────────────────
+LOW VALUE  │ AVOID              │ FILLER
+           │ Don't build.       │ Only if it builds capability
+           │                    │ for higher-value work
+           └────────────────────┴────────────────────────
+                HIGH COMPLEXITY      LOW COMPLEXITY
+</pre>
+
+<p><strong>Quick Win characteristics:</strong> Well-documented process, good data available, clearly defined output, low integration complexity, high volume, measurable current cost.</p>
+<p><strong>Strategic characteristics:</strong> High potential value, but requires significant data work, complex integration, or regulatory approval. Plan these for 6–12 months out after proving AI delivery capability.</p>
+<p><strong>Avoid characteristics:</strong> High complexity to build, expensive to maintain, unclear value return. If you can't show a 3× ROI in year 1, don't start.</p>
+
+<h3>Where NOT to Start — 6 Common Traps</h3>
+<table>
+<thead><tr><th>The Trap</th><th>Why It's Tempting</th><th>Why It's Wrong</th></tr></thead>
+<tbody>
+<tr><td>The CEO's favourite idea</td><td>Easy approval, political support</td><td>Often Q4 (low value, high complexity). Political pressure prevents honest evaluation.</td></tr>
+<tr><td>The most visible process</td><td>High profile = easy to justify</td><td>Visibility and value are not the same. The highest-value processes are often invisible to leadership.</td></tr>
+<tr><td>Undocumented expert judgment</td><td>"Our best people make this decision"</td><td>If the criteria aren't documented, AI has nothing to learn from. This is a year-2 problem.</td></tr>
+<tr><td>A process that changes monthly</td><td>Seems like a dynamic opportunity</td><td>AI learns patterns. Changing processes break patterns. Stable processes first.</td></tr>
+<tr><td>Data that doesn't exist yet</td><td>"We'll collect the data as we build"</td><td>Without historical data, you're deploying guesswork. Wait until you have 6+ months.</td></tr>
+<tr><td>The largest possible use case</td><td>"Let's do this properly and transform the whole department"</td><td>Larger scope = longer timeline = higher risk of failure before value is proven. Start small, expand after.</td></tr>
+</tbody>
+</table>
+
+<h3>The Time Audit Method — Finding Hidden Opportunities</h3>
+<p>The most reliable way to surface high-value AI opportunities is a structured time audit. It takes 5 working days and consistently reveals opportunities that leadership has never noticed.</p>
+<p><strong>Step-by-step process:</strong></p>
+<ol>
+<li><strong>Select 5–8 participants</strong> across different functions. Include one person who will say "that's not how we really do it."</li>
+<li><strong>Ask them to log every task for 5 working days.</strong> Task name, estimated time, frequency, and a 1–5 rating of how much they dislike it.</li>
+<li><strong>Aggregate and categorise.</strong> Group similar tasks. Calculate annual hours and cost (hours × hourly rate × 52 weeks).</li>
+<li><strong>Apply the 4-signal score</strong> to the top 10 by annual cost.</li>
+<li><strong>Plot on the Value-Complexity Matrix.</strong> Your first wave of use cases will be obvious.</li>
+</ol>
+<p><strong>What you typically find:</strong> 2–4 high-value, low-complexity automation opportunities that the organisation has accepted as "just how it is" for years. Combined annual cost: typically 3–8× the cost of automating them.</p>
+
+<h3>The 5-Year Cost Reality</h3>
+<p>When evaluating an AI use case, always model 5-year economics — not just implementation cost.</p>
+<table>
+<thead><tr><th>Cost Component</th><th>One-Time</th><th>Annual</th><th>5-Year Total</th></tr></thead>
+<tbody>
+<tr><td>Implementation (build + test)</td><td>$45,000</td><td>—</td><td>$45,000</td></tr>
+<tr><td>Token / API costs</td><td>—</td><td>$2,400</td><td>$12,000</td></tr>
+<tr><td>Support and monitoring</td><td>—</td><td>$8,000</td><td>$40,000</td></tr>
+<tr><td>Annual maintenance (prompts, updates)</td><td>—</td><td>$5,000</td><td>$25,000</td></tr>
+<tr><td><strong>Total</strong></td><td></td><td></td><td><strong>$122,000</strong></td></tr>
+</tbody>
+</table>
+<p>Compare this to 5-year value: if the use case saves $80,000/year in staff time, 5-year value = $400,000. Net benefit = $278,000. ROI = 228%.</p>
+<p><strong>Key principle:</strong> If the 5-year ROI is below 100% at conservative assumptions, either the use case isn't right or the approach needs redesigning. Never approve a use case build without a 5-year model.</p>
+
+<h3>Worked Example — Ranking 3 Use Cases</h3>
+<table>
+<thead><tr><th>Use Case</th><th>Signals (4)</th><th>Annual Value</th><th>5-Year Cost</th><th>ROI</th><th>Recommendation</th></tr></thead>
+<tbody>
+<tr><td>Support email classification (800/day)</td><td>4/4</td><td>$180,000</td><td>$95,000</td><td>848%</td><td>Build first</td></tr>
+<tr><td>Weekly management report generation</td><td>4/4</td><td>$52,000</td><td>$68,000</td><td>282%</td><td>Build second</td></tr>
+<tr><td>Predictive staff scheduling</td><td>2/4</td><td>$220,000</td><td>$380,000</td><td>190%</td><td>Plan for year 2</td></tr>
+</tbody>
+</table>
+
+<h3>Decision Checklist</h3>
+<pre>□ Have I identified the top 5 repetitive, high-volume tasks in my area?
+□ Have I scored each against all 4 signals?
+□ Have I calculated the annual manual cost of each (hours × rate × volume)?
+□ Have I plotted each on the Value-Complexity Matrix?
+□ Have I modelled the 5-year cost and ROI for the top 2?</pre>
+
 <div class="real-world-box">
 <h3>🌍 From Real-World Practice</h3>
-<p><strong>Insight:</strong> The best AI use cases are rarely the most exciting ones. They're the ones that address the most painful, repetitive, data-rich processes — which are often invisible to leadership.</p>
-<p><strong>Example:</strong> A hospitality chain wanted to build an AI concierge (exciting, complex, high-risk). Meanwhile, their staff spent 4 hours per day manually compiling daily occupancy and F&B reports from 3 systems. The report automation took 3 weeks to build, saved $240K annually, and built organisational confidence for bigger initiatives.</p>
-<p><strong>Why it matters:</strong> Starting with the right use case creates the proof of concept that funds the next five.</p>
-<p><strong>Implementation tip:</strong> Run a "time audit" — ask 10 people across different functions to log tasks for one week. The highest-volume, most repetitive items are your first wave of opportunities.</p>
-<p><strong>💡 What This Saves You:</strong> Selecting the right first use case prevents the most expensive mistake in AI programs — spending 6 months on a complex use case that fails, demoralising the team and exhausting the budget.</p>
+<p><strong>Insight:</strong> The best AI use cases are rarely the most exciting ones. They're the most painful, repetitive, data-rich processes — which are often invisible to leadership because the people doing them have accepted the pain as normal.</p>
+<p><strong>Example:</strong> A hospitality chain's leadership team wanted to build an AI concierge — high profile, exciting, complex. Meanwhile, their operations team spent 4 hours every morning manually compiling occupancy, F&B, and maintenance reports from 3 separate systems into one spreadsheet — a task performed by 6 properties × 365 days × 4 hours = 8,760 staff-hours per year. At $35/hour: $306,600/year in manual effort. The automation took 3 weeks to build ($22,000). Year-1 ROI: 1,294%. The concierge project cost $1.2M and was shelved after 11 months with no measurable outcome.</p>
+<p><strong>Why it matters:</strong> Selecting the right use case is more valuable than selecting the right technology. The right use case with average technology beats the wrong use case with best-in-class technology every time.</p>
+<p><strong>Implementation tip:</strong> Run the time audit before any AI strategy conversation. Come to the table with data — specific tasks, specific hours, specific costs. The conversation changes completely when you replace "we should use AI" with "these 3 tasks cost us $420,000/year and each has a 4-signal score."</p>
+<p><strong>💡 What This Saves You:</strong> Organisations that select their first use case using a structured scoring methodology rather than intuition or politics are 4× more likely to deliver measurable ROI within 6 months. That's the difference between a programme that builds momentum and one that consumes it.</p>
 </div>`,
       },
     ],
-    quiz: {
+      {
+        id: 'm3-l2', number: 2, tier: 'individual', duration: '22 min',
+        title: 'How to Qualify, Score and Document a Use Case',
+        content: `<h2>From Idea to Investment Decision</h2>
+<p>Every AI program has too many ideas and too few resources. The use case that gets built is rarely the best one — it's usually the loudest one, or the one the CEO mentioned last. This lesson gives you a scoring framework that removes politics from use case selection and replaces it with evidence.</p>
+
+<h3>The 6-Step Use Case Qualification Process</h3>
+
+<p><strong>Step 1: Name it specifically</strong><br>
+Not: "Use AI for customer service"<br>
+Yes: "AI classifies 800 inbound support emails/day into 12 categories with confidence scoring, routing automatically, with human review for low-confidence items"<br>
+Rule: If you can't say it in 2 sentences with volume and outcome, it's not ready to qualify.</p>
+
+<p><strong>Step 2: Describe current state with numbers</strong></p>
+<table>
+<thead><tr><th>Field</th><th>Example Entry</th></tr></thead>
+<tbody>
+<tr><td>Process steps (as actually performed)</td><td>Email arrives → agent reads → agent manually selects category → agent routes to queue → supervisor corrects ~15%</td></tr>
+<tr><td>Volume</td><td>800 emails/day, 22 working days/month</td></tr>
+<tr><td>People involved</td><td>12 agents, 2 supervisors</td></tr>
+<tr><td>Time per item</td><td>4.5 min/email for classification only</td></tr>
+<tr><td>Annual manual cost</td><td>4.5 min × 800/day × 250 days = 150,000 min = 2,500 hrs × $45/hr = $112,500/yr</td></tr>
+<tr><td>Current error rate</td><td>15% mis-routed (supervisor correction)</td></tr>
+<tr><td>Cost of errors</td><td>$15/re-route × 800 × 15% × 250 days = $450,000/yr in re-work cost</td></tr>
+</tbody>
+</table>
+
+<p><strong>Step 3: Define the future state</strong></p>
+<ul>
+<li>What does AI do? Classifies email into 1 of 12 categories, assigns confidence score, routes automatically</li>
+<li>What does the human do? Reviews items with confidence &lt; 75% (estimated 8% of volume)</li>
+<li>Required accuracy threshold: ≥ 91% (matches current best human performance)</li>
+<li>Exception handling: below threshold → human queue; missing category → "Other/Review" queue</li>
+</ul>
+
+<p><strong>Step 4: Assess data readiness (score 1–5 each)</strong></p>
+<table>
+<thead><tr><th>Dimension</th><th>Question</th><th>Score 1–5</th><th>This Example</th></tr></thead>
+<tbody>
+<tr><td>Availability</td><td>Does the data exist and can we access it?</td><td>_</td><td>5 — 3 years in Salesforce, API access confirmed</td></tr>
+<tr><td>Quality</td><td>Is it complete, accurate, and consistent?</td><td>_</td><td>3 — 15% have wrong labels from historical mis-routing</td></tr>
+<tr><td>Volume</td><td>Do we have enough examples for each category?</td><td>_</td><td>4 — 200K+ examples across all 12 categories</td></tr>
+<tr><td>Accessibility</td><td>Can it be extracted without major engineering?</td><td>_</td><td>4 — Salesforce API, some data cleansing needed</td></tr>
+<tr><td>Governance</td><td>Are there privacy or compliance restrictions?</td><td>_</td><td>3 — PII stripping required before model training</td></tr>
+<tr><td><strong>Total</strong></td><td></td><td><strong>_/25</strong></td><td><strong>19/25</strong></td></tr>
+</tbody>
+</table>
+<p>Score interpretation: 20–25 = AI-ready. 15–19 = Proceed with preparation plan. 10–14 = Significant data work needed. Below 10 = Pause and fix data first.</p>
+
+<p><strong>Step 5: Score the priority using 5 factors</strong></p>
+<table>
+<thead><tr><th>Factor</th><th>Score 1–5</th><th>Weight</th><th>Weighted Score</th><th>This Example</th></tr></thead>
+<tbody>
+<tr><td>Business Value</td><td>_</td><td>×2</td><td>_</td><td>5 × 2 = 10</td></tr>
+<tr><td>Implementation Complexity (inverted — lower = better)</td><td>_</td><td>×1.5</td><td>_</td><td>2 complexity → score 4 × 1.5 = 6</td></tr>
+<tr><td>Data Readiness</td><td>_</td><td>×1.5</td><td>_</td><td>4 × 1.5 = 6</td></tr>
+<tr><td>Team Readiness</td><td>_</td><td>×1</td><td>_</td><td>4 × 1 = 4</td></tr>
+<tr><td>Strategic Fit</td><td>_</td><td>×1</td><td>_</td><td>5 × 1 = 5</td></tr>
+<tr><td><strong>Priority Score</strong></td><td></td><td></td><td><strong>_/32.5</strong></td><td><strong>31/32.5</strong></td></tr>
+</tbody>
+</table>
+<p>Score ≥ 25: Top priority. Build in wave 1. Score 18–24: Second wave. Score &lt; 18: Defer or redesign.</p>
+
+<p><strong>Step 6: Quick ROI estimate</strong><br>
+Annual value = hours saved × hourly cost + error cost reduced<br>
+= (2,500 hrs × $45) + ($450,000 × 0.7 error reduction)<br>
+= $112,500 + $315,000 = $427,500/year<br><br>
+Quick ROI = Annual value / Implementation cost<br>
+= $427,500 / $65,000 = 658% year-1 ROI<br><br>
+Decision: If quick ROI &gt; 200%, build the formal business case. This one: build immediately.</p>
+
+<h3>The 3-Minute Use Case Shortlist Test</h3>
+<p>Before spending time on full qualification, run this quick filter:</p>
+<pre>□ Can I describe the task in one sentence with a volume number?
+□ Does this task happen at least 100 times per month?
+□ Do I have at least 6 months of historical data in an accessible format?
+□ Can I define "correct output" in one sentence?
+□ Would automating this free up meaningful staff time (5+ hrs/week)?</pre>
+<p>If any answer is No — either it's not ready yet, or you need to do more discovery before qualifying it.</p>
+
+<h3>Common Qualification Mistakes</h3>
+<table>
+<thead><tr><th>Mistake</th><th>What Happens</th><th>Fix</th></tr></thead>
+<tbody>
+<tr><td>Using estimated numbers instead of measured ones</td><td>ROI model looks great. Actual saving is 40% of projection.</td><td>Time-and-motion study on 50 real examples before building ROI model</td></tr>
+<tr><td>Qualifying the aspirational process, not the actual one</td><td>AI built for the documented process. Actual process has 6 workarounds.</td><td>Shadow 2–3 people doing the work. Map what actually happens.</td></tr>
+<tr><td>Skipping data quality assessment</td><td>Model trained on mislabelled data achieves 61% accuracy</td><td>Data quality assessment before any architecture decision</td></tr>
+<tr><td>One person qualifies in isolation</td><td>Process Owner finds 4 undocumented exception types post-build</td><td>Qualification must include: Business Sponsor + Process Owner + Data Owner</td></tr>
+</tbody>
+</table>
+
+<div class="real-world-box">
+<h3>🌍 From Real-World Practice</h3>
+<p><strong>Insight:</strong> The quality of use case documentation directly predicts build quality. Vague qualification produces vague AI. Teams that spend one extra week on qualification typically save 6–8 weeks of rework post-deployment.</p>
+<p><strong>Example:</strong> A financial services firm qualified an AI for loan application triage. Full qualification including Process Owner involvement revealed: 7 exception types not in the documented process, 2 data fields required that weren't in the original data schema, a compliance requirement that affected how confidence thresholds should be set. Total qualification time: 9 days. Estimated rework avoided: 11 weeks. The same firm's previous AI project (no structured qualification) took 14 months to reach production. This one: 9 weeks.</p>
+<p><strong>Why it matters:</strong> Use case qualification is not overhead — it is the highest-leverage activity in an AI program. Cutting it short to start building faster is the single most reliable way to extend your total timeline.</p>
+<p><strong>Implementation tip:</strong> Print and complete the Use Case Identification Template (in your downloads) for every use case before any engineering work begins. Gate your build start on having a completed, signed-off template.</p>
+<p><strong>💡 What This Saves You:</strong> Structured qualification reduces post-deployment rework by an average of 60%. On a $100K implementation, that's $60K in avoided rework and 6–8 weeks of timeline saved.</p>
+</div>`,
+      },
+    ],
+    quiz: {    quiz: {    quiz: {
       questions: [
         { id: 'q3-1', text: 'A marketing team spends 3 hours per week creating social media post summaries from blog content. An AI solution could automate this in 2 weeks. How would you classify this opportunity?', options: ['High value, high complexity — strategic bet', 'Low value, low complexity — quick win', 'High value, low complexity — ideal starting point', 'Low value, high complexity — avoid'], correct: 2, explanation: 'Content summarisation is a proven AI capability (low complexity). 3 hours/week per person at scale is meaningful value. Classic quick win profile.' },
         { id: 'q3-2', text: 'Which of these signals best indicates a strong AI use case?', options: ['The task is novel and creative each time it\'s performed', 'The task is performed frequently, follows a pattern, and has clear inputs and outputs', 'The task requires deep human judgment and emotional intelligence', 'The task is currently performed by senior leadership'], correct: 1, explanation: 'Frequency + pattern + clear I/O is the AI use case trifecta. AI thrives on repetition and consistency.' },
@@ -459,7 +1073,100 @@ ROI % = (Net Benefit / 5-Year Cost) × 100
 </div>`,
       },
     ],
-    quiz: {
+      {
+        id: 'm4-l2', number: 2, tier: 'smb', duration: '28 min',
+        title: 'Building the Business Case: From Score to Approved Investment',
+        content: `<h2>Turning a Priority Score Into an Approved Decision</h2>
+<p>A prioritisation score tells you which use case to build. A business case tells your organisation why to fund it. Most AI initiatives fail to get approved not because the ROI is poor — but because the case is presented in technology language to a business audience, or business language to a finance audience.</p>
+<p>This lesson gives you the exact structure for a business case that gets approved — built on the 5-year cost model, presented for the decision-maker in front of you.</p>
+
+<h3>The 5-Year Financial Model — Complete Framework</h3>
+<table>
+<thead><tr><th>Cost Component</th><th>Formula</th><th>Worked Example</th></tr></thead>
+<tbody>
+<tr><td>Build cost</td><td>Developer weeks × day rate × 5 days</td><td>8 weeks × $1,200/day × 5 = $48,000</td></tr>
+<tr><td>Setup cost</td><td>Platform + infrastructure + data prep</td><td>$3,500 platform + $8,000 data prep = $11,500</td></tr>
+<tr><td><strong>Implementation Cost</strong></td><td>Build + Setup</td><td><strong>$59,500</strong></td></tr>
+<tr><td>Annual token cost</td><td>Calls/day × tokens/call × cost/token × 250 days</td><td>800 × 600 × $0.00000015 × 250 = $18/yr</td></tr>
+<tr><td>Annual support</td><td>Hours/week × hourly rate × 52</td><td>3 hrs × $85 × 52 = $13,260/yr</td></tr>
+<tr><td>Annual data maintenance</td><td>Hours/month × hourly rate × 12</td><td>5 hrs × $85 × 12 = $5,100/yr</td></tr>
+<tr><td>Annual governance</td><td>Review hours × rate (quarterly + annual)</td><td>$2,800/yr</td></tr>
+<tr><td><strong>Annual Maintenance</strong></td><td>Sum of above annual costs</td><td><strong>$21,178/yr</strong></td></tr>
+<tr><td><strong>5-Year Cost</strong></td><td>Implementation + (Annual × 5)</td><td><strong>$59,500 + $105,890 = $165,390</strong></td></tr>
+</tbody>
+</table>
+
+<h3>The Value Model — 3 Streams</h3>
+<table>
+<thead><tr><th>Value Stream</th><th>Formula</th><th>Worked Example</th></tr></thead>
+<tbody>
+<tr><td><strong>Efficiency value</strong></td><td>Hours saved/person/day × people × hourly rate × working days</td><td>1.5 hrs × 12 agents × $45/hr × 250 days = $202,500/yr</td></tr>
+<tr><td><strong>Quality value</strong></td><td>Error rate reduction × cost per error × annual volume</td><td>8% reduction × $15/error × 200,000 errors = $24,000/yr</td></tr>
+<tr><td><strong>Revenue value</strong></td><td>Hours recovered → converted to revenue-generating activity</td><td>450 hrs recovered × $180/hr billing rate × 40% conversion = $32,400/yr</td></tr>
+<tr><td><strong>Total Annual Value</strong></td><td>Sum of above</td><td><strong>$258,900/yr</strong></td></tr>
+<tr><td><strong>5-Year Value</strong></td><td>Annual value × 5</td><td><strong>$1,294,500</strong></td></tr>
+</tbody>
+</table>
+
+<h3>The Three Summary Numbers for the Business Case</h3>
+<pre>Net Benefit (5-Year)  = 5-Year Value − 5-Year Cost
+                      = $1,294,500 − $165,390
+                      = $1,129,110
+
+ROI %                 = (Net Benefit / 5-Year Cost) × 100
+                      = ($1,129,110 / $165,390) × 100
+                      = 682%
+
+Break-Even            = Implementation Cost / Monthly Net Benefit
+                      = $59,500 / ($258,900/12 − $21,178/12)
+                      = $59,500 / $19,810
+                      = 3 months</pre>
+
+<h3>Sensitivity Analysis — The 3 Scenarios Every CFO Expects</h3>
+<table>
+<thead><tr><th>Scenario</th><th>Adoption Rate</th><th>Annual Value</th><th>5-Year Net</th><th>ROI</th><th>Break-Even</th></tr></thead>
+<tbody>
+<tr><td>Conservative</td><td>50%</td><td>$129,450</td><td>$481,860</td><td>291%</td><td>6 months</td></tr>
+<tr><td>Base Case</td><td>75%</td><td>$194,175</td><td>$805,485</td><td>487%</td><td>4 months</td></tr>
+<tr><td>Target</td><td>100%</td><td>$258,900</td><td>$1,129,110</td><td>682%</td><td>3 months</td></tr>
+</tbody>
+</table>
+<p>Always lead with the conservative scenario. If it still shows strong ROI, your case is robust. If conservative is marginal, redesign the approach before presenting.</p>
+
+<h3>The One-Page Business Case Structure</h3>
+<p>Every business case — regardless of audience — should fit on one page before appendices:</p>
+<ol>
+<li><strong>Problem statement:</strong> What is this costing us today? (1 sentence + 1 number)</li>
+<li><strong>Proposed solution:</strong> What will AI do? (2 sentences, no jargon)</li>
+<li><strong>Financial case:</strong> Conservative ROI + break-even (1 table, 3 scenarios)</li>
+<li><strong>Implementation plan:</strong> Timeline + key milestones (5 lines max)</li>
+<li><strong>Risk summary:</strong> Top 2 risks + mitigations (4 lines)</li>
+<li><strong>Decision required:</strong> What you're asking for + by when (1 sentence)</li>
+</ol>
+
+<h3>Common Business Case Failures</h3>
+<table>
+<thead><tr><th>Failure</th><th>Why It Happens</th><th>Fix</th></tr></thead>
+<tbody>
+<tr><td>No baseline numbers</td><td>Current state was estimated not measured</td><td>Time-and-motion study before any modelling</td></tr>
+<tr><td>100% adoption assumed</td><td>Optimism bias in projections</td><td>Always model 50/75/100% — present conservative first</td></tr>
+<tr><td>Technology language for business audience</td><td>Builder wrote the case instead of business owner</td><td>Business Sponsor writes the case. Technical team provides cost inputs only.</td></tr>
+<tr><td>Ongoing costs understated</td><td>Implementation cost is visible; maintenance cost is not</td><td>Always show 5-year total cost — not just build cost</td></tr>
+<tr><td>No risk section</td><td>Felt like admitting weakness</td><td>Boards distrust cases without risks. Two risks + mitigations builds credibility.</td></tr>
+</tbody>
+</table>
+
+<div class="real-world-box">
+<h3>🌍 From Real-World Practice</h3>
+<p><strong>Insight:</strong> The business cases that get approved fastest are not the most technically impressive — they're the ones where every number on the page can be sourced back to a real data point. "We measured this" beats "we estimated this" in every approval meeting.</p>
+<p><strong>Example:</strong> A telecommunications company submitted two AI business cases in the same quarter. Case A: $2.1M program with $8.4M projected 3-year return, based on industry benchmarks. Approved in principle but deferred pending "further validation." Case B: $340K program with $1.7M 3-year return, every number sourced from 4-week time-and-motion study, conservative scenario modelled at 55% adoption, break-even at 7 months. Approved at first submission. The difference was not the ROI — it was the credibility of the numbers.</p>
+<p><strong>Why it matters:</strong> In most organisations, AI business cases compete with capital projects, headcount requests, and technology investments for the same budget. Credible numbers win that competition. Ambitious projections lose it.</p>
+<p><strong>Implementation tip:</strong> Before finalising any financial model, ask: "Can I source every input number to a specific data point I can show in an appendix?" If any number is an estimate or benchmark, either measure it or explicitly label it as an assumption with its basis. Reviewers respect honesty about uncertainty far more than false precision.</p>
+<p><strong>💡 What This Saves You:</strong> Business cases built on measured data rather than estimates typically get approved 2–3 review cycles faster. At a typical 6-week cycle, that's 12–18 weeks faster to implementation start — and 12–18 weeks earlier return on investment.</p>
+</div>`,
+      },
+    ],
+    quiz: {    quiz: {
       questions: [
         { id: 'q4-1', text: 'A use case has high business value (5), low implementation complexity (2), but very high adoption effort (5). What is its Priority Score using the formula?', options: ['12', '9', '8', '14'], correct: 1, explanation: 'Score = (5×2) + (6-2) + (6-5) = 10 + 4 + 1 = 15. Then subtract cost score. High adoption effort significantly reduces the attractiveness of otherwise strong use cases.' },
         { id: 'q4-2', text: 'Your AI use case processes 1,000 requests per day, averaging 3,000 tokens each at $0.000005 per token. What is the annual token cost?', options: ['$547.50', '$5,475', '$54,750', '$547,500'], correct: 1, explanation: '1,000 × 3,000 × $0.000005 × 365 = $5,475/year. Understanding this calculation is essential for accurate cost modelling.' },
@@ -517,7 +1224,94 @@ Pattern 5: AI Decides → Human Monitors
 </div>`,
       },
     ],
-    quiz: {
+      {
+        id: 'm5-l2', number: 2, tier: 'smb', duration: '24 min',
+        title: 'Exception Handling, Testing, and Workflow Validation',
+        content: `<h2>Design for Failure First — Always</h2>
+<p>The single most common cause of AI workflow failures in production is not the AI making wrong decisions — it's the absence of a defined path when the AI makes a wrong decision. Exception handling is not optional. It is the most important design decision in any AI workflow.</p>
+<p>Most teams design the happy path first and bolt on exceptions later. This is backwards. Design the exception path first, then build the happy path around it.</p>
+
+<h3>The 5 Human-AI Interaction Patterns</h3>
+<table>
+<thead><tr><th>Pattern</th><th>What AI Does</th><th>What Human Does</th><th>Best For</th><th>Risk Level</th></tr></thead>
+<tbody>
+<tr><td><strong>AI Reads → Human Acts</strong></td><td>Summarises, briefs, extracts</td><td>Reviews summary, makes decision</td><td>Document review, meeting prep, research synthesis</td><td>Low — human always decides</td></tr>
+<tr><td><strong>AI Classifies → Human Routes</strong></td><td>Assigns category and confidence</td><td>Reviews low-confidence items, approves routing</td><td>Email triage, ticket classification, lead scoring</td><td>Low-medium — human handles exceptions</td></tr>
+<tr><td><strong>AI Drafts → Human Edits</strong></td><td>Generates first draft</td><td>Reviews, edits, approves</td><td>Customer responses, proposals, reports</td><td>Medium — human must review before send</td></tr>
+<tr><td><strong>AI Alerts → Human Investigates</strong></td><td>Detects anomalies, flags issues</td><td>Investigates flagged items</td><td>Fraud detection, quality control, compliance monitoring</td><td>Medium — false positives are workload cost</td></tr>
+<tr><td><strong>AI Decides → Human Monitors</strong></td><td>Makes decision autonomously within defined rules</td><td>Reviews dashboard, handles escalations</td><td>Auto-approval within thresholds, automated routing</td><td>High — requires robust guardrails and audit trail</td></tr>
+</tbody>
+</table>
+<p><strong>Rule:</strong> Start at Pattern 1 or 2. Move to Pattern 4 or 5 only after Pattern 1–3 has demonstrated consistent accuracy in production for 60+ days.</p>
+
+<h3>Exception Type Taxonomy</h3>
+<table>
+<thead><tr><th>Exception Type</th><th>Trigger</th><th>Response</th><th>Owner</th></tr></thead>
+<tbody>
+<tr><td>Low confidence</td><td>AI confidence score below threshold (e.g. &lt; 75%)</td><td>Route to human review queue</td><td>Process Owner</td></tr>
+<tr><td>Missing required data</td><td>Required field is null or unreadable</td><td>Return to submitter with specific data request</td><td>Data Owner</td></tr>
+<tr><td>Out-of-scope input</td><td>Input doesn't match any trained category</td><td>Route to "Other" queue with original input preserved</td><td>Process Owner</td></tr>
+<tr><td>System failure</td><td>API timeout, model unavailable, integration error</td><td>Queue for retry; alert Technical role; human fallback</td><td>Technical role</td></tr>
+<tr><td>Policy trigger</td><td>Input contains legal language, regulatory keywords, sensitive content</td><td>Immediate escalation to named human owner</td><td>Compliance / Business Sponsor</td></tr>
+<tr><td>Volume spike</td><td>Volume exceeds system capacity or cost threshold</td><td>Queue overflow; alert Technical role; cost governance review</td><td>Technical role + Business Sponsor</td></tr>
+</tbody>
+</table>
+
+<h3>The 3-Phase Testing Protocol</h3>
+<p><strong>Phase 1 — Unit Testing (minimum 50 examples)</strong></p>
+<ul>
+<li>Select 50 real production examples — not ideal ones, representative ones</li>
+<li>Include at least 5 from each category if multi-class</li>
+<li>Include 10 edge cases and ambiguous examples</li>
+<li>Score each output manually: correct / acceptable / wrong</li>
+<li>Gate: 85%+ correct/acceptable before proceeding</li>
+</ul>
+
+<p><strong>Phase 2 — Edge Case Testing (minimum 100 examples)</strong></p>
+<ul>
+<li>Deliberately include examples designed to break the system: empty fields, very long inputs, unusual formatting, mixed languages, adversarial inputs</li>
+<li>Test every exception path: what happens when confidence is 0.3? When the input is blank? When the API times out?</li>
+<li>Gate: All exception paths return a defined, handled response (not an error)</li>
+</ul>
+
+<p><strong>Phase 3 — Volume Testing</strong></p>
+<ul>
+<li>Run at 2× expected production volume for 24 hours</li>
+<li>Measure: latency at peak, accuracy at scale, token cost at volume, error rate</li>
+<li>Gate: Performance within 15% of unit test results; cost within 20% of projection</li>
+</ul>
+
+<h3>The Go-Live Checklist</h3>
+<pre>□ All 6 exception types have defined response paths (not "TBD")
+□ Confidence threshold tested and set based on Phase 1 results
+□ Human review queue exists and is staffed before go-live
+□ Kill switch documented: who can pause the system, how, in under 5 minutes
+□ Logging configured: every AI decision recorded with input, output, confidence, timestamp
+□ Alert thresholds set: accuracy drop >5%, cost spike >20%, volume spike >50%
+□ Process Owner has reviewed and signed the exception handling specification
+□ Phase 1, 2, and 3 test results documented and approved</pre>
+
+<h3>The Workflow Validation Canvas</h3>
+<p>Before any AI system goes live, map the complete workflow across these 5 questions:</p>
+<ol>
+<li><strong>What triggers this workflow?</strong> (Email arrives / form submitted / scheduled batch)</li>
+<li><strong>What is the happy path?</strong> (Step-by-step from trigger to outcome)</li>
+<li><strong>What are the exception paths?</strong> (One per exception type from the taxonomy above)</li>
+<li><strong>Who is notified at each step?</strong> (Named person, not role)</li>
+<li><strong>How do we know it worked?</strong> (The success metric measured daily in week 1)</li>
+</ol>
+
+<div class="real-world-box">
+<h3>🌍 From Real-World Practice</h3>
+<p><strong>Insight:</strong> Every AI system that has failed in production had one thing in common: the exception handling was an afterthought. Every AI system that has succeeded had exception handling designed before the happy path.</p>
+<p><strong>Example:</strong> A healthcare network deployed an AI for patient appointment scheduling. Happy path worked perfectly in testing — 96% accuracy. Go-live day 3: the system received a batch of appointments for a new clinic type that wasn't in the training data. No "out-of-scope" exception path existed. The system attempted to classify them, failed silently, and 340 appointments were never scheduled. The error was discovered 4 days later when patients called to confirm appointments that didn't exist. Fix: 2 days of rework, 340 patient calls, 3 weeks of delayed go-live for a complete exception handling review. The same issue, caught in Phase 2 testing, would have taken 4 hours to resolve.</p>
+<p><strong>Why it matters:</strong> Exception handling is not extra work — it is core work. The time invested in designing it before build is always less than the time spent recovering from its absence after go-live.</p>
+<p><strong>Implementation tip:</strong> Use the 6-exception taxonomy as a checklist in every design review. For each exception type, require the team to describe the specific response in one sentence before the build review meeting ends. "We'll handle it" is not an answer. "Appointments with no matching clinic type route to the scheduling team's Unmatched queue, triggering a Slack alert to Sarah within 30 minutes" is an answer.</p>
+<p><strong>💡 What This Saves You:</strong> Organisations that build exception handling into the design phase rather than the post-incident phase spend an average of 70% less time on production incidents in the first 90 days. On a system processing 500 transactions/day, that difference is typically 15–40 hours of incident management time avoided per month.</p>
+</div>`,
+      },
+    ],
+    quiz: {    quiz: {
       questions: [
         { id: 'q5-1', text: 'An AI system automatically sends customer refunds when it detects certain patterns in complaint data. No human reviews the decision. Which pattern does this represent and what is the primary risk?', options: ['AI Drafts → Human Edits — risk is poor quality drafts', 'AI Decides → Human Monitors — risk is errors going undetected until they scale', 'AI Classifies → Human Routes — risk is misclassification', 'AI Reads → Human Acts — risk is slow response times'], correct: 1, explanation: 'Full autonomy (Pattern 5) is highest risk. Without human review for consequential financial decisions, errors compound before they\'re caught. Confidence thresholds and human escalation are essential.' },
         { id: 'q5-2', text: 'Before implementing AI in a customer onboarding process, you discover the current process has 3 undocumented workarounds. What should you do?', options: ['Build the AI anyway — it will work around them', 'Document and resolve the workarounds before building the AI workflow', 'Ignore them — they\'re edge cases', 'Build the AI to handle the workarounds automatically'], correct: 1, explanation: 'Automating a broken process accelerates the problem. Resolve process issues before AI implementation — otherwise you\'re encoding workarounds into permanent infrastructure.' },
@@ -564,7 +1358,96 @@ Step 6: MONITOR    → Ongoing quality tracking in production</pre>
 </div>`,
       },
     ],
-    quiz: {
+      {
+        id: 'm6-l2', number: 2, tier: 'smb', duration: '26 min',
+        title: 'Data Quality Assessment and AI Readiness Scoring',
+        content: `<h2>Data Quality Is Not a Pre-Build Activity — It's a Go/No-Go Decision</h2>
+<p>The single most reliable predictor of AI model accuracy is data quality — not model choice, not prompt engineering, not architecture. Bad data produces bad AI. Every time. Without exception.</p>
+<p>Most organisations discover data quality problems after build, when accuracy is disappointing and the root cause investigation begins. This lesson gives you the framework to identify and resolve data quality issues before a single line of AI code is written.</p>
+
+<h3>The 5-Dimension Data Readiness Framework</h3>
+<table>
+<thead><tr><th>Dimension</th><th>Definition</th><th>Assessment Questions</th><th>Score 1–5</th></tr></thead>
+<tbody>
+<tr><td><strong>Availability</strong></td><td>The data exists and can be accessed</td><td>Where does it live? Who owns it? Can it be extracted? Is API access possible?</td><td>1=Doesn't exist, 5=Clean API access confirmed</td></tr>
+<tr><td><strong>Completeness</strong></td><td>Required fields are populated</td><td>What % of records have the key field populated? What causes nulls?</td><td>1=&lt;50% complete, 5=&gt;98% complete</td></tr>
+<tr><td><strong>Accuracy</strong></td><td>Data values reflect reality</td><td>Sample 100 records manually. What % are correct? How were errors introduced?</td><td>1=&lt;70% accurate, 5=&gt;97% accurate</td></tr>
+<tr><td><strong>Consistency</strong></td><td>Same concept represented the same way everywhere</td><td>Are date formats consistent? Naming conventions? Currency? Units of measure?</td><td>1=Multiple conflicting formats, 5=Fully standardised</td></tr>
+<tr><td><strong>Currency</strong></td><td>Data reflects the current state</td><td>When was this last updated? How long is data retained? What's the lag?</td><td>1=&gt;12 months old or unknown, 5=Real-time or daily refresh</td></tr>
+</tbody>
+</table>
+
+<h3>Interpreting Your Score</h3>
+<table>
+<thead><tr><th>Total Score (out of 25)</th><th>Readiness Status</th><th>Recommended Action</th><th>Typical Timeline to AI-Ready</th></tr></thead>
+<tbody>
+<tr><td>22–25</td><td>AI-Ready</td><td>Proceed to build. Light data preparation only.</td><td>1–2 weeks</td></tr>
+<tr><td>18–21</td><td>Mostly Ready</td><td>Address specific gaps before build. Document remediation plan.</td><td>2–4 weeks</td></tr>
+<tr><td>13–17</td><td>Significant Preparation Needed</td><td>Do not start build until gaps addressed. Risk of rework is high.</td><td>4–8 weeks</td></tr>
+<tr><td>Below 13</td><td>Not Ready</td><td>Pause use case. Fix data foundation first. Consider different use case.</td><td>8+ weeks or pivot</td></tr>
+</tbody>
+</table>
+
+<h3>The Before/After Data Transformation — Worked Example</h3>
+<p><strong>Scenario:</strong> Customer support team, 3-year email archive, training an AI classifier</p>
+
+<p><strong>BEFORE (raw data state):</strong></p>
+<table>
+<thead><tr><th>Issue Found</th><th>Volume</th><th>Impact on AI</th></tr></thead>
+<tbody>
+<tr><td>Date field in 4 formats (DD/MM/YY, MM-DD-YYYY, "Jan 15 2023", Unix timestamp)</td><td>All records</td><td>Date-based features unusable</td></tr>
+<tr><td>Category labels: 12 categories in 2019, changed to 8 in 2021 — no mapping exists</td><td>40% of records</td><td>Training set has conflicting labels</td></tr>
+<tr><td>Customer names in email body (PII)</td><td>~85% of records</td><td>Privacy compliance blocker</td></tr>
+<tr><td>Empty subject line (15% of records)</td><td>15%</td><td>Subject-line feature unavailable for 15%</td></tr>
+<tr><td>HTML tags in email body not stripped</td><td>~60% of records</td><td>Token waste + noise in classification signal</td></tr>
+</tbody>
+</table>
+
+<p><strong>AFTER (4-week data preparation):</strong></p>
+<table>
+<thead><tr><th>Action Taken</th><th>Method</th><th>Outcome</th></tr></thead>
+<tbody>
+<tr><td>Date standardisation</td><td>Python script: parse all formats → ISO 8601</td><td>100% consistent date field</td></tr>
+<tr><td>Category label mapping</td><td>Process Owner manually mapped old 12 → new 8 categories for sample; AI-assisted mapping validated by human for remainder</td><td>Consistent labels across full dataset</td></tr>
+<tr><td>PII removal</td><td>Named entity recognition model strips names, emails, phone numbers</td><td>Compliance cleared; no customer data in training set</td></tr>
+<tr><td>Empty subject handling</td><td>Null replaced with "[No Subject]" token; flagged as feature</td><td>Feature preserved; model handles nulls explicitly</td></tr>
+<tr><td>HTML stripping</td><td>BeautifulSoup library removes all tags; plain text retained</td><td>Cleaner input signal; 18% token reduction</td></tr>
+</tbody>
+</table>
+
+<p><strong>Result:</strong> Model accuracy before data preparation: 61%. After: 89%. Same model, same architecture, same prompt. Data quality was the entire difference.</p>
+
+<h3>The CRM Readiness Checklist</h3>
+<p>CRM data is the most common source for customer-facing AI use cases — and the most commonly broken:</p>
+<pre>□ Customer records: what % have email + name + account status populated?
+□ Interaction history: is every customer contact logged with date and type?
+□ Product/service data: are product names and codes consistent across records?
+□ Account status: is "active/inactive/churned" populated and current?
+□ Duplicate records: have duplicates been merged or flagged?
+□ Data age: when was the last full data audit?
+□ API access: can your CRM export records via API or structured export?
+□ Privacy: which fields contain PII that must be stripped before AI processing?</pre>
+
+<h3>Data Governance for AI — The Minimum Viable Setup</h3>
+<p>You don't need an enterprise data governance program to use AI responsibly. You need four things:</p>
+<ol>
+<li><strong>A named Data Owner</strong> for each dataset used in AI — one person, not a team</li>
+<li><strong>A data usage policy</strong> that states which data can be sent to which AI providers (1 page maximum)</li>
+<li><strong>A PII handling procedure</strong> that defines which fields are stripped before any external API call</li>
+<li><strong>A data quality review cadence</strong> — quarterly for live AI systems, not "when something breaks"</li>
+</ol>
+
+<div class="real-world-box">
+<h3>🌍 From Real-World Practice</h3>
+<p><strong>Insight:</strong> Data preparation consistently takes 40–70% of the total AI implementation timeline. This is not a sign of poor planning — it is the nature of AI projects. The teams that plan for it succeed. The teams that treat it as a 2-week task before the "real" build typically spend 3 months in data rework after the build.</p>
+<p><strong>Example:</strong> A retail chain planned an 8-week AI build for demand forecasting. Week 1 data audit found: product codes inconsistent across 3 legacy POS systems (12,000 products with 3 different naming conventions), 4 years of sales data with a 6-month gap due to a system migration, promotional pricing not flagged in sales data (causing demand signal distortion). Revised plan: 6 weeks data preparation + 8 weeks build = 14 weeks total. Actual result: data preparation took 9 weeks. Build took 6 weeks. Total: 15 weeks. The team that budgeted for this delivered on time. If they'd ignored it, they'd have delivered 63% accuracy at week 8 and spent 6 more months investigating why.</p>
+<p><strong>Why it matters:</strong> Data preparation is not overhead — it is the foundation. Every week invested in data quality before build returns multiple weeks of avoided rework after build.</p>
+<p><strong>Implementation tip:</strong> Run a data audit as the first formal project activity — before architecture decisions, before vendor selection, before timeline commitments. The data audit output determines all three. A 5-day data audit that changes your timeline estimate is the best $5,000 you will spend on an AI project.</p>
+<p><strong>💡 What This Saves You:</strong> Organisations that complete a structured data readiness assessment before build begin spend an average of 55% less time on post-deployment accuracy issues. On a typical 12-week build, that's 6–7 weeks of rework avoided.</p>
+</div>`,
+      },
+    ],
+    quiz: {    quiz: {
       questions: [
         { id: 'q6-1', text: 'Your AI model is producing outputs with 65% accuracy when you expected 90%+. After investigation, you find customer names are stored in 4 different formats across source systems. What dimension of data readiness has failed?', options: ['Availability', 'Governance', 'Standardisation / Consistency', 'Accessibility'], correct: 2, explanation: 'Inconsistent data formats are a standardisation failure. AI models learn patterns — if the same entity appears in 4 formats, the model learns 4 different patterns for the same thing, degrading accuracy.' },
         { id: 'q6-2', text: 'Before starting an AI project, what is the most valuable data readiness action you can take?', options: ['Buy more data storage', 'Profile your existing data across the 5 readiness dimensions before committing to a build timeline', 'Assume the data is good enough and start building', 'Hire a data scientist'], correct: 1, explanation: 'Profiling first gives you an objective baseline. It reveals the real timeline and cost of data preparation — which is almost always longer than initial estimates.' },
@@ -740,7 +1623,82 @@ User: [case history text]</pre>
 </div>`,
       },
     ],
-    quiz: {
+      {
+        id: 'm9-l2', number: 2, tier: 'smb', duration: '24 min',
+        title: 'KPI Framework, Baseline Measurement, and Continuous Improvement',
+        content: `<h2>Measurement Is Not the End — It Is the System</h2>
+<p>Most organisations measure AI performance once — at go-live — and then assume the system continues to work. This is wrong. AI systems degrade, drift, and encounter data patterns they weren't trained on. Without continuous measurement, you discover problems through customer complaints and business impact rather than through your own monitoring.</p>
+<p>This lesson gives you the complete KPI framework for any AI use case — from baseline setup through ongoing measurement to the triggers that should cause you to act.</p>
+
+<h3>The 4-Tier KPI Hierarchy</h3>
+<table>
+<thead><tr><th>KPI Tier</th><th>What It Measures</th><th>Review Frequency</th><th>Action Trigger</th></tr></thead>
+<tbody>
+<tr><td><strong>Primary KPI</strong></td><td>The single metric that proves the use case works. Must be directly causally linked to the AI output.</td><td>Daily in weeks 1–4, then weekly</td><td>Drops &gt;5% from baseline for 3 consecutive days</td></tr>
+<tr><td><strong>Secondary KPIs</strong></td><td>Explain the primary. Help identify root cause when primary drops.</td><td>Weekly</td><td>Any material movement that doesn't match primary trend</td></tr>
+<tr><td><strong>Guardrail KPIs</strong></td><td>Things that must NOT worsen. Non-negotiable thresholds. If breached: pause and investigate immediately.</td><td>Daily</td><td>Any breach of defined threshold — no grace period</td></tr>
+<tr><td><strong>Financial KPIs</strong></td><td>Actual cost vs projected; actual value delivered vs projected.</td><td>Monthly</td><td>Cost &gt;20% above projection OR value &gt;20% below projection</td></tr>
+</tbody>
+</table>
+
+<h3>KPI Examples by Use Case Type</h3>
+<table>
+<thead><tr><th>Use Case</th><th>Primary KPI</th><th>Secondary KPIs</th><th>Guardrail KPIs</th></tr></thead>
+<tbody>
+<tr><td>Email classification</td><td>Classification accuracy (%)</td><td>Volume processed, human review rate, processing time</td><td>Customer complaint rate (cannot increase), routing error rate (&lt;5%)</td></tr>
+<tr><td>Document summarisation</td><td>Time-to-summary (minutes)</td><td>Summary quality rating (1–5 from users), edit rate</td><td>Factual accuracy rate (cannot drop below 92%)</td></tr>
+<tr><td>Invoice processing</td><td>Straight-through processing rate (%)</td><td>Exception rate, processing time, field accuracy</td><td>Payment error rate (must be zero), compliance flag rate</td></tr>
+<tr><td>Customer response drafting</td><td>Agent handle time (minutes)</td><td>CSAT score, edit time, draft acceptance rate</td><td>CSAT (cannot drop &gt;0.2 points), complaint escalation rate</td></tr>
+<tr><td>Report generation</td><td>Report delivery time (hours from data receipt)</td><td>Review cycle time, revision count, stakeholder satisfaction</td><td>Data accuracy rate (&gt;99% factual accuracy required)</td></tr>
+</tbody>
+</table>
+
+<h3>The Baseline Measurement Protocol — Non-Negotiable</h3>
+<p>You cannot prove ROI if you didn't measure before deployment. This is not optional.</p>
+
+<p><strong>4-Week Baseline Plan:</strong></p>
+<table>
+<thead><tr><th>Week</th><th>Activity</th><th>Output</th></tr></thead>
+<tbody>
+<tr><td>Week -4 to -3</td><td>Time-and-motion study on target process: clock every step for 50 real cases. Record time per step, error rate, and rework rate.</td><td>Baseline time per case (measured, not estimated)</td></tr>
+<tr><td>Week -3 to -2</td><td>Survey affected staff: current process satisfaction (1–10), biggest pain points, time spent on rework.</td><td>Baseline satisfaction score + rework volume</td></tr>
+<tr><td>Week -2 to -1</td><td>Establish volume baseline: exact count of transactions processed per day/week over the last 90 days.</td><td>Volume baseline + seasonality pattern</td></tr>
+<tr><td>Week -1</td><td>Lock all baselines. Get Process Owner sign-off. No changes to baseline methodology after this point.</td><td>Signed baseline document</td></tr>
+</tbody>
+</table>
+<p><strong>Critical rule:</strong> Once baselines are locked, they cannot be changed. Post-deployment, you measure the same things the same way. Any change to measurement methodology invalidates the comparison.</p>
+
+<h3>The Monthly ROI Review Structure</h3>
+<p>Every live AI system should have a monthly 30-minute review covering:</p>
+<ol>
+<li><strong>Primary KPI trend</strong> vs baseline and vs prior month (chart — not just number)</li>
+<li><strong>Guardrail KPI status</strong> — green/amber/red with explanation for any amber or red</li>
+<li><strong>Financial actuals</strong> — token cost vs projection, value delivered vs projection</li>
+<li><strong>Notable incidents</strong> — any exceptions, failures, or near-misses in the month</li>
+<li><strong>One improvement</strong> — what single change would most improve performance next month?</li>
+</ol>
+<p>This meeting should produce one decision: continue as-is, implement the identified improvement, or escalate for deeper review.</p>
+
+<h3>Model Drift — The Silent Performance Killer</h3>
+<p>AI models degrade over time as the real world changes. This is called model drift. It happens when:</p>
+<ul>
+<li>Your customers change how they communicate (new language, new products, new complaint types)</li>
+<li>Your business processes change but the AI wasn't retrained</li>
+<li>External conditions change (new regulations, competitor actions, seasonal patterns the model wasn't trained on)</li>
+</ul>
+<p><strong>Drift detection rule:</strong> If primary KPI drops more than 5% from 3-month average and doesn't recover within 10 business days — investigate for model drift. Typical fix: retrain on the last 6 months of production data.</p>
+
+<div class="real-world-box">
+<h3>🌍 From Real-World Practice</h3>
+<p><strong>Insight:</strong> Organisations that set up baseline measurement before deployment consistently report 2–3× more credible ROI outcomes than those that estimate retrospectively. The discipline of pre-measurement also surfaces business problems that AI could address — it's never wasted effort.</p>
+<p><strong>Example:</strong> A professional services firm deployed an AI for proposal classification. At 3 months post-deployment, accuracy was 91% — matching the target. At 6 months: 84%. At 9 months: 77%. Nobody noticed until a client complained about a mis-routed proposal. Investigation: proposal language had changed significantly due to a rebrand 5 months prior. The AI was classifying based on old language patterns. Fix: 2-week retrain on post-rebrand proposals. Accuracy restored to 93%. The drift would have been caught at month 6 if anyone had been monitoring the weekly trend. Instead it was caught at month 9 via a client complaint.</p>
+<p><strong>Why it matters:</strong> A production AI system without monitoring is not an asset — it's a liability waiting to be discovered. The cost of monitoring is a weekly 15-minute dashboard review. The cost of not monitoring is discovered in customer complaints.</p>
+<p><strong>Implementation tip:</strong> Set up automated weekly email reports from your AI system from day one. Include: volume processed, accuracy rate (if measurable), exception rate, token cost. If any metric is missing, build it before go-live. A 15-minute automated report prevents the 15-hour incident investigation.</p>
+<p><strong>💡 What This Saves You:</strong> Organisations with structured AI monitoring detect and resolve performance issues an average of 6 weeks earlier than those without. On a system generating $200,000/year in value, 6 weeks of degraded performance at 20% below target = $46,000 in unrealised value — prevented by a weekly dashboard review.</p>
+</div>`,
+      },
+    ],
+    quiz: {    quiz: {
       questions: [
         { id: 'q9-1', text: 'A team of 12 analysts each saves 2 hours per day due to AI automation. Their fully loaded cost is $80/hour and they work 250 days/year. What is the annual efficiency value?', options: ['$384,000', '$480,000', '$560,000', '$768,000'], correct: 1, explanation: '2 hrs × 12 people × 250 days × $80/hr = $480,000/year. This is the core efficiency value formula used in every AI business case.' },
         { id: 'q9-2', text: 'Why must baseline metrics be established BEFORE AI deployment?', options: ['They don\'t need to be — estimates are fine', 'Because you can\'t prove improvement without a starting point to compare against', 'Because regulators require it', 'To satisfy vendor contracts'], correct: 1, explanation: 'Without a pre-deployment baseline, you have no evidence of improvement. This is the single most common measurement failure in AI programs.' },
@@ -886,7 +1844,82 @@ Standard Q&A responses   → Automated   → Escalations & experience design</pr
 </div>`,
       },
     ],
-    quiz: {
+      {
+        id: 'm12-l2', number: 2, tier: 'smb', duration: '22 min',
+        title: 'Building Champions, Sustaining Adoption, and Role Evolution',
+        content: `<h2>Technology Adoption Follows People — Not the Other Way Around</h2>
+<p>Working AI with 20% adoption is a failed project. Working AI with 85% adoption is a transformational one. The only difference is the human program running alongside the technology program.</p>
+<p>Most organisations treat adoption as a training problem. It is not. Training solves knowledge gaps. Adoption programs solve motivation, trust, and behavioural change gaps — which are entirely different.</p>
+
+<h3>Why People Don't Adopt AI (The Real Reasons)</h3>
+<table>
+<thead><tr><th>The Stated Reason</th><th>The Actual Reason</th><th>The Response That Works</th></tr></thead>
+<tbody>
+<tr><td>"It doesn't work well enough"</td><td>It works but differently — users expected it to replace their judgment, not assist it</td><td>Reframe: "AI handles the routine. You handle the judgment." Show specific time savings.</td></tr>
+<tr><td>"I don't have time to learn it"</td><td>The perceived effort of changing habits exceeds the perceived benefit</td><td>Make it take less time to use than not to use — on day one, not week three.</td></tr>
+<tr><td>"What happens to my job?"</td><td>Rational concern about automation threat — often unaddressed by leadership</td><td>Opportunity map: show specifically what people will do with recovered time.</td></tr>
+<tr><td>"I tried it and it was wrong"</td><td>One bad experience sets the mental model; subsequent good experiences don't override it</td><td>Champions: a peer who uses it successfully, willing to show others. Not IT. A peer.</td></tr>
+<tr><td>"My manager doesn't use it"</td><td>Behaviour is modelled from above. If leaders don't use it, teams won't.</td><td>Manager adoption is non-negotiable. Leaders go first.</td></tr>
+</tbody>
+</table>
+
+<h3>The Champion Network — Your Most Important Adoption Investment</h3>
+<p>A champion is a peer who uses the AI successfully, believes in it, and is willing to help others. Champions are not IT staff, not change managers, not the project team. They are members of the affected team who got results and will share them.</p>
+
+<p><strong>Champion selection criteria:</strong></p>
+<ul>
+<li>Respected by peers — not necessarily the most senior person</li>
+<li>Willing to spend 2–3 hours/month supporting colleagues</li>
+<li>Comfortable being visible about their own results (shares metrics openly)</li>
+<li>Not cynical about the program — but can articulate real limitations honestly</li>
+</ul>
+
+<p><strong>Champion activation:</strong></p>
+<ol>
+<li>Identify champions in pilot phase — they're the ones who lean in and get results</li>
+<li>Brief them on their role before general rollout: "You're not a trainer. You're a peer who shares what works."</li>
+<li>Give them a communication channel (Slack/Teams channel) to answer questions</li>
+<li>Feature their results in the month-1 launch communication</li>
+<li>Monthly 30-minute champion check-in: what questions are you getting? What's still not working?</li>
+</ol>
+
+<h3>The Opportunity Map — Making Role Evolution Visible</h3>
+<p>The most effective response to "what happens to my job?" is not a promise — it's a map. The Opportunity Map shows, for each role, what AI handles and what the person now focuses on with recovered time.</p>
+
+<table>
+<thead><tr><th>Role</th><th>Current Time Allocation</th><th>AI Handles</th><th>Person Now Focuses On</th><th>Hours Recovered/Week</th></tr></thead>
+<tbody>
+<tr><td>Customer Service Agent</td><td>60% routine queries, 20% complex, 20% admin</td><td>Classifies and drafts responses to routine queries</td><td>Complex cases, relationship management, complaint resolution</td><td>~8 hrs/week</td></tr>
+<tr><td>Operations Analyst</td><td>50% report production, 30% data gathering, 20% analysis</td><td>Generates weekly reports from data automatically</td><td>Interpretation, recommendations, strategic analysis</td><td>~10 hrs/week</td></tr>
+<tr><td>Finance Manager</td><td>40% invoice processing, 30% reconciliation, 30% advisory</td><td>Extracts invoice data, flags discrepancies</td><td>Exception resolution, supplier relationships, financial planning</td><td>~6 hrs/week</td></tr>
+</tbody>
+</table>
+
+<p>Build this map for your specific team. Present it before the launch — not after. People need to see where they're going before they'll walk toward it.</p>
+
+<h3>The 5-Phase Adoption Framework</h3>
+<table>
+<thead><tr><th>Phase</th><th>Goal</th><th>Key Activities</th><th>Success Metric</th></tr></thead>
+<tbody>
+<tr><td><strong>1. Awareness</strong></td><td>Everyone knows what's changing and why</td><td>Leadership announcement, FAQ document, Q&A session</td><td>100% of affected staff have been informed</td></tr>
+<tr><td><strong>2. Demonstration</strong></td><td>People see it working with their own eyes</td><td>Live demo with real team data, champion stories, before/after comparison</td><td>50%+ rate demo as "useful" or "very useful"</td></tr>
+<tr><td><strong>3. Involvement</strong></td><td>People co-design how they use it</td><td>User feedback sessions, prompt refinement with team input, process adaptation</td><td>At least 20% of team actively providing feedback</td></tr>
+<tr><td><strong>4. Support</strong></td><td>People use it successfully and know where to get help</td><td>Champion network active, help channel live, regular usage tips shared</td><td>60%+ adoption rate; &lt;5% reporting they can't use it</td></tr>
+<tr><td><strong>5. Embedding</strong></td><td>AI use is the new normal — not using it is the exception</td><td>KPIs updated to reflect AI-augmented performance, usage in onboarding, manager modelling</td><td>85%+ sustained adoption at 90 days</td></tr>
+</tbody>
+</table>
+
+<div class="real-world-box">
+<h3>🌍 From Real-World Practice</h3>
+<p><strong>Insight:</strong> Champion networks are the single highest-ROI adoption investment. A paid consultant explaining the tool achieves 30–40% adoption. A respected peer saying "this saved me 6 hours last week — let me show you" achieves 70–80% adoption. The content is identical. The messenger is everything.</p>
+<p><strong>Example:</strong> A 120-person insurance company deployed an AI for claims triage across 4 teams. Team A had a natural champion — a senior claims officer who got results in the pilot and shared them openly in team meetings. Team A adoption at 90 days: 87%. Teams B, C, D received identical training with no champion. Adoption at 90 days: 31%, 28%, 34%. The company identified and activated champions in Teams B, C, D at month 4. Adoption in those teams reached 74% by month 6. The 4-month gap cost an estimated $180,000 in unrealised efficiency value.</p>
+<p><strong>Why it matters:</strong> Champion identification is not an HR activity — it's a program delivery activity with direct financial consequences. Building a champion network should be on the critical path of every AI program, not in the "nice to have" column.</p>
+<p><strong>Implementation tip:</strong> In your pilot phase, watch for people who lean in. Who asks the most questions? Who figures out a use case nobody planned for? Who tells their colleague about it before you do? Those are your champions. Activate them explicitly — don't assume they'll do it naturally.</p>
+<p><strong>💡 What This Saves You:</strong> The difference between 30% and 80% adoption on a system generating $300,000/year in value is $150,000/year. The investment in a champion network — typically 10–15 hours per champion per year — is the cheapest $150,000 you will ever save.</p>
+</div>`,
+      },
+    ],
+    quiz: {    quiz: {
       questions: [
         { id: 'q12-1', text: 'Three months after deploying an AI tool that genuinely works, only 22% of the team is using it. What is the most likely cause?', options: ['The AI isn\'t good enough', 'Insufficient change management — adoption strategy, communication, and support were inadequate', 'The tool is too complex', 'The team wasn\'t informed about the tool'], correct: 1, explanation: 'A working tool with low adoption is almost always a change management failure. Technology readiness and people readiness are separate problems requiring separate solutions.' },
         { id: 'q12-2', text: 'A team member says "AI is going to take my job." What is the most effective response?', options: ['Reassure them that won\'t happen without evidence', 'Show them a concrete opportunity map — what their role looks like with AI handling the routine work, and what higher-value activities become available', 'Explain the technology limitations', 'Ask HR to manage the conversation'], correct: 1, explanation: 'Concrete opportunity mapping — showing specifically what higher-value work becomes available — is significantly more effective than general reassurance. People need to see their future role, not just be told it exists.' },
