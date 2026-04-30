@@ -285,52 +285,28 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── Platform tools strip ── */}
-      <section className="py-10 bg-navy-mid border-y border-white/5">
+      {/* ── Quick Value Hook ── */}
+      <section className="py-16 border-b border-white/5">
         <div className="max-w-6xl mx-auto px-6">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          <div className="text-center mb-10">
+            <h2 className="font-display font-bold text-3xl mb-3">Practical AI Learning Built for Real-World Use</h2>
+            <p className="text-muted text-lg max-w-2xl mx-auto">Learn how to use AI in business, workflows, automation, and daily life — using practical frameworks, templates, and implementation guides. First use case live in 14 days.</p>
+          </div>
+          <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
             {[
-              { icon:'🎯', title:'Model Selection Guide', desc:'Choose the right AI model', href:'/model-selection' },
-              { icon:'📊', title:'ROI Calculator',        desc:'Model your investment',     href:'/roi-calculator' },
-              { icon:'🏭', title:'Industry Matcher',      desc:'Use cases for your sector', href:'/#find-your-path' },
-              { icon:'🎓', title:'14-Module Curriculum',  desc:'From foundations to 90-day plan', href:'/#curriculum' },
-            ].map((tool, i) => (
-              <Link key={i} href={tool.href}
-                className="p-5 rounded-xl border border-white/8 bg-white/[0.02] hover:border-blue/40 hover:bg-blue/[0.03] transition-all group">
-                <div className="text-2xl mb-2">{tool.icon}</div>
-                <div className="font-display font-bold text-sm text-white mb-1 group-hover:text-blue-bright transition-colors">{tool.title}</div>
-                <div className="text-xs text-muted">{tool.desc}</div>
-              </Link>
+              { icon:'🎓', stat:'14+', label:'Practical Modules' },
+              { icon:'📥', stat:'40+', label:'Downloadable Templates' },
+              { icon:'🏭', stat:'8',   label:'Industry Use Cases' },
+              { icon:'🗺️', stat:'3',   label:'Learning Tracks' },
+              { icon:'⚡', stat:'14',  label:'Days to Go Live' },
+            ].map((s, i) => (
+              <div key={i} className="p-5 rounded-xl border border-white/8 bg-white/[0.02] text-center">
+                <div className="text-2xl mb-2">{s.icon}</div>
+                <div className="font-display font-black text-2xl text-blue mb-0.5">{s.stat}</div>
+                <div className="text-xs text-muted font-display">{s.label}</div>
+              </div>
             ))}
           </div>
-        </div>
-      </section>
-
-      {/* ── Find Your Path ── */}
-      <section id="find-your-path" className="py-24 bg-navy-mid border-b border-white/5">
-        <div className="max-w-5xl mx-auto px-6">
-          <Reveal>
-            <div className="text-center mb-10">
-              <SectionLabel>Find Your Program</SectionLabel>
-              <h2 className="font-display font-bold text-4xl mb-4">Which program is right for you?</h2>
-              <p className="text-muted max-w-xl mx-auto">Use the decision tree to find your tier in under a minute — or browse by industry to see AI use cases specific to your sector.</p>
-            </div>
-          </Reveal>
-          <Reveal delay={80}>
-            <div className="flex gap-1 bg-white/[0.04] border border-white/8 rounded-xl p-1 mb-8 max-w-md mx-auto">
-              {[{ id:'tree', icon:'🌳', label:'Decision Tree' }, { id:'industry', icon:'🏭', label:'By Industry' }].map(tab => (
-                <button key={tab.id} onClick={() => setActiveSection(tab.id)}
-                  className={`flex-1 flex items-center justify-center gap-2 py-2.5 rounded-lg text-sm font-display font-bold transition-all ${activeSection === tab.id ? 'bg-blue text-white shadow-[0_0_15px_rgba(26,110,255,0.4)]' : 'text-muted hover:text-white'}`}>
-                  <span>{tab.icon}</span>{tab.label}
-                </button>
-              ))}
-            </div>
-          </Reveal>
-          <Reveal delay={120}>
-            <Card glow className="p-8">
-              {activeSection === 'tree' ? <DecisionTree /> : <IndustryMatcher />}
-            </Card>
-          </Reveal>
         </div>
       </section>
 
@@ -363,6 +339,82 @@ export default function Home() {
                 </Reveal>
               )
             })}
+          </div>
+        </div>
+      </section>
+
+      {/* ── AI for Parents — Free Module Card ── */}
+      <section className="pb-12">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="p-6 rounded-2xl border border-success/20 bg-success/[0.03] flex flex-col md:flex-row items-start md:items-center justify-between gap-5">
+            <div className="flex items-start gap-4">
+              <span className="text-4xl flex-shrink-0">👨‍👩‍👧‍👦</span>
+              <div>
+                <div className="flex items-center gap-2 mb-1 flex-wrap">
+                  <span className="font-display font-bold text-base text-white">AI for Parents</span>
+                  <span className="px-2 py-0.5 bg-success/15 border border-success/30 rounded-full text-[10px] font-display font-bold text-success">FREE MODULE</span>
+                </div>
+                <p className="text-sm text-muted leading-relaxed max-w-xl">Understand how AI is shaping how kids learn and interact — and how to guide them responsibly. 8 practical lessons, no technical background needed.</p>
+                <div className="flex flex-wrap gap-3 mt-2">
+                  {['Free Access','Practical Parent Guidance','Requires Free Sign-in'].map(f => (
+                    <span key={f} className="text-xs text-success flex items-center gap-1">✓ {f}</span>
+                  ))}
+                </div>
+              </div>
+            </div>
+            <Link href={user ? '/parents' : '/login?redirect=/parents'}
+              className="flex-shrink-0 px-6 py-3 bg-success/10 border border-success/30 text-success font-display font-bold text-sm rounded-xl hover:bg-success/20 transition-all whitespace-nowrap">
+              {user ? 'Continue →' : 'Start Free Module →'}
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* ── Find Your Path ── */}
+      <section id="find-your-path" className="py-24 bg-navy-mid border-b border-white/5">
+        <div className="max-w-5xl mx-auto px-6">
+          <Reveal>
+            <div className="text-center mb-10">
+              <SectionLabel>Find Your Program</SectionLabel>
+              <h2 className="font-display font-bold text-4xl mb-4">Which program is right for you?</h2>
+              <p className="text-muted max-w-xl mx-auto">Use the decision tree to find your tier in under a minute — or browse by industry to see AI use cases specific to your sector.</p>
+            </div>
+          </Reveal>
+          <Reveal delay={80}>
+            <div className="flex gap-1 bg-white/[0.04] border border-white/8 rounded-xl p-1 mb-8 max-w-md mx-auto">
+              {[{ id:'tree', icon:'🌳', label:'Decision Tree' }, { id:'industry', icon:'🏭', label:'By Industry' }].map(tab => (
+                <button key={tab.id} onClick={() => setActiveSection(tab.id)}
+                  className={`flex-1 flex items-center justify-center gap-2 py-2.5 rounded-lg text-sm font-display font-bold transition-all ${activeSection === tab.id ? 'bg-blue text-white shadow-[0_0_15px_rgba(26,110,255,0.4)]' : 'text-muted hover:text-white'}`}>
+                  <span>{tab.icon}</span>{tab.label}
+                </button>
+              ))}
+            </div>
+          </Reveal>
+          <Reveal delay={120}>
+            <Card glow className="p-8">
+              {activeSection === 'tree' ? <DecisionTree /> : <IndustryMatcher />}
+            </Card>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* ── Platform tools strip ── */}
+      <section className="py-10 bg-navy-mid border-y border-white/5">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            {[
+              { icon:'🎯', title:'Model Selection Guide', desc:'Choose the right AI model', href:'/model-selection' },
+              { icon:'📊', title:'ROI Calculator',        desc:'Model your investment',     href:'/roi-calculator' },
+              { icon:'🏭', title:'Industry Matcher',      desc:'Use cases for your sector', href:'/#find-your-path' },
+              { icon:'🎓', title:'14-Module Curriculum',  desc:'From foundations to 90-day plan', href:'/#curriculum' },
+            ].map((tool, i) => (
+              <Link key={i} href={tool.href}
+                className="p-5 rounded-xl border border-white/8 bg-white/[0.02] hover:border-blue/40 hover:bg-blue/[0.03] transition-all group">
+                <div className="text-2xl mb-2">{tool.icon}</div>
+                <div className="font-display font-bold text-sm text-white mb-1 group-hover:text-blue-bright transition-colors">{tool.title}</div>
+                <div className="text-xs text-muted">{tool.desc}</div>
+              </Link>
+            ))}
           </div>
         </div>
       </section>
@@ -479,33 +531,6 @@ export default function Home() {
       </section>
 
 
-
-      {/* ── AI for Parents Section ── */}
-      <section className="py-20 border-b border-white/5">
-        <div className="max-w-6xl mx-auto px-6">
-          <Reveal>
-            <div className="grid md:grid-cols-[1fr_auto] gap-8 items-center">
-              <div>
-                <SectionLabel>Free Module</SectionLabel>
-                <h2 className="font-display font-bold text-3xl mb-4">AI for Parents</h2>
-                <p className="text-muted leading-relaxed max-w-xl mb-6">
-                  Understand how AI is shaping how kids learn and interact — and how to guide them responsibly.
-                  8 practical lessons, no technical background needed. Free with sign-up.
-                </p>
-                <div className="flex flex-wrap gap-3 mb-6">
-                  {['What AI is (for parents)','How kids use AI','Benefits vs risks','Setting boundaries at home'].map(f => (
-                    <span key={f} className="text-xs font-display font-bold px-3 py-1.5 rounded-full bg-success/10 border border-success/20 text-success">{f}</span>
-                  ))}
-                </div>
-                <Button href="/parents" variant="primary">Start Free Module →</Button>
-              </div>
-              <div className="hidden md:flex flex-col items-center justify-center w-48 h-48 rounded-2xl border border-white/10 bg-white/[0.02] text-6xl">
-                👨‍👩‍👧‍👦
-              </div>
-            </div>
-          </Reveal>
-        </div>
-      </section>
 
       {/* ── Preview Section ── Patch 4 */}
       <section className="py-20 border-b border-white/5">
@@ -644,3 +669,4 @@ export default function Home() {
     </>
   )
 }
+
