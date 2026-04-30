@@ -254,6 +254,9 @@ export default function Home() {
             <p className="text-base text-muted leading-relaxed max-w-lg mb-2">
               Practical learning for professionals, parents, businesses and enterprise leaders — without the hype.
             </p>
+            <p className="text-xs text-white/25 max-w-md mb-1 leading-relaxed">
+              No jargon. No fear. No unrealistic promises. Just practical AI awareness for the real world.
+            </p>
             <p className="text-xs text-white/30 mb-7 font-display tracking-widest uppercase">
               14 modules · 3 tiers · 40 templates · first live use case in 14 days
             </p>
@@ -275,45 +278,86 @@ export default function Home() {
         <div className="max-w-6xl mx-auto px-6">
           <Reveal>
             <div className="text-center mb-12">
-              <SectionLabel>Learning Tracks</SectionLabel>
-              <h2 className="font-display font-bold text-3xl mb-3">Start Where You Are</h2>
-              <p className="text-muted max-w-xl mx-auto text-sm">Free guidance for parents. Practical depth for professionals, business owners, and enterprise leaders.</p>
+              <SectionLabel>Learning Paths</SectionLabel>
+              <h2 className="font-display font-bold text-3xl mb-3">Choose Your AI Learning Path</h2>
+              <p className="text-muted max-w-xl mx-auto text-sm">Whether you\u2019re curious, cautious, implementing AI in business, or leading transformation — start where you are.</p>
             </div>
           </Reveal>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
-            {DISPLAY_ORDER.map((tid, i) => {
-              const t = TIERS[tid]
-              const isFree = t.free
-              return (
-                <Reveal key={tid} delay={i * 80}>
-                  <Card hover className={`p-6 h-full flex flex-col ${
-                    isFree ? 'border-success/25 bg-success/[0.02]' :
-                    t.highlighted ? 'border-amber-400/30 bg-amber-400/[0.02]' : ''
-                  }`}>
-                    {isFree ? (
-                      <span className="self-start mb-4 px-2.5 py-1 bg-success/15 border border-success/30 rounded-full text-[10px] font-display font-bold text-success">FREE MODULE</span>
-                    ) : (
-                      <TierBadge tier={tid} label={t.label} className="mb-4" />
-                    )}
-                    <div className="font-display font-black text-4xl mb-1">{t.priceDisplay}</div>
-                    <div className="text-xs text-muted mb-4">{t.billing}</div>
-                    <p className="text-sm text-muted leading-relaxed flex-1 mb-4">{t.description}</p>
-                    <div className="p-3 rounded-lg bg-white/[0.03] border border-white/5 mb-5">
-                      <div className="text-[10px] font-display font-bold text-muted uppercase tracking-wider mb-1">Ideal for</div>
-                      <p className="text-xs text-white/70 leading-relaxed">{t.idealFor}</p>
-                    </div>
-                    {isFree ? (
-                      <Link href={user ? '/parents' : '/login?redirect=/parents'}
-                        className="w-full text-center py-2.5 rounded-lg font-display font-bold text-sm bg-success/10 border border-success/30 text-success hover:bg-success/20 transition-all">
-                        {user ? 'Continue →' : 'Start Free Module →'}
-                      </Link>
-                    ) : (
-                      <Button href="/pricing" variant={t.highlighted ? 'primary' : 'ghost'} className="w-full justify-center">{t.cta}</Button>
-                    )}
-                  </Card>
-                </Reveal>
-              )
-            })}
+            {[
+              {
+                pill: 'Free Module', pillClass: 'bg-success/15 border-success/30 text-success',
+                title: 'AI for Parents', price: 'Free', billing: 'Free \u00b7 Sign in required',
+                hook: 'Helping families navigate AI calmly and confidently.',
+                desc: 'A practical, reassuring guide for parents wanting to better understand how AI is shaping how children learn, think, communicate, and grow.',
+                idealFor: 'Parents and caregivers wanting healthier AI conversations and sensible boundaries at home.',
+                bullets: ['How kids are using AI today','Benefits vs risks explained simply','Warning signs to watch for','Conversation starters for families','Practical household AI boundaries','Parent downloadable guide'],
+                cta: 'Start Free Module', ctaClass: 'bg-success/10 border border-success/30 text-success hover:bg-success/20',
+                href: user ? '/parents' : '/login?redirect=/parents',
+                cardClass: 'border-success/25 bg-success/[0.02]',
+              },
+              {
+                pill: 'Individual', pillClass: 'bg-blue/15 border-blue/30 text-blue-bright',
+                title: 'AI Awareness', price: '$49', billing: 'One-time \u00b7 Lifetime access',
+                hook: 'Build confidence with AI — without needing a technical background.',
+                desc: 'Designed for professionals wanting practical AI understanding, clearer conversations, and confidence in a rapidly changing world.',
+                idealFor: 'Business professionals, team members, and people leaders wanting practical AI literacy.',
+                bullets: ['AI foundations and model awareness','Prompting, context, memory and tools','Practical business examples','Leadership conversation readiness','Module Q&A scoring','Downloadable guides and cheat sheets'],
+                cta: 'Start Learning', ctaClass: 'border border-blue/40 text-blue-bright hover:bg-blue/10',
+                href: user ? '/checkout?tier=individual' : '/login?redirect=/checkout?tier=individual',
+                cardClass: '',
+              },
+              {
+                pill: 'Business', pillClass: 'bg-amber-400/15 border-amber-400/30 text-amber-400',
+                title: 'AI Implementation', price: '$99', billing: 'One-time \u00b7 Lifetime access',
+                hook: 'Move from AI curiosity to practical business execution.',
+                desc: 'Built for business owners and operational teams preparing to introduce AI into workflows, reporting, customer engagement, and decision-making.',
+                idealFor: 'Business owners, operations managers, and department leaders preparing for AI adoption.',
+                bullets: ['Everything in AI Awareness','Use case identification and prioritisation','Workflow design frameworks','Data readiness and structuring','ROI modelling and measurement','People and change adoption toolkit'],
+                cta: 'Implement AI', ctaClass: 'bg-amber-400 hover:bg-amber-300 text-navy',
+                href: user ? '/checkout?tier=smb' : '/login?redirect=/checkout?tier=smb',
+                cardClass: 'border-amber-400/30 bg-amber-400/[0.02]',
+              },
+              {
+                pill: 'Enterprise', pillClass: 'bg-blue/15 border-blue/30 text-blue-bright',
+                title: 'AI Transformation', price: '$149', billing: 'One-time \u00b7 Lifetime access',
+                hook: 'Lead AI adoption with structure, clarity, and governance.',
+                desc: 'Created for enterprise leaders driving organisation-wide AI capability, governance, operating models, and long-term transformation.',
+                idealFor: 'CIOs, transformation directors, and enterprise leaders responsible for scalable AI adoption.',
+                bullets: ['Everything in AI Implementation','Enterprise AI operating model','Responsible AI and governance','Sustainability and AI impact planning','Multimodal AI orchestration','90-day execution roadmap'],
+                cta: 'Lead Transformation', ctaClass: 'border border-blue/40 text-blue-bright hover:bg-blue/10',
+                href: user ? '/checkout?tier=enterprise' : '/login?redirect=/checkout?tier=enterprise',
+                cardClass: '',
+              },
+            ].map((card, i) => (
+              <Reveal key={i} delay={i * 80}>
+                <Card hover className={`p-6 h-full flex flex-col ${card.cardClass}`}>
+                  <span className={`self-start mb-3 px-2.5 py-1 border rounded-full text-[10px] font-display font-bold ${card.pillClass}`}>{card.pill}</span>
+                  <h3 className="font-display font-bold text-lg mb-1">{card.title}</h3>
+                  <p className="text-xs text-white/40 italic mb-3">{card.hook}</p>
+                  <div className="flex items-baseline gap-2 mb-1">
+                    <span className="font-display font-black text-3xl">{card.price}</span>
+                  </div>
+                  <div className="text-[10px] text-muted mb-4">{card.billing}</div>
+                  <p className="text-xs text-muted leading-relaxed mb-4">{card.desc}</p>
+                  <div className="p-3 rounded-lg bg-white/[0.03] border border-white/5 mb-4">
+                    <div className="text-[10px] font-display font-bold text-muted uppercase tracking-wider mb-1">Ideal for</div>
+                    <p className="text-[11px] text-white/70 leading-relaxed">{card.idealFor}</p>
+                  </div>
+                  <ul className="space-y-1.5 mb-5 flex-1">
+                    {card.bullets.map((b, bi) => (
+                      <li key={bi} className="flex gap-2 text-xs text-white/70">
+                        <span className="text-success flex-shrink-0 mt-0.5">\u2713</span>{b}
+                      </li>
+                    ))}
+                  </ul>
+                  <Link href={card.href}
+                    className={`w-full text-center py-2.5 rounded-lg font-display font-bold text-sm transition-all block ${card.ctaClass}`}>
+                    {card.cta}
+                  </Link>
+                </Card>
+              </Reveal>
+            ))}
           </div>
         </div>
       </section>
