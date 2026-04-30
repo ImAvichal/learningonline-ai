@@ -105,12 +105,8 @@ export function Nav({ transparent = false }) {
       <div className="max-w-6xl mx-auto px-6 h-full flex items-center justify-between gap-6">
         <Logo />
         <div className="hidden md:flex items-center gap-6">
-          <NavLink href="/#find-your-path">Industries</NavLink>
           <NavLink href="/#curriculum">Curriculum</NavLink>
-          <NavLink href="/model-selection">Model Guide</NavLink>
           <NavLink href="/roi-calculator">ROI Calculator</NavLink>
-          <NavLink href="/pricing">Pricing</NavLink>
-          <NavLink href="/glossary">Glossary</NavLink>
           <NavLink href="/contact">Contact</NavLink>
         </div>
         <div className="hidden md:flex items-center gap-3">
