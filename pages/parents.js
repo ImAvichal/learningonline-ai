@@ -550,7 +550,7 @@ export default function ParentsModule() {
   const markDone = () => {
     setCompleted(prev => ({ ...prev, [lesson.id]: true }))
     if (activeLesson < LESSONS.length - 1) {
-      setTimeout(() => setActiveLesson(i => i + 1), 400)
+      setTimeout(() => { setActiveLesson(i => i + 1); window.scrollTo({ top: 0, behavior: 'smooth' }); }, 400)
     }
   }
 
@@ -594,7 +594,7 @@ export default function ParentsModule() {
             {/* Sidebar — lesson list */}
             <div className="space-y-1.5">
               {LESSONS.map((l, i) => (
-                <button key={l.id} onClick={() => setActiveLesson(i)}
+                <button key={l.id} onClick={() => { setActiveLesson(i); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
                   className={`w-full text-left p-3 rounded-xl border transition-all flex items-start gap-3 ${
                     activeLesson === i
                       ? 'border-blue/40 bg-blue/10'
@@ -663,7 +663,7 @@ export default function ParentsModule() {
               {/* Navigation */}
               <div className="flex items-center justify-between gap-3 flex-wrap">
                 <button
-                  onClick={() => setActiveLesson(i => Math.max(0, i - 1))}
+                  onClick={() => { setActiveLesson(i => Math.max(0, i - 1)); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
                   disabled={activeLesson === 0}
                   className="px-5 py-2.5 border border-white/10 text-muted hover:text-white hover:border-white/20 font-display font-bold text-sm rounded-lg transition-all disabled:opacity-30">
                   ← Previous

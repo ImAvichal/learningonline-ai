@@ -302,7 +302,7 @@ export default function Home() {
                 title: 'AI Implementation', price: '$99', popular: true, billing: 'One-time · Lifetime access',
                 hook: 'Move from AI curiosity to practical business execution.',
                 desc: 'Built for business owners and operational teams preparing to introduce AI into workflows, reporting, customer engagement, and decision-making.',
-                idealFor: 'Business owners, operations managers, and department leaders preparing for AI adoption.',
+                idealFor: 'Enterprise leaders, business owners, operations managers, and department leaders preparing for AI adoption.',
                 bullets: ['Everything in AI Awareness','Use case identification and prioritisation','Workflow design frameworks','Data readiness and structuring','ROI modelling and measurement','People and change adoption toolkit'],
                 cta: 'Enrol Now', ctaClass: 'bg-amber-400 hover:bg-amber-300 text-navy',
                 href: user ? '/checkout?tier=smb' : '/login?redirect=/checkout?tier=smb',
