@@ -4,7 +4,7 @@ import { useAuth, useProgress } from '../../lib/auth'
 import NoEnrolmentMessage from '../../components/NoEnrolmentMessage'
 import { useRouter } from 'next/router'
 import { MODULES } from '../../data/modules'
-import { ProgressBar, TierBadge, Spinner, ThemeToggle } , LessonFeedback } from '../../components/ui'
+import { ProgressBar, TierBadge, Spinner, ThemeToggle, LessonFeedback } from '../../components/ui'
 
 // ── Quiz Component ────────────────────────────────────────────────────────────
 function ModuleQuiz({ quiz, moduleId, onComplete }) {
