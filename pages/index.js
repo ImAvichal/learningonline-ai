@@ -254,15 +254,11 @@ export default function Home() {
             <p className="text-xs text-white/30 mb-7 font-display tracking-widest uppercase">
               14 modules · 3 tiers · 40 templates · first live use case in 14 days
             </p>
-            <div className="flex flex-wrap gap-3">
-              {user?.tier
-                ? <Button variant="large" href="/dashboard">Go to Dashboard →</Button>
-                : <>
-                    <Button variant="large" href="#learning-tracks">Start Learning ↓</Button>
-                    <Button variant="ghost" href="/pricing" className="text-sm px-6 py-3">View Courses</Button>
-                  </>
-              }
-            </div>
+            {user?.tier && (
+              <div className="flex flex-wrap gap-3">
+                <Button variant="large" href="/dashboard">Go to Dashboard →</Button>
+              </div>
+            )}
           </div>
         </div>
       </section>
@@ -356,103 +352,6 @@ export default function Home() {
               </Reveal>
             ))}
           </div>
-        </div>
-      </section>
-
-      {/* ── Find Your Path ── */}
-      <section id="find-your-path" className="py-24 bg-navy-mid border-b border-white/5">
-        <div className="max-w-5xl mx-auto px-6">
-          <Reveal>
-            <div className="text-center mb-10">
-              <SectionLabel>Find Your Program</SectionLabel>
-              <h2 className="font-display font-bold text-4xl mb-4">Which program is right for you?</h2>
-              <p className="text-muted max-w-xl mx-auto">Use the decision tree to find your tier in under a minute — or browse by industry to see AI use cases specific to your sector.</p>
-            </div>
-          </Reveal>
-          <Reveal delay={80}>
-            <div className="flex gap-1 bg-white/[0.04] border border-white/8 rounded-xl p-1 mb-8 max-w-md mx-auto">
-              {[{ id:'tree', icon:'🌳', label:'Decision Tree' }, { id:'industry', icon:'🏭', label:'By Industry' }].map(tab => (
-                <button key={tab.id} onClick={() => setActiveSection(tab.id)}
-                  className={`flex-1 flex items-center justify-center gap-2 py-2.5 rounded-lg text-sm font-display font-bold transition-all ${activeSection === tab.id ? 'bg-blue text-white shadow-[0_0_15px_rgba(26,110,255,0.4)]' : 'text-muted hover:text-white'}`}>
-                  <span>{tab.icon}</span>{tab.label}
-                </button>
-              ))}
-            </div>
-          </Reveal>
-          <Reveal delay={120}>
-            <Card glow className="p-8">
-              {activeSection === 'tree' ? <DecisionTree /> : <IndustryMatcher />}
-            </Card>
-          </Reveal>
-        </div>
-      </section>
-
-      {/* ── Platform tools strip ── */}
-      <section className="py-10 bg-navy-mid border-y border-white/5">
-        <div className="max-w-6xl mx-auto px-6">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            {[
-              { icon:'🎯', title:'Model Selection Guide', desc:'Choose the right AI model', href:'/model-selection' },
-              { icon:'📊', title:'AI Value Calculator',        desc:'Model your investment',     href:'/roi-calculator' },
-              { icon:'🏭', title:'Industry Matcher',      desc:'Use cases for your sector', href:'/#find-your-path' },
-              { icon:'🎓', title:'Learning Paths',  desc:'From foundations to 14-day plan', href:'/#curriculum' },
-            ].map((tool, i) => (
-              <Link key={i} href={tool.href}
-                className="p-5 rounded-xl border border-white/8 bg-white/[0.02] hover:border-blue/40 hover:bg-blue/[0.03] transition-all group">
-                <div className="text-2xl mb-2">{tool.icon}</div>
-                <div className="font-display font-bold text-sm text-white mb-1 group-hover:text-blue-bright transition-colors">{tool.title}</div>
-                <div className="text-xs text-muted">{tool.desc}</div>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── Model Selection Promo ── */}
-      <section className="py-20 bg-navy-mid border-y border-white/5">
-        <div className="max-w-6xl mx-auto px-6">
-          <Reveal>
-            <div className="grid lg:grid-cols-[1fr_auto] gap-8 items-center">
-              <div>
-                <SectionLabel>Free Resource</SectionLabel>
-                <h2 className="font-display font-bold text-3xl mb-4">AI Model Selection Framework</h2>
-                <p className="text-muted leading-relaxed max-w-xl mb-4">
-                  Most organisations use models that are 10× more expensive than necessary.
-                  Our free model selection guide shows you exactly which AI model to use for each task —
-                  with real cost calculations across GPT-4o, Claude, Gemini, and open-source options.
-                </p>
-                <div className="flex flex-wrap gap-3 mb-6">
-                  {['Decision tree','Cost comparison table','4 worked examples','Enterprise strategy'].map(f => (
-                    <span key={f} className="text-xs font-display font-bold px-3 py-1.5 rounded-full bg-blue/10 border border-blue/25 text-blue-bright">{f}</span>
-                  ))}
-                </div>
-                <Button href="/model-selection" variant="primary">Explore the Model Guide →</Button>
-              </div>
-              <div className="hidden lg:block">
-                <Card className="p-6 min-w-[280px]">
-                  <div className="text-xs font-display font-bold text-muted uppercase tracking-wider mb-3">Quick example</div>
-                  <div className="space-y-2">
-                    {[
-                      { task:'Email triage (800/day)',    model:'Claude Haiku', cost:'$22/yr',   saving:'94% cheaper' },
-                      { task:'Exec report generation',   model:'Claude Sonnet', cost:'$1.40/yr', saving:'Quality choice' },
-                      { task:'Document search (RAG)',    model:'GPT-4o-mini',  cost:'$55/yr',   saving:'17× cheaper' },
-                    ].map((ex, i) => (
-                      <div key={i} className="p-3 rounded-lg bg-white/[0.03] border border-white/5">
-                        <div className="text-xs text-muted mb-1">{ex.task}</div>
-                        <div className="flex justify-between items-center">
-                          <span className="text-xs font-display font-bold text-white">{ex.model}</span>
-                          <div className="text-right">
-                            <div className="text-xs text-success font-display font-bold">{ex.cost}</div>
-                            <div className="text-[10px] text-muted">{ex.saving}</div>
-                          </div>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </Card>
-              </div>
-            </div>
-          </Reveal>
         </div>
       </section>
 
@@ -563,39 +462,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── Social proof ── */}
-      <section className="py-20 bg-navy-mid border-y border-white/5">
-        <div className="max-w-6xl mx-auto px-6">
-          <Reveal>
-            <div className="text-center mb-12">
-              <SectionLabel>What Practitioners Say</SectionLabel>
-              <h2 className="font-display font-bold text-3xl">Built from real implementation experience</h2>
-            </div>
-          </Reveal>
-          <div className="grid md:grid-cols-3 gap-5">
-            {[
-              { q:'"I\'ve sat through dozens of AI webinars. This is the first thing that gave me a plan I could walk into my CRO with."', name:'Operations Director', role:'Financial Services, 2,400 employees', tier:'smb' },
-              { q:'"The ROI calculator alone paid for this program. We got approval for a $340K AI project within 3 weeks of completing Module 9."', name:'Transformation Lead', role:'Telecommunications, ASX200', tier:'enterprise' },
-              { q:'"Our CTO called it the most practical AI planning document he\'d seen come from inside the business."', name:'Head of Customer Ops', role:'Retail, 1,100 employees', tier:'smb' },
-            ].map((t, i) => (
-              <Reveal key={i} delay={i * 80}>
-                <Card className="p-6 h-full flex flex-col">
-                  <div className="text-yellow-400 text-sm mb-4">★★★★★</div>
-                  <p className="text-sm text-muted leading-relaxed flex-1 mb-5 italic">{t.q}</p>
-                  <div className="flex items-end justify-between">
-                    <div>
-                      <div className="font-display font-bold text-sm">{t.name}</div>
-                      <div className="text-xs text-muted">{t.role}</div>
-                    </div>
-                    <TierBadge tier={t.tier} label={t.tier === 'smb' ? 'Business' : 'Enterprise'} />
-                  </div>
-                </Card>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* ── CTA ── */}
       <section className="py-24 text-center bg-navy-mid border-t border-white/5">
         <div className="max-w-2xl mx-auto px-6">
@@ -658,3 +524,4 @@ export default function Home() {
     </>
   )
 }
+
