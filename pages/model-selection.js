@@ -143,27 +143,7 @@ export default function ModelSelection() {
               Most organisations use models that are 10× more expensive than necessary.
               This framework tells you exactly which model to use — and why.
             </p>
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-amber-400/30 bg-amber-400/10 text-amber-400 text-xs font-display font-bold">
-              ⚡ From Module 1 &amp; Module 7 — Le On AI Curriculum
-            </div>
           </div>
-
-          {/* Key principle */}
-          <Reveal>
-            <div className="grid md:grid-cols-3 gap-4 mb-14">
-              {[
-                { icon:'🎯', title:'Right-size first', desc:'The best model is the cheapest one that meets your accuracy requirement. Benchmark before committing.' },
-                { icon:'⚡', title:'Standardise orchestration', desc:'Don\'t standardise on one model. Standardise on your orchestration layer and swap models freely.' },
-                { icon:'💰', title:'Volume changes everything', desc:'At 10 users, model choice costs $20/month. At 1,000 users, it costs $2,000/month. Model the economics first.' },
-              ].map((p, i) => (
-                <Card key={i} className="p-6 text-center">
-                  <div className="text-3xl mb-3">{p.icon}</div>
-                  <div className="font-display font-bold text-base mb-2">{p.title}</div>
-                  <p className="text-sm text-muted leading-relaxed">{p.desc}</p>
-                </Card>
-              ))}
-            </div>
-          </Reveal>
 
           {/* Decision steps */}
           <Reveal>

@@ -242,17 +242,17 @@ export default function Home() {
       <section className="flex items-center pt-16 relative overflow-hidden">
         <div className="absolute inset-0 opacity-40" style={{ backgroundImage:'linear-gradient(rgba(26,110,255,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(26,110,255,0.04) 1px,transparent 1px)', backgroundSize:'60px 60px' }} />
         <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-blue/10 rounded-full blur-[140px] pointer-events-none" />
-        <div className="max-w-6xl mx-auto px-6 py-10 md:py-14 relative z-10 w-full">
+        <div className="max-w-6xl mx-auto px-6 py-8 md:py-10 relative z-10 w-full">
           <div className="max-w-3xl">
-            <h1 className="font-display font-black leading-[1.05] tracking-tight mb-4" style={{ fontSize:'clamp(32px,5vw,56px)' }}>
+            <h1 className="font-display font-black leading-[1.05] tracking-tight mb-4 md:whitespace-nowrap" style={{ fontSize:'clamp(28px,4.5vw,50px)' }}>
               AI Anxiety <span className="text-blue">→</span> AI Awareness
             </h1>
-            <p className="text-base text-muted leading-relaxed max-w-lg mb-2">
+            <p className="text-base text-muted leading-relaxed max-w-lg mb-1">
               Practical learning for professionals, parents, businesses and enterprise leaders — without the hype.
             </p>
 
             <p className="text-xs text-white/30 mb-4 font-display tracking-widest uppercase">
-              14 modules · 3 tiers · 40 templates · first live use case in 14 days
+              14 modules + free parents guide · 3 tiers · 40 templates · live in 14 days
             </p>
             {user?.tier && (
               <div className="flex flex-wrap gap-3">
@@ -264,7 +264,7 @@ export default function Home() {
       </section>
 
       {/* ── Learning Tracks (4 cards: Parents free + 3 paid tiers) ── */}
-      <section id="learning-tracks" className="py-8">
+      <section id="learning-tracks" className="py-4">
         <div className="max-w-6xl mx-auto px-6">
           <Reveal>
             <div className="text-center mb-12">
