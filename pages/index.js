@@ -247,7 +247,7 @@ export default function Home() {
             <h1 className="font-display font-black leading-[1.05] tracking-tight mb-4 md:whitespace-nowrap" style={{ fontSize:'clamp(28px,4.5vw,50px)' }}>
               AI Anxiety <span className="text-blue">→</span> AI Awareness
             </h1>
-            <p className="text-base text-muted leading-relaxed max-w-lg mb-1">
+            <p className="text-base text-muted leading-relaxed max-w-lg mx-auto mb-1">
               Practical learning for professionals, parents, businesses and enterprise leaders — without the hype.
             </p>
 
@@ -255,7 +255,7 @@ export default function Home() {
               15 modules · 3 tiers · 40 templates · live in 14 days
             </p>
             {user?.tier && (
-              <div className="flex flex-wrap gap-3">
+              <div className="flex flex-wrap gap-3 justify-center">
                 <Button variant="large" href="/dashboard">Go to Dashboard →</Button>
               </div>
             )}
@@ -524,4 +524,3 @@ export default function Home() {
     </>
   )
 }
-
