@@ -244,7 +244,7 @@ export default function Home() {
         <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-blue/10 rounded-full blur-[140px] pointer-events-none" />
         <div className="max-w-6xl mx-auto px-6 py-8 md:py-10 relative z-10 w-full">
           <div className="max-w-3xl mx-auto text-center">
-            <h1 className="font-display font-black leading-[1.05] tracking-tight mb-4 md:whitespace-nowrap" style={{ fontSize:'clamp(28px,4.5vw,50px)' }}>
+            <h1 className="font-display font-black leading-[1.05] tracking-tight mb-4" style={{ fontSize:'clamp(28px,4.5vw,50px)' }}>
               AI Anxiety <span className="text-blue">→</span> AI Awareness
             </h1>
             <p className="text-base text-muted leading-relaxed max-w-lg mx-auto mb-1">
