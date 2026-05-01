@@ -243,8 +243,8 @@ export default function Home() {
         <div className="absolute inset-0 opacity-40" style={{ backgroundImage:'linear-gradient(rgba(26,110,255,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(26,110,255,0.04) 1px,transparent 1px)', backgroundSize:'60px 60px' }} />
         <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-blue/10 rounded-full blur-[140px] pointer-events-none" />
         <div className="max-w-6xl mx-auto px-6 py-8 md:py-10 relative z-10 w-full">
-          <div className="max-w-3xl mx-auto text-center">
-            <h1 className="font-display font-black leading-[1.05] tracking-tight mb-4" style={{ fontSize:'clamp(28px,4.5vw,50px)' }}>
+          <div className="max-w-4xl mx-auto text-center">
+            <h1 className="font-display font-black leading-[1.05] tracking-tight mb-4" style={{ fontSize:'clamp(26px,3.8vw,44px)' }}>
               AI Anxiety <span className="text-blue">→</span> AI Awareness
             </h1>
             <p className="text-base text-muted leading-relaxed max-w-lg mx-auto mb-1">
