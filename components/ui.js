@@ -142,17 +142,11 @@ export function Nav({ transparent = false }) {
       </div>
       {open && (
         <div className="md:hidden bg-navy-mid border-t border-white/5 px-6 py-4 space-y-3">
-          <MobileLink href="/#find-your-path"  onClick={() => setOpen(false)}>Industries</MobileLink>
-          <MobileLink href="/#curriculum"       onClick={() => setOpen(false)}>REMOVE_ME</MobileLink>
-          <MobileLink href="/model-selection" onClick={() => setOpen(false)}>
-          <MobileLink href="/" onClick={() => setOpen(false)}>Home</MobileLink
+          <MobileLink href="/" onClick={() => setOpen(false)}>Home</MobileLink>
           <MobileLink href="/model-selection" onClick={() => setOpen(false)}>Choosing the Right AI</MobileLink>
-          <MobileLink href="/model-selection"   onClick={() => setOpen(false)}>Model Guide</MobileLink>
           <MobileLink href="/roi-calculator"    onClick={() => setOpen(false)}>Value Calculator</MobileLink>
           <MobileLink href="/glossary" onClick={() => setOpen(false)}>Jargon Buster</MobileLink>
           <MobileLink href="/about" onClick={() => setOpen(false)}>About</MobileLink>
-          <MobileLink href="/pricing"           onClick={() => setOpen(false)}>Pricing</MobileLink>
-          <MobileLink href="/glossary"          onClick={() => setOpen(false)}>Glossary</MobileLink>
           {!user && (
             <>
               <MobileLink href="/pricing" onClick={() => setOpen(false)}>View Courses</MobileLink>
