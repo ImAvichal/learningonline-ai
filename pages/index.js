@@ -234,7 +234,7 @@ export default function Home() {
     <>
       <Head>
         <title>Le On AI — AI Anxiety → AI Awareness</title>
-        <meta name="description" content="The execution-focused AI program for professionals, business owners, and enterprise leaders. 14 modules, 40 templates, ROI calculator, and model selection framework." />
+        <meta name="description" content="The execution-focused AI program for professionals, business owners, and enterprise leaders. 15 modules, 40 templates, ROI calculator, and model selection framework." />
       </Head>
       <Nav transparent />
 
@@ -243,7 +243,7 @@ export default function Home() {
         <div className="absolute inset-0 opacity-40" style={{ backgroundImage:'linear-gradient(rgba(26,110,255,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(26,110,255,0.04) 1px,transparent 1px)', backgroundSize:'60px 60px' }} />
         <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-blue/10 rounded-full blur-[140px] pointer-events-none" />
         <div className="max-w-6xl mx-auto px-6 py-8 md:py-10 relative z-10 w-full">
-          <div className="max-w-3xl">
+          <div className="max-w-3xl mx-auto text-center">
             <h1 className="font-display font-black leading-[1.05] tracking-tight mb-4 md:whitespace-nowrap" style={{ fontSize:'clamp(28px,4.5vw,50px)' }}>
               AI Anxiety <span className="text-blue">→</span> AI Awareness
             </h1>
@@ -252,7 +252,7 @@ export default function Home() {
             </p>
 
             <p className="text-xs text-white/30 mb-4 font-display tracking-widest uppercase">
-              14 modules + free parents guide · 3 tiers · 40 templates · live in 14 days
+              15 modules · 3 tiers · 40 templates · live in 14 days
             </p>
             {user?.tier && (
               <div className="flex flex-wrap gap-3">
@@ -361,7 +361,7 @@ export default function Home() {
           <Reveal>
             <div className="text-center mb-12">
               <SectionLabel>Learning Paths</SectionLabel>
-              <h2 className="font-display font-bold text-4xl mb-4">14 modules. Zero filler.</h2>
+              <h2 className="font-display font-bold text-4xl mb-4">15 modules. Zero filler.</h2>
               <p className="text-muted max-w-xl mx-auto">Every lesson produces a real deliverable. Every module builds on the last.</p>
             </div>
           </Reveal>
