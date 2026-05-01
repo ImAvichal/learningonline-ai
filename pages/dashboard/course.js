@@ -26,6 +26,7 @@ function ModuleQuiz({ quiz, moduleId, onComplete }) {
   const next = () => {
     if (current < quiz.questions.length - 1) {
       setCurrent(c => c + 1)
+      window.scrollTo({ top: 0, behavior: 'smooth' })
       setSelected(null)
       setAnswered(false)
     } else {
@@ -202,6 +203,7 @@ export default function CoursePage() {
   const goTo = (lesson) => {
     setActiveLessonId(lesson.id)
     setActiveModIdx(lesson.moduleIdx)
+    window.scrollTo({ top: 0, behavior: 'smooth' })
     setExpanded(p => ({ ...p, [lesson.moduleIdx]: true }))
     setSidebarOpen(false)
     setShowQuiz(false)
