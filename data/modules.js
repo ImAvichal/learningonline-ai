@@ -1,4 +1,4 @@
-// data/modules.js — Full 14-module Le On AI curriculum
+// data/modules.js — Full 15-module Le On AI curriculum
 // Each module includes: lessons, Q&A questions, real-world practice section
 
 export const MODULES = [
