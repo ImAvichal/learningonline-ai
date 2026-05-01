@@ -591,8 +591,27 @@ export default function ParentsModule() {
 
           <div className="grid lg:grid-cols-[260px_1fr] gap-8">
 
-            {/* Sidebar — lesson list */}
-            <div className="space-y-1.5">
+            {/* Mobile lesson selector */}
+            <div className="lg:hidden mb-2">
+              <div className="flex items-center justify-between mb-2">
+                <span className="text-xs font-display font-bold text-muted uppercase tracking-wider">Lesson {activeLesson + 1} of {LESSONS.length}</span>
+                <span className="text-xs text-muted">{Object.keys(completed).length}/{LESSONS.length} complete</span>
+              </div>
+              <select
+                value={activeLesson}
+                onChange={(e) => { setActiveLesson(Number(e.target.value)); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
+                className="w-full bg-white/[0.04] border border-white/10 rounded-lg px-3 py-2.5 text-sm text-white font-display appearance-none focus:outline-none focus:border-blue/40"
+              >
+                {LESSONS.map((l, i) => (
+                  <option key={l.id} value={i} className="bg-navy text-white">
+                    {completed[l.id] ? '✅ ' : ''}{l.number}. {l.title}
+                  </option>
+                ))}
+              </select>
+            </div>
+
+            {/* Sidebar — lesson list (hidden on mobile) */}
+            <div className="hidden lg:block space-y-1.5">
               {LESSONS.map((l, i) => (
                 <button key={l.id} onClick={() => { setActiveLesson(i); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
                   className={`w-full text-left p-3 rounded-xl border transition-all flex items-start gap-3 ${
