@@ -108,6 +108,7 @@ export function Nav({ transparent = false }) {
           <NavLink href="/model-selection">Choosing the Right AI</NavLink>
           <NavLink href="/roi-calculator">Value Calculator</NavLink>
           <NavLink href="/glossary">Jargon Buster</NavLink>
+          <NavLink href="/about">About</NavLink>
         </div>
         <div className="hidden md:flex items-center gap-3">
           <ThemeToggle />
@@ -145,6 +146,7 @@ export function Nav({ transparent = false }) {
           <MobileLink href="/model-selection"   onClick={() => setOpen(false)}>Model Guide</MobileLink>
           <MobileLink href="/roi-calculator"    onClick={() => setOpen(false)}>Value Calculator</MobileLink>
           <MobileLink href="/glossary" onClick={() => setOpen(false)}>Jargon Buster</MobileLink>
+          <MobileLink href="/about" onClick={() => setOpen(false)}>About</MobileLink>
           <MobileLink href="/pricing"           onClick={() => setOpen(false)}>Pricing</MobileLink>
           <MobileLink href="/glossary"          onClick={() => setOpen(false)}>Glossary</MobileLink>
           {!user && (
