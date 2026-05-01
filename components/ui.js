@@ -105,7 +105,7 @@ export function Nav({ transparent = false }) {
     }`}>
       <div className="max-w-6xl mx-auto px-6 h-full flex items-center justify-between gap-6">
         <Logo />
-        <div className="hidden md:flex items-center gap-5 flex-1 ml-8">
+        <div className="hidden md:flex items-center gap-5 flex-1 justify-end mr-4">
           <NavLink href="/">Home</NavLink>
           <NavLink href="/model-selection">Choosing the Right AI</NavLink>
           <NavLink href="/roi-calculator">Value Calculator</NavLink>
