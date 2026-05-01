@@ -2143,14 +2143,186 @@ Standard Q&A responses   → Automated   → Escalations & experience design</pr
     },
   },
   {
-    id: 'module-14', number: 14, icon: '🚀',
+    id: 'module-14', number: 14, icon: '💰',
+    title: 'AI Economics',
+    description: 'Understand why AI costs what it costs — and how to design for cost control, speed, and scale without overspending.',
+    deliverable: 'AI Cost Driver Checklist',
+    templateId: 'ai-cost-checklist',
+    lessons: [
+      {
+        id: 'm14-l1', number: 1, tier: 'enterprise', duration: '12 min',
+        title: 'Why AI Responses Cost Money',
+        content: `<h2>The Economics Behind Every AI Response</h2>
+<p>Every AI response you receive is the output of a powerful computer processing your request. Unlike traditional software — where the cost of serving one more user is near-zero — AI compute scales directly with usage. More requests, longer prompts, and faster responses all cost more.</p>
+<p>This lesson explains why, so you can make informed decisions about when to invest in AI speed and when to optimise for cost.</p>
+
+<h3>What Happens When You Send a Prompt</h3>
+<ol>
+<li>Your text is converted into <strong>tokens</strong> (the units AI models read)</li>
+<li>The tokens are sent to a GPU (graphics processing unit) — specialised hardware designed for AI workloads</li>
+<li>The model processes every token in your prompt, building an internal understanding of the request</li>
+<li>The model generates output tokens one at a time, each based on everything that came before it</li>
+<li>The output is sent back to you</li>
+</ol>
+<p>Every step costs compute time, energy, and infrastructure — which is why you're charged per token.</p>
+
+<h3>Why Output Costs More Than Input</h3>
+<p>Input tokens (your prompt) are processed in parallel — the model reads them all at once. Output tokens are generated sequentially — one after another. Sequential processing is slower and uses more compute per token.</p>
+<p>This is why output tokens typically cost 4–6× more than input tokens. It's also why asking for a concise 3-line summary costs far less than asking for a 2,000-word essay — even if the input is identical.</p>
+
+<h3>The Practical Implication</h3>
+<p>You control AI costs more than you think. The three biggest levers are: (1) how much text you send, (2) how much text you ask for back, and (3) how fast you need the response. All three are design decisions, not technical constraints.</p>
+
+<div class="real-world-box">
+<h3>🌍 From Real-World Practice</h3>
+<p><strong>Example:</strong> A consulting firm asked AI to generate 800-word client briefings. Cost per briefing: $0.04. After reformatting to 200-word executive summaries with the same core content, cost dropped to $0.012 — a 70% reduction with higher client satisfaction because the shorter format was actually preferred.</p>
+</div>`,
+      },
+      {
+        id: 'm14-l2', number: 2, tier: 'enterprise', duration: '14 min',
+        title: 'Tokens, Batching and Scale',
+        content: `<h2>How Volume Changes the Economics</h2>
+<p>AI costs are trivial at small scale and significant at large scale. The difference between a well-optimised and poorly-optimised AI program across 10 use cases is typically $20,000–$100,000 per year.</p>
+
+<h3>The Batching Advantage</h3>
+<p>AI providers process requests most efficiently when they can group them together. This is called <strong>batch processing</strong> — sending multiple requests in a single run rather than one at a time.</p>
+<table>
+<thead><tr><th>Processing Mode</th><th>Speed</th><th>Cost</th><th>Best For</th></tr></thead>
+<tbody>
+<tr><td><strong>Real-time</strong></td><td>1–3 seconds</td><td>Full price</td><td>Live customer interactions</td></tr>
+<tr><td><strong>Batch</strong></td><td>Minutes to hours</td><td>30–50% discount</td><td>Report generation, data classification, nightly processing</td></tr>
+</tbody>
+</table>
+<p><strong>Rule of thumb:</strong> If the user isn't waiting for the response, it should be batched.</p>
+
+<h3>How Scale Changes the Conversation</h3>
+<p>At 10 requests per day, model choice barely matters — the cost difference between GPT-4o and GPT-4o-mini is cents. At 10,000 requests per day, the same choice is the difference between $200/day and $12/day. Scale makes every optimisation decision meaningful.</p>
+
+<h3>The Caching Opportunity</h3>
+<p>Many AI applications receive the same or very similar questions repeatedly. Storing the AI's response and returning it for identical future questions — <strong>caching</strong> — eliminates the API call entirely.</p>
+<p>FAQ-style applications typically achieve 40–70% cache hit rates. At 1,000 requests/day with a 50% hit rate, you eliminate 500 API calls daily — for free.</p>
+
+<div class="real-world-box">
+<h3>🌍 From Real-World Practice</h3>
+<p><strong>Example:</strong> An e-commerce company's product Q&A AI handled 3,000 queries/day. After implementing response caching for the top 200 most common questions, 58% of queries were served from cache. Monthly API cost dropped from $2,400 to $1,010 — with faster response times for cached queries.</p>
+</div>`,
+      },
+      {
+        id: 'm14-l3', number: 3, tier: 'enterprise', duration: '12 min',
+        title: 'Why Long Context Is Expensive',
+        content: `<h2>The Hidden Cost of Long Documents and Conversations</h2>
+<p>Context length — how much text the AI holds in memory during a single request — is one of the most misunderstood cost drivers in AI.</p>
+
+<h3>How Context Works</h3>
+<p>When you send a document to an AI model, it builds an internal memory structure (called a <strong>KV cache</strong>) that lets it reference any part of the document while generating its response. The longer the document, the larger this memory structure, and the more compute required.</p>
+<p>The relationship is not linear — it's closer to quadratic for some operations. A document twice as long can cost significantly more than twice as much to process.</p>
+
+<h3>Practical Context Cost Comparison</h3>
+<table>
+<thead><tr><th>Input Size</th><th>Tokens</th><th>Relative Cost</th></tr></thead>
+<tbody>
+<tr><td>Short email</td><td>~300</td><td>1×</td></tr>
+<tr><td>5-page report</td><td>~4,000</td><td>13×</td></tr>
+<tr><td>50-page document</td><td>~40,000</td><td>133×</td></tr>
+<tr><td>200-page report</td><td>~160,000</td><td>533×</td></tr>
+</tbody>
+</table>
+
+<h3>The Solution: Don't Send Everything</h3>
+<p>The RAG (Retrieval-Augmented Generation) pattern solves this: instead of sending a full 200-page document, you search for the 3–5 most relevant pages and send only those. Cost drops from 160,000 tokens to 5,000 tokens — a 97% reduction.</p>
+
+<div class="real-world-box">
+<h3>🌍 From Real-World Practice</h3>
+<p><strong>Example:</strong> A legal firm sent full contracts (80–120 pages) to AI for clause review. Cost per contract: $1.20. After implementing RAG to extract only the 5–8 relevant clauses per query, cost per contract dropped to $0.08. Same accuracy — the model actually performed better because it focused on relevant content rather than processing 100 pages of boilerplate.</p>
+</div>`,
+      },
+      {
+        id: 'm14-l4', number: 4, tier: 'enterprise', duration: '14 min',
+        title: 'Fast vs Cheap vs Accurate',
+        content: `<h2>The AI Trade-off Triangle</h2>
+<p>In AI, you can optimise for three things — but you typically have to choose two:</p>
+<table>
+<thead><tr><th>Priority</th><th>What You Get</th><th>What It Costs</th></tr></thead>
+<tbody>
+<tr><td><strong>Fast + Accurate</strong></td><td>Real-time frontier model responses</td><td>Highest cost — premium infrastructure + premium model</td></tr>
+<tr><td><strong>Fast + Cheap</strong></td><td>Real-time efficient model responses</td><td>Slightly lower accuracy on complex tasks</td></tr>
+<tr><td><strong>Accurate + Cheap</strong></td><td>Frontier model in batch mode</td><td>Slower — minutes to hours instead of seconds</td></tr>
+</tbody>
+</table>
+<p>The right choice depends on the use case, not the technology. Most businesses need all three modes — the skill is knowing which mode fits which task.</p>
+
+<h3>Decision Framework</h3>
+<p>For each AI use case, ask:</p>
+<ol>
+<li>Is a human waiting for this response? → Fast mode</li>
+<li>Does accuracy have financial or reputational consequences? → Accurate mode</li>
+<li>Is this processing volume data overnight? → Cheap mode</li>
+<li>Is it customer-facing at high volume? → Benchmark efficient models first</li>
+</ol>
+
+<div class="real-world-box">
+<h3>🌍 From Real-World Practice</h3>
+<p><strong>Example:</strong> A financial services firm categorised their 8 AI use cases: 2 needed fast+accurate (customer chat, fraud alerts), 3 needed fast+cheap (email triage, ticket routing, FAQ), and 3 needed accurate+cheap (compliance reports, quarterly analysis, training content). Matching mode to use case reduced their monthly AI spend from $8,200 to $2,900 — a 65% saving with no quality impact on any use case.</p>
+</div>`,
+      },
+      {
+        id: 'm14-l5', number: 5, tier: 'enterprise', duration: '15 min',
+        title: 'Designing for Cost Control',
+        content: `<h2>Building AI Systems That Stay Affordable at Scale</h2>
+<p>The organisations that control AI costs best don't do it by choosing the cheapest model — they do it by designing their systems for cost control from day one.</p>
+
+<h3>The 7 Cost Control Design Principles</h3>
+<ol>
+<li><strong>Right-size every model choice.</strong> Benchmark 2–3 models on your actual data before committing. The cheapest model meeting your accuracy threshold is always the right choice.</li>
+<li><strong>Compress every system prompt.</strong> System prompts run on every single API call. A 500-token prompt at 10,000 calls/day = 5M tokens/day from the prompt alone.</li>
+<li><strong>Specify concise output formats.</strong> JSON with defined fields costs a fraction of narrative prose. Design output format deliberately.</li>
+<li><strong>Cache everything cacheable.</strong> If the same question gets asked twice, the second answer should come from cache, not from an API call.</li>
+<li><strong>Batch everything batchable.</strong> If the user isn't waiting, it shouldn't run in real-time.</li>
+<li><strong>Chunk documents, don't send whole files.</strong> Use RAG to retrieve relevant sections. Never send 100 pages when 5 will do.</li>
+<li><strong>Monitor monthly.</strong> Set up cost alerts. Review token usage monthly. Investigate any use case exceeding projections by 20%.</li>
+</ol>
+
+<h3>The AI Cost Driver Checklist</h3>
+<p>Use this checklist (available as a downloadable template) for every AI use case before build:</p>
+<pre>□ Use case name: _______________
+□ Number of users: ___
+□ Requests per user per day: ___
+□ Average input length: short / medium / long document
+□ Average output length: ___
+□ Context length required: ___
+□ Real-time or background? ___
+□ Model required: frontier / efficient / either
+□ Can it be batched? Yes / No
+□ Can responses be cached? Yes / No
+□ Estimated monthly token volume: ___
+□ Cost risk: Low / Medium / High</pre>
+
+<div class="real-world-box">
+<h3>🌍 From Real-World Practice</h3>
+<p><strong>Insight:</strong> Organisations that complete a cost driver checklist for every use case before build spend an average of 55% less on AI operations than those that choose models based on capability alone. The checklist takes 15 minutes. The savings compound across every use case, every month, for years.</p>
+<p><strong>Implementation tip:</strong> Make the AI Cost Driver Checklist a mandatory gate before any AI build is approved. No completed checklist = no build approval. This single process change prevents more overspend than any technology decision.</p>
+</div>`,
+      },
+    ],
+    quiz: {
+      questions: [
+        { id: 'q14-1', text: 'Your AI system processes 5,000 customer queries per day. 60% are identical FAQ-style questions. What is the highest-impact cost reduction action?', options: ['Switch to a cheaper model', 'Implement response caching — eliminating 3,000 API calls daily', 'Reduce the system prompt length', 'Process all queries in batch mode'], correct: 1, explanation: 'Caching eliminates API calls entirely for repeated queries. At 60% hit rate on 5,000 queries, that is 3,000 free responses daily — the single highest-impact cost action.' },
+        { id: 'q14-2', text: 'A 200-page legal contract is sent to AI for review. What is the most cost-effective approach?', options: ['Send the full document — the model can handle it', 'Use RAG to extract only the relevant clauses and send those to the model', 'Split it into 20 separate 10-page requests', 'Use a smaller model for the full document'], correct: 1, explanation: 'RAG extracts only relevant sections, reducing token count from 160,000 to 5,000–10,000. This is a 95%+ cost reduction with equal or better accuracy.' },
+        { id: 'q14-3', text: 'Your business has 8 AI use cases. 3 are customer-facing chat, 5 are internal processing. What is the best cost strategy?', options: ['Use the same frontier model for all 8 for consistency', 'Use frontier models for the 3 customer-facing tasks and efficient models in batch mode for the 5 internal tasks', 'Use the cheapest model for everything', 'Only deploy the 3 customer-facing use cases'], correct: 1, explanation: 'Matching model tier and processing mode to task requirements is the most effective cost strategy. Customer-facing needs quality; internal processing needs cost efficiency.' },
+        { id: 'q14-4', text: 'Output tokens cost 4-6x more than input tokens. How should this affect your prompt design?', options: ['It should not — output quality is more important than cost', 'Always ask for the shortest possible output — specify format, word count, and structure explicitly', 'Only use models that charge the same for input and output', 'Avoid generating any output longer than 100 words'], correct: 1, explanation: 'Specifying concise output formats (JSON, structured summaries, word limits) dramatically reduces output token cost without sacrificing quality. Design output format deliberately.' },
+        { id: 'q14-5', text: 'When should you use batch processing instead of real-time AI?', options: ['Never — users expect instant responses', 'Whenever the end user is not actively waiting for the response', 'Only for tasks that run once per month', 'Only when using the cheapest model'], correct: 1, explanation: 'Batch processing is appropriate for any task where the user is not waiting — nightly reports, scheduled classifications, data processing. It typically costs 30-50% less than real-time.' },
+      ],
+    },
+  },
+  {
+    id: 'module-15', number: 15, icon: '🚀',
     title: '90-Day Execution Plan',
     description: 'Build your week-by-week plan from approved use case to live, measured AI in production. Sequenced. Realistic. Deliverable.',
     deliverable: '90-Day AI Execution Roadmap',
     templateId: '90-day-plan',
     lessons: [
       {
-        id: 'm14-l1', number: 1, tier: 'enterprise', duration: '30 min',
+        id: 'm15-l1', number: 1, tier: 'enterprise', duration: '30 min',
         title: 'Prioritisation, Sequencing, and the 90-Day Roadmap',
         content: `<h2>From Plan to Production in 90 Days</h2>
 <p>90 days is enough to take a prioritised use case from approved investment to live, measured AI in production. The teams that fail this timeline share one characteristic: they underestimate the non-technical work.</p>
@@ -2225,186 +2397,14 @@ Week 12 — Measure & Report
     ],
     quiz: {
       questions: [
-        { id: 'q14-1', text: 'At week 6 of a 90-day AI project, your CEO asks you to add two new features that weren\'t in the original scope. What is the right response?', options: ['Add them immediately — leadership requests take priority', 'Evaluate the impact on timeline, add them to a parking lot, deliver the original scope on time, and include the new features in the next cycle', 'Cancel the project and restart with the new requirements', 'Add one feature and drop one from the original scope'], correct: 1, explanation: 'Scope management is the primary determinant of 90-day delivery success. A parking lot respects the idea while protecting the delivery. Proof of value funds everything that follows.' },
-        { id: 'q14-2', text: 'Why should baseline metrics be established in Week 3 rather than after deployment?', options: ['It doesn\'t matter when you establish them', 'Because you cannot prove improvement without a pre-deployment benchmark — retrospective baselines are estimates, not evidence', 'Because Week 3 is the only time stakeholders are available', 'So you can adjust the AI to match the baseline'], correct: 1, explanation: 'Pre-deployment baselines are evidence. Post-deployment estimates are guesses. Every AI program needs documented baseline metrics before go-live to produce credible ROI measurements.' },
-        { id: 'q14-3', text: 'What is the minimum pilot size recommended before full team rollout?', options: ['1 person', '3–5 users', '50% of the team', 'No pilot needed — go straight to full deployment'], correct: 1, explanation: '3–5 users is the minimum meaningful pilot. Small enough to manage feedback intensively. Large enough to surface real-world edge cases that testing missed. Essential quality gate before full deployment.' },
-        { id: 'q14-4', text: 'You successfully deploy use case 1 in 90 days with a documented 52% time reduction. When should you begin use case 2?', options: ['Immediately — momentum is critical', 'After presenting the use case 1 results and securing investment approval for use case 2', 'Only after 12 months of use case 1 data', 'Use case 2 should run in parallel with use case 1'], correct: 1, explanation: 'The result of use case 1 is the business case for use case 2. Present before proceeding. This creates a self-funding AI program where each success funds the next.' },
-        { id: 'q14-5', text: 'What infrastructure should every AI use case leave behind for future projects?', options: ['Nothing — each use case is independent', 'Reusable components: prompt libraries, data pipelines, integration patterns, and lessons learned documentation', 'A full rebuild of the technical environment', 'Only the final model output'], correct: 1, explanation: 'Reusable infrastructure is what makes AI programs compound in value. Use case 2 built on use case 1\'s foundations should take 40–60% less time to deliver.' },
-      ],
-    },
-  },  {
-    id: 'module-15', number: 15, icon: '💰',
-    title: 'AI Economics',
-    description: 'Understand why AI costs what it costs — and how to design for cost control, speed, and scale without overspending.',
-    deliverable: 'AI Cost Driver Checklist',
-    templateId: 'ai-cost-checklist',
-    lessons: [
-      {
-        id: 'm15-l1', number: 1, tier: 'smb', duration: '12 min',
-        title: 'Why AI Responses Cost Money',
-        content: `<h2>The Economics Behind Every AI Response</h2>
-<p>Every AI response you receive is the output of a powerful computer processing your request. Unlike traditional software — where the cost of serving one more user is near-zero — AI compute scales directly with usage. More requests, longer prompts, and faster responses all cost more.</p>
-<p>This lesson explains why, so you can make informed decisions about when to invest in AI speed and when to optimise for cost.</p>
-
-<h3>What Happens When You Send a Prompt</h3>
-<ol>
-<li>Your text is converted into <strong>tokens</strong> (the units AI models read)</li>
-<li>The tokens are sent to a GPU (graphics processing unit) — specialised hardware designed for AI workloads</li>
-<li>The model processes every token in your prompt, building an internal understanding of the request</li>
-<li>The model generates output tokens one at a time, each based on everything that came before it</li>
-<li>The output is sent back to you</li>
-</ol>
-<p>Every step costs compute time, energy, and infrastructure — which is why you're charged per token.</p>
-
-<h3>Why Output Costs More Than Input</h3>
-<p>Input tokens (your prompt) are processed in parallel — the model reads them all at once. Output tokens are generated sequentially — one after another. Sequential processing is slower and uses more compute per token.</p>
-<p>This is why output tokens typically cost 4–6× more than input tokens. It's also why asking for a concise 3-line summary costs far less than asking for a 2,000-word essay — even if the input is identical.</p>
-
-<h3>The Practical Implication</h3>
-<p>You control AI costs more than you think. The three biggest levers are: (1) how much text you send, (2) how much text you ask for back, and (3) how fast you need the response. All three are design decisions, not technical constraints.</p>
-
-<div class="real-world-box">
-<h3>🌍 From Real-World Practice</h3>
-<p><strong>Example:</strong> A consulting firm asked AI to generate 800-word client briefings. Cost per briefing: $0.04. After reformatting to 200-word executive summaries with the same core content, cost dropped to $0.012 — a 70% reduction with higher client satisfaction because the shorter format was actually preferred.</p>
-</div>`,
-      },
-      {
-        id: 'm15-l2', number: 2, tier: 'smb', duration: '14 min',
-        title: 'Tokens, Batching and Scale',
-        content: `<h2>How Volume Changes the Economics</h2>
-<p>AI costs are trivial at small scale and significant at large scale. The difference between a well-optimised and poorly-optimised AI program across 10 use cases is typically $20,000–$100,000 per year.</p>
-
-<h3>The Batching Advantage</h3>
-<p>AI providers process requests most efficiently when they can group them together. This is called <strong>batch processing</strong> — sending multiple requests in a single run rather than one at a time.</p>
-<table>
-<thead><tr><th>Processing Mode</th><th>Speed</th><th>Cost</th><th>Best For</th></tr></thead>
-<tbody>
-<tr><td><strong>Real-time</strong></td><td>1–3 seconds</td><td>Full price</td><td>Live customer interactions</td></tr>
-<tr><td><strong>Batch</strong></td><td>Minutes to hours</td><td>30–50% discount</td><td>Report generation, data classification, nightly processing</td></tr>
-</tbody>
-</table>
-<p><strong>Rule of thumb:</strong> If the user isn't waiting for the response, it should be batched.</p>
-
-<h3>How Scale Changes the Conversation</h3>
-<p>At 10 requests per day, model choice barely matters — the cost difference between GPT-4o and GPT-4o-mini is cents. At 10,000 requests per day, the same choice is the difference between $200/day and $12/day. Scale makes every optimisation decision meaningful.</p>
-
-<h3>The Caching Opportunity</h3>
-<p>Many AI applications receive the same or very similar questions repeatedly. Storing the AI's response and returning it for identical future questions — <strong>caching</strong> — eliminates the API call entirely.</p>
-<p>FAQ-style applications typically achieve 40–70% cache hit rates. At 1,000 requests/day with a 50% hit rate, you eliminate 500 API calls daily — for free.</p>
-
-<div class="real-world-box">
-<h3>🌍 From Real-World Practice</h3>
-<p><strong>Example:</strong> An e-commerce company's product Q&A AI handled 3,000 queries/day. After implementing response caching for the top 200 most common questions, 58% of queries were served from cache. Monthly API cost dropped from $2,400 to $1,010 — with faster response times for cached queries.</p>
-</div>`,
-      },
-      {
-        id: 'm15-l3', number: 3, tier: 'smb', duration: '12 min',
-        title: 'Why Long Context Is Expensive',
-        content: `<h2>The Hidden Cost of Long Documents and Conversations</h2>
-<p>Context length — how much text the AI holds in memory during a single request — is one of the most misunderstood cost drivers in AI.</p>
-
-<h3>How Context Works</h3>
-<p>When you send a document to an AI model, it builds an internal memory structure (called a <strong>KV cache</strong>) that lets it reference any part of the document while generating its response. The longer the document, the larger this memory structure, and the more compute required.</p>
-<p>The relationship is not linear — it's closer to quadratic for some operations. A document twice as long can cost significantly more than twice as much to process.</p>
-
-<h3>Practical Context Cost Comparison</h3>
-<table>
-<thead><tr><th>Input Size</th><th>Tokens</th><th>Relative Cost</th></tr></thead>
-<tbody>
-<tr><td>Short email</td><td>~300</td><td>1×</td></tr>
-<tr><td>5-page report</td><td>~4,000</td><td>13×</td></tr>
-<tr><td>50-page document</td><td>~40,000</td><td>133×</td></tr>
-<tr><td>200-page report</td><td>~160,000</td><td>533×</td></tr>
-</tbody>
-</table>
-
-<h3>The Solution: Don't Send Everything</h3>
-<p>The RAG (Retrieval-Augmented Generation) pattern solves this: instead of sending a full 200-page document, you search for the 3–5 most relevant pages and send only those. Cost drops from 160,000 tokens to 5,000 tokens — a 97% reduction.</p>
-
-<div class="real-world-box">
-<h3>🌍 From Real-World Practice</h3>
-<p><strong>Example:</strong> A legal firm sent full contracts (80–120 pages) to AI for clause review. Cost per contract: $1.20. After implementing RAG to extract only the 5–8 relevant clauses per query, cost per contract dropped to $0.08. Same accuracy — the model actually performed better because it focused on relevant content rather than processing 100 pages of boilerplate.</p>
-</div>`,
-      },
-      {
-        id: 'm15-l4', number: 4, tier: 'smb', duration: '14 min',
-        title: 'Fast vs Cheap vs Accurate',
-        content: `<h2>The AI Trade-off Triangle</h2>
-<p>In AI, you can optimise for three things — but you typically have to choose two:</p>
-<table>
-<thead><tr><th>Priority</th><th>What You Get</th><th>What It Costs</th></tr></thead>
-<tbody>
-<tr><td><strong>Fast + Accurate</strong></td><td>Real-time frontier model responses</td><td>Highest cost — premium infrastructure + premium model</td></tr>
-<tr><td><strong>Fast + Cheap</strong></td><td>Real-time efficient model responses</td><td>Slightly lower accuracy on complex tasks</td></tr>
-<tr><td><strong>Accurate + Cheap</strong></td><td>Frontier model in batch mode</td><td>Slower — minutes to hours instead of seconds</td></tr>
-</tbody>
-</table>
-<p>The right choice depends on the use case, not the technology. Most businesses need all three modes — the skill is knowing which mode fits which task.</p>
-
-<h3>Decision Framework</h3>
-<p>For each AI use case, ask:</p>
-<ol>
-<li>Is a human waiting for this response? → Fast mode</li>
-<li>Does accuracy have financial or reputational consequences? → Accurate mode</li>
-<li>Is this processing volume data overnight? → Cheap mode</li>
-<li>Is it customer-facing at high volume? → Benchmark efficient models first</li>
-</ol>
-
-<div class="real-world-box">
-<h3>🌍 From Real-World Practice</h3>
-<p><strong>Example:</strong> A financial services firm categorised their 8 AI use cases: 2 needed fast+accurate (customer chat, fraud alerts), 3 needed fast+cheap (email triage, ticket routing, FAQ), and 3 needed accurate+cheap (compliance reports, quarterly analysis, training content). Matching mode to use case reduced their monthly AI spend from $8,200 to $2,900 — a 65% saving with no quality impact on any use case.</p>
-</div>`,
-      },
-      {
-        id: 'm15-l5', number: 5, tier: 'smb', duration: '15 min',
-        title: 'Designing for Cost Control',
-        content: `<h2>Building AI Systems That Stay Affordable at Scale</h2>
-<p>The organisations that control AI costs best don't do it by choosing the cheapest model — they do it by designing their systems for cost control from day one.</p>
-
-<h3>The 7 Cost Control Design Principles</h3>
-<ol>
-<li><strong>Right-size every model choice.</strong> Benchmark 2–3 models on your actual data before committing. The cheapest model meeting your accuracy threshold is always the right choice.</li>
-<li><strong>Compress every system prompt.</strong> System prompts run on every single API call. A 500-token prompt at 10,000 calls/day = 5M tokens/day from the prompt alone.</li>
-<li><strong>Specify concise output formats.</strong> JSON with defined fields costs a fraction of narrative prose. Design output format deliberately.</li>
-<li><strong>Cache everything cacheable.</strong> If the same question gets asked twice, the second answer should come from cache, not from an API call.</li>
-<li><strong>Batch everything batchable.</strong> If the user isn't waiting, it shouldn't run in real-time.</li>
-<li><strong>Chunk documents, don't send whole files.</strong> Use RAG to retrieve relevant sections. Never send 100 pages when 5 will do.</li>
-<li><strong>Monitor monthly.</strong> Set up cost alerts. Review token usage monthly. Investigate any use case exceeding projections by 20%.</li>
-</ol>
-
-<h3>The AI Cost Driver Checklist</h3>
-<p>Use this checklist (available as a downloadable template) for every AI use case before build:</p>
-<pre>□ Use case name: _______________
-□ Number of users: ___
-□ Requests per user per day: ___
-□ Average input length: short / medium / long document
-□ Average output length: ___
-□ Context length required: ___
-□ Real-time or background? ___
-□ Model required: frontier / efficient / either
-□ Can it be batched? Yes / No
-□ Can responses be cached? Yes / No
-□ Estimated monthly token volume: ___
-□ Cost risk: Low / Medium / High</pre>
-
-<div class="real-world-box">
-<h3>🌍 From Real-World Practice</h3>
-<p><strong>Insight:</strong> Organisations that complete a cost driver checklist for every use case before build spend an average of 55% less on AI operations than those that choose models based on capability alone. The checklist takes 15 minutes. The savings compound across every use case, every month, for years.</p>
-<p><strong>Implementation tip:</strong> Make the AI Cost Driver Checklist a mandatory gate before any AI build is approved. No completed checklist = no build approval. This single process change prevents more overspend than any technology decision.</p>
-</div>`,
-      },
-    ],
-    quiz: {
-      questions: [
-        { id: 'q15-1', text: 'Your AI system processes 5,000 customer queries per day. 60% are identical FAQ-style questions. What is the highest-impact cost reduction action?', options: ['Switch to a cheaper model', 'Implement response caching — eliminating 3,000 API calls daily', 'Reduce the system prompt length', 'Process all queries in batch mode'], correct: 1, explanation: 'Caching eliminates API calls entirely for repeated queries. At 60% hit rate on 5,000 queries, that is 3,000 free responses daily — the single highest-impact cost action.' },
-        { id: 'q15-2', text: 'A 200-page legal contract is sent to AI for review. What is the most cost-effective approach?', options: ['Send the full document — the model can handle it', 'Use RAG to extract only the relevant clauses and send those to the model', 'Split it into 20 separate 10-page requests', 'Use a smaller model for the full document'], correct: 1, explanation: 'RAG extracts only relevant sections, reducing token count from 160,000 to 5,000–10,000. This is a 95%+ cost reduction with equal or better accuracy.' },
-        { id: 'q15-3', text: 'Your business has 8 AI use cases. 3 are customer-facing chat, 5 are internal processing. What is the best cost strategy?', options: ['Use the same frontier model for all 8 for consistency', 'Use frontier models for the 3 customer-facing tasks and efficient models in batch mode for the 5 internal tasks', 'Use the cheapest model for everything', 'Only deploy the 3 customer-facing use cases'], correct: 1, explanation: 'Matching model tier and processing mode to task requirements is the most effective cost strategy. Customer-facing needs quality; internal processing needs cost efficiency.' },
-        { id: 'q15-4', text: 'Output tokens cost 4-6x more than input tokens. How should this affect your prompt design?', options: ['It should not — output quality is more important than cost', 'Always ask for the shortest possible output — specify format, word count, and structure explicitly', 'Only use models that charge the same for input and output', 'Avoid generating any output longer than 100 words'], correct: 1, explanation: 'Specifying concise output formats (JSON, structured summaries, word limits) dramatically reduces output token cost without sacrificing quality. Design output format deliberately.' },
-        { id: 'q15-5', text: 'When should you use batch processing instead of real-time AI?', options: ['Never — users expect instant responses', 'Whenever the end user is not actively waiting for the response', 'Only for tasks that run once per month', 'Only when using the cheapest model'], correct: 1, explanation: 'Batch processing is appropriate for any task where the user is not waiting — nightly reports, scheduled classifications, data processing. It typically costs 30-50% less than real-time.' },
+        { id: 'q15-1', text: 'At week 6 of a 90-day AI project, your CEO asks you to add two new features that weren\'t in the original scope. What is the right response?', options: ['Add them immediately — leadership requests take priority', 'Evaluate the impact on timeline, add them to a parking lot, deliver the original scope on time, and include the new features in the next cycle', 'Cancel the project and restart with the new requirements', 'Add one feature and drop one from the original scope'], correct: 1, explanation: 'Scope management is the primary determinant of 90-day delivery success. A parking lot respects the idea while protecting the delivery. Proof of value funds everything that follows.' },
+        { id: 'q15-2', text: 'Why should baseline metrics be established in Week 3 rather than after deployment?', options: ['It doesn\'t matter when you establish them', 'Because you cannot prove improvement without a pre-deployment benchmark — retrospective baselines are estimates, not evidence', 'Because Week 3 is the only time stakeholders are available', 'So you can adjust the AI to match the baseline'], correct: 1, explanation: 'Pre-deployment baselines are evidence. Post-deployment estimates are guesses. Every AI program needs documented baseline metrics before go-live to produce credible ROI measurements.' },
+        { id: 'q15-3', text: 'What is the minimum pilot size recommended before full team rollout?', options: ['1 person', '3–5 users', '50% of the team', 'No pilot needed — go straight to full deployment'], correct: 1, explanation: '3–5 users is the minimum meaningful pilot. Small enough to manage feedback intensively. Large enough to surface real-world edge cases that testing missed. Essential quality gate before full deployment.' },
+        { id: 'q15-4', text: 'You successfully deploy use case 1 in 90 days with a documented 52% time reduction. When should you begin use case 2?', options: ['Immediately — momentum is critical', 'After presenting the use case 1 results and securing investment approval for use case 2', 'Only after 12 months of use case 1 data', 'Use case 2 should run in parallel with use case 1'], correct: 1, explanation: 'The result of use case 1 is the business case for use case 2. Present before proceeding. This creates a self-funding AI program where each success funds the next.' },
+        { id: 'q15-5', text: 'What infrastructure should every AI use case leave behind for future projects?', options: ['Nothing — each use case is independent', 'Reusable components: prompt libraries, data pipelines, integration patterns, and lessons learned documentation', 'A full rebuild of the technical environment', 'Only the final model output'], correct: 1, explanation: 'Reusable infrastructure is what makes AI programs compound in value. Use case 2 built on use case 1\'s foundations should take 40–60% less time to deliver.' },
       ],
     },
   },
-
 ]
 
 export const ALL_LESSONS = MODULES.flatMap(m =>

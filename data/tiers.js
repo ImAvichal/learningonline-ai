@@ -74,7 +74,7 @@ export const TIERS = {
       'People and change adoption toolkit',
       'Lifetime access',
     ],
-    modules: [1, 2, 3, 4, 5, 6, 7, 8, 9, 12, 15],
+    modules: [1, 2, 3, 4, 5, 6, 7, 8, 9, 12],
     cta: 'Enrol Now',
     highlighted: true,
     stripeEnvKey: 'STRIPE_PRICE_SMB',
