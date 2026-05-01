@@ -1,3 +1,4 @@
+import React from 'react'
 // components/ui.js — Le On AI shared UI primitives
 import Link from 'next/link'
 import { useState, useEffect, useRef } from 'react'
@@ -104,7 +105,8 @@ export function Nav({ transparent = false }) {
     }`}>
       <div className="max-w-6xl mx-auto px-6 h-full flex items-center justify-between gap-6">
         <Logo />
-        <div className="hidden md:flex items-center gap-6">
+        <div className="hidden md:flex items-center gap-5 flex-1 ml-8">
+          <NavLink href="/">Home</NavLink>
           <NavLink href="/model-selection">Choosing the Right AI</NavLink>
           <NavLink href="/roi-calculator">Value Calculator</NavLink>
           <NavLink href="/glossary">Jargon Buster</NavLink>
@@ -142,6 +144,8 @@ export function Nav({ transparent = false }) {
         <div className="md:hidden bg-navy-mid border-t border-white/5 px-6 py-4 space-y-3">
           <MobileLink href="/#find-your-path"  onClick={() => setOpen(false)}>Industries</MobileLink>
           <MobileLink href="/#curriculum"       onClick={() => setOpen(false)}>REMOVE_ME</MobileLink>
+          <MobileLink href="/model-selection" onClick={() => setOpen(false)}>
+          <MobileLink href="/" onClick={() => setOpen(false)}>Home</MobileLink
           <MobileLink href="/model-selection" onClick={() => setOpen(false)}>Choosing the Right AI</MobileLink>
           <MobileLink href="/model-selection"   onClick={() => setOpen(false)}>Model Guide</MobileLink>
           <MobileLink href="/roi-calculator"    onClick={() => setOpen(false)}>Value Calculator</MobileLink>
@@ -310,3 +314,61 @@ export function Reveal({ children, delay = 0, className = '' }) {
     </div>
   )
 }
+
+/* ── Lesson Feedback ── */
+export function LessonFeedback({ user, moduleId, lessonId }) {
+  const [rating, setRating]     = React.useState(null)
+  const [text, setText]         = React.useState('')
+  const [sent, setSent]         = React.useState(false)
+  const [sending, setSending]   = React.useState(false)
+
+  const submit = async () => {
+    if (!rating && !text.trim()) return
+    setSending(true)
+    try {
+      const { supabase } = await import('../lib/auth')
+      await supabase.from('lesson_feedback').insert({
+        user_id:   user?.id || null,
+        module_id: moduleId,
+        lesson_id: lessonId,
+        rating,
+        feedback:  text.trim() || null,
+        created_at: new Date().toISOString(),
+      })
+    } catch (e) { console.error('Feedback error:', e) }
+    setSent(true)
+    setSending(false)
+  }
+
+  if (sent) return (
+    <div className="mt-8 p-5 rounded-xl border border-success/20 bg-success/[0.03] text-center">
+      <p className="text-success font-display font-bold text-sm">Thanks for your feedback!</p>
+    </div>
+  )
+
+  return (
+    <div className="mt-8 p-5 rounded-xl border border-white/8 bg-white/[0.02]">
+      <p className="font-display font-bold text-sm mb-1">Help Us Improve</p>
+      <p className="text-xs text-muted mb-4">Was this lesson helpful? Share feedback so we can continue improving.</p>
+      <div className="flex gap-2 mb-3">
+        {['👍', '👎'].map((emoji, i) => (
+          <button key={i} onClick={() => setRating(i === 0 ? 'positive' : 'negative')}
+            className={`px-4 py-2 rounded-lg border text-lg transition-all ${
+              rating === (i === 0 ? 'positive' : 'negative')
+                ? 'border-blue bg-blue/10 scale-110'
+                : 'border-white/10 hover:border-white/20'
+            }`}>{emoji}</button>
+        ))}
+      </div>
+      <textarea value={text} onChange={e => setText(e.target.value)}
+        placeholder="Optional: any suggestions or issues..."
+        rows={2}
+        className="w-full bg-white/[0.03] border border-white/8 rounded-lg px-3 py-2 text-sm text-white placeholder:text-white/20 resize-none focus:outline-none focus:border-blue/40 mb-3" />
+      <button onClick={submit} disabled={sending || (!rating && !text.trim())}
+        className="px-5 py-2 rounded-lg bg-blue/10 border border-blue/30 text-blue-bright text-xs font-display font-bold hover:bg-blue/20 transition-all disabled:opacity-30 disabled:cursor-not-allowed">
+        {sending ? 'Sending...' : 'Submit Feedback'}
+      </button>
+    </div>
+  )
+}
+
