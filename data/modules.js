@@ -1,4 +1,4 @@
-// data/modules.js — Full 15-module Le On AI curriculum
+// data/modules.js — Full 16-module Le On AI curriculum
 // Each module includes: lessons, Q&A questions, real-world practice section
 
 export const MODULES = [
@@ -490,7 +490,75 @@ Value: Clarity and continuity that most knowledge workers never achieve.</p>
 <p><strong>💡 What This Saves You:</strong> Three embedded AI habits for a knowledge worker typically recover 1.5–2.5 hours per day. At an average knowledge worker cost of $80/hour fully loaded, that's $30,000–$50,000 per person per year in reclaimed productive capacity.</p>
 </div>`,
       },
-    ],
+      {
+        id: 'm1-l6', number: 6, tier: 'individual', duration: '15 min',
+        title: 'Why AI Has a Cost — Understanding What You Pay For',
+        content: `<h2>Why AI Responses Cost Money</h2>
+<p>Every time you use an AI tool — whether it's ChatGPT, Claude, Gemini, or a custom business AI — something happens behind the scenes: a powerful computer processes your request. That processing costs money, just like electricity, bandwidth, or cloud hosting.</p>
+<p>Understanding why AI costs what it costs gives you the power to make smarter decisions about which AI to use, when, and how — and to avoid overspending on capability you don't need.</p>
+
+<h3>The Train Analogy</h3>
+<p>Think of AI providers as running many trains at once. Each train carries passenger requests. The more efficiently requests are grouped together on the same train, the cheaper each individual journey becomes.</p>
+<p>This is called <strong>batching</strong> — combining multiple requests into a single processing run. It's one of the most important cost levers in AI.</p>
+<ul>
+<li><strong>Single request:</strong> Like booking a private taxi. Fast, but expensive per trip.</li>
+<li><strong>Batched requests:</strong> Like a scheduled bus route. Slightly slower, but dramatically cheaper per passenger.</li>
+</ul>
+<p>When your AI task doesn't need an instant response — like summarising yesterday's reports or classifying last week's emails — batching can reduce costs by 30–50%.</p>
+
+<h3>What Are Tokens and Why Do They Drive Cost?</h3>
+<p>AI models don't read words — they read <strong>tokens</strong>. A token is roughly ¾ of an English word. Every token you send (your prompt) and every token the AI generates (its response) costs money.</p>
+<table>
+<thead><tr><th>What You Send</th><th>Approximate Tokens</th><th>Cost Impact</th></tr></thead>
+<tbody>
+<tr><td>A short question</td><td>20–50 tokens</td><td>Negligible</td></tr>
+<tr><td>A 200-word email</td><td>~270 tokens</td><td>Very low</td></tr>
+<tr><td>A 10-page document</td><td>5,000–8,000 tokens</td><td>Noticeable at volume</td></tr>
+<tr><td>A 100-page report</td><td>50,000–80,000 tokens</td><td>Significant — consider chunking</td></tr>
+</tbody>
+</table>
+<p><strong>Key insight:</strong> Output tokens cost 4–6× more than input tokens. Asking AI for a 2,000-word essay costs significantly more than asking for a 3-sentence summary. Design your output format deliberately.</p>
+
+<h3>Why Longer Conversations Cost More</h3>
+<p>When you have a long conversation with AI, the model needs to remember everything said so far. This memory is called the <strong>context window</strong>. The longer the conversation, the more the AI has to process on every single response.</p>
+<p>Think of it like a meeting: the more background documents everyone has to re-read before each discussion point, the longer and more expensive the meeting becomes.</p>
+<p><strong>Practical implication:</strong> Start new conversations for new topics rather than continuing one very long thread. This keeps context short and costs low.</p>
+
+<h3>Why Faster AI Can Cost More</h3>
+<p>Speed in AI isn't free. Getting a response in 1 second instead of 10 seconds requires more powerful infrastructure running at higher capacity.</p>
+<table>
+<thead><tr><th>Speed</th><th>Best For</th><th>Cost</th></tr></thead>
+<tbody>
+<tr><td><strong>Real-time</strong> (under 2 seconds)</td><td>Live chat, customer service, interactive tools</td><td>Higher — dedicated infrastructure</td></tr>
+<tr><td><strong>Near-time</strong> (5–30 seconds)</td><td>Document analysis, report generation, email drafting</td><td>Moderate — shared infrastructure</td></tr>
+<tr><td><strong>Background</strong> (minutes to hours)</td><td>Batch email classification, nightly summaries, data processing</td><td>Lowest — batched and scheduled</td></tr>
+</tbody>
+</table>
+<p><strong>Decision rule:</strong> Not every AI task needs to be fast. Use real-time models for live user-facing tasks. Use slower, cheaper processing for everything else.</p>
+
+<h3>The Four Cost Levers You Control</h3>
+<ol>
+<li><strong>Model choice:</strong> Smaller models cost 10–20× less than frontier models for many tasks.</li>
+<li><strong>Prompt length:</strong> Shorter, more precise prompts cost less and often produce better results.</li>
+<li><strong>Output format:</strong> Ask for concise outputs. A JSON classification costs a fraction of a 500-word narrative.</li>
+<li><strong>Speed requirement:</strong> If it doesn't need to be instant, batch it.</li>
+</ol>
+
+<h3>Decision Checklist</h3>
+<pre>□ Do I know how many tokens my typical request uses (input + output)?
+□ Am I using the smallest model that meets my accuracy needs?
+□ Have I specified a concise output format?
+□ Does this task actually need a real-time response?
+□ Can any of my AI tasks run in batch mode overnight?</pre>
+
+<div class="real-world-box">
+<h3>🌍 From Real-World Practice</h3>
+<p><strong>Insight:</strong> Most organisations don't overspend on AI because the model is too expensive — they overspend because they haven't thought about speed, format, and batching. These three decisions typically account for 60–70% of the cost reduction opportunity.</p>
+<p><strong>Example:</strong> A professional services firm processed 2,000 client emails daily using GPT-4o in real-time mode. Annual cost: $18,400. After analysis, only 12% of emails needed real-time classification (urgent client requests). The remaining 88% were reclassified nightly in batch using GPT-4o-mini. New annual cost: $2,100. Same accuracy. 89% cost reduction. The only change was asking: "Does this actually need to be instant?"</p>
+<p><strong>Implementation tip:</strong> For every AI use case, ask three questions before choosing your model: (1) What's the smallest model that works? (2) What's the shortest useful output? (3) Does it need to be real-time? These three questions save more money than any other optimisation.</p>
+</div>`,
+      },
+        ],
     quiz: {
       questions: [
         { id: 'q1-1', text: 'A customer service team wants to automatically classify 2,000 support tickets per day into 8 categories. Which approach gives the best cost-to-quality ratio?', options: ['Use GPT-4o for maximum accuracy', 'Use a fine-tuned smaller model for classification', 'Use keyword matching rules instead', 'Use GPT-4o-mini with a well-crafted prompt and test accuracy first'], correct: 3, explanation: 'Testing a cheaper model first is the right approach. Classification is a task where smaller models often match frontier model performance at a fraction of the cost.' },
@@ -1436,7 +1504,59 @@ Pattern 4 — Agent Pattern
 <p><strong>💡 What This Saves You:</strong> Structured architecture decisions save organisations an average of 40–70% in AI infrastructure costs compared to choosing based on brand recognition alone.</p>
 </div>`,
       },
-    ],
+      {
+        id: 'm7-l2', number: 2, tier: 'smb', duration: '22 min',
+        title: 'Cost, Latency and Architecture Trade-offs',
+        content: `<h2>The Architecture Decisions That Determine Your AI Bill</h2>
+<p>Architecture decisions made in week one lock in costs for years. Understanding the trade-offs between cost, speed, and capability is the difference between an AI program that scales affordably and one that becomes unaffordable at volume.</p>
+
+<h3>Key Principle: Larger Models Are Not Always Better</h3>
+<p>The instinct to use the most powerful model available is natural — and expensive. For most business tasks, efficient models deliver 90–95% of frontier model quality at 5–10% of the cost.</p>
+<table>
+<thead><tr><th>Task Type</th><th>Recommended Approach</th><th>Why</th></tr></thead>
+<tbody>
+<tr><td>Simple classification</td><td>Efficient model (GPT-4o-mini, Haiku)</td><td>Classification accuracy plateaus — bigger models add cost, not accuracy</td></tr>
+<tr><td>Complex reasoning</td><td>Frontier model (GPT-4o, Sonnet)</td><td>Nuanced analysis genuinely benefits from larger models</td></tr>
+<tr><td>High-volume extraction</td><td>Efficient model with structured output</td><td>Volume makes cost the dominant factor</td></tr>
+<tr><td>Customer-facing generation</td><td>Frontier model at low volume, efficient at high</td><td>Quality matters for customer experience; benchmark to find the threshold</td></tr>
+</tbody>
+</table>
+
+<h3>Why Long Context Is Expensive</h3>
+<p>When you send a large document to an AI model, the model doesn't just read it — it builds an internal memory structure called a <strong>KV cache</strong> (key-value cache). This is how the model remembers everything in the document while generating its response.</p>
+<p>The cost of this memory grows with the length of the document. Processing a 100-page report costs significantly more than 10 separate 10-page requests — because the model has to hold all 100 pages in active memory simultaneously.</p>
+<p><strong>Practical implication:</strong> Don't send entire documents when you only need specific sections. Use RAG (Retrieval-Augmented Generation) to extract relevant chunks first, then send only those chunks to the model.</p>
+
+<h3>Five Cost Reduction Strategies</h3>
+<ol>
+<li><strong>Model routing:</strong> Route simple tasks to cheap models, complex tasks to powerful models. This is called a routing layer or orchestration layer. A single task might cost $0.001 on a small model vs $0.02 on a large one — at 10,000 tasks/day, that's $10 vs $200.</li>
+<li><strong>Batch processing:</strong> Group non-urgent requests and process them together. Most AI providers offer 30–50% discounts for batch processing.</li>
+<li><strong>Response caching:</strong> Store AI responses for frequently asked identical questions. FAQ-style applications can achieve 40–70% cache hit rates, eliminating those API calls entirely.</li>
+<li><strong>Prompt compression:</strong> Shorter system prompts cost less on every single call. A 500-token system prompt run 10,000 times/day = 5 million tokens/day from the prompt alone.</li>
+<li><strong>Context chunking:</strong> Instead of sending a full 200-page document, retrieve only the 3–5 relevant pages using RAG. Reduce 100K tokens to 5K tokens per request.</li>
+</ol>
+
+<h3>Key Terms (Plain English)</h3>
+<table>
+<thead><tr><th>Term</th><th>What It Means</th><th>Why It Matters to You</th></tr></thead>
+<tbody>
+<tr><td><strong>Batch processing</strong></td><td>Grouping multiple AI requests and running them together</td><td>30–50% cheaper than processing one at a time</td></tr>
+<tr><td><strong>KV cache</strong></td><td>The AI model's short-term memory during a conversation</td><td>Longer conversations = larger cache = higher cost per response</td></tr>
+<tr><td><strong>Context length</strong></td><td>How much text the model can read and remember at once</td><td>Sending less text = lower cost and often better accuracy</td></tr>
+<tr><td><strong>Model routing</strong></td><td>Sending different tasks to different AI models based on complexity</td><td>Use cheap models for simple tasks, expensive models only when needed</td></tr>
+<tr><td><strong>Mixture of Experts</strong></td><td>A model architecture where only part of the model activates for each request</td><td>More efficient — you get large-model quality without large-model cost on every token</td></tr>
+<tr><td><strong>Inference</strong></td><td>The process of the AI generating a response to your request</td><td>Every inference costs compute — this is what you're billed for</td></tr>
+</tbody>
+</table>
+
+<div class="real-world-box">
+<h3>🌍 From Real-World Practice</h3>
+<p><strong>Insight:</strong> Enterprise AI programs that standardise on their orchestration layer rather than on a single model consistently achieve 40–70% lower operating costs than those that commit to one vendor's frontier model for everything.</p>
+<p><strong>Example:</strong> A telco standardised on GPT-4o for all 12 AI use cases. Annual token cost: $186,000. After implementing a routing layer that sent classification tasks to GPT-4o-mini, extraction to Haiku, and only complex customer interactions to GPT-4o, the annual cost dropped to $52,000 — a 72% reduction with no measurable accuracy difference on 10 of 12 use cases.</p>
+<p><strong>Implementation tip:</strong> Don't standardise on one model. Standardise on your orchestration layer — the routing and coordination system that decides which model handles which task. This gives you the flexibility to swap models, A/B test, and optimise cost without changing any application code.</p>
+</div>`,
+      },
+        ],
     quiz: {
       questions: [
         { id: 'q7-1', text: 'Your organisation uses Microsoft 365 and wants to add AI to internal document search. What is the most logical starting architecture?', options: ['Build a custom RAG system from scratch', 'Use Microsoft Copilot or SharePoint AI — you\'re already in the ecosystem', 'Switch to Google Workspace for its AI features', 'Buy a standalone AI search tool'], correct: 1, explanation: 'When you\'re embedded in a platform ecosystem, using that platform\'s AI capabilities avoids integration complexity, data residency issues, and additional vendor relationships.' },
@@ -1634,7 +1754,65 @@ User: [case history text]</pre>
 <p><strong>💡 What This Saves You:</strong> Organisations with structured AI monitoring detect and resolve performance issues an average of 6 weeks earlier than those without. On a system generating $200,000/year in value, 6 weeks of degraded performance at 20% below target = $46,000 in unrealised value — prevented by a weekly dashboard review.</p>
 </div>`,
       },
-    ],
+      {
+        id: 'm9-l3', number: 3, tier: 'smb', duration: '20 min',
+        title: 'AI Cost Drivers — What Actually Determines Your AI Bill',
+        content: `<h2>Understanding What Drives AI Cost</h2>
+<p>AI costs are not fixed — they scale based on how you use it. Understanding the six cost drivers gives you control over your AI budget before you commit to a build.</p>
+
+<h3>The 6 AI Cost Drivers</h3>
+<table>
+<thead><tr><th>Driver</th><th>What It Means</th><th>Impact</th></tr></thead>
+<tbody>
+<tr><td><strong>Token volume</strong></td><td>Total tokens processed per month (input + output)</td><td>Direct linear cost — double the tokens, double the cost</td></tr>
+<tr><td><strong>Number of users</strong></td><td>How many people or systems are calling the AI</td><td>Multiplies token volume — 10 users × 100 calls = 1,000 calls</td></tr>
+<tr><td><strong>Request frequency</strong></td><td>How often requests are sent</td><td>High frequency = higher concurrent infrastructure needs</td></tr>
+<tr><td><strong>Context length</strong></td><td>How much text the AI processes per request</td><td>Longer context = exponentially more compute per request</td></tr>
+<tr><td><strong>Model size</strong></td><td>Frontier vs efficient model</td><td>Frontier models cost 10–20× more than efficient alternatives</td></tr>
+<tr><td><strong>Latency requirement</strong></td><td>How fast the response must arrive</td><td>Real-time costs more than background processing</td></tr>
+</tbody>
+</table>
+
+<h3>The AI Cost Planning Checklist</h3>
+<p>Before building any AI use case, answer these questions:</p>
+<pre>□ How many users will use this?
+□ How often will each user trigger it? (per day/week)
+□ How long are the typical prompts? (short / medium / long document)
+□ How long should the AI output be?
+□ Does it need to respond instantly, or can it run in background?
+□ Can identical or similar requests be cached?
+□ Can requests be grouped and processed in batch?</pre>
+
+<h3>Worked Example: Email Processing</h3>
+<p>A business processes 10,000 customer emails per month and wants AI to classify and draft responses.</p>
+<table>
+<thead><tr><th>Approach</th><th>Model</th><th>Speed</th><th>Monthly Cost</th><th>Accuracy</th></tr></thead>
+<tbody>
+<tr><td><strong>Option A:</strong> Real-time premium</td><td>GPT-4o</td><td>Under 2 seconds per email</td><td>~$285/month</td><td>94%</td></tr>
+<tr><td><strong>Option B:</strong> Batched efficient</td><td>GPT-4o-mini, nightly batch</td><td>Processed overnight</td><td>~$18/month</td><td>91%</td></tr>
+<tr><td><strong>Option C:</strong> Hybrid</td><td>Mini for classification, GPT-4o for complex drafts only</td><td>Classification instant, drafts 5 seconds</td><td>~$42/month</td><td>93%</td></tr>
+</tbody>
+</table>
+<p><strong>Decision:</strong> Option C delivers near-premium accuracy at 85% lower cost than Option A. The 1% accuracy difference is not meaningful for email classification. The hybrid approach is almost always the right answer.</p>
+
+<h3>Fast Mode vs Cost Mode</h3>
+<p>Not every task needs the fastest model. Categorise your AI tasks:</p>
+<table>
+<thead><tr><th>Mode</th><th>When to Use</th><th>Examples</th></tr></thead>
+<tbody>
+<tr><td><strong>Fast Mode</strong></td><td>Live user-facing interactions where delay = poor experience</td><td>Customer chat, real-time search, interactive tools</td></tr>
+<tr><td><strong>Cost Mode</strong></td><td>Background processing where speed doesn't affect user experience</td><td>Monthly report summaries, batch email classification, nightly data processing</td></tr>
+</tbody>
+</table>
+
+<div class="real-world-box">
+<h3>🌍 From Real-World Practice</h3>
+<p><strong>Insight:</strong> The businesses that control AI costs best are not the ones that pick the cheapest model — they're the ones that categorise every task into "needs to be fast" or "can run in background" before choosing any model.</p>
+<p><strong>Example:</strong> A retail chain had 8 AI use cases in production, all running on GPT-4o in real-time. Monthly AI cost: $4,200. After categorising each use case, only 2 needed real-time (customer chat and live product search). The other 6 were switched to batched GPT-4o-mini processing. New monthly cost: $680. Same business outcomes. 84% cost reduction from one afternoon of categorisation work.</p>
+<p><strong>Implementation tip:</strong> Use the AI Cost Driver Checklist (downloadable template) for every use case before choosing a model or architecture. The 15 minutes spent filling it in typically saves thousands per year.</p>
+</div>`,
+      },
+        ],
     quiz: {
       questions: [
         { id: 'q9-1', text: 'A team of 12 analysts each saves 2 hours per day due to AI automation. Their fully loaded cost is $80/hour and they work 250 days/year. What is the annual efficiency value?', options: ['$384,000', '$480,000', '$560,000', '$768,000'], correct: 1, explanation: '2 hrs × 12 people × 250 days × $80/hr = $480,000/year. This is the core efficiency value formula used in every AI business case.' },
@@ -1909,7 +2087,51 @@ Standard Q&A responses   → Automated   → Escalations & experience design</pr
 <p><strong>💡 What This Saves You:</strong> Multimodal AI design prevents the "AI ceiling" — the point where you've automated all your text workflows and wonder what's next. Multimodal is what's next.</p>
 </div>`,
       },
-    ],
+      {
+        id: 'm13-l2', number: 2, tier: 'enterprise', duration: '18 min',
+        title: 'The Model Routing Principle',
+        content: `<h2>Route the Right Task to the Right Model</h2>
+<p>The single most impactful cost and quality decision in a multi-model AI system is routing — deciding which model handles which task. Poor routing means you're paying frontier prices for tasks that a model 20× cheaper would handle equally well.</p>
+
+<h3>The Routing Framework</h3>
+<table>
+<thead><tr><th>Task Complexity</th><th>Model Tier</th><th>Examples</th><th>Typical Cost</th></tr></thead>
+<tbody>
+<tr><td><strong>Simple</strong> — classification, extraction, formatting</td><td>Efficient (GPT-4o-mini, Haiku, Flash)</td><td>Email categorisation, data extraction, sentiment tagging</td><td>$0.0001–$0.001 per request</td></tr>
+<tr><td><strong>Medium</strong> — summarisation, drafting, Q&A</td><td>Mid-tier or efficient with strong prompts</td><td>Meeting summaries, first-draft emails, document Q&A</td><td>$0.001–$0.01 per request</td></tr>
+<tr><td><strong>Complex</strong> — reasoning, analysis, nuanced generation</td><td>Frontier (GPT-4o, Sonnet, Gemini Pro)</td><td>Strategic analysis, complex customer responses, legal review</td><td>$0.01–$0.05 per request</td></tr>
+<tr><td><strong>Multimodal</strong> — image + text, voice + text</td><td>Vision/multimodal models</td><td>Invoice processing, damage assessment, form extraction</td><td>$0.01–$0.10 per request</td></tr>
+</tbody>
+</table>
+
+<h3>Long-Document Strategy</h3>
+<p>Long documents are the most expensive input type in AI. A 200-page document can consume 100,000+ tokens in a single request. The solution is never to send the full document:</p>
+<ol>
+<li><strong>Chunk the document</strong> into sections (1,000–2,000 tokens each)</li>
+<li><strong>Index the chunks</strong> using an embedding model (very cheap)</li>
+<li><strong>Retrieve only relevant chunks</strong> when a question is asked (RAG pattern)</li>
+<li><strong>Send 3–5 chunks to the LLM</strong> instead of the full document</li>
+</ol>
+<p>Result: 95% cost reduction on document-heavy workflows with equal or better accuracy, because the model focuses on relevant content rather than processing noise.</p>
+
+<h3>Orchestration Architecture</h3>
+<p>A well-designed orchestration layer handles:</p>
+<ul>
+<li><strong>Routing:</strong> Which model for which task type</li>
+<li><strong>Fallback:</strong> If the primary model is unavailable, route to an alternative</li>
+<li><strong>Cost monitoring:</strong> Track spend per model, per use case, per day</li>
+<li><strong>Quality monitoring:</strong> Track accuracy per model to detect drift</li>
+<li><strong>Caching:</strong> Return stored responses for repeated identical queries</li>
+</ul>
+
+<div class="real-world-box">
+<h3>🌍 From Real-World Practice</h3>
+<p><strong>Insight:</strong> Organisations with 5+ AI use cases in production that implement routing consistently spend 50–70% less than those using a single model for everything — with no measurable quality difference on 80% of their use cases.</p>
+<p><strong>Example:</strong> An insurance company processed claims across 4 AI use cases: document classification, damage assessment (images), policy Q&A, and customer communications. Without routing: all on GPT-4o Vision at $12,400/month. With routing: classification on Haiku ($180/month), damage assessment on GPT-4o Vision ($3,200/month), policy Q&A via RAG + mini ($420/month), customer comms on Sonnet ($1,800/month). Total: $5,600/month — 55% reduction.</p>
+<p><strong>Implementation tip:</strong> Build your routing logic as a separate layer, not hard-coded into each application. When a better or cheaper model launches — and they launch every few months — you want to swap it in one place, not twelve.</p>
+</div>`,
+      },
+        ],
     quiz: {
       questions: [
         { id: 'q13-1', text: 'A customer sends a photo of a damaged product alongside a written complaint. Which AI architecture handles this most effectively?', options: ['Text-only LLM that reads the written complaint', 'A multimodal model or orchestrated pipeline that processes both the image (damage assessment) and text (complaint classification) together', 'Image model only', 'Route to a human — AI can\'t handle this'], correct: 1, explanation: 'Multimodal processing enables simultaneous handling of both inputs. The image provides damage evidence that the text cannot convey — combining both gives complete context for automated resolution.' },
@@ -2010,7 +2232,179 @@ Week 12 — Measure & Report
         { id: 'q14-5', text: 'What infrastructure should every AI use case leave behind for future projects?', options: ['Nothing — each use case is independent', 'Reusable components: prompt libraries, data pipelines, integration patterns, and lessons learned documentation', 'A full rebuild of the technical environment', 'Only the final model output'], correct: 1, explanation: 'Reusable infrastructure is what makes AI programs compound in value. Use case 2 built on use case 1\'s foundations should take 40–60% less time to deliver.' },
       ],
     },
+  },  {
+    id: 'module-15', number: 15, icon: '💰',
+    title: 'AI Economics',
+    description: 'Understand why AI costs what it costs — and how to design for cost control, speed, and scale without overspending.',
+    deliverable: 'AI Cost Driver Checklist',
+    templateId: 'ai-cost-checklist',
+    lessons: [
+      {
+        id: 'm15-l1', number: 1, tier: 'smb', duration: '12 min',
+        title: 'Why AI Responses Cost Money',
+        content: `<h2>The Economics Behind Every AI Response</h2>
+<p>Every AI response you receive is the output of a powerful computer processing your request. Unlike traditional software — where the cost of serving one more user is near-zero — AI compute scales directly with usage. More requests, longer prompts, and faster responses all cost more.</p>
+<p>This lesson explains why, so you can make informed decisions about when to invest in AI speed and when to optimise for cost.</p>
+
+<h3>What Happens When You Send a Prompt</h3>
+<ol>
+<li>Your text is converted into <strong>tokens</strong> (the units AI models read)</li>
+<li>The tokens are sent to a GPU (graphics processing unit) — specialised hardware designed for AI workloads</li>
+<li>The model processes every token in your prompt, building an internal understanding of the request</li>
+<li>The model generates output tokens one at a time, each based on everything that came before it</li>
+<li>The output is sent back to you</li>
+</ol>
+<p>Every step costs compute time, energy, and infrastructure — which is why you're charged per token.</p>
+
+<h3>Why Output Costs More Than Input</h3>
+<p>Input tokens (your prompt) are processed in parallel — the model reads them all at once. Output tokens are generated sequentially — one after another. Sequential processing is slower and uses more compute per token.</p>
+<p>This is why output tokens typically cost 4–6× more than input tokens. It's also why asking for a concise 3-line summary costs far less than asking for a 2,000-word essay — even if the input is identical.</p>
+
+<h3>The Practical Implication</h3>
+<p>You control AI costs more than you think. The three biggest levers are: (1) how much text you send, (2) how much text you ask for back, and (3) how fast you need the response. All three are design decisions, not technical constraints.</p>
+
+<div class="real-world-box">
+<h3>🌍 From Real-World Practice</h3>
+<p><strong>Example:</strong> A consulting firm asked AI to generate 800-word client briefings. Cost per briefing: $0.04. After reformatting to 200-word executive summaries with the same core content, cost dropped to $0.012 — a 70% reduction with higher client satisfaction because the shorter format was actually preferred.</p>
+</div>`,
+      },
+      {
+        id: 'm15-l2', number: 2, tier: 'smb', duration: '14 min',
+        title: 'Tokens, Batching and Scale',
+        content: `<h2>How Volume Changes the Economics</h2>
+<p>AI costs are trivial at small scale and significant at large scale. The difference between a well-optimised and poorly-optimised AI program across 10 use cases is typically $20,000–$100,000 per year.</p>
+
+<h3>The Batching Advantage</h3>
+<p>AI providers process requests most efficiently when they can group them together. This is called <strong>batch processing</strong> — sending multiple requests in a single run rather than one at a time.</p>
+<table>
+<thead><tr><th>Processing Mode</th><th>Speed</th><th>Cost</th><th>Best For</th></tr></thead>
+<tbody>
+<tr><td><strong>Real-time</strong></td><td>1–3 seconds</td><td>Full price</td><td>Live customer interactions</td></tr>
+<tr><td><strong>Batch</strong></td><td>Minutes to hours</td><td>30–50% discount</td><td>Report generation, data classification, nightly processing</td></tr>
+</tbody>
+</table>
+<p><strong>Rule of thumb:</strong> If the user isn't waiting for the response, it should be batched.</p>
+
+<h3>How Scale Changes the Conversation</h3>
+<p>At 10 requests per day, model choice barely matters — the cost difference between GPT-4o and GPT-4o-mini is cents. At 10,000 requests per day, the same choice is the difference between $200/day and $12/day. Scale makes every optimisation decision meaningful.</p>
+
+<h3>The Caching Opportunity</h3>
+<p>Many AI applications receive the same or very similar questions repeatedly. Storing the AI's response and returning it for identical future questions — <strong>caching</strong> — eliminates the API call entirely.</p>
+<p>FAQ-style applications typically achieve 40–70% cache hit rates. At 1,000 requests/day with a 50% hit rate, you eliminate 500 API calls daily — for free.</p>
+
+<div class="real-world-box">
+<h3>🌍 From Real-World Practice</h3>
+<p><strong>Example:</strong> An e-commerce company's product Q&A AI handled 3,000 queries/day. After implementing response caching for the top 200 most common questions, 58% of queries were served from cache. Monthly API cost dropped from $2,400 to $1,010 — with faster response times for cached queries.</p>
+</div>`,
+      },
+      {
+        id: 'm15-l3', number: 3, tier: 'smb', duration: '12 min',
+        title: 'Why Long Context Is Expensive',
+        content: `<h2>The Hidden Cost of Long Documents and Conversations</h2>
+<p>Context length — how much text the AI holds in memory during a single request — is one of the most misunderstood cost drivers in AI.</p>
+
+<h3>How Context Works</h3>
+<p>When you send a document to an AI model, it builds an internal memory structure (called a <strong>KV cache</strong>) that lets it reference any part of the document while generating its response. The longer the document, the larger this memory structure, and the more compute required.</p>
+<p>The relationship is not linear — it's closer to quadratic for some operations. A document twice as long can cost significantly more than twice as much to process.</p>
+
+<h3>Practical Context Cost Comparison</h3>
+<table>
+<thead><tr><th>Input Size</th><th>Tokens</th><th>Relative Cost</th></tr></thead>
+<tbody>
+<tr><td>Short email</td><td>~300</td><td>1×</td></tr>
+<tr><td>5-page report</td><td>~4,000</td><td>13×</td></tr>
+<tr><td>50-page document</td><td>~40,000</td><td>133×</td></tr>
+<tr><td>200-page report</td><td>~160,000</td><td>533×</td></tr>
+</tbody>
+</table>
+
+<h3>The Solution: Don't Send Everything</h3>
+<p>The RAG (Retrieval-Augmented Generation) pattern solves this: instead of sending a full 200-page document, you search for the 3–5 most relevant pages and send only those. Cost drops from 160,000 tokens to 5,000 tokens — a 97% reduction.</p>
+
+<div class="real-world-box">
+<h3>🌍 From Real-World Practice</h3>
+<p><strong>Example:</strong> A legal firm sent full contracts (80–120 pages) to AI for clause review. Cost per contract: $1.20. After implementing RAG to extract only the 5–8 relevant clauses per query, cost per contract dropped to $0.08. Same accuracy — the model actually performed better because it focused on relevant content rather than processing 100 pages of boilerplate.</p>
+</div>`,
+      },
+      {
+        id: 'm15-l4', number: 4, tier: 'smb', duration: '14 min',
+        title: 'Fast vs Cheap vs Accurate',
+        content: `<h2>The AI Trade-off Triangle</h2>
+<p>In AI, you can optimise for three things — but you typically have to choose two:</p>
+<table>
+<thead><tr><th>Priority</th><th>What You Get</th><th>What It Costs</th></tr></thead>
+<tbody>
+<tr><td><strong>Fast + Accurate</strong></td><td>Real-time frontier model responses</td><td>Highest cost — premium infrastructure + premium model</td></tr>
+<tr><td><strong>Fast + Cheap</strong></td><td>Real-time efficient model responses</td><td>Slightly lower accuracy on complex tasks</td></tr>
+<tr><td><strong>Accurate + Cheap</strong></td><td>Frontier model in batch mode</td><td>Slower — minutes to hours instead of seconds</td></tr>
+</tbody>
+</table>
+<p>The right choice depends on the use case, not the technology. Most businesses need all three modes — the skill is knowing which mode fits which task.</p>
+
+<h3>Decision Framework</h3>
+<p>For each AI use case, ask:</p>
+<ol>
+<li>Is a human waiting for this response? → Fast mode</li>
+<li>Does accuracy have financial or reputational consequences? → Accurate mode</li>
+<li>Is this processing volume data overnight? → Cheap mode</li>
+<li>Is it customer-facing at high volume? → Benchmark efficient models first</li>
+</ol>
+
+<div class="real-world-box">
+<h3>🌍 From Real-World Practice</h3>
+<p><strong>Example:</strong> A financial services firm categorised their 8 AI use cases: 2 needed fast+accurate (customer chat, fraud alerts), 3 needed fast+cheap (email triage, ticket routing, FAQ), and 3 needed accurate+cheap (compliance reports, quarterly analysis, training content). Matching mode to use case reduced their monthly AI spend from $8,200 to $2,900 — a 65% saving with no quality impact on any use case.</p>
+</div>`,
+      },
+      {
+        id: 'm15-l5', number: 5, tier: 'smb', duration: '15 min',
+        title: 'Designing for Cost Control',
+        content: `<h2>Building AI Systems That Stay Affordable at Scale</h2>
+<p>The organisations that control AI costs best don't do it by choosing the cheapest model — they do it by designing their systems for cost control from day one.</p>
+
+<h3>The 7 Cost Control Design Principles</h3>
+<ol>
+<li><strong>Right-size every model choice.</strong> Benchmark 2–3 models on your actual data before committing. The cheapest model meeting your accuracy threshold is always the right choice.</li>
+<li><strong>Compress every system prompt.</strong> System prompts run on every single API call. A 500-token prompt at 10,000 calls/day = 5M tokens/day from the prompt alone.</li>
+<li><strong>Specify concise output formats.</strong> JSON with defined fields costs a fraction of narrative prose. Design output format deliberately.</li>
+<li><strong>Cache everything cacheable.</strong> If the same question gets asked twice, the second answer should come from cache, not from an API call.</li>
+<li><strong>Batch everything batchable.</strong> If the user isn't waiting, it shouldn't run in real-time.</li>
+<li><strong>Chunk documents, don't send whole files.</strong> Use RAG to retrieve relevant sections. Never send 100 pages when 5 will do.</li>
+<li><strong>Monitor monthly.</strong> Set up cost alerts. Review token usage monthly. Investigate any use case exceeding projections by 20%.</li>
+</ol>
+
+<h3>The AI Cost Driver Checklist</h3>
+<p>Use this checklist (available as a downloadable template) for every AI use case before build:</p>
+<pre>□ Use case name: _______________
+□ Number of users: ___
+□ Requests per user per day: ___
+□ Average input length: short / medium / long document
+□ Average output length: ___
+□ Context length required: ___
+□ Real-time or background? ___
+□ Model required: frontier / efficient / either
+□ Can it be batched? Yes / No
+□ Can responses be cached? Yes / No
+□ Estimated monthly token volume: ___
+□ Cost risk: Low / Medium / High</pre>
+
+<div class="real-world-box">
+<h3>🌍 From Real-World Practice</h3>
+<p><strong>Insight:</strong> Organisations that complete a cost driver checklist for every use case before build spend an average of 55% less on AI operations than those that choose models based on capability alone. The checklist takes 15 minutes. The savings compound across every use case, every month, for years.</p>
+<p><strong>Implementation tip:</strong> Make the AI Cost Driver Checklist a mandatory gate before any AI build is approved. No completed checklist = no build approval. This single process change prevents more overspend than any technology decision.</p>
+</div>`,
+      },
+    ],
+    quiz: {
+      questions: [
+        { id: 'q15-1', text: 'Your AI system processes 5,000 customer queries per day. 60% are identical FAQ-style questions. What is the highest-impact cost reduction action?', options: ['Switch to a cheaper model', 'Implement response caching — eliminating 3,000 API calls daily', 'Reduce the system prompt length', 'Process all queries in batch mode'], correct: 1, explanation: 'Caching eliminates API calls entirely for repeated queries. At 60% hit rate on 5,000 queries, that is 3,000 free responses daily — the single highest-impact cost action.' },
+        { id: 'q15-2', text: 'A 200-page legal contract is sent to AI for review. What is the most cost-effective approach?', options: ['Send the full document — the model can handle it', 'Use RAG to extract only the relevant clauses and send those to the model', 'Split it into 20 separate 10-page requests', 'Use a smaller model for the full document'], correct: 1, explanation: 'RAG extracts only relevant sections, reducing token count from 160,000 to 5,000–10,000. This is a 95%+ cost reduction with equal or better accuracy.' },
+        { id: 'q15-3', text: 'Your business has 8 AI use cases. 3 are customer-facing chat, 5 are internal processing. What is the best cost strategy?', options: ['Use the same frontier model for all 8 for consistency', 'Use frontier models for the 3 customer-facing tasks and efficient models in batch mode for the 5 internal tasks', 'Use the cheapest model for everything', 'Only deploy the 3 customer-facing use cases'], correct: 1, explanation: 'Matching model tier and processing mode to task requirements is the most effective cost strategy. Customer-facing needs quality; internal processing needs cost efficiency.' },
+        { id: 'q15-4', text: 'Output tokens cost 4-6x more than input tokens. How should this affect your prompt design?', options: ['It should not — output quality is more important than cost', 'Always ask for the shortest possible output — specify format, word count, and structure explicitly', 'Only use models that charge the same for input and output', 'Avoid generating any output longer than 100 words'], correct: 1, explanation: 'Specifying concise output formats (JSON, structured summaries, word limits) dramatically reduces output token cost without sacrificing quality. Design output format deliberately.' },
+        { id: 'q15-5', text: 'When should you use batch processing instead of real-time AI?', options: ['Never — users expect instant responses', 'Whenever the end user is not actively waiting for the response', 'Only for tasks that run once per month', 'Only when using the cheapest model'], correct: 1, explanation: 'Batch processing is appropriate for any task where the user is not waiting — nightly reports, scheduled classifications, data processing. It typically costs 30-50% less than real-time.' },
+      ],
+    },
   },
+
 ]
 
 export const ALL_LESSONS = MODULES.flatMap(m =>

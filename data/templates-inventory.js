@@ -42,6 +42,7 @@ export const TEMPLATES = [
   { id: 38, name: 'Orchestration Blueprint',        module: 'Multimodal AI',               format: 'PPTX' },
   { id: 39, name: '90-Day Execution Roadmap',       module: '90-Day Execution Plan',       format: 'XLSX' },
   { id: 40, name: 'Execution Tracker',              module: '90-Day Execution Plan',       format: 'XLSX' },
+  { id: 41, name: 'AI Cost Driver Checklist',       module: 'AI Economics',                format: 'XLSX' },
 ]
 
 export const TEMPLATE_COUNT = TEMPLATES.length

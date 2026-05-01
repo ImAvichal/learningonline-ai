@@ -99,7 +99,7 @@ export const TIERS = {
       'Multimodal AI & orchestration strategy',
       'Full 90-Day execution roadmap',
       'Unlimited team seats',
-      'All 15 modules',
+      'All 16 modules',
       'Priority support',
     ],
     modules: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14],
