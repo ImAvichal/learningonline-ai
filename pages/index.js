@@ -234,7 +234,7 @@ export default function Home() {
     <>
       <Head>
         <title>Le On AI — AI Anxiety → AI Awareness</title>
-        <meta name="description" content="The execution-focused AI program for professionals, business owners, and enterprise leaders. 15 modules, 40 templates, ROI calculator, and model selection framework." />
+        <meta name="description" content="The execution-focused AI program for professionals, business owners, and enterprise leaders. 16 modules, 40 templates, ROI calculator, and model selection framework." />
       </Head>
       <Nav transparent />
 
@@ -252,7 +252,7 @@ export default function Home() {
             </p>
 
             <p className="text-xs text-white/30 mb-4 font-display tracking-widest uppercase">
-              15 modules · 3 tiers · 40 templates · live in 14 days
+              16 modules · 3 tiers · 40 templates · live in 14 days
             </p>
             {user?.tier && (
               <div className="flex flex-wrap gap-3 justify-center">
@@ -361,7 +361,7 @@ export default function Home() {
           <Reveal>
             <div className="text-center mb-12">
               <SectionLabel>Learning Paths</SectionLabel>
-              <h2 className="font-display font-bold text-4xl mb-4">15 modules. Zero filler.</h2>
+              <h2 className="font-display font-bold text-4xl mb-4">16 modules. Zero filler.</h2>
               <p className="text-muted max-w-xl mx-auto">Every lesson produces a real deliverable. Every module builds on the last.</p>
             </div>
           </Reveal>
@@ -524,3 +524,4 @@ export default function Home() {
     </>
   )
 }
+
