@@ -321,14 +321,19 @@ export default function CoursePage() {
 
       {/* Main */}
       <main ref={mainRef} className="flex-1 overflow-y-auto min-w-0">
-        <div className="lg:hidden flex items-center gap-3 px-4 py-3 bg-navy-mid border-b border-white/5 sticky top-0 z-20">
-          <button onClick={() => setSidebarOpen(true)} className="text-muted">
-            <svg width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
-          </button>
-          <span className="text-sm text-muted truncate">{activeLesson?.title}</span>
+        <div className="lg:hidden px-4 py-3 bg-navy-mid border-b border-white/5 sticky top-0 z-20">
+          <div className="flex items-center gap-3">
+            <button onClick={() => setSidebarOpen(true)} className="text-muted flex-shrink-0">
+              <svg width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+            </button>
+            <div className="flex-1 min-w-0">
+              <div className="text-[10px] text-muted font-display uppercase tracking-wider">Module {activeMod?.number} · Lesson {activeLesson?.number}</div>
+              <div className="text-sm font-display font-bold text-white truncate">{activeLesson?.title}</div>
+            </div>
+          </div>
         </div>
 
-        <div className="max-w-3xl mx-auto px-6 py-10">
+        <div className="max-w-3xl mx-auto px-4 py-6 lg:px-6 lg:py-10">
           {showQuiz && activeMod?.quiz ? (
             <>
               <div className="mb-8">
