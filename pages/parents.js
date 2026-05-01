@@ -6,7 +6,7 @@ import Head from 'next/head'
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
-import { Nav, Card, SectionLabel, Reveal, Button, Spinner } from '../components/ui'
+import { Nav, Card, SectionLabel, Reveal, Button, Spinner } , LessonFeedback } from '../components/ui'
 import { useAuth } from '../lib/auth'
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -658,6 +658,7 @@ export default function ParentsModule() {
                   </div>
                 </div>
                 <div className="overflow-x-auto" dangerouslySetInnerHTML={{ __html: lesson.content }} />
+                  <LessonFeedback user={user} moduleId="parents" lessonId={lesson.id} />
               </div>
 
               {/* Navigation */}
