@@ -8,7 +8,7 @@ import { Input, Spinner, TierBadge } from '../components/ui'
 import { TIERS } from '../data/tiers'
 
 export default function Signup() {
-  const { signup, loginWithGoogle, loginWithLinkedIn, loginWithLinkedIn } = useAuth()
+  const { signup, loginWithGoogle, loginWithLinkedIn } = useAuth()
   const router     = useRouter()
   const { tier: tierId = 'smb' } = router.query
   const tier = TIERS[tierId] || TIERS.smb

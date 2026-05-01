@@ -6,7 +6,7 @@ import Head from 'next/head'
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
-import { Nav, Card, SectionLabel, Reveal, Button, Spinner } , LessonFeedback } from '../components/ui'
+import { Nav, Card, SectionLabel, Reveal, Button, Spinner, LessonFeedback } from '../components/ui'
 import { useAuth } from '../lib/auth'
 
 // ─────────────────────────────────────────────────────────────────────────────
