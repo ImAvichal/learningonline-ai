@@ -484,3 +484,12 @@ html.light-mode .triad-def             { color: #6b7280; }
 [data-theme="light"] .text-white\/25 { color: #9BA8BF !important; }
 [data-theme="light"] .text-white\/40 { color: #7A8599 !important; }
 
+/* ── Mobile training layout improvements ── */
+@media (max-width: 1023px) {
+  .prose-lesson h2 { font-size: 1.25rem; }
+  .prose-lesson h3 { font-size: 1.05rem; }
+  .prose-lesson table { font-size: 0.75rem; }
+  .prose-lesson th, .prose-lesson td { padding: 0.4rem 0.5rem; }
+  .prose-lesson pre { font-size: 0.7rem; padding: 0.75rem; }
+}
+
