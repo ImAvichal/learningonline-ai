@@ -517,7 +517,7 @@ export default function Home() {
           </div>
           <div className="flex flex-col md:flex-row justify-between items-center pt-6 border-t border-white/5 gap-3 text-xs text-muted">
             <p>© 2025 Le On AI · learningonline.ai</p>
-            <p>14-day money-back guarantee · Secure payments via Stripe</p>
+            <p>7-day money-back guarantee · Secure payments via Stripe</p>
           </div>
         </div>
       </footer>

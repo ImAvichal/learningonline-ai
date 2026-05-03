@@ -638,7 +638,14 @@ export default function ParentsModule() {
   const markDone = () => {
     setCompleted(prev => ({ ...prev, [lesson.id]: true }))
     if (activeLesson < LESSONS.length - 1) {
-      setTimeout(() => { setActiveLesson(i => i + 1); window.scrollTo({ top: 0, behavior: 'smooth' }); }, 400)
+      setTimeout(() => {
+          if (activeLesson >= LESSONS.length - 1) {
+            router.push('/course-complete?track=parents')
+          } else {
+            setActiveLesson(i => i + 1)
+            window.scrollTo({ top: 0, behavior: 'smooth' })
+          }
+        }, 400)
     }
   }
 

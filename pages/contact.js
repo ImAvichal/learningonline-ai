@@ -103,7 +103,8 @@ export default function Contact() {
                       className="w-full py-4 bg-blue hover:bg-blue-bright text-white font-display font-bold rounded-xl transition-all shadow-[0_0_24px_rgba(26,110,255,0.4)] disabled:opacity-50 flex items-center justify-center gap-2">
                       {loading ? <><Spinner /> Sending...</> : 'Send Message →'}
                     </button>
-                  </form>
+                    <p className="text-xs text-muted mt-4 leading-relaxed">If you believe the course is not right for you, contact us within 7 days of enrolment and we'll guide you through the refund process.</p>
+              </form>
                 </Card>
               )}
             </div>

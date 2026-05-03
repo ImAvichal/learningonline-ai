@@ -143,7 +143,7 @@ export default function Checkout() {
                   : `🔒 Pay ${tier.priceDisplay} Securely`
                 }
               </button>
-              <p className="text-center text-xs text-muted mt-3">14-day money-back guarantee · Instant access after payment</p>
+              <p className="text-center text-xs text-muted mt-3">7-day money-back guarantee · Instant access after payment</p>
             </div>
 
             {/* Order summary */}
@@ -170,7 +170,7 @@ export default function Checkout() {
                   <span className="font-display font-black text-3xl">{tier.priceDisplay}</span>
                 </div>
                 <div className="space-y-1.5">
-                  {['🔒 256-bit SSL encryption', '💳 Powered by Stripe', '📧 Receipt to your email', '♾️ Instant lifetime access', '🛡️ 14-day money-back guarantee'].map(s => (
+                  {['🔒 256-bit SSL encryption', '💳 Powered by Stripe', '📧 Receipt to your email', '♾️ Instant lifetime access', '🛡️ 7-day money-back guarantee'].map(s => (
                     <div key={s} className="text-xs text-muted">{s}</div>
                   ))}
                 </div>
