@@ -1,10 +1,60 @@
 // pages/login.js
 import Head from 'next/head'
 import Link from 'next/link'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
 import { useAuth } from '../lib/auth'
 import { Input, Spinner } from '../components/ui'
+
+
+const MESSAGES = [
+  { line1: 'AI is changing rapidly.', line2: 'The people who learn calmly will lead confidently.' },
+  { line1: 'Small practical AI skills today', line2: 'become major operational advantages tomorrow.' },
+  { line1: 'AI awareness is no longer optional —', line2: 'but it does not need to feel overwhelming.' },
+  { line1: 'From prompts to orchestration —', line2: 'build practical confidence step by step.' },
+  { line1: 'Understanding AI is becoming', line2: 'as important as understanding the internet once was.' },
+  { line1: 'The future belongs to people who can', line2: 'work alongside intelligent systems responsibly.' },
+  { line1: 'AI is not just about technology.', line2: 'It is about judgement, workflows, leadership, and trust.' },
+  { line1: 'Your AI journey does not need hype.', line2: 'It needs clarity.' },
+]
+
+function LoginHero() {
+  const [idx, setIdx] = useState(0)
+  const [fade, setFade] = useState(true)
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setFade(false)
+      setTimeout(() => {
+        setIdx(i => (i + 1) % MESSAGES.length)
+        setFade(true)
+      }, 600)
+    }, 6000)
+    return () => clearInterval(timer)
+  }, [])
+
+  const msg = MESSAGES[idx]
+
+  return (
+    <div className="hidden lg:flex flex-col justify-between w-1/2 bg-navy-mid border-r border-white/5 p-12">
+      <Link href="/" className="font-display font-black text-xl">
+        Le On <span className="text-blue">AI</span>
+      </Link>
+      <div className="max-w-md">
+        <div className={`transition-opacity duration-500 ${fade ? 'opacity-100' : 'opacity-0'}`}>
+          <p className="font-display font-bold text-2xl leading-snug text-white/90 mb-2">{msg.line1}</p>
+          <p className="font-display text-lg leading-relaxed text-white/50">{msg.line2}</p>
+        </div>
+        <div className="flex gap-1.5 mt-8">
+          {MESSAGES.map((_, i) => (
+            <div key={i} className={`h-0.5 rounded-full transition-all duration-300 ${i === idx ? 'w-6 bg-blue' : 'w-2 bg-white/10'}`} />
+          ))}
+        </div>
+      </div>
+      <p className="text-xs text-white/20">learningonline.ai · Le On AI</p>
+    </div>
+  )
+}
 
 export default function Login() {
   const { login, loginWithGoogle, loginWithLinkedIn } = useAuth()
@@ -31,39 +81,8 @@ export default function Login() {
     <>
       <Head><title>Sign In — Le On AI</title></Head>
       <div className="min-h-screen flex">
-        {/* Left panel */}
-        <div className="hidden lg:flex flex-col justify-between w-1/2 bg-navy-mid border-r border-white/5 p-12">
-          <Link href="/" className="font-display font-black text-xl">
-            Le On <span className="text-blue">AI</span>
-          </Link>
-          <div>
-            <h2 className="font-display font-bold text-2xl mb-3 leading-tight">
-              Welcome back.<br/>Your AI journey is waiting.
-            </h2>
-            <p className="text-muted leading-relaxed max-w-sm mb-6">
-              Pick up exactly where you left off — all your lessons and resources are saved.
-            </p>
-            <div className="space-y-3 mt-2">
-              <div className="border-l-2 border-success/30 pl-4">
-                <div className="text-xs font-display font-bold text-white/80">AI for Parents</div>
-                <div className="text-[11px] text-white/35">Free learning pathway for families navigating AI together.</div>
-              </div>
-              <div className="border-l-2 border-blue/30 pl-4">
-                <div className="text-xs font-display font-bold text-white/80">AI Awareness · $49</div>
-                <div className="text-[11px] text-white/35">Practical AI foundations and confidence building.</div>
-              </div>
-              <div className="border-l-2 border-amber-400/30 pl-4">
-                <div className="text-xs font-display font-bold text-white/80">AI Implementation · $99</div>
-                <div className="text-[11px] text-white/35">Operational AI workflows and implementation guidance.</div>
-              </div>
-              <div className="border-l-2 border-purple-400/30 pl-4">
-                <div className="text-xs font-display font-bold text-white/80">AI Transformation · $149</div>
-                <div className="text-[11px] text-white/35">Enterprise orchestration, governance, and AI operating models.</div>
-              </div>
-            </div>
-          </div>
-          <p className="text-xs text-muted">learningonline.ai · Le On AI</p>
-        </div>
+        {/* Left panel — rotating inspiration */}
+        <LoginHero />
 
         {/* Right — form */}
         <div className="flex-1 flex items-center justify-center px-6 py-12">

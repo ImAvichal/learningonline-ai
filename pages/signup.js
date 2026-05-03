@@ -49,36 +49,41 @@ export default function Signup() {
           <Link href="/" className="font-display font-black text-xl">
             Le On <span className="text-blue">AI</span>
           </Link>
-          <div>
-            <div className="text-xs font-display font-bold text-gray-400 dark:text-white/40 uppercase tracking-wider mb-3">You're enrolling in</div>
-            <h2 className="font-display font-bold text-2xl mb-1">{tier.name}</h2>
-            <div className="font-display font-bold text-3xl text-blue-bright mb-1">{tier.priceDisplay}</div>
-            <div className="text-xs text-gray-400 dark:text-white/40 mb-8">{tier.billing}</div>
-            <div className="space-y-2.5">
-              {tier.features.slice(0, 5).map(f => (
-                <div key={f} className="flex gap-2.5 items-start text-xs">
-                  <span className="text-success mt-0.5 flex-shrink-0">✓</span>
-                  <span className="text-gray-600 dark:text-white/60 leading-relaxed">{f}</span>
+          <div className="max-w-md">
+            <div className="text-xs font-display font-bold text-gray-400 dark:text-white/30 uppercase tracking-wider mb-4">Choose your learning path</div>
+            <div className="space-y-5">
+              <div>
+                <div className="flex items-baseline gap-2 mb-1">
+                  <span className="text-sm font-display font-bold text-gray-800 dark:text-white">AI for Parents</span>
+                  <span className="text-[10px] font-display text-success font-bold">Free</span>
                 </div>
-              ))}
+                <p className="text-xs text-gray-500 dark:text-white/35 leading-relaxed">Practical guidance helping families understand how children are interacting with AI safely and confidently.</p>
+              </div>
+              <div>
+                <div className="flex items-baseline gap-2 mb-1">
+                  <span className="text-sm font-display font-bold text-gray-800 dark:text-white">AI Awareness</span>
+                  <span className="text-[10px] font-display text-blue-bright font-bold">$49 · Individual</span>
+                </div>
+                <p className="text-xs text-gray-500 dark:text-white/35 leading-relaxed">Build practical AI confidence with foundational learning designed for professionals navigating AI for the first time.</p>
+              </div>
+              <div>
+                <div className="flex items-baseline gap-2 mb-1">
+                  <span className="text-sm font-display font-bold text-gray-800 dark:text-white">AI Implementation</span>
+                  <span className="text-[10px] font-display text-amber-400 font-bold">$99 · Business</span>
+                </div>
+                <p className="text-xs text-gray-500 dark:text-white/35 leading-relaxed">Move from awareness to execution with operational workflows, templates, prioritisation frameworks, and implementation guidance.</p>
+              </div>
+              <div>
+                <div className="flex items-baseline gap-2 mb-1">
+                  <span className="text-sm font-display font-bold text-gray-800 dark:text-white">AI Transformation</span>
+                  <span className="text-[10px] font-display text-purple-400 font-bold">$149 · Enterprise</span>
+                </div>
+                <p className="text-xs text-gray-500 dark:text-white/35 leading-relaxed">Understand orchestration, governance, operating models, and enterprise-scale AI evolution.</p>
+              </div>
             </div>
-            <div className="mt-8 pt-6 border-t border-white/5 space-y-3">
-              <div className="border-l-2 border-success/30 pl-3">
-                <div className="text-[11px] font-display font-bold text-gray-700 dark:text-white/50">AI for Parents</div>
-                <div className="text-[10px] text-gray-400 dark:text-white/25">Free pathway — always available</div>
-              </div>
-              <div className="border-l-2 border-blue/30 pl-3">
-                <div className="text-[11px] font-display font-bold text-gray-700 dark:text-white/50">AI Awareness · $49</div>
-              </div>
-              <div className="border-l-2 border-amber-400/30 pl-3">
-                <div className="text-[11px] font-display font-bold text-gray-700 dark:text-white/50">AI Implementation · $99</div>
-              </div>
-              <div className="border-l-2 border-purple-400/30 pl-3">
-                <div className="text-[11px] font-display font-bold text-gray-700 dark:text-white/50">AI Transformation · $149</div>
-              </div>
-            </div>
+            <p className="text-[11px] text-gray-400 dark:text-white/20 mt-8 leading-relaxed">Practical AI learning designed to reduce anxiety through clarity, structure, and real-world understanding.</p>
           </div>
-          <p className="text-xs text-muted">learningonline.ai · Le On AI</p>
+          <p className="text-xs text-gray-400 dark:text-white/15">learningonline.ai · Le On AI</p>
         </div>
 
         {/* Right */}
