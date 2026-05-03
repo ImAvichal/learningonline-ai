@@ -278,7 +278,7 @@ export default function Home() {
               {
                 pill: 'Free Module', pillClass: 'bg-success/15 border-success/30 text-success',
                 title: 'AI for Parents', price: 'Free', billing: 'Free · Sign in required',
-                hook: '8 practical modules · Helping families navigate AI confidently.',
+                hook: '9 practical modules · Helping families navigate AI confidently.',
                 desc: 'A practical, reassuring guide for parents wanting to better understand how AI is shaping how children learn, think, communicate, and grow.',
                 idealFor: 'Parents and caregivers wanting healthier AI conversations and sensible boundaries at home.',
                 bullets: ['How kids are using AI today','Benefits vs risks explained simply','Warning signs to watch for','Conversation starters for families','Practical household AI boundaries','Parent downloadable guide'],
@@ -351,6 +351,38 @@ export default function Home() {
                 </Card>
               </Reveal>
             ))}
+          </div>
+        </div>
+      </section>
+
+
+      {/* ── Learning Evolution ── */}
+      <section className="py-16 border-t border-gray-100 dark:border-white/5">
+        <div className="max-w-5xl mx-auto px-6">
+          <div className="text-center mb-10">
+            <SectionLabel>Learning Evolution</SectionLabel>
+            <h2 className="font-display font-bold text-3xl mb-3">Where We're Heading</h2>
+            <p className="text-muted max-w-lg mx-auto">AI is evolving. Our platform evolves with it — from awareness to industry intelligence to agentic organisations.</p>
+          </div>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-3">
+            {[
+              { v: 'V1', label: 'Current', title: 'AI Awareness', icon: '💡', cls: 'border-success/30 bg-success/5' },
+              { v: 'V2', label: 'Planned', title: 'Industry Intelligence', icon: '🏗️', cls: 'border-blue/30 bg-blue/5' },
+              { v: 'V3', label: 'Future', title: 'AI Agents at Work', icon: '🤖', cls: 'border-amber-400/30 bg-amber-400/5' },
+              { v: 'V4', label: 'Long-term', title: 'Agentic Organisations', icon: '🌐', cls: 'border-purple-400/30 bg-purple-400/5' },
+              { v: '→', label: 'Beyond', title: 'Human + AI', icon: '✨', cls: 'border-gray-200 dark:border-white/10 bg-gray-50 dark:bg-white/[0.02]' },
+            ].map((s, i) => (
+              <div key={i} className={`rounded-xl border ${s.cls} p-4 text-center`}>
+                <div className="text-2xl mb-2">{s.icon}</div>
+                <div className="text-[10px] font-display font-bold text-muted uppercase tracking-wider mb-1">{s.v} · {s.label}</div>
+                <div className="text-xs font-display font-bold text-gray-800 dark:text-white">{s.title}</div>
+              </div>
+            ))}
+          </div>
+          <div className="text-center mt-6">
+            <Link href="/roadmap" className="text-xs text-blue hover:text-blue-bright font-display font-bold transition-colors">
+              View Full Roadmap →
+            </Link>
           </div>
         </div>
       </section>

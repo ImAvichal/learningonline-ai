@@ -669,7 +669,7 @@ export default function ParentsModule() {
             <h1 className="font-display font-black text-4xl tracking-tight mb-2">AI for Parents</h1>
             <p className="text-muted max-w-xl leading-relaxed">
               Practical, calm guidance for parents navigating how AI is shaping how children learn, communicate, and grow.
-              8 lessons — no technical background needed.
+              9 lessons — no technical background needed.
             </p>
             <div className="mt-4 flex items-center gap-4 flex-wrap">
               <div className="flex items-center gap-2">
@@ -678,7 +678,7 @@ export default function ParentsModule() {
                 </div>
                 <span className="text-xs text-muted font-display">{pct}% complete</span>
               </div>
-              <span className="text-xs text-muted">8 lessons · ~80 min total</span>
+              <span className="text-xs text-muted">9 lessons · ~90 min total</span>
             </div>
           </div>
 
