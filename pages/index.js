@@ -358,28 +358,40 @@ export default function Home() {
 
       {/* ── Learning Evolution ── */}
       <section className="py-16 border-t border-gray-100 dark:border-white/5">
-        <div className="max-w-5xl mx-auto px-6">
+        <div className="max-w-4xl mx-auto px-6">
           <div className="text-center mb-10">
             <SectionLabel>Learning Evolution</SectionLabel>
             <h2 className="font-display font-bold text-3xl mb-3">Where We're Heading</h2>
-            <p className="text-muted max-w-lg mx-auto">AI is evolving. Our platform evolves with it — from awareness to industry intelligence to agentic organisations.</p>
+            <p className="text-muted max-w-lg mx-auto text-sm">AI is evolving. Our platform evolves with it.</p>
           </div>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-3">
+
+          {/* Metro line */}
+          <div className="relative">
+            {/* Vertical connector */}
+            <div className="absolute left-4 md:left-6 top-0 bottom-0 w-px bg-gradient-to-b from-success/40 via-blue/30 via-amber-400/20 to-purple-400/10" />
+
             {[
-              { v: 'V1', label: 'Current', title: 'AI Awareness', icon: '💡', cls: 'border-success/30 bg-success/5' },
-              { v: 'V2', label: 'Planned', title: 'Industry Intelligence', icon: '🏗️', cls: 'border-blue/30 bg-blue/5' },
-              { v: 'V3', label: 'Future', title: 'AI Agents at Work', icon: '🤖', cls: 'border-amber-400/30 bg-amber-400/5' },
-              { v: 'V4', label: 'Long-term', title: 'Agentic Organisations', icon: '🌐', cls: 'border-purple-400/30 bg-purple-400/5' },
-              { v: '→', label: 'Beyond', title: 'Human + AI', icon: '✨', cls: 'border-gray-200 dark:border-white/10 bg-gray-50 dark:bg-white/[0.02]' },
-            ].map((s, i) => (
-              <div key={i} className={`rounded-xl border ${s.cls} p-4 text-center`}>
-                <div className="text-2xl mb-2">{s.icon}</div>
-                <div className="text-[10px] font-display font-bold text-muted uppercase tracking-wider mb-1">{s.v} · {s.label}</div>
-                <div className="text-xs font-display font-bold text-gray-800 dark:text-white">{s.title}</div>
+              { dot: 'bg-success', title: 'Beta Foundations', desc: 'We began by building practical AI awareness.', label: 'Complete' },
+              { dot: 'bg-success', title: 'Version 1 Launch', desc: 'Foundational learning modules, templates, and practical AI guidance.', label: 'Current' },
+              { dot: 'bg-blue', title: 'Industry Intelligence', desc: 'Industry-specific pathways and operational AI patterns.', label: 'Planned' },
+              { dot: 'bg-amber-400', title: 'AI Agents at Work', desc: 'Ready-to-use AI copilots and workflow assistants.', label: 'Future' },
+              { dot: 'bg-purple-400', title: 'Agentic Organisations', desc: 'Connected AI ecosystems and orchestrated workflows.', label: 'Long-term' },
+              { dot: 'bg-gray-400 dark:bg-white/20', title: 'Human + AI Orchestration', desc: 'Long-term responsible collaboration between humans and AI.', label: 'Beyond' },
+            ].map((stage, i) => (
+              <div key={i} className="relative flex items-start gap-4 md:gap-6 pb-6 last:pb-0">
+                <div className={`relative z-10 w-3 h-3 rounded-full ${stage.dot} mt-1.5 flex-shrink-0 ring-4 ring-white dark:ring-navy`} />
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-center gap-2 flex-wrap">
+                    <span className="font-display font-bold text-sm text-gray-900 dark:text-white">{stage.title}</span>
+                    <span className="text-[9px] font-display font-bold text-gray-400 dark:text-white/30 uppercase tracking-wider">{stage.label}</span>
+                  </div>
+                  <p className="text-xs text-gray-500 dark:text-white/40 mt-0.5">{stage.desc}</p>
+                </div>
               </div>
             ))}
           </div>
-          <div className="text-center mt-6">
+
+          <div className="text-center mt-8">
             <Link href="/roadmap" className="text-xs text-blue hover:text-blue-bright font-display font-bold transition-colors">
               View Full Roadmap →
             </Link>

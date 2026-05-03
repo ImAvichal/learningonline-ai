@@ -37,13 +37,28 @@ export default function Login() {
             Le On <span className="text-blue">AI</span>
           </Link>
           <div>
-            <div className="text-6xl mb-8">🎯</div>
-            <h2 className="font-display font-bold text-3xl mb-4 leading-tight">
-              Welcome back.<br/>Your AI journey<br/>is waiting.
+            <h2 className="font-display font-bold text-2xl mb-3 leading-tight">
+              Welcome back.<br/>Your AI journey is waiting.
             </h2>
-            <p className="text-muted leading-relaxed max-w-sm">
-              Pick up exactly where you left off. All your lessons, templates, and deliverables are saved.
+            <p className="text-muted leading-relaxed max-w-sm mb-6">
+              Pick up exactly where you left off — all your lessons and resources are saved.
             </p>
+            <div className="space-y-2">
+              {[
+                { icon: '👨‍👩‍👧', title: 'AI for Parents', sub: 'Free · 9 lessons', cls: 'border-success/20' },
+                { icon: '💡', title: 'AI Awareness', sub: '$49 · Individual', cls: 'border-blue/20' },
+                { icon: '⚡', title: 'AI Implementation', sub: '$99 · Business', cls: 'border-amber-400/20' },
+                { icon: '🏛️', title: 'AI Transformation', sub: '$149 · Enterprise', cls: 'border-purple-400/20' },
+              ].map((p, i) => (
+                <div key={i} className={`flex items-center gap-3 px-4 py-2.5 rounded-lg border ${p.cls} bg-white/[0.02]`}>
+                  <span className="text-lg">{p.icon}</span>
+                  <div>
+                    <div className="text-xs font-display font-bold text-white">{p.title}</div>
+                    <div className="text-[10px] text-muted">{p.sub}</div>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
           <p className="text-xs text-muted">learningonline.ai · Le On AI</p>
         </div>
