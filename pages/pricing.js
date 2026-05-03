@@ -148,7 +148,7 @@ export default function Pricing() {
           <Reveal>
             <Card className="p-8 text-center mb-8">
               <div className="text-4xl mb-4">🛡️</div>
-              <h3 className="font-display font-bold text-xl mb-3">14-Day Money-Back Guarantee</h3>
+              <h3 className="font-display font-bold text-xl mb-3">7-Day Money-Back Guarantee</h3>
               <p className="text-muted max-w-md mx-auto text-sm leading-relaxed">
                 Complete Module 1 and don't believe this will deliver measurable value — we'll refund you in full. No questions asked.
               </p>
