@@ -20,10 +20,10 @@ const BLOCKS = {
     label: 'AI Providers & Models',
     color: 'blue',
     items: [
-      { id: 'now', name: 'NowAssist', desc: 'Enterprise AI capability embedded into a workflow platform (e.g. ServiceNow).', why: 'Platform AI accelerates adoption where workflows already exist.', example: 'IT service desk auto-classifies and routes tickets using embedded AI.' },
-      { id: 'amazon', name: 'Amazon Connect AI', desc: 'Contact-centre AI for calls, chats, summaries, and routing.', why: 'Useful for customer-facing operational workflows at scale.', example: 'Call summaries generated automatically after every customer interaction.' },
+      { id: 'now', name: 'ServiceNow Now Assist', desc: 'Enterprise AI embedded into the ServiceNow workflow platform for IT, HR, and customer service.', why: 'Platform AI accelerates adoption where workflows already exist.', example: 'IT service desk auto-classifies and routes tickets using embedded AI.' },
+      { id: 'amazon', name: 'Amazon Q', desc: 'AWS generative AI assistant for business intelligence, code, and enterprise knowledge.', why: 'Connects AI to organisational data, applications, and enterprise workflows.', example: 'Business analysts query sales data conversationally; developers get code suggestions grounded in internal repos.' },
       { id: 'copilot', name: 'Microsoft Copilot', desc: 'Productivity AI across documents, email, meetings, and office workflows.', why: 'Often the fastest entry point for everyday AI adoption.', example: 'Meeting notes, email drafts, and document summaries generated in Microsoft 365.' },
-      { id: 'watson', name: 'Watson AI', desc: 'Enterprise AI for structured business, knowledge, and decision-support use cases.', why: 'Shows that enterprises often use more than one AI ecosystem.', example: 'Compliance document analysis with audit trail and explainability.' },
+      { id: 'watson', name: 'IBM Watsonx', desc: 'IBM\'s enterprise AI and data platform for building, deploying, and governing AI models.', why: 'Provides governance, explainability, and compliance tooling for regulated industries.', example: 'Financial services firm uses Watsonx for credit decisioning with full audit trail and regulatory explainability.' },
       { id: 'inhouse', name: 'In-House AI', desc: 'Custom AI built or configured internally for organisation-specific needs.', why: 'Useful when privacy, control, specialisation, or integration matters.', example: 'Custom claims processing model trained on proprietary data.' },
     ]
   },
@@ -46,9 +46,9 @@ const BLOCKS = {
     label: 'Operating Controls',
     color: 'purple',
     items: [
-      { id: 'comm', name: 'Commercial Model', desc: 'How AI costs, licences, usage, and vendor contracts are managed.', why: 'Prevents cost surprises and ensures sustainable AI investment.', example: 'Monthly token cost review per use case with budget thresholds.' },
-      { id: 'perfeff', name: 'Performance & Efficiency', desc: 'Measures speed, accuracy, throughput, cost, and resource usage.', why: 'AI must be effective and economically sustainable at scale.', example: 'Latency SLA: customer-facing responses under 2 seconds.' },
-      { id: 'crit', name: 'Critical Functions', desc: 'High-risk or business-critical workflows requiring stronger controls, fallback, and human oversight.', why: 'Not every workflow should be automated with the same level of autonomy.', example: 'Financial approvals over $10K require human review regardless of AI confidence.' },
+      { id: 'comm', name: 'Commercial Model', desc: 'Licensing, token cost management, vendor contracts, scaling economics, and budget governance across AI systems.', why: 'Without commercial governance, AI costs scale unpredictably with usage — the most common budget overrun.', example: 'Monthly token cost review per use case, vendor contract benchmarking, and automated budget alerts at 80% threshold.' },
+      { id: 'perfeff', name: 'Performance & Efficiency', desc: 'Latency SLAs, throughput monitoring, operational cost per transaction, response quality scoring, and resource utilisation.', why: 'AI systems degrade without measurement. Performance monitoring prevents silent quality erosion.', example: 'Customer chat: under 2s latency. Batch processing: under $0.005/transaction. Accuracy: above 91% weekly average.' },
+      { id: 'crit', name: 'Critical Functions', desc: 'High-risk workflows requiring enhanced governance: mandatory human review, fallback procedures, audit trails, and regulatory compliance controls.', why: 'A misrouted email is recoverable. A wrong financial decision is not. Risk level determines control level.', example: 'Financial approvals over $10K: human review mandatory. Medical triage: AI assists but clinician decides. Legal: AI drafts, lawyer approves.' },
     ]
   }
 }
@@ -88,7 +88,7 @@ export default function MultimodalDiagram() {
             <button
               key={item.id}
               onClick={() => { setActive(active === item.id ? null : item.id); setActiveZone('providers'); }}
-              className={`w-full max-w-[160px] px-3 py-2 rounded-lg border text-xs font-display font-bold text-center transition-all ${
+              className={`w-full max-w-[180px] px-3 py-2 rounded-lg border text-xs font-display font-bold text-center transition-all ${
                 active === item.id
                   ? 'border-blue/50 bg-blue/20 text-blue-bright scale-105'
                   : 'border-gray-200 dark:border-white/10 bg-gray-50 dark:bg-white/[0.03] text-gray-700 dark:text-white/60 hover:border-blue/30'
@@ -174,7 +174,7 @@ function Zone({ zone, active, setActive, setActiveZone }) {
           <button
             key={item.id}
             onClick={() => { setActive(active === item.id ? null : item.id); setActiveZone(zone.color); }}
-            className={`px-2 py-2.5 rounded-lg border text-[10px] font-display font-bold text-center leading-tight transition-all ${
+            className={`px-2 py-2.5 rounded-lg border text-[9px] font-display font-bold text-center leading-tight break-words hyphens-auto transition-all ${
               active === item.id
                 ? `${colors.activeBg} ${colors.border} ${colors.text} scale-105 shadow-sm`
                 : `${colors.bg} border-transparent text-gray-600 dark:text-white/50 hover:${colors.border}`
