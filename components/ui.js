@@ -125,13 +125,15 @@ export function Nav({ transparent = false }) {
             <>
               <NavLink href="/preview">Preview</NavLink>
               <NavLink href="/pricing">View Courses</NavLink>
-              <button onClick={logout} className="text-sm text-muted hover:text-white transition-colors">Sign Out</button>
+              <span className="text-xs text-white/50 font-display">G'day{user.name ? `, ${user.name.split(' ')[0]}` : ''}</span>
+              <button onClick={logout} className="text-xs text-muted hover:text-white transition-colors">Sign Out</button>
             </>
           )}
           {(user?.tier || user?.isDevUser) && (
             <>
               <NavLink href="/dashboard">Dashboard</NavLink>
-              <button onClick={logout} className="text-sm text-muted hover:text-white transition-colors">Sign Out</button>
+              <span className="text-xs text-white/50 font-display">G'day{user.name ? `, ${user.name.split(' ')[0]}` : ''}</span>
+              <button onClick={logout} className="text-xs text-muted hover:text-white transition-colors">Sign Out</button>
             </>
           )}
         </div>
@@ -158,8 +160,11 @@ export function Nav({ transparent = false }) {
             <>
               <MobileLink href="/preview" onClick={() => setOpen(false)}>Preview</MobileLink>
               <MobileLink href="/pricing" onClick={() => setOpen(false)}>View Courses</MobileLink>
-              <button onClick={() => { logout(); setOpen(false) }}
-                className="block text-sm text-muted text-left w-full">Sign Out</button>
+              <div className="flex items-center justify-between">
+                <span className="text-xs text-white/50 font-display">G'day{user.name ? `, ${user.name.split(' ')[0]}` : ''}</span>
+                <button onClick={() => { logout(); setOpen(false) }}
+                  className="text-xs text-muted">Sign Out</button>
+              </div>
             </>
           )}
           {(user?.tier || user?.isDevUser) && (
@@ -171,7 +176,7 @@ export function Nav({ transparent = false }) {
   )
 }
 
-const NavLink    = ({ href, children }) => <Link href={href} className="text-sm text-muted hover:text-white transition-colors">{children}</Link>
+const NavLink    = ({ href, children }) => <Link href={href} className="text-xs text-muted hover:text-white transition-colors">{children}</Link>
 const MobileLink = ({ href, children, onClick, bold }) => (
   <Link href={href} onClick={onClick} className={`block text-sm ${bold ? 'font-display font-bold text-blue' : 'text-muted'}`}>{children}</Link>
 )
