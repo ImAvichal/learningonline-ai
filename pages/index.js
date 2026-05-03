@@ -234,7 +234,7 @@ export default function Home() {
     <>
       <Head>
         <title>Le On AI — AI Anxiety → AI Awareness</title>
-        <meta name="description" content="The execution-focused AI program for professionals, business owners, and enterprise leaders. 16 modules, 40 templates, ROI calculator, and model selection framework." />
+        <meta name="description" content="The execution-focused AI program for professionals, business owners, and enterprise leaders. 40 learning modules, 40 templates, ROI calculator, and model selection framework." />
       </Head>
       <Nav transparent />
 
@@ -252,7 +252,7 @@ export default function Home() {
             </p>
 
             <p className="text-xs text-white/30 mb-4 font-display tracking-widest uppercase">
-              16 modules · 3 tiers · 40 templates · live in 14 days
+              40 learning modules · 4 tiers · 40+ implementation tools · live in 14 days
             </p>
             {user?.tier && (
               <div className="flex flex-wrap gap-3 justify-center">
@@ -278,7 +278,7 @@ export default function Home() {
               {
                 pill: 'Free Module', pillClass: 'bg-success/15 border-success/30 text-success',
                 title: 'AI for Parents', price: 'Free', billing: 'Free · Sign in required',
-                hook: 'Helping families navigate AI calmly and confidently.',
+                hook: '8 practical modules · Helping families navigate AI confidently.',
                 desc: 'A practical, reassuring guide for parents wanting to better understand how AI is shaping how children learn, think, communicate, and grow.',
                 idealFor: 'Parents and caregivers wanting healthier AI conversations and sensible boundaries at home.',
                 bullets: ['How kids are using AI today','Benefits vs risks explained simply','Warning signs to watch for','Conversation starters for families','Practical household AI boundaries','Parent downloadable guide'],
@@ -289,7 +289,7 @@ export default function Home() {
               {
                 pill: 'Individual', pillClass: 'bg-blue/15 border-blue/30 text-blue-bright',
                 title: 'AI Awareness', price: '$49', billing: 'One-time · Lifetime access',
-                hook: 'Build confidence with AI — without needing a technical background.',
+                hook: '10 modules · Build confidence with AI — no technical background needed.',
                 desc: 'Designed for professionals wanting practical AI understanding, clearer conversations, and confidence in a rapidly changing world.',
                 idealFor: 'Business professionals, team members, and people leaders wanting practical AI literacy.',
                 bullets: ['AI foundations and model awareness','Prompting, context, memory and tools','Practical business examples','Leadership conversation readiness','Module Q&A scoring','Downloadable guides and cheat sheets'],
@@ -300,7 +300,7 @@ export default function Home() {
               {
                 pill: 'Business', pillClass: 'bg-amber-400/15 border-amber-400/30 text-amber-400', mostPopular: true,
                 title: 'AI Implementation', price: '$99', popular: true, billing: 'One-time · Lifetime access',
-                hook: 'Move from AI curiosity to practical business execution.',
+                hook: '25 cumulative modules · From AI curiosity to practical execution.',
                 desc: 'Built for business owners and operational teams preparing to introduce AI into workflows, reporting, customer engagement, and decision-making.',
                 idealFor: 'Enterprise leaders, business owners, operations managers, and department leaders preparing for AI adoption.',
                 bullets: ['Everything in AI Awareness','Use case identification and prioritisation','Workflow design frameworks','Data readiness and structuring','ROI modelling and measurement','People and change adoption toolkit'],
@@ -311,7 +311,7 @@ export default function Home() {
               {
                 pill: 'Enterprise', pillClass: 'bg-blue/15 border-blue/30 text-blue-bright',
                 title: 'AI Transformation', price: '$149', billing: 'One-time · Lifetime access',
-                hook: 'Lead AI adoption with structure, clarity, and governance.',
+                hook: '40 cumulative modules · Lead AI adoption with structure and governance.',
                 desc: 'Created for enterprise leaders driving organisation-wide AI capability, governance, operating models, and long-term transformation.',
                 idealFor: 'CIOs, transformation directors, and enterprise leaders responsible for scalable AI adoption.',
                 bullets: ['Everything in AI Implementation','Enterprise AI operating model','Responsible AI and governance','Sustainability and AI impact planning','Multimodal AI orchestration','90-day execution roadmap'],
@@ -361,7 +361,7 @@ export default function Home() {
           <Reveal>
             <div className="text-center mb-12">
               <SectionLabel>Learning Paths</SectionLabel>
-              <h2 className="font-display font-bold text-4xl mb-4">16 modules. Zero filler.</h2>
+              <h2 className="font-display font-bold text-4xl mb-4">40 learning modules. Zero filler.</h2>
               <p className="text-muted max-w-xl mx-auto">Every lesson produces a real deliverable. Every module builds on the last.</p>
             </div>
           </Reveal>

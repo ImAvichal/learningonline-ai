@@ -442,6 +442,94 @@ const LESSONS = [
 <p><strong>What this prevents:</strong> Children arriving at adulthood as passive consumers of AI output rather than active, critical directors of AI tools — the distinction that will define opportunity and outcomes in the careers ahead.</p>
 </div>`,
   },
+  {
+    id: 'p-l9',
+    number: 9,
+    title: 'Kids and AI Chatbots — A Practical Guide',
+    duration: '12 min',
+    icon: '💬',
+    content: `<h2>How Children Are Using AI Chatbots</h2>
+<p>AI chatbots like ChatGPT, Gemini, Copilot, and Claude are now part of many children's daily digital experience — often before parents realise it. Children use them for homework help, creative writing, answering curiosity questions, roleplaying characters, and sometimes for emotional conversations they don't feel comfortable having with adults.</p>
+<p>This is not automatically a problem. But it requires awareness, guidance, and sensible boundaries — just like any other powerful tool your child has access to.</p>
+
+<h3>What Kids Actually Do with Chatbots</h3>
+<table>
+<thead><tr><th>Activity</th><th>What It Looks Like</th><th>Risk Level</th><th>Parent Response</th></tr></thead>
+<tbody>
+<tr><td><strong>Homework help</strong></td><td>Asking the chatbot to explain a concept, solve a problem, or check their work</td><td>Low-medium</td><td>Encourage "explain it to me" over "give me the answer." Ask your child to explain the concept back to you.</td></tr>
+<tr><td><strong>Creative writing</strong></td><td>Co-writing stories, generating characters, building fictional worlds</td><td>Low</td><td>Positive creative use. Encourage your child to add their own ideas rather than accepting AI output unchanged.</td></tr>
+<tr><td><strong>Curiosity questions</strong></td><td>"Why is the sky blue?" "What would happen if..." "How does this work?"</td><td>Low</td><td>Excellent learning behaviour. Teach that AI answers should be checked for accuracy on important topics.</td></tr>
+<tr><td><strong>Roleplay and characters</strong></td><td>Creating fictional scenarios, talking to AI as if it were a character</td><td>Medium</td><td>Monitor the nature of roleplay. Creative exploration is healthy; emotional dependency or inappropriate content is not.</td></tr>
+<tr><td><strong>Emotional conversations</strong></td><td>Telling the chatbot about feelings, worries, or problems</td><td>Medium-high</td><td>AI is not a therapist or friend. If your child turns to AI for emotional support, it may signal they need more human connection — not less screen time.</td></tr>
+<tr><td><strong>Copying answers directly</strong></td><td>Pasting AI output directly into schoolwork without understanding it</td><td>High</td><td>This is shortcutting, not learning. Address it directly: "Can you explain this in your own words?"</td></tr>
+</tbody>
+</table>
+
+<h3>The Key Risks Parents Should Know</h3>
+<ul>
+<li><strong>Misinformation:</strong> AI chatbots can generate plausible but incorrect answers with complete confidence. Children may not question confident-sounding responses.</li>
+<li><strong>Over-reliance:</strong> If AI always provides the answer, children may stop developing the ability to think through problems independently. The struggle is the learning.</li>
+<li><strong>Privacy:</strong> Children may share personal information — their name, school, address, family details — in conversation with a chatbot. This data may be stored and used for training.</li>
+<li><strong>Emotional dependency:</strong> Some children may form a pseudo-relationship with an AI chatbot, preferring its always-available, always-patient responses to real human interaction.</li>
+<li><strong>Inappropriate content:</strong> While most chatbots have safety filters, determined or accidental prompts can occasionally produce content unsuitable for children.</li>
+</ul>
+
+<h3>Guidance for Parents</h3>
+<ol>
+<li><strong>Don't panic or ban AI outright.</strong> Prohibition rarely works and removes your ability to guide their use. Stay curious, not controlling.</li>
+<li><strong>Ask your child to show you.</strong> "Show me what you asked the AI" is the most powerful sentence in AI parenting. It opens conversation without judgment.</li>
+<li><strong>Encourage "explain it back to me."</strong> If your child used AI for homework, ask them to explain the answer in their own words. If they can't, they didn't learn — they copied.</li>
+<li><strong>Teach that AI can sound confident and still be wrong.</strong> Show them a real example. Ask AI a question you know the answer to and find a mistake together. This builds healthy scepticism.</li>
+<li><strong>Set clear boundaries around personal information.</strong> "Never tell AI your full name, address, school name, or anything you wouldn't tell a stranger." Simple, clear, non-negotiable.</li>
+<li><strong>Discuss when AI helps versus when it shortcuts.</strong> "Did AI help you understand this better, or did it just do the work for you?" This one question builds the judgment they need.</li>
+<li><strong>Use AI together sometimes.</strong> Sit with your child and use a chatbot together. Ask it questions, evaluate the answers, laugh at mistakes. This normalises critical use rather than secret use.</li>
+</ol>
+
+<h3>Guidance for Kids</h3>
+<p>If your child is old enough to read this section with you, share these principles directly:</p>
+<ul>
+<li><strong>AI can help you learn, but it should not do all your thinking.</strong> Use it to understand things better, not to skip the hard parts.</li>
+<li><strong>Always check important answers.</strong> AI sounds confident even when it's wrong. If something matters — for school, for a decision, for your safety — check it with a trusted source.</li>
+<li><strong>Don't share private information.</strong> Don't tell a chatbot your real name, where you live, your school name, or anything personal. Treat it like a stranger — because it is.</li>
+<li><strong>Ask AI to explain, not just answer.</strong> "Explain why this is the answer" teaches you something. "Just give me the answer" teaches you nothing.</li>
+<li><strong>Use AI to practise, brainstorm, and understand.</strong> It's great for exploring ideas, practising skills, and understanding concepts you're stuck on.</li>
+<li><strong>If something feels weird or upsetting, talk to an adult.</strong> AI doesn't always get it right. If a chatbot says something that confuses you, scares you, or doesn't feel right — close it and talk to a parent or teacher.</li>
+</ul>
+
+<h3>Family AI Rules</h3>
+<p>Consider adopting these as your household AI guidelines. Print them, stick them on the fridge, or keep them wherever your family rules live:</p>
+<div class="real-world-box">
+<h3>📋 Our Family AI Rules</h3>
+<ol>
+<li><strong>Use AI to learn, not to cheat.</strong> If you can't explain the answer yourself, you haven't learned it.</li>
+<li><strong>Ask AI to explain the answer.</strong> Understanding why matters more than knowing what.</li>
+<li><strong>Don't share personal details.</strong> No names, addresses, school names, or private information.</li>
+<li><strong>Check important facts.</strong> AI can be wrong. If it matters, verify it.</li>
+<li><strong>Talk to a parent if unsure.</strong> If something seems wrong, confusing, or upsetting — ask us. We're here.</li>
+<li><strong>Keep school rules in mind.</strong> Whatever your school says about AI use in assignments, follow it.</li>
+</ol>
+</div>
+
+<h3>Conversation Starters</h3>
+<p>Use these to open relaxed, curious conversations about AI with your child:</p>
+<ul>
+<li>"Show me what you asked the AI."</li>
+<li>"What part did you understand better after using it?"</li>
+<li>"Can you explain that in your own words?"</li>
+<li>"How do you know the answer is correct?"</li>
+<li>"What would you do differently next time?"</li>
+<li>"Did it help you learn, or did it just do the work?"</li>
+<li>"What's the funniest thing AI got wrong?"</li>
+</ul>
+<p>The goal of these conversations is not surveillance — it's partnership. You're building your child's judgment together, not policing their screen time.</p>
+
+<div class="real-world-box">
+<h3>🌍 From Real-World Practice</h3>
+<p><strong>Insight:</strong> Parents who use AI alongside their children — even occasionally — report significantly less anxiety about their child's AI use and significantly better conversations about digital literacy.</p>
+<p><strong>Example:</strong> A parent of a 12-year-old sat down with their child and asked ChatGPT to help plan a family holiday. Together, they evaluated the suggestions, found two factual errors (a restaurant that had closed, a museum with wrong opening hours), and had a conversation about why AI gets things wrong. The child independently started checking AI homework answers the following week — without being told to. One shared experience changed the dynamic more than months of rules.</p>
+<p><strong>Why it matters:</strong> Children learn judgment through experience, not instruction. The most effective AI parenting strategy is modelling thoughtful use — not restricting access.</p>
+</div>`,
+  },
 ]
 
 const DOWNLOADABLE = {
@@ -649,7 +737,7 @@ export default function ParentsModule() {
                 <div className="mt-4 p-4 rounded-xl border border-blue/20 bg-blue/5">
                   <div className="text-xs font-display font-bold text-white mb-1">Want the full curriculum?</div>
                   <p className="text-xs text-muted leading-relaxed mb-3">
-                    16 modules on AI strategy, use cases, ROI, and execution — starting at $49.
+                    40 learning modules on AI strategy, use cases, ROI, and execution — starting at $49.
                   </p>
                   <Link href="/pricing"
                     className="block text-center px-4 py-2 bg-blue hover:bg-blue-bright text-white font-display font-bold text-xs rounded-lg transition-all">
