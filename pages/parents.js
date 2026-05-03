@@ -737,7 +737,7 @@ export default function ParentsModule() {
                 <div className="mt-4 p-4 rounded-xl border border-blue/20 bg-blue/5">
                   <div className="text-xs font-display font-bold text-white mb-1">Want the full curriculum?</div>
                   <p className="text-xs text-muted leading-relaxed mb-3">
-                    40 learning modules on AI strategy, use cases, ROI, and execution — starting at $49.
+                    16 modules on AI strategy, use cases, ROI, and execution — starting at $49.
                   </p>
                   <Link href="/pricing"
                     className="block text-center px-4 py-2 bg-blue hover:bg-blue-bright text-white font-display font-bold text-xs rounded-lg transition-all">
