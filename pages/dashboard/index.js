@@ -144,7 +144,7 @@ function HomeTab({ user, totalPct, completedMods, nextLesson, switchTab, templat
           <div className="flex items-start gap-4">
             <span className="text-2xl">💼</span>
             <div>
-              <div className="text-xs font-display font-bold text-amber-400 uppercase tracking-wider mb-1">Business Owner Access</div>
+              <div className="text-xs font-display font-bold text-amber-400 uppercase tracking-wider mb-1">AI Implementation Access</div>
               <h3 className="font-display font-bold text-base mb-1">Industry playbooks and implementation templates unlocked</h3>
               <button onClick={() => switchTab('templates')} className="text-sm font-display font-bold text-amber-400 hover:underline mt-2 block">
                 View your templates →
