@@ -8,7 +8,7 @@ import { MODULES } from '../../data/modules'
 import { Card, SectionLabel, TierBadge } from '../../components/ui'
 
 export default function TemplatesPage() {
-  const { user, loading } = useAuth()
+  const { user, loading, supabase, trackDownload } = useAuth()
   const router = useRouter()
 
   useEffect(() => {
@@ -32,14 +32,22 @@ export default function TemplatesPage() {
     enterprise: resources.filter(t => t.tier === 'enterprise'),
   }
 
-  const handleDownload = (tpl) => {
-    // Production: fetch signed URL from Supabase Storage, then trigger download
-    // const { data } = await supabase.storage.from('templates').createSignedUrl(`${tpl.id}.${tpl.format.toLowerCase()}`, 60)
-    // window.location.href = data.signedUrl
-    alert(
-      `In production, "${tpl.name}.${tpl.format.toLowerCase()}" downloads via a signed Supabase Storage URL.\n\n` +
-      `Upload your actual files to Supabase Storage bucket "templates" using the matching filename.`
-    )
+  const handleDownload = async (tpl) => {
+    try {
+      const ext = tpl.format.toLowerCase()
+      const path = `v1/${tpl.tier}/${tpl.id}.${ext}`
+      const { data, error } = await supabase.storage
+        .from('downloads')
+        .createSignedUrl(path, 60)
+      if (error || !data?.signedUrl) {
+        alert('This resource is being prepared and will be available shortly.')
+        return
+      }
+      trackDownload(tpl.id)
+      window.open(data.signedUrl, '_blank')
+    } catch (e) {
+      alert('This resource is being prepared and will be available shortly.')
+    }
   }
 
   const TierSection = ({ tierId, label, items }) => {
