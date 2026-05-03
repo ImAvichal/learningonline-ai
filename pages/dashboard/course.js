@@ -221,6 +221,12 @@ export default function CoursePage() {
       mainRef.current?.scrollTo({ top: 0, behavior: 'smooth' })
     } else if (nextLesson) {
       setTimeout(() => goTo(nextLesson), 300)
+    } else {
+      // All lessons complete — check if this is the final accessible lesson
+      const allDone = accessible.every(l => isCompleted(l.id) || l.id === activeLessonId)
+      if (allDone) {
+        setTimeout(() => router.push('/course-complete'), 500)
+      }
     }
   }
 
