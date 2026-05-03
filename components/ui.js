@@ -117,22 +117,20 @@ export function Nav({ transparent = false }) {
           <ThemeToggle />
           {!user && (
             <>
-              <NavLink href="/pricing">View Courses</NavLink>
               <NavLink href="/login">Sign In</NavLink>
             </>
           )}
           {user && !user.tier && !user.isDevUser && (
             <>
               <NavLink href="/preview">Preview</NavLink>
-              <NavLink href="/pricing">View Courses</NavLink>
-              <span className="text-xs text-white/50 font-display">G'day{user.name ? `, ${user.name.split(' ')[0]}` : ''}</span>
+              <span className="text-xs text-gray-700 dark:text-gray-300 font-display">G'day{user.name ? `, ${user.name.split(' ')[0]}` : ''}</span>
               <button onClick={logout} className="text-xs text-muted hover:text-white transition-colors">Sign Out</button>
             </>
           )}
           {(user?.tier || user?.isDevUser) && (
             <>
               <NavLink href="/dashboard">Dashboard</NavLink>
-              <span className="text-xs text-white/50 font-display">G'day{user.name ? `, ${user.name.split(' ')[0]}` : ''}</span>
+              <span className="text-xs text-gray-700 dark:text-gray-300 font-display">G'day{user.name ? `, ${user.name.split(' ')[0]}` : ''}</span>
               <button onClick={logout} className="text-xs text-muted hover:text-white transition-colors">Sign Out</button>
             </>
           )}
@@ -152,16 +150,14 @@ export function Nav({ transparent = false }) {
           <MobileLink href="/about" onClick={() => setOpen(false)}>About</MobileLink>
           {!user && (
             <>
-              <MobileLink href="/pricing" onClick={() => setOpen(false)}>View Courses</MobileLink>
               <MobileLink href="/login"   onClick={() => setOpen(false)} bold>Sign In →</MobileLink>
             </>
           )}
           {user && !user.tier && !user.isDevUser && (
             <>
               <MobileLink href="/preview" onClick={() => setOpen(false)}>Preview</MobileLink>
-              <MobileLink href="/pricing" onClick={() => setOpen(false)}>View Courses</MobileLink>
               <div className="flex items-center justify-between">
-                <span className="text-xs text-white/50 font-display">G'day{user.name ? `, ${user.name.split(' ')[0]}` : ''}</span>
+                <span className="text-xs text-gray-700 dark:text-gray-300 font-display">G'day{user.name ? `, ${user.name.split(' ')[0]}` : ''}</span>
                 <button onClick={() => { logout(); setOpen(false) }}
                   className="text-xs text-muted">Sign Out</button>
               </div>
