@@ -73,26 +73,26 @@ export default function TemplatesPage() {
                   <span className="text-2xl">{tpl.icon}</span>
                   <div className="flex items-center gap-2">
                     {mod && (
-                      <span className="text-[10px] text-muted font-display bg-white/5 border border-white/10 px-2 py-0.5 rounded-full">
+                      <span className="text-[10px] text-muted font-display bg-gray-100 dark:bg-white/5 border border-gray-200 dark:border-white/10 px-2 py-0.5 rounded-full">
                         M{mod.number}
                       </span>
                     )}
-                    <span className="text-[10px] font-display font-bold px-2 py-0.5 bg-white/5 border border-white/10 rounded-full text-muted">
+                    <span className="text-[10px] font-display font-bold px-2 py-0.5 bg-gray-100 dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-full text-muted">
                       {tpl.format}
                     </span>
                   </div>
                 </div>
-                <h3 className="font-display font-bold text-sm text-white mb-2">{tpl.name}</h3>
+                <h3 className="font-display font-bold text-sm text-gray-900 dark:text-white mb-2">{tpl.title}</h3>
                 <p className="text-xs text-muted leading-relaxed flex-1 mb-4">{tpl.desc}</p>
                 {UPLOADED_IDS.has(tpl.id) ? (
                 <button
                   onClick={() => handleDownload(tpl)}
-                  className="w-full py-2.5 border border-white/10 text-muted hover:text-white hover:border-blue hover:bg-blue/10 font-display font-bold text-xs rounded-lg transition-all"
+                  className="w-full py-2.5 border border-gray-200 dark:border-white/10 text-gray-600 dark:text-muted hover:text-gray-900 dark:hover:text-white hover:border-blue hover:bg-blue/10 font-display font-bold text-xs rounded-lg transition-all"
                 >
                   ↓ Download {tpl.format}
                 </button>
                 ) : (
-                <div className="w-full py-2.5 text-center border border-white/5 bg-white/[0.02] font-display font-bold text-xs rounded-lg text-white/25">
+                <div className="w-full py-2.5 text-center border border-gray-200 dark:border-white/5 bg-gray-50 dark:bg-white/[0.02] font-display font-bold text-xs rounded-lg text-gray-400 dark:text-white/25">
                   Work in Progress
                 </div>
                 )}
