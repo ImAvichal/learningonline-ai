@@ -504,3 +504,15 @@ html.light-mode .triad-def             { color: #6b7280; }
   table-layout: auto;
 }
 
+/* ── Light mode prose fixes ── */
+@media (prefers-color-scheme: light) {
+  .prose-lesson h2, .prose-lesson h3 { color: #1a1a2e; }
+  .prose-lesson p, .prose-lesson li { color: #374151; }
+  .prose-lesson strong { color: #1a1a2e; }
+  .prose-lesson td, .prose-lesson th { color: #374151; }
+  .prose-lesson th { background: #f3f4f6; }
+  .prose-lesson pre { background: #f9fafb; color: #374151; border: 1px solid #e5e7eb; }
+  .prose-lesson .real-world-box { background: #f0fdf4; border-color: #86efac; }
+  .prose-lesson .real-world-box h3, .prose-lesson .real-world-box p { color: #374151; }
+}
+
