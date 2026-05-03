@@ -88,7 +88,7 @@ export const MODULES = [
 <p><strong>Example:</strong> A 350-person professional services firm spent $180K building an AI to "improve proposal quality." After 6 months, adoption was 4%. The root cause: nobody could define what "quality" meant in measurable terms. Without a definition, the AI had nothing to optimise for. The project was shelved. A $5K workshop to define quality criteria upfront would have changed the outcome.</p>
 <p><strong>Why it matters:</strong> Specificity of problem definition is the single highest-leverage activity before any AI project. It costs nothing and determines everything.</p>
 <p><strong>Implementation tip:</strong> Before any AI initiative, complete this sentence in one sentence: "We will know AI is working when [specific measurable outcome] improves from [baseline] to [target] within [timeframe]." If you cannot complete it, do not start.</p>
-<p><strong>💡 What This Saves You:</strong> Organisations that define success criteria before build begin are 3× more likely to deliver on time and within budget. That's the difference between a $45K successful deployment and a $180K shelved project.</p>
+<p><strong>💡 What This Saves You:</strong> Organisations that define success criteria before build begins are 3× more likely to deliver on time and within budget. For a mid-size organisation, that's the difference between a $45K successful deployment and a $180K shelved project.</p>
 </div>`,
       },
       {
@@ -413,6 +413,16 @@ Constraints: Never admit liability. Never promise a specific resolution timeline
         title: 'AI in Your Daily Work — Practical Application',
         content: `<h2>From Understanding to Doing — Starting This Week</h2>
 <p>This lesson is different from the others. It's not conceptual. It's a practical guide to the AI tools and workflows you can implement in your daily work today — with no technical setup, no developer, and minimal cost.</p>
+
+<h3>Before You Start — Check Your Organisation\'s AI Policy</h3>
+<p>Before using any AI tool with business information, take these steps:</p>
+<ul>
+<li><strong>Check for approved tools:</strong> Many organisations now provide licensed AI assistants (Microsoft Copilot, Google Gemini Enterprise, etc.). Using an approved tool means your data stays within your organisation\'s security boundary.</li>
+<li><strong>Ask your IT or security team:</strong> If your organisation hasn\'t communicated an AI policy, ask. A simple question — "Which AI tools are approved for business use?" — protects you and the organisation.</li>
+<li><strong>Never upload confidential data to unapproved public tools:</strong> Free-tier AI tools may use your inputs for training. Client data, financial records, HR information, and proprietary documents should only go into enterprise-licensed or approved tools.</li>
+<li><strong>Understand your obligations:</strong> If you work in a regulated industry (finance, healthcare, legal, government), AI usage may have specific compliance requirements. Check before you start.</li>
+</ul>
+<p><strong>Practical rule:</strong> If you wouldn\'t email the information to an external contact, don\'t paste it into an unapproved AI tool.</p>
 
 <h3>The 6 Categories of Turnkey AI Tools</h3>
 <table>
@@ -743,7 +753,7 @@ Ensures the solution gets built and adopted. Defines requirements, manages timel
 <p><strong>Example:</strong> A $2.4M enterprise AI program stalled for 7 months. Investigation revealed the Business Leader had delegated to a committee (no single voice), the Solution Architect was chosen based on vendor relationship (not capability), and the Delivery Lead reported to IT — not to the program sponsor. All three accountabilities existed on paper. None worked as designed. Restructuring the triad delivered the first use case in 11 weeks.</p>
 <p><strong>Why it matters:</strong> The triad is not about org charts. It's about clear accountability for three fundamentally different types of decision.</p>
 <p><strong>Implementation tip:</strong> At the start of every AI initiative, run a 30-minute "Triad Clarity Session." Three questions: Who owns the problem definition? Who owns the solution design? Who owns delivery? If any answer is "the team" or "we all do" — you have a problem.</p>
-<p><strong>💡 What This Saves You:</strong> Organisations that establish clear triad roles before build begin are 3× more likely to deliver on time and within budget. Unclear triad = guaranteed scope creep, rework, and stakeholder conflict.</p>
+<p><strong>💡 What This Saves You:</strong> Organisations that establish clear triad roles before build begins are 3× more likely to deliver on time and within budget. Unclear triad = guaranteed scope creep, rework, and stakeholder conflict.</p>
 </div>`,
       },
       {
@@ -1075,11 +1085,18 @@ Decision: If quick ROI &gt; 200%, build the formal business case. This one: buil
 <p><strong>5. Ongoing Maintenance Cost ($/year):</strong> Token costs + support + data maintenance + governance overhead.</p>
 <h3>The Priority Score Formula</h3>
 <pre>Priority Score = (Business Value × 2) + Complexity Score + Adoption Score
-                 − (Normalised Cost Score)
+                 − Normalised Cost Score
 
-Where Complexity Score = (6 - Implementation Complexity)
-      Adoption Score   = (6 - Adoption Effort)
-      Cost Score       = scaled 1–5 from cost estimate</pre>`,
+Where:
+  Complexity Score   = (6 − Implementation Complexity score)
+  Adoption Score     = (6 − Adoption Effort score)
+  Normalised Cost    = Implementation cost + (Annual maintenance × 5)
+                       scaled to 1–5 where:
+                       1 = under $25K total, 2 = $25–75K,
+                       3 = $75–150K, 4 = $150–300K, 5 = over $300K
+
+Maximum possible score = 10 + 5 + 5 − 1 = 19
+Minimum possible score = 2 + 1 + 1 − 5 = −1</pre>`,
       },
       {
         id: 'm4-l2', number: 2, tier: 'smb', duration: '28 min',
@@ -1176,7 +1193,7 @@ Break-Even            = Implementation Cost / Monthly Net Benefit
     ],
     quiz: {
       questions: [
-        { id: 'q4-1', text: 'A use case has high business value (5), low implementation complexity (2), but very high adoption effort (5). What is its Priority Score using the formula?', options: ['12', '9', '8', '14'], correct: 1, explanation: 'Score = (5×2) + (6-2) + (6-5) = 10 + 4 + 1 = 15. Then subtract cost score. High adoption effort significantly reduces the attractiveness of otherwise strong use cases.' },
+        { id: 'q4-1', text: 'A use case scores: Business Value 5, Implementation Complexity 2, Adoption Effort 5, Normalised Cost 3. What is its Priority Score?', options: ['12', '15', '10', '14'], correct: 0, explanation: 'Score = (5×2) + (6−2) + (6−5) − 3 = 10 + 4 + 1 − 3 = 12. High adoption effort (score of only 1 after inversion) significantly reduces the attractiveness of otherwise strong use cases.' },
         { id: 'q4-2', text: 'Your AI use case processes 1,000 requests per day, averaging 3,000 tokens each at $0.000005 per token. What is the annual token cost?', options: ['$547.50', '$5,475', '$54,750', '$547,500'], correct: 1, explanation: '1,000 × 3,000 × $0.000005 × 365 = $5,475/year. Understanding this calculation is essential for accurate cost modelling.' },
         { id: 'q4-3', text: 'A use case has a 5-year value of $800,000 and a 5-year cost of $120,000. What is the 5-year ROI?', options: ['567%', '667%', '767%', '867%'], correct: 1, explanation: 'ROI = ((800,000 - 120,000) / 120,000) × 100 = (680,000 / 120,000) × 100 = 567%. Building ROI models gives you the language leadership needs to approve investment.' },
         { id: 'q4-4', text: 'Why is adoption effort included as a scoring factor in prioritisation?', options: ['It isn\'t — only technical factors matter', 'Because high adoption effort increases implementation time and risk of low ROI even when the technical build succeeds', 'Because it determines which vendor to use', 'Because it measures how many users will use the tool'], correct: 1, explanation: 'A technically successful AI tool with low adoption delivers zero value. Adoption effort is a risk multiplier that must be factored into prioritisation.' },
@@ -2162,10 +2179,10 @@ Standard Q&A responses   → Automated   → Escalations & experience design</pr
 <table>
 <thead><tr><th>Provider / Capability</th><th>What It Represents</th><th>When to Use It</th></tr></thead>
 <tbody>
-<tr><td><strong>Platform AI</strong> (e.g. ServiceNow, Salesforce)</td><td>AI embedded into your existing workflow platform</td><td>When your workflows already live in a platform — fastest path to adoption</td></tr>
-<tr><td><strong>Contact Centre AI</strong> (e.g. Amazon Connect)</td><td>AI for calls, chats, summaries, and customer routing</td><td>Customer-facing operational workflows where speed and consistency matter</td></tr>
+<tr><td><strong>Platform AI</strong> (e.g. ServiceNow Now Assist)</td><td>AI embedded into your existing workflow platform</td><td>When your workflows already live in a platform — fastest path to adoption</td></tr>
+<tr><td><strong>Enterprise AI Assistant</strong> (e.g. Amazon Q)</td><td>AI for calls, chats, summaries, and customer routing</td><td>Connects AI to organisational data, applications, and enterprise workflows</td></tr>
 <tr><td><strong>Productivity AI</strong> (e.g. Microsoft Copilot)</td><td>AI across documents, email, meetings, and office workflows</td><td>Often the fastest entry point for everyday AI adoption across teams</td></tr>
-<tr><td><strong>Enterprise AI</strong> (e.g. Watson, Vertex)</td><td>Structured business, knowledge, and decision-support AI</td><td>Complex enterprise tasks requiring governance, audit, and data residency</td></tr>
+<tr><td><strong>Enterprise AI</strong> (e.g. IBM Watsonx, Google Vertex)</td><td>Structured business, knowledge, and decision-support AI</td><td>Complex enterprise tasks requiring governance, audit, and data residency</td></tr>
 <tr><td><strong>In-House AI</strong></td><td>Custom AI built or configured internally for specific organisational needs</td><td>When privacy, control, specialisation, or deep integration matters</td></tr>
 <tr><td><strong>Foundation Models</strong></td><td>The underlying LLMs (GPT-4o, Claude, Gemini, Llama) that power reasoning and generation</td><td>Right-size per task: frontier for complex reasoning, efficient for high-volume classification</td></tr>
 </tbody>
