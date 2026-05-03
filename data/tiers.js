@@ -13,7 +13,7 @@ export const TIERS = {
     idealFor: 'Parents and caregivers wanting healthier AI conversations and sensible boundaries at home.',
     notFor: 'Business professionals looking for AI implementation guidance — see the paid tracks below.',
     features: [
-      '8 practical lessons for parents',
+      '9 practical lessons for parents',
       'What AI is and how kids use it',
       'Benefits vs risks — the honest picture',
       'Warning signs and conversation starters',
