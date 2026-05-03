@@ -158,7 +158,7 @@ function IndustryMatcher() {
                 ? t === null ? 'bg-white/10 border-white/20 text-white' : `tier-${t}`
                 : 'border-white/10 text-muted hover:border-white/20 hover:text-white'
             }`}>
-            {t === null ? 'All Industries' : t === 'smb' ? 'Business Owner' : TIERS[t]?.name}
+            {t === null ? 'All Industries' : t === 'smb' ? 'AI Implementation' : TIERS[t]?.name}
           </button>
         ))}
       </div>
@@ -189,7 +189,7 @@ function IndustryMatcher() {
                   <h3 className="font-display font-bold text-2xl mb-2">{industry.name}</h3>
                   <div className="flex items-center gap-2 flex-wrap">
                     <span className="text-sm text-muted">Recommended:</span>
-                    <TierBadge tier={industry.recommendedTier} label={industry.recommendedTier === 'smb' ? 'Business Owner' : tier.name} />
+                    <TierBadge tier={industry.recommendedTier} label={industry.recommendedTier === 'smb' ? 'AI Implementation' : tier.name} />
                     <span className="text-sm font-display font-bold text-white">{tier.priceDisplay}</span>
                   </div>
                 </div>
@@ -389,7 +389,7 @@ export default function Home() {
                       <span className="px-3 py-1 bg-blue/10 border border-blue/25 rounded-full text-xs font-display font-bold text-blue-bright">Module {MODULES[activeModule].number}</span>
                       {(() => {
                         const firstTier = MODULES[activeModule].lessons[0]?.tier
-                        if (firstTier && firstTier !== 'individual') return <TierBadge tier={firstTier} label={firstTier === 'smb' ? 'Business Owner+' : 'Enterprise Leader'} />
+                        if (firstTier && firstTier !== 'individual') return <TierBadge tier={firstTier} label={firstTier === 'smb' ? 'AI Implementation+' : 'AI Transformation'} />
                       })()}
                     </div>
                     <h3 className="font-display font-bold text-2xl mb-2">{MODULES[activeModule].title}</h3>

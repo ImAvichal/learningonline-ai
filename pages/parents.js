@@ -665,7 +665,7 @@ export default function ParentsModule() {
             <div className="flex items-center gap-3 mb-3 flex-wrap">
               <SectionLabel>Free Module</SectionLabel>
               <span className="px-3 py-1 bg-success/10 border border-success/25 rounded-full text-xs font-display font-bold text-success">
-                FREE — No enrolment required
+                FREE — Sign in to access
               </span>
             </div>
             <h1 className="font-display font-black text-4xl tracking-tight mb-2">AI for Parents</h1>
