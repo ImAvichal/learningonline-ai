@@ -97,7 +97,7 @@ export const TIERS = {
       'Sustainability and AI impact planning',
       'Multimodal AI orchestration',
       '90-day execution roadmap',
-      'All 40 cumulative learning modules',
+      'All 16 modules',
       'Lifetime access',
     ],
     modules: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
