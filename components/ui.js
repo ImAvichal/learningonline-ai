@@ -110,6 +110,7 @@ export function Nav({ transparent = false }) {
           <NavLink href="/model-selection">Choosing the Right AI</NavLink>
           <NavLink href="/roi-calculator">Value Calculator</NavLink>
           <NavLink href="/glossary">Jargon Buster</NavLink>
+          <NavLink href="/roadmap">AI Evolution</NavLink>
           <NavLink href="/about">About</NavLink>
         </div>
         <div className="hidden md:flex items-center gap-3">
