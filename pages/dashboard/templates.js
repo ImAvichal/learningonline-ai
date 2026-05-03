@@ -7,6 +7,11 @@ import { getResourcesForTier } from '../../data/templates'
 import { MODULES } from '../../data/modules'
 import { Card, SectionLabel, TierBadge } from '../../components/ui'
 
+const UPLOADED_IDS = new Set([
+  'ai-cheat-sheet', 'model-types-guide', 'token-awareness',
+  'prompt-tips', 'leadership-guide',
+])
+
 export default function TemplatesPage() {
   const { user, loading, supabase, trackDownload } = useAuth()
   const router = useRouter()
@@ -79,12 +84,18 @@ export default function TemplatesPage() {
                 </div>
                 <h3 className="font-display font-bold text-sm text-white mb-2">{tpl.name}</h3>
                 <p className="text-xs text-muted leading-relaxed flex-1 mb-4">{tpl.desc}</p>
+                {UPLOADED_IDS.has(tpl.id) ? (
                 <button
                   onClick={() => handleDownload(tpl)}
                   className="w-full py-2.5 border border-white/10 text-muted hover:text-white hover:border-blue hover:bg-blue/10 font-display font-bold text-xs rounded-lg transition-all"
                 >
                   ↓ Download {tpl.format}
                 </button>
+                ) : (
+                <div className="w-full py-2.5 text-center border border-white/5 bg-white/[0.02] font-display font-bold text-xs rounded-lg text-white/25">
+                  Work in Progress
+                </div>
+                )}
               </Card>
             )
           })}
