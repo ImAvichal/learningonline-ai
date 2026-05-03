@@ -493,3 +493,14 @@ html.light-mode .triad-def             { color: #6b7280; }
   .prose-lesson pre { font-size: 0.7rem; padding: 0.75rem; }
 }
 
+/* ── Table text wrapping fix ── */
+.prose-lesson td,
+.prose-lesson th {
+  white-space: normal;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+.prose-lesson table {
+  table-layout: auto;
+}
+
