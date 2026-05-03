@@ -50,31 +50,31 @@ export default function Signup() {
             Le On <span className="text-blue">AI</span>
           </Link>
           <div>
-            <div className="text-xs font-display font-bold text-white/40 uppercase tracking-wider mb-3">You're enrolling in</div>
+            <div className="text-xs font-display font-bold text-gray-400 dark:text-white/40 uppercase tracking-wider mb-3">You're enrolling in</div>
             <h2 className="font-display font-bold text-2xl mb-1">{tier.name}</h2>
             <div className="font-display font-bold text-3xl text-blue-bright mb-1">{tier.priceDisplay}</div>
-            <div className="text-xs text-white/40 mb-8">{tier.billing}</div>
+            <div className="text-xs text-gray-400 dark:text-white/40 mb-8">{tier.billing}</div>
             <div className="space-y-2.5">
               {tier.features.slice(0, 5).map(f => (
                 <div key={f} className="flex gap-2.5 items-start text-xs">
                   <span className="text-success mt-0.5 flex-shrink-0">✓</span>
-                  <span className="text-white/60 leading-relaxed">{f}</span>
+                  <span className="text-gray-600 dark:text-white/60 leading-relaxed">{f}</span>
                 </div>
               ))}
             </div>
             <div className="mt-8 pt-6 border-t border-white/5 space-y-3">
               <div className="border-l-2 border-success/30 pl-3">
-                <div className="text-[11px] font-display font-bold text-white/50">AI for Parents</div>
-                <div className="text-[10px] text-white/25">Free pathway — always available</div>
+                <div className="text-[11px] font-display font-bold text-gray-700 dark:text-white/50">AI for Parents</div>
+                <div className="text-[10px] text-gray-400 dark:text-white/25">Free pathway — always available</div>
               </div>
               <div className="border-l-2 border-blue/30 pl-3">
-                <div className="text-[11px] font-display font-bold text-white/50">AI Awareness · $49</div>
+                <div className="text-[11px] font-display font-bold text-gray-700 dark:text-white/50">AI Awareness · $49</div>
               </div>
               <div className="border-l-2 border-amber-400/30 pl-3">
-                <div className="text-[11px] font-display font-bold text-white/50">AI Implementation · $99</div>
+                <div className="text-[11px] font-display font-bold text-gray-700 dark:text-white/50">AI Implementation · $99</div>
               </div>
               <div className="border-l-2 border-purple-400/30 pl-3">
-                <div className="text-[11px] font-display font-bold text-white/50">AI Transformation · $149</div>
+                <div className="text-[11px] font-display font-bold text-gray-700 dark:text-white/50">AI Transformation · $149</div>
               </div>
             </div>
           </div>
