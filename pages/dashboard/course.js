@@ -1,6 +1,7 @@
 // pages/dashboard/course.js — Course player with Q&A scoring
 import { useState, useRef, useEffect } from 'react'
 import { useAuth, useProgress } from '../../lib/auth'
+import MultimodalDiagram from '../../components/MultimodalDiagram'
 import NoEnrolmentMessage from '../../components/NoEnrolmentMessage'
 import { useRouter } from 'next/router'
 import { MODULES } from '../../data/modules'
@@ -377,6 +378,7 @@ export default function CoursePage() {
               </div>
 
               <LessonContent content={activeLesson.content} />
+              {activeLessonId === 'm13-l3' && <MultimodalDiagram />}
 
               {/* Deliverable callout at end of module */}
               {isLastLessonInModule && activeMod && (
