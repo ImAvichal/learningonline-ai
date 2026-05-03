@@ -358,40 +358,39 @@ export default function Home() {
 
       {/* ── Learning Evolution ── */}
       <section className="py-16 border-t border-gray-100 dark:border-white/5">
-        <div className="max-w-4xl mx-auto px-6">
+        <div className="max-w-5xl mx-auto px-6">
           <div className="text-center mb-10">
             <SectionLabel>Learning Evolution</SectionLabel>
             <h2 className="font-display font-bold text-3xl mb-3">Where We're Heading</h2>
             <p className="text-muted max-w-lg mx-auto text-sm">AI is evolving. Our platform evolves with it.</p>
           </div>
 
-          {/* Metro line */}
-          <div className="relative">
-            {/* Vertical connector */}
-            <div className="absolute left-4 md:left-6 top-0 bottom-0 w-px bg-gradient-to-b from-success/40 via-blue/30 via-amber-400/20 to-purple-400/10" />
-
-            {[
-              { dot: 'bg-success', title: 'Beta Foundations', desc: 'We began by building practical AI awareness.', label: 'Complete' },
-              { dot: 'bg-success', title: 'Version 1 Launch', desc: 'Foundational learning modules, templates, and practical AI guidance.', label: 'Current' },
-              { dot: 'bg-blue', title: 'Industry Intelligence', desc: 'Industry-specific pathways and operational AI patterns.', label: 'Planned' },
-              { dot: 'bg-amber-400', title: 'AI Agents at Work', desc: 'Ready-to-use AI copilots and workflow assistants.', label: 'Future' },
-              { dot: 'bg-purple-400', title: 'Agentic Organisations', desc: 'Connected AI ecosystems and orchestrated workflows.', label: 'Long-term' },
-              { dot: 'bg-gray-400 dark:bg-white/20', title: 'Human + AI Orchestration', desc: 'Long-term responsible collaboration between humans and AI.', label: 'Beyond' },
-            ].map((stage, i) => (
-              <div key={i} className="relative flex items-start gap-4 md:gap-6 pb-6 last:pb-0">
-                <div className={`relative z-10 w-3 h-3 rounded-full ${stage.dot} mt-1.5 flex-shrink-0 ring-4 ring-white dark:ring-navy`} />
-                <div className="flex-1 min-w-0">
-                  <div className="flex items-center gap-2 flex-wrap">
-                    <span className="font-display font-bold text-sm text-gray-900 dark:text-white">{stage.title}</span>
-                    <span className="text-[9px] font-display font-bold text-gray-400 dark:text-white/30 uppercase tracking-wider">{stage.label}</span>
+          {/* Horizontal metro line */}
+          <div className="overflow-x-auto pb-4 -mx-6 px-6">
+            <div className="flex items-start gap-0 min-w-[700px]">
+              {[
+                { title: 'Beta', desc: 'Foundations built', dot: 'bg-white/20', line: 'bg-white/10', active: false },
+                { title: 'V1 Launch', desc: 'You are here', dot: 'bg-success ring-4 ring-success/20', line: 'bg-success/30', active: true },
+                { title: 'Industry', desc: 'Sector pathways', dot: 'bg-blue/60', line: 'bg-blue/20', active: false },
+                { title: 'AI Agents', desc: 'Workflow copilots', dot: 'bg-amber-400/60', line: 'bg-amber-400/15', active: false },
+                { title: 'Agentic Orgs', desc: 'AI ecosystems', dot: 'bg-purple-400/60', line: 'bg-purple-400/15', active: false },
+                { title: 'Human + AI', desc: 'Responsible collaboration', dot: 'bg-white/15', line: 'bg-transparent', active: false },
+              ].map((s, i) => (
+                <div key={i} className="flex items-start flex-1 min-w-0">
+                  <div className="flex flex-col items-center flex-shrink-0" style={{ width: '10px' }}>
+                    <div className={`w-2.5 h-2.5 rounded-full ${s.dot} flex-shrink-0`} />
                   </div>
-                  <p className="text-xs text-gray-500 dark:text-white/40 mt-0.5">{stage.desc}</p>
+                  {i < 5 && <div className={`h-px flex-1 ${s.line} mt-[5px]`} />}
+                  <div className="absolute mt-5 -ml-8 w-20 text-center" style={{ position: 'relative', marginTop: '12px', marginLeft: '-35px', width: '80px' }}>
+                    <div className={`text-[10px] font-display font-bold ${s.active ? 'text-success' : 'text-gray-500 dark:text-white/40'} leading-tight`}>{s.title}</div>
+                    <div className="text-[9px] text-gray-400 dark:text-white/20 mt-0.5 leading-tight">{s.desc}</div>
+                  </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
 
-          <div className="text-center mt-8">
+          <div className="text-center mt-14">
             <Link href="/roadmap" className="text-xs text-blue hover:text-blue-bright font-display font-bold transition-colors">
               View Full Roadmap →
             </Link>

@@ -43,21 +43,23 @@ export default function Login() {
             <p className="text-muted leading-relaxed max-w-sm mb-6">
               Pick up exactly where you left off — all your lessons and resources are saved.
             </p>
-            <div className="space-y-2">
-              {[
-                { icon: '👨‍👩‍👧', title: 'AI for Parents', sub: 'Free · 9 lessons', cls: 'border-success/20' },
-                { icon: '💡', title: 'AI Awareness', sub: '$49 · Individual', cls: 'border-blue/20' },
-                { icon: '⚡', title: 'AI Implementation', sub: '$99 · Business', cls: 'border-amber-400/20' },
-                { icon: '🏛️', title: 'AI Transformation', sub: '$149 · Enterprise', cls: 'border-purple-400/20' },
-              ].map((p, i) => (
-                <div key={i} className={`flex items-center gap-3 px-4 py-2.5 rounded-lg border ${p.cls} bg-white/[0.02]`}>
-                  <span className="text-lg">{p.icon}</span>
-                  <div>
-                    <div className="text-xs font-display font-bold text-white">{p.title}</div>
-                    <div className="text-[10px] text-muted">{p.sub}</div>
-                  </div>
-                </div>
-              ))}
+            <div className="space-y-3 mt-2">
+              <div className="border-l-2 border-success/30 pl-4">
+                <div className="text-xs font-display font-bold text-white/80">AI for Parents</div>
+                <div className="text-[11px] text-white/35">Free learning pathway for families navigating AI together.</div>
+              </div>
+              <div className="border-l-2 border-blue/30 pl-4">
+                <div className="text-xs font-display font-bold text-white/80">AI Awareness · $49</div>
+                <div className="text-[11px] text-white/35">Practical AI foundations and confidence building.</div>
+              </div>
+              <div className="border-l-2 border-amber-400/30 pl-4">
+                <div className="text-xs font-display font-bold text-white/80">AI Implementation · $99</div>
+                <div className="text-[11px] text-white/35">Operational AI workflows and implementation guidance.</div>
+              </div>
+              <div className="border-l-2 border-purple-400/30 pl-4">
+                <div className="text-xs font-display font-bold text-white/80">AI Transformation · $149</div>
+                <div className="text-[11px] text-white/35">Enterprise orchestration, governance, and AI operating models.</div>
+              </div>
             </div>
           </div>
           <p className="text-xs text-muted">learningonline.ai · Le On AI</p>
