@@ -2131,6 +2131,90 @@ Standard Q&A responses   → Automated   → Escalations & experience design</pr
 <p><strong>Implementation tip:</strong> Build your routing logic as a separate layer, not hard-coded into each application. When a better or cheaper model launches — and they launch every few months — you want to swap it in one place, not twelve.</p>
 </div>`,
       },
+          {
+        id: 'm13-l3', number: 3, tier: 'enterprise', duration: '25 min',
+        title: 'The AI Operating Model — Interactive Reference',
+        content: `<h2>Multimodal AI Operating Model</h2>
+<p>A production AI system is not one model — it is an operating model with three layers: the experience users interact with, the AI models that do the work, and the controls that keep everything safe, accurate, and affordable.</p>
+<p>This reference maps every component you need to consider when designing an enterprise AI capability. Select any block below to understand what it does, why it matters, and how it works in practice.</p>
+
+<h3>🖥️ Frontend — User Experience Layer</h3>
+<p>These components define how people interact with AI. Get these wrong and adoption fails regardless of how good the AI is.</p>
+
+<table>
+<thead><tr><th>Component</th><th>What It Does</th><th>Why It Matters</th></tr></thead>
+<tbody>
+<tr><td><strong>Experience Consistency</strong></td><td>Ensures users get a consistent AI experience regardless of which model or tool sits behind the scenes</td><td>Prevents confusion and builds user trust across different AI touchpoints</td></tr>
+<tr><td><strong>Interaction Design</strong></td><td>Defines how users interact with AI — prompts, forms, chat, workflows, and guided experiences</td><td>Good interaction design reduces mistakes and directly improves adoption rates</td></tr>
+<tr><td><strong>Transparency & Trust</strong></td><td>Explains what AI is doing, where answers come from, and when human review is needed</td><td>Trust is essential when AI supports business decisions — opacity kills adoption</td></tr>
+<tr><td><strong>Personalisation</strong></td><td>Tailors AI responses based on user role, context, preferences, or workflow stage</td><td>Generic AI is ignored. Personalised AI becomes indispensable</td></tr>
+<tr><td><strong>Guidance & Guardrails</strong></td><td>Provides safe boundaries, instructions, policies, and limits for AI usage</td><td>Prevents misuse, reduces operational risk, and protects the organisation</td></tr>
+<tr><td><strong>Performance Expectations</strong></td><td>Sets clear expectations around speed, accuracy, limitations, and when AI may be wrong</td><td>Prevents over-reliance and manages the gap between expectation and reality</td></tr>
+<tr><td><strong>Feedback & Adoption</strong></td><td>Captures user feedback and usage signals to improve the AI experience over time</td><td>AI that doesn't improve based on usage becomes stale and abandoned</td></tr>
+<tr><td><strong>Exception Management</strong></td><td>Defines what happens when AI is uncertain, wrong, or unable to complete the task</td><td>Good exception handling prevents silent failures — the most dangerous AI outcome</td></tr>
+<tr><td><strong>Operating Model</strong></td><td>Defines roles, responsibilities, support processes, governance, and ownership</td><td>AI needs an operating model, not just a tool — someone must own it after launch</td></tr>
+</tbody>
+</table>
+
+<h3>🤖 AI Provider & Model Layer</h3>
+<p>Enterprises rarely use one AI provider. The model layer shows the range of AI capabilities an organisation might draw from — each suited to different tasks, costs, and risk profiles.</p>
+
+<table>
+<thead><tr><th>Provider / Capability</th><th>What It Represents</th><th>When to Use It</th></tr></thead>
+<tbody>
+<tr><td><strong>Platform AI</strong> (e.g. ServiceNow, Salesforce)</td><td>AI embedded into your existing workflow platform</td><td>When your workflows already live in a platform — fastest path to adoption</td></tr>
+<tr><td><strong>Contact Centre AI</strong> (e.g. Amazon Connect)</td><td>AI for calls, chats, summaries, and customer routing</td><td>Customer-facing operational workflows where speed and consistency matter</td></tr>
+<tr><td><strong>Productivity AI</strong> (e.g. Microsoft Copilot)</td><td>AI across documents, email, meetings, and office workflows</td><td>Often the fastest entry point for everyday AI adoption across teams</td></tr>
+<tr><td><strong>Enterprise AI</strong> (e.g. Watson, Vertex)</td><td>Structured business, knowledge, and decision-support AI</td><td>Complex enterprise tasks requiring governance, audit, and data residency</td></tr>
+<tr><td><strong>In-House AI</strong></td><td>Custom AI built or configured internally for specific organisational needs</td><td>When privacy, control, specialisation, or deep integration matters</td></tr>
+<tr><td><strong>Foundation Models</strong></td><td>The underlying LLMs (GPT-4o, Claude, Gemini, Llama) that power reasoning and generation</td><td>Right-size per task: frontier for complex reasoning, efficient for high-volume classification</td></tr>
+</tbody>
+</table>
+
+<h3>⚙️ Backend — Control & Governance Layer</h3>
+<p>This is where AI quality, safety, and cost are managed. Most AI failures trace back to a gap in this layer.</p>
+
+<table>
+<thead><tr><th>Component</th><th>What It Does</th><th>Why It Matters</th></tr></thead>
+<tbody>
+<tr><td><strong>Knowledge</strong></td><td>Curated organisational knowledge used by AI to provide accurate, relevant answers</td><td>AI is only as good as the knowledge it can access — garbage in, garbage out</td></tr>
+<tr><td><strong>Prompts</strong></td><td>Structured instructions that guide AI behaviour and output format</td><td>Prompts shape consistency, quality, and reliability of every AI response</td></tr>
+<tr><td><strong>Ethics, Compliance & Responsible AI</strong></td><td>Policies and controls ensuring AI is safe, fair, compliant, and accountable</td><td>Non-negotiable for trust, regulation, and risk management</td></tr>
+<tr><td><strong>Dataset & Training</strong></td><td>Data used to train, tune, test, or ground AI systems</td><td>Poor data creates poor AI outcomes — data quality is the foundation</td></tr>
+<tr><td><strong>Orchestrator</strong></td><td>The coordination layer that decides which model, tool, or workflow should handle each request</td><td>Standardise orchestration, not one model — the key to cost control and flexibility</td></tr>
+<tr><td><strong>Command Centre</strong></td><td>Central monitoring and management for AI performance, incidents, governance, and adoption</td><td>AI needs operational oversight after launch — not set-and-forget</td></tr>
+<tr><td><strong>Context & Memory</strong></td><td>Information AI uses to understand the current user, situation, history, and workflow</td><td>Better context produces better outcomes — and reduces hallucination</td></tr>
+<tr><td><strong>Model Strategy</strong></td><td>The plan for choosing which models to use, when, and why</td><td>Controls cost, performance, risk, and scalability across the AI portfolio</td></tr>
+<tr><td><strong>Monitoring & Feedback Loop</strong></td><td>Continuous measurement of quality, usage, errors, risk, and user feedback</td><td>AI must be continuously improved — unmonitored AI degrades silently</td></tr>
+</tbody>
+</table>
+
+<h3>📊 Operating Controls</h3>
+<p>These cross-cutting controls apply to every AI capability in the organisation.</p>
+
+<table>
+<thead><tr><th>Control</th><th>What It Covers</th><th>Why It Matters</th></tr></thead>
+<tbody>
+<tr><td><strong>Commercial Model</strong></td><td>How AI costs, licences, usage, and vendor contracts are managed</td><td>Prevents cost surprises and ensures sustainable AI investment</td></tr>
+<tr><td><strong>Performance & Efficiency</strong></td><td>Measures speed, accuracy, throughput, cost, and resource usage</td><td>AI must be effective and economically sustainable at scale</td></tr>
+<tr><td><strong>Critical Functions</strong></td><td>High-risk or business-critical workflows requiring stronger controls, fallback, and human oversight</td><td>Not every workflow should be automated with the same level of autonomy</td></tr>
+</tbody>
+</table>
+
+<h3>How to Use This Reference</h3>
+<ol>
+<li><strong>For new AI initiatives:</strong> Walk through each layer and ask "have we addressed this?" Any blank is a gap that will surface in production.</li>
+<li><strong>For existing AI systems:</strong> Audit your current setup against this model. The most common gaps are in the backend control layer — especially monitoring, exception handling, and model strategy.</li>
+<li><strong>For AI strategy presentations:</strong> Use this as a communication framework with leadership. It shows AI is not just a model — it is an operating capability.</li>
+</ol>
+
+<div class="real-world-box">
+<h3>🌍 From Real-World Practice</h3>
+<p><strong>Insight:</strong> The organisations that succeed with AI at scale are not the ones with the best models — they are the ones with the most complete operating model. Every gap in this reference creates a failure mode in production.</p>
+<p><strong>Example:</strong> A financial services firm deployed AI for claims processing with strong model performance (94% accuracy). But they had no exception management, no monitoring, and no feedback loop. Within 3 months, model drift reduced accuracy to 78% — discovered only when a client escalated a complaint. A complete operating model audit revealed 7 of 27 components were unaddressed. Fixing those 7 gaps took 4 weeks and prevented an estimated $340,000 in operational losses over the following year.</p>
+<p><strong>Implementation tip:</strong> Print this reference and use it as a checklist for every AI initiative. Before any go-live decision, every component should have a named owner and a defined approach — even if the approach is "not applicable for this use case" with documented reasoning.</p>
+</div>`,
+      },
         ],
     quiz: {
       questions: [
