@@ -1,12 +1,12 @@
 import React from 'react'
-// components/ui.js — Le On AI shared UI primitives
+// components/ui.js — LeO AI shared UI primitives
 import Link from 'next/link'
 import { useState, useEffect, useRef } from 'react'
 import { useAuth } from '../lib/auth'
 import { useTheme } from '../lib/theme'
 
 export const BRAND = {
-  name:    'Le On AI',
+  name:    'LeO AI',
   tagline: 'AI That Actually Works In Your Business',
   domain:  'learningonline.ai',
   email:   'hello@learningonline.ai',
@@ -287,6 +287,35 @@ export function TierBadge({ tier, label, className = '' }) {
     <span className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-display font-bold ${c.cls} ${className}`}>
       {c.text}
     </span>
+  )
+}
+
+
+export function BillingToggle({ interval, onChange, className = '' }) {
+  return (
+    <div className={`inline-flex items-center gap-1 p-1 bg-gray-100 dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-lg ${className}`}>
+      <button
+        onClick={() => onChange('monthly')}
+        className={`px-4 py-1.5 text-xs font-display font-bold rounded transition-all ${
+          interval === 'monthly'
+            ? 'bg-white dark:bg-white/10 text-gray-900 dark:text-white shadow-sm'
+            : 'text-gray-500 dark:text-white/40 hover:text-gray-700 dark:hover:text-white/60'
+        }`}
+      >
+        Monthly
+      </button>
+      <button
+        onClick={() => onChange('annual')}
+        className={`px-4 py-1.5 text-xs font-display font-bold rounded transition-all flex items-center gap-1.5 ${
+          interval === 'annual'
+            ? 'bg-white dark:bg-white/10 text-gray-900 dark:text-white shadow-sm'
+            : 'text-gray-500 dark:text-white/40 hover:text-gray-700 dark:hover:text-white/60'
+        }`}
+      >
+        Annual
+        <span className="text-[9px] px-1.5 py-0.5 bg-success/15 text-success rounded">Best value</span>
+      </button>
+    </div>
   )
 }
 
