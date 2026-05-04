@@ -293,28 +293,32 @@ export function TierBadge({ tier, label, className = '' }) {
 
 export function BillingToggle({ interval, onChange, className = '' }) {
   return (
-    <div className={`inline-flex items-center gap-1 p-1 bg-gray-100 dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-lg ${className}`}>
-      <button
-        onClick={() => onChange('monthly')}
-        className={`px-4 py-1.5 text-xs font-display font-bold rounded transition-all ${
-          interval === 'monthly'
-            ? 'bg-white dark:bg-white/10 text-gray-900 dark:text-white shadow-sm'
-            : 'text-gray-500 dark:text-white/40 hover:text-gray-700 dark:hover:text-white/60'
-        }`}
-      >
-        Monthly
-      </button>
-      <button
-        onClick={() => onChange('annual')}
-        className={`px-4 py-1.5 text-xs font-display font-bold rounded transition-all flex items-center gap-1.5 ${
-          interval === 'annual'
-            ? 'bg-white dark:bg-white/10 text-gray-900 dark:text-white shadow-sm'
-            : 'text-gray-500 dark:text-white/40 hover:text-gray-700 dark:hover:text-white/60'
-        }`}
-      >
-        Annual
-        <span className="text-[9px] px-1.5 py-0.5 bg-success/15 text-success rounded">Best value</span>
-      </button>
+    <div className={`inline-flex items-center gap-3 ${className}`}>
+      <div className="inline-flex items-center gap-0.5 p-0.5 bg-gray-100 dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-lg">
+        <button
+          onClick={() => onChange('monthly')}
+          className={`px-4 py-1.5 text-xs font-display font-bold rounded transition-all ${
+            interval === 'monthly'
+              ? 'bg-white dark:bg-white/10 text-gray-900 dark:text-white shadow-sm'
+              : 'text-gray-500 dark:text-white/40 hover:text-gray-700 dark:hover:text-white/60'
+          }`}
+        >
+          Monthly
+        </button>
+        <button
+          onClick={() => onChange('annual')}
+          className={`px-4 py-1.5 text-xs font-display font-bold rounded transition-all ${
+            interval === 'annual'
+              ? 'bg-white dark:bg-white/10 text-gray-900 dark:text-white shadow-sm'
+              : 'text-gray-500 dark:text-white/40 hover:text-gray-700 dark:hover:text-white/60'
+          }`}
+        >
+          Annual
+        </button>
+      </div>
+      {interval === 'annual' && (
+        <span className="text-[10px] font-display font-bold text-success">Best value</span>
+      )}
     </div>
   )
 }
