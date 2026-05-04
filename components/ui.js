@@ -79,7 +79,7 @@ export function Logo({ size = 'md', linked = true }) {
   const sizes = { sm: 'text-base', md: 'text-xl', lg: 'text-2xl' }
   const el = (
     <span className={`font-display font-black tracking-tight ${sizes[size]}`}>
-      Le On <span className="text-blue">AI</span>
+      LeO <span className="text-blue">AI</span>
     </span>
   )
   return linked ? <Link href="/">{el}</Link> : el
