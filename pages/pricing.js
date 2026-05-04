@@ -6,10 +6,15 @@ import { useRouter } from 'next/router'
 import { Nav, Reveal, Card, SectionLabel, Button, TierBadge, BillingToggle } from '../components/ui'
 import { TIERS, TIER_ORDER, DISPLAY_ORDER } from '../data/tiers'
 import { useAuth } from '../lib/auth'
+import { useRegion } from '../lib/region'
+import { REGIONAL_PRICING } from '../data/tiers'
 
 export default function Pricing() {
   const { user } = useAuth()
-  const [interval, setInterval] = useState('annual') // Default to annual (best value)
+  const [interval, setInterval] = useState('monthly') // Default to monthly (lower upfront)
+  const { region } = useRegion()
+  const regionalConfig = REGIONAL_PRICING[region] || REGIONAL_PRICING.AU
+  const priceFor = (tierKey) => regionalConfig?.plans?.[tierKey]?.[interval]?.label || '—'
   const router   = useRouter()
 
   const handleEnrol = (tierId) => {
@@ -64,7 +69,7 @@ export default function Pricing() {
                     )}
 
                     <TierBadge tier={tid} label={t.label} className="mb-4" />
-                    <div className="font-display font-black text-4xl mb-1">{interval === 'annual' ? t.priceAnnualDisplay : t.priceMonthlyDisplay}</div>
+                    <div className="font-display font-black text-4xl mb-1">{tid === 'parents' ? t.priceDisplay : priceFor(tid)}</div>
                     <div className="text-xs text-muted mb-5">{interval === 'annual' ? 'Billed annually' : 'Billed monthly'}</div>
                     <p className="text-sm text-gray-600 dark:text-gray-300 leading-relaxed mb-4 flex-1">{t.description}</p>
 

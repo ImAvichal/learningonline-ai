@@ -6,6 +6,8 @@ import { Nav, Reveal, Card, SectionLabel, Button, TierBadge, BillingToggle } fro
 import { MODULES } from '../data/modules'
 import { TIERS, TIER_ORDER, INDUSTRIES, DISPLAY_ORDER } from '../data/tiers'
 import { useAuth } from '../lib/auth'
+import { useRegion } from '../lib/region'
+import { REGIONAL_PRICING } from '../data/tiers'
 
 // ── Decision Tree ─────────────────────────────────────────────────────────────
 const TREE = {
@@ -227,7 +229,10 @@ function IndustryMatcher() {
 // ── Main Page ─────────────────────────────────────────────────────────────────
 export default function Home() {
   const { user } = useAuth()
-  const [interval, setInterval] = useState('annual')
+  const [interval, setInterval] = useState('monthly')
+  const { region } = useRegion()
+  const regionalConfig = REGIONAL_PRICING[region] || REGIONAL_PRICING.AU
+  const priceFor = (tierKey) => regionalConfig?.plans?.[tierKey]?.[interval]?.label || '—'
   const [activeModule,  setActiveModule]  = useState(0)
   const [activeSection, setActiveSection] = useState('tree')
 
@@ -294,7 +299,7 @@ export default function Home() {
               },
               {
                 pill: 'Starting the Journey', pillClass: 'bg-blue/15 border-blue/30 text-blue-bright', mostPopular: true,
-                title: 'Starting the Journey', priceMonthly: '$45/mo', priceAnnual: '$399/yr', popular: true,
+                title: 'Starting the Journey', tierKey: 'journey', popular: true,
                 hook: 'Practical AI awareness, foundational learning, and operational implementation guidance.',
                 desc: 'Designed to take you from AI curiosity to confident execution \u2014 with foundational learning, practical workflows, and downloadable templates.',
                 idealFor: 'Professionals, team members, business owners, and operational leaders wanting practical AI capability.',
@@ -305,7 +310,7 @@ export default function Home() {
               },
               {
                 pill: 'The Pro', pillClass: 'bg-purple-400/15 border-purple-400/30 text-purple-400',
-                title: 'The Pro', priceMonthly: '$75/mo', priceAnnual: '$699/yr',
+                title: 'The Pro', tierKey: 'pro',
                 hook: 'Everything in Starting the Journey \u2014 plus orchestration, governance, and operating models.',
                 desc: 'For leaders driving enterprise-scale AI adoption \u2014 orchestration, governance, operating models, and long-term transformation.',
                 idealFor: 'CIOs, transformation directors, senior leaders, and enterprise teams responsible for scalable AI adoption.',
@@ -324,9 +329,9 @@ export default function Home() {
                   <h3 className="font-display font-bold text-lg mb-1 text-gray-900 dark:text-white">{card.title}</h3>
                   <p className="text-xs text-gray-500 dark:text-white/40 italic mb-3">{card.hook}</p>
                   <div className="flex items-baseline gap-2 mb-1">
-                    <span className="font-display font-black text-3xl text-gray-900 dark:text-white">{card.priceMonthly ? (interval === 'annual' ? card.priceAnnual : card.priceMonthly) : card.price}</span>
+                    <span className="font-display font-black text-3xl text-gray-900 dark:text-white">{card.tierKey ? priceFor(card.tierKey) : card.price}</span>
                   </div>
-                  <div className="text-[10px] text-muted mb-4">{card.priceMonthly ? (interval === 'annual' ? 'Billed annually' : 'Billed monthly') : card.billing}</div>
+                  <div className="text-[10px] text-muted mb-4">{card.tierKey ? (interval === 'annual' ? 'Billed annually' : 'Billed monthly') : card.billing}</div>
                   <p className="text-xs text-muted leading-relaxed mb-4">{card.desc}</p>
                   <div className="p-3 rounded-lg bg-white/[0.03] border border-white/5 mb-4">
                     <div className="text-[10px] font-display font-bold text-muted uppercase tracking-wider mb-1">Ideal for</div>
@@ -339,7 +344,7 @@ export default function Home() {
                       </li>
                     ))}
                   </ul>
-                  <Link href={card.tier ? (user ? `/checkout?tier=${card.tier}&interval=${interval}` : `/login?redirect=${encodeURIComponent(`/checkout?tier=${card.tier}&interval=${interval}`)}`) : card.href}
+                  <Link href={card.tierKey ? (user ? `/checkout?tier=${card.tierKey}&interval=${interval}` : `/login?redirect=${encodeURIComponent(`/checkout?tier=${card.tierKey}&interval=${interval}`)}`) : card.href}
                     className={`w-full text-center py-2.5 rounded-lg font-display font-bold text-sm transition-all block ${card.ctaClass}`}>
                     {card.cta}
                   </Link>
