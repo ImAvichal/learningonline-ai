@@ -2,7 +2,7 @@
 import Head from 'next/head'
 import Link from 'next/link'
 import { useState } from 'react'
-import { Nav, Reveal, Card, SectionLabel, Button, TierBadge } from '../components/ui'
+import { Nav, Reveal, Card, SectionLabel, Button, TierBadge, BillingToggle } from '../components/ui'
 import { MODULES } from '../data/modules'
 import { TIERS, TIER_ORDER, INDUSTRIES, DISPLAY_ORDER } from '../data/tiers'
 import { useAuth } from '../lib/auth'

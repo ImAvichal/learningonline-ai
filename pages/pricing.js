@@ -3,7 +3,7 @@ import { useState } from 'react'
 import Head from 'next/head'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import { Nav, Reveal, Card, SectionLabel, Button, TierBadge } from '../components/ui'
+import { Nav, Reveal, Card, SectionLabel, Button, TierBadge, BillingToggle } from '../components/ui'
 import { TIERS, TIER_ORDER, DISPLAY_ORDER } from '../data/tiers'
 import { useAuth } from '../lib/auth'
 
