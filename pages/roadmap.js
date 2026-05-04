@@ -7,7 +7,7 @@ const STAGES = [
     version: 'Version 1',
     label: 'Current Release',
     labelClass: 'bg-success/15 border-success/30 text-success',
-    title: 'AI Awareness',
+    title: 'Starting the Journey',
     icon: '💡',
     description: 'Helping individuals, parents, businesses, and leaders understand AI practically and confidently.',
     focus: [

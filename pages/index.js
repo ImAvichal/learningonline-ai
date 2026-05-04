@@ -22,7 +22,7 @@ const TREE = {
     id: 'individual_depth',
     question: 'What kind of support do you need?',
     options: [
-      { label: 'Self-directed learning — foundations, models, use cases, leadership framing', icon: '📚', result: 'individual' },
+      { label: 'Self-directed learning — foundations, models, use cases, leadership framing', icon: '📚', result: 'journey' },
       { label: 'Learning plus practical frameworks I can apply in my business',              icon: '💡', next: 'smb_confirm' },
     ],
   },
@@ -30,7 +30,7 @@ const TREE = {
     id: 'team_size',
     question: 'How many people need access?',
     options: [
-      { label: 'Just me — I\'ll share learnings with my team',  icon: '👤', result: 'individual' },
+      { label: 'Just me — I\'ll share learnings with my team',  icon: '👤', result: 'journey' },
       { label: '2–5 people in my team or department',           icon: '👥', next: 'smb_confirm' },
       { label: '6 or more, across departments',                 icon: '🏢', next: 'enterprise_depth' },
     ],
@@ -39,18 +39,18 @@ const TREE = {
     id: 'smb_confirm',
     question: 'Do you need use case frameworks, ROI models, and workflow design tools?',
     options: [
-      { label: 'Yes — I need practical implementation templates and financial models', icon: '✅', result: 'smb' },
-      { label: 'No — foundational content and examples are enough',                  icon: '📋', result: 'individual' },
+      { label: 'Yes — I need practical implementation templates and financial models', icon: '✅', result: 'journey' },
+      { label: 'No — foundational content and examples are enough',                  icon: '📋', result: 'journey' },
     ],
   },
   enterprise_depth: {
     id: 'enterprise_depth',
     question: 'What is most important to your program?',
     options: [
-      { label: 'Governance, responsible AI, and compliance frameworks',  icon: '⚖️', result: 'enterprise' },
-      { label: 'Data readiness and legacy system standardisation',       icon: '🗄️', result: 'enterprise' },
-      { label: 'Multimodal AI and orchestration strategy',              icon: '🎛️', result: 'enterprise' },
-      { label: 'We\'re not at enterprise scale yet',                    icon: '📈', result: 'smb' },
+      { label: 'Governance, responsible AI, and compliance frameworks',  icon: '⚖️', result: 'pro' },
+      { label: 'Data readiness and legacy system standardisation',       icon: '🗄️', result: 'pro' },
+      { label: 'Multimodal AI and orchestration strategy',              icon: '🎛️', result: 'pro' },
+      { label: 'We\'re not at enterprise scale yet',                    icon: '📈', result: 'journey' },
     ],
   },
 }
@@ -151,14 +151,14 @@ function IndustryMatcher() {
     <div>
       <div className="flex flex-wrap gap-2 mb-6">
         <span className="text-sm text-muted self-center mr-1">Filter:</span>
-        {[null, 'individual', 'smb', 'enterprise'].map(t => (
+        {[null, 'journey', 'pro'].map(t => (
           <button key={t || 'all'} onClick={() => { setFilterTier(t); setSelected(null) }}
             className={`px-3 py-1.5 rounded-full text-xs font-display font-bold border transition-all ${
               filterTier === t
                 ? t === null ? 'bg-white/10 border-white/20 text-white' : `tier-${t}`
                 : 'border-white/10 text-muted hover:border-white/20 hover:text-white'
             }`}>
-            {t === null ? 'All Industries' : t === 'smb' ? 'AI Implementation' : TIERS[t]?.name}
+            {t === null ? 'All Industries' : TIERS[t]?.name}
           </button>
         ))}
       </div>
@@ -189,7 +189,7 @@ function IndustryMatcher() {
                   <h3 className="font-display font-bold text-2xl mb-2">{industry.name}</h3>
                   <div className="flex items-center gap-2 flex-wrap">
                     <span className="text-sm text-muted">Recommended:</span>
-                    <TierBadge tier={industry.recommendedTier} label={industry.recommendedTier === 'smb' ? 'AI Implementation' : tier.name} />
+                    <TierBadge tier={industry.recommendedTier} label={tier.name} />
                     <span className="text-sm font-display font-bold text-white">{tier.priceDisplay}</span>
                   </div>
                 </div>
@@ -252,7 +252,7 @@ export default function Home() {
             </p>
 
             <p className="text-xs text-white/30 mb-4 font-display tracking-widest uppercase">
-              40 learning modules · 4 tiers · 40+ implementation tools · live in 14 days
+              40 learning modules · 3 pathways · 40+ implementation tools · live in 14 days
             </p>
             {user?.tier && (
               <div className="flex flex-wrap gap-3 justify-center">
@@ -287,36 +287,25 @@ export default function Home() {
                 cardClass: 'border-success/25 bg-success/[0.02]',
               },
               {
-                pill: 'Individual', pillClass: 'bg-blue/15 border-blue/30 text-blue-bright',
-                title: 'AI Awareness', price: '$49', billing: 'One-time · Lifetime access',
-                hook: '10 modules · Build confidence with AI — no technical background needed.',
-                desc: 'Designed for professionals wanting practical AI understanding, clearer conversations, and confidence in a rapidly changing world.',
-                idealFor: 'Business professionals, team members, and people leaders wanting practical AI literacy.',
-                bullets: ['AI foundations and model awareness','Prompting, context, memory and tools','Practical business examples','Leadership conversation readiness','Module Q&A scoring','Downloadable guides and cheat sheets'],
-                cta: 'Enrol Now', ctaClass: 'border border-blue/40 text-blue-bright hover:bg-blue/10',
-                href: user ? '/checkout?tier=individual' : '/login?redirect=/checkout?tier=individual',
-                cardClass: '',
+                pill: 'Starting the Journey', pillClass: 'bg-blue/15 border-blue/30 text-blue-bright', mostPopular: true,
+                title: 'Starting the Journey', price: '$49/mo', popular: true, billing: '$49/month or $399/year',
+                hook: 'Practical AI awareness, foundational learning, and operational implementation guidance.',
+                desc: 'Designed to take you from AI curiosity to confident execution \u2014 with foundational learning, practical workflows, and downloadable templates.',
+                idealFor: 'Professionals, team members, business owners, and operational leaders wanting practical AI capability.',
+                bullets: ['Foundational AI learning and model awareness','Prompts, context, tools, and practical use','Use case identification and prioritisation','Workflow design and ROI frameworks','Data readiness and people/change adoption','Downloadable guides and templates'],
+                cta: 'Start the Journey', ctaClass: 'bg-blue hover:bg-blue-bright text-white',
+                href: user ? '/checkout?tier=journey' : '/login?redirect=/checkout?tier=journey',
+                cardClass: 'border-blue/30 bg-blue/[0.02]',
               },
               {
-                pill: 'Business', pillClass: 'bg-amber-400/15 border-amber-400/30 text-amber-400', mostPopular: true,
-                title: 'AI Implementation', price: '$99', popular: true, billing: 'One-time · Lifetime access',
-                hook: '25 cumulative modules · From AI curiosity to practical execution.',
-                desc: 'Built for business owners and operational teams preparing to introduce AI into workflows, reporting, customer engagement, and decision-making.',
-                idealFor: 'Enterprise leaders, business owners, operations managers, and department leaders preparing for AI adoption.',
-                bullets: ['Everything in AI Awareness','Use case identification and prioritisation','Workflow design frameworks','Data readiness and structuring','ROI modelling and measurement','People and change adoption toolkit'],
-                cta: 'Enrol Now', ctaClass: 'bg-amber-400 hover:bg-amber-300 text-navy',
-                href: user ? '/checkout?tier=smb' : '/login?redirect=/checkout?tier=smb',
-                cardClass: 'border-amber-400/30 bg-amber-400/[0.02]',
-              },
-              {
-                pill: 'Enterprise', pillClass: 'bg-blue/15 border-blue/30 text-blue-bright',
-                title: 'AI Transformation', price: '$149', billing: 'One-time · Lifetime access',
-                hook: '40 cumulative modules · Lead AI adoption with structure and governance.',
-                desc: 'Created for enterprise leaders driving organisation-wide AI capability, governance, operating models, and long-term transformation.',
-                idealFor: 'CIOs, transformation directors, and enterprise leaders responsible for scalable AI adoption.',
-                bullets: ['Everything in AI Implementation','Enterprise AI operating model','Responsible AI and governance','Sustainability and AI impact planning','Multimodal AI orchestration','90-day execution roadmap'],
-                cta: 'Enrol Now', ctaClass: 'border border-blue/40 text-blue-bright hover:bg-blue/10',
-                href: user ? '/checkout?tier=enterprise' : '/login?redirect=/checkout?tier=enterprise',
+                pill: 'The Pro', pillClass: 'bg-purple-400/15 border-purple-400/30 text-purple-400',
+                title: 'The Pro', price: '$99/mo', billing: '$99/month or $990/year',
+                hook: 'Everything in Starting the Journey \u2014 plus orchestration, governance, and operating models.',
+                desc: 'For leaders driving enterprise-scale AI adoption \u2014 orchestration, governance, operating models, and long-term transformation.',
+                idealFor: 'CIOs, transformation directors, senior leaders, and enterprise teams responsible for scalable AI adoption.',
+                bullets: ['Everything in Starting the Journey','Enterprise AI operating model','Responsible AI and governance','Sustainability and AI impact planning','Multimodal AI orchestration','AI economics and 90-day execution roadmap'],
+                cta: 'Go Pro', ctaClass: 'border border-purple-400/40 text-purple-400 hover:bg-purple-400/10',
+                href: user ? '/checkout?tier=pro' : '/login?redirect=/checkout?tier=pro',
                 cardClass: '',
               },
             ].map((card, i) => (
@@ -434,7 +423,7 @@ export default function Home() {
                       <span className="px-3 py-1 bg-blue/10 border border-blue/25 rounded-full text-xs font-display font-bold text-blue-bright">Module {MODULES[activeModule].number}</span>
                       {(() => {
                         const firstTier = MODULES[activeModule].lessons[0]?.tier
-                        if (firstTier && firstTier !== 'individual') return <TierBadge tier={firstTier} label={firstTier === 'smb' ? 'AI Implementation+' : 'AI Transformation'} />
+                        if (firstTier && firstTier !== 'individual') { const mapped = firstTier === 'smb' ? 'journey' : firstTier === 'enterprise' ? 'pro' : firstTier; return <TierBadge tier={mapped} /> }
                       })()}
                     </div>
                     <h3 className="font-display font-bold text-2xl mb-2">{MODULES[activeModule].title}</h3>
@@ -569,3 +558,4 @@ export default function Home() {
     </>
   )
 }
+

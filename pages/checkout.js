@@ -10,7 +10,7 @@ import { TIERS } from '../data/tiers'
 export default function Checkout() {
   const { user, updateUser } = useAuth()
   const router  = useRouter()
-  const { tier: tierId = 'smb', payment_success, cancelled } = router.query
+  const { tier: tierId = 'journey', payment_success, cancelled } = router.query
   const tier    = TIERS[tierId] || TIERS.smb
 
   const [loading,   setLoading]   = useState(false)

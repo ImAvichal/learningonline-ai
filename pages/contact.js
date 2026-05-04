@@ -3,7 +3,7 @@ import Head from 'next/head'
 import { useState } from 'react'
 import { Nav, Card, SectionLabel, Input, Spinner } from '../components/ui'
 
-const QUERY_TYPES = ['General', 'AI Awareness', 'AI Implementation', 'AI Transformation', 'Refund guidance', 'Other']
+const QUERY_TYPES = ['General', 'Starting the Journey', 'The Pro', 'Refund guidance', 'Other']
 
 export default function Contact() {
   const [form, setForm] = useState({ name: '', email: '', company: '', query_type: '', message: '' })
@@ -115,9 +115,8 @@ export default function Contact() {
                 <h3 className="font-display font-bold text-base mb-4">How we can help</h3>
                 <div className="space-y-4">
                   {[
-                    { icon: '🎓', title: 'AI Awareness', desc: 'Questions about the $49 AI Awareness program and what\'s included.' },
-                    { icon: '🏢', title: 'AI Implementation', desc: 'Implementing AI in your business — the $99 AI Implementation program.' },
-                    { icon: '🏛️', title: 'AI Transformation', desc: 'Large-scale AI transformation, operating model, governance frameworks.' },
+                    { icon: '🚀', title: 'Starting the Journey', desc: 'Questions about the $49/month program and what\'s included.' },
+                    { icon: '⚡', title: 'The Pro', desc: 'Enterprise-scale AI orchestration, governance, and operating models — $99/month.' },
                     { icon: '🤝', title: 'Bespoke Support', desc: 'Custom engagements beyond the platform — advisory, implementation, or tailored programs.' },
                   ].map(item => (
                     <div key={item.title} className="flex gap-3">

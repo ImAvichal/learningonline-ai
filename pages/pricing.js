@@ -85,7 +85,7 @@ export default function Pricing() {
                         className={`w-full py-3.5 rounded-xl font-display font-bold text-sm transition-all ${
                           t.highlighted
                             ? 'bg-amber-400 hover:bg-amber-300 text-navy shadow-[0_0_24px_rgba(245,158,11,0.3)]'
-                            : tid === 'enterprise'
+                            : tid === 'pro'
                             ? 'bg-blue hover:bg-blue-bright text-white shadow-[0_0_20px_rgba(26,110,255,0.3)]'
                             : 'border border-blue/40 text-blue-bright hover:bg-blue/10'
                         }`}>
@@ -107,33 +107,32 @@ export default function Pricing() {
                   <thead>
                     <tr className="border-b border-white/5">
                       <th className="p-4 text-left text-muted font-display font-bold text-xs uppercase tracking-wider w-1/2">Feature</th>
-                      <th className="p-4 text-center"><TierBadge tier="individual" label="Upskill" /></th>
-                      <th className="p-4 text-center"><TierBadge tier="smb" label="SMB" /></th>
-                      <th className="p-4 text-center"><TierBadge tier="enterprise" label="Enterprise" /></th>
+                      <th className="p-4 text-center"><TierBadge tier="journey" label="Starting the Journey" /></th>
+                      <th className="p-4 text-center"><TierBadge tier="pro" label="The Pro" /></th>
                     </tr>
                   </thead>
                   <tbody>
                     {[
-                      ['AI Foundations & token awareness',    '✓','✓','✓'],
-                      ['Key roles & leadership frameworks',   '✓','✓','✓'],
-                      ['Use case identification',             '✓','✓','✓'],
-                      ['Module Q&A scoring',                  '✓','✓','✓'],
-                      ['Cheat sheets & prompt guides',        '✓','✓','✓'],
-                      ['Use case prioritisation & 5-yr model','—','✓','✓'],
-                      ['Workflow design templates',           '—','✓','✓'],
-                      ['Data readiness program',              '—','✓','✓'],
-                      ['ROI modelling & business case',       '—','✓','✓'],
-                      ['People & change adoption toolkit',    '—','✓','✓'],
-                      ['Up to 5 team seats',                  '—','✓','✓'],
-                      ['Responsible AI framework',            '—','—','✓'],
-                      ['Sustainability & AI program',         '—','—','✓'],
-                      ['Multimodal AI & orchestration',       '—','—','✓'],
-                      ['90-Day execution roadmap',            '—','—','✓'],
-                      ['Unlimited team seats',                '—','—','✓'],
-                    ].map(([feature, a, b, c]) => (
+                      ['AI Foundations & token awareness',    '✓','✓'],
+                      ['Key roles & leadership frameworks',   '✓','✓'],
+                      ['Use case identification',             '✓','✓'],
+                      ['Module Q&A scoring',                  '✓','✓'],
+                      ['Cheat sheets & prompt guides',        '✓','✓'],
+                      ['Use case prioritisation & 5-yr model','✓','✓'],
+                      ['Workflow design templates',           '✓','✓'],
+                      ['Data readiness program',              '✓','✓'],
+                      ['ROI modelling & business case',       '✓','✓'],
+                      ['People & change adoption toolkit',    '✓','✓'],
+                      ['Responsible AI framework',            '—','✓'],
+                      ['Sustainability & AI program',         '—','✓'],
+                      ['Multimodal AI & orchestration',       '—','✓'],
+                      ['AI economics & cost management',      '—','✓'],
+                      ['90-Day execution roadmap',            '—','✓'],
+                      ['Ongoing release-cycle updates',       '✓','✓'],
+                    ].map(([feature, a, b]) => (
                       <tr key={feature} className="border-b border-white/[0.04] hover:bg-white/[0.02]">
                         <td className="p-4 text-muted text-sm">{feature}</td>
-                        {[a,b,c].map((v, i) => (
+                        {[a,b].map((v, i) => (
                           <td key={i} className={`p-4 text-center font-bold text-sm ${v==='✓'?'text-success':'text-white/15'}`}>{v}</td>
                         ))}
                       </tr>
@@ -162,7 +161,7 @@ export default function Pricing() {
               {[
                 ['Is this self-paced?', 'Yes — fully self-paced with no live sessions. Learn on your schedule and access everything forever.'],
                 ['Do I need technical knowledge?', 'No. Designed for business professionals and leaders. Zero coding required.'],
-                ['What\'s the difference between the tiers?', 'AI Awareness provides practical AI literacy for professionals. AI Implementation adds business execution tools and frameworks. AI Transformation adds governance, orchestration, and the full transformation roadmap.'],
+                ['What\'s the difference between the tiers?', 'Starting the Journey provides foundational AI learning, practical implementation guidance, and operational workflows. The Pro adds enterprise orchestration, governance, operating models, and the full transformation roadmap.'],
                 ['Can I upgrade later?', 'Yes — email us and we\'ll apply your previous payment as credit toward the higher tier.'],
                 ['Are payments secure?', 'Yes. All payments are processed by Stripe. We never see or store your card details.'],
                 ['Can I expense this?', 'Yes. We provide a tax invoice for professional development expenses on request.'],
