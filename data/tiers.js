@@ -157,20 +157,76 @@ export const INDUSTRIES = [
 
 export const REGIONAL_PRICING = {
   AU: {
-    currency: 'AUD', symbol: '$',
-    journey: { monthly: 45, annual: 399 },
-    pro:     { monthly: 75, annual: 699 },
-  },
-  US: {
-    currency: 'USD', symbol: '$',
-    journey: { monthly: 35, annual: 285 },
-    pro:     { monthly: 75, annual: 720 },
+    currency: 'AUD',
+    symbol: '$',
+    plans: {
+      journey: {
+        monthly: {
+          amount: 45,
+          label: '$45/month',
+          stripeEnvKey: 'STRIPE_PRICE_JOURNEY_MONTHLY',
+        },
+        annual: {
+          amount: 399,
+          label: '$399/year',
+          stripeEnvKey: 'STRIPE_PRICE_JOURNEY_ANNUAL',
+        },
+      },
+      pro: {
+        monthly: {
+          amount: 75,
+          label: '$75/month',
+          stripeEnvKey: 'STRIPE_PRICE_PRO_MONTHLY',
+        },
+        annual: {
+          amount: 699,
+          label: '$699/year',
+          stripeEnvKey: 'STRIPE_PRICE_PRO_ANNUAL',
+        },
+      },
+    },
   },
   IN: {
-    currency: 'INR', symbol: '\u20b9',
-    journey: { monthly: 1499, annual: 11999 },
-    pro:     { monthly: 2999, annual: 29999 },
+    currency: 'INR',
+    symbol: '\u20b9',
+    plans: {
+      journey: {
+        monthly: {
+          amount: 999,
+          label: '\u20b9999/month',
+          stripeEnvKey: 'STRIPE_PRICE_JOURNEY_MONTHLY_INR',
+        },
+        annual: {
+          amount: 4999,
+          label: '\u20b94,999/year',
+          stripeEnvKey: 'STRIPE_PRICE_JOURNEY_ANNUAL_INR',
+        },
+      },
+      pro: {
+        monthly: {
+          amount: 1999,
+          label: '\u20b91,999/month',
+          stripeEnvKey: 'STRIPE_PRICE_PRO_MONTHLY_INR',
+        },
+        annual: {
+          amount: 9999,
+          label: '\u20b99,999/year',
+          stripeEnvKey: 'STRIPE_PRICE_PRO_ANNUAL_INR',
+        },
+      },
+    },
   },
 }
 
 export const DEFAULT_REGION = 'AU'
+
+// Helper: get pricing label for a tier + interval + region
+export function getPriceLabel(tierId, interval, region = DEFAULT_REGION) {
+  const config = REGIONAL_PRICING[region] || REGIONAL_PRICING[DEFAULT_REGION]
+  return config?.plans?.[tierId]?.[interval]?.label || ''
+}
+
+// Helper: get currency symbol for region
+export function getCurrencySymbol(region = DEFAULT_REGION) {
+  return REGIONAL_PRICING[region]?.symbol || '$'
+}
