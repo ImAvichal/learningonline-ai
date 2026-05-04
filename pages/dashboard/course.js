@@ -174,8 +174,8 @@ export default function CoursePage() {
     return <NoEnrolmentMessage context="course" />
   }
 
-  const tierOrder = ['individual', 'smb', 'enterprise']
-  const userLevel  = tierOrder.indexOf(user?.tier || 'individual')
+  const tierOrder = ['journey', 'pro']
+  const userLevel  = tierOrder.indexOf(user?.tier || 'journey')
 
   const accessible = MODULES.flatMap((m, mi) =>
     m.lessons.filter(l => tierOrder.indexOf(l.tier) <= userLevel)
@@ -302,7 +302,7 @@ export default function CoursePage() {
                           </div>
                           <div className="flex-1 min-w-0">
                             <div className={`text-[11px] leading-snug ${active ? 'text-white font-display font-bold' : 'text-white/70'}`}>{lesson.title}</div>
-                            {lesson.tier !== 'individual' && <TierBadge tier={lesson.tier} label={lesson.tier === 'smb' ? 'Business' : 'Enterprise'} className="mt-1 text-[9px] py-0.5 px-2" />}
+                            {lesson.tier && lesson.tier !== 'individual' && <TierBadge tier={lesson.tier} label={lesson.tier === 'smb' ? 'Business' : 'Enterprise'} className="mt-1 text-[9px] py-0.5 px-2" />}
                           </div>
                         </button>
                       )
@@ -368,7 +368,7 @@ export default function CoursePage() {
                   <div className="flex items-center gap-2 flex-wrap">
                     <span className="px-3 py-1 bg-blue/10 border border-blue/25 rounded-full text-xs font-display font-bold text-blue-bright">Module {activeLesson.moduleNumber}</span>
                     {activeLesson.duration && <span className="text-xs text-muted">{activeLesson.duration}</span>}
-                    {activeLesson.tier !== 'individual' && <TierBadge tier={activeLesson.tier} label={activeLesson.tier === 'smb' ? 'Business' : 'Enterprise'} />}
+                    {activeLesson.tier && activeLesson.tier !== 'individual' && <TierBadge tier={activeLesson.tier} label={activeLesson.tier === 'smb' ? 'Business' : 'Enterprise'} />}
                     {isCompleted(activeLessonId) && <span className="px-3 py-1 bg-success/10 border border-success/25 rounded-full text-xs font-display font-bold text-success">✓ Complete</span>}
                   </div>
                   <ThemeToggle compact />

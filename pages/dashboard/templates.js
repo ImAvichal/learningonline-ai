@@ -27,14 +27,13 @@ export default function TemplatesPage() {
     return <NoEnrolmentMessage context="course" />
   }
 
-  const tier = user?.tier || 'individual'
+  const tier = user?.tier || 'journey'
   const resources = getResourcesForTier(tier)
-  const tierOrder = ['individual', 'smb', 'enterprise']
+  const tierOrder = ['journey', 'pro']
 
-  const byTier = { // using resources variable
-    individual: resources.filter(t => t.tier === 'individual'),
-    smb:        resources.filter(t => t.tier === 'smb'),
-    enterprise: resources.filter(t => t.tier === 'enterprise'),
+  const byTier = {
+    journey: resources.filter(t => t.tier === 'journey'),
+    pro:     resources.filter(t => t.tier === 'pro'),
   }
 
   const handleDownload = async (tpl) => {
@@ -93,7 +92,7 @@ export default function TemplatesPage() {
                 </button>
                 ) : (
                 <div className="w-full py-2.5 text-center border border-gray-200 dark:border-white/5 bg-gray-50 dark:bg-white/[0.02] font-display font-bold text-xs rounded-lg text-gray-400 dark:text-white/25">
-                  Work in Progress
+                  Coming Soon
                 </div>
                 )}
               </Card>
@@ -115,19 +114,19 @@ export default function TemplatesPage() {
         </p>
       </div>
 
-      <TierSection tierId="individual" label="Included with all tiers"  items={byTier.individual} />
-      <TierSection tierId="smb"        label="Business tier and above"       items={byTier.smb} />
-      <TierSection tierId="enterprise" label="Enterprise tier only"     items={byTier.enterprise} />
+      <TierSection tierId="individual" label="Included with all tiers"  items={byTier.journey} />
+      <TierSection tierId="smb"        label="Business tier and above"       items={byTier.journey} />
+      <TierSection tierId="enterprise" label="Enterprise tier only"     items={byTier.pro} />
 
       {/* Locked preview */}
-      {tier !== 'enterprise' && (
+      {tier !== 'pro' && (
         <div className="mt-4 p-8 border border-dashed border-white/10 rounded-xl text-center">
           <div className="text-3xl mb-3">🔒</div>
           <h4 className="font-display font-bold text-base mb-2">
-            {tier === 'individual' ? 'Business & Enterprise templates locked' : 'Enterprise templates locked'}
+            {tier === 'journey' ? 'Pro templates locked' : 'Enterprise templates locked'}
           </h4>
           <p className="text-sm text-muted max-w-md mx-auto mb-4">
-            {tier === 'individual'
+            {tier === 'journey'
               ? 'Upgrade to Business or Enterprise to unlock industry playbooks, implementation guides, and the full enterprise operating model template set.'
               : 'Upgrade to Enterprise to unlock the operating model, data readiness program, governance framework, and command centre design templates.'}
           </p>

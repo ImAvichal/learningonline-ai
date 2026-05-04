@@ -72,13 +72,13 @@ export default function AccountPage() {
             ))}
           </div>
 
-          {user.tier !== 'enterprise' && (
+          {user.tier !== 'pro' && (
             <div className="p-4 bg-white/[0.02] border border-white/5 rounded-xl">
               <div className="font-display font-bold text-sm text-white mb-1">
-                Upgrade to {user.tier === 'individual' ? 'Small & Medium Business' : 'Enterprise'}
+                Upgrade to {user.tier === 'journey' ? 'The Pro' : 'The Pro'}
               </div>
               <div className="text-xs text-muted mb-3">
-                {user.tier === 'individual'
+                {user.tier === 'journey'
                   ? 'Get industry playbooks, implementation templates, and up to 5 team seats.'
                   : 'Add the enterprise operating model, data readiness program, governance frameworks, unlimited seats, and monthly advisory sessions.'}
               </div>
@@ -89,7 +89,7 @@ export default function AccountPage() {
             </div>
           )}
 
-          {user.tier === 'enterprise' && (
+          {user.tier === 'pro' && (
             <div className="p-4 bg-purple-400/5 border border-purple-400/20 rounded-xl">
               <div className="font-display font-bold text-sm text-purple-300 mb-1">Monthly Advisory Session</div>
               <div className="text-xs text-muted mb-3">Your Enterprise tier includes a monthly 1-hour advisory session. Book yours below.</div>

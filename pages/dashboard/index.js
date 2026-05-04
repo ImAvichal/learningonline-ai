@@ -30,8 +30,8 @@ function Dashboard() {
     return <NoEnrolmentMessage context="dashboard" />
   }
 
-  const tierOrder = ['individual','smb','enterprise']
-  const userLevel  = tierOrder.indexOf(user.tier || 'individual')
+  const tierOrder = ['journey', 'pro']
+  const userLevel  = tierOrder.indexOf(user.tier || 'journey')
   const accessible = MODULES.flatMap(m =>
     m.lessons.filter(l => tierOrder.indexOf(l.tier) <= userLevel)
       .map(l => ({ ...l, moduleId:m.id, moduleNumber:m.number, moduleTitle:m.title }))
@@ -117,7 +117,7 @@ function HomeTab({ user, totalPct, completedMods, nextLesson, switchTab, templat
       )}
 
       {/* Tier-specific callout */}
-      {user.tier === 'enterprise' && (
+      {user.tier === 'pro' && (
         <div className="mb-8 p-6 rounded-xl bg-purple-400/5 border border-purple-400/20">
           <div className="flex items-start gap-4 mb-4">
             <span className="text-2xl">🏢</span>
@@ -139,12 +139,12 @@ function HomeTab({ user, totalPct, completedMods, nextLesson, switchTab, templat
         </div>
       )}
 
-      {user.tier === 'smb' && (
+      {user.tier === 'journey' && (
         <div className="mb-8 p-6 rounded-xl bg-amber-400/5 border border-amber-400/20">
           <div className="flex items-start gap-4">
             <span className="text-2xl">💼</span>
             <div>
-              <div className="text-xs font-display font-bold text-amber-400 uppercase tracking-wider mb-1">AI Implementation Access</div>
+              <div className="text-xs font-display font-bold text-amber-400 uppercase tracking-wider mb-1">Starting the Journey Access</div>
               <h3 className="font-display font-bold text-base mb-1">Industry playbooks and implementation templates unlocked</h3>
               <button onClick={() => switchTab('templates')} className="text-sm font-display font-bold text-amber-400 hover:underline mt-2 block">
                 View your templates →
@@ -186,16 +186,16 @@ function HomeTab({ user, totalPct, completedMods, nextLesson, switchTab, templat
       </div>
 
       {/* Upgrade prompt */}
-      {user.tier !== 'enterprise' && (
+      {user.tier !== 'pro' && (
         <Card className="p-6">
           <div className="flex items-start gap-4">
             <span className="text-3xl">🚀</span>
             <div className="flex-1">
               <h3 className="font-display font-bold text-base mb-1">
-                {user.tier === 'individual' ? 'Upgrade to the Business tier for team access' : 'Upgrade to Enterprise for the full transformation program'}
+                {user.tier === 'journey' ? 'Upgrade to The Pro for orchestration and governance' : 'Upgrade to The Pro for the full transformation program'}
               </h3>
               <p className="text-sm text-muted mb-4">
-                {user.tier === 'individual'
+                {user.tier === 'journey'
                   ? 'Get industry playbooks, implementation templates, and bring your team of up to 5.'
                   : 'Add the enterprise operating model, data readiness program, governance frameworks, and monthly advisory sessions.'}
               </p>
