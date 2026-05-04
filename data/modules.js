@@ -10,7 +10,7 @@ export const MODULES = [
     templateId: 'ai-readiness',
     lessons: [
       {
-        id: 'm1-l1', number: 1, tier: 'individual', duration: '20 min',
+        id: 'm1-l1', number: 1, tier: 'journey', duration: '20 min',
         title: 'Introduction to AI: What It Is and Isn\'t',
         content: `<h2>What AI Actually Is</h2>
 <p>Artificial Intelligence is pattern recognition at scale. Every AI system — from ChatGPT to Netflix recommendations to fraud detection — does one thing: it finds patterns in data and uses those patterns to predict the most useful output. It does not think. It does not understand. It predicts.</p>
@@ -92,7 +92,7 @@ export const MODULES = [
 </div>`,
       },
       {
-        id: 'm1-l2', number: 2, tier: 'individual', duration: '25 min',
+        id: 'm1-l2', number: 2, tier: 'journey', duration: '25 min',
         title: 'Types of AI Models and When to Use Each',
         content: `<h2>The Model Landscape</h2>
 <p>Choosing the wrong model is like using a forklift to move a coffee cup — technically possible, expensive, and unnecessary. Most organisations default to the frontier model they've heard of (usually GPT-4) for everything. This typically costs 10–20× more than necessary for the majority of tasks.</p>
@@ -178,7 +178,7 @@ No → Any provider works</p>
 </div>`,
       },
       {
-        id: 'm1-l3', number: 3, tier: 'individual', duration: '22 min',
+        id: 'm1-l3', number: 3, tier: 'journey', duration: '22 min',
         title: 'Tokens, Cost & the Economics of AI',
         content: `<h2>Why Token Economics Determine AI Program Success</h2>
 <p>Token costs look tiny — fractions of a cent per call. But at business scale they compound fast. The difference between choosing the right model and the wrong one, across a portfolio of 10 use cases, is typically $20,000–$100,000 per year. Understanding token economics is not a technical detail — it's a financial decision.</p>
@@ -295,7 +295,7 @@ Action: Identify which use cases are batch-compatible and schedule accordingly.<
 </div>`,
       },
       {
-        id: 'm1-l4', number: 4, tier: 'individual', duration: '20 min',
+        id: 'm1-l4', number: 4, tier: 'journey', duration: '20 min',
         title: 'Prompts: The Skill That Multiplies Everything Else',
         content: `<h2>Your Prompt Is Your Program</h2>
 <p>Every AI output you'll ever get starts with a prompt. The quality gap between a mediocre prompt and a production-quality prompt is not small — it's the difference between 60% accuracy and 95% accuracy on the same model, the same task, and the same data.</p>
@@ -409,7 +409,7 @@ Constraints: Never admit liability. Never promise a specific resolution timeline
 </div>`,
       },
       {
-        id: 'm1-l5', number: 5, tier: 'individual', duration: '18 min',
+        id: 'm1-l5', number: 5, tier: 'journey', duration: '18 min',
         title: 'AI in Your Daily Work — Practical Application',
         content: `<h2>From Understanding to Doing — Starting This Week</h2>
 <p>This lesson is different from the others. It's not conceptual. It's a practical guide to the AI tools and workflows you can implement in your daily work today — with no technical setup, no developer, and minimal cost.</p>
@@ -501,7 +501,7 @@ Value: Clarity and continuity that most knowledge workers never achieve.</p>
 </div>`,
       },
       {
-        id: 'm1-l6', number: 6, tier: 'individual', duration: '15 min',
+        id: 'm1-l6', number: 6, tier: 'journey', duration: '15 min',
         title: 'Why AI Has a Cost — Understanding What You Pay For',
         content: `<h2>Why AI Responses Cost Money</h2>
 <p>Every time you use an AI tool — whether it's ChatGPT, Claude, Gemini, or a custom business AI — something happens behind the scenes: a powerful computer processes your request. That processing costs money, just like electricity, bandwidth, or cloud hosting.</p>
@@ -587,7 +587,7 @@ Value: Clarity and continuity that most knowledge workers never achieve.</p>
     templateId: 'role-mapping',
     lessons: [
       {
-        id: 'm2-l1', number: 1, tier: 'individual', duration: '18 min',
+        id: 'm2-l1', number: 1, tier: 'journey', duration: '18 min',
         title: 'Why AI Requires Multiple Roles — The 5-Role Framework',
         content: `<h2>The Single Biggest Cause of AI Program Failure</h2>
 <p>Surveys of failed AI programs consistently identify the same root cause: unclear ownership. Not bad technology. Not poor data. Not insufficient budget. Unclear ownership.</p>
@@ -671,7 +671,7 @@ Value: Clarity and continuity that most knowledge workers never achieve.</p>
 </div>`,
       },
       {
-        id: 'm2-l2', number: 2, tier: 'individual', duration: '20 min',
+        id: 'm2-l2', number: 2, tier: 'journey', duration: '20 min',
         title: 'The AI Execution Triad',
         content: `<h2>Three Roles. One Outcome.</h2>
 <p>The five-role model tells you who needs to exist in an AI program. The AI Execution Triad tells you how those roles relate to each other and why misalignment between them is the single biggest cause of AI program failure.</p>
@@ -757,7 +757,7 @@ Ensures the solution gets built and adopted. Defines requirements, manages timel
 </div>`,
       },
       {
-        id: 'm2-l3', number: 3, tier: 'individual', duration: '15 min',
+        id: 'm2-l3', number: 3, tier: 'journey', duration: '15 min',
         title: 'The Role Overlap Trap',
         content: `<h2>Collaboration Is Not the Same as Shared Ownership</h2>
 <p>The most dangerous moment in an AI program is when it's going well enough that everyone wants to be involved in everything. This is where the Role Overlap Trap springs.</p>
@@ -854,7 +854,7 @@ Step 3: Document the decision and who made it.
     templateId: 'use-case-identification',
     lessons: [
       {
-        id: 'm3-l1', number: 1, tier: 'individual', duration: '20 min',
+        id: 'm3-l1', number: 1, tier: 'journey', duration: '20 min',
         title: 'Finding AI Opportunities That Actually Deliver',
         content: `<h2>The Opportunity Landscape</h2>
 <p>The average knowledge worker has 15–20 tasks per week that are potential AI candidates. Most organisations focus on the most visible or exciting ones — and miss the highest-value ones, which are usually invisible, repetitive, and boring.</p>
@@ -955,7 +955,7 @@ LOW VALUE  │ AVOID              │ FILLER
 </div>`,
       },
       {
-        id: 'm3-l2', number: 2, tier: 'individual', duration: '22 min',
+        id: 'm3-l2', number: 2, tier: 'journey', duration: '22 min',
         title: 'How to Qualify, Score and Document a Use Case',
         content: `<h2>From Idea to Investment Decision</h2>
 <p>Every AI program has too many ideas and too few resources. The use case that gets built is rarely the best one — it's usually the loudest one, or the one the CEO mentioned last. This lesson gives you a scoring framework that removes politics from use case selection and replaces it with evidence.</p>
@@ -1073,7 +1073,7 @@ Decision: If quick ROI &gt; 200%, build the formal business case. This one: buil
     templateId: 'prioritisation-model',
     lessons: [
       {
-        id: 'm4-l1', number: 1, tier: 'smb', duration: '25 min',
+        id: 'm4-l1', number: 1, tier: 'journey', duration: '25 min',
         title: 'The Prioritisation Scoring Framework',
         content: `<h2>From Ideas to Investment Decisions</h2>
 <p>Prioritisation turns subjective enthusiasm into objective investment decisions. It removes politics from the conversation and replaces it with evidence.</p>
@@ -1099,7 +1099,7 @@ Maximum possible score = 10 + 5 + 5 − 1 = 19
 Minimum possible score = 2 + 1 + 1 − 5 = −1</pre>`,
       },
       {
-        id: 'm4-l2', number: 2, tier: 'smb', duration: '28 min',
+        id: 'm4-l2', number: 2, tier: 'journey', duration: '28 min',
         title: 'Building the Business Case: From Score to Approved Investment',
         content: `<h2>Turning a Priority Score Into an Approved Decision</h2>
 <p>A prioritisation score tells you which use case to build. A business case tells your organisation why to fund it. Most AI initiatives fail to get approved not because the ROI is poor — but because the case is presented in technology language to a business audience, or business language to a finance audience.</p>
@@ -1209,7 +1209,7 @@ Break-Even            = Implementation Cost / Monthly Net Benefit
     templateId: 'workflow-design',
     lessons: [
       {
-        id: 'm5-l1', number: 1, tier: 'smb', duration: '25 min',
+        id: 'm5-l1', number: 1, tier: 'journey', duration: '25 min',
         title: 'Process Mapping and AI Placement',
         content: `<h2>Map Before You Build</h2>
 <p>Every AI implementation failure has one thing in common: the team started building before they finished designing. The Workflow Blueprint is your insurance policy against that failure.</p>
@@ -1249,7 +1249,7 @@ Pattern 5: AI Decides → Human Monitors
 </div>`,
       },
       {
-        id: 'm5-l2', number: 2, tier: 'smb', duration: '24 min',
+        id: 'm5-l2', number: 2, tier: 'journey', duration: '24 min',
         title: 'Exception Handling, Testing, and Workflow Validation',
         content: `<h2>Design for Failure First — Always</h2>
 <p>The single most common cause of AI workflow failures in production is not the AI making wrong decisions — it's the absence of a defined path when the AI makes a wrong decision. Exception handling is not optional. It is the most important design decision in any AI workflow.</p>
@@ -1353,7 +1353,7 @@ Pattern 5: AI Decides → Human Monitors
     templateId: 'data-readiness',
     lessons: [
       {
-        id: 'm6-l1', number: 1, tier: 'smb', duration: '28 min',
+        id: 'm6-l1', number: 1, tier: 'journey', duration: '28 min',
         title: 'Data Sanitisation, Standardisation, and Structuring',
         content: `<h2>Data Is the Foundation</h2>
 <p>Bad data doesn't just produce bad AI outputs — it produces confidently bad AI outputs. An AI model with dirty data will answer questions with high certainty and be consistently wrong. This is worse than no AI at all.</p>
@@ -1382,7 +1382,7 @@ Step 6: MONITOR    → Ongoing quality tracking in production</pre>
 </div>`,
       },
       {
-        id: 'm6-l2', number: 2, tier: 'smb', duration: '26 min',
+        id: 'm6-l2', number: 2, tier: 'journey', duration: '26 min',
         title: 'Data Quality Assessment and AI Readiness Scoring',
         content: `<h2>Data Quality Is Not a Pre-Build Activity — It's a Go/No-Go Decision</h2>
 <p>The single most reliable predictor of AI model accuracy is data quality — not model choice, not prompt engineering, not architecture. Bad data produces bad AI. Every time. Without exception.</p>
@@ -1488,7 +1488,7 @@ Step 6: MONITOR    → Ongoing quality tracking in production</pre>
     templateId: 'architecture-decision',
     lessons: [
       {
-        id: 'm7-l1', number: 1, tier: 'smb', duration: '28 min',
+        id: 'm7-l1', number: 1, tier: 'journey', duration: '28 min',
         title: 'Build vs Buy vs Configure — and Which Model to Choose',
         content: `<h2>The Most Expensive Decision in AI</h2>
 <p>Architecture decisions made in week one lock in costs and constraints for years. This lesson gives you the framework to make them well.</p>
@@ -1522,7 +1522,7 @@ Pattern 4 — Agent Pattern
 </div>`,
       },
       {
-        id: 'm7-l2', number: 2, tier: 'smb', duration: '22 min',
+        id: 'm7-l2', number: 2, tier: 'journey', duration: '22 min',
         title: 'Cost, Latency and Architecture Trade-offs',
         content: `<h2>The Architecture Decisions That Determine Your AI Bill</h2>
 <p>Architecture decisions made in week one lock in costs for years. Understanding the trade-offs between cost, speed, and capability is the difference between an AI program that scales affordably and one that becomes unaffordable at volume.</p>
@@ -1592,7 +1592,7 @@ Pattern 4 — Agent Pattern
     templateId: 'use-case-build',
     lessons: [
       {
-        id: 'm8-l1', number: 1, tier: 'smb', duration: '30 min',
+        id: 'm8-l1', number: 1, tier: 'journey', duration: '30 min',
         title: 'Prompt Design, Testing, and Production Deployment',
         content: `<h2>From Prompt to Production</h2>
 <p>A prompt is a program. It defines inputs, constraints, output format, and behaviour. Like all programs, it needs to be designed, tested, and versioned — not improvised.</p>
@@ -1663,7 +1663,7 @@ User: [case history text]</pre>
     templateId: 'roi-model',
     lessons: [
       {
-        id: 'm9-l1', number: 1, tier: 'smb', duration: '28 min',
+        id: 'm9-l1', number: 1, tier: 'journey', duration: '28 min',
         title: 'Building the Complete AI ROI Model',
         content: `<h2>ROI Is Your Proof</h2>
 <p>Without a credible ROI model, AI programs remain vulnerable to budget cuts the moment a more urgent priority emerges. With one, they become defensible investments with committed stakeholders.</p>
@@ -1698,7 +1698,7 @@ User: [case history text]</pre>
 </div>`,
       },
       {
-        id: 'm9-l2', number: 2, tier: 'smb', duration: '24 min',
+        id: 'm9-l2', number: 2, tier: 'journey', duration: '24 min',
         title: 'KPI Framework, Baseline Measurement, and Continuous Improvement',
         content: `<h2>Measurement Is Not the End — It Is the System</h2>
 <p>Most organisations measure AI performance once — at go-live — and then assume the system continues to work. This is wrong. AI systems degrade, drift, and encounter data patterns they weren't trained on. Without continuous measurement, you discover problems through customer complaints and business impact rather than through your own monitoring.</p>
@@ -1772,7 +1772,7 @@ User: [case history text]</pre>
 </div>`,
       },
       {
-        id: 'm9-l3', number: 3, tier: 'smb', duration: '20 min',
+        id: 'm9-l3', number: 3, tier: 'journey', duration: '20 min',
         title: 'AI Cost Drivers — What Actually Determines Your AI Bill',
         content: `<h2>Understanding What Drives AI Cost</h2>
 <p>AI costs are not fixed — they scale based on how you use it. Understanding the six cost drivers gives you control over your AI budget before you commit to a build.</p>
@@ -1848,7 +1848,7 @@ User: [case history text]</pre>
     templateId: 'responsible-ai',
     lessons: [
       {
-        id: 'm10-l1', number: 1, tier: 'enterprise', duration: '25 min',
+        id: 'm10-l1', number: 1, tier: 'pro', duration: '25 min',
         title: 'Bias, Hallucination, Governance, and Guardrails',
         content: `<h2>Responsible AI Is Not Optional</h2>
 <p>Responsible AI isn't ethics for its own sake — it's risk management. AI systems that are biased, opaque, or ungoverned create legal, reputational, and operational liabilities that dwarf the cost of getting it right upfront.</p>
@@ -1895,7 +1895,7 @@ User: [case history text]</pre>
     templateId: 'sustainability-checklist',
     lessons: [
       {
-        id: 'm11-l1', number: 1, tier: 'enterprise', duration: '20 min',
+        id: 'm11-l1', number: 1, tier: 'pro', duration: '20 min',
         title: 'The Environmental Impact of AI and How to Optimise It',
         content: `<h2>AI Has a Carbon Footprint</h2>
 <p>Every AI inference — every call to a language model — consumes energy. At individual scale, this is negligible. At enterprise scale, with millions of calls per month, it becomes a meaningful part of your organisation's environmental footprint.</p>
@@ -1937,7 +1937,7 @@ User: [case history text]</pre>
     templateId: 'adoption-plan',
     lessons: [
       {
-        id: 'm12-l1', number: 1, tier: 'smb', duration: '28 min',
+        id: 'm12-l1', number: 1, tier: 'journey', duration: '28 min',
         title: 'Adoption Strategy, Resistance Management, and Role Evolution',
         content: `<h2>Why People Resist AI — and How to Change That</h2>
 <p>Resistance to AI is rational. People protecting their roles, their expertise, and their value are doing exactly what they should be doing. Your job isn't to overcome that resistance — it's to show them a better version of the future that includes them.</p>
@@ -1976,7 +1976,7 @@ Standard Q&A responses   → Automated   → Escalations & experience design</pr
 </div>`,
       },
       {
-        id: 'm12-l2', number: 2, tier: 'smb', duration: '22 min',
+        id: 'm12-l2', number: 2, tier: 'journey', duration: '22 min',
         title: 'Building Champions, Sustaining Adoption, and Role Evolution',
         content: `<h2>Technology Adoption Follows People — Not the Other Way Around</h2>
 <p>Working AI with 20% adoption is a failed project. Working AI with 85% adoption is a transformational one. The only difference is the human program running alongside the technology program.</p>
@@ -2068,7 +2068,7 @@ Standard Q&A responses   → Automated   → Escalations & experience design</pr
     templateId: 'orchestration-blueprint',
     lessons: [
       {
-        id: 'm13-l1', number: 1, tier: 'enterprise', duration: '30 min',
+        id: 'm13-l1', number: 1, tier: 'pro', duration: '30 min',
         title: 'Text, Image, Voice: Designing Multimodal Workflows',
         content: `<h2>Beyond Text: The Multimodal Opportunity</h2>
 <p>The next wave of AI value in business doesn't come from better text models — it comes from combining modalities. Text plus image plus voice plus action creates workflows that weren't possible two years ago.</p>
@@ -2105,7 +2105,7 @@ Standard Q&A responses   → Automated   → Escalations & experience design</pr
 </div>`,
       },
       {
-        id: 'm13-l2', number: 2, tier: 'enterprise', duration: '18 min',
+        id: 'm13-l2', number: 2, tier: 'pro', duration: '18 min',
         title: 'The Model Routing Principle',
         content: `<h2>Route the Right Task to the Right Model</h2>
 <p>The single most impactful cost and quality decision in a multi-model AI system is routing — deciding which model handles which task. Poor routing means you're paying frontier prices for tasks that a model 20× cheaper would handle equally well.</p>
@@ -2149,7 +2149,7 @@ Standard Q&A responses   → Automated   → Escalations & experience design</pr
 </div>`,
       },
           {
-        id: 'm13-l3', number: 3, tier: 'enterprise', duration: '25 min',
+        id: 'm13-l3', number: 3, tier: 'pro', duration: '25 min',
         title: 'The AI Operating Model — Interactive Reference',
         content: `<h2>Multimodal AI Operating Model</h2>
 <p>A production AI system is not one model — it is an operating model with three layers: the experience users interact with, the AI models that do the work, and the controls that keep everything safe, accurate, and affordable.</p>
@@ -2251,7 +2251,7 @@ Standard Q&A responses   → Automated   → Escalations & experience design</pr
     templateId: 'ai-cost-checklist',
     lessons: [
       {
-        id: 'm14-l1', number: 1, tier: 'enterprise', duration: '12 min',
+        id: 'm14-l1', number: 1, tier: 'pro', duration: '12 min',
         title: 'Why AI Responses Cost Money',
         content: `<h2>The Economics Behind Every AI Response</h2>
 <p>Every AI response you receive is the output of a powerful computer processing your request. Unlike traditional software — where the cost of serving one more user is near-zero — AI compute scales directly with usage. More requests, longer prompts, and faster responses all cost more.</p>
@@ -2280,7 +2280,7 @@ Standard Q&A responses   → Automated   → Escalations & experience design</pr
 </div>`,
       },
       {
-        id: 'm14-l2', number: 2, tier: 'enterprise', duration: '14 min',
+        id: 'm14-l2', number: 2, tier: 'pro', duration: '14 min',
         title: 'Tokens, Batching and Scale',
         content: `<h2>How Volume Changes the Economics</h2>
 <p>AI costs are trivial at small scale and significant at large scale. The difference between a well-optimised and poorly-optimised AI program across 10 use cases is typically $20,000–$100,000 per year.</p>
@@ -2309,7 +2309,7 @@ Standard Q&A responses   → Automated   → Escalations & experience design</pr
 </div>`,
       },
       {
-        id: 'm14-l3', number: 3, tier: 'enterprise', duration: '12 min',
+        id: 'm14-l3', number: 3, tier: 'pro', duration: '12 min',
         title: 'Why Long Context Is Expensive',
         content: `<h2>The Hidden Cost of Long Documents and Conversations</h2>
 <p>Context length — how much text the AI holds in memory during a single request — is one of the most misunderstood cost drivers in AI.</p>
@@ -2338,7 +2338,7 @@ Standard Q&A responses   → Automated   → Escalations & experience design</pr
 </div>`,
       },
       {
-        id: 'm14-l4', number: 4, tier: 'enterprise', duration: '14 min',
+        id: 'm14-l4', number: 4, tier: 'pro', duration: '14 min',
         title: 'Fast vs Cheap vs Accurate',
         content: `<h2>The AI Trade-off Triangle</h2>
 <p>In AI, you can optimise for three things — but you typically have to choose two:</p>
@@ -2367,7 +2367,7 @@ Standard Q&A responses   → Automated   → Escalations & experience design</pr
 </div>`,
       },
       {
-        id: 'm14-l5', number: 5, tier: 'enterprise', duration: '15 min',
+        id: 'm14-l5', number: 5, tier: 'pro', duration: '15 min',
         title: 'Designing for Cost Control',
         content: `<h2>Building AI Systems That Stay Affordable at Scale</h2>
 <p>The organisations that control AI costs best don't do it by choosing the cheapest model — they do it by designing their systems for cost control from day one.</p>
@@ -2423,7 +2423,7 @@ Standard Q&A responses   → Automated   → Escalations & experience design</pr
     templateId: '90-day-plan',
     lessons: [
       {
-        id: 'm15-l1', number: 1, tier: 'enterprise', duration: '30 min',
+        id: 'm15-l1', number: 1, tier: 'pro', duration: '30 min',
         title: 'Prioritisation, Sequencing, and the 90-Day Roadmap',
         content: `<h2>From Plan to Production in 90 Days</h2>
 <p>90 days is enough to take a prioritised use case from approved investment to live, measured AI in production. The teams that fail this timeline share one characteristic: they underestimate the non-technical work.</p>
