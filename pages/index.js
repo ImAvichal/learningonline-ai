@@ -234,7 +234,7 @@ export default function Home() {
     <>
       <Head>
         <title>Le On AI — AI Anxiety → AI Awareness</title>
-        <meta name="description" content="The execution-focused AI program for professionals, business owners, and enterprise leaders. 40 learning modules, 40 templates, ROI calculator, and model selection framework." />
+        <meta name="description" content="The execution-focused AI program for professionals, business owners, and enterprise leaders. Practical AI learning pathways for professionals, business owners, and enterprise leaders." />
       </Head>
       <Nav transparent />
 
@@ -252,7 +252,6 @@ export default function Home() {
             </p>
 
             <p className="text-xs text-white/30 mb-4 font-display tracking-widest uppercase">
-              40 learning modules · 3 pathways · 40+ implementation tools · live in 14 days
             </p>
             {user?.tier && (
               <div className="flex flex-wrap gap-3 justify-center">
@@ -288,7 +287,7 @@ export default function Home() {
               },
               {
                 pill: 'Starting the Journey', pillClass: 'bg-blue/15 border-blue/30 text-blue-bright', mostPopular: true,
-                title: 'Starting the Journey', price: '$49/mo', popular: true, billing: '$49/month or $399/year',
+                title: 'Starting the Journey', price: '$45/mo', popular: true, billing: '$45/month or $399/year',
                 hook: 'Practical AI awareness, foundational learning, and operational implementation guidance.',
                 desc: 'Designed to take you from AI curiosity to confident execution \u2014 with foundational learning, practical workflows, and downloadable templates.',
                 idealFor: 'Professionals, team members, business owners, and operational leaders wanting practical AI capability.',
@@ -299,7 +298,7 @@ export default function Home() {
               },
               {
                 pill: 'The Pro', pillClass: 'bg-purple-400/15 border-purple-400/30 text-purple-400',
-                title: 'The Pro', price: '$99/mo', billing: '$99/month or $990/year',
+                title: 'The Pro', price: '$75/mo', billing: '$75/month or $699/year',
                 hook: 'Everything in Starting the Journey \u2014 plus orchestration, governance, and operating models.',
                 desc: 'For leaders driving enterprise-scale AI adoption \u2014 orchestration, governance, operating models, and long-term transformation.',
                 idealFor: 'CIOs, transformation directors, senior leaders, and enterprise teams responsible for scalable AI adoption.',
@@ -395,7 +394,7 @@ export default function Home() {
           <Reveal>
             <div className="text-center mb-12">
               <SectionLabel>Learning Paths</SectionLabel>
-              <h2 className="font-display font-bold text-4xl mb-4">40 learning modules. Zero filler.</h2>
+              <h2 className="font-display font-bold text-4xl mb-4">Practical AI learning. Zero filler.</h2>
               <p className="text-muted max-w-xl mx-auto">Every lesson produces a real deliverable. Every module builds on the last.</p>
             </div>
           </Reveal>

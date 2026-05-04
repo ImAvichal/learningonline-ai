@@ -1,4 +1,4 @@
-// pages/pricing.js — Updated pricing: $49 / $99 / $149
+// pages/pricing.js — Subscription pricing: $45/mo, $75/mo
 import Head from 'next/head'
 import Link from 'next/link'
 import { useRouter } from 'next/router'

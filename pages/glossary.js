@@ -1086,7 +1086,7 @@ export default function Glossary() {
             </p>
             <div className="flex gap-3 justify-center flex-wrap">
               <Link href="/pricing" className="px-6 py-3 bg-blue hover:bg-blue-bright text-white font-display font-bold text-sm rounded-lg transition-all shadow-[0_0_20px_rgba(26,110,255,0.3)]">
-                Enrol — $49 →
+                Enrol — $45 →
               </Link>
               <Link href="/preview" className="px-6 py-3 border border-white/15 text-muted hover:text-white font-display font-bold text-sm rounded-lg transition-all">
                 Free Preview

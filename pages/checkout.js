@@ -11,7 +11,7 @@ export default function Checkout() {
   const { user, updateUser } = useAuth()
   const router  = useRouter()
   const { tier: tierId = 'journey', payment_success, cancelled } = router.query
-  const tier    = TIERS[tierId] || TIERS.smb
+  const tier    = TIERS[tierId] || TIERS.journey
 
   const [loading,   setLoading]   = useState(false)
   const [success,   setSuccess]   = useState(false)

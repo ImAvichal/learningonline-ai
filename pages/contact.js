@@ -115,8 +115,8 @@ export default function Contact() {
                 <h3 className="font-display font-bold text-base mb-4">How we can help</h3>
                 <div className="space-y-4">
                   {[
-                    { icon: '🚀', title: 'Starting the Journey', desc: 'Questions about the $49/month program and what\'s included.' },
-                    { icon: '⚡', title: 'The Pro', desc: 'Enterprise-scale AI orchestration, governance, and operating models — $99/month.' },
+                    { icon: '🚀', title: 'Starting the Journey', desc: 'Questions about the $45/month program and what\'s included.' },
+                    { icon: '⚡', title: 'The Pro', desc: 'Enterprise-scale AI orchestration, governance, and operating models — $75/month.' },
                     { icon: '🤝', title: 'Bespoke Support', desc: 'Custom engagements beyond the platform — advisory, implementation, or tailored programs.' },
                   ].map(item => (
                     <div key={item.title} className="flex gap-3">
