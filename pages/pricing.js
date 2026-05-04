@@ -35,7 +35,7 @@ export default function Pricing() {
           </Reveal>
 
           {/* Tier cards */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-5 mb-14">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto mb-14">
             {DISPLAY_ORDER.map((tid, i) => {
               const t     = TIERS[tid]
               const owned = user?.tier === tid
@@ -53,13 +53,13 @@ export default function Pricing() {
                     )}
 
                     <TierBadge tier={tid} label={t.label} className="mb-4" />
-                    <div className="font-display font-black text-5xl mb-1">{t.priceDisplay}</div>
+                    <div className="font-display font-black text-4xl mb-1">{t.priceDisplay}</div>
                     <div className="text-xs text-muted mb-5">{t.billing}</div>
-                    <p className="text-sm text-muted leading-relaxed mb-4 flex-1">{t.description}</p>
+                    <p className="text-sm text-gray-600 dark:text-gray-300 leading-relaxed mb-4 flex-1">{t.description}</p>
 
                     <div className="p-3 rounded-lg bg-white/[0.03] border border-white/5 mb-5">
                       <div className="text-[10px] font-display font-bold text-muted uppercase tracking-wider mb-1">Ideal for</div>
-                      <p className="text-xs text-white/70 leading-relaxed">{t.idealFor}</p>
+                      <p className="text-xs text-gray-600 dark:text-white/70 leading-relaxed">{t.idealFor}</p>
                     </div>
 
                     <ul className="space-y-2 mb-7">

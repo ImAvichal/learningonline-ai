@@ -263,7 +263,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── Learning Tracks (4 cards: Parents free + 3 paid tiers) ── */}
+      {/* ── Learning Tracks (3 cards: Parents free + 2 paid tiers) ── */}
       <section id="learning-tracks" className="py-4">
         <div className="max-w-6xl mx-auto px-6">
           <Reveal>
@@ -273,7 +273,7 @@ export default function Home() {
               <p className="text-muted max-w-xl mx-auto text-sm">Whether you’re curious, cautious, implementing AI in business, or leading transformation — start where you are.</p>
             </div>
           </Reveal>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
             {[
               {
                 pill: 'Free Module', pillClass: 'bg-success/15 border-success/30 text-success',
@@ -315,8 +315,8 @@ export default function Home() {
                     <span className={`px-2.5 py-1 border rounded-full text-[10px] font-display font-bold ${card.pillClass}`}>{card.pill}</span>
                     {card.popular && <span className="px-2.5 py-1 bg-amber-400 text-navy rounded-full text-[10px] font-display font-bold">MOST POPULAR</span>}
                   </div>
-                  <h3 className="font-display font-bold text-lg mb-1">{card.title}</h3>
-                  <p className="text-xs text-white/40 italic mb-3">{card.hook}</p>
+                  <h3 className="font-display font-bold text-lg mb-1 text-gray-900 dark:text-white">{card.title}</h3>
+                  <p className="text-xs text-gray-500 dark:text-white/40 italic mb-3">{card.hook}</p>
                   <div className="flex items-baseline gap-2 mb-1">
                     <span className="font-display font-black text-3xl">{card.price}</span>
                   </div>
@@ -328,7 +328,7 @@ export default function Home() {
                   </div>
                   <ul className="space-y-1.5 mb-5 flex-1">
                     {card.bullets.map((b, bi) => (
-                      <li key={bi} className="flex gap-2 text-xs text-white/70">
+                      <li key={bi} className="flex gap-2 text-xs text-gray-600 dark:text-white/70">
                         <span className="text-success flex-shrink-0 mt-0.5">✓</span>{b}
                       </li>
                     ))}

@@ -42,8 +42,8 @@ function LoginHero() {
       </Link>
       <div className="max-w-md">
         <div className={`transition-opacity duration-500 ${fade ? 'opacity-100' : 'opacity-0'}`}>
-          <p className="font-display font-bold text-2xl leading-snug text-white/90 mb-2">{msg.line1}</p>
-          <p className="font-display text-lg leading-relaxed text-white/50">{msg.line2}</p>
+          <p className="font-display font-bold text-2xl leading-snug text-gray-900 dark:text-white/90 mb-2">{msg.line1}</p>
+          <p className="font-display text-lg leading-relaxed text-gray-600 dark:text-white/50">{msg.line2}</p>
         </div>
         <div className="flex gap-1.5 mt-8">
           {MESSAGES.map((_, i) => (
@@ -51,7 +51,7 @@ function LoginHero() {
           ))}
         </div>
       </div>
-      <p className="text-xs text-white/20">learningonline.ai · Le On AI</p>
+      <p className="text-xs text-gray-400 dark:text-white/20">learningonline.ai · Le On AI</p>
     </div>
   )
 }
