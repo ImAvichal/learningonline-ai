@@ -10,7 +10,7 @@ import { TIERS } from '../data/tiers'
 export default function Checkout() {
   const { user, updateUser } = useAuth()
   const router  = useRouter()
-  const { tier: tierId = 'journey', interval = 'annual', payment_success, cancelled } = router.query
+  const { tier: tierId = 'journey', interval = 'monthly', payment_success, cancelled } = router.query
   const tier    = TIERS[tierId] || TIERS.journey
 
   const [loading,   setLoading]   = useState(false)
@@ -36,6 +36,7 @@ export default function Checkout() {
 
   const handlePay = async () => {
     setLoading(true); setError('')
+    console.log('[Checkout] Plan:', tierId, '| Interval:', interval, '| Price:', interval === 'annual' ? tier.priceAnnualDisplay : tier.priceMonthlyDisplay)
     try {
       const stripeKey = process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY
       const isConfigured = stripeKey && !stripeKey.includes('YOUR_KEY') && stripeKey.startsWith('pk_')
@@ -139,8 +140,8 @@ export default function Checkout() {
                 {loading
                   ? <><Spinner size="md" /> Processing...</>
                   : isDemo
-                  ? `Simulate Payment — ${tier.priceDisplay}`
-                  : `🔒 Pay ${tier.priceDisplay} Securely`
+                  ? `Simulate Payment — ${interval === 'annual' ? tier.priceAnnualDisplay || tier.priceDisplay : tier.priceMonthlyDisplay || tier.priceDisplay}`
+                  : `🔒 Pay ${interval === 'annual' ? tier.priceAnnualDisplay || tier.priceDisplay : tier.priceMonthlyDisplay || tier.priceDisplay} Securely`
                 }
               </button>
               <p className="text-center text-xs text-muted mt-3">7-day money-back guarantee · Instant access after payment</p>
@@ -154,7 +155,7 @@ export default function Checkout() {
                   <div className="w-12 h-12 rounded-xl bg-blue/20 border border-blue/30 flex items-center justify-center text-2xl flex-shrink-0">🎓</div>
                   <div>
                     <div className="font-display font-bold text-sm">LeO AI</div>
-                    <div className="text-xs text-muted mt-0.5">{tier.name}</div>
+                    <div className="text-xs text-muted mt-0.5">{tier.name} · {interval === 'annual' ? 'Annual' : 'Monthly'}</div>
                     <TierBadge tier={tierId} label={tier.label} className="mt-2" />
                   </div>
                 </div>
@@ -167,10 +168,10 @@ export default function Checkout() {
                 </div>
                 <div className="flex justify-between items-baseline pt-4 border-t border-white/5 mb-6">
                   <span className="font-display font-bold">Total</span>
-                  <span className="font-display font-black text-3xl">{tier.priceDisplay}</span>
+                  <span className="font-display font-black text-3xl">{interval === 'annual' ? tier.priceAnnualDisplay || tier.priceDisplay : tier.priceMonthlyDisplay || tier.priceDisplay}</span>
                 </div>
                 <div className="space-y-1.5">
-                  {['🔒 256-bit SSL encryption', '💳 Powered by Stripe', '📧 Receipt to your email', '♾️ Instant lifetime access', '🛡️ 7-day money-back guarantee'].map(s => (
+                  {['🔒 256-bit SSL encryption', '💳 Powered by Stripe', '📧 Receipt to your email', '♾️ Instant access', '🛡️ 7-day money-back guarantee'].map(s => (
                     <div key={s} className="text-xs text-muted">{s}</div>
                   ))}
                 </div>
