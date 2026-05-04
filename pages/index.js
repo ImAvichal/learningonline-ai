@@ -1,4 +1,4 @@
-// pages/index.js — Le On AI homepage
+// pages/index.js — LeO AI homepage
 import Head from 'next/head'
 import Link from 'next/link'
 import { useState } from 'react'
@@ -227,13 +227,14 @@ function IndustryMatcher() {
 // ── Main Page ─────────────────────────────────────────────────────────────────
 export default function Home() {
   const { user } = useAuth()
+  const [interval, setInterval] = useState('annual')
   const [activeModule,  setActiveModule]  = useState(0)
   const [activeSection, setActiveSection] = useState('tree')
 
   return (
     <>
       <Head>
-        <title>Le On AI — AI Anxiety → AI Awareness</title>
+        <title>LeO AI — AI Anxiety → AI Awareness</title>
         <meta name="description" content="The execution-focused AI program for professionals, business owners, and enterprise leaders. Practical AI learning pathways for professionals, business owners, and enterprise leaders." />
       </Head>
       <Nav transparent />
@@ -272,6 +273,12 @@ export default function Home() {
               <p className="text-muted max-w-xl mx-auto text-sm">Whether you’re curious, cautious, implementing AI in business, or leading transformation — start where you are.</p>
             </div>
           </Reveal>
+          
+          {/* Billing toggle */}
+          <div className="flex justify-center mb-6">
+            <BillingToggle interval={interval} onChange={setInterval} />
+          </div>
+
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
             {[
               {
@@ -287,7 +294,7 @@ export default function Home() {
               },
               {
                 pill: 'Starting the Journey', pillClass: 'bg-blue/15 border-blue/30 text-blue-bright', mostPopular: true,
-                title: 'Starting the Journey', price: '$45/mo', popular: true, billing: '$45/month or $399/year',
+                title: 'Starting the Journey', priceMonthly: '$45/mo', priceAnnual: '$399/yr', popular: true,
                 hook: 'Practical AI awareness, foundational learning, and operational implementation guidance.',
                 desc: 'Designed to take you from AI curiosity to confident execution \u2014 with foundational learning, practical workflows, and downloadable templates.',
                 idealFor: 'Professionals, team members, business owners, and operational leaders wanting practical AI capability.',
@@ -298,12 +305,12 @@ export default function Home() {
               },
               {
                 pill: 'The Pro', pillClass: 'bg-purple-400/15 border-purple-400/30 text-purple-400',
-                title: 'The Pro', price: '$75/mo', billing: '$75/month or $699/year',
+                title: 'The Pro', priceMonthly: '$75/mo', priceAnnual: '$699/yr',
                 hook: 'Everything in Starting the Journey \u2014 plus orchestration, governance, and operating models.',
                 desc: 'For leaders driving enterprise-scale AI adoption \u2014 orchestration, governance, operating models, and long-term transformation.',
                 idealFor: 'CIOs, transformation directors, senior leaders, and enterprise teams responsible for scalable AI adoption.',
                 bullets: ['Everything in Starting the Journey','Enterprise AI operating model','Responsible AI and governance','Sustainability and AI impact planning','Multimodal AI orchestration','AI economics and 90-day execution roadmap'],
-                cta: 'Go Pro', ctaClass: 'border border-purple-400/40 text-purple-400 hover:bg-purple-400/10',
+                cta: 'Journey to Pro', ctaClass: 'border border-purple-400/40 text-purple-400 hover:bg-purple-400/10',
                 href: user ? '/checkout?tier=pro' : '/login?redirect=/checkout?tier=pro',
                 cardClass: '',
               },
@@ -515,7 +522,7 @@ export default function Home() {
         <div className="max-w-6xl mx-auto px-6">
           <div className="flex flex-col md:flex-row justify-between items-start gap-8 mb-8">
             <div>
-              <div className="font-display font-black text-xl mb-0.5">Le On <span className="text-blue">AI</span></div>
+              <div className="font-display font-black text-xl mb-0.5">LeO <span className="text-blue">AI</span></div>
               <div className="text-xs text-muted mb-3">Learning Online · Artificial Intelligence</div>
               <p className="text-sm text-muted max-w-xs leading-relaxed">The execution-focused AI program for professionals, business owners, and enterprise leaders.</p>
             </div>
@@ -549,7 +556,7 @@ export default function Home() {
             </div>
           </div>
           <div className="flex flex-col md:flex-row justify-between items-center pt-6 border-t border-white/5 gap-3 text-xs text-muted">
-            <p>© 2025 Le On AI · learningonline.ai</p>
+            <p>© 2025 LeO AI · learningonline.ai</p>
             <p>7-day money-back guarantee · Secure payments via Stripe</p>
           </div>
         </div>

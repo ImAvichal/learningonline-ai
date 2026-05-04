@@ -125,7 +125,7 @@ export default function ModelSelection() {
   return (
     <>
       <Head>
-        <title>AI Model Selection Guide — Le On AI</title>
+        <title>AI Model Selection Guide — LeO AI</title>
         <meta name="description" content="How to choose the right AI model for your business. Decision tree, cost comparison, and real-world examples." />
       </Head>
       <Nav />
@@ -449,7 +449,7 @@ export default function ModelSelection() {
               <div className="text-4xl mb-4">🎓</div>
               <h2 className="font-display font-bold text-3xl mb-3">Learn to implement this in your organisation</h2>
               <p className="text-muted max-w-xl mx-auto mb-6">
-                This model selection framework is covered in depth in Module 1 (foundations) and Module 7 (tools and infrastructure) of the Le On AI curriculum.
+                This model selection framework is covered in depth in Module 1 (foundations) and Module 7 (tools and infrastructure) of the LeO AI curriculum.
               </p>
               <div className="flex flex-wrap gap-4 justify-center">
                 <Button variant="large" href="/pricing">Enrol Now →</Button>
@@ -464,7 +464,7 @@ export default function ModelSelection() {
       <footer className="border-t border-white/5 py-8 mt-10">
         <div className="max-w-6xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-3 text-xs text-muted">
           <span className="font-display font-black text-white">Le On <span className="text-blue">AI</span></span>
-          <p>© 2025 Le On AI · learningonline.ai</p>
+          <p>© 2025 LeO AI · learningonline.ai</p>
           <div className="flex gap-4">
             <Link href="/pricing" className="hover:text-white">Pricing</Link>
             <Link href="/contact" className="hover:text-white">Contact</Link>

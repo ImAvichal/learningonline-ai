@@ -120,8 +120,8 @@ export default function Preview() {
   return (
     <>
       <Head>
-        <title>Free Preview — Le On AI</title>
-        <meta name="description" content="Preview two free lessons from the Le On AI curriculum — AI fundamentals and token cost awareness." />
+        <title>Free Preview — LeO AI</title>
+        <meta name="description" content="Preview two free lessons from the LeO AI curriculum — AI fundamentals and token cost awareness." />
       </Head>
       <Nav />
 

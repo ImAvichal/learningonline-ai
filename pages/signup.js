@@ -10,7 +10,7 @@ import { TIERS } from '../data/tiers'
 export default function Signup() {
   const { signup, loginWithGoogle, loginWithLinkedIn } = useAuth()
   const router     = useRouter()
-  const { tier: tierId = 'journey' } = router.query
+  const { tier: tierId = 'journey', interval = 'annual' } = router.query
   const tier = TIERS[tierId] || TIERS.journey
 
   const [form,    setForm]    = useState({ name: '', email: '', password: '', confirm: '' })
@@ -34,7 +34,7 @@ export default function Signup() {
     if (Object.keys(errs).length) { setErrors(errs); return }
     setLoading(true)
     const res = await signup(form.email, form.password, form.name)
-    if (res.success) router.push(`/checkout?tier=${tierId}`)
+    if (res.success) router.push(`/checkout?tier=${tierId}&interval=${interval}`)
     else { setErrors({ server: 'Something went wrong. Please try again.' }); setLoading(false) }
   }
 
@@ -42,12 +42,12 @@ export default function Signup() {
 
   return (
     <>
-      <Head><title>Create Account — Le On AI</title></Head>
+      <Head><title>Create Account — LeO AI</title></Head>
       <div className="min-h-screen flex">
         {/* Left */}
         <div className="hidden lg:flex flex-col justify-between w-1/2 bg-navy-mid border-r border-white/5 p-12">
           <Link href="/" className="font-display font-black text-xl">
-            Le On <span className="text-blue">AI</span>
+            LeO <span className="text-blue">AI</span>
           </Link>
           <div className="max-w-md">
             <div className="text-xs font-display font-bold text-gray-400 dark:text-white/30 uppercase tracking-wider mb-4">Choose your learning path</div>
@@ -76,7 +76,7 @@ export default function Signup() {
             </div>
             <p className="text-[11px] text-gray-400 dark:text-white/20 mt-8 leading-relaxed">Practical AI learning designed to reduce anxiety through clarity, structure, and real-world understanding.</p>
           </div>
-          <p className="text-xs text-gray-400 dark:text-white/15">learningonline.ai · Le On AI</p>
+          <p className="text-xs text-gray-400 dark:text-white/15">learningonline.ai · LeO AI</p>
         </div>
 
         {/* Right */}
@@ -84,7 +84,7 @@ export default function Signup() {
           <div className="w-full max-w-sm">
             <div className="lg:hidden mb-8">
               <Link href="/" className="font-display font-black text-xl">
-                Le On <span className="text-blue">AI</span>
+                LeO <span className="text-blue">AI</span>
               </Link>
             </div>
 

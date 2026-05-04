@@ -47,7 +47,7 @@ export default function Contact() {
 
   return (
     <>
-      <Head><title>Contact Us — Le On AI</title></Head>
+      <Head><title>Contact Us — LeO AI</title></Head>
       <Nav />
       <div className="pt-28 pb-20">
         <div className="max-w-5xl mx-auto px-6">
@@ -157,7 +157,7 @@ export default function Contact() {
       <footer className="border-t border-white/5 py-8">
         <div className="max-w-6xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-3 text-xs text-muted">
           <span className="font-display font-black text-white">Le On <span className="text-blue">AI</span></span>
-          <p>© 2025 Le On AI · learningonline.ai</p>
+          <p>© 2025 LeO AI · learningonline.ai</p>
         </div>
       </footer>
     </>

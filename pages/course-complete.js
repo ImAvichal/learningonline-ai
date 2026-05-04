@@ -22,7 +22,7 @@ export default function CourseComplete() {
   return (
     <>
       <Head>
-        <title>Course Complete — Le On AI</title>
+        <title>Course Complete — LeO AI</title>
       </Head>
 
       <Nav user={user} />

@@ -8,7 +8,7 @@ export default function About() {
   return (
     <>
       <Head>
-        <title>About Us — Le On AI</title>
+        <title>About Us — LeO AI</title>
         <meta name="description" content="learningonline.ai is an Australian-owned AI education platform helping individuals, parents, businesses and leaders understand AI — without the hype." />
       </Head>
 

@@ -91,7 +91,7 @@ export default function Roadmap() {
   return (
     <>
       <Head>
-        <title>AI Evolution Roadmap — Le On AI</title>
+        <title>AI Evolution Roadmap — LeO AI</title>
         <meta name="description" content="See where learningonline.ai is heading — from AI awareness to industry intelligence, AI agents, and agentic organisations." />
       </Head>
 
@@ -167,7 +167,7 @@ export default function Roadmap() {
             <Reveal>
               <h2 className="font-display font-bold text-2xl mb-4">Your Learning Evolves With Us</h2>
               <p className="text-muted leading-relaxed mb-4">
-                Your enrolment includes access to the current Le On AI release cycle and all refinements released within that version family.
+                Your enrolment includes access to the current LeO AI release cycle and all refinements released within that version family.
               </p>
               <p className="text-muted leading-relaxed">
                 Major future evolution releases may be offered as optional upgrades, while your purchased content remains accessible.

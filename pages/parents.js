@@ -652,7 +652,7 @@ export default function ParentsModule() {
   return (
     <>
       <Head>
-        <title>AI for Parents — Le On AI</title>
+        <title>AI for Parents — LeO AI</title>
         <meta name="description" content="A free guide for parents on how kids use AI, what to watch for, and how to have the conversation." />
       </Head>
       <Nav />

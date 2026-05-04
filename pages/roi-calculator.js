@@ -192,7 +192,7 @@ export default function ROICalculator() {
   return (
     <>
       <Head>
-        <title>AI ROI Calculator — Le On AI</title>
+        <title>AI ROI Calculator — LeO AI</title>
         <meta name="description" content="Calculate the real ROI of your AI investment. Includes break-even, 5-year model, sensitivity analysis, and model cost comparison." />
       </Head>
       <Nav />
@@ -436,7 +436,7 @@ export default function ROICalculator() {
               <strong className="text-white">Disclaimer:</strong> Indicative estimates for planning purposes only.
               Actual ROI depends on use case design, data quality, adoption rate, and implementation approach.
               Not financial advice. Token prices are approximate — verify at provider pricing pages before committing.
-              Le On AI recommends completing the full Module 9 ROI model for investment decisions.
+              LeO AI recommends completing the full Module 9 ROI model for investment decisions.
             </p>
           </div>
         </div>

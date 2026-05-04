@@ -1,4 +1,5 @@
 // pages/pricing.js — Subscription pricing: $45/mo, $75/mo
+import { useState } from 'react'
 import Head from 'next/head'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
@@ -8,6 +9,7 @@ import { useAuth } from '../lib/auth'
 
 export default function Pricing() {
   const { user } = useAuth()
+  const [interval, setInterval] = useState('annual') // Default to annual (best value)
   const router   = useRouter()
 
   const handleEnrol = (tierId) => {
@@ -17,7 +19,7 @@ export default function Pricing() {
 
   return (
     <>
-      <Head><title>Pricing — Le On AI</title></Head>
+      <Head><title>Pricing — LeO AI</title></Head>
       <Nav />
       <div className="pt-28 pb-20">
         <div className="max-w-5xl mx-auto px-6">
@@ -33,6 +35,11 @@ export default function Pricing() {
               </p>
             </div>
           </Reveal>
+
+          {/* Billing toggle */}
+          <div className="flex justify-center mb-8">
+            <BillingToggle interval={interval} onChange={setInterval} />
+          </div>
 
           {/* Tier cards */}
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto mb-14">
@@ -53,7 +60,7 @@ export default function Pricing() {
                     )}
 
                     <TierBadge tier={tid} label={t.label} className="mb-4" />
-                    <div className="font-display font-black text-4xl mb-1">{t.priceDisplay}</div>
+                    <div className="font-display font-black text-4xl mb-1">{interval === 'annual' ? t.priceAnnualDisplay : t.priceMonthlyDisplay}</div>
                     <div className="text-xs text-muted mb-5">{t.billing}</div>
                     <p className="text-sm text-gray-600 dark:text-gray-300 leading-relaxed mb-4 flex-1">{t.description}</p>
 

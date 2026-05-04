@@ -35,7 +35,7 @@ export default function ForgotPassword() {
 
   return (
     <>
-      <Head><title>Forgot Password — Le On AI</title></Head>
+      <Head><title>Forgot Password — LeO AI</title></Head>
       <div className="min-h-screen flex items-center justify-center px-6 py-12">
         <div className="w-full max-w-sm">
           <div className="mb-8">

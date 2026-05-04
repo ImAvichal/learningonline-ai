@@ -1,4 +1,4 @@
-// pages/glossary.js — Le On AI Glossary
+// pages/glossary.js — LeO AI Glossary
 // Full interactive glossary with search, category filter, and alphabetical index
 // Additive new page — no existing files modified
 
@@ -938,7 +938,7 @@ export default function Glossary() {
   return (
     <>
       <Head>
-        <title>AI Terms Explained — Le On AI</title>
+        <title>AI Terms Explained — LeO AI</title>
         <meta name="description" content="The plain-English AI glossary for business professionals. 70+ terms explained simply with real-world examples." />
       </Head>
       <Nav />

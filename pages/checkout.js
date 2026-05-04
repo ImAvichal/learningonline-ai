@@ -10,7 +10,7 @@ import { TIERS } from '../data/tiers'
 export default function Checkout() {
   const { user, updateUser } = useAuth()
   const router  = useRouter()
-  const { tier: tierId = 'journey', payment_success, cancelled } = router.query
+  const { tier: tierId = 'journey', interval = 'annual', payment_success, cancelled } = router.query
   const tier    = TIERS[tierId] || TIERS.journey
 
   const [loading,   setLoading]   = useState(false)
@@ -65,7 +65,7 @@ export default function Checkout() {
     <div className="min-h-screen bg-navy flex items-center justify-center">
       <div className="text-center max-w-md mx-auto px-6">
         <div className="text-7xl mb-6">🎉</div>
-        <h1 className="font-display font-black text-3xl mb-3">Welcome to Le On AI!</h1>
+        <h1 className="font-display font-black text-3xl mb-3">Welcome to LeO AI!</h1>
         <p className="text-muted mb-2">Payment confirmed. Your account has been upgraded.</p>
         <p className="text-sm text-muted">Redirecting to your dashboard...</p>
         <div className="mt-6">
@@ -80,7 +80,7 @@ export default function Checkout() {
 
   return (
     <>
-      <Head><title>Checkout — Le On AI</title></Head>
+      <Head><title>Checkout — LeO AI</title></Head>
       <div className="min-h-screen pt-8 pb-20">
         <div className="max-w-5xl mx-auto px-6">
           <div className="flex items-center justify-between mb-12 pb-6 border-b border-white/5">
@@ -153,7 +153,7 @@ export default function Checkout() {
                 <div className="flex gap-3 mb-6 pb-6 border-b border-white/5">
                   <div className="w-12 h-12 rounded-xl bg-blue/20 border border-blue/30 flex items-center justify-center text-2xl flex-shrink-0">🎓</div>
                   <div>
-                    <div className="font-display font-bold text-sm">Le On AI</div>
+                    <div className="font-display font-bold text-sm">LeO AI</div>
                     <div className="text-xs text-muted mt-0.5">{tier.name}</div>
                     <TierBadge tier={tierId} label={tier.label} className="mt-2" />
                   </div>

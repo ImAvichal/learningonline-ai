@@ -38,7 +38,7 @@ function LoginHero() {
   return (
     <div className="hidden lg:flex flex-col justify-between w-1/2 bg-navy-mid border-r border-white/5 p-12">
       <Link href="/" className="font-display font-black text-xl">
-        Le On <span className="text-blue">AI</span>
+        LeO <span className="text-blue">AI</span>
       </Link>
       <div className="max-w-md">
         <div className={`transition-opacity duration-500 ${fade ? 'opacity-100' : 'opacity-0'}`}>
@@ -51,7 +51,7 @@ function LoginHero() {
           ))}
         </div>
       </div>
-      <p className="text-xs text-gray-400 dark:text-white/20">learningonline.ai · Le On AI</p>
+      <p className="text-xs text-gray-400 dark:text-white/20">learningonline.ai · LeO AI</p>
     </div>
   )
 }
@@ -79,7 +79,7 @@ export default function Login() {
 
   return (
     <>
-      <Head><title>Sign In — Le On AI</title></Head>
+      <Head><title>Sign In — LeO AI</title></Head>
       <div className="min-h-screen flex">
         {/* Left panel — rotating inspiration */}
         <LoginHero />
@@ -89,7 +89,7 @@ export default function Login() {
           <div className="w-full max-w-sm">
             <div className="lg:hidden mb-8">
               <Link href="/" className="font-display font-black text-xl">
-                Le On <span className="text-blue">AI</span>
+                LeO <span className="text-blue">AI</span>
               </Link>
             </div>
 
