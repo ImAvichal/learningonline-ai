@@ -86,7 +86,7 @@ export default function Checkout() {
         <div className="max-w-5xl mx-auto px-6">
           <div className="flex items-center justify-between mb-12 pb-6 border-b border-white/5">
             <Link href="/" className="font-display font-black text-xl">
-              Le On <span className="text-blue">AI</span>
+              LeO <span className="text-blue">AI</span>
             </Link>
             <div className="text-xs text-muted flex items-center gap-1.5">🔒 Secure checkout via Stripe</div>
           </div>
