@@ -6,28 +6,40 @@ export default async function handler(req, res) {
 
   const stripe = new Stripe(process.env.STRIPE_SECRET_KEY)
 
+  // Price mapping: tier + interval → Stripe price ID
   const priceMap = {
-    individual: process.env.STRIPE_PRICE_INDIVIDUAL, // $45 (legacy)
-    smb:        process.env.STRIPE_PRICE_SMB,        // $75 (legacy)
-    enterprise: process.env.STRIPE_PRICE_ENTERPRISE, // (legacy)
+    journey: {
+      monthly: process.env.STRIPE_PRICE_JOURNEY_MONTHLY,
+      annual:  process.env.STRIPE_PRICE_JOURNEY_ANNUAL,
+    },
+    pro: {
+      monthly: process.env.STRIPE_PRICE_PRO_MONTHLY,
+      annual:  process.env.STRIPE_PRICE_PRO_ANNUAL,
+    },
+    // Legacy aliases
+    individual: { monthly: process.env.STRIPE_PRICE_JOURNEY_MONTHLY, annual: process.env.STRIPE_PRICE_JOURNEY_ANNUAL },
+    smb:        { monthly: process.env.STRIPE_PRICE_JOURNEY_MONTHLY, annual: process.env.STRIPE_PRICE_JOURNEY_ANNUAL },
+    enterprise: { monthly: process.env.STRIPE_PRICE_PRO_MONTHLY,     annual: process.env.STRIPE_PRICE_PRO_ANNUAL },
   }
 
-  const { tierId, userId, email, name, promoCode } = req.body
-  const priceId = priceMap[tierId]
-  if (!priceId) return res.status(400).json({ error: 'Invalid tier' })
+  const { tierId, interval = 'monthly', userId, email, name, promoCode } = req.body
+  const tierPrices = priceMap[tierId]
+  if (!tierPrices) return res.status(400).json({ error: 'Invalid tier' })
+  const priceId = tierPrices[interval] || tierPrices.monthly
+  if (!priceId) return res.status(400).json({ error: 'Stripe price not configured for this plan. Please contact support.' })
 
   try {
     // Build session params — allow_promotion_codes lets Stripe handle discount codes natively
     const sessionParams = {
       payment_method_types: ['card'],
       line_items: [{ price: priceId, quantity: 1 }],
-      mode: 'payment',
+      mode: 'subscription',
       customer_email: email,
       client_reference_id: userId,
       metadata: { userId, tierId, name, promoCode: promoCode || '' },
       allow_promotion_codes: true,  // Enables promo code field in Stripe Checkout UI
-      success_url: `${process.env.NEXT_PUBLIC_APP_URL}/checkout?tier=${tierId}&payment_success=true`,
-      cancel_url:  `${process.env.NEXT_PUBLIC_APP_URL}/checkout?tier=${tierId}&cancelled=true`,
+      success_url: `${process.env.NEXT_PUBLIC_APP_URL}/checkout?tier=${tierId}&interval=${interval}&payment_success=true`,
+      cancel_url:  `${process.env.NEXT_PUBLIC_APP_URL}/checkout?tier=${tierId}&interval=${interval}&cancelled=true`,
     }
 
     // If a specific Stripe promotion code ID is passed, apply it directly
