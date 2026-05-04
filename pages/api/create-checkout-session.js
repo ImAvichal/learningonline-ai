@@ -26,7 +26,7 @@ export default async function handler(req, res) {
   const tierPrices = priceMap[tierId]
   if (!tierPrices) return res.status(400).json({ error: 'Invalid tier' })
   const priceId = tierPrices[interval] || tierPrices.monthly
-  if (!priceId) return res.status(400).json({ error: 'Stripe price not configured for this plan. Please contact support.' })
+  if (!priceId) return res.status(400).json({ error: `Stripe price not configured for ${tierId} (${interval}). Please set ${interval === 'annual' ? tierPrices && 'STRIPE_PRICE_' + tierId.toUpperCase() + '_ANNUAL' : 'STRIPE_PRICE_' + tierId.toUpperCase() + '_MONTHLY'} in environment variables.` })
 
   try {
     // Build session params — allow_promotion_codes lets Stripe handle discount codes natively
