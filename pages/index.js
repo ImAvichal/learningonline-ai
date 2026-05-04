@@ -359,40 +359,42 @@ export default function Home() {
       {/* ── Learning Evolution ── */}
       <section className="py-16 border-t border-gray-100 dark:border-white/5">
         <div className="max-w-5xl mx-auto px-6">
-          <div className="text-center mb-10">
+          <div className="text-center mb-12">
             <SectionLabel>Learning Evolution</SectionLabel>
             <h2 className="font-display font-bold text-3xl mb-3">Where We're Heading</h2>
             <p className="text-muted max-w-lg mx-auto text-sm">AI is evolving. Our platform evolves with it.</p>
           </div>
 
-          {/* Horizontal metro line */}
-          <div className="overflow-x-auto pb-4 -mx-6 px-6">
-            <div className="flex items-start gap-0 min-w-[700px]">
+          {/* Horizontal metro line — scrollable */}
+          <div className="overflow-x-auto pb-6 -mx-6 px-6">
+            <div className="flex min-w-[900px]">
               {[
-                { title: 'Beta', desc: 'Foundations built', dot: 'bg-white/20', line: 'bg-white/10', active: false },
-                { title: 'V1 Launch', desc: 'You are here', dot: 'bg-success ring-4 ring-success/20', line: 'bg-success/30', active: true },
-                { title: 'Industry', desc: 'Sector pathways', dot: 'bg-blue/60', line: 'bg-blue/20', active: false },
-                { title: 'AI Agents', desc: 'Workflow copilots', dot: 'bg-amber-400/60', line: 'bg-amber-400/15', active: false },
-                { title: 'Agentic Orgs', desc: 'AI ecosystems', dot: 'bg-purple-400/60', line: 'bg-purple-400/15', active: false },
-                { title: 'Human + AI', desc: 'Responsible collaboration', dot: 'bg-white/15', line: 'bg-transparent', active: false },
-              ].map((s, i) => (
-                <div key={i} className="flex items-start flex-1 min-w-0">
-                  <div className="flex flex-col items-center flex-shrink-0" style={{ width: '10px' }}>
-                    <div className={`w-2.5 h-2.5 rounded-full ${s.dot} flex-shrink-0`} />
+                { title: 'Beta Foundations', desc: 'Practical AI awareness and foundational experimentation.', dot: 'bg-gray-300 dark:bg-white/25', active: false },
+                { title: 'Version 1 Launch', desc: 'Learning modules, templates, and operational AI guidance.', dot: 'bg-success', active: true },
+                { title: 'Industry Intelligence', desc: 'Industry-specific AI workflows and operational patterns.', dot: 'bg-blue', active: false },
+                { title: 'AI Agents at Work', desc: 'AI copilots and workflow assistants supporting real work.', dot: 'bg-amber-400', active: false },
+                { title: 'Agentic Organisations', desc: 'Connected AI ecosystems and orchestrated operations.', dot: 'bg-purple-400', active: false },
+                { title: 'Human + AI', desc: 'Long-term collaboration between humans and intelligent systems.', dot: 'bg-gray-300 dark:bg-white/15', active: false },
+              ].map((s, i, arr) => (
+                <div key={i} className="flex-1 relative" style={{ minWidth: '140px' }}>
+                  {/* Node row: dot + line */}
+                  <div className="flex items-center">
+                    <div className={`w-3 h-3 rounded-full flex-shrink-0 ${s.dot} ${s.active ? 'ring-4 ring-success/20' : ''}`} />
+                    {i < arr.length - 1 && <div className={`h-px flex-1 ${s.active ? 'bg-success/30' : 'bg-gray-200 dark:bg-white/8'}`} />}
                   </div>
-                  {i < 5 && <div className={`h-px flex-1 ${s.line} mt-[5px]`} />}
-                  <div className="absolute mt-5 -ml-8 w-20 text-center" style={{ position: 'relative', marginTop: '12px', marginLeft: '-35px', width: '80px' }}>
-                    <div className={`text-[10px] font-display font-bold ${s.active ? 'text-success' : 'text-gray-500 dark:text-white/40'} leading-tight`}>{s.title}</div>
-                    <div className="text-[9px] text-gray-400 dark:text-white/20 mt-0.5 leading-tight">{s.desc}</div>
+                  {/* Label below */}
+                  <div className="pr-6 mt-3">
+                    <div className={`text-xs font-display font-bold leading-tight ${s.active ? 'text-success' : 'text-gray-700 dark:text-white/50'}`}>{s.title}</div>
+                    <p className="text-[10px] text-gray-400 dark:text-white/25 mt-1 leading-relaxed">{s.desc}</p>
                   </div>
                 </div>
               ))}
             </div>
           </div>
 
-          <div className="text-center mt-14">
+          <div className="text-center mt-8">
             <Link href="/roadmap" className="text-xs text-blue hover:text-blue-bright font-display font-bold transition-colors">
-              View Full Roadmap →
+              Explore the full evolution roadmap →
             </Link>
           </div>
         </div>
@@ -567,4 +569,3 @@ export default function Home() {
     </>
   )
 }
-
