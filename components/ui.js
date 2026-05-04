@@ -274,11 +274,15 @@ export function SectionLabel({ children, className = '' }) {
 
 export function TierBadge({ tier, label, className = '' }) {
   const cfg = {
-    individual: { cls: 'tier-individual', text: label || 'AI Awareness' },
-    smb:        { cls: 'tier-smb',        text: label || 'AI Implementation' },
-    enterprise: { cls: 'tier-enterprise', text: label || 'AI Transformation' },
+    parents:    { cls: 'tier-parents',    text: label || 'AI for Parents' },
+    journey:    { cls: 'tier-journey',    text: label || 'Starting the Journey' },
+    pro:        { cls: 'tier-pro',        text: label || 'The Pro' },
+    // Legacy aliases for any data still using old IDs
+    individual: { cls: 'tier-journey',    text: label || 'Starting the Journey' },
+    smb:        { cls: 'tier-journey',    text: label || 'Starting the Journey' },
+    enterprise: { cls: 'tier-pro',        text: label || 'The Pro' },
   }
-  const c = cfg[tier] || cfg.individual
+  const c = cfg[tier] || cfg.journey
   return (
     <span className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-display font-bold ${c.cls} ${className}`}>
       {c.text}
@@ -318,6 +322,14 @@ export function LessonFeedback({ user, moduleId, lessonId }) {
   const [text, setText]         = React.useState('')
   const [sent, setSent]         = React.useState(false)
   const [sending, setSending]   = React.useState(false)
+
+  // Reset state when navigating to a different lesson
+  React.useEffect(() => {
+    setRating(null)
+    setText('')
+    setSent(false)
+    setSending(false)
+  }, [moduleId, lessonId])
 
   const submit = async () => {
     if (!rating && !text.trim()) return
