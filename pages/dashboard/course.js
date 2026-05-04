@@ -426,7 +426,7 @@ export default function CoursePage() {
                 <div className="mt-10 text-center p-10 bg-blue/5 border border-blue/20 rounded-2xl">
                   <div className="text-5xl mb-4">🎉</div>
                   <h2 className="font-display font-black text-2xl mb-2">All lessons complete!</h2>
-                  <p className="text-muted mb-6">Take the final module quiz to complete your Le On AI certification.</p>
+                  <p className="text-muted mb-6">Take the final module quiz to complete your LeO AI certification.</p>
                   {activeMod?.quiz && (
                     <button onClick={() => setShowQuiz(true)}
                       className="px-8 py-3 bg-amber-400 hover:bg-amber-300 text-navy font-display font-bold rounded-lg transition-all">

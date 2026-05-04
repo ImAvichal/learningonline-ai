@@ -44,7 +44,7 @@ function Dashboard() {
 
   return (
     <>
-      <Head><title>Dashboard — Le On AI</title></Head>
+      <Head><title>Dashboard — LeO AI</title></Head>
       <div className="min-h-screen flex">
         <Sidebar activeTab={tab} onTab={switchTab} user={user} />
         <main className="flex-1 lg:ml-56 min-h-screen overflow-auto">
