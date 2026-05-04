@@ -92,21 +92,31 @@ export default function AuthCallback() {
 
       const activeTier = purchase?.tier || profile?.selected_tier || null
 
-      // ── Redirect based on entitlement ────────────────────────────────────
+      // ── Redirect based on entitlement and intended destination ──────────
+      // Check for intended destination saved before OAuth
+      const intendedRedirect = typeof window !== 'undefined' ? localStorage.getItem('postAuthRedirect') : null
+      if (intendedRedirect) {
+        try { localStorage.removeItem('postAuthRedirect') } catch {}
+      }
+
       if (activeTier) {
-        // Has paid tier — update profile and go to dashboard
         if (!existing?.selected_tier) {
           await supabase
             .from('users_profile')
             .update({ selected_tier: activeTier, user_type: activeTier })
             .eq('id', authUser.id)
         }
-        setStatus('Access confirmed. Loading dashboard...')
-        router.push('/dashboard')
+        setStatus('Access confirmed. Loading...')
+        router.push(intendedRedirect || '/dashboard')
       } else {
-        // Authenticated but no purchase — go to preview
-        setStatus('Signed in. Redirecting to preview...')
-        router.push('/preview')
+        // No tier — but still honour intended free-pathway redirect (e.g. /parents)
+        if (intendedRedirect && (intendedRedirect === '/parents' || intendedRedirect.startsWith('/parents'))) {
+          setStatus('Welcome. Loading your module...')
+          router.push(intendedRedirect)
+        } else {
+          setStatus('Signed in. Redirecting to preview...')
+          router.push(intendedRedirect || '/preview')
+        }
       }
     } catch (err) {
       console.error('Auth callback error:', err)
