@@ -300,7 +300,7 @@ export default function Home() {
                 idealFor: 'Professionals, team members, business owners, and operational leaders wanting practical AI capability.',
                 bullets: ['Foundational AI learning and model awareness','Prompts, context, tools, and practical use','Use case identification and prioritisation','Workflow design and ROI frameworks','Data readiness and people/change adoption','Downloadable guides and templates'],
                 cta: 'Start the Journey', ctaClass: 'bg-blue hover:bg-blue-bright text-white',
-                href: user ? '/checkout?tier=journey' : '/login?redirect=/checkout?tier=journey',
+                tier: 'journey',
                 cardClass: 'border-blue/30 bg-blue/[0.02]',
               },
               {
@@ -311,7 +311,7 @@ export default function Home() {
                 idealFor: 'CIOs, transformation directors, senior leaders, and enterprise teams responsible for scalable AI adoption.',
                 bullets: ['Everything in Starting the Journey','Enterprise AI operating model','Responsible AI and governance','Sustainability and AI impact planning','Multimodal AI orchestration','AI economics and 90-day execution roadmap'],
                 cta: 'Journey to Pro', ctaClass: 'border border-purple-400/40 text-purple-400 hover:bg-purple-400/10',
-                href: user ? '/checkout?tier=pro' : '/login?redirect=/checkout?tier=pro',
+                tier: 'pro',
                 cardClass: '',
               },
             ].map((card, i) => (
@@ -324,9 +324,9 @@ export default function Home() {
                   <h3 className="font-display font-bold text-lg mb-1 text-gray-900 dark:text-white">{card.title}</h3>
                   <p className="text-xs text-gray-500 dark:text-white/40 italic mb-3">{card.hook}</p>
                   <div className="flex items-baseline gap-2 mb-1">
-                    <span className="font-display font-black text-3xl">{card.price}</span>
+                    <span className="font-display font-black text-3xl text-gray-900 dark:text-white">{card.priceMonthly ? (interval === 'annual' ? card.priceAnnual : card.priceMonthly) : card.price}</span>
                   </div>
-                  <div className="text-[10px] text-muted mb-4">{card.billing}</div>
+                  <div className="text-[10px] text-muted mb-4">{card.priceMonthly ? (interval === 'annual' ? 'Billed annually' : 'Billed monthly') : card.billing}</div>
                   <p className="text-xs text-muted leading-relaxed mb-4">{card.desc}</p>
                   <div className="p-3 rounded-lg bg-white/[0.03] border border-white/5 mb-4">
                     <div className="text-[10px] font-display font-bold text-muted uppercase tracking-wider mb-1">Ideal for</div>
@@ -339,7 +339,7 @@ export default function Home() {
                       </li>
                     ))}
                   </ul>
-                  <Link href={card.href}
+                  <Link href={card.tier ? (user ? `/checkout?tier=${card.tier}&interval=${interval}` : `/login?redirect=${encodeURIComponent(`/checkout?tier=${card.tier}&interval=${interval}`)}`) : card.href}
                     className={`w-full text-center py-2.5 rounded-lg font-display font-bold text-sm transition-all block ${card.ctaClass}`}>
                     {card.cta}
                   </Link>

@@ -44,7 +44,7 @@ export default function Checkout() {
         const res = await fetch('/api/create-checkout-session', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ tierId, userId: user.id, email: user.email, name: user.name, promoCode: promoCode.trim() }),
+          body: JSON.stringify({ tierId, interval, userId: user.id, email: user.email, name: user.name, promoCode: promoCode.trim() }),
         })
         if (!res.ok) { const b = await res.json(); throw new Error(b.error || 'Server error') }
         const { url } = await res.json()

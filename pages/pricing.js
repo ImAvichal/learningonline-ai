@@ -13,8 +13,12 @@ export default function Pricing() {
   const router   = useRouter()
 
   const handleEnrol = (tierId) => {
-    if (!user) { router.push(`/signup?tier=${tierId}`); return }
-    router.push(`/checkout?tier=${tierId}`)
+    const checkoutUrl = `/checkout?tier=${tierId}&interval=${interval}`
+    if (!user) {
+      router.push(`/login?redirect=${encodeURIComponent(checkoutUrl)}`)
+      return
+    }
+    router.push(checkoutUrl)
   }
 
   return (
@@ -61,7 +65,7 @@ export default function Pricing() {
 
                     <TierBadge tier={tid} label={t.label} className="mb-4" />
                     <div className="font-display font-black text-4xl mb-1">{interval === 'annual' ? t.priceAnnualDisplay : t.priceMonthlyDisplay}</div>
-                    <div className="text-xs text-muted mb-5">{t.billing}</div>
+                    <div className="text-xs text-muted mb-5">{interval === 'annual' ? 'Billed annually' : 'Billed monthly'}</div>
                     <p className="text-sm text-gray-600 dark:text-gray-300 leading-relaxed mb-4 flex-1">{t.description}</p>
 
                     <div className="p-3 rounded-lg bg-white/[0.03] border border-white/5 mb-5">
@@ -73,7 +77,7 @@ export default function Pricing() {
                       {t.features.map((f, fi) => (
                         <li key={fi} className="flex gap-2.5 text-sm">
                           <span className="text-success flex-shrink-0 mt-0.5">✓</span>
-                          <span className="text-white/80">{f}</span>
+                          <span className="text-gray-700 dark:text-white/80">{f}</span>
                         </li>
                       ))}
                     </ul>
