@@ -90,7 +90,7 @@ export const TIERS = {
       'All 40 cumulative learning modules',
     ],
     modules: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
-    cta: 'Go Pro',
+    cta: 'Journey to Pro',
     highlighted: false,
     stripeEnvKeyMonthly: 'STRIPE_PRICE_PRO_MONTHLY',
     stripeEnvKeyAnnual: 'STRIPE_PRICE_PRO_ANNUAL',
