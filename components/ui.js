@@ -173,20 +173,17 @@ export function Nav({ transparent = false }) {
         <div className="hidden md:flex items-center gap-3">
           {!user && (
             <>
-              <LanguageSwitcher compact />
               <NavLink href="/login">{t("common.signIn")}</NavLink>
             </>
           )}
           {user && !user.tier && !user.isDevUser && (
             <>
-              <LanguageSwitcher compact />
               <span className="text-xs text-gray-700 dark:text-gray-300 font-display">G'day{user.name ? `, ${user.name.split(' ')[0]}` : ''}</span>
               <button onClick={logout} className="text-xs text-muted hover:text-white transition-colors">Sign Out</button>
             </>
           )}
           {(user?.tier || user?.isDevUser) && (
             <>
-              <LanguageSwitcher compact />
               <NavLink href="/dashboard">{t("common.dashboard")}</NavLink>
               <span className="text-xs text-gray-700 dark:text-gray-300 font-display">G'day{user.name ? `, ${user.name.split(' ')[0]}` : ''}</span>
               <button onClick={logout} className="text-xs text-muted hover:text-white transition-colors">Sign Out</button>
