@@ -5,7 +5,7 @@ import MultimodalDiagram from '../../components/MultimodalDiagram'
 import NoEnrolmentMessage from '../../components/NoEnrolmentMessage'
 import { useRouter } from 'next/router'
 import { MODULES } from '../../data/modules'
-import { ProgressBar, TierBadge, Spinner, ThemeToggle, LessonFeedback } from '../../components/ui'
+import { ProgressBar, TierBadge, Spinner, LanguageSwitcher, LessonFeedback } from '../../components/ui'
 
 // ── Quiz Component ────────────────────────────────────────────────────────────
 function ModuleQuiz({ quiz, moduleId, onComplete }) {
@@ -246,6 +246,10 @@ export default function CoursePage() {
         lg:translate-x-0 ${sidebarOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'}
       `}>
         <div className="px-4 py-4 border-b border-white/5 flex-shrink-0">
+          <div className="flex justify-between items-center mb-3">
+            <span className="text-xs font-display font-bold text-muted uppercase tracking-wider">Learning</span>
+            <LanguageSwitcher compact />
+          </div>
           <div className="flex justify-between items-center mb-2">
             <span className="text-xs font-display font-bold text-muted uppercase tracking-wider">Progress</span>
             <span className="text-xs font-display font-bold text-blue-bright">{totalPct}%</span>
