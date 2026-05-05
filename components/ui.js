@@ -330,6 +330,19 @@ export function SectionLabel({ children, className = '' }) {
   return <span className={`block font-display text-xs font-bold tracking-[3px] uppercase text-blue mb-4 ${className}`}>{children}</span>
 }
 
+
+// ── Language Beta Banner ──────────────────────────────────────────────────────
+// Shows when user is using a beta language to set expectations clearly
+export function LanguageBetaBanner() {
+  const { lang, t } = useTranslation()
+  if (lang === 'en') return null
+  return (
+    <div className="bg-amber-50 border-b border-amber-200 px-4 py-2 text-center text-xs text-amber-900">
+      <span className="font-bold">⚠ {t('common.beta')}:</span> {t('languageNotice.betaWarning')}
+    </div>
+  )
+}
+
 export function TierBadge({ tier, label, className = '' }) {
   const cfg = {
     parents:    { cls: 'tier-parents',    text: label || 'AI for Parents' },
