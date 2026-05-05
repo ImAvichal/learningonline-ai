@@ -1,6 +1,9 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ['./pages/**/*.{js,jsx}', './components/**/*.{js,jsx}'],
+  // Selector-based dark mode tied to our forced [data-theme="dark"] attribute.
+  // This ensures dark: utility classes always apply and never flip with OS preference.
+  darkMode: ['selector', '[data-theme="dark"]'],
   theme: {
     extend: {
       colors: {
