@@ -114,7 +114,6 @@ export function Nav({ transparent = false }) {
           <NavLink href="/about">About</NavLink>
         </div>
         <div className="hidden md:flex items-center gap-3">
-          <ThemeToggle />
           {!user && (
             <>
               <NavLink href="/login">Sign In</NavLink>
