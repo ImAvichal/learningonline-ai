@@ -1,10 +1,13 @@
 {
   "common": {
     "free": "Free",
+    "freeTier": "Free Module",
     "monthly": "Monthly",
     "annual": "Annual",
     "billedMonthly": "Billed monthly",
     "billedAnnually": "Billed annually",
+    "alwaysFree": "Always free",
+    "freeSignInRequired": "Free · Sign in required",
     "bestValue": "Best value",
     "comingSoon": "Coming Soon",
     "loading": "Loading…",
@@ -13,38 +16,92 @@
     "signOut": "Sign Out",
     "dashboard": "Dashboard",
     "language": "Language",
-    "beta": "Beta"
+    "beta": "Beta",
+    "home": "Home",
+    "preview": "Preview",
+    "save": "Save",
+    "cancel": "Cancel",
+    "continue": "Continue",
+    "back": "Back",
+    "next": "Next",
+    "yes": "Yes",
+    "no": "No",
+    "or": "or",
+    "and": "and",
+    "mostPopular": "MOST POPULAR",
+    "currentTier": "Your Current Tier",
+    "idealFor": "Ideal for"
   },
   "nav": {
     "modelSelection": "Choosing the Right AI",
     "valueCalculator": "Value Calculator",
     "glossary": "Jargon Buster",
     "roadmap": "Learning Evolution",
-    "about": "About"
+    "about": "About",
+    "contact": "Contact",
+    "pricing": "Pricing"
   },
   "hero": {
     "tagline": "AI Anxiety → AI Awareness",
-    "subtitle": "Practical, structured AI learning for professionals, business owners, and enterprise leaders.",
+    "subtitle": "Practical learning for professionals, parents, businesses and enterprise leaders — without the hype.",
     "ctaPrimary": "View Plans",
-    "ctaSecondary": "Choose Your AI Path"
+    "ctaSecondary": "Choose Your AI Path",
+    "trustLine": "Trusted by individuals, families, and enterprises across Australia"
+  },
+  "learningPaths": {
+    "label": "LEARNING PATHS",
+    "title": "Choose Your AI Learning Path",
+    "subtitle": "Whether you're curious, cautious, implementing AI in business, or leading transformation — start where you are."
   },
   "plans": {
-    "sectionTitle": "Choose Your AI Learning Path",
-    "sectionSubtitle": "Three structured pathways. Practical, paced, and built for real outcomes.",
     "parents": {
       "name": "AI for Parents",
       "tagline": "Free pathway for families",
-      "cta": "Start Free Module"
+      "hook": "9 practical modules · Helping families navigate AI confidently.",
+      "description": "A free, family-friendly module for parents and children to navigate AI safely and confidently together.",
+      "idealFor": "Parents who want to understand AI's impact on family life and protect their kids while embracing the technology.",
+      "cta": "Start Free Module",
+      "ctaLoggedOut": "Sign In to Access"
     },
     "journey": {
       "name": "Starting the Journey",
-      "tagline": "Practical AI confidence and operational guidance",
-      "cta": "Start the Journey"
+      "tagline": "Practical AI confidence",
+      "hook": "Practical AI awareness, foundational learning, and operational implementation guidance.",
+      "description": "Build genuine AI fluency. Learn how AI thinks, how to use it well, and how to apply it across personal and professional contexts.",
+      "idealFor": "Professionals, business owners, and curious learners ready to move from AI anxiety to AI confidence.",
+      "cta": "Start the Journey",
+      "features": [
+        "Foundational AI learning and model awareness",
+        "Prompts, context, tools, and practical use",
+        "Use case identification and prioritisation",
+        "Workflow design and ROI frameworks"
+      ]
     },
     "pro": {
       "name": "The Pro",
-      "tagline": "Enterprise orchestration, governance, and operating models",
-      "cta": "Journey to Pro"
+      "tagline": "Enterprise orchestration",
+      "hook": "Everything in Starting the Journey — plus orchestration, governance, and operating models.",
+      "description": "For leaders driving organisation-wide AI transformation. Includes governance, agentic systems, and enterprise operating models.",
+      "idealFor": "Senior leaders, transformation executives, and consultants leading enterprise AI rollouts.",
+      "cta": "Journey to Pro",
+      "features": [
+        "Everything in Starting the Journey",
+        "AI orchestration and agentic workflows",
+        "Governance, risk, and ethics frameworks",
+        "Enterprise operating model design",
+        "Strategic transformation playbooks"
+      ]
+    }
+  },
+  "pricing": {
+    "pageTitle": "Pricing",
+    "pageHeading": "Choose your tier",
+    "pageSubtitle": "One program. Three levels of depth. Priced on value — not seat count.",
+    "comparisonTitle": "What's included",
+    "moneyBack": {
+      "title": "7-day money-back guarantee",
+      "body": "if you don't believe this will deliver measurable value, we'll refund you in full.",
+      "tagline": "No questions asked."
     }
   },
   "auth": {
@@ -58,13 +115,82 @@
     "continueWithGoogle": "Continue with Google",
     "continueWithLinkedIn": "Continue with LinkedIn",
     "orSignUpWithEmail": "or sign up with email",
+    "orSignInWithEmail": "or sign in with email",
     "createAccount": "Create Account & Continue",
+    "signInButton": "Sign In",
     "agreeToTerms": "By signing up you agree to our",
     "terms": "Terms",
-    "privacyPolicy": "Privacy Policy"
+    "privacyPolicy": "Privacy Policy",
+    "forgotPassword": "Forgot password?",
+    "noAccount": "Don't have an account?",
+    "hasAccount": "Already have an account?",
+    "invalidCredentials": "Invalid credentials. Try again."
+  },
+  "checkout": {
+    "title": "Complete your enrolment",
+    "enrolledAs": "ENROLLED AS",
+    "payment": "PAYMENT",
+    "orderSummary": "ORDER SUMMARY",
+    "total": "Total",
+    "secureViaStripe": "Secure payment via Stripe",
+    "stripeRedirect": "You'll be redirected to Stripe's secure checkout page",
+    "payButton": "Pay {amount} Securely",
+    "instantAccess": "Instant access after payment",
+    "trustItems": {
+      "ssl": "256-bit SSL encryption",
+      "stripe": "Powered by Stripe",
+      "receipt": "Receipt to your email",
+      "access": "Instant access",
+      "guarantee": "7-day money-back guarantee"
+    }
   },
   "footer": {
     "tagline": "Practical AI learning designed to reduce anxiety through clarity and structure.",
-    "rights": "All rights reserved."
+    "rights": "All rights reserved.",
+    "moneyBackLine": "7-day money-back guarantee — if you don't believe this will deliver measurable value, we'll refund you in full. No questions asked.",
+    "stripeLine": "Secure payments via Stripe"
+  },
+  "languageNotice": {
+    "betaWarning": "Hindi UI is in beta. Training module content remains in English."
+  },
+  "evolution": {
+    "label": "Learning Evolution",
+    "heading": "Where We're Heading",
+    "subtitle": "AI is evolving. Our platform evolves with it.",
+    "viewFull": "View Full Roadmap →",
+    "stages": {
+      "beta": {
+        "title": "Beta Foundations",
+        "desc": "Practical AI awareness and foundational experimentation."
+      },
+      "v1": {
+        "title": "Personal AI Uplift",
+        "desc": "Learning modules, templates, and operational AI guidance to build confidence and capability."
+      },
+      "industry": {
+        "title": "Industry Intelligence",
+        "desc": "Industry-specific AI workflows and operational patterns."
+      },
+      "agents": {
+        "title": "AI Agents at Work",
+        "desc": "AI copilots and workflow assistants supporting real work."
+      },
+      "agentic": {
+        "title": "Agentic Organisations",
+        "desc": "Autonomous AI systems coordinating across enterprise functions."
+      },
+      "human": {
+        "title": "Human + AI Era",
+        "desc": "Mature integration of human judgment and AI capability."
+      }
+    }
+  },
+  "preview": {
+    "label": "Live Modules",
+    "heading": "Try Two Real Lessons Free",
+    "subtitle": "Two real lessons from Module 1, available free. No sign-up required.",
+    "moduleLabel": "Module 1",
+    "freeBadge": "FREE",
+    "previewLink": "Preview lesson →"
   }
 }

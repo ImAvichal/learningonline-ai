@@ -66,5 +66,8 @@
   "footer": {
     "tagline": "Praktikal na AI learning na idinisenyo upang bawasan ang pag-aalala sa pamamagitan ng kalinawan at istraktura.",
     "rights": "Lahat ng karapatan ay nakalaan."
+  },
+  "languageNotice": {
+    "betaWarning": "Filipino UI ay nasa beta. Karamihan ng nilalaman ay nasa Ingles habang nagtatrabaho kami sa buong pagsasalin."
   }
 }
