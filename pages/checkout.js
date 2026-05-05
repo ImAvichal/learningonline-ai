@@ -185,7 +185,7 @@ export default function Checkout() {
                 </div>
                 <div className="flex justify-between items-baseline pt-4 border-t border-white/5 mb-6">
                   <span className="font-display font-bold">Total</span>
-                  <span className="font-display font-black text-3xl">{priceLabel}</span>
+                  <span className="font-display font-black whitespace-nowrap" style={{fontSize: 'clamp(20px, 2.4vw, 26px)'}}>{priceLabel}</span>
                 </div>
                 <div className="space-y-1.5">
                   {['🔒 256-bit SSL encryption', '💳 Powered by Stripe', '📧 Receipt to your email', '♾️ Instant access', '🛡️ 7-day money-back guarantee'].map(s => (

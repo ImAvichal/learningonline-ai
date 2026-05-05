@@ -331,7 +331,7 @@ export default function Home() {
                   <h3 className="font-display font-bold text-lg mb-1 text-gray-900 dark:text-white">{card.title}</h3>
                   <p className="text-xs text-gray-500 dark:text-white/40 italic mb-3">{card.hook}</p>
                   <div className="flex items-baseline gap-2 mb-1">
-                    <span className="font-display font-black text-gray-900 dark:text-white leading-none whitespace-nowrap" style={{fontSize: 'clamp(20px, 2.6vw, 26px)'}}>
+                    <span className="font-display font-black text-gray-900 dark:text-white leading-none whitespace-nowrap" style={{fontSize: 'clamp(18px, 2.2vw, 24px)'}}>
                       {card.tierKey ? priceFor(card.tierKey) : card.price}
                     </span>
                   </div>

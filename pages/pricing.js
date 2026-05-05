@@ -71,7 +71,7 @@ export default function Pricing() {
                     )}
 
                     <TierBadge tier={tid} label={t.label} className="mb-4" />
-                    <div className="font-display font-black mb-1 leading-none whitespace-nowrap overflow-hidden" style={{fontSize: 'clamp(22px, 2.8vw, 30px)'}}>
+                    <div className="font-display font-black mb-1 leading-none whitespace-nowrap overflow-hidden" style={{fontSize: 'clamp(22px, 2.4vw, 28px)'}}>
                       {tid === 'parents' ? t.priceDisplay : priceFor(tid)}
                     </div>
                     <div className="text-xs text-muted mb-5">{tid === 'parents' ? tr('common.alwaysFree') : (interval === 'annual' ? 'Billed annually' : 'Billed monthly')}</div>
