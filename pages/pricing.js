@@ -3,7 +3,7 @@ import { useState } from 'react'
 import Head from 'next/head'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import { Nav, Reveal, Card, SectionLabel, Button, TierBadge, BillingToggle, LanguageBetaBanner } from '../components/ui'
+import { Nav, Reveal, Card, SectionLabel, Button, TierBadge, BillingToggle } from '../components/ui'
 import { TIERS, TIER_ORDER, DISPLAY_ORDER } from '../data/tiers'
 import { useAuth } from '../lib/auth'
 import { useRegion } from '../lib/region'
@@ -32,7 +32,6 @@ export default function Pricing() {
     <>
       <Head><title>{tr("pricing.pageTitle")} — LeO AI</title></Head>
       <Nav />
-      <LanguageBetaBanner />
       <div className="pt-28 pb-20">
         <div className="max-w-5xl mx-auto px-6">
 
@@ -72,7 +71,7 @@ export default function Pricing() {
                     )}
 
                     <TierBadge tier={tid} label={t.label} className="mb-4" />
-                    <div className="font-display font-black mb-1 leading-tight break-words" style={{fontSize: 'clamp(28px, 4vw, 36px)', wordBreak: 'break-word'}}>
+                    <div className="font-display font-black mb-1 leading-none whitespace-nowrap overflow-hidden" style={{fontSize: 'clamp(22px, 2.8vw, 30px)'}}>
                       {tid === 'parents' ? t.priceDisplay : priceFor(tid)}
                     </div>
                     <div className="text-xs text-muted mb-5">{tid === 'parents' ? tr('common.alwaysFree') : (interval === 'annual' ? 'Billed annually' : 'Billed monthly')}</div>
@@ -83,11 +82,11 @@ export default function Pricing() {
                       <p className="text-xs text-gray-600 dark:text-white/70 leading-relaxed">{t.idealFor}</p>
                     </div>
 
-                    <ul className="space-y-2 mb-7">
+                    <ul className="space-y-2.5 mb-7">
                       {t.features.map((f, fi) => (
-                        <li key={fi} className="flex gap-2.5 text-sm">
-                          <span className="text-success flex-shrink-0 mt-0.5">✓</span>
-                          <span className="text-gray-700 dark:text-white/80">{f}</span>
+                        <li key={fi} className="flex items-start justify-between gap-3 text-sm pb-2 border-b border-gray-100 dark:border-white/5 last:border-0">
+                          <span className="text-gray-700 dark:text-white/80 leading-relaxed flex-1">{f}</span>
+                          <span className="text-success font-bold flex-shrink-0 mt-0.5">✓</span>
                         </li>
                       ))}
                     </ul>

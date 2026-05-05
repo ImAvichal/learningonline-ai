@@ -2,7 +2,7 @@
 import Head from 'next/head'
 import Link from 'next/link'
 import { useState } from 'react'
-import { Nav, Reveal, Card, SectionLabel, Button, TierBadge, BillingToggle, LanguageBetaBanner } from '../components/ui'
+import { Nav, Reveal, Card, SectionLabel, Button, TierBadge, BillingToggle } from '../components/ui'
 import { MODULES } from '../data/modules'
 import { TIERS, TIER_ORDER, INDUSTRIES, DISPLAY_ORDER } from '../data/tiers'
 import { useAuth } from '../lib/auth'
@@ -245,7 +245,6 @@ export default function Home() {
         <meta name="description" content="The execution-focused AI program for professionals, business owners, and enterprise leaders. Practical AI learning pathways for professionals, business owners, and enterprise leaders." />
       </Head>
       <Nav transparent />
-      <LanguageBetaBanner />
 
       {/* ── Hero ── */}
       <section className="flex items-center pt-16 relative overflow-hidden">
@@ -332,7 +331,7 @@ export default function Home() {
                   <h3 className="font-display font-bold text-lg mb-1 text-gray-900 dark:text-white">{card.title}</h3>
                   <p className="text-xs text-gray-500 dark:text-white/40 italic mb-3">{card.hook}</p>
                   <div className="flex items-baseline gap-2 mb-1">
-                    <span className="font-display font-black text-gray-900 dark:text-white leading-tight break-words" style={{fontSize: 'clamp(22px, 3.2vw, 28px)', wordBreak: 'break-word', maxWidth: '100%'}}>
+                    <span className="font-display font-black text-gray-900 dark:text-white leading-none whitespace-nowrap" style={{fontSize: 'clamp(20px, 2.6vw, 26px)'}}>
                       {card.tierKey ? priceFor(card.tierKey) : card.price}
                     </span>
                   </div>
@@ -342,10 +341,11 @@ export default function Home() {
                     <div className="text-[10px] font-display font-bold text-muted uppercase tracking-wider mb-1">{t("common.idealFor") || "Ideal for"}</div>
                     <p className="text-[11px] text-white/70 leading-relaxed">{card.idealFor}</p>
                   </div>
-                  <ul className="space-y-1.5 mb-5 flex-1">
+                  <ul className="space-y-2 mb-5 flex-1">
                     {card.bullets.map((b, bi) => (
-                      <li key={bi} className="flex gap-2 text-xs text-gray-600 dark:text-white/70">
-                        <span className="text-success flex-shrink-0 mt-0.5">✓</span>{b}
+                      <li key={bi} className="flex items-start justify-between gap-2 text-xs text-gray-600 dark:text-white/70 pb-1.5 border-b border-gray-100 dark:border-white/5 last:border-0">
+                        <span className="leading-relaxed flex-1">{b}</span>
+                        <span className="text-success font-bold flex-shrink-0 mt-0.5">✓</span>
                       </li>
                     ))}
                   </ul>
