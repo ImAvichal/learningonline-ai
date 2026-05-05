@@ -28,6 +28,26 @@ export default async function handler(req, res) {
         annual:  process.env.STRIPE_PRICE_PRO_ANNUAL_INR,
       },
     },
+    PH: {
+      journey: {
+        monthly: process.env.STRIPE_PRICE_JOURNEY_MONTHLY_PHP,
+        annual:  process.env.STRIPE_PRICE_JOURNEY_ANNUAL_PHP,
+      },
+      pro: {
+        monthly: process.env.STRIPE_PRICE_PRO_MONTHLY_PHP,
+        annual:  process.env.STRIPE_PRICE_PRO_ANNUAL_PHP,
+      },
+    },
+    US: {
+      journey: {
+        monthly: process.env.STRIPE_PRICE_JOURNEY_MONTHLY_USD,
+        annual:  process.env.STRIPE_PRICE_JOURNEY_ANNUAL_USD,
+      },
+      pro: {
+        monthly: process.env.STRIPE_PRICE_PRO_MONTHLY_USD,
+        annual:  process.env.STRIPE_PRICE_PRO_ANNUAL_USD,
+      },
+    },
   }
 
   // Legacy aliases (map old tier IDs to new structure)
@@ -40,7 +60,8 @@ export default async function handler(req, res) {
   if (!tierPrices) return res.status(400).json({ error: `Invalid plan: ${tierId}` })
   const priceId = tierPrices[interval]
   if (!priceId) {
-    const envVarName = `STRIPE_PRICE_${tierId.toUpperCase()}_${interval.toUpperCase()}${safeRegion === 'IN' ? '_INR' : ''}`
+    const suffixMap = { AU: '', IN: '_INR', PH: '_PHP', US: '_USD' }
+    const envVarName = `STRIPE_PRICE_${tierId.toUpperCase()}_${interval.toUpperCase()}${suffixMap[safeRegion] || ''}`
     return res.status(400).json({ 
       error: `Stripe price not configured for ${tierId} ${interval} (${safeRegion}). Please set ${envVarName} in environment variables.` 
     })

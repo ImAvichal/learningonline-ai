@@ -10,6 +10,8 @@ export default function handler(req, res) {
   // Map country to supported region
   let region = 'AU'  // default
   if (country === 'IN') region = 'IN'
+  else if (country === 'PH') region = 'PH'
+  else if (country === 'US') region = 'US'
 
   res.status(200).json({ region, country })
 }
