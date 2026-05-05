@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { useState, useEffect, useRef } from 'react'
 import { useAuth } from '../lib/auth'
 import { useTheme } from '../lib/theme'
+import { useTranslation, LANGUAGES } from '../lib/i18n'
 
 export const BRAND = {
   name:    'LeO AI',
@@ -12,6 +13,61 @@ export const BRAND = {
   email:   'hello@learningonline.ai',
 }
 
+
+
+// ── Language Switcher ─────────────────────────────────────────────────────────
+export function LanguageSwitcher({ compact = false }) {
+  const { lang, setLang } = useTranslation()
+  const [open, setOpen] = useState(false)
+  const current = LANGUAGES.find(l => l.code === lang) || LANGUAGES[0]
+
+  useEffect(() => {
+    if (!open) return
+    const handler = (e) => { if (!e.target.closest('[data-lang-toggle]')) setOpen(false) }
+    document.addEventListener('mousedown', handler)
+    return () => document.removeEventListener('mousedown', handler)
+  }, [open])
+
+  return (
+    <div className="relative" data-lang-toggle>
+      <button
+        onClick={() => setOpen(v => !v)}
+        className={`flex items-center gap-1.5 rounded-lg border border-white/10 text-muted hover:text-white hover:border-white/20 transition-all font-display font-bold ${
+          compact ? 'px-2 py-1.5 text-xs' : 'px-2.5 py-1.5 text-xs'
+        }`}
+        title={`Language: ${current.label}`}
+        aria-label="Change language"
+      >
+        <span style={{fontSize:'12px'}}>🌐</span>
+        {!compact && <span className="hidden sm:inline">{current.label}</span>}
+      </button>
+      {open && (
+        <div className="absolute right-0 top-full mt-2 rounded-xl overflow-hidden z-50 min-w-[170px]"
+          style={{background:'var(--navy-mid)',border:'1px solid rgba(255,255,255,0.1)',boxShadow:'0 8px 32px rgba(0,0,0,0.3)'}}>
+          <div className="px-3 py-2 border-b border-white/5">
+            <span className="text-[10px] font-display font-bold text-muted uppercase tracking-wider">Language</span>
+          </div>
+          {LANGUAGES.map(opt => (
+            <button
+              key={opt.code}
+              onClick={() => { setLang(opt.code); setOpen(false) }}
+              className={`w-full flex items-center gap-2.5 px-3 py-2.5 text-xs font-display font-bold transition-colors ${
+                lang === opt.code ? 'bg-blue/15 text-white' : 'text-muted hover:text-white hover:bg-white/5'
+              }`}
+            >
+              <span>{opt.label}</span>
+              {opt.beta && (
+                <span className="text-[9px] px-1.5 py-0.5 bg-amber-400/15 text-amber-400 rounded ml-auto">Beta</span>
+              )}
+              {!opt.beta && lang === opt.code && <span className="ml-auto text-blue text-xs">✓</span>}
+              {opt.beta && lang === opt.code && <span className="text-blue text-xs">✓</span>}
+            </button>
+          ))}
+        </div>
+      )}
+    </div>
+  )
+}
 
 // ── Theme Toggle ──────────────────────────────────────────────────────────────
 export function ThemeToggle({ compact = false }) {
@@ -107,16 +163,17 @@ export function Nav({ transparent = false }) {
         <Logo />
         <div className="hidden md:flex items-center gap-5 flex-1 justify-end mr-4">
           <NavLink href="/">Home</NavLink>
-          <NavLink href="/model-selection">Choosing the Right AI</NavLink>
-          <NavLink href="/roi-calculator">Value Calculator</NavLink>
-          <NavLink href="/glossary">Jargon Buster</NavLink>
-          <NavLink href="/roadmap">Learning Evolution</NavLink>
-          <NavLink href="/about">About</NavLink>
+          <NavLink href="/model-selection">{t("nav.modelSelection")}</NavLink>
+          <NavLink href="/roi-calculator">{t("nav.valueCalculator")}</NavLink>
+          <NavLink href="/glossary">{t("nav.glossary")}</NavLink>
+          <NavLink href="/roadmap">{t("nav.roadmap")}</NavLink>
+          <NavLink href="/about">{t("nav.about")}</NavLink>
         </div>
         <div className="hidden md:flex items-center gap-3">
           {!user && (
             <>
-              <NavLink href="/login">Sign In</NavLink>
+              <LanguageSwitcher compact />
+              <NavLink href="/login">{t("common.signIn")}</NavLink>
             </>
           )}
           {user && !user.tier && !user.isDevUser && (
@@ -128,7 +185,8 @@ export function Nav({ transparent = false }) {
           )}
           {(user?.tier || user?.isDevUser) && (
             <>
-              <NavLink href="/dashboard">Dashboard</NavLink>
+              <LanguageSwitcher compact />
+              <NavLink href="/dashboard">{t("common.dashboard")}</NavLink>
               <span className="text-xs text-gray-700 dark:text-gray-300 font-display">G'day{user.name ? `, ${user.name.split(' ')[0]}` : ''}</span>
               <button onClick={logout} className="text-xs text-muted hover:text-white transition-colors">Sign Out</button>
             </>
