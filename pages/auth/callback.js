@@ -100,22 +100,26 @@ export default function AuthCallback() {
       }
 
       if (activeTier) {
+        // User is already paid — go to dashboard (skip checkout even if intended)
         if (!existing?.selected_tier) {
           await supabase
             .from('users_profile')
             .update({ selected_tier: activeTier, user_type: activeTier })
             .eq('id', authUser.id)
         }
-        setStatus('Access confirmed. Loading...')
-        router.push(intendedRedirect || '/dashboard')
+        setStatus('Access confirmed. Loading dashboard...')
+        // If intendedRedirect was a checkout URL, skip it (they're already paid).
+        // If it was /parents or /dashboard, honour it.
+        const isCheckoutUrl = intendedRedirect && intendedRedirect.startsWith('/checkout')
+        router.push(isCheckoutUrl ? '/dashboard' : (intendedRedirect || '/dashboard'))
       } else {
-        // No tier — but still honour intended free-pathway redirect (e.g. /parents)
-        if (intendedRedirect && (intendedRedirect === '/parents' || intendedRedirect.startsWith('/parents'))) {
-          setStatus('Welcome. Loading your module...')
+        // User is not paid — honour intended destination (checkout or parents)
+        if (intendedRedirect) {
+          setStatus('Loading your selected plan...')
           router.push(intendedRedirect)
         } else {
-          setStatus('Signed in. Redirecting to preview...')
-          router.push(intendedRedirect || '/preview')
+          setStatus('Signed in. Redirecting...')
+          router.push('/preview')
         }
       }
     } catch (err) {
