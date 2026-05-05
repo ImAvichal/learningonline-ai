@@ -179,7 +179,7 @@ export function Nav({ transparent = false }) {
           )}
           {user && !user.tier && !user.isDevUser && (
             <>
-              <NavLink href="/preview">Preview</NavLink>
+              <LanguageSwitcher compact />
               <span className="text-xs text-gray-700 dark:text-gray-300 font-display">G'day{user.name ? `, ${user.name.split(' ')[0]}` : ''}</span>
               <button onClick={logout} className="text-xs text-muted hover:text-white transition-colors">Sign Out</button>
             </>
@@ -214,7 +214,7 @@ export function Nav({ transparent = false }) {
           )}
           {user && !user.tier && !user.isDevUser && (
             <>
-              <MobileLink href="/preview" onClick={() => setOpen(false)}>Preview</MobileLink>
+
               <div className="flex items-center justify-between">
                 <span className="text-xs text-gray-700 dark:text-gray-300 font-display">G'day{user.name ? `, ${user.name.split(' ')[0]}` : ''}</span>
                 <button onClick={() => { logout(); setOpen(false) }}
