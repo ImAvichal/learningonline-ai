@@ -67,7 +67,7 @@ export default async function handler(req, res) {
     })
   }
 
-  console.log('[Stripe] Creating session for', { tierId, interval, region: safeRegion, priceId: priceId.substring(0, 12) + '...' }).json({ error: `Stripe price not configured for ${tierId} (${interval}). Please set ${interval === 'annual' ? tierPrices && 'STRIPE_PRICE_' + tierId.toUpperCase() + '_ANNUAL' : 'STRIPE_PRICE_' + tierId.toUpperCase() + '_MONTHLY'} in environment variables.` })
+  console.log('[Stripe] Creating session for', { tierId, interval, region: safeRegion, priceId: priceId.substring(0, 12) + '...' })
 
   try {
     // Build session params — allow_promotion_codes lets Stripe handle discount codes natively
