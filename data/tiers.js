@@ -43,7 +43,7 @@ export const TIERS = {
     priceAnnual: 399,
     priceMonthlyDisplay: '$45/mo',
     priceAnnualDisplay: '$399/yr',
-    billing: '$45/month or $399/year',
+    billing: '$45/month or $399/yr',
     colorClass: 'tier-journey',
     description: 'Practical AI awareness, foundational learning, and operational implementation guidance.',
     idealFor: 'Professionals, team members, business owners, and operational leaders wanting practical AI capability.',
@@ -74,7 +74,7 @@ export const TIERS = {
     priceAnnual: 699,
     priceMonthlyDisplay: '$75/mo',
     priceAnnualDisplay: '$699/yr',
-    billing: '$75/month or $699/year',
+    billing: '$75/month or $699/yr',
     colorClass: 'tier-pro',
     description: 'For leaders driving enterprise-scale AI adoption \u2014 orchestration, governance, operating models, and long-term transformation.',
     idealFor: 'CIOs, transformation directors, senior leaders, and enterprise teams responsible for scalable AI adoption.',
@@ -163,24 +163,24 @@ export const REGIONAL_PRICING = {
       journey: {
         monthly: {
           amount: 45,
-          label: '$45/month',
+          label: '$45/mo',
           stripeEnvKey: 'STRIPE_PRICE_JOURNEY_MONTHLY',
         },
         annual: {
           amount: 399,
-          label: '$399/year',
+          label: '$399/yr',
           stripeEnvKey: 'STRIPE_PRICE_JOURNEY_ANNUAL',
         },
       },
       pro: {
         monthly: {
           amount: 75,
-          label: '$75/month',
+          label: '$75/mo',
           stripeEnvKey: 'STRIPE_PRICE_PRO_MONTHLY',
         },
         annual: {
           amount: 699,
-          label: '$699/year',
+          label: '$699/yr',
           stripeEnvKey: 'STRIPE_PRICE_PRO_ANNUAL',
         },
       },
@@ -193,24 +193,24 @@ export const REGIONAL_PRICING = {
       journey: {
         monthly: {
           amount: 999,
-          label: '\u20b9999/month',
+          label: '\u20b9999/mo',
           stripeEnvKey: 'STRIPE_PRICE_JOURNEY_MONTHLY_INR',
         },
         annual: {
           amount: 4999,
-          label: '\u20b94,999/year',
+          label: '\u20b94,999/yr',
           stripeEnvKey: 'STRIPE_PRICE_JOURNEY_ANNUAL_INR',
         },
       },
       pro: {
         monthly: {
           amount: 1999,
-          label: '\u20b91,999/month',
+          label: '\u20b91,999/mo',
           stripeEnvKey: 'STRIPE_PRICE_PRO_MONTHLY_INR',
         },
         annual: {
           amount: 9999,
-          label: '\u20b99,999/year',
+          label: '\u20b99,999/yr',
           stripeEnvKey: 'STRIPE_PRICE_PRO_ANNUAL_INR',
         },
       },
@@ -223,24 +223,24 @@ export const REGIONAL_PRICING = {
       journey: {
         monthly: {
           amount: 599,
-          label: '\u20b1599/month',
+          label: '\u20b1599/mo',
           stripeEnvKey: 'STRIPE_PRICE_JOURNEY_MONTHLY_PHP',
         },
         annual: {
           amount: 5499,
-          label: '\u20b15,499/year',
+          label: '\u20b15,499/yr',
           stripeEnvKey: 'STRIPE_PRICE_JOURNEY_ANNUAL_PHP',
         },
       },
       pro: {
         monthly: {
           amount: 999,
-          label: '\u20b1999/month',
+          label: '\u20b1999/mo',
           stripeEnvKey: 'STRIPE_PRICE_PRO_MONTHLY_PHP',
         },
         annual: {
           amount: 9499,
-          label: '\u20b19,499/year',
+          label: '\u20b19,499/yr',
           stripeEnvKey: 'STRIPE_PRICE_PRO_ANNUAL_PHP',
         },
       },
@@ -253,24 +253,24 @@ export const REGIONAL_PRICING = {
       journey: {
         monthly: {
           amount: 39,
-          label: '$39/month',
+          label: '$39/mo',
           stripeEnvKey: 'STRIPE_PRICE_JOURNEY_MONTHLY_USD',
         },
         annual: {
           amount: 349,
-          label: '$349/year',
+          label: '$349/yr',
           stripeEnvKey: 'STRIPE_PRICE_JOURNEY_ANNUAL_USD',
         },
       },
       pro: {
         monthly: {
           amount: 65,
-          label: '$65/month',
+          label: '$65/mo',
           stripeEnvKey: 'STRIPE_PRICE_PRO_MONTHLY_USD',
         },
         annual: {
           amount: 599,
-          label: '$599/year',
+          label: '$599/yr',
           stripeEnvKey: 'STRIPE_PRICE_PRO_ANNUAL_USD',
         },
       },
