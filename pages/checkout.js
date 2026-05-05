@@ -10,7 +10,7 @@ import { Card, Spinner, TierBadge } from '../components/ui'
 import { TIERS } from '../data/tiers'
 
 export default function Checkout() {
-  const { user, updateUser } = useAuth()
+  const { user, loading: authLoading, updateUser } = useAuth()
   const router  = useRouter()
   const { tier: tierId = 'journey', interval = 'monthly', payment_success, cancelled } = router.query
   const tier    = TIERS[tierId] || TIERS.journey
@@ -26,6 +26,7 @@ export default function Checkout() {
 
   useEffect(() => {
     if (!router.isReady) return
+    if (authLoading) return  // Wait for auth state to fully restore — prevents flash redirect
     if (!user) {
       router.push(`/signup?tier=${tierId}&interval=${interval}`)
       return
@@ -34,7 +35,7 @@ export default function Checkout() {
     if (user.tier && !user.isDevUser) {
       router.push('/dashboard')
     }
-  }, [user, tierId, interval, router.isReady])
+  }, [user, authLoading, tierId, interval, router.isReady])
 
   useEffect(() => {
     if (payment_success === 'true' && user && !success) grantAccess()
