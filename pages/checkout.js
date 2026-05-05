@@ -4,6 +4,8 @@ import Link from 'next/link'
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
 import { useAuth } from '../lib/auth'
+import { useRegion } from '../lib/region'
+import { REGIONAL_PRICING } from '../data/tiers'
 import { Card, Spinner, TierBadge } from '../components/ui'
 import { TIERS } from '../data/tiers'
 
@@ -12,6 +14,9 @@ export default function Checkout() {
   const router  = useRouter()
   const { tier: tierId = 'journey', interval = 'monthly', payment_success, cancelled } = router.query
   const tier    = TIERS[tierId] || TIERS.journey
+  const { region } = useRegion()
+  const regionalConfig = REGIONAL_PRICING[region] || REGIONAL_PRICING.AU
+  const priceLabel = regionalConfig?.plans?.[tierId]?.[interval]?.label || tier.priceDisplay
 
   const [loading,   setLoading]   = useState(false)
   const [success,   setSuccess]   = useState(false)
@@ -20,8 +25,16 @@ export default function Checkout() {
   const [promoMsg,  setPromoMsg]  = useState('')   // 'valid' | 'invalid' | ''
 
   useEffect(() => {
-    if (router.isReady && !user) router.push(`/signup?tier=${tierId}`)
-  }, [user, tierId, router.isReady])
+    if (!router.isReady) return
+    if (!user) {
+      router.push(`/signup?tier=${tierId}&interval=${interval}`)
+      return
+    }
+    // If user already has paid tier, redirect to dashboard (don't show checkout)
+    if (user.tier && !user.isDevUser) {
+      router.push('/dashboard')
+    }
+  }, [user, tierId, interval, router.isReady])
 
   useEffect(() => {
     if (payment_success === 'true' && user && !success) grantAccess()
@@ -36,7 +49,7 @@ export default function Checkout() {
 
   const handlePay = async () => {
     setLoading(true); setError('')
-    console.log('[Checkout] Plan:', tierId, '| Interval:', interval, '| Price:', interval === 'annual' ? tier.priceAnnualDisplay : tier.priceMonthlyDisplay)
+    console.log('[Checkout] Plan:', tierId, '| Interval:', interval, '| Region:', region, '| Price:', priceLabel)
     try {
       const stripeKey = process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY
       const isConfigured = stripeKey && !stripeKey.includes('YOUR_KEY') && stripeKey.startsWith('pk_')
@@ -45,7 +58,7 @@ export default function Checkout() {
         const res = await fetch('/api/create-checkout-session', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ tierId, interval, userId: user.id, email: user.email, name: user.name, promoCode: promoCode.trim() }),
+          body: JSON.stringify({ tierId, interval, region, userId: user.id, email: user.email, name: user.name, promoCode: promoCode.trim() }),
         })
         if (!res.ok) { const b = await res.json(); throw new Error(b.error || 'Server error') }
         const { url } = await res.json()
@@ -85,8 +98,8 @@ export default function Checkout() {
       <div className="min-h-screen pt-8 pb-20">
         <div className="max-w-5xl mx-auto px-6">
           <div className="flex items-center justify-between mb-12 pb-6 border-b border-white/5">
-            <Link href="/" className="font-display font-black text-xl">
-              Le On <span className="text-blue">AI</span>
+            <Link href="/" className="font-display font-black text-xl" style={{letterSpacing: "-0.02em"}}>
+              <span style={{letterSpacing: "-0.04em"}}>LeO</span>{" "}<span className="text-blue">AI</span>
             </Link>
             <div className="text-xs text-muted flex items-center gap-1.5">🔒 Secure checkout via Stripe</div>
           </div>
@@ -140,11 +153,14 @@ export default function Checkout() {
                 {loading
                   ? <><Spinner size="md" /> Processing...</>
                   : isDemo
-                  ? `Simulate Payment — ${interval === 'annual' ? tier.priceAnnualDisplay || tier.priceDisplay : tier.priceMonthlyDisplay || tier.priceDisplay}`
-                  : `🔒 Pay ${interval === 'annual' ? tier.priceAnnualDisplay || tier.priceDisplay : tier.priceMonthlyDisplay || tier.priceDisplay} Securely`
+                  ? `Simulate Payment — ${priceLabel}`
+                  : `🔒 Pay ${priceLabel} Securely`
                 }
               </button>
-              <p className="text-center text-xs text-muted mt-3">7-day money-back guarantee · Instant access after payment</p>
+              <p className="text-center text-xs text-muted mt-3 leading-relaxed max-w-md mx-auto">
+                <span className="font-bold">7-day money-back guarantee</span> — if you don't believe this will deliver measurable value, we'll refund you in full. <span className="italic">No questions asked.</span>
+              </p>
+              <p className="text-center text-[10px] text-muted/70 mt-1">Instant access after payment</p>
             </div>
 
             {/* Order summary */}
@@ -168,7 +184,7 @@ export default function Checkout() {
                 </div>
                 <div className="flex justify-between items-baseline pt-4 border-t border-white/5 mb-6">
                   <span className="font-display font-bold">Total</span>
-                  <span className="font-display font-black text-3xl">{interval === 'annual' ? tier.priceAnnualDisplay || tier.priceDisplay : tier.priceMonthlyDisplay || tier.priceDisplay}</span>
+                  <span className="font-display font-black text-3xl">{priceLabel}</span>
                 </div>
                 <div className="space-y-1.5">
                   {['🔒 256-bit SSL encryption', '💳 Powered by Stripe', '📧 Receipt to your email', '♾️ Instant access', '🛡️ 7-day money-back guarantee'].map(s => (

@@ -463,7 +463,7 @@ export default function ModelSelection() {
       {/* Footer */}
       <footer className="border-t border-white/5 py-8 mt-10">
         <div className="max-w-6xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-3 text-xs text-muted">
-          <span className="font-display font-black text-white">Le On <span className="text-blue">AI</span></span>
+          <span className="font-display font-black text-white" style={{letterSpacing: "-0.02em"}}><span style={{letterSpacing: "-0.04em"}}>LeO</span>{" "}<span className="text-blue">AI</span></span>
           <p>© 2025 LeO AI · learningonline.ai</p>
           <div className="flex gap-4">
             <Link href="/pricing" className="hover:text-white">Pricing</Link>
