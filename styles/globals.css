@@ -522,3 +522,113 @@ html.light-mode .triad-def             { color: #6b7280; }
   .prose-lesson .real-world-box h3, .prose-lesson .real-world-box p { color: #374151; }
 }
 
+
+/* ═══ LIGHT MODE ENHANCEMENTS FOR LEARNING PLATFORM ═══ */
+
+[data-theme="light"] .prose h1,
+[data-theme="light"] .prose h2,
+[data-theme="light"] .prose h3,
+[data-theme="light"] .prose h4 {
+  color: #0F1724;
+  font-weight: 700;
+}
+
+[data-theme="light"] .prose p,
+[data-theme="light"] .prose li {
+  color: #1F2937;
+  line-height: 1.7;
+}
+
+[data-theme="light"] .prose strong {
+  color: #0F1724;
+  font-weight: 600;
+}
+
+[data-theme="light"] .prose a {
+  color: #1A6EFF;
+  text-decoration: underline;
+}
+
+[data-theme="light"] .prose code {
+  background: #F3F4F6;
+  color: #1F2937;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 0.9em;
+}
+
+[data-theme="light"] .prose pre {
+  background: #F9FAFB;
+  border: 1px solid #E5E7EB;
+  color: #1F2937;
+}
+
+[data-theme="light"] .prose blockquote {
+  border-left: 4px solid #1A6EFF;
+  background: #F9FAFB;
+  color: #374151;
+  padding: 1rem 1.5rem;
+}
+
+/* Tables in light mode */
+[data-theme="light"] table {
+  border-collapse: collapse;
+  width: 100%;
+  background: white;
+  border: 1px solid #E5E7EB;
+}
+
+[data-theme="light"] th {
+  background: #F9FAFB;
+  color: #0F1724;
+  font-weight: 600;
+  padding: 0.75rem 1rem;
+  text-align: left;
+  border-bottom: 2px solid #D1D5DB;
+}
+
+[data-theme="light"] td {
+  color: #1F2937;
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid #E5E7EB;
+}
+
+[data-theme="light"] tr:hover {
+  background: #F9FAFB;
+}
+
+/* Training module specific fixes */
+[data-theme="light"] .lesson-content h1 { color: #0F1724; font-size: 2rem; margin-bottom: 1rem; }
+[data-theme="light"] .lesson-content h2 { color: #1F2937; font-size: 1.5rem; margin: 1.5rem 0 0.75rem; }
+[data-theme="light"] .lesson-content h3 { color: #374151; font-size: 1.25rem; margin: 1.25rem 0 0.5rem; }
+[data-theme="light"] .lesson-content p { color: #1F2937; margin-bottom: 1rem; }
+[data-theme="light"] .lesson-content ul,
+[data-theme="light"] .lesson-content ol { color: #1F2937; }
+
+/* Cards in light mode */
+[data-theme="light"] .bg-white\/\[0\.02\] { background: white !important; }
+[data-theme="light"] .bg-white\/5 { background: #F9FAFB !important; }
+[data-theme="light"] .border-white\/10 { border-color: #E5E7EB !important; }
+[data-theme="light"] .border-white\/20 { border-color: #D1D5DB !important; }
+
+/* Text colors for light mode */
+[data-theme="light"] .text-white { color: #0F1724 !important; }
+[data-theme="light"] .text-white\/90 { color: #1F2937 !important; }
+[data-theme="light"] .text-white\/80 { color: #374151 !important; }
+[data-theme="light"] .text-white\/70 { color: #4B5563 !important; }
+[data-theme="light"] .text-white\/60 { color: #6B7280 !important; }
+[data-theme="light"] .text-white\/50 { color: #9CA3AF !important; }
+[data-theme="light"] .text-white\/40 { color: #D1D5DB !important; }
+[data-theme="light"] .text-muted { color: #6B7280 !important; }
+
+/* Buttons in light mode */
+[data-theme="light"] button,
+[data-theme="light"] .btn {
+  color: #0F1724;
+}
+
+[data-theme="light"] .bg-blue {
+  background: #1A6EFF;
+  color: white !important;
+}
+
