@@ -157,7 +157,10 @@ export default function Checkout() {
                   : `🔒 Pay ${priceLabel} Securely`
                 }
               </button>
-              <p className="text-center text-xs text-muted mt-3">7-day money-back guarantee · Instant access after payment</p>
+              <p className="text-center text-xs text-muted mt-3 leading-relaxed max-w-md mx-auto">
+                <span className="font-bold">7-day money-back guarantee</span> — if you don't believe this will deliver measurable value, we'll refund you in full. <span className="italic">No questions asked.</span>
+              </p>
+              <p className="text-center text-[10px] text-muted/70 mt-1">Instant access after payment</p>
             </div>
 
             {/* Order summary */}

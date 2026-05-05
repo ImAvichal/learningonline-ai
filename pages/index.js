@@ -329,7 +329,9 @@ export default function Home() {
                   <h3 className="font-display font-bold text-lg mb-1 text-gray-900 dark:text-white">{card.title}</h3>
                   <p className="text-xs text-gray-500 dark:text-white/40 italic mb-3">{card.hook}</p>
                   <div className="flex items-baseline gap-2 mb-1">
-                    <span className="font-display font-black text-3xl text-gray-900 dark:text-white">{card.tierKey ? priceFor(card.tierKey) : card.price}</span>
+                    <span className="font-display font-black text-gray-900 dark:text-white leading-tight break-words" style={{fontSize: 'clamp(22px, 3.2vw, 28px)', wordBreak: 'break-word', maxWidth: '100%'}}>
+                      {card.tierKey ? priceFor(card.tierKey) : card.price}
+                    </span>
                   </div>
                   <div className="text-[10px] text-muted mb-4">{card.tierKey ? (interval === 'annual' ? 'Billed annually' : 'Billed monthly') : card.billing}</div>
                   <p className="text-xs text-muted leading-relaxed mb-4">{card.desc}</p>
@@ -370,7 +372,7 @@ export default function Home() {
             <div className="flex min-w-[900px]">
               {[
                 { title: 'Beta Foundations', desc: 'Practical AI awareness and foundational experimentation.', dot: 'bg-gray-300 dark:bg-white/25', active: false },
-                { title: 'Version 1 Launch', desc: 'Learning modules, templates, and operational AI guidance.', dot: 'bg-success', active: true },
+                { title: 'Personal AI Uplift', desc: 'Learning modules, templates, and operational AI guidance to build confidence and capability.', dot: 'bg-success', active: true },
                 { title: 'Industry Intelligence', desc: 'Industry-specific AI workflows and operational patterns.', dot: 'bg-blue', active: false },
                 { title: 'AI Agents at Work', desc: 'AI copilots and workflow assistants supporting real work.', dot: 'bg-amber-400', active: false },
                 { title: 'Agentic Organisations', desc: 'Connected AI ecosystems and orchestrated operations.', dot: 'bg-purple-400', active: false },
@@ -562,7 +564,10 @@ export default function Home() {
           </div>
           <div className="flex flex-col md:flex-row justify-between items-center pt-6 border-t border-white/5 gap-3 text-xs text-muted">
             <p>© 2025 LeO AI · learningonline.ai</p>
-            <p>7-day money-back guarantee · Secure payments via Stripe</p>
+            <p className="leading-relaxed">
+              <span className="font-bold">7-day money-back guarantee</span> — if you don't believe this will deliver measurable value, we'll refund you in full. No questions asked.
+            </p>
+            <p className="text-xs mt-1 opacity-70">Secure payments via Stripe</p>
           </div>
         </div>
       </footer>

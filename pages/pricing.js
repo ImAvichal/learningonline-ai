@@ -69,8 +69,10 @@ export default function Pricing() {
                     )}
 
                     <TierBadge tier={tid} label={t.label} className="mb-4" />
-                    <div className="font-display font-black text-4xl mb-1">{tid === 'parents' ? t.priceDisplay : priceFor(tid)}</div>
-                    <div className="text-xs text-muted mb-5">{interval === 'annual' ? 'Billed annually' : 'Billed monthly'}</div>
+                    <div className="font-display font-black mb-1 leading-tight break-words" style={{fontSize: 'clamp(28px, 4vw, 36px)', wordBreak: 'break-word'}}>
+                      {tid === 'parents' ? t.priceDisplay : priceFor(tid)}
+                    </div>
+                    <div className="text-xs text-muted mb-5">{tid === 'parents' ? 'Always free' : (interval === 'annual' ? 'Billed annually' : 'Billed monthly')}</div>
                     <p className="text-sm text-gray-600 dark:text-gray-300 leading-relaxed mb-4 flex-1">{t.description}</p>
 
                     <div className="p-3 rounded-lg bg-white/[0.03] border border-white/5 mb-5">
@@ -113,6 +115,16 @@ export default function Pricing() {
               )
             })}
           </div>
+
+          {/* Money-back guarantee */}
+          <Reveal>
+            <div className="max-w-2xl mx-auto mb-12 p-5 rounded-xl border border-success/30 bg-success/[0.04] text-center">
+              <div className="text-success text-2xl mb-2">🛡️</div>
+              <p className="text-sm text-gray-700 dark:text-white/85 leading-relaxed">
+                <span className="font-bold text-gray-900 dark:text-white">7-day money-back guarantee</span> — if you don't believe this will deliver measurable value, we'll refund you in full. <span className="italic">No questions asked.</span>
+              </p>
+            </div>
+          </Reveal>
 
           {/* Comparison table */}
           <Reveal>
