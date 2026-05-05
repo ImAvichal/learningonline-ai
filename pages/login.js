@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
 import { useAuth } from '../lib/auth'
+import { useTranslation } from '../lib/i18n'
 import { Input, Spinner } from '../components/ui'
 
 
@@ -57,6 +58,7 @@ function LoginHero() {
 }
 
 export default function Login() {
+  const { t } = useTranslation()
   const { login, loginWithGoogle, loginWithLinkedIn } = useAuth()
   const router    = useRouter()
   const { redirect } = router.query
@@ -71,7 +73,7 @@ export default function Login() {
     setLoading(true); setError('')
     const res = await login(form.email, form.password)
     if (res.success) {
-      // withAuth on /dashboard handles the unpaid → /preview redirect
+      // Checkout page handles paid-user redirect; auth callback handles OAuth flow
       router.push(redirect || '/dashboard')
     }
     else { setError('Invalid credentials. Try again.'); setLoading(false) }
@@ -79,7 +81,7 @@ export default function Login() {
 
   return (
     <>
-      <Head><title>Sign In — LeO AI</title></Head>
+      <Head><title>{t("common.signIn")} — LeO AI</title></Head>
       <div className="min-h-screen flex">
         {/* Left panel — rotating inspiration */}
         <LoginHero />
@@ -143,7 +145,7 @@ export default function Login() {
               </div>
               <button type="submit" disabled={loading}
                 className="w-full py-3.5 bg-blue hover:bg-blue-bright text-white font-display font-bold rounded-lg transition-all shadow-[0_0_24px_rgba(26,110,255,0.4)] disabled:opacity-50 flex items-center justify-center gap-2">
-                {loading ? <><Spinner /> Signing in...</> : 'Sign In'}
+                {loading ? <><Spinner /> {t('common.loading')}</> : t('common.signIn')}
               </button>
             </form>
           </div>

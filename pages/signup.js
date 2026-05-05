@@ -4,10 +4,12 @@ import Link from 'next/link'
 import { useState } from 'react'
 import { useRouter } from 'next/router'
 import { useAuth } from '../lib/auth'
+import { useTranslation } from '../lib/i18n'
 import { Input, Spinner, TierBadge } from '../components/ui'
 import { TIERS } from '../data/tiers'
 
 export default function Signup() {
+  const { t } = useTranslation()
   const { signup, loginWithGoogle, loginWithLinkedIn } = useAuth()
   const router     = useRouter()
   const { tier: tierId = 'journey', interval = 'annual' } = router.query
@@ -88,7 +90,7 @@ export default function Signup() {
               </Link>
             </div>
 
-            <h1 className="font-display font-bold text-2xl mb-2">Create your account</h1>
+            <h1 className="font-display font-bold text-2xl mb-2">{t("auth.signupTitle")}</h1>
             <p className="text-muted text-sm mb-8">
               Already have one?{' '}
               <Link href="/login" className="text-blue-bright hover:underline">Sign in</Link>

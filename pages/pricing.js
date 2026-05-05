@@ -3,13 +3,15 @@ import { useState } from 'react'
 import Head from 'next/head'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import { Nav, Reveal, Card, SectionLabel, Button, TierBadge, BillingToggle } from '../components/ui'
+import { Nav, Reveal, Card, SectionLabel, Button, TierBadge, BillingToggle, LanguageBetaBanner } from '../components/ui'
 import { TIERS, TIER_ORDER, DISPLAY_ORDER } from '../data/tiers'
 import { useAuth } from '../lib/auth'
 import { useRegion } from '../lib/region'
+import { useTranslation } from '../lib/i18n'
 import { REGIONAL_PRICING } from '../data/tiers'
 
 export default function Pricing() {
+  const { t: tr } = useTranslation()
   const { user } = useAuth()
   const [interval, setInterval] = useState('monthly') // Default to monthly (lower upfront)
   const { region } = useRegion()
@@ -28,19 +30,20 @@ export default function Pricing() {
 
   return (
     <>
-      <Head><title>Pricing — LeO AI</title></Head>
+      <Head><title>{tr("pricing.pageTitle")} — LeO AI</title></Head>
       <Nav />
+      <LanguageBetaBanner />
       <div className="pt-28 pb-20">
         <div className="max-w-5xl mx-auto px-6">
 
           <Reveal>
             <div className="text-center mb-14">
-              <SectionLabel>Pricing</SectionLabel>
+              <SectionLabel>{tr("pricing.pageTitle")}</SectionLabel>
               <h1 className="font-display font-black tracking-tight mb-4" style={{ fontSize: 'clamp(36px,5vw,58px)' }}>
-                Choose your tier
+                {tr("pricing.pageHeading")}
               </h1>
               <p className="text-muted text-xl max-w-lg mx-auto">
-                One program. Three levels of depth. Priced on value — not seat count.
+                {tr("pricing.pageSubtitle")}
               </p>
             </div>
           </Reveal>
@@ -64,7 +67,7 @@ export default function Pricing() {
                   }`}>
                     {t.highlighted && (
                       <div className="absolute -top-3 left-1/2 -translate-x-1/2">
-                        <span className="bg-amber-400 text-navy font-display text-[10px] font-bold px-4 py-1 rounded-full whitespace-nowrap">MOST POPULAR</span>
+                        <span className="bg-amber-400 text-navy font-display text-[10px] font-bold px-4 py-1 rounded-full whitespace-nowrap">{tr("common.mostPopular")}</span>
                       </div>
                     )}
 
@@ -72,11 +75,11 @@ export default function Pricing() {
                     <div className="font-display font-black mb-1 leading-tight break-words" style={{fontSize: 'clamp(28px, 4vw, 36px)', wordBreak: 'break-word'}}>
                       {tid === 'parents' ? t.priceDisplay : priceFor(tid)}
                     </div>
-                    <div className="text-xs text-muted mb-5">{tid === 'parents' ? 'Always free' : (interval === 'annual' ? 'Billed annually' : 'Billed monthly')}</div>
+                    <div className="text-xs text-muted mb-5">{tid === 'parents' ? tr('common.alwaysFree') : (interval === 'annual' ? 'Billed annually' : 'Billed monthly')}</div>
                     <p className="text-sm text-gray-600 dark:text-gray-300 leading-relaxed mb-4 flex-1">{t.description}</p>
 
                     <div className="p-3 rounded-lg bg-white/[0.03] border border-white/5 mb-5">
-                      <div className="text-[10px] font-display font-bold text-muted uppercase tracking-wider mb-1">Ideal for</div>
+                      <div className="text-[10px] font-display font-bold text-muted uppercase tracking-wider mb-1">{tr("common.idealFor") || "Ideal for"}</div>
                       <p className="text-xs text-gray-600 dark:text-white/70 leading-relaxed">{t.idealFor}</p>
                     </div>
 
@@ -92,11 +95,11 @@ export default function Pricing() {
                     {t.free ? (
                       <Link href={user ? '/parents' : '/login?redirect=/parents'}
                         className="w-full py-3.5 rounded-xl font-display font-bold text-sm transition-all text-center block bg-success/10 border border-success/30 text-success hover:bg-success/20">
-                        {user ? 'Start Free Module →' : 'Sign In to Access →'}
+                        {user ? tr('plans.parents.cta') + ' →' : tr('plans.parents.ctaLoggedOut') + ' →'}
                       </Link>
                     ) : owned ? (
                       <Button variant="success" href="/dashboard" className="w-full justify-center">
-                        ✓ Your Current Tier → Dashboard
+                        {`✓ ${tr("common.currentTier")} → ${tr("common.dashboard")}`}
                       </Button>
                     ) : (
                       <button onClick={() => handleEnrol(tid)}
@@ -121,14 +124,14 @@ export default function Pricing() {
             <div className="max-w-2xl mx-auto mb-12 p-5 rounded-xl border border-success/30 bg-success/[0.04] text-center">
               <div className="text-success text-2xl mb-2">🛡️</div>
               <p className="text-sm text-gray-700 dark:text-white/85 leading-relaxed">
-                <span className="font-bold text-gray-900 dark:text-white">7-day money-back guarantee</span> — if you don't believe this will deliver measurable value, we'll refund you in full. <span className="italic">No questions asked.</span>
+                <span className="font-bold text-gray-900 dark:text-white">{tr("pricing.moneyBack.title")}</span> — {tr("pricing.moneyBack.body")} <span className="italic">{tr("pricing.moneyBack.tagline")}</span>
               </p>
             </div>
           </Reveal>
 
           {/* Comparison table */}
           <Reveal>
-            <h3 className="font-display font-bold text-2xl text-center mb-6">What's included</h3>
+            <h3 className="font-display font-bold text-2xl text-center mb-6">{tr("pricing.comparisonTitle")}</h3>
             <Card className="overflow-hidden mb-8">
               <div className="overflow-x-auto">
                 <table className="w-full text-sm">

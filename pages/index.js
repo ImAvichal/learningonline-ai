@@ -2,11 +2,12 @@
 import Head from 'next/head'
 import Link from 'next/link'
 import { useState } from 'react'
-import { Nav, Reveal, Card, SectionLabel, Button, TierBadge, BillingToggle } from '../components/ui'
+import { Nav, Reveal, Card, SectionLabel, Button, TierBadge, BillingToggle, LanguageBetaBanner } from '../components/ui'
 import { MODULES } from '../data/modules'
 import { TIERS, TIER_ORDER, INDUSTRIES, DISPLAY_ORDER } from '../data/tiers'
 import { useAuth } from '../lib/auth'
 import { useRegion } from '../lib/region'
+import { useTranslation } from '../lib/i18n'
 import { REGIONAL_PRICING } from '../data/tiers'
 
 // ── Decision Tree ─────────────────────────────────────────────────────────────
@@ -228,6 +229,7 @@ function IndustryMatcher() {
 
 // ── Main Page ─────────────────────────────────────────────────────────────────
 export default function Home() {
+  const { t } = useTranslation()
   const { user } = useAuth()
   const [interval, setInterval] = useState('monthly')
   const { region } = useRegion()
@@ -243,6 +245,7 @@ export default function Home() {
         <meta name="description" content="The execution-focused AI program for professionals, business owners, and enterprise leaders. Practical AI learning pathways for professionals, business owners, and enterprise leaders." />
       </Head>
       <Nav transparent />
+      <LanguageBetaBanner />
 
       {/* ── Hero ── */}
       <section className="flex items-center pt-16 relative overflow-hidden">
@@ -251,10 +254,10 @@ export default function Home() {
         <div className="max-w-6xl mx-auto px-6 py-8 md:py-10 relative z-10 w-full">
           <div className="max-w-4xl mx-auto text-center">
             <h1 className="font-display font-black leading-[1.05] tracking-tight mb-4" style={{ fontSize:'clamp(26px,3.8vw,44px)' }}>
-              AI Anxiety <span className="text-blue">→</span> AI Awareness
+              {t("hero.tagline")}
             </h1>
             <p className="text-base text-muted leading-relaxed max-w-lg mx-auto mb-1">
-              Practical learning for professionals, parents, businesses and enterprise leaders — without the hype.
+              {t("hero.subtitle")}
             </p>
 
             <p className="text-xs text-white/30 mb-4 font-display tracking-widest uppercase">
@@ -273,9 +276,9 @@ export default function Home() {
         <div className="max-w-6xl mx-auto px-6">
           <Reveal>
             <div className="text-center mb-12">
-              <SectionLabel>Learning Paths</SectionLabel>
-              <h2 className="font-display font-bold text-3xl mb-3">Choose Your AI Learning Path</h2>
-              <p className="text-muted max-w-xl mx-auto text-sm">Whether you’re curious, cautious, implementing AI in business, or leading transformation — start where you are.</p>
+              <SectionLabel>{t("learningPaths.label")}</SectionLabel>
+              <h2 className="font-display font-bold text-3xl mb-3">{t("learningPaths.title")}</h2>
+              <p className="text-muted max-w-xl mx-auto text-sm">{t("learningPaths.subtitle")}</p>
             </div>
           </Reveal>
           
@@ -287,35 +290,35 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
             {[
               {
-                pill: 'Free Module', pillClass: 'bg-success/15 border-success/30 text-success',
-                title: 'AI for Parents', price: 'Free', billing: 'Free · Sign in required',
-                hook: '9 practical modules · Helping families navigate AI confidently.',
-                desc: 'A practical, reassuring guide for parents wanting to better understand how AI is shaping how children learn, think, communicate, and grow.',
-                idealFor: 'Parents and caregivers wanting healthier AI conversations and sensible boundaries at home.',
-                bullets: ['How kids are using AI today','Benefits vs risks explained simply','Warning signs to watch for','Conversation starters for families','Practical household AI boundaries','Parent downloadable guide'],
-                cta: 'Start Free Module', ctaClass: 'bg-success/10 border border-success/30 text-success hover:bg-success/20',
+                pill: t('common.freeTier'), pillClass: 'bg-success/15 border-success/30 text-success',
+                title: t('plans.parents.name'), price: t('common.free'), billing: t('common.freeSignInRequired'),
+                hook: t('plans.parents.hook'),
+                desc: t('plans.parents.description'),
+                idealFor: t('plans.parents.idealFor'),
+                bullets: t('plans.parents.bullets') instanceof Array ? t('plans.parents.bullets') : ['How kids are using AI today','Benefits vs risks explained simply','Warning signs to watch for','Conversation starters for families','Practical household AI boundaries','Parent downloadable guide'],
+                cta: t('plans.parents.cta'), ctaClass: 'bg-success/10 border border-success/30 text-success hover:bg-success/20',
                 href: user ? '/parents' : '/login?redirect=/parents',
                 cardClass: 'border-success/25 bg-success/[0.02]',
               },
               {
-                pill: 'Starting the Journey', pillClass: 'bg-blue/15 border-blue/30 text-blue-bright', mostPopular: true,
-                title: 'Starting the Journey', tierKey: 'journey', popular: true,
-                hook: 'Practical AI awareness, foundational learning, and operational implementation guidance.',
-                desc: 'Designed to take you from AI curiosity to confident execution \u2014 with foundational learning, practical workflows, and downloadable templates.',
-                idealFor: 'Professionals, team members, business owners, and operational leaders wanting practical AI capability.',
-                bullets: ['Foundational AI learning and model awareness','Prompts, context, tools, and practical use','Use case identification and prioritisation','Workflow design and ROI frameworks','Data readiness and people/change adoption','Downloadable guides and templates'],
-                cta: 'Start the Journey', ctaClass: 'bg-blue hover:bg-blue-bright text-white',
+                pill: t('plans.journey.name'), pillClass: 'bg-blue/15 border-blue/30 text-blue-bright', mostPopular: true,
+                title: t('plans.journey.name'), tierKey: 'journey', popular: true,
+                hook: t('plans.journey.hook'),
+                desc: t('plans.journey.description'),
+                idealFor: t('plans.journey.idealFor'),
+                bullets: Array.isArray(t('plans.journey.features')) ? t('plans.journey.features') : ['Foundational AI learning and model awareness','Prompts, context, tools, and practical use','Use case identification and prioritisation','Workflow design and ROI frameworks','Data readiness and people/change adoption','Downloadable guides and templates'],
+                cta: t('plans.journey.cta'), ctaClass: 'bg-blue hover:bg-blue-bright text-white',
                 tier: 'journey',
                 cardClass: 'border-blue/30 bg-blue/[0.02]',
               },
               {
-                pill: 'The Pro', pillClass: 'bg-purple-400/15 border-purple-400/30 text-purple-400',
-                title: 'The Pro', tierKey: 'pro',
-                hook: 'Everything in Starting the Journey \u2014 plus orchestration, governance, and operating models.',
-                desc: 'For leaders driving enterprise-scale AI adoption \u2014 orchestration, governance, operating models, and long-term transformation.',
-                idealFor: 'CIOs, transformation directors, senior leaders, and enterprise teams responsible for scalable AI adoption.',
-                bullets: ['Everything in Starting the Journey','Enterprise AI operating model','Responsible AI and governance','Sustainability and AI impact planning','Multimodal AI orchestration','AI economics and 90-day execution roadmap'],
-                cta: 'Journey to Pro', ctaClass: 'border border-purple-400/40 text-purple-400 hover:bg-purple-400/10',
+                pill: t('plans.pro.name'), pillClass: 'bg-purple-400/15 border-purple-400/30 text-purple-400',
+                title: t('plans.pro.name'), tierKey: 'pro',
+                hook: t('plans.pro.hook'),
+                desc: t('plans.pro.description'),
+                idealFor: t('plans.pro.idealFor'),
+                bullets: Array.isArray(t('plans.pro.features')) ? t('plans.pro.features') : ['Everything in Starting the Journey','Enterprise AI operating model','Responsible AI and governance','Sustainability and AI impact planning','Multimodal AI orchestration','AI economics and 90-day execution roadmap'],
+                cta: t('plans.pro.cta'), ctaClass: 'border border-purple-400/40 text-purple-400 hover:bg-purple-400/10',
                 tier: 'pro',
                 cardClass: '',
               },
@@ -324,7 +327,7 @@ export default function Home() {
                 <Card hover className={`p-6 h-full flex flex-col ${card.cardClass}`}>
                   <div className="flex items-center gap-2 mb-3 flex-wrap">
                     <span className={`px-2.5 py-1 border rounded-full text-[10px] font-display font-bold ${card.pillClass}`}>{card.pill}</span>
-                    {card.popular && <span className="px-2.5 py-1 bg-amber-400 text-navy rounded-full text-[10px] font-display font-bold">MOST POPULAR</span>}
+                    {card.popular && <span className="px-2.5 py-1 bg-amber-400 text-navy rounded-full text-[10px] font-display font-bold">{t("common.mostPopular")}</span>}
                   </div>
                   <h3 className="font-display font-bold text-lg mb-1 text-gray-900 dark:text-white">{card.title}</h3>
                   <p className="text-xs text-gray-500 dark:text-white/40 italic mb-3">{card.hook}</p>
@@ -333,10 +336,10 @@ export default function Home() {
                       {card.tierKey ? priceFor(card.tierKey) : card.price}
                     </span>
                   </div>
-                  <div className="text-[10px] text-muted mb-4">{card.tierKey ? (interval === 'annual' ? 'Billed annually' : 'Billed monthly') : card.billing}</div>
+                  <div className="text-[10px] text-muted mb-4">{card.tierKey ? (interval === 'annual' ? t('common.billedAnnually') : t('common.billedMonthly')) : card.billing}</div>
                   <p className="text-xs text-muted leading-relaxed mb-4">{card.desc}</p>
                   <div className="p-3 rounded-lg bg-white/[0.03] border border-white/5 mb-4">
-                    <div className="text-[10px] font-display font-bold text-muted uppercase tracking-wider mb-1">Ideal for</div>
+                    <div className="text-[10px] font-display font-bold text-muted uppercase tracking-wider mb-1">{t("common.idealFor") || "Ideal for"}</div>
                     <p className="text-[11px] text-white/70 leading-relaxed">{card.idealFor}</p>
                   </div>
                   <ul className="space-y-1.5 mb-5 flex-1">
@@ -362,19 +365,19 @@ export default function Home() {
       <section className="py-16 border-t border-gray-100 dark:border-white/5">
         <div className="max-w-5xl mx-auto px-6">
           <div className="text-center mb-12">
-            <SectionLabel>Learning Evolution</SectionLabel>
-            <h2 className="font-display font-bold text-3xl mb-3">Where We're Heading</h2>
-            <p className="text-muted max-w-lg mx-auto text-sm">AI is evolving. Our platform evolves with it.</p>
+            <SectionLabel>{t("evolution.label")}</SectionLabel>
+            <h2 className="font-display font-bold text-3xl mb-3">{t("evolution.heading")}</h2>
+            <p className="text-muted max-w-lg mx-auto text-sm">{t("evolution.subtitle")}</p>
           </div>
 
           {/* Horizontal metro line — scrollable */}
           <div className="overflow-x-auto pb-6 -mx-6 px-6">
             <div className="flex min-w-[900px]">
               {[
-                { title: 'Beta Foundations', desc: 'Practical AI awareness and foundational experimentation.', dot: 'bg-gray-300 dark:bg-white/25', active: false },
-                { title: 'Personal AI Uplift', desc: 'Learning modules, templates, and operational AI guidance to build confidence and capability.', dot: 'bg-success', active: true },
-                { title: 'Industry Intelligence', desc: 'Industry-specific AI workflows and operational patterns.', dot: 'bg-blue', active: false },
-                { title: 'AI Agents at Work', desc: 'AI copilots and workflow assistants supporting real work.', dot: 'bg-amber-400', active: false },
+                { title: t('evolution.stages.beta.title'), desc: t('evolution.stages.beta.desc'), dot: 'bg-gray-300 dark:bg-white/25', active: false },
+                { title: t('evolution.stages.v1.title'), desc: t('evolution.stages.v1.desc'), dot: 'bg-success', active: true },
+                { title: t('evolution.stages.industry.title'), desc: t('evolution.stages.industry.desc'), dot: 'bg-blue', active: false },
+                { title: t('evolution.stages.agents.title'), desc: t('evolution.stages.agents.desc'), dot: 'bg-amber-400', active: false },
                 { title: 'Agentic Organisations', desc: 'Connected AI ecosystems and orchestrated operations.', dot: 'bg-purple-400', active: false },
                 { title: 'Human + AI', desc: 'Long-term collaboration between humans and intelligent systems.', dot: 'bg-gray-300 dark:bg-white/15', active: false },
               ].map((s, i, arr) => (
@@ -407,7 +410,7 @@ export default function Home() {
         <div className="max-w-6xl mx-auto px-6">
           <Reveal>
             <div className="text-center mb-12">
-              <SectionLabel>Learning Paths</SectionLabel>
+              <SectionLabel>{t("learningPaths.label")}</SectionLabel>
               <h2 className="font-display font-bold text-4xl mb-4">Practical AI learning. Zero filler.</h2>
               <p className="text-muted max-w-xl mx-auto">Every lesson produces a real deliverable. Every module builds on the last.</p>
             </div>
@@ -474,7 +477,7 @@ export default function Home() {
             <div className="text-center mb-10">
               <SectionLabel>Free Preview</SectionLabel>
               <h2 className="font-display font-bold text-4xl mb-4">Preview what you'll learn</h2>
-              <p className="text-muted max-w-xl mx-auto">Two real lessons from Module 1, available free. No sign-up required.</p>
+              <p className="text-muted max-w-xl mx-auto">{t("preview.subtitle")}</p>
             </div>
           </Reveal>
           <div className="grid md:grid-cols-3 gap-5 mb-8">
@@ -565,9 +568,9 @@ export default function Home() {
           <div className="flex flex-col md:flex-row justify-between items-center pt-6 border-t border-white/5 gap-3 text-xs text-muted">
             <p>© 2025 LeO AI · learningonline.ai</p>
             <p className="leading-relaxed">
-              <span className="font-bold">7-day money-back guarantee</span> — if you don't believe this will deliver measurable value, we'll refund you in full. No questions asked.
+              <span className="font-bold">{t("pricing.moneyBack.title")}</span> — {t("pricing.moneyBack.body")} {t("pricing.moneyBack.tagline")}
             </p>
-            <p className="text-xs mt-1 opacity-70">Secure payments via Stripe</p>
+            <p className="text-xs mt-1 opacity-70">{t("footer.stripeLine")}</p>
           </div>
         </div>
       </footer>
