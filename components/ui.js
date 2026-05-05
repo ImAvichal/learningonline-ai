@@ -4,7 +4,6 @@ import Link from 'next/link'
 import { useState, useEffect, useRef } from 'react'
 import { useAuth } from '../lib/auth'
 import { useTheme } from '../lib/theme'
-import { useTranslation, LANGUAGES } from '../lib/i18n'
 
 export const BRAND = {
   name:    'LeO AI',
@@ -15,7 +14,7 @@ export const BRAND = {
 
 
 
-// ── Language Switcher ─────────────────────────────────────────────────────────
+
 export function LanguageSwitcher({ compact = false }) {
   const { lang, setLang } = useTranslation()
   const [open, setOpen] = useState(false)
