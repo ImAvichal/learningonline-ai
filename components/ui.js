@@ -134,8 +134,8 @@ export function ThemeToggle({ compact = false }) {
 export function Logo({ size = 'md', linked = true }) {
   const sizes = { sm: 'text-base', md: 'text-xl', lg: 'text-2xl' }
   const el = (
-    <span className={`font-display font-black tracking-tight ${sizes[size]}`}>
-      LeO <span className="text-blue">AI</span>
+    <span className={`font-display font-black ${sizes[size]}`} style={{letterSpacing: '-0.02em'}}>
+      <span style={{letterSpacing: '-0.04em'}}>LeO</span>{' '}<span className="text-blue">AI</span>
     </span>
   )
   return linked ? <Link href="/">{el}</Link> : el
