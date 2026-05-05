@@ -25,8 +25,16 @@ export default function Checkout() {
   const [promoMsg,  setPromoMsg]  = useState('')   // 'valid' | 'invalid' | ''
 
   useEffect(() => {
-    if (router.isReady && !user) router.push(`/signup?tier=${tierId}`)
-  }, [user, tierId, router.isReady])
+    if (!router.isReady) return
+    if (!user) {
+      router.push(`/signup?tier=${tierId}&interval=${interval}`)
+      return
+    }
+    // If user already has paid tier, redirect to dashboard (don't show checkout)
+    if (user.tier && !user.isDevUser) {
+      router.push('/dashboard')
+    }
+  }, [user, tierId, interval, router.isReady])
 
   useEffect(() => {
     if (payment_success === 'true' && user && !success) grantAccess()
