@@ -216,6 +216,66 @@ export const REGIONAL_PRICING = {
       },
     },
   },
+  PH: {
+    currency: 'PHP',
+    symbol: '\u20b1',
+    plans: {
+      journey: {
+        monthly: {
+          amount: 599,
+          label: '\u20b1599/month',
+          stripeEnvKey: 'STRIPE_PRICE_JOURNEY_MONTHLY_PHP',
+        },
+        annual: {
+          amount: 5499,
+          label: '\u20b15,499/year',
+          stripeEnvKey: 'STRIPE_PRICE_JOURNEY_ANNUAL_PHP',
+        },
+      },
+      pro: {
+        monthly: {
+          amount: 999,
+          label: '\u20b1999/month',
+          stripeEnvKey: 'STRIPE_PRICE_PRO_MONTHLY_PHP',
+        },
+        annual: {
+          amount: 9499,
+          label: '\u20b19,499/year',
+          stripeEnvKey: 'STRIPE_PRICE_PRO_ANNUAL_PHP',
+        },
+      },
+    },
+  },
+  US: {
+    currency: 'USD',
+    symbol: '$',
+    plans: {
+      journey: {
+        monthly: {
+          amount: 39,
+          label: '$39/month',
+          stripeEnvKey: 'STRIPE_PRICE_JOURNEY_MONTHLY_USD',
+        },
+        annual: {
+          amount: 349,
+          label: '$349/year',
+          stripeEnvKey: 'STRIPE_PRICE_JOURNEY_ANNUAL_USD',
+        },
+      },
+      pro: {
+        monthly: {
+          amount: 65,
+          label: '$65/month',
+          stripeEnvKey: 'STRIPE_PRICE_PRO_MONTHLY_USD',
+        },
+        annual: {
+          amount: 599,
+          label: '$599/year',
+          stripeEnvKey: 'STRIPE_PRICE_PRO_ANNUAL_USD',
+        },
+      },
+    },
+  },
 }
 
 export const DEFAULT_REGION = 'AU'
