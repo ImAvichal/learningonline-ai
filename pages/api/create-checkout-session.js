@@ -77,10 +77,10 @@ export default async function handler(req, res) {
       mode: 'subscription',
       customer_email: email,
       client_reference_id: userId,
-      metadata: { userId, tierId, name, promoCode: promoCode || '' },
+      metadata: { userId, tierId, interval, region: safeRegion, name: name || '', promoCode: promoCode || '' },
       allow_promotion_codes: true,  // Enables promo code field in Stripe Checkout UI
-      success_url: `${process.env.NEXT_PUBLIC_APP_URL}/checkout?tier=${tierId}&interval=${interval}&region=${safeRegion}&payment_success=true`,
-      cancel_url:  `${process.env.NEXT_PUBLIC_APP_URL}/checkout?tier=${tierId}&interval=${interval}&region=${safeRegion}&cancelled=true`,
+      success_url: `${process.env.NEXT_PUBLIC_APP_URL}/success?session_id={CHECKOUT_SESSION_ID}`,
+      cancel_url:  `${process.env.NEXT_PUBLIC_APP_URL}/pricing?cancelled=true`,
     }
 
     // If a specific Stripe promotion code ID is passed, apply it directly
