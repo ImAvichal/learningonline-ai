@@ -3,7 +3,8 @@ module.exports = {
   content: ['./pages/**/*.{js,jsx}', './components/**/*.{js,jsx}'],
   // Selector-based dark mode tied to our forced [data-theme="dark"] attribute.
   // This ensures dark: utility classes always apply and never flip with OS preference.
-  darkMode: ['selector', '[data-theme="dark"]'],
+  // Light mode only - dark: classes will not apply
+  darkMode: 'class', // Disabled
   theme: {
     extend: {
       colors: {
