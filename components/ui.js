@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { useState, useEffect, useRef } from 'react'
 import { useAuth } from '../lib/auth'
 import { useTheme } from '../lib/theme'
+import { useTranslation, LANGUAGES } from '../lib/i18n'
 
 export const BRAND = {
   name:    'LeO AI',
@@ -142,6 +143,7 @@ export function Logo({ size = 'md', linked = true }) {
 
 // ── Nav ───────────────────────────────────────────────────────────────────────
 export function Nav({ transparent = false }) {
+  const { t } = useTranslation()
   const { user, logout } = useAuth()
   const [scrolled, setScrolled] = useState(false)
   const [open,     setOpen]     = useState(false)
