@@ -42,7 +42,7 @@ const TREE = {
     id: 'smb_confirm',
     question: 'Do you need use case frameworks, ROI models, and workflow design tools?',
     options: [
-      { label: 'Yes — I need practical implementation templates and financial models', icon: '✅', result: 'journey' },
+      { label: 'Yes — I need practical implementation guidance and financial models', icon: '✅', result: 'journey' },
       { label: 'No — foundational content and examples are enough',                  icon: '📋', result: 'journey' },
     ],
   },
@@ -305,7 +305,7 @@ export default function Home() {
                 hook: t('plans.journey.hook'),
                 desc: t('plans.journey.description'),
                 idealFor: t('plans.journey.idealFor'),
-                bullets: Array.isArray(t('plans.journey.features')) ? t('plans.journey.features') : ['Foundational AI learning and model awareness','Prompts, context, tools, and practical use','Use case identification and prioritisation','Workflow design and ROI frameworks','Data readiness and people/change adoption','Downloadable guides and templates'],
+                bullets: Array.isArray(t('plans.journey.features')) ? t('plans.journey.features') : ['Foundational AI learning and model awareness','Prompts, context, tools, and practical use','Use case identification and prioritisation','Workflow design and ROI frameworks','Data readiness and people/change adoption','Practical exercises and frameworks'],
                 cta: t('plans.journey.cta'), ctaClass: 'bg-blue hover:bg-blue-bright text-white',
                 tier: 'journey',
                 cardClass: 'border-blue/30 bg-blue/[0.02]',

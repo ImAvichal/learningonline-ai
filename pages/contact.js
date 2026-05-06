@@ -143,7 +143,7 @@ export default function Contact() {
 
               <Card className="p-6">
                 <h3 className="font-display font-bold text-base mb-3">Already enrolled?</h3>
-                <p className="text-sm text-muted mb-3">Sign in to access your dashboard, continue your modules, and download templates.</p>
+                <p className="text-sm text-muted mb-3">Sign in to access your dashboard and continue your modules.</p>
                 <a href="/dashboard" className="text-sm font-display font-bold text-blue-bright hover:underline">
                   Go to Dashboard →
                 </a>

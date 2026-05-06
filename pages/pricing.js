@@ -159,7 +159,7 @@ export default function Pricing() {
                       ['Module Q&A scoring',                  '✓','✓'],
                       ['Cheat sheets & prompt guides',        '✓','✓'],
                       ['Use case prioritisation & 5-yr model','✓','✓'],
-                      ['Workflow design templates',           '✓','✓'],
+                      
                       ['Data readiness program',              '✓','✓'],
                       ['ROI modelling & business case',       '✓','✓'],
                       ['People & change adoption toolkit',    '✓','✓'],

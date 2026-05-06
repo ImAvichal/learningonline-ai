@@ -1082,7 +1082,7 @@ export default function Glossary() {
           <div className="mt-12 p-8 rounded-2xl border border-blue/20 bg-blue/5 text-center">
             <h3 className="font-display font-bold text-xl mb-2">Ready to put these concepts to work?</h3>
             <p className="text-muted text-sm mb-5 max-w-md mx-auto">
-              The Starting the Journey program applies every term in this glossary to real business scenarios — with exercises, templates, and Q&A.
+              The Starting the Journey program applies every term in this glossary to real business scenarios — with exercises and Q&A.
             </p>
             <div className="flex gap-3 justify-center flex-wrap">
               <Link href="/pricing" className="px-6 py-3 bg-blue hover:bg-blue-bright text-white font-display font-bold text-sm rounded-lg transition-all shadow-[0_0_20px_rgba(26,110,255,0.3)]">

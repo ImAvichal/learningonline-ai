@@ -17,7 +17,7 @@ export default function CourseComplete() {
 
   const body = isParents
     ? "You now have a stronger foundation to guide calm, practical AI conversations at home. Revisit any lesson anytime, and keep the family AI rules handy."
-    : "You've taken an important step from AI anxiety to AI awareness. Keep applying what you've learned, revisit your templates, and continue building practical confidence with AI."
+    : "You've taken an important step from AI anxiety to AI awareness. Keep applying what you've learned, revisit your modules, and continue building practical confidence with AI."
 
   return (
     <>
@@ -35,9 +35,6 @@ export default function CourseComplete() {
             <p className="text-muted text-lg leading-relaxed mb-10 max-w-lg mx-auto">{body}</p>
             <div className="flex flex-col sm:flex-row gap-3 justify-center">
               <Button variant="large" href="/dashboard">Back to Dashboard</Button>
-              {!isParents && (
-                <Button variant="ghost" href="/dashboard/templates" className="text-sm px-6 py-3">View Resources</Button>
-              )}
               <Button variant="ghost" href="/pricing" className="text-sm px-6 py-3">Explore Next Path</Button>
             </div>
           </Reveal>
