@@ -58,7 +58,7 @@ function ModuleQuiz({ quiz, moduleId, onComplete }) {
         <div className="grid md:grid-cols-3 gap-4 mb-6">
           {[
             { label: 'Beginner', desc: 'Focus on re-reading the core concepts before applying', range: '0–54%', active: level === 'Beginner', color: 'text-blue-bright', border: 'border-blue/30' },
-            { label: 'Intermediate', desc: 'Good foundation. Apply through the templates and revisit gaps.', range: '55–79%', active: level === 'Intermediate', color: 'text-amber-400', border: 'border-amber-400/30' },
+            { label: 'Intermediate', desc: 'Good foundation. Apply the frameworks and revisit gaps.', range: '55–79%', active: level === 'Intermediate', color: 'text-amber-400', border: 'border-amber-400/30' },
             { label: 'Advanced', desc: 'Strong grasp. Move confidently to implementation.', range: '80–100%', active: level === 'Advanced', color: 'text-success', border: 'border-success/30' },
           ].map(l => (
             <div key={l.label} className={`p-4 rounded-xl border ${l.active ? l.border + ' bg-white/[0.04]' : 'border-white/5'}`}>
@@ -73,9 +73,9 @@ function ModuleQuiz({ quiz, moduleId, onComplete }) {
           <div className="text-xs font-display font-bold text-muted uppercase tracking-wider mb-2">Next Steps</div>
           <p className="text-sm text-white/80">
             {pct >= 80
-              ? 'Excellent. Download the module template and apply the frameworks to your organisation. Proceed to the next module.'
+              ? 'Excellent. Apply the frameworks to your organisation and proceed to the next module.'
               : pct >= 55
-              ? 'Good progress. Review the questions you missed, download the template, and apply to a real scenario before moving on.'
+              ? 'Good progress. Review the questions you missed and apply the frameworks to a real scenario before moving on.'
               : 'Take time to re-read the module lessons. Focus on the Real-World Practice sections — they contain the most practical context. Retake the quiz when ready.'}
           </p>
         </div>
@@ -387,7 +387,7 @@ export default function CoursePage() {
                   <div>
                     <div className="text-xs font-display font-bold text-success uppercase tracking-wider mb-1">Module Deliverable</div>
                     <h3 className="font-display font-bold text-lg mb-2">{activeMod.deliverable}</h3>
-                    <p className="text-sm text-muted mb-3">Complete this deliverable using the template in your Templates section before taking the module quiz.</p>
+                    <p className="text-sm text-muted mb-3">Complete this deliverable using the frameworks covered above before taking the module quiz.</p>
                   </div>
                 </div>
               )}

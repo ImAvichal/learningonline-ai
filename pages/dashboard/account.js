@@ -79,7 +79,7 @@ export default function AccountPage() {
               </div>
               <div className="text-xs text-muted mb-3">
                 {user.tier === 'journey'
-                  ? 'Get industry playbooks, implementation templates, and up to 5 team seats.'
+                  ? 'Get industry playbooks and up to 5 team seats.'
                   : 'Add the enterprise operating model, data readiness program, governance frameworks, unlimited seats, and monthly advisory sessions.'}
               </div>
               <a href="mailto:hello@learningonline.ai?subject=Upgrade Enquiry"
