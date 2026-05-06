@@ -240,7 +240,6 @@ export function Sidebar({ activeTab, onTab, user }) {
   const tabs = [
     { id: 'home',      icon: '⬛', label: 'Dashboard' },
     { id: 'course',    icon: '📚', label: 'My Course' },
-    { id: 'templates', icon: '📁', label: 'Templates' },
     { id: 'account',   icon: '👤', label: 'Account' },
   ]
   return (
