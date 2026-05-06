@@ -349,10 +349,67 @@ export default function Home() {
                       </li>
                     ))}
                   </ul>
-                  <Link href={card.tierKey ? (user ? `/checkout?tier=${card.tierKey}&interval=${interval}` : `/login?redirect=${encodeURIComponent(`/checkout?tier=${card.tierKey}&interval=${interval}`)}`) : card.href}
-                    className={`w-full text-center py-2.5 rounded-lg font-display font-bold text-sm transition-all block ${card.ctaClass}`}>
-                    {card.cta}
-                  </Link>
+                  {(() => {
+                    // Determine CTA based on user state and tier comparison
+                    // Tier hierarchy: pro > journey > parents (free)
+                    const tierRank = { parents: 0, journey: 1, pro: 2 }
+                    const userRank = user?.tier ? (tierRank[user.tier] ?? 0) : -1
+                    const cardRank = card.tierKey ? tierRank[card.tierKey] : 0
+
+                    // Paid card (journey or pro)
+                    if (card.tierKey) {
+                      // User already has this exact tier OR a higher one → "Continue Learning"
+                      if (user?.tier && userRank >= cardRank) {
+                        return (
+                          <Link href="/dashboard"
+                            className={`w-full text-center py-2.5 rounded-lg font-display font-bold text-sm transition-all block ${card.ctaClass}`}>
+                            Continue Learning →
+                          </Link>
+                        )
+                      }
+                      // User has lower tier → "Upgrade" CTA
+                      if (user?.tier && userRank < cardRank) {
+                        return (
+                          <Link href={`/checkout?tier=${card.tierKey}&interval=${interval}`}
+                            className={`w-full text-center py-2.5 rounded-lg font-display font-bold text-sm transition-all block ${card.ctaClass}`}>
+                            Upgrade to {card.title} →
+                          </Link>
+                        )
+                      }
+                      // Logged in but no tier — go straight to checkout
+                      if (user) {
+                        return (
+                          <Link href={`/checkout?tier=${card.tierKey}&interval=${interval}`}
+                            className={`w-full text-center py-2.5 rounded-lg font-display font-bold text-sm transition-all block ${card.ctaClass}`}>
+                            {card.cta}
+                          </Link>
+                        )
+                      }
+                      // Not logged in — login first, then checkout
+                      return (
+                        <Link href={`/login?redirect=${encodeURIComponent(`/checkout?tier=${card.tierKey}&interval=${interval}`)}`}
+                          className={`w-full text-center py-2.5 rounded-lg font-display font-bold text-sm transition-all block ${card.ctaClass}`}>
+                          {card.cta}
+                        </Link>
+                      )
+                    }
+
+                    // Parents (free) card
+                    if (user) {
+                      return (
+                        <Link href="/parents"
+                          className={`w-full text-center py-2.5 rounded-lg font-display font-bold text-sm transition-all block ${card.ctaClass}`}>
+                          {user?.tier ? 'Open Parent Module →' : card.cta}
+                        </Link>
+                      )
+                    }
+                    return (
+                      <Link href={card.href}
+                        className={`w-full text-center py-2.5 rounded-lg font-display font-bold text-sm transition-all block ${card.ctaClass}`}>
+                        {card.cta}
+                      </Link>
+                    )
+                  })()}
                 </Card>
               </Reveal>
             ))}

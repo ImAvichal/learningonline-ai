@@ -56,7 +56,12 @@ export default function Pricing() {
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto mb-14">
             {DISPLAY_ORDER.map((tid, i) => {
               const t     = TIERS[tid]
+              const tierRank = { parents: 0, journey: 1, pro: 2 }
+              const userRank = user?.tier ? (tierRank[user.tier] ?? 0) : -1
+              const cardRank = tierRank[tid] ?? 0
               const owned = user?.tier === tid
+              const accessibleViaHigher = user?.tier && userRank > cardRank  // e.g. user is 'pro', card is 'journey'
+              const upgradeAvailable = user?.tier && userRank < cardRank   // e.g. user is 'journey', card is 'pro'
               return (
                 <Reveal key={tid} delay={i * 80}>
                   <div className={`relative rounded-2xl border p-7 flex flex-col h-full transition-all hover:-translate-y-1 ${
@@ -96,10 +101,15 @@ export default function Pricing() {
                         className="w-full py-3.5 rounded-xl font-display font-bold text-sm transition-all text-center block bg-success/10 border border-success/30 text-success hover:bg-success/20">
                         {user ? tr('plans.parents.cta') + ' →' : tr('plans.parents.ctaLoggedOut') + ' →'}
                       </Link>
-                    ) : owned ? (
+                    ) : (owned || accessibleViaHigher) ? (
                       <Button variant="success" href="/dashboard" className="w-full justify-center">
-                        {`✓ ${tr("common.currentTier")} → ${tr("common.dashboard")}`}
+                        Continue Learning →
                       </Button>
+                    ) : upgradeAvailable ? (
+                      <button onClick={() => handleEnrol(tid)}
+                        className="w-full py-3.5 rounded-xl font-display font-bold text-sm transition-all bg-blue hover:bg-blue-bright text-white">
+                        Upgrade to {t.name} →
+                      </button>
                     ) : (
                       <button onClick={() => handleEnrol(tid)}
                         className={`w-full py-3.5 rounded-xl font-display font-bold text-sm transition-all ${
