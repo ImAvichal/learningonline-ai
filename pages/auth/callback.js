@@ -93,9 +93,15 @@ export default function AuthCallback() {
       const activeTier = purchase?.tier || profile?.selected_tier || null
 
       // ── Redirect based on entitlement and intended destination ──────────
-      // Check for intended destination saved before OAuth
-      const intendedRedirect = typeof window !== 'undefined' ? localStorage.getItem('postAuthRedirect') : null
-      if (intendedRedirect) {
+      // PRIMARY: Read 'next' from URL (passed through OAuth flow, survives browser security wipes)
+      // FALLBACK: localStorage (set as secondary backup before OAuth)
+      let intendedRedirect = null
+      if (typeof window !== 'undefined') {
+        const urlParams = new URLSearchParams(window.location.search)
+        intendedRedirect = urlParams.get('next')
+        if (!intendedRedirect) {
+          intendedRedirect = localStorage.getItem('postAuthRedirect')
+        }
         try { localStorage.removeItem('postAuthRedirect') } catch {}
       }
 
