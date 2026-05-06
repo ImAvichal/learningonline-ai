@@ -5,12 +5,10 @@ import { useState, useEffect } from 'react'
 import { useAuth, useProgress, withAuth } from '../../lib/auth'
 import NoEnrolmentMessage from '../../components/NoEnrolmentMessage'
 import { MODULES } from '../../data/modules'
-import { getResourcesForTier } from '../../data/templates'
 import { Sidebar, Card, ProgressBar, Button, SectionLabel, TierBadge, Reveal } from '../../components/ui'
 
 // Sub-pages (lazy-loaded as components)
 import CoursePage    from './course'
-import TemplatesPage from './templates'
 import AccountPage   from './account'
 
 function Dashboard() {
@@ -20,7 +18,7 @@ function Dashboard() {
 
   useEffect(() => {
     const hash = window.location.hash.replace('#','')
-    if (['home','course','templates','account'].includes(hash)) setTab(hash)
+    if (['home','course','account'].includes(hash)) setTab(hash)
   }, [])
 
   const switchTab = (t) => { setTab(t); window.location.hash = t }
@@ -40,7 +38,6 @@ function Dashboard() {
   const totalPct      = getTotalProgress()
   const nextLesson    = getNextLesson(accessible)
   const completedMods = MODULES.filter(m => m.lessons.every(l => isCompleted(l.id))).length
-  const templates     = getResourcesForTier(user.tier)
 
   return (
     <>
@@ -48,9 +45,8 @@ function Dashboard() {
       <div className="min-h-screen flex">
         <Sidebar activeTab={tab} onTab={switchTab} user={user} />
         <main className="flex-1 lg:ml-56 min-h-screen overflow-auto">
-          {tab === 'home'      && <HomeTab user={user} totalPct={totalPct} completedMods={completedMods} nextLesson={nextLesson} switchTab={switchTab} templates={templates} getModuleProgress={getModuleProgress} isCompleted={isCompleted} />}
+          {tab === 'home'      && <HomeTab user={user} totalPct={totalPct} completedMods={completedMods} nextLesson={nextLesson} switchTab={switchTab} getModuleProgress={getModuleProgress} isCompleted={isCompleted} />}
           {tab === 'course'    && <CoursePage />}
-          {tab === 'templates' && <TemplatesPage />}
           {tab === 'account'   && <AccountPage />}
         </main>
       </div>
@@ -58,7 +54,7 @@ function Dashboard() {
   )
 }
 
-function HomeTab({ user, totalPct, completedMods, nextLesson, switchTab, templates, getModuleProgress, isCompleted }) {
+function HomeTab({ user, totalPct, completedMods, nextLesson, switchTab, getModuleProgress, isCompleted }) {
   return (
     <div className="p-8 lg:p-10 max-w-4xl">
       <div className="mb-8">
@@ -70,11 +66,10 @@ function HomeTab({ user, totalPct, completedMods, nextLesson, switchTab, templat
       </div>
 
       {/* KPIs */}
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+      <div className="grid grid-cols-3 gap-4 mb-6">
         {[
           { val:`${totalPct}%`,       label:'Progress',  sub:'course complete',        color:'text-blue-bright' },
           { val:`${completedMods}/8`, label:'Modules',   sub:'completed',              color:'text-success' },
-          { val:templates.length,     label:'Templates', sub:'ready to download',      color:'text-blue-bright' },
           { val:'∞',                  label:'Access',    sub:'lifetime · all updates', color:'text-success' },
         ].map((k,i) => (
           <Card key={i} className="p-5">
@@ -139,21 +134,6 @@ function HomeTab({ user, totalPct, completedMods, nextLesson, switchTab, templat
         </div>
       )}
 
-      {user.tier === 'journey' && (
-        <div className="mb-8 p-6 rounded-xl bg-amber-400/5 border border-amber-400/20">
-          <div className="flex items-start gap-4">
-            <span className="text-2xl">💼</span>
-            <div>
-              <div className="text-xs font-display font-bold text-amber-400 uppercase tracking-wider mb-1">Starting the Journey Access</div>
-              <h3 className="font-display font-bold text-base mb-1">Industry playbooks and implementation templates unlocked</h3>
-              <button onClick={() => switchTab('templates')} className="text-sm font-display font-bold text-amber-400 hover:underline mt-2 block">
-                View your templates →
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
-
       {/* Module list */}
       <div className="mb-6">
         <div className="text-xs font-display font-bold text-muted uppercase tracking-widest mb-4">All Modules</div>
@@ -196,7 +176,7 @@ function HomeTab({ user, totalPct, completedMods, nextLesson, switchTab, templat
               </h3>
               <p className="text-sm text-muted mb-4">
                 {user.tier === 'journey'
-                  ? 'Get industry playbooks, implementation templates, and bring your team of up to 5.'
+                  ? 'Get industry playbooks and bring your team of up to 5.'
                   : 'Add the enterprise operating model, data readiness program, governance frameworks, and monthly advisory sessions.'}
               </p>
               <Button variant="ghost" href="mailto:hello@learningonline.ai?subject=Upgrade Enquiry" className="text-sm px-5 py-2.5">
