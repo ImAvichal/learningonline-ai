@@ -12,6 +12,10 @@
 import Stripe from 'stripe'
 import { createClient } from '@supabase/supabase-js'
 
+// Legacy tier names → new consolidated tier names
+const TIER_MIGRATION = { individual: 'journey', smb: 'journey', enterprise: 'pro' }
+const normaliseTier = (t) => TIER_MIGRATION[t] || t
+
 export const config = { api: { bodyParser: false } }
 
 const getRawBody = (req) => new Promise((resolve, reject) => {
@@ -78,7 +82,7 @@ export default async function handler(req, res) {
 // ─── checkout.session.completed ──────────────────────────────────────────────
 async function handleCheckoutCompleted(session, supabase) {
   const userId = session.metadata?.userId || session.client_reference_id
-  const tierId = session.metadata?.tierId
+  const tierId = normaliseTier(session.metadata?.tierId)
   const interval = session.metadata?.interval || 'monthly'
   const region = session.metadata?.region || 'AU'
 

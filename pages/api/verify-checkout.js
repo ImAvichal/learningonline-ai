@@ -19,6 +19,10 @@
 import Stripe from 'stripe'
 import { createClient } from '@supabase/supabase-js'
 
+// Legacy tier names → new consolidated tier names
+const TIER_MIGRATION = { individual: 'journey', smb: 'journey', enterprise: 'pro' }
+const normaliseTier = (t) => TIER_MIGRATION[t] || t
+
 export default async function handler(req, res) {
   if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' })
 
@@ -44,7 +48,7 @@ export default async function handler(req, res) {
 
     // Step 3: Extract entitlement details from session metadata
     const userId = session.metadata?.userId || session.client_reference_id
-    const tierId = session.metadata?.tierId
+    const tierId = normaliseTier(session.metadata?.tierId)
     const interval = session.metadata?.interval || 'monthly'
 
     if (!userId || !tierId) {
