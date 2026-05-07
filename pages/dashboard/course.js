@@ -368,10 +368,9 @@ export default function CoursePage() {
                   <div className="flex items-center gap-2 flex-wrap">
                     <span className="px-3 py-1 bg-blue/10 border border-blue/25 rounded-full text-xs font-display font-bold text-blue-bright">Module {activeLesson.moduleNumber}</span>
                     {activeLesson.duration && <span className="text-xs text-muted">{activeLesson.duration}</span>}
-                    {activeLesson.tier && activeLesson.tier !== 'individual' && <TierBadge tier={activeLesson.tier} label={activeLesson.tier === 'smb' ? 'Business' : 'Enterprise'} />}
+                    {activeLesson.tier && activeLesson.tier !== 'parents' && <TierBadge tier={activeLesson.tier} label={activeLesson.tier === 'pro' ? 'Pro' : 'Journey'} />}
                     {isCompleted(activeLessonId) && <span className="px-3 py-1 bg-success/10 border border-success/25 rounded-full text-xs font-display font-bold text-success">✓ Complete</span>}
                   </div>
-                  <ThemeToggle compact />
                 </div>
                 <h1 className="font-display font-black leading-tight mb-2" style={{ fontSize: 'clamp(22px,3vw,34px)' }}>{activeLesson.title}</h1>
                 <p className="text-muted">{activeLesson.moduleTitle}</p>
