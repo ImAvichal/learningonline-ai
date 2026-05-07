@@ -1,0 +1,483 @@
+import React from 'react'
+// components/ui.js — LeO AI shared UI primitives
+import Link from 'next/link'
+import { useState, useEffect, useRef } from 'react'
+import { useAuth } from '../lib/auth'
+import { useTheme } from '../lib/theme'
+import { useTranslation, LANGUAGES } from '../lib/i18n'
+
+export const BRAND = {
+  name:    'LeO AI',
+  tagline: 'AI That Actually Works In Your Business',
+  domain:  'learningonline.ai',
+  email:   'hello@learningonline.ai',
+}
+
+
+
+
+export function LanguageSwitcher({ compact = false }) {
+  const { lang, setLang } = useTranslation()
+  const [open, setOpen] = useState(false)
+  const current = LANGUAGES.find(l => l.code === lang) || LANGUAGES[0]
+
+  useEffect(() => {
+    if (!open) return
+    const handler = (e) => { if (!e.target.closest('[data-lang-toggle]')) setOpen(false) }
+    document.addEventListener('mousedown', handler)
+    return () => document.removeEventListener('mousedown', handler)
+  }, [open])
+
+  return (
+    <div className="relative" data-lang-toggle>
+      <button
+        onClick={() => setOpen(v => !v)}
+        className={`flex items-center gap-1.5 rounded-lg border border-white/10 text-muted hover:text-white hover:border-white/20 transition-all font-display font-bold ${
+          compact ? 'px-2 py-1.5 text-xs' : 'px-2.5 py-1.5 text-xs'
+        }`}
+        title={`Language: ${current.label}`}
+        aria-label="Change language"
+      >
+        <span style={{fontSize:'12px'}}>🌐</span>
+        {!compact && <span className="hidden sm:inline">{current.label}</span>}
+      </button>
+      {open && (
+        <div className="absolute right-0 top-full mt-2 rounded-xl overflow-hidden z-50 min-w-[170px]"
+          style={{background:'var(--navy-mid)',border:'1px solid rgba(255,255,255,0.1)',boxShadow:'0 8px 32px rgba(0,0,0,0.3)'}}>
+          <div className="px-3 py-2 border-b border-white/5">
+            <span className="text-[10px] font-display font-bold text-muted uppercase tracking-wider">Language</span>
+          </div>
+          {LANGUAGES.map(opt => (
+            <button
+              key={opt.code}
+              onClick={() => { setLang(opt.code); setOpen(false) }}
+              className={`w-full flex items-center gap-2.5 px-3 py-2.5 text-xs font-display font-bold transition-colors ${
+                lang === opt.code ? 'bg-blue/15 text-white' : 'text-muted hover:text-white hover:bg-white/5'
+              }`}
+            >
+              <span>{opt.label}</span>
+              {opt.beta && (
+                <span className="text-[9px] px-1.5 py-0.5 bg-amber-400/15 text-amber-400 rounded ml-auto">Beta</span>
+              )}
+              {!opt.beta && lang === opt.code && <span className="ml-auto text-blue text-xs">✓</span>}
+              {opt.beta && lang === opt.code && <span className="text-blue text-xs">✓</span>}
+            </button>
+          ))}
+        </div>
+      )}
+    </div>
+  )
+}
+
+// ── Theme Toggle ──────────────────────────────────────────────────────────────
+export function ThemeToggle({ compact = false }) {
+  const { theme, setTheme, resolvedTheme } = useTheme()
+  const options = [
+    { value: 'dark',   icon: '🌙', label: 'Dark',   desc: 'Always dark' },
+    { value: 'light',  icon: '☀️', label: 'Light',  desc: 'Always light' },
+    { value: 'system', icon: '💻', label: 'System', desc: 'Follow OS' },
+  ]
+  const current = options.find(o => o.value === theme) || options[0]
+  const [open, setOpen] = useState(false)
+
+  // Close on outside click
+  useEffect(() => {
+    if (!open) return
+    const handler = (e) => { if (!e.target.closest('[data-theme-toggle]')) setOpen(false) }
+    document.addEventListener('mousedown', handler)
+    return () => document.removeEventListener('mousedown', handler)
+  }, [open])
+
+  return (
+    <div className="relative" data-theme-toggle>
+      <button
+        onClick={() => setOpen(v => !v)}
+        className={`flex items-center gap-1.5 rounded-lg border border-white/10 text-muted hover:text-white hover:border-white/20 transition-all font-display font-bold ${
+          compact ? 'px-2 py-1.5 text-xs' : 'px-2.5 py-1.5 text-xs'
+        }`}
+        title={`Theme: ${current.label} — click to change`}
+      >
+        <span style={{fontSize:'14px'}}>{current.icon}</span>
+        {!compact && <span className="hidden sm:inline">{current.label}</span>}
+      </button>
+      {open && (
+        <div className="absolute right-0 top-full mt-2 rounded-xl overflow-hidden z-50 min-w-[150px]"
+          style={{background:'var(--navy-mid)',border:'1px solid rgba(255,255,255,0.1)',boxShadow:'0 8px 32px rgba(0,0,0,0.3)'}}>
+          <div className="px-3 py-2 border-b border-white/5">
+            <span className="text-[10px] font-display font-bold text-muted uppercase tracking-wider">Display Theme</span>
+          </div>
+          {options.map(opt => (
+            <button
+              key={opt.value}
+              onClick={() => { setTheme(opt.value); setOpen(false) }}
+              className={`w-full flex items-center gap-2.5 px-3 py-2.5 text-xs font-display font-bold transition-colors ${
+                theme === opt.value
+                  ? 'bg-blue/15 text-white'
+                  : 'text-muted hover:text-white hover:bg-white/5'
+              }`}
+            >
+              <span style={{fontSize:'14px'}}>{opt.icon}</span>
+              <div className="text-left">
+                <div>{opt.label}</div>
+                <div className="text-[10px] opacity-60 font-normal">{opt.desc}</div>
+              </div>
+              {theme === opt.value && <span className="ml-auto text-blue text-xs">✓</span>}
+            </button>
+          ))}
+        </div>
+      )}
+    </div>
+  )
+}
+
+// ── Logo ─────────────────────────────────────────────────────────────────────
+export function Logo({ size = 'md', linked = true }) {
+  const sizes = { sm: 'text-base', md: 'text-xl', lg: 'text-2xl' }
+  const el = (
+    <span className={`font-display font-black ${sizes[size]}`} style={{letterSpacing: '-0.02em'}}>
+      <span style={{letterSpacing: '-0.04em'}}>LeO</span>{' '}<span className="text-blue">AI</span>
+    </span>
+  )
+  return linked ? <Link href="/">{el}</Link> : el
+}
+
+// ── Nav ───────────────────────────────────────────────────────────────────────
+export function Nav({ transparent = false }) {
+  const { t } = useTranslation()
+  const { user, logout } = useAuth()
+  const [scrolled, setScrolled] = useState(false)
+  const [open,     setOpen]     = useState(false)
+
+  useEffect(() => {
+    const h = () => setScrolled(window.scrollY > 16)
+    window.addEventListener('scroll', h)
+    return () => window.removeEventListener('scroll', h)
+  }, [])
+
+  return (
+    <nav className={`fixed top-0 inset-x-0 z-50 h-16 transition-all duration-300 ${
+      scrolled || !transparent
+        ? 'bg-navy/90 backdrop-blur-xl border-b border-white/5'
+        : 'bg-transparent'
+    }`}>
+      <div className="max-w-6xl mx-auto px-6 h-full flex items-center justify-between gap-6">
+        <Logo />
+        <div className="hidden md:flex items-center gap-5 flex-1 justify-end mr-4">
+          <NavLink href="/">Home</NavLink>
+          <NavLink href="/model-selection">{t("nav.modelSelection")}</NavLink>
+          <NavLink href="/roi-calculator">{t("nav.valueCalculator")}</NavLink>
+          <NavLink href="/glossary">{t("nav.glossary")}</NavLink>
+          <NavLink href="/roadmap">{t("nav.roadmap")}</NavLink>
+          <NavLink href="/about">{t("nav.about")}</NavLink>
+        </div>
+        <div className="hidden md:flex items-center gap-3">
+          {!user && (
+            <>
+              <NavLink href="/login">{t("common.signIn")}</NavLink>
+            </>
+          )}
+          {user && !user.tier && !user.isDevUser && (
+            <>
+              <span className="text-xs text-gray-700 dark:text-gray-300 font-display">G'day{user.name ? `, ${user.name.split(' ')[0]}` : ''}</span>
+              <button onClick={logout} className="text-xs text-muted hover:text-white transition-colors">Sign Out</button>
+            </>
+          )}
+          {(user?.tier || user?.isDevUser) && (
+            <>
+              <NavLink href="/dashboard">{t("common.dashboard")}</NavLink>
+              <span className="text-xs text-gray-700 dark:text-gray-300 font-display">G'day{user.name ? `, ${user.name.split(' ')[0]}` : ''}</span>
+              <button onClick={logout} className="text-xs text-muted hover:text-white transition-colors">Sign Out</button>
+            </>
+          )}
+        </div>
+        <button className="md:hidden text-muted p-1" onClick={() => setOpen(v => !v)}>
+          <svg width="22" height="22" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+            {open ? <path d="M6 18L18 6M6 6l12 12"/> : <path d="M3 12h18M3 6h18M3 18h18"/>}
+          </svg>
+        </button>
+      </div>
+      {open && (
+        <div className="md:hidden bg-navy-mid border-t border-white/5 px-6 py-4 space-y-3">
+          <MobileLink href="/" onClick={() => setOpen(false)}>Home</MobileLink>
+          <MobileLink href="/model-selection" onClick={() => setOpen(false)}>Choosing the Right AI</MobileLink>
+          <MobileLink href="/roi-calculator"    onClick={() => setOpen(false)}>Value Calculator</MobileLink>
+          <MobileLink href="/glossary" onClick={() => setOpen(false)}>Jargon Buster</MobileLink>
+          <MobileLink href="/roadmap" onClick={() => setOpen(false)}>Learning Evolution</MobileLink>
+          <MobileLink href="/about" onClick={() => setOpen(false)}>About</MobileLink>
+          {!user && (
+            <>
+              <MobileLink href="/login"   onClick={() => setOpen(false)} bold>Sign In →</MobileLink>
+            </>
+          )}
+          {user && !user.tier && !user.isDevUser && (
+            <>
+
+              <div className="flex items-center justify-between">
+                <span className="text-xs text-gray-700 dark:text-gray-300 font-display">G'day{user.name ? `, ${user.name.split(' ')[0]}` : ''}</span>
+                <button onClick={() => { logout(); setOpen(false) }}
+                  className="text-xs text-muted">Sign Out</button>
+              </div>
+            </>
+          )}
+          {(user?.tier || user?.isDevUser) && (
+            <MobileLink href="/dashboard" onClick={() => setOpen(false)}>Dashboard</MobileLink>
+          )}
+        </div>
+      )}
+    </nav>
+  )
+}
+
+const NavLink    = ({ href, children }) => <Link href={href} className="text-xs text-muted hover:text-white transition-colors">{children}</Link>
+const MobileLink = ({ href, children, onClick, bold }) => (
+  <Link href={href} onClick={onClick} className={`block text-sm ${bold ? 'font-display font-bold text-blue' : 'text-muted'}`}>{children}</Link>
+)
+
+// ── Dashboard Sidebar ─────────────────────────────────────────────────────────
+export function Sidebar({ activeTab, onTab, user }) {
+  const { logout } = useAuth()
+  const initial = user?.name?.[0]?.toUpperCase() || 'S'
+  const tabs = [
+    { id: 'home',      icon: '⬛', label: 'Dashboard' },
+    { id: 'course',    icon: '📚', label: 'My Course' },
+    { id: 'account',   icon: '👤', label: 'Account' },
+  ]
+  return (
+    <aside className="hidden lg:flex flex-col w-56 bg-navy-mid border-r border-white/5 fixed inset-y-0 left-0 z-30">
+      <div className="px-5 pt-6 pb-4 border-b border-white/5">
+        <Logo size="sm" />
+        <div className="text-[9px] text-muted tracking-[2px] uppercase mt-1">learningonline.ai</div>
+      </div>
+      <nav className="flex-1 p-3 space-y-0.5 overflow-y-auto">
+        {tabs.map(t => (
+          <button key={t.id} onClick={() => onTab(t.id)}
+            className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm transition-all ${
+              activeTab === t.id
+                ? 'bg-blue/10 text-white font-display font-bold border border-blue/20'
+                : 'text-muted hover:text-white hover:bg-white/[0.03]'
+            }`}>
+            <span className="text-base w-5 text-center">{t.icon}</span>{t.label}
+          </button>
+        ))}
+      </nav>
+      <div className="p-4 border-t border-white/5">
+        {user?.tier && <TierBadge tier={user.tier} className="mb-3 w-full justify-center text-center" />}
+        <div className="flex items-center gap-2.5 mb-3">
+          <div className="w-8 h-8 rounded-full bg-blue/20 border border-blue/30 flex items-center justify-center text-xs font-display font-bold text-blue-bright flex-shrink-0">
+            {initial}
+          </div>
+          <div className="min-w-0">
+            <div className="text-xs font-display font-bold text-white truncate">{user?.name}</div>
+            <div className="text-[10px] text-muted truncate">{user?.email}</div>
+          </div>
+        </div>
+        <button onClick={logout} className="text-xs text-muted hover:text-white w-full text-left">Sign Out →</button>
+      </div>
+    </aside>
+  )
+}
+
+// ── Primitives ────────────────────────────────────────────────────────────────
+export function Button({ children, variant = 'primary', href, onClick, type = 'button', disabled = false, className = '' }) {
+  const base = 'inline-flex items-center justify-center gap-2 font-display font-bold text-sm rounded-lg transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed'
+  const v = {
+    primary: 'px-6 py-3 bg-blue hover:bg-blue-bright text-white shadow-[0_0_24px_rgba(26,110,255,0.35)] hover:-translate-y-px',
+    ghost:   'px-6 py-3 border border-white/10 text-muted hover:text-white hover:border-blue hover:bg-blue/10',
+    success: 'px-5 py-2.5 bg-success/10 border border-success/30 text-success hover:bg-success/20',
+    large:   'px-8 py-4 text-base bg-blue hover:bg-blue-bright text-white shadow-[0_0_30px_rgba(26,110,255,0.4)] hover:-translate-y-0.5',
+  }
+  const cls = `${base} ${v[variant]} ${className}`
+  if (href) return <Link href={href} className={cls}>{children}</Link>
+  return <button type={type} className={cls} onClick={onClick} disabled={disabled}>{children}</button>
+}
+
+export function Card({ children, className = '', glow = false, hover = false }) {
+  return (
+    <div className={`bg-white/[0.03] border border-white/[0.07] rounded-xl
+      ${glow  ? 'shadow-[0_0_40px_rgba(26,110,255,0.08)] border-blue/20' : ''}
+      ${hover ? 'hover:border-blue/40 hover:-translate-y-1 transition-all duration-300' : ''}
+      ${className}`}>
+      {children}
+    </div>
+  )
+}
+
+export function ProgressBar({ value, className = '', color = 'blue' }) {
+  const c = { blue: 'bg-blue', success: 'bg-success', amber: 'bg-amber-400', purple: 'bg-purple-400' }
+  return (
+    <div className={`h-1.5 bg-white/5 rounded-full overflow-hidden ${className}`}>
+      <div className={`h-full ${c[color]} rounded-full transition-all duration-700`}
+        style={{ width: `${Math.max(0, Math.min(100, value))}%` }} />
+    </div>
+  )
+}
+
+export function Input({ label, error, className = '', ...props }) {
+  return (
+    <div className={className}>
+      {label && <label className="block text-xs font-display font-bold text-muted uppercase tracking-wider mb-2">{label}</label>}
+      <input className="w-full bg-white/[0.04] border border-white/[0.08] rounded-lg px-4 py-3 text-white text-sm placeholder-muted/50 outline-none focus:border-blue focus:bg-blue/[0.03] transition-colors" {...props} />
+      {error && <p className="mt-1.5 text-xs text-red-400">{error}</p>}
+    </div>
+  )
+}
+
+export function SectionLabel({ children, className = '' }) {
+  return <span className={`block font-display text-xs font-bold tracking-[3px] uppercase text-blue mb-4 ${className}`}>{children}</span>
+}
+
+
+// ── Language Beta Banner ──────────────────────────────────────────────────────
+// Shows when user is using a beta language to set expectations clearly
+export function LanguageBetaBanner() {
+  const { lang, t } = useTranslation()
+  if (lang === 'en') return null
+  return (
+    <div className="bg-amber-50 border-b border-amber-200 px-4 py-2 text-center text-xs text-amber-900">
+      <span className="font-bold">⚠ {t('common.beta')}:</span> {t('languageNotice.betaWarning')}
+    </div>
+  )
+}
+
+export function TierBadge({ tier, label, className = '' }) {
+  const cfg = {
+    parents:    { cls: 'tier-parents',    text: label || 'AI for Parents' },
+    journey:    { cls: 'tier-journey',    text: label || 'Starting the Journey' },
+    pro:        { cls: 'tier-pro',        text: label || 'The Pro' },
+    // Legacy aliases for any data still using old IDs
+    individual: { cls: 'tier-journey',    text: label || 'Starting the Journey' },
+    smb:        { cls: 'tier-journey',    text: label || 'Starting the Journey' },
+    enterprise: { cls: 'tier-pro',        text: label || 'The Pro' },
+  }
+  const c = cfg[tier] || cfg.journey
+  return (
+    <span className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-display font-bold ${c.cls} ${className}`}>
+      {c.text}
+    </span>
+  )
+}
+
+
+export function BillingToggle({ interval, onChange, className = '' }) {
+  return (
+    <div className={`inline-flex items-center gap-3 ${className}`}>
+      <div className="inline-flex items-center gap-0.5 p-0.5 bg-gray-100 dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-lg">
+        <button
+          onClick={() => onChange('monthly')}
+          className={`px-4 py-1.5 text-xs font-display font-bold rounded transition-all ${
+            interval === 'monthly'
+              ? 'bg-white dark:bg-white/10 text-gray-900 dark:text-white shadow-sm'
+              : 'text-gray-500 dark:text-white/40 hover:text-gray-700 dark:hover:text-white/60'
+          }`}
+        >
+          Monthly
+        </button>
+        <button
+          onClick={() => onChange('annual')}
+          className={`px-4 py-1.5 text-xs font-display font-bold rounded transition-all ${
+            interval === 'annual'
+              ? 'bg-white dark:bg-white/10 text-gray-900 dark:text-white shadow-sm'
+              : 'text-gray-500 dark:text-white/40 hover:text-gray-700 dark:hover:text-white/60'
+          }`}
+        >
+          Annual
+        </button>
+      </div>
+      {interval === 'annual' && (
+        <span className="text-[10px] font-display font-bold text-success">Best value</span>
+      )}
+    </div>
+  )
+}
+
+export function Spinner({ size = 'sm' }) {
+  const s = { sm: 'w-4 h-4', md: 'w-6 h-6', lg: 'w-8 h-8' }
+  return (
+    <svg className={`animate-spin ${s[size]}`} fill="none" viewBox="0 0 24 24">
+      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
+    </svg>
+  )
+}
+
+export function Reveal({ children, delay = 0, className = '' }) {
+  const ref = useRef(null)
+  const [vis, setVis] = useState(false)
+  useEffect(() => {
+    const obs = new IntersectionObserver(([e]) => { if (e.isIntersecting) setVis(true) }, { threshold: 0.08 })
+    if (ref.current) obs.observe(ref.current)
+    return () => obs.disconnect()
+  }, [])
+  return (
+    <div ref={ref} style={{ transitionDelay: `${delay}ms` }}
+      className={`transition-all duration-700 ${vis ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-7'} ${className}`}>
+      {children}
+    </div>
+  )
+}
+
+/* ── Lesson Feedback ── */
+export function LessonFeedback({ user, moduleId, lessonId }) {
+  const [rating, setRating]     = React.useState(null)
+  const [text, setText]         = React.useState('')
+  const [sent, setSent]         = React.useState(false)
+  const [sending, setSending]   = React.useState(false)
+
+  // Reset state when navigating to a different lesson
+  React.useEffect(() => {
+    setRating(null)
+    setText('')
+    setSent(false)
+    setSending(false)
+  }, [moduleId, lessonId])
+
+  const submit = async () => {
+    if (!rating && !text.trim()) return
+    setSending(true)
+    try {
+      const { supabase } = await import('../lib/auth')
+      await supabase.from('lesson_feedback').insert({
+        user_id:   user?.id || null,
+        module_id: moduleId,
+        lesson_id: lessonId,
+        rating,
+        feedback:  text.trim() || null,
+        created_at: new Date().toISOString(),
+      })
+    } catch (e) { console.error('Feedback error:', e) }
+    setSent(true)
+    setSending(false)
+  }
+
+  if (sent) return (
+    <div className="mt-8 p-5 rounded-xl border border-success/20 bg-success/[0.03] text-center">
+      <p className="text-success font-display font-bold text-sm">Thanks for your feedback!</p>
+    </div>
+  )
+
+  return (
+    <div className="mt-8 p-5 rounded-xl border border-white/8 bg-white/[0.02]">
+      <p className="font-display font-bold text-sm mb-1">Help Us Improve</p>
+      <p className="text-xs text-muted mb-4">Was this lesson helpful? Share feedback so we can continue improving.</p>
+      <div className="flex gap-2 mb-3">
+        {['👍', '👎'].map((emoji, i) => (
+          <button key={i} onClick={() => setRating(i === 0 ? 'positive' : 'negative')}
+            className={`px-4 py-2 rounded-lg border text-lg transition-all ${
+              rating === (i === 0 ? 'positive' : 'negative')
+                ? 'border-blue bg-blue/10 scale-110'
+                : 'border-white/10 hover:border-white/20'
+            }`}>{emoji}</button>
+        ))}
+      </div>
+      <textarea value={text} onChange={e => setText(e.target.value)}
+        placeholder="Optional: any suggestions or issues..."
+        rows={2}
+        className="w-full bg-white/[0.03] border border-white/8 rounded-lg px-3 py-2 text-sm text-white placeholder:text-white/20 resize-none focus:outline-none focus:border-blue/40 mb-3" />
+      <button onClick={submit} disabled={sending || (!rating && !text.trim())}
+        className="px-5 py-2 rounded-lg bg-blue/10 border border-blue/30 text-blue-bright text-xs font-display font-bold hover:bg-blue/20 transition-all disabled:opacity-30 disabled:cursor-not-allowed">
+        {sending ? 'Sending...' : 'Submit Feedback'}
+      </button>
+    </div>
+  )
+}
+
