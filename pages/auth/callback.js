@@ -58,21 +58,24 @@ export default function AuthCallback() {
         || 'User'
 
       // Check if profile exists
-      const { data: existing } = await supabase
+      const { data: existingArr } = await supabase
         .from('users_profile')
         .select('id, selected_tier, user_type')
         .eq('id', authUser.id)
-        .single()
+        .limit(1)
+      const existing = existingArr?.[0] || null
 
       if (!existing) {
         // Create new profile — no tier granted
-        await supabase.from('users_profile').insert({
+        // Use upsert with ignoreDuplicates so existing rows don't trigger 409
+        const { error: insertErr } = await supabase.from('users_profile').upsert({
           id:            authUser.id,
           email:         authUser.email,
           full_name:     fullName,
           user_type:     'prospect',
           selected_tier: null,
-        })
+        }, { onConflict: 'id', ignoreDuplicates: true })
+        if (insertErr) console.warn('Profile creation skipped (already exists):', insertErr.message)
       }
 
       // ── Entitlement check ────────────────────────────────────────────────
@@ -81,14 +84,14 @@ export default function AuthCallback() {
       const profile = existing || { selected_tier: null }
 
       // Check for valid purchase
-      const { data: purchase } = await supabase
+      const { data: purchaseArr } = await supabase
         .from('purchases')
         .select('tier, payment_status')
         .eq('user_id', authUser.id)
         .in('payment_status', ['paid', 'complete', 'completed'])
         .order('created_at', { ascending: false })
         .limit(1)
-        .single()
+      const purchase = purchaseArr?.[0] || null
 
       const activeTier = purchase?.tier || profile?.selected_tier || null
 
