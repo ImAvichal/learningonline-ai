@@ -1,0 +1,292 @@
+// data/tiers.js — Pricing structure: Free Parents + Starting the Journey + The Pro
+// Subscription pricing (monthly + annual)
+
+export const TIERS = {
+  parents: {
+    id: 'parents',
+    name: 'AI for Parents',
+    label: 'Free Module',
+    price: 0,
+    priceDisplay: 'Free',
+    priceMonthly: 0,
+    priceAnnual: 0,
+    billing: 'Free \u00b7 Sign in required',
+    colorClass: 'tier-parents',
+    description: 'A practical, reassuring guide for parents wanting to better understand how AI is shaping how children learn, think, communicate, and grow.',
+    idealFor: 'Parents and caregivers wanting healthier AI conversations and sensible boundaries at home.',
+    notFor: 'Business professionals looking for AI implementation guidance.',
+    features: [
+      '9 practical lessons for parents',
+      'What AI is and how kids use it',
+      'Benefits vs risks',
+      'Warning signs and conversation starters',
+      'Practical household rules and boundaries',
+      'AI for Parents downloadable guide',
+      'No cost \u2014 just sign in',
+    ],
+    modules: [],
+    cta: 'Start Free Module',
+    highlighted: false,
+    stripeEnvKeyMonthly: null,
+    stripeEnvKeyAnnual: null,
+    free: true,
+    route: '/parents',
+  },
+
+  journey: {
+    id: 'journey',
+    name: 'Starting the Journey',
+    label: 'Starting the Journey',
+    price: 45,
+    priceDisplay: '$45/mo',
+    priceMonthly: 45,
+    priceAnnual: 399,
+    priceMonthlyDisplay: '$45/mo',
+    priceAnnualDisplay: '$399/yr',
+    billing: '$45/month or $399/yr',
+    colorClass: 'tier-journey',
+    description: 'Practical AI awareness, foundational learning, and operational implementation guidance.',
+    idealFor: 'Professionals, team members, business owners, and operational leaders wanting practical AI capability.',
+    notFor: 'Enterprise leaders requiring orchestration, governance, and full operating-model design.',
+    features: [
+      'Foundational AI learning and model awareness',
+      'Prompts, context, tools, and practical use',
+      'Use case identification and prioritisation',
+      'Workflow design and ROI frameworks',
+      'Data readiness and people/change adoption',
+      'Downloadable guides and templates',
+      'Ongoing updates within the current release cycle',
+    ],
+    modules: [1, 2, 3, 4, 5, 6, 7, 8, 9, 12],
+    cta: 'Start the Journey',
+    highlighted: true,
+    stripeEnvKeyMonthly: 'STRIPE_PRICE_JOURNEY_MONTHLY',
+    stripeEnvKeyAnnual: 'STRIPE_PRICE_JOURNEY_ANNUAL',
+  },
+
+  pro: {
+    id: 'pro',
+    name: 'The Pro',
+    label: 'The Pro',
+    price: 75,
+    priceDisplay: '$75/mo',
+    priceMonthly: 75,
+    priceAnnual: 699,
+    priceMonthlyDisplay: '$75/mo',
+    priceAnnualDisplay: '$699/yr',
+    billing: '$75/month or $699/yr',
+    colorClass: 'tier-pro',
+    description: 'For leaders driving enterprise-scale AI adoption \u2014 orchestration, governance, operating models, and long-term transformation.',
+    idealFor: 'CIOs, transformation directors, senior leaders, and enterprise teams responsible for scalable AI adoption.',
+    notFor: 'Professionals just beginning their AI journey \u2014 Starting the Journey is the right place to start.',
+    features: [
+      'Everything in Starting the Journey',
+      'Enterprise AI operating model',
+      'Responsible AI and governance',
+      'Sustainability and AI impact planning',
+      'Multimodal AI orchestration',
+      'AI economics and cost management',
+      '90-day execution roadmap',
+      'All 40 cumulative learning modules',
+    ],
+    modules: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+    cta: 'Journey to Pro',
+    highlighted: false,
+    stripeEnvKeyMonthly: 'STRIPE_PRICE_PRO_MONTHLY',
+    stripeEnvKeyAnnual: 'STRIPE_PRICE_PRO_ANNUAL',
+  },
+}
+
+export const TIER_ORDER = ['journey', 'pro']
+export const DISPLAY_ORDER = ['parents', 'journey', 'pro']
+export const FREE_TIERS = ['parents']
+
+export const canAccessTier = (userTier, contentTier) =>
+  TIER_ORDER.indexOf(userTier) >= TIER_ORDER.indexOf(contentTier)
+
+export const INDUSTRIES = [
+  {
+    id: 'government', icon: '🏛️', name: 'Government & Public Sector',
+    useCases: ['FOI request summarisation and triage', 'Policy document compliance checking', 'Constituent enquiry routing and response drafting', 'Procurement document review and risk flagging', 'Cross-department reporting automation'],
+    recommendedTier: 'pro',
+    outcome: 'Reduce administrative burden by 40–60% while improving service delivery consistency.',
+  },
+  {
+    id: 'healthcare', icon: '🏥', name: 'Healthcare & Medical',
+    useCases: ['Clinical notes summarisation for handover', 'Patient enquiry triage and routing', 'Compliance and audit documentation', 'Medical record review and flagging', 'Staff rostering and scheduling optimisation'],
+    recommendedTier: 'pro',
+    outcome: 'Reduce clinician administrative time by up to 30%, freeing capacity for patient care.',
+  },
+  {
+    id: 'hospitality', icon: '🏨', name: 'Hospitality & Tourism',
+    useCases: ['Guest enquiry and booking response automation', 'Review sentiment analysis and response drafting', 'Staff shift handover summaries', 'Supplier and inventory communication', 'Personalised guest experience recommendations'],
+    recommendedTier: 'journey',
+    outcome: 'Improve guest response times by 70% and free staff for high-value interactions.',
+  },
+  {
+    id: 'travel', icon: '✈️', name: 'Travel & Transport',
+    useCases: ['Disruption communication drafting and sending', 'Customer rebooking triage and prioritisation', 'Complaint summarisation and escalation routing', 'Route and schedule optimisation insights', 'Regulatory reporting automation'],
+    recommendedTier: 'journey',
+    outcome: 'Handle 3× the disruption volume with the same team during peak periods.',
+  },
+  {
+    id: 'financial', icon: '🏦', name: 'Financial Services',
+    useCases: ['KYC document review and risk summarisation', 'Customer complaint triage and response', 'Regulatory report drafting and checking', 'Fraud signal detection and alerting', 'Advisor meeting notes and action extraction'],
+    recommendedTier: 'pro',
+    outcome: 'Reduce compliance processing time by 50% while improving audit trail quality.',
+  },
+  {
+    id: 'retail', icon: '🛒', name: 'Retail & E-commerce',
+    useCases: ['Customer service enquiry automation', 'Product description and content generation', 'Inventory demand forecasting signals', 'Returns and refund triage', 'Competitor and market monitoring summaries'],
+    recommendedTier: 'journey',
+    outcome: 'Automate 60% of routine customer interactions and halve returns processing time.',
+  },
+  {
+    id: 'professional', icon: '💼', name: 'Professional Services',
+    useCases: ['Proposal and tender document drafting', 'Meeting notes and action item extraction', 'Client report generation from data', 'Contract review and risk summarisation', 'Billing narrative and timesheet generation'],
+    recommendedTier: 'journey',
+    outcome: 'Reclaim 6–8 hours per consultant per week from administrative work.',
+  },
+  {
+    id: 'education', icon: '📚', name: 'Education & Training',
+    useCases: ['Student enquiry routing and FAQ automation', 'Course content summarisation and adaptation', 'Assessment feedback generation assistance', 'Administrative reporting and compliance', 'Staff onboarding and knowledge management'],
+    recommendedTier: 'journey',
+    outcome: 'Reduce administrative burden on educators by 40%, improving focus on student outcomes.',
+  },
+]
+
+export const REGIONAL_PRICING = {
+  AU: {
+    currency: 'AUD',
+    symbol: '$',
+    plans: {
+      journey: {
+        monthly: {
+          amount: 45,
+          label: '$45/mo',
+          stripeEnvKey: 'STRIPE_PRICE_JOURNEY_MONTHLY',
+        },
+        annual: {
+          amount: 399,
+          label: '$399/yr',
+          stripeEnvKey: 'STRIPE_PRICE_JOURNEY_ANNUAL',
+        },
+      },
+      pro: {
+        monthly: {
+          amount: 75,
+          label: '$75/mo',
+          stripeEnvKey: 'STRIPE_PRICE_PRO_MONTHLY',
+        },
+        annual: {
+          amount: 699,
+          label: '$699/yr',
+          stripeEnvKey: 'STRIPE_PRICE_PRO_ANNUAL',
+        },
+      },
+    },
+  },
+  IN: {
+    currency: 'INR',
+    symbol: '\u20b9',
+    plans: {
+      journey: {
+        monthly: {
+          amount: 999,
+          label: '\u20b9999/mo',
+          stripeEnvKey: 'STRIPE_PRICE_JOURNEY_MONTHLY_INR',
+        },
+        annual: {
+          amount: 4999,
+          label: '\u20b94,999/yr',
+          stripeEnvKey: 'STRIPE_PRICE_JOURNEY_ANNUAL_INR',
+        },
+      },
+      pro: {
+        monthly: {
+          amount: 1999,
+          label: '\u20b91,999/mo',
+          stripeEnvKey: 'STRIPE_PRICE_PRO_MONTHLY_INR',
+        },
+        annual: {
+          amount: 9999,
+          label: '\u20b99,999/yr',
+          stripeEnvKey: 'STRIPE_PRICE_PRO_ANNUAL_INR',
+        },
+      },
+    },
+  },
+  PH: {
+    currency: 'PHP',
+    symbol: '\u20b1',
+    plans: {
+      journey: {
+        monthly: {
+          amount: 599,
+          label: '\u20b1599/mo',
+          stripeEnvKey: 'STRIPE_PRICE_JOURNEY_MONTHLY_PHP',
+        },
+        annual: {
+          amount: 5499,
+          label: '\u20b15,499/yr',
+          stripeEnvKey: 'STRIPE_PRICE_JOURNEY_ANNUAL_PHP',
+        },
+      },
+      pro: {
+        monthly: {
+          amount: 999,
+          label: '\u20b1999/mo',
+          stripeEnvKey: 'STRIPE_PRICE_PRO_MONTHLY_PHP',
+        },
+        annual: {
+          amount: 9499,
+          label: '\u20b19,499/yr',
+          stripeEnvKey: 'STRIPE_PRICE_PRO_ANNUAL_PHP',
+        },
+      },
+    },
+  },
+  US: {
+    currency: 'USD',
+    symbol: '$',
+    plans: {
+      journey: {
+        monthly: {
+          amount: 39,
+          label: '$39/mo',
+          stripeEnvKey: 'STRIPE_PRICE_JOURNEY_MONTHLY_USD',
+        },
+        annual: {
+          amount: 349,
+          label: '$349/yr',
+          stripeEnvKey: 'STRIPE_PRICE_JOURNEY_ANNUAL_USD',
+        },
+      },
+      pro: {
+        monthly: {
+          amount: 65,
+          label: '$65/mo',
+          stripeEnvKey: 'STRIPE_PRICE_PRO_MONTHLY_USD',
+        },
+        annual: {
+          amount: 599,
+          label: '$599/yr',
+          stripeEnvKey: 'STRIPE_PRICE_PRO_ANNUAL_USD',
+        },
+      },
+    },
+  },
+}
+
+export const DEFAULT_REGION = 'AU'
+
+// Helper: get pricing label for a tier + interval + region
+export function getPriceLabel(tierId, interval, region = DEFAULT_REGION) {
+  const config = REGIONAL_PRICING[region] || REGIONAL_PRICING[DEFAULT_REGION]
+  return config?.plans?.[tierId]?.[interval]?.label || ''
+}
+
+// Helper: get currency symbol for region
+export function getCurrencySymbol(region = DEFAULT_REGION) {
+  return REGIONAL_PRICING[region]?.symbol || '$'
+}
