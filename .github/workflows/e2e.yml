@@ -1,0 +1,78 @@
+# .github/workflows/e2e.yml
+# Runs E2E tests on every PR + nightly against production preview.
+
+name: E2E Tests
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  schedule:
+    - cron: '0 17 * * *'  # 03:00 AEST daily
+
+jobs:
+  smoke:
+    name: Smoke tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: '20', cache: 'npm' }
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - run: npx playwright test smoke
+        env:
+          TEST_BASE_URL: https://www.learningonline.ai
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: playwright-smoke-report
+          path: playwright-report/
+
+  journeys:
+    name: User journey tests
+    runs-on: ubuntu-latest
+    needs: smoke
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: '20', cache: 'npm' }
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - run: npx playwright test parents-journey
+        env:
+          TEST_BASE_URL: https://www.learningonline.ai
+          TEST_USER_EMAIL: ${{ secrets.TEST_USER_EMAIL }}
+          TEST_USER_PASSWORD: ${{ secrets.TEST_USER_PASSWORD }}
+          NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
+          NEXT_PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.NEXT_PUBLIC_SUPABASE_ANON_KEY }}
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: playwright-journey-report
+          path: playwright-report/
+
+  # Only runs on schedule (nightly), not every PR — Stripe test mode but slow
+  payment:
+    name: Payment flow tests
+    runs-on: ubuntu-latest
+    if: github.event_name == 'schedule'
+    needs: smoke
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: '20', cache: 'npm' }
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - run: npx playwright test payment-flow
+        env:
+          TEST_BASE_URL: https://www.learningonline.ai
+          NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
+          NEXT_PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.NEXT_PUBLIC_SUPABASE_ANON_KEY }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+          STRIPE_SECRET_KEY: ${{ secrets.STRIPE_SECRET_KEY_TEST }}
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: playwright-payment-report
+          path: playwright-report/
