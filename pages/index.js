@@ -587,7 +587,19 @@ export default function Home() {
             <h2 className="font-display font-bold text-4xl mb-4">Stop experimenting. Start delivering.</h2>
             <p className="text-muted text-lg mb-8">Practical AI capability, built one focused module at a time.</p>
             <div className="flex flex-wrap gap-4 justify-center">
-              <Button variant="large" href="#learning-tracks">Find My Program ↑</Button>
+              <a href="#learning-tracks"
+                onClick={(e) => {
+                  e.preventDefault()
+                  const target = document.getElementById('learning-tracks')
+                  if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' })
+                    // Update URL hash without triggering navigation
+                    history.replaceState(null, '', '#learning-tracks')
+                  }
+                }}
+                className="inline-flex items-center justify-center gap-2 font-display font-bold text-base rounded-lg transition-all duration-200 px-8 py-4 bg-blue hover:bg-blue-bright text-white shadow-[0_0_30px_rgba(26,110,255,0.4)] hover:-translate-y-0.5 cursor-pointer">
+                Find My Program ↑
+              </a>
               <Button variant="ghost" href="/pricing" className="text-base px-8 py-4">View All Pricing</Button>
             </div>
           </Reveal>
