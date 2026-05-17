@@ -736,7 +736,20 @@ User: [case history text]</pre>
 <p><strong>Why it matters:</strong> AI bias and governance failures are not edge cases — they're predictable outcomes of deploying AI without responsible design.</p>
 <p><strong>Implementation tip:</strong> Before any AI deployment, complete a Responsible AI checklist covering: bias testing, explainability requirements, data privacy review, governance ownership, and incident response plan.</p>
 <p><strong>💡 What This Saves You:</strong> Responsible AI design prevents the most catastrophic AI outcomes — regulatory action, litigation, and reputational damage — which routinely cost 100× more than the prevention.</p>
-</div>`,
+</div>
+<div class="further-reading-box">
+<h3>📚 Further Reading</h3>
+<p>On building AI that is fair, governed, and compliant — including the regulatory landscape you can't ignore from August 2026.</p>
+<ul>
+<li><strong>European Commission — "The AI Act" (official text and overview)</strong> — The first comprehensive AI law worldwide. Applies in EU from 2 August 2026 with risk-tiered obligations. Has extraterritorial reach — affects any AI used by EU customers regardless of where your business is headquartered. <a href="https://digital-strategy.ec.europa.eu/en/policies/regulatory-framework-ai" target="_blank" rel="noopener">digital-strategy.ec.europa.eu/en/policies/regulatory-framework-ai</a></li>
+<li><strong>NIST — AI Risk Management Framework (AI RMF)</strong> — The de facto US standard for AI governance. Four pillars: Govern, Map, Measure, Manage. Now used as procurement criteria by federal agencies and increasingly by enterprise buyers globally. <a href="https://www.nist.gov/itl/ai-risk-management-framework" target="_blank" rel="noopener">www.nist.gov/itl/ai-risk-management-framework</a></li>
+<li><strong>Databricks — "Responsible AI Governance: A Practical Framework for Business Leaders"</strong> — Maps the EU AI Act, NIST RMF, and OECD principles into a single operational framework. Useful synthesis for teams reconciling multiple regulatory regimes. <a href="https://www.databricks.com/blog/responsible-ai-governance" target="_blank" rel="noopener">www.databricks.com/blog/responsible-ai-governance</a></li>
+<li><strong>Sombra — "Ultimate Guide to AI Regulations and Governance in 2026"</strong> — Plain-language summary of where global AI regulation actually stands today — EU AI Act, NIST RMF, ISO/IEC 42001 — and how they interact. <a href="https://sombrainc.com/blog/ai-regulations-2026-eu-ai-act" target="_blank" rel="noopener">sombrainc.com/blog/ai-regulations-2026-eu-ai-act</a></li>
+<li><strong>Harvard DCE — "Building a Responsible AI Framework: 5 Key Principles"</strong> — Five practical principles for AI ethics that boards and leaders can actually implement — useful when responsible AI feels abstract. <a href="https://professional.dce.harvard.edu/blog/building-a-responsible-ai-framework-5-key-principles-for-organizations/" target="_blank" rel="noopener">professional.dce.harvard.edu/blog/building-a-responsible-ai-framework-5-key-principles-for-organizations</a></li>
+</ul>
+<p><em>None of these are affiliated with LeO AI. They\'re here because they\'re genuinely useful.</em></p>
+</div>
+`,
       },
     ],
     quiz: {
@@ -778,7 +791,20 @@ User: [case history text]</pre>
 <p><strong>Why it matters:</strong> As ESG reporting requirements expand, AI's environmental impact will become a material disclosure item for many organisations. Building sustainable AI practices now avoids future compliance costs.</p>
 <p><strong>Implementation tip:</strong> Add an "AI Energy Efficiency" metric to your AI governance dashboard: track tokens consumed per unit of value delivered. Optimise this metric over time as you would any operational efficiency metric.</p>
 <p><strong>💡 What This Saves You:</strong> Sustainable AI practices reduce operating costs by 20–50% through right-sizing and caching while positioning your organisation ahead of emerging ESG disclosure requirements for AI.</p>
-</div>`,
+</div>
+<div class="further-reading-box">
+<h3>📚 Further Reading</h3>
+<p>On AI's environmental footprint — peer-reviewed research, not vendor marketing.</p>
+<ul>
+<li><strong>ScienceDirect — "The carbon and water footprints of data centres and what this could mean for AI"</strong> — Peer-reviewed estimate that AI systems in 2025 had a carbon footprint comparable to New York City, water footprint near global bottled water consumption. Cited extensively in 2026 sustainability reporting. <a href="https://www.sciencedirect.com/science/article/pii/S2666389925002788" target="_blank" rel="noopener">www.sciencedirect.com/science/article/pii/S2666389925002788</a></li>
+<li><strong>Cornell University / Nature Sustainability — "Environmental impact of AI data centre boom"</strong> — Published Nov 2025. Models the trajectory of AI infrastructure growth and shows that with smart siting + grid decarbonisation + operational efficiency, environmental impacts could be cut by 73% (CO2) and 86% (water). <a href="https://news.cornell.edu/stories/2025/11/roadmap-shows-environmental-impact-ai-data-center-boom" target="_blank" rel="noopener">news.cornell.edu/stories/2025/11/roadmap-shows-environmental-impact-ai-data-center-boom</a></li>
+<li><strong>Euronews — "AI data centres could have a carbon footprint matching a small European country"</strong> — Accessible summary of recent academic findings. Notes that no major tech company currently reports AI-specific environmental metrics despite acknowledging AI as a key energy driver. <a href="https://www.euronews.com/next/2025/12/20/ai-data-centres-could-have-a-carbon-footprint-that-matches-small-european-country-new-stud" target="_blank" rel="noopener">www.euronews.com/next/2025/12/20/ai-data-centres-could-have-a-carbon-footprint-that-matches-small-european-country-new-stud</a></li>
+<li><strong>European Commission — "AI data centre waste heat could be used for water purification and carbon capture"</strong> — Emerging research on making AI infrastructure water-positive and carbon-negative. Forward-looking but credible — sourced from EU environmental policy. <a href="https://environment.ec.europa.eu/news/ai-data-centre-waste-heat-could-be-used-water-purification-and-carbon-capture-2026-03-30_en" target="_blank" rel="noopener">environment.ec.europa.eu/news/ai-data-centre-waste-heat-could-be-used-water-purification-and-carbon-capture-2026-03-30_en</a></li>
+<li><strong>Climate Impact Partners — "The Carbon Footprint of AI"</strong> — Practical guide for organisations that want to take action: choosing greener providers, right-sizing models, supporting better disclosure standards. <a href="https://www.climateimpact.com/news-insights/insights/carbon-footprint-of-ai/" target="_blank" rel="noopener">www.climateimpact.com/news-insights/insights/carbon-footprint-of-ai</a></li>
+</ul>
+<p><em>None of these are affiliated with LeO AI. They\'re here because they\'re genuinely useful.</em></p>
+</div>
+`,
       },
     ],
     quiz: {
@@ -835,7 +861,20 @@ Standard Q&A responses   → Automated   → Escalations & experience design</pr
 <p><strong>Why it matters:</strong> How you frame AI transformation determines whether your best people stay and adopt it, or leave and undermine it.</p>
 <p><strong>Implementation tip:</strong> Before announcing any AI initiative, draft the "opportunity map" — a concrete description of what people will do with the time recovered. Make this the centrepiece of your communication, not the technology.</p>
 <p><strong>💡 What This Saves You:</strong> Effective change management prevents the 40–70% of AI programs that technically succeed but fail through non-adoption — delivering none of the projected value despite full investment.</p>
-</div>`,
+</div>
+<div class="further-reading-box">
+<h3>📚 Further Reading</h3>
+<p>On managing the human side of AI transformation — where most AI programs actually succeed or fail.</p>
+<ul>
+<li><strong>Knowledge at Wharton — "AI Adoption Is a Challenge. Here's a Solution."</strong> — Notes 31% of US knowledge workers actively work against their company's AI initiatives. Introduces the AWARE framework — addressing competence, autonomy, and relatedness. <a href="https://knowledge.wharton.upenn.edu/article/ai-adoption-is-a-challenge-heres-a-solution/" target="_blank" rel="noopener">knowledge.wharton.upenn.edu/article/ai-adoption-is-a-challenge-heres-a-solution</a></li>
+<li><strong>Harvard Business School Online — "Overcome Barriers to AI Adoption with the Right Strategy"</strong> — Includes the often-quoted line from Moderna CEO Stéphane Bancel: "The biggest challenge to becoming an AI company is a change management challenge." Practical strategies for getting past that. <a href="https://online.hbs.edu/blog/post/ai-adoption-barriers" target="_blank" rel="noopener">online.hbs.edu/blog/post/ai-adoption-barriers</a></li>
+<li><strong>Prosci — "AI Adoption: Driving Change With a People-First Approach"</strong> — Research from 1,107 professionals shows 63% of organisations cite human factors as their primary AI implementation challenge — not technology. Practical guide from the change management methodology leader. <a href="https://www.prosci.com/blog/ai-adoption" target="_blank" rel="noopener">www.prosci.com/blog/ai-adoption</a></li>
+<li><strong>McKinsey — "The Gen AI Skills Revolution: A New Talent Strategy"</strong> — Why thinking in skills (not roles) is the right frame for workforce planning during AI transformation. Practical guidance on what to upskill and how. <a href="https://www.mckinsey.com/capabilities/tech-and-ai/our-insights/the-gen-ai-skills-revolution-rethinking-your-talent-strategy" target="_blank" rel="noopener">www.mckinsey.com/capabilities/tech-and-ai/our-insights/the-gen-ai-skills-revolution-rethinking-your-talent-strategy</a></li>
+<li><strong>McKinsey — "Building a Talent Pipeline for the AI Era"</strong> — Beth Cobert and Bryan Hancock on building experience and judgment in workforce members as AI handles entry-level work. Strong on opportunity mapping and career path design. <a href="https://www.mckinsey.com/capabilities/people-and-organizational-performance/our-insights/building-a-talent-pipeline-for-the-ai-era" target="_blank" rel="noopener">www.mckinsey.com/capabilities/people-and-organizational-performance/our-insights/building-a-talent-pipeline-for-the-ai-era</a></li>
+</ul>
+<p><em>None of these are affiliated with LeO AI. They\'re here because they\'re genuinely useful.</em></p>
+</div>
+`,
       },
     ],
     quiz: {
@@ -890,7 +929,20 @@ Standard Q&A responses   → Automated   → Escalations & experience design</pr
 <p><strong>Why it matters:</strong> Multimodal AI enables workflows that are genuinely impossible with human-only processes at scale — not just the same process done faster.</p>
 <p><strong>Implementation tip:</strong> Start with one modality, prove value, then add the second modality to the same workflow. The jump from text-only to text+image is the highest-value first multimodal step for most businesses.</p>
 <p><strong>💡 What This Saves You:</strong> Multimodal AI design prevents the "AI ceiling" — the point where you've automated all your text workflows and wonder what's next. Multimodal is what's next.</p>
-</div>`,
+</div>
+<div class="further-reading-box">
+<h3>📚 Further Reading</h3>
+<p>On designing systems where multiple models, modalities, or agents coordinate to do what a single one cannot.</p>
+<ul>
+<li><strong>Microsoft Azure Architecture Centre — "AI Agent Orchestration Patterns"</strong> — Canonical reference on orchestration patterns: sequential, group chat, handoff, magentic, concurrent. Includes HITL integration approaches for each. Cloud-agnostic principles even if you're not on Azure. <a href="https://learn.microsoft.com/en-us/azure/architecture/ai-ml/guide/ai-agent-design-patterns" target="_blank" rel="noopener">learn.microsoft.com/en-us/azure/architecture/ai-ml/guide/ai-agent-design-patterns</a></li>
+<li><strong>MindStudio — "Multi-Agent Orchestration: How to Build Agent Teams That Actually Work"</strong> — Four core production patterns (orchestrator-worker, split-and-merge, planner-generator-evaluator, consensus). Strong on reliability engineering — idempotent operations, checkpoints, human gates. <a href="https://www.mindstudio.ai/blog/multi-agent-orchestration-patterns" target="_blank" rel="noopener">www.mindstudio.ai/blog/multi-agent-orchestration-patterns</a></li>
+<li><strong>AWS — "Multi-Agent Collaboration Patterns with Strands Agents and Amazon Nova"</strong> — Four collaboration patterns (Agents as Tools, Swarm Agents, Agent Graphs, Agent Workflows) with worked examples. AWS-flavoured but the patterns generalise. <a href="https://aws.amazon.com/blogs/machine-learning/multi-agent-collaboration-patterns-with-strands-agents-and-amazon-nova/" target="_blank" rel="noopener">aws.amazon.com/blogs/machine-learning/multi-agent-collaboration-patterns-with-strands-agents-and-amazon-nova</a></li>
+<li><strong>arXiv — "A Practical Guide for Designing, Developing, and Deploying Production-Grade Agentic AI Workflows" (Dec 2025)</strong> — Recent research paper with nine concrete best practices for production agentic systems, including a worked multimodal news-analysis + media-generation case study. <a href="https://arxiv.org/pdf/2512.08769" target="_blank" rel="noopener">arxiv.org/pdf/2512.08769</a></li>
+<li><strong>Guru — "Multi-Agent Orchestration: How to Coordinate AI Agents at Scale"</strong> — Plain-language overview of agent communication protocols (MCP, A2A), task routing, and lifecycle management. Includes comparison of major frameworks (LangGraph, CrewAI). <a href="https://gurusup.com/blog/multi-agent-orchestration-guide" target="_blank" rel="noopener">gurusup.com/blog/multi-agent-orchestration-guide</a></li>
+</ul>
+<p><em>None of these are affiliated with LeO AI. They\'re here because they\'re genuinely useful.</em></p>
+</div>
+`,
       },
     ],
     quiz: {
@@ -981,7 +1033,20 @@ Week 12 — Measure & Report
 <p><strong>Why it matters:</strong> A delivered 60% solution is worth infinitely more than a perfect solution that never ships.</p>
 <p><strong>Implementation tip:</strong> Create a "parking lot" for good ideas that arrive mid-project. Write them down, acknowledge them, commit to evaluating them in the next planning cycle. This respects the idea without derailing the delivery.</p>
 <p><strong>💡 What This Saves You:</strong> Disciplined 90-day execution produces the proof of value that funds every subsequent AI investment. Without it, AI programs are perpetually "in progress" and perpetually vulnerable to cancellation.</p>
-</div>`,
+</div>
+<div class="further-reading-box">
+<h3>📚 Further Reading</h3>
+<p>On executing AI deployments in 90 days — what works, what stalls, and which patterns actually ship to production.</p>
+<ul>
+<li><strong>EC-Council — "AI Implementation Roadmap: From PoC to Production in 90 Days"</strong> — Program-manager perspective on the disciplined 90-day path. Strong on accountability, checkpoints, and risk management — the operational backbone the technical roadmap depends on. <a href="https://www.eccouncil.org/cybersecurity-exchange/ai-program-manager/ai-implementation-roadmap-90-days-poc-to-production/" target="_blank" rel="noopener">www.eccouncil.org/cybersecurity-exchange/ai-program-manager/ai-implementation-roadmap-90-days-poc-to-production</a></li>
+<li><strong>AI Assembly Lines — "What Is a 90-Day AI Roadmap? Quick-Start Framework for Enterprise Operations Leaders"</strong> — Cites McKinsey State of AI 2025: 88% of organisations use AI somewhere, only 33% scale across the enterprise. Practical sprint plan to bridge that gap. <a href="https://aiassemblylines.com/post/what-is-a-90-day-ai-roadmap-enterprise-quick-start" target="_blank" rel="noopener">aiassemblylines.com/post/what-is-a-90-day-ai-roadmap-enterprise-quick-start</a></li>
+<li><strong>Helium42 — "AI Implementation Roadmap: Week-by-Week Plan and Milestones" (May 2026)</strong> — Based on 200+ workshops. Week-by-week milestones, stakeholder role definitions, and the importance of front-loading AI literacy work that most roadmaps defer until too late. <a href="https://helium42.com/blog/ai-implementation-roadmap" target="_blank" rel="noopener">helium42.com/blog/ai-implementation-roadmap</a></li>
+<li><strong>Knowlee — "AI Workforce Implementation Roadmap 2026: 90-Day Operator Plan"</strong> — Production-focused 90-day plan with explicit go/no-go decision gates between phases. Strong on starting narrow rather than broad, and pilot design that doesn't drift into theory. <a href="https://www.knowlee.ai/blog/ai-workforce-implementation-roadmap-2026" target="_blank" rel="noopener">www.knowlee.ai/blog/ai-workforce-implementation-roadmap-2026</a></li>
+<li><strong>Aisera — "Agentic AI Implementation: A 90-Day Roadmap for Enterprise Scale"</strong> — Useful complementary perspective focused specifically on agent-based use cases. Outcome-based ROI metrics (ticket deflection, MTTR, operational efficiency) rather than vanity metrics. <a href="https://aisera.com/blog/agentic-ai-implementation/" target="_blank" rel="noopener">aisera.com/blog/agentic-ai-implementation</a></li>
+</ul>
+<p><em>None of these are affiliated with LeO AI. They\'re here because they\'re genuinely useful.</em></p>
+</div>
+`,
       },
     ],
     quiz: {
