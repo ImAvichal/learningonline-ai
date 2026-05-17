@@ -401,7 +401,20 @@ Pattern 5: AI Decides → Human Monitors
 <p><strong>Why it matters:</strong> Workflow design determines whether AI gets used, not just whether it works.</p>
 <p><strong>Implementation tip:</strong> Walk your workflow blueprint with the people who will actually use it — before you build. A one-hour walkthrough prevents three months of rework.</p>
 <p><strong>💡 What This Saves You:</strong> Proper workflow design prevents the most common post-deployment failure — a working AI tool that nobody uses because the workflow wasn't designed for real conditions.</p>
-</div>`,
+</div>
+<div class="further-reading-box">
+<h3>📚 Further Reading</h3>
+<p>On designing workflows where AI and humans work together — when AI acts, when humans gate, and when both are needed.</p>
+<ul>
+<li><strong>Elementum AI — "Human-in-the-Loop Workflows: A Complete Guide"</strong> — Distinguishes HITL (human approves each output) from HOTL (human monitors aggregate behaviour). Notes EU AI Act Article 14 now mandates HITL for high-risk systems. <a href="https://www.elementum.ai/blog/human-in-the-loop-workflows" target="_blank" rel="noopener">www.elementum.ai/blog/human-in-the-loop-workflows</a></li>
+<li><strong>Elementum AI — "Human-in-the-Loop Agentic AI: When You Need Both"</strong> — Decision framework for embedding human oversight in agent workflows across finance, healthcare, customer service, and IT operations. <a href="https://www.elementum.ai/blog/human-in-the-loop-agentic-ai" target="_blank" rel="noopener">www.elementum.ai/blog/human-in-the-loop-agentic-ai</a></li>
+<li><strong>StackAI — "Human-in-the-Loop AI Agents: Designing Approval Workflows"</strong> — Practical patterns for separation of duties, auditability, and approval queues — including the critical principle that gating after a side effect isn't approval. <a href="https://www.stackai.com/insights/human-in-the-loop-ai-agents-how-to-design-approval-workflows-for-safe-and-scalable-automation" target="_blank" rel="noopener">www.stackai.com/insights/human-in-the-loop-ai-agents-how-to-design-approval-workflows-for-safe-and-scalable-automation</a></li>
+<li><strong>Microsoft — "Building Human-in-the-loop AI Workflows with Microsoft Agent Framework"</strong> — Walkthrough using a fraud detection example, combining deterministic orchestration with autonomous AI agents — useful pattern reference even if you're not on Microsoft stack. <a href="https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/building-human-in-the-loop-ai-workflows-with-microsoft-agent-framework/4460342" target="_blank" rel="noopener">techcommunity.microsoft.com/blog/azure-ai-foundry-blog/building-human-in-the-loop-ai-workflows-with-microsoft-agent-framework/4460342</a></li>
+<li><strong>Synvestable — "Human-in-the-Loop AI: Complete Implementation Guide 2026"</strong> — Step-by-step decision framework for mapping each workflow to the right oversight model — start with HITL by default, graduate to HOTL with monitoring. <a href="https://www.synvestable.com/human-in-the-loop.html" target="_blank" rel="noopener">www.synvestable.com/human-in-the-loop.html</a></li>
+</ul>
+<p><em>None of these are affiliated with LeO AI. They\'re here because they\'re genuinely useful.</em></p>
+</div>
+`,
       },
     ],
     quiz: {
@@ -448,7 +461,20 @@ Step 6: MONITOR    → Ongoing quality tracking in production</pre>
 <p><strong>Why it matters:</strong> Data problems discovered in production are 10× more expensive to fix than data problems discovered before build.</p>
 <p><strong>Implementation tip:</strong> Run a data quality audit on your intended AI data source before writing a single line of code or prompt. Score it across the 5 dimensions. Anything below 3/5 on quality or structure needs remediation before proceeding.</p>
 <p><strong>💡 What This Saves You:</strong> A data readiness assessment before build typically saves 2–4 months of rework and prevents the most demoralising outcome in AI programs — a technically correct system producing wrong answers.</p>
-</div>`,
+</div>
+<div class="further-reading-box">
+<h3>📚 Further Reading</h3>
+<p>On preparing data so AI delivers reliable outputs — not confidently bad ones.</p>
+<ul>
+<li><strong>Agility at Scale — "Data Readiness Assessment for AI: Checklist, Framework, and Scoring"</strong> — Five dimensions of data readiness (Quality, Governance, Architecture, Discoverability, Compliance) with a structured scoring approach against your specific use case. <a href="https://agility-at-scale.com/ai/data/data-readiness-assessment-for-ai/" target="_blank" rel="noopener">agility-at-scale.com/ai/data/data-readiness-assessment-for-ai</a></li>
+<li><strong>ACM Computing Surveys — "Data Readiness for AI: A 360-Degree Survey" (peer-reviewed)</strong> — Comprehensive academic survey of data readiness evaluation methods. Useful for teams wanting depth and rigour, not just vendor checklists. <a href="https://dl.acm.org/doi/abs/10.1145/3722214" target="_blank" rel="noopener">dl.acm.org/doi/abs/10.1145/3722214</a></li>
+<li><strong>IBM Research — "Data Quality Toolkit: Automatic assessment and remediation for ML datasets"</strong> — Open-source toolkit you can actually run on your data. Detects, explains, and remediates common quality issues — practical not theoretical. <a href="https://arxiv.org/pdf/2108.05935" target="_blank" rel="noopener">arxiv.org/pdf/2108.05935</a></li>
+<li><strong>IBM Research — "Data Readiness Report" (paper)</strong> — The concept of a 'Data Readiness Report' as standing documentation for any dataset entering an AI pipeline — record of quality checks and transformations applied. <a href="https://arxiv.org/pdf/2010.07213" target="_blank" rel="noopener">arxiv.org/pdf/2010.07213</a></li>
+<li><strong>dbt Labs — "AI Readiness: How to Assess and Improve"</strong> — Vendor-agnostic readiness framework covering data quality, infrastructure scalability, governance, and leadership alignment. Short and practical. <a href="https://www.getdbt.com/blog/ai-readiness" target="_blank" rel="noopener">www.getdbt.com/blog/ai-readiness</a></li>
+</ul>
+<p><em>None of these are affiliated with LeO AI. They\'re here because they\'re genuinely useful.</em></p>
+</div>
+`,
       },
     ],
     quiz: {
@@ -500,7 +526,20 @@ Pattern 4 — Agent Pattern
 <p><strong>Why it matters:</strong> Model selection is a business decision, not just a technical one. Always benchmark before committing.</p>
 <p><strong>Implementation tip:</strong> Create a model evaluation matrix for your specific use case — score each candidate on accuracy, speed, cost, and data privacy compliance. Run 100 real examples before deciding.</p>
 <p><strong>💡 What This Saves You:</strong> Structured architecture decisions save organisations an average of 40–70% in AI infrastructure costs compared to choosing based on brand recognition alone.</p>
-</div>`,
+</div>
+<div class="further-reading-box">
+<h3>📚 Further Reading</h3>
+<p>Practical references on model selection, pricing comparisons, and architecture decisions — keep these bookmarked, the landscape moves quickly.</p>
+<ul>
+<li><strong>BenchLM.ai — "LLM API Pricing Comparison 2026"</strong> — Current pricing for every major model with cost-per-task analysis. Live pricing table updated regularly. The reference to bookmark. <a href="https://benchlm.ai/blog/posts/llm-pricing-2026" target="_blank" rel="noopener">benchlm.ai/blog/posts/llm-pricing-2026</a></li>
+<li><strong>CloudZero — "LLM API Pricing Comparison In 2026: Every Major Model, Ranked By Cost"</strong> — Includes a five-step framework for converting per-token pricing into cost-per-completed-task — the metric your CFO actually cares about. <a href="https://www.cloudzero.com/blog/llm-api-pricing-comparison/" target="_blank" rel="noopener">www.cloudzero.com/blog/llm-api-pricing-comparison</a></li>
+<li><strong>Iternal — "The Definitive LLM Selection & Benchmarks Guide"</strong> — Routing different requests to different models based on task complexity, latency, and cost. Quarterly-updated benchmark scores across all major models. <a href="https://iternal.ai/llm-selection-guide" target="_blank" rel="noopener">iternal.ai/llm-selection-guide</a></li>
+<li><strong>Premai — "SLM vs. LLM: The Enterprise Decision Guide With Real Cost Data"</strong> — When a smaller specialised model beats a frontier model — including the break-even point for self-hosting (around 2M tokens/day). <a href="https://blog.premai.io/slm-vs-llm-the-enterprise-decision-guide-with-real-cost-data-and-benchmarks/" target="_blank" rel="noopener">blog.premai.io/slm-vs-llm-the-enterprise-decision-guide-with-real-cost-data-and-benchmarks</a></li>
+<li><strong>Grazitti — "Enterprise LLM Evaluation, Comparison & Selection Playbook"</strong> — Proprietary vs open-source vs specialised model trade-offs, with compliance and customisation factors built in. <a href="https://www.grazitti.com/blog/the-complete-guide-to-enterprise-llm-evaluation-comparison-and-management/" target="_blank" rel="noopener">www.grazitti.com/blog/the-complete-guide-to-enterprise-llm-evaluation-comparison-and-management</a></li>
+</ul>
+<p><em>None of these are affiliated with LeO AI. They\'re here because they\'re genuinely useful.</em></p>
+</div>
+`,
       },
     ],
     quiz: {
@@ -571,7 +610,20 @@ User: [case history text]</pre>
 <p><strong>Why it matters:</strong> Production failures erode trust in AI faster than any other cause. One bad output seen by the wrong person can set a program back by months.</p>
 <p><strong>Implementation tip:</strong> Collect 200 real examples from production data before testing. Include the 10% most unusual cases. If your prompt handles those, it handles anything.</p>
 <p><strong>💡 What This Saves You:</strong> Systematic prompt testing before deployment prevents the trust damage of public AI failures — which typically cost 3–6 months of adoption recovery time.</p>
-</div>`,
+</div>
+<div class="further-reading-box">
+<h3>📚 Further Reading</h3>
+<p>On prompt design and testing — the difference between a prompt that works in demos and one that survives production.</p>
+<ul>
+<li><strong>Anthropic — Prompt Engineering documentation</strong> — Official, regularly updated guidance from one of the major model labs. Covers chain-of-thought, examples, system prompts, XML tags for structure. <a href="https://docs.claude.com/en/docs/build-with-claude/prompt-engineering/overview" target="_blank" rel="noopener">docs.claude.com/en/docs/build-with-claude/prompt-engineering/overview</a></li>
+<li><strong>Anthropic — AI Fluency course (free, Deep Dive 2: Effective Prompting)</strong> — Free structured course covering effective prompting techniques and evaluation. Accessible to non-engineers. <a href="https://www.anthropic.com/ai-fluency" target="_blank" rel="noopener">www.anthropic.com/ai-fluency</a></li>
+<li><strong>Steve Kinney — "Prompt Engineering Across the OpenAI, Anthropic, and Gemini APIs"</strong> — Practical guide for writing reliable prompts across providers. Strong on the difference between 'works' and 'works reliably' — which is where production breaks. <a href="https://stevekinney.com/writing/prompt-engineering-frontier-llms" target="_blank" rel="noopener">stevekinney.com/writing/prompt-engineering-frontier-llms</a></li>
+<li><strong>AWS Bedrock — "Prompt engineering techniques and best practices: Learn by doing with Anthropic's Claude"</strong> — Hands-on walkthrough with worked examples. Good starting point if you're new to structured prompting. <a href="https://aws.amazon.com/blogs/machine-learning/prompt-engineering-techniques-and-best-practices-learn-by-doing-with-anthropics-claude-3-on-amazon-bedrock/" target="_blank" rel="noopener">aws.amazon.com/blogs/machine-learning/prompt-engineering-techniques-and-best-practices-learn-by-doing-with-anthropics-claude-3-on-amazon-bedrock</a></li>
+<li><strong>Google — Chain-of-Thought Prompting paper (Wei et al., 2022)</strong> — The foundational research paper that established chain-of-thought prompting. Worth reading once even if you only ever apply it as a technique. <a href="https://arxiv.org/abs/2201.11903" target="_blank" rel="noopener">arxiv.org/abs/2201.11903</a></li>
+</ul>
+<p><em>None of these are affiliated with LeO AI. They\'re here because they\'re genuinely useful.</em></p>
+</div>
+`,
       },
     ],
     quiz: {
@@ -624,7 +676,20 @@ User: [case history text]</pre>
 <p><strong>Why it matters:</strong> Measurement design must happen before go-live — you can't establish a baseline retrospectively.</p>
 <p><strong>Implementation tip:</strong> Spend one week measuring baseline metrics before deploying AI. Time each process step. Count errors. Record volumes. This data is your proof of value.</p>
 <p><strong>💡 What This Saves You:</strong> A properly measured AI program is virtually immune to budget cuts. An unmeasured one is cancelled at the first sign of organisational pressure.</p>
-</div>`,
+</div>
+<div class="further-reading-box">
+<h3>📚 Further Reading</h3>
+<p>On measuring AI value with metrics that actually connect to business outcomes — not vanity metrics.</p>
+<ul>
+<li><strong>Agility at Scale — "AI Performance Metrics and KPIs: The Complete Enterprise Guide"</strong> — Three-bucket framework (Model Quality, System Quality, Business Impact) with 34+ specific indicators. Most comprehensive single resource on AI measurement. <a href="https://agility-at-scale.com/ai/strategy/performance-metrics-and-kpis/" target="_blank" rel="noopener">agility-at-scale.com/ai/strategy/performance-metrics-and-kpis</a></li>
+<li><strong>Agility at Scale — "Generative AI KPIs: Enterprise Metrics for Measuring AI Performance"</strong> — GenAI-specific extension of the framework above. Adds Human-AI Interaction and Ethical/Environmental considerations as distinct measurement categories. <a href="https://agility-at-scale.com/ai/generative/genai-performance-metrics-and-kpis/" target="_blank" rel="noopener">agility-at-scale.com/ai/generative/genai-performance-metrics-and-kpis</a></li>
+<li><strong>Gartner — "AI Value Metrics That Actually Prove ROI to Your Board"</strong> — Ten board-level metrics that translate AI operational gains into financial outcomes the CFO and board recognise. <a href="https://www.gartner.com/en/articles/ai-value-metrics" target="_blank" rel="noopener">www.gartner.com/en/articles/ai-value-metrics</a></li>
+<li><strong>MIT Sloan Management Review — Smart KPI research</strong> — Research showing 90% of organisations using AI to enhance KPIs report meaningful improvements — when measurement is designed in from the start, not bolted on. <a href="https://sloanreview.mit.edu/article/the-future-of-strategic-measurement-enhancing-kpis-with-ai/" target="_blank" rel="noopener">sloanreview.mit.edu/article/the-future-of-strategic-measurement-enhancing-kpis-with-ai</a></li>
+<li><strong>Larridin — "AI Measurement Frameworks: Building Repeatable Assessment Process"</strong> — Practical four-element framework. Notes the typical 84% finding: organisations discover more AI tools in use than they realised once they audit properly. <a href="https://larridin.com/blog/ai-measurement-framework" target="_blank" rel="noopener">larridin.com/blog/ai-measurement-framework</a></li>
+</ul>
+<p><em>None of these are affiliated with LeO AI. They\'re here because they\'re genuinely useful.</em></p>
+</div>
+`,
       },
     ],
     quiz: {
