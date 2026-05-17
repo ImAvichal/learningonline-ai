@@ -163,7 +163,20 @@ At 10,000 calls per day: $75/day · $2,250/month</pre>
 <p><strong>Why it matters:</strong> Each missing role creates a specific type of failure. Knowing which role is weak tells you exactly where your program will break.</p>
 <p><strong>Implementation tip:</strong> Complete the Role Mapping template before writing a single line of code or prompt. Names against each role — not departments.</p>
 <p><strong>💡 What This Saves You:</strong> Clear role mapping prevents the two most common and expensive AI program failures: governance blockers and adoption collapse.</p>
-</div>`,
+</div>
+<div class="further-reading-box">
+<h3>📚 Further Reading</h3>
+<p>Curated sources on AI program structure, role design, and accountability — chosen for practitioners, not theorists.</p>
+<ul>
+<li><strong>McKinsey — "Rethink Management and Talent for Agentic AI" (Nov 2025)</strong> — Argues that managers must orchestrate humans + AI agents; helpful framing for the kind of role redefinition this module covers. <a href="https://www.mckinsey.com/capabilities/people-and-organizational-performance/our-insights/the-organization-blog/rethink-management-and-talent-for-agentic-ai" target="_blank" rel="noopener">www.mckinsey.com/capabilities/people-and-organizational-performance/our-insights/the-organization-blog/rethink-management-and-talent-for-agentic-ai</a></li>
+<li><strong>McKinsey — "The Critical Role of Strategic Workforce Planning in the Age of AI"</strong> — Specific guidance on workforce planning when AI changes role definitions — closely aligned with the Five Roles framework. <a href="https://www.mckinsey.com/capabilities/people-and-organizational-performance/our-insights/the-critical-role-of-strategic-workforce-planning-in-the-age-of-ai" target="_blank" rel="noopener">www.mckinsey.com/capabilities/people-and-organizational-performance/our-insights/the-critical-role-of-strategic-workforce-planning-in-the-age-of-ai</a></li>
+<li><strong>Harvard Law School Forum — "How Boards Can Lead in a World Remade by AI" (Feb 2026)</strong> — Board-level perspective on AI accountability. Useful for translating role clarity to governance. <a href="https://corpgov.law.harvard.edu/2026/02/19/how-boards-can-lead-in-a-world-remade-by-ai/" target="_blank" rel="noopener">corpgov.law.harvard.edu/2026/02/19/how-boards-can-lead-in-a-world-remade-by-ai/</a></li>
+<li><strong>IBM — "Guide for Implementing an AI Governance Framework"</strong> — Defines specific role types (Model Owners, Risk Officers, Business Unit Leads, MLOps) and what each is accountable for. <a href="https://www.ibm.com/think/insights/ai-governance-implementation" target="_blank" rel="noopener">www.ibm.com/think/insights/ai-governance-implementation</a></li>
+<li><strong>McKinsey — "Redesigning Technology Workforce for the Agentic AI Era"</strong> — Practical view on rebalancing tech hiring, capability building, and vendor strategy when AI changes how teams work. <a href="https://www.mckinsey.com/capabilities/mckinsey-technology/our-insights/designing-an-end-to-end-technology-workforce-for-the-ai-first-era" target="_blank" rel="noopener">www.mckinsey.com/capabilities/mckinsey-technology/our-insights/designing-an-end-to-end-technology-workforce-for-the-ai-first-era</a></li>
+</ul>
+<p><em>None of these are affiliated with LeO AI. They\'re here because they\'re genuinely useful.</em></p>
+</div>
+`,
       },
     ],
     quiz: {
@@ -210,7 +223,20 @@ Low Value   │ Avoid        │ Low-hanging
 <p><strong>Why it matters:</strong> Starting with the right use case creates the proof of concept that funds the next five.</p>
 <p><strong>Implementation tip:</strong> Run a "time audit" — ask 10 people across different functions to log tasks for one week. The highest-volume, most repetitive items are your first wave of opportunities.</p>
 <p><strong>💡 What This Saves You:</strong> Selecting the right first use case prevents the most expensive mistake in AI programs — spending 6 months on a complex use case that fails, demoralising the team and exhausting the budget.</p>
-</div>`,
+</div>
+<div class="further-reading-box">
+<h3>📚 Further Reading</h3>
+<p>Sources on identifying AI use cases that have actually delivered value in production — not aspirational demos.</p>
+<ul>
+<li><strong>OpenAI — "Identifying and Scaling AI Use Cases" (PDF, ~30 pages)</strong> — Free downloadable guide based on 600+ customer use cases. Categorises where AI works best and where it doesn't. <a href="https://cdn.openai.com/business-guides-and-resources/identifying-and-scaling-ai-use-cases.pdf" target="_blank" rel="noopener">cdn.openai.com/business-guides-and-resources/identifying-and-scaling-ai-use-cases.pdf</a></li>
+<li><strong>Stanford Digital Economy Lab — "The Enterprise AI Playbook: Lessons from 51 Successful Deployments"</strong> — Empirical study of real production AI deployments — what worked, what didn't, what no vendor whitepaper will tell you. <a href="https://digitaleconomy.stanford.edu/publication/enterprise-ai-playbook/" target="_blank" rel="noopener">digitaleconomy.stanford.edu/publication/enterprise-ai-playbook/</a></li>
+<li><strong>Gartner — "AI Value Metrics That Actually Prove ROI to Your Board"</strong> — 10 specific metrics that connect AI use cases to board-level financial outcomes. <a href="https://www.gartner.com/en/articles/ai-value-metrics" target="_blank" rel="noopener">www.gartner.com/en/articles/ai-value-metrics</a></li>
+<li><strong>Agility at Scale — "AI Use Case Identification and Prioritization Framework"</strong> — Synthesises 12+ vendor frameworks (OpenAI, Google, Microsoft, EY, Capgemini) into a single practical scoring approach. <a href="https://agility-at-scale.com/ai/strategy/ai-use-case-identification-and-prioritization/" target="_blank" rel="noopener">agility-at-scale.com/ai/strategy/ai-use-case-identification-and-prioritization/</a></li>
+<li><strong>Skan AI — "How to Identify Agentic AI Use Cases: A 7-Step Framework"</strong> — Specifically distinguishes Task Agents, Service Agents, and Process Agents — useful when picking the right type of automation. <a href="https://www.skan.ai/blogs/agentic-ai-use-case-framework" target="_blank" rel="noopener">www.skan.ai/blogs/agentic-ai-use-case-framework</a></li>
+</ul>
+<p><em>None of these are affiliated with LeO AI. They\'re here because they\'re genuinely useful.</em></p>
+</div>
+`,
       },
     ],
     quiz: {
@@ -304,7 +330,20 @@ ROI % = (Net Benefit / 5-Year Cost) × 100
 <p><strong>Why it matters:</strong> Token costs scale with usage. Support costs scale with complexity. A use case that looks like a 300% ROI in year one can turn negative by year four without proper modelling.</p>
 <p><strong>Implementation tip:</strong> Build three scenarios — conservative (50% of expected volume), base (expected volume), and optimistic (200% of expected volume). Present all three to your decision-makers.</p>
 <p><strong>💡 What This Saves You:</strong> The 5-year model prevents the most common AI investment regret — committing to an architecture or vendor that becomes unaffordable at scale.</p>
-</div>`,
+</div>
+<div class="further-reading-box">
+<h3>📚 Further Reading</h3>
+<p>On building credible business cases for AI investment — token-aware, ROI-grounded, and CFO-friendly.</p>
+<ul>
+<li><strong>Gartner — "How CFOs Can Maximize ROI From AI Initiatives" (Oct 2025)</strong> — Notes only 7% of CFOs see high ROI from AI today. Covers portfolio approach and governance for sustained returns. <a href="https://www.gartner.com/en/articles/how-cfos-can-maximize-roi-from-ai" target="_blank" rel="noopener">www.gartner.com/en/articles/how-cfos-can-maximize-roi-from-ai</a></li>
+<li><strong>Gartner — "How to Calculate Business Value and Cost for GenAI" (PDF)</strong> — Survey of 822 business executives. Quick-wins vs differentiating vs transformational use case ROI patterns. <a href="https://www.bainsight.com/wp-content/uploads/Gartner-How-to-calculate-Business-Value-and-Cost-for-GenAI.pdf" target="_blank" rel="noopener">www.bainsight.com/wp-content/uploads/Gartner-How-to-calculate-Business-Value-and-Cost-for-GenAI.pdf</a></li>
+<li><strong>Agility at Scale — "Proving ROI: Measuring the Business Value of Enterprise AI"</strong> — Detailed walkthrough including a manufacturing case study and a downloadable ROI calculator template. <a href="https://agility-at-scale.com/implementing/roi-of-enterprise-ai/" target="_blank" rel="noopener">agility-at-scale.com/implementing/roi-of-enterprise-ai/</a></li>
+<li><strong>Gartner — "With AI Agents, You Need a New Way to Calculate Cost and Value" (Jan 2026)</strong> — Why conventional ROI calculations miss the dynamics of AI agent workflows; introduces Agent Value Multiple (AVM). <a href="https://www.elastic.co/resources/portfolio/report/gartner-with-ai-agents-you-need-new-way-to-calculate-cost" target="_blank" rel="noopener">www.elastic.co/resources/portfolio/report/gartner-with-ai-agents-you-need-new-way-to-calculate-cost</a></li>
+<li><strong>Gartner — "AI Projects in I&O Stall Ahead of Meaningful ROI Returns" (Apr 2026)</strong> — Only 28% of AI use cases in infrastructure/ops fully succeed; 20% fail outright. The failure-mode patterns are instructive when sequencing your investment. <a href="https://www.gartner.com/en/newsroom/press-releases/2026-04-07-gartner-says-artificial-intelligence-projects-in-infrastructure-and-operations-stall-ahead-of-meaningful-roi-returns" target="_blank" rel="noopener">www.gartner.com/en/newsroom/press-releases/2026-04-07-gartner-says-artificial-intelligence-projects-in-infrastructure-and-operations-stall-ahead-of-meaningful-roi-returns</a></li>
+</ul>
+<p><em>None of these are affiliated with LeO AI. They\'re here because they\'re genuinely useful.</em></p>
+</div>
+`,
       },
     ],
     quiz: {
