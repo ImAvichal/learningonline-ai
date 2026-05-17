@@ -530,7 +530,20 @@ const LESSONS = [
 <p><strong>Insight:</strong> Parents who use AI alongside their children — even occasionally — report significantly less anxiety about their child's AI use and significantly better conversations about digital literacy.</p>
 <p><strong>Example:</strong> A parent of a 12-year-old sat down with their child and asked ChatGPT to help plan a family holiday. Together, they evaluated the suggestions, found two factual errors (a restaurant that had closed, a museum with wrong opening hours), and had a conversation about why AI gets things wrong. The child independently started checking AI homework answers the following week — without being told to. One shared experience changed the dynamic more than months of rules.</p>
 <p><strong>Why it matters:</strong> Children learn judgment through experience, not instruction. The most effective AI parenting strategy is modelling thoughtful use — not restricting access.</p>
-</div>`,
+</div>
+<div class="further-reading-box">
+<h3>📚 Further Reading for Parents</h3>
+<p>Curated, trustworthy resources to keep up with how AI is affecting children and what to do about it. Common Sense Media is the most respected independent source in this space.</p>
+<ul>
+<li><strong>Common Sense Media — "Parents' Ultimate Guide to Generative AI"</strong> — The single best parent-facing introduction to generative AI. Plain language, age-appropriate framing, concrete conversation starters. <a href="https://www.commonsensemedia.org/articles/parents-ultimate-guide-to-generative-ai" target="_blank" rel="noopener">www.commonsensemedia.org/articles/parents-ultimate-guide-to-generative-ai</a></li>
+<li><strong>Common Sense Media — "Helping Kids Navigate the World of Artificial Intelligence"</strong> — Practical guidance on teaching kids to think critically about AI outputs — how to question writing, images, and posts AI creates. <a href="https://www.commonsensemedia.org/articles/helping-kids-navigate-the-world-of-artificial-intelligence" target="_blank" rel="noopener">www.commonsensemedia.org/articles/helping-kids-navigate-the-world-of-artificial-intelligence</a></li>
+<li><strong>Common Sense Media + Day of AI — "Talking to Kids About AI" toolkit (Nov 2025)</strong> — Free family toolkit covering privacy, fairness, and responsibility. Includes age-appropriate videos. Backed by research showing 75% of teens use AI companions but only a third of parents know. <a href="https://dayofai.org/news/day-of-ai-and-common-sense-media-launch-essential-toolkit-for-parents-and-families-talking-to-kids-about-ai-privacy-fairness-and-responsibility" target="_blank" rel="noopener">dayofai.org/news/day-of-ai-and-common-sense-media-launch-essential-toolkit-for-parents-and-families-talking-to-kids-about-ai-privacy-fairness-and-responsibility</a></li>
+<li><strong>Common Sense Media — AI Toy Companions warning (Jan 2026)</strong> — Important safety guidance: avoid AI toys for kids under 5, exercise extreme caution for ages 6-12. Research found 25%+ of outputs included inappropriate content. <a href="https://www.commonsensemedia.org/press-releases/common-sense-media-warns-against-ai-toy-companions-after-research-reveals-safety-risks" target="_blank" rel="noopener">www.commonsensemedia.org/press-releases/common-sense-media-warns-against-ai-toy-companions-after-research-reveals-safety-risks</a></li>
+<li><strong>Common Sense Media — "The Dawn of the AI Era" research report</strong> — National survey of teens and parents on generative AI at home and school. The data behind the conversations you need to have. <a href="https://www.commonsensemedia.org/research/the-dawn-of-the-ai-era-teens-parents-and-the-adoption-of-generative-ai-at-home-and-school" target="_blank" rel="noopener">www.commonsensemedia.org/research/the-dawn-of-the-ai-era-teens-parents-and-the-adoption-of-generative-ai-at-home-and-school</a></li>
+</ul>
+<p><em>None of these are affiliated with LeO AI. They\'re here because they\'re genuinely useful for families navigating AI.</em></p>
+</div>
+`,
   },
 ]
 
