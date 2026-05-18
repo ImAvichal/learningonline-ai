@@ -85,14 +85,14 @@ export default function Signup() {
               <div>
                 <div className="flex items-baseline gap-2 mb-1">
                   <span className="text-sm font-display font-bold text-gray-800 dark:text-white">Starting the Journey</span>
-                  <span className="text-[10px] font-display text-blue-bright font-bold">$45/mo or $399/yr</span>
+                  <span className="text-[10px] font-display text-blue-bright font-bold">$19/mo or $179/yr</span>
                 </div>
                 <p className="text-xs text-gray-500 dark:text-white/35 leading-relaxed">Practical AI awareness, foundational learning, and operational implementation guidance for professionals and operational leaders.</p>
               </div>
               <div>
                 <div className="flex items-baseline gap-2 mb-1">
                   <span className="text-sm font-display font-bold text-gray-800 dark:text-white">The Pro</span>
-                  <span className="text-[10px] font-display text-purple-400 font-bold">$75/mo or $699/yr</span>
+                  <span className="text-[10px] font-display text-purple-400 font-bold">$39/mo or $349/yr</span>
                 </div>
                 <p className="text-xs text-gray-500 dark:text-white/35 leading-relaxed">Everything in Starting the Journey plus enterprise orchestration, governance, operating models, and the full transformation roadmap.</p>
               </div>

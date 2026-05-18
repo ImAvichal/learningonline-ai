@@ -1,4 +1,4 @@
-// pages/pricing.js — Subscription pricing: $45/mo, $75/mo
+// pages/pricing.js — Subscription pricing: $19/mo Journey, $39/mo Pro
 import { useState } from 'react'
 import Footer from '../components/Footer'
 import Head from 'next/head'
@@ -81,17 +81,17 @@ export default function Pricing() {
                       {tid === 'parents' ? t.priceDisplay : priceFor(tid)}
                     </div>
                     <div className="text-xs text-muted mb-5">{tid === 'parents' ? tr('common.alwaysFree') : (interval === 'annual' ? 'Billed annually' : 'Billed monthly')}</div>
-                    <p className="text-sm text-gray-600 dark:text-gray-300 leading-relaxed mb-4 flex-1">{t.description}</p>
+                    <p className="text-sm text-white/85 leading-relaxed mb-4 flex-1">{t.description}</p>
 
                     <div className="p-3 rounded-lg bg-white/[0.03] border border-white/5 mb-5">
                       <div className="text-[10px] font-display font-bold text-muted uppercase tracking-wider mb-1">{tr("common.idealFor") || "Ideal for"}</div>
-                      <p className="text-xs text-gray-600 dark:text-white/70 leading-relaxed">{t.idealFor}</p>
+                      <p className="text-xs text-white/70 leading-relaxed">{t.idealFor}</p>
                     </div>
 
                     <ul className="space-y-2.5 mb-7">
                       {t.features.map((f, fi) => (
                         <li key={fi} className="flex items-start justify-between gap-3 text-sm pb-2 border-b border-gray-100 dark:border-white/5 last:border-0">
-                          <span className="text-gray-700 dark:text-white/80 leading-relaxed flex-1">{f}</span>
+                          <span className="text-white/85 leading-relaxed flex-1">{f}</span>
                           <span className="text-success font-bold flex-shrink-0 mt-0.5">✓</span>
                         </li>
                       ))}
