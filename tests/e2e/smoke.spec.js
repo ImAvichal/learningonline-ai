@@ -40,7 +40,7 @@ test('/pricing shows all tiers with prices', async ({ page }) => {
   await expect(page.getByText('Starting the Journey')).toBeVisible()
   await expect(page.getByText('The Pro')).toBeVisible()
   // Catches pricing display bugs (e.g. "/month" overflow)
-  await expect(page.getByText(/\$45\/mo|₹999\/mo|\$39\/mo|₱599\/mo/)).toBeVisible()
+  await expect(page.getByText(/\$19\/mo|₹999\/mo|\$19\/mo|₱599\/mo/)).toBeVisible()
 })
 
 test('protected routes redirect to login when logged out', async ({ page }) => {
