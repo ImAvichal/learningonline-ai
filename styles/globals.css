@@ -696,3 +696,33 @@ html.light-mode .triad-def             { color: #6b7280; }
 [data-theme="light"] .further-reading-box li {
   border-bottom-color: rgba(26,110,255,0.12);
 }
+
+/* ═══════════════════════════════════════════════════════════════
+   PRICING PAGE — light-mode coverage for tier cards
+   Added 18 May 2026. The pricing card opacity classes weren't
+   covered by the original light-mode override block, so card
+   body text and the highlighted Pro tier accent were invisible
+   on white cards.
+   ═══════════════════════════════════════════════════════════════ */
+
+/* Body copy on tier cards — most visible bug */
+[data-theme="light"] .text-white\/85 { color: #2D3A4E !important; }
+
+/* Faint separators / dividers inside cards */
+[data-theme="light"] .text-white\/15 { color: #CBD3DF !important; }
+
+/* Highlighted Pro tier — amber accent background and border */
+[data-theme="light"] .bg-amber-400\/\[0\.03\] {
+  background: rgba(245,158,11,0.05) !important;
+}
+[data-theme="light"] .border-amber-400\/40 {
+  border-color: rgba(245,158,11,0.45) !important;
+}
+
+/* Amber pill "Most Popular" badge — ensure contrast on white */
+[data-theme="light"] .bg-amber-400 {
+  background: #F59E0B !important;
+}
+[data-theme="light"] .bg-amber-400.text-navy {
+  color: #FFFFFF !important;
+}
