@@ -109,7 +109,7 @@ export default function Footer({ variant = 'light' }) {
           <p className="leading-relaxed text-center md:text-right">
             <span className={`font-bold ${tokens.finePrintBold}`}>{safeT('pricing.moneyBack.title', '3-day refund policy')}</span>
             <span> — </span>
-            <span>{safeT('pricing.moneyBack.body', 'Request a refund within 72 hours of enrolment.')}</span>
+            <span>{safeT('pricing.moneyBack.body', "If you don't believe the platform delivers measurable value within 3 days of purchase, contact us for a full refund.")}</span>
             <span> </span>
             <span>{safeT('pricing.moneyBack.tagline', 'Processed in 3–5 business days.')}</span>
           </p>
