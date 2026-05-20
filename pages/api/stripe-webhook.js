@@ -141,6 +141,63 @@ async function handleCheckoutCompleted(session, supabase) {
 
   console.log(`[webhook] ✓ ${tierId} access granted to ${userId}`)
 
+  // ── Upgrade handling: if this purchase is Pro, look for any existing
+  //    Journey subscription for this user and cancel it in Stripe so the
+  //    customer isn't billed twice.
+  //
+  //    Soft-failure design: if cancellation fails (e.g. restricted Stripe key,
+  //    already cancelled, network issue), we LOG with a clear marker but DO
+  //    NOT fail the new purchase. The customer's Pro access is unaffected;
+  //    the worst case is a manual cleanup of one subscription in Stripe.
+  if (tierId === 'pro') {
+    try {
+      const { data: oldPurchases, error: oldErr } = await supabase
+        .from('purchases')
+        .select('stripe_subscription_id, tier')
+        .eq('user_id', userId)
+        .eq('tier', 'journey')
+        .eq('payment_status', 'completed')
+        .not('stripe_subscription_id', 'is', null)
+
+      if (oldErr) {
+        console.warn('[webhook] Could not query old subscriptions:', oldErr.message)
+      } else if (oldPurchases?.length) {
+        for (const old of oldPurchases) {
+          if (!old.stripe_subscription_id) continue
+          // Safety: never cancel the subscription that was JUST created
+          if (old.stripe_subscription_id === session.subscription) continue
+
+          try {
+            await stripe.subscriptions.cancel(old.stripe_subscription_id)
+            await supabase
+              .from('purchases')
+              .update({ payment_status: 'cancelled' })
+              .eq('stripe_subscription_id', old.stripe_subscription_id)
+            console.log(`[webhook] ✓ Cancelled old ${old.tier} subscription ${old.stripe_subscription_id} (user upgraded to pro)`)
+          } catch (cancelErr) {
+            // Distinguish "already cancelled" (benign) from other errors (need attention)
+            const msg = cancelErr.message || String(cancelErr)
+            if (msg.includes('No such subscription') || msg.includes('already been canceled')) {
+              console.log(`[webhook] Old subscription ${old.stripe_subscription_id} was already cancelled — skipping`)
+              await supabase
+                .from('purchases')
+                .update({ payment_status: 'cancelled' })
+                .eq('stripe_subscription_id', old.stripe_subscription_id)
+            } else {
+              console.error(`[webhook] ⚠️ MANUAL ACTION REQUIRED: Could not cancel old subscription ${old.stripe_subscription_id} for user ${userId} — please cancel in Stripe Dashboard. Reason: ${msg}`)
+            }
+          }
+        }
+      } else {
+        // Not an upgrade — fresh Pro purchase, nothing to cancel
+        console.log(`[webhook] No prior Journey subscription found for ${userId} — nothing to cancel`)
+      }
+    } catch (err) {
+      // Outer guard: any unexpected error must NEVER fail the new purchase
+      console.error('[webhook] Upgrade old-sub cleanup error (non-fatal):', err.message)
+    }
+  }
+
   // ── Send branded confirmation email (gracefully no-ops if RESEND_API_KEY missing) ──
   // We fetch profile here for the email — defensive in case earlier read failed.
   try {
