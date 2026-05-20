@@ -72,30 +72,17 @@ export default function AccountPage() {
             ))}
           </div>
 
-          {user.tier !== 'pro' && (
+          {user.tier === 'journey' && (
             <div className="p-4 bg-white border border-gray-200 rounded-xl">
               <div className="font-display font-bold text-sm text-gray-900 mb-1">
-                Upgrade to {user.tier === 'journey' ? 'The Pro' : 'The Pro'}
+                Upgrade to The Pro
               </div>
               <div className="text-xs text-gray-500 mb-3">
-                {user.tier === 'journey'
-                  ? 'Get industry playbooks and up to 5 team seats.'
-                  : 'Add the enterprise operating model, data readiness program, governance frameworks, unlimited seats, and monthly advisory sessions.'}
+                Unlock the remaining four modules — Responsible AI, Sustainability, Multimodal &amp; Orchestration, and the 90-Day Execution Plan — plus all Pro deliverables and frameworks.
               </div>
-              <a href="/pricing"
+              <a href="/checkout?tier=pro&interval=monthly"
                 className="text-xs font-display font-bold text-blue-bright hover:underline">
-                See upgrade options →
-              </a>
-            </div>
-          )}
-
-          {user.tier === 'pro' && (
-            <div className="p-4 bg-purple-400/5 border border-purple-400/20 rounded-xl">
-              <div className="font-display font-bold text-sm text-purple-300 mb-1">Monthly Advisory Session</div>
-              <div className="text-xs text-gray-500 mb-3">Your Enterprise tier includes a monthly 1-hour advisory session. Book yours below.</div>
-              <a href="mailto:hello@learningonline.ai?subject=Advisory Session Booking"
-                className="text-xs font-display font-bold text-purple-300 hover:underline">
-                Book your next session →
+                Upgrade to Pro →
               </a>
             </div>
           )}
