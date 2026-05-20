@@ -24,6 +24,15 @@ export default function Checkout() {
   const [promoCode, setPromoCode] = useState('')
   const [promoMsg,  setPromoMsg]  = useState('')   // 'valid' | 'invalid' | ''
 
+  // Tier hierarchy for entitlement comparison
+  // parents (free) < journey < pro
+  // Note: 'parents' is a free module, not a paid plan — it should never block paid upgrades
+  const TIER_RANK = { parents: 0, journey: 1, pro: 2 }
+  const userRank   = user?.tier && user.tier !== 'parents' ? (TIER_RANK[user.tier] ?? 0) : -1
+  const targetRank = TIER_RANK[tierId] ?? 0
+  const isUpgrade  = userRank >= 0 && userRank < targetRank      // user has lower paid plan
+  const alreadyHas = userRank >= targetRank && user?.tier !== 'parents'  // already at this tier or higher
+
   useEffect(() => {
     if (!router.isReady) return
     if (authLoading) return  // Wait for auth state to fully restore — prevents flash redirect
@@ -31,11 +40,12 @@ export default function Checkout() {
       router.push(`/signup?tier=${tierId}&interval=${interval}`)
       return
     }
-    // If user already has paid tier, redirect to dashboard (don't show checkout)
-    if (user.tier && !user.isDevUser) {
+    // Only redirect to dashboard if user already has THIS tier or higher.
+    // Lower-tier users (e.g. Journey buying Pro) must see the checkout to upgrade.
+    if (alreadyHas && !user.isDevUser) {
       router.push('/dashboard')
     }
-  }, [user, authLoading, tierId, interval, router.isReady])
+  }, [user, authLoading, tierId, interval, router.isReady, alreadyHas])
 
   useEffect(() => {
     if (payment_success === 'true' && user && !success) grantAccess()
@@ -107,7 +117,28 @@ export default function Checkout() {
 
           <div className="grid md:grid-cols-[1fr_340px] gap-10">
             <div>
-              <h1 className="font-display font-bold text-3xl mb-8">Complete your enrolment</h1>
+              <h1 className="font-display font-bold text-3xl mb-8">
+                {isUpgrade ? 'Upgrade your subscription' : 'Complete your enrolment'}
+              </h1>
+
+              {isUpgrade && (
+                <Card className="p-6 mb-5 bg-blue/[0.04] border-blue/25">
+                  <div className="flex items-start gap-3">
+                    <div className="text-2xl mt-0.5">↑</div>
+                    <div className="flex-1">
+                      <div className="font-display font-bold text-base mb-2">
+                        Upgrading from {TIERS[user.tier]?.name} to {tier.name}
+                      </div>
+                      <p className="text-sm text-white/85 leading-relaxed mb-3">
+                        You'll unlock the remaining modules: <strong>Responsible AI</strong>, <strong>Sustainability</strong>, <strong>Multimodal AI & Orchestration</strong>, and the <strong>90-Day Execution Plan</strong> — plus all Pro deliverables and frameworks.
+                      </p>
+                      <div className="text-xs text-muted leading-relaxed">
+                        <strong className="text-white/80">Billing:</strong> Your new Pro subscription starts today at {priceLabel}. Your existing {TIERS[user.tier]?.name} subscription will be cancelled automatically — you won't be charged twice.
+                      </div>
+                    </div>
+                  </div>
+                </Card>
+              )}
 
               {error && <div className="mb-6 p-4 rounded-lg bg-red-500/10 border border-red-500/25 text-red-400 text-sm">{error}</div>}
 
