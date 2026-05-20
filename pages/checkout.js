@@ -133,7 +133,7 @@ export default function Checkout() {
                         You'll unlock the remaining modules: <strong>Responsible AI</strong>, <strong>Sustainability</strong>, <strong>Multimodal AI & Orchestration</strong>, and the <strong>90-Day Execution Plan</strong> — plus all Pro deliverables and frameworks.
                       </p>
                       <div className="text-xs text-muted leading-relaxed">
-                        <strong className="text-white/80">Billing:</strong> Your new Pro subscription starts today at {priceLabel}. Your existing {TIERS[user.tier]?.name} subscription will be cancelled automatically — you won't be charged twice.
+                        <strong className="text-white/80">Billing:</strong> Your Pro subscription starts today at {priceLabel} and bills from now on. Your existing {TIERS[user.tier]?.name} subscription will be cancelled automatically, so you won't be billed for it again.
                       </div>
                     </div>
                   </div>
