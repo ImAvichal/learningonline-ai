@@ -238,6 +238,21 @@ export default function Home() {
   const priceFor = (tierKey) => regionalConfig?.plans?.[tierKey]?.[interval]?.label || '—'
   const [activeModule,  setActiveModule]  = useState(0)
   const [activeSection, setActiveSection] = useState('tree')
+  const [activePhase,   setActivePhase]   = useState(0)
+
+  // Curriculum phases — group the 14 modules into 3 chronological phases.
+  // moduleIndices are 0-based indices into MODULES.
+  const PHASES = [
+    { label: 'Phase 1', title: 'Foundations & Strategy',        moduleIndices: [0, 1, 2, 3] },
+    { label: 'Phase 2', title: 'Technical Execution & ROI',     moduleIndices: [4, 5, 6, 7, 8] },
+    { label: 'Phase 3', title: 'Governance, Scale & Action',    moduleIndices: [9, 10, 11, 12, 13] },
+  ]
+  // Ensure the active module always belongs to the active phase.
+  const selectPhase = (phaseIdx) => {
+    setActivePhase(phaseIdx)
+    const first = PHASES[phaseIdx].moduleIndices[0]
+    setActiveModule(first)
+  }
 
   return (
     <>
@@ -329,10 +344,10 @@ export default function Home() {
                     <span className={`px-2.5 py-1 border rounded-full text-[10px] font-display font-bold ${card.pillClass}`}>{card.pill}</span>
                     {card.popular && <span className="px-2.5 py-1 bg-amber-400 text-navy rounded-full text-[10px] font-display font-bold">{t("common.mostPopular")}</span>}
                   </div>
-                  <h3 className="font-display font-bold text-lg mb-1 text-gray-900 dark:text-white">{card.title}</h3>
-                  <p className="text-xs text-gray-500 dark:text-white/40 italic mb-3">{card.hook}</p>
+                  <h3 className="font-display font-bold text-lg mb-1 text-white">{card.title}</h3>
+                  <p className="text-xs text-white/40 italic mb-3">{card.hook}</p>
                   <div className="flex items-baseline gap-2 mb-1">
-                    <span className="font-display font-black text-gray-900 dark:text-white leading-none whitespace-nowrap" style={{fontSize: 'clamp(18px, 2.2vw, 24px)'}}>
+                    <span className="font-display font-black text-white leading-none whitespace-nowrap" style={{fontSize: 'clamp(18px, 2.2vw, 24px)'}}>
                       {card.tierKey ? priceFor(card.tierKey) : card.price}
                     </span>
                   </div>
@@ -344,7 +359,7 @@ export default function Home() {
                   </div>
                   <ul className="space-y-2 mb-5 flex-1">
                     {card.bullets.map((b, bi) => (
-                      <li key={bi} className="flex items-start justify-between gap-2 text-xs text-gray-600 dark:text-white/70 pb-1.5 border-b border-gray-100 dark:border-white/5 last:border-0">
+                      <li key={bi} className="flex items-start justify-between gap-2 text-xs text-white/70 pb-1.5 border-b border-white/5 last:border-0">
                         <span className="leading-relaxed flex-1">{b}</span>
                         <span className="text-success font-bold flex-shrink-0 mt-0.5">✓</span>
                       </li>
@@ -429,8 +444,118 @@ export default function Home() {
       </section>
 
 
+      {/* ── Curriculum ── */}
+      <section id="curriculum" className="py-24">
+        <div className="max-w-6xl mx-auto px-6">
+          <Reveal>
+            <div className="text-center mb-12">
+              <SectionLabel>{t("learningPaths.label")}</SectionLabel>
+              <h2 className="font-display font-bold text-4xl mb-4">Practical AI learning. Zero filler.</h2>
+              <p className="text-muted max-w-xl mx-auto">Every lesson produces a real deliverable. Every module builds on the last.</p>
+            </div>
+          </Reveal>
+          <div className="space-y-6">
+            {/* Phase tab bar — groups the 14 modules into 3 chronological phases */}
+            <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 mb-2">
+              {PHASES.map((phase, pi) => (
+                <button
+                  key={pi}
+                  onClick={() => selectPhase(pi)}
+                  className={`flex-1 text-left px-5 py-4 rounded-xl border transition-all duration-200 ${activePhase === pi ? 'border-blue/50 bg-blue/15 shadow-[0_0_18px_rgba(26,110,255,0.18)]' : 'border-white/5 bg-white/[0.02] hover:border-white/15 hover:bg-white/[0.04]'}`}
+                >
+                  <div className={`text-[10px] font-display font-bold uppercase tracking-wider mb-1 ${activePhase === pi ? 'text-blue-bright' : 'text-muted'}`}>{phase.label}</div>
+                  <div className={`text-sm font-display font-bold leading-snug ${activePhase === pi ? 'text-white' : 'text-white/80'}`}>{phase.title}</div>
+                  <div className="text-[10px] text-muted mt-1">Modules {phase.moduleIndices[0] + 1}–{phase.moduleIndices[phase.moduleIndices.length - 1] + 1}</div>
+                </button>
+              ))}
+            </div>
+            {/* Tile grid — only modules in the active phase are shown */}
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
+              {PHASES[activePhase].moduleIndices.map((i) => {
+                const mod = MODULES[i]
+                return (
+                <button key={mod.id} onClick={() => {
+                  setActiveModule(i)
+                  // Smooth scroll to the detail panel so it lands in view immediately
+                  setTimeout(() => {
+                    document.getElementById('module-detail')?.scrollIntoView({
+                      behavior: 'smooth',
+                      block: 'start',
+                    })
+                  }, 100)
+                }}
+                  className={`text-left p-4 rounded-xl border transition-all duration-200 min-h-[110px] flex flex-col ${activeModule === i ? 'border-blue/50 bg-blue/15 shadow-[0_0_18px_rgba(26,110,255,0.18)]' : 'border-white/5 bg-white/[0.02] hover:border-white/15 hover:bg-white/[0.04]'}`}>
+                  <div className="flex items-start gap-2 mb-2">
+                    <span className="text-xl flex-shrink-0">{mod.icon}</span>
+                    <div className="text-[10px] font-display font-bold text-muted">M{mod.number}</div>
+                    {i !== 0 && <span className="ml-auto text-muted text-xs" title="Included with enrolment">🔒</span>}
+                  </div>
+                  <div className={`text-xs sm:text-sm font-display font-bold leading-snug ${activeModule === i ? 'text-white' : 'text-white/80'} break-words`}>{mod.title}</div>
+                </button>
+                )
+              })}
+            </div>
+            {/* Detail panel — appears below the tile grid, full width.
+                On tile click, browser smooth-scrolls to this for context. */}
+            <div id="module-detail" className="w-full scroll-mt-24">
+              <Card glow className="p-8" style={{ minHeight:'480px' }}>
+                <div className="flex items-start gap-4 mb-6">
+                  <span className="text-4xl">{MODULES[activeModule].icon}</span>
+                  <div>
+                    <div className="flex items-center gap-2 mb-2 flex-wrap">
+                      <span className="px-3 py-1 bg-blue/10 border border-blue/25 rounded-full text-xs font-display font-bold text-blue-bright">Module {MODULES[activeModule].number}</span>
+                      {(() => {
+                        const firstTier = MODULES[activeModule].lessons[0]?.tier
+                        if (firstTier && firstTier !== 'individual') { const mapped = firstTier === 'smb' ? 'journey' : firstTier === 'enterprise' ? 'pro' : firstTier; return <TierBadge tier={mapped} /> }
+                      })()}
+                    </div>
+                    <h3 className="font-display font-bold text-2xl mb-2">{MODULES[activeModule].title}</h3>
+                    <p className="text-muted text-sm">{MODULES[activeModule].description}</p>
+                  </div>
+                </div>
+                <div className="space-y-2 mb-6">
+                  {MODULES[activeModule].lessons.map((l, i) => (
+                    <div key={l.id} className="flex items-center gap-3 p-3 rounded-lg bg-white/[0.03] border border-white/5">
+                      <div className="w-6 h-6 rounded-full bg-navy-light border border-white/10 flex items-center justify-center text-xs text-muted font-display font-bold flex-shrink-0">{i + 1}</div>
+                      <span className="text-sm text-white/80 flex-1">{l.title}</span>
+                      {l.duration && <span className="text-xs text-muted flex-shrink-0">{l.duration}</span>}
+                    </div>
+                  ))}
+                </div>
+                <div className="relative flex items-start gap-3 p-5 rounded-xl bg-success/[0.07] border border-success/30 overflow-hidden">
+                  <div className="absolute inset-y-0 left-0 w-1 bg-success/60" />
+                  <span className="text-2xl mt-0.5">📋</span>
+                  <div className="flex-1">
+                    <div className="text-[10px] font-display font-bold text-success uppercase tracking-wider mb-1">You'll walk away with</div>
+                    <div className="text-base font-display font-bold text-white leading-snug">{MODULES[activeModule].deliverable}</div>
+                  </div>
+                </div>
+
+                {/* Free-preview affordance — only on Module 1 */}
+                {activeModule === 0 && (
+                  <div className="mt-4">
+                    <Link
+                      href="/preview"
+                      className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-blue/15 border border-blue/40 text-blue-bright font-display font-bold text-sm hover:bg-blue/25 transition-all duration-200"
+                    >
+                      🔓 Preview Free Lesson <span className="text-blue-bright/70 font-normal">(No Sign-up)</span>
+                    </Link>
+                  </div>
+                )}
+              </Card>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+
+      {/* Preview section removed — free-preview affordance now lives inside
+          Module 1 in the curriculum, and module access is indicated by the
+          lock icons on each tile. This eliminates the duplicate content. */}
+
       {/* ── Learning Evolution ── */}
-      <section className="py-16 border-t border-gray-100 dark:border-white/5">
+      <section className="py-16 border-t border-white/5">
         <div className="max-w-5xl mx-auto px-6">
           <div className="text-center mb-12">
             <SectionLabel>{t("evolution.label")}</SectionLabel>
@@ -473,122 +598,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── Curriculum ── */}
-      <section id="curriculum" className="py-24">
-        <div className="max-w-6xl mx-auto px-6">
-          <Reveal>
-            <div className="text-center mb-12">
-              <SectionLabel>{t("learningPaths.label")}</SectionLabel>
-              <h2 className="font-display font-bold text-4xl mb-4">Practical AI learning. Zero filler.</h2>
-              <p className="text-muted max-w-xl mx-auto">Every lesson produces a real deliverable. Every module builds on the last.</p>
-            </div>
-          </Reveal>
-          <div className="space-y-6">
-            {/* Tile grid — 2 cols on mobile, 3 on tablet, 4 on desktop */}
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
-              {MODULES.map((mod, i) => (
-                <button key={mod.id} onClick={() => {
-                  setActiveModule(i)
-                  // Smooth scroll to the detail panel so it lands in view immediately
-                  setTimeout(() => {
-                    document.getElementById('module-detail')?.scrollIntoView({
-                      behavior: 'smooth',
-                      block: 'start',
-                    })
-                  }, 100)
-                }}
-                  className={`text-left p-4 rounded-xl border transition-all duration-200 min-h-[110px] flex flex-col ${activeModule === i ? 'border-blue/50 bg-blue/15 shadow-[0_0_18px_rgba(26,110,255,0.18)]' : 'border-white/5 bg-white/[0.02] hover:border-white/15 hover:bg-white/[0.04]'}`}>
-                  <div className="flex items-start gap-2 mb-2">
-                    <span className="text-xl flex-shrink-0">{mod.icon}</span>
-                    <div className="text-[10px] font-display font-bold text-muted">M{mod.number}</div>
-                  </div>
-                  <div className={`text-xs sm:text-sm font-display font-bold leading-snug ${activeModule === i ? 'text-white' : 'text-white/80'} break-words`}>{mod.title}</div>
-                </button>
-              ))}
-            </div>
-            {/* Detail panel — appears below the tile grid, full width.
-                On tile click, browser smooth-scrolls to this for context. */}
-            <div id="module-detail" className="w-full scroll-mt-24">
-              <Card glow className="p-8" style={{ minHeight:'480px' }}>
-                <div className="flex items-start gap-4 mb-6">
-                  <span className="text-4xl">{MODULES[activeModule].icon}</span>
-                  <div>
-                    <div className="flex items-center gap-2 mb-2 flex-wrap">
-                      <span className="px-3 py-1 bg-blue/10 border border-blue/25 rounded-full text-xs font-display font-bold text-blue-bright">Module {MODULES[activeModule].number}</span>
-                      {(() => {
-                        const firstTier = MODULES[activeModule].lessons[0]?.tier
-                        if (firstTier && firstTier !== 'individual') { const mapped = firstTier === 'smb' ? 'journey' : firstTier === 'enterprise' ? 'pro' : firstTier; return <TierBadge tier={mapped} /> }
-                      })()}
-                    </div>
-                    <h3 className="font-display font-bold text-2xl mb-2">{MODULES[activeModule].title}</h3>
-                    <p className="text-muted text-sm">{MODULES[activeModule].description}</p>
-                  </div>
-                </div>
-                <div className="space-y-2 mb-6">
-                  {MODULES[activeModule].lessons.map((l, i) => (
-                    <div key={l.id} className="flex items-center gap-3 p-3 rounded-lg bg-white/[0.03] border border-white/5">
-                      <div className="w-6 h-6 rounded-full bg-navy-light border border-white/10 flex items-center justify-center text-xs text-muted font-display font-bold flex-shrink-0">{i + 1}</div>
-                      <span className="text-sm text-white/80 flex-1">{l.title}</span>
-                      {l.duration && <span className="text-xs text-muted flex-shrink-0">{l.duration}</span>}
-                    </div>
-                  ))}
-                </div>
-                <div className="flex items-center gap-3 p-4 rounded-lg bg-success/5 border border-success/20">
-                  <span className="text-xl">📋</span>
-                  <div>
-                    <div className="text-[10px] font-display font-bold text-success uppercase tracking-wider">Module Deliverable</div>
-                    <div className="text-sm text-white">{MODULES[activeModule].deliverable}</div>
-                  </div>
-                </div>
-              </Card>
-            </div>
-          </div>
-        </div>
-      </section>
-
-
-
-      {/* ── Preview Section ── Patch 4 */}
-      <section className="py-20 border-b border-white/5">
-        <div className="max-w-6xl mx-auto px-6">
-          <Reveal>
-            <div className="text-center mb-10">
-              <SectionLabel>Free Preview</SectionLabel>
-              <h2 className="font-display font-bold text-4xl mb-4">Preview what you'll learn</h2>
-              <p className="text-muted max-w-xl mx-auto">{t("preview.subtitle")}</p>
-            </div>
-          </Reveal>
-          <div className="grid md:grid-cols-3 gap-5 mb-8">
-            {[
-              { icon:'🧠', module:'Module 1', title:'AI Foundations', teaser:'What AI actually is, what it isn\'t, and the 5 failure modes that sink most business AI projects before they start.', free: true },
-              { icon:'💰', module:'Modules 3–4', title:'Use Cases & ROI', teaser:'How to identify, score, and build the financial case for your highest-value AI opportunities using a proven 5-factor model.', free: false },
-              { icon:'⚡', module:'Modules 5–12', title:'Workflows, Data & Adoption', teaser:'Design the human + AI workflow, prepare your data, and build the change program that makes AI actually stick.', free: false },
-            ].map((card, i) => (
-              <Reveal key={i} delay={i * 80}>
-                <Card hover className="p-6 h-full flex flex-col">
-                  <div className="flex items-center gap-2 mb-3">
-                    <span className="text-2xl">{card.icon}</span>
-                    <span className="text-xs font-display font-bold text-muted">{card.module}</span>
-                    {card.free
-                      ? <span className="ml-auto px-2 py-0.5 bg-success/10 border border-success/25 rounded-full text-[10px] font-display font-bold text-success">FREE</span>
-                      : <span className="ml-auto text-muted text-sm">🔒</span>
-                    }
-                  </div>
-                  <h3 className="font-display font-bold text-base mb-2">{card.title}</h3>
-                  <p className="text-sm text-muted leading-relaxed flex-1 mb-4">{card.teaser}</p>
-                  {card.free
-                    ? <Link href="/preview" className="text-sm font-display font-bold text-blue-bright hover:underline flex items-center gap-1">Preview lesson →</Link>
-                    : <span className="text-xs text-muted font-display">Included with enrolment</span>
-                  }
-                </Card>
-              </Reveal>
-            ))}
-          </div>
-          <div className="text-center">
-            <Button href="/preview">Try Free Preview →</Button>
-          </div>
-        </div>
-      </section>
 
       {/* ── CTA ── */}
       <section className="py-24 text-center bg-navy-mid border-t border-white/5">
