@@ -7,6 +7,8 @@ import { TIERS } from '../../data/tiers'
 export default function AccountPage() {
   const { user, updateUser, logout } = useAuth()
   const [saved, setSaved] = useState(false)
+  const [portalLoading, setPortalLoading] = useState(false)
+  const [portalError, setPortalError] = useState('')
   const [form,  setForm]  = useState({
     name:     user?.name     || '',
     company:  user?.company  || '',
@@ -21,6 +23,31 @@ export default function AccountPage() {
     updateUser({ name: form.name, company: form.company, jobTitle: form.jobTitle })
     setSaved(true)
     setTimeout(() => setSaved(false), 2500)
+  }
+
+  // Open the Stripe Customer Billing Portal so the user can manage or cancel
+  // their subscription. Cancellation is handled entirely by Stripe; our
+  // webhook revokes entitlement when Stripe fires subscription.deleted.
+  const handleManageSubscription = async () => {
+    setPortalError('')
+    setPortalLoading(true)
+    try {
+      const res = await fetch('/api/create-portal-session', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ userId: user.id }),
+      })
+      const data = await res.json()
+      if (res.ok && data.url) {
+        window.location.href = data.url
+      } else {
+        setPortalError(data.error || 'Could not open the billing portal. Please try again.')
+        setPortalLoading(false)
+      }
+    } catch (err) {
+      setPortalError('Could not open the billing portal. Please try again.')
+      setPortalLoading(false)
+    }
   }
 
   const set = (f) => (e) => setForm(p => ({ ...p, [f]: e.target.value }))
@@ -84,6 +111,26 @@ export default function AccountPage() {
                 className="text-xs font-display font-bold text-blue-bright hover:underline">
                 Upgrade to Pro →
               </a>
+            </div>
+          )}
+
+          {/* Manage subscription — opens the Stripe billing portal.
+              Shown only for paid tiers (journey, pro), not free parents users. */}
+          {(user.tier === 'journey' || user.tier === 'pro') && !user.isDevUser && (
+            <div className="mt-4 pt-4 border-t border-gray-200">
+              <button
+                onClick={handleManageSubscription}
+                disabled={portalLoading}
+                className="text-xs font-display font-bold text-gray-600 hover:text-gray-900 hover:underline disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                {portalLoading ? 'Opening…' : 'Manage subscription, payment method, or cancel →'}
+              </button>
+              {portalError && (
+                <div className="mt-2 text-xs text-red-500">{portalError}</div>
+              )}
+              <p className="mt-2 text-[11px] text-gray-400 leading-relaxed">
+                Update your card, download invoices, or cancel anytime. If you cancel, your access continues until the end of the period you've already paid for.
+              </p>
             </div>
           )}
         </Card>
