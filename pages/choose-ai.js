@@ -300,9 +300,13 @@ function CapabilityMap({ categories, hoverId, setHoverId, activeId, onSelect }) 
       <div className="hidden md:block relative mx-auto" style={{ maxWidth: W }}>
         <svg viewBox={`0 0 ${W} ${H}`} className="w-full h-auto overflow-visible" role="img" aria-label="AI capability map">
           <defs>
-            <radialGradient id="rootGrad" cx="50%" cy="40%" r="60%">
-              <stop offset="0%" stopColor="#0C1633" />
-              <stop offset="100%" stopColor="#060B1C" />
+            <radialGradient id="rootGrad" cx="50%" cy="38%" r="65%">
+              <stop offset="0%" stopColor="#16213F" />
+              <stop offset="100%" stopColor="#0D1530" />
+            </radialGradient>
+            <radialGradient id="rootGlow" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stopColor="var(--blue)" stopOpacity="0.22" />
+              <stop offset="100%" stopColor="var(--blue)" stopOpacity="0" />
             </radialGradient>
             <linearGradient id="connGrad" x1="0" y1="0" x2="1" y2="0">
               <stop offset="0%" stopColor="var(--blue)" stopOpacity="0.5" />
@@ -310,12 +314,16 @@ function CapabilityMap({ categories, hoverId, setHoverId, activeId, onSelect }) 
             </linearGradient>
           </defs>
 
+          {/* Soft glow halo behind the root (ambient depth, not a hard object) */}
+          <circle cx={cx} cy={cy} r="92" fill="url(#rootGlow)" />
+
           {/* Connectors — curved path from just outside the root node → node.
-              Starting slightly out from centre keeps the root visually clean
-              and stops lines bleeding through the focal point. */}
+              A connector ILLUMINATES when its node is selected: it brightens,
+              thickens, and re-traces from root outward — energising that route. */}
           {pos.map((p, i) => {
             const c = categories[i]
             const isHot = hoverId === c.id
+            const isActive = activeId === c.id
             // start the line on the rim of the root node, not dead centre
             const rim = 58
             const dx = p.x - cx, dy = p.y - cy
@@ -325,24 +333,26 @@ function CapabilityMap({ categories, hoverId, setHoverId, activeId, onSelect }) 
             const mx = (sx + p.x) / 2 + (p.x - cx) * 0.12
             const my = (sy + p.y) / 2 + (p.y - cy) * 0.12
             const d = `M ${sx} ${sy} Q ${mx} ${my} ${p.x} ${p.y}`
+            // dim non-active routes when something is selected
+            const dimmed = activeId && !isActive
             return (
               <path
                 key={c.id}
                 d={d}
-                stroke={isHot ? 'var(--blue)' : 'url(#connGrad)'}
-                strokeWidth={isHot ? 3 : 2}
-                strokeOpacity={isHot ? 0.95 : 0.55}
+                stroke={isActive || isHot ? 'var(--blue)' : 'url(#connGrad)'}
+                strokeWidth={isActive ? 3.5 : isHot ? 3 : 2}
+                strokeOpacity={isActive ? 1 : isHot ? 0.9 : dimmed ? 0.18 : 0.5}
                 fill="none"
                 strokeLinecap="round"
-                className="capmap-conn"
+                className={`capmap-conn ${isActive ? 'capmap-conn-active' : ''}`}
                 style={{ animationDelay: `${i * 70}ms` }}
               />
             )
           })}
 
-          {/* Root node — dark, strong anchor */}
-          <circle cx={cx} cy={cy} r="52" fill="url(#rootGrad)" stroke="var(--blue)" strokeOpacity="0.55" strokeWidth="1.5" className="capmap-root-core" />
-          <circle cx={cx} cy={cy} r="52" fill="none" stroke="var(--blue)" strokeOpacity="0.3" className="capmap-root-ring" />
+          {/* Root node — softened navy, glassy focal point */}
+          <circle cx={cx} cy={cy} r="52" fill="url(#rootGrad)" stroke="var(--blue)" strokeOpacity="0.45" strokeWidth="1.5" className="capmap-root-core" />
+          <circle cx={cx} cy={cy} r="52" fill="none" stroke="var(--blue)" strokeOpacity="0.25" className="capmap-root-ring" />
         </svg>
 
         {/* Root label (HTML over SVG centre) */}

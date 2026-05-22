@@ -68,6 +68,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           }}
         />
         {/* ── End Google Tag Manager (head) ── */}
+
+        {/* ── Favicon / brand icon ──
+            SVG favicon: retina-crisp at any size, dark/light compatible.
+            The theme-color + apple meta give clean mobile-browser treatment. */}
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <link rel="apple-touch-icon" href="/favicon.svg" />
+        <meta name="apple-mobile-web-app-title" content="LeO AI" />
       </Head>
       <body>
         {/* ── Google Tag Manager (noscript) — must be immediately after <body> ── */}
