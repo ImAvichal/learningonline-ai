@@ -5,6 +5,7 @@ import Footer from '../components/Footer'
 import { useState } from 'react'
 import { Nav, Reveal, Card, SectionLabel, Button, TierBadge, BillingToggle } from '../components/ui'
 import Icon from '../components/Icon'
+import { Lock, X, Clock, FileCheck2, Sparkles } from 'lucide-react'
 import { MODULES } from '../data/modules'
 import { TIERS, TIER_ORDER, INDUSTRIES, DISPLAY_ORDER } from '../data/tiers'
 import { useAuth } from '../lib/auth'
@@ -240,13 +241,15 @@ export default function Home() {
   const [activeModule,  setActiveModule]  = useState(0)
   const [activeSection, setActiveSection] = useState('tree')
   const [activePhase,   setActivePhase]   = useState(0)
+  const [mobileSheetOpen, setMobileSheetOpen] = useState(false)
 
   // Curriculum phases — group the 14 modules into 3 chronological phases.
-  // moduleIndices are 0-based indices into MODULES.
+  // moduleIndices are 0-based indices into MODULES. `stage` gives each phase an
+  // evolution-themed framing for the journey visualisation.
   const PHASES = [
-    { label: 'Phase 1', title: 'Foundations & Strategy',        moduleIndices: [0, 1, 2, 3] },
-    { label: 'Phase 2', title: 'Technical Execution & ROI',     moduleIndices: [4, 5, 6, 7, 8] },
-    { label: 'Phase 3', title: 'Governance, Scale & Action',    moduleIndices: [9, 10, 11, 12, 13] },
+    { label: 'Phase 1', title: 'Foundations & Strategy',     stage: 'Awareness',      moduleIndices: [0, 1, 2, 3] },
+    { label: 'Phase 2', title: 'Technical Execution & ROI',  stage: 'Implementation', moduleIndices: [4, 5, 6, 7, 8] },
+    { label: 'Phase 3', title: 'Governance, Scale & Action', stage: 'Leadership',     moduleIndices: [9, 10, 11, 12, 13] },
   ]
   // Ensure the active module always belongs to the active phase.
   const selectPhase = (phaseIdx) => {
@@ -445,115 +448,100 @@ export default function Home() {
       </section>
 
 
-      {/* ── Curriculum ── */}
-      <section id="curriculum" className="py-24">
-        <div className="max-w-6xl mx-auto px-6">
+      {/* ── Curriculum — Learning Journey ── */}
+      <section id="curriculum" className="py-24 relative overflow-hidden">
+        <div className="journey-ambient" aria-hidden="true" />
+        <div className="max-w-6xl mx-auto px-6 relative">
           <Reveal>
             <div className="text-center mb-12">
               <SectionLabel>{t("learningPaths.label")}</SectionLabel>
-              <h2 className="font-display font-bold text-4xl mb-4">Practical AI learning. Zero filler.</h2>
-              <p className="text-muted max-w-xl mx-auto">Every lesson produces a real deliverable. Every module builds on the last.</p>
+              <h2 className="font-display font-bold text-4xl mb-4">Build real AI capability.</h2>
+              <p className="text-muted max-w-xl mx-auto">A guided journey from awareness to leadership. Every module produces a real deliverable — and builds on the last.</p>
             </div>
           </Reveal>
-          <div className="space-y-6">
-            {/* Phase tab bar — groups the 14 modules into 3 chronological phases */}
-            <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 mb-2">
-              {PHASES.map((phase, pi) => (
+
+          {/* Stage rail — the three evolution stages, connected */}
+          <div className="flex items-stretch justify-center gap-0 mb-10 max-w-3xl mx-auto">
+            {PHASES.map((phase, pi) => (
+              <div key={pi} className="flex items-center flex-1 last:flex-none">
                 <button
-                  key={pi}
                   onClick={() => selectPhase(pi)}
-                  className={`flex-1 text-left px-5 py-4 rounded-xl border transition-all duration-200 ${activePhase === pi ? 'border-blue/50 bg-blue/15 shadow-[0_0_18px_rgba(26,110,255,0.18)]' : 'border-white/5 bg-white/[0.02] hover:border-white/15 hover:bg-white/[0.04]'}`}
+                  className={`group relative flex flex-col items-center text-center transition-all duration-300 ${activePhase === pi ? '' : 'opacity-60 hover:opacity-100'}`}
                 >
-                  <div className={`text-[10px] font-display font-bold uppercase tracking-wider mb-1 ${activePhase === pi ? 'text-blue-bright' : 'text-muted'}`}>{phase.label}</div>
-                  <div className={`text-sm font-display font-bold leading-snug ${activePhase === pi ? 'text-white' : 'text-white/80'}`}>{phase.title}</div>
-                  <div className="text-[10px] text-muted mt-1">Modules {phase.moduleIndices[0] + 1}–{phase.moduleIndices[phase.moduleIndices.length - 1] + 1}</div>
+                  <span className={`relative w-11 h-11 rounded-full flex items-center justify-center font-display font-black text-sm border-2 transition-all duration-300 ${activePhase === pi ? 'bg-blue border-blue text-white shadow-[0_0_20px_rgba(26,110,255,0.5)]' : 'bg-navy-mid border-white/20 text-white/70'}`}>
+                    {pi + 1}
+                  </span>
+                  <span className={`mt-2 text-[11px] sm:text-xs font-display font-bold uppercase tracking-wider whitespace-nowrap ${activePhase === pi ? 'text-blue-bright' : 'text-muted'}`}>{phase.stage}</span>
                 </button>
-              ))}
-            </div>
-            {/* Tile grid — only modules in the active phase are shown */}
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
+                {pi < PHASES.length - 1 && (
+                  <div className="flex-1 h-[2px] mx-2 sm:mx-3 mb-5 rounded-full bg-gradient-to-r from-blue/40 to-white/10" />
+                )}
+              </div>
+            ))}
+          </div>
+
+          {/* Active phase title */}
+          <div className="text-center mb-8">
+            <h3 className="font-display font-bold text-xl sm:text-2xl">{PHASES[activePhase].title}</h3>
+            <p className="text-xs text-muted mt-1">Modules {PHASES[activePhase].moduleIndices[0] + 1}–{PHASES[activePhase].moduleIndices[PHASES[activePhase].moduleIndices.length - 1] + 1}</p>
+          </div>
+
+          {/* ── Stable two-column layout: module list (left) + fixed preview (right) ── */}
+          <div className="grid lg:grid-cols-[1fr_1.3fr] gap-6 items-start">
+            {/* Module nodes — selecting one updates the panel in place (no scroll) */}
+            <div className="space-y-2.5">
               {PHASES[activePhase].moduleIndices.map((i) => {
                 const mod = MODULES[i]
+                const isActive = activeModule === i
                 return (
-                <button key={mod.id} onClick={() => {
-                  setActiveModule(i)
-                  // Smooth scroll to the detail panel so it lands in view immediately
-                  setTimeout(() => {
-                    document.getElementById('module-detail')?.scrollIntoView({
-                      behavior: 'smooth',
-                      block: 'start',
-                    })
-                  }, 100)
-                }}
-                  className={`text-left p-4 rounded-xl border transition-all duration-200 min-h-[110px] flex flex-col ${activeModule === i ? 'border-blue/50 bg-blue/15 shadow-[0_0_18px_rgba(26,110,255,0.18)]' : 'border-white/5 bg-white/[0.02] hover:border-white/15 hover:bg-white/[0.04]'}`}>
-                  <div className="flex items-start gap-2 mb-2">
-                    <span className="flex-shrink-0 w-9 h-9 rounded-lg bg-blue/12 border border-blue/20 flex items-center justify-center text-blue-bright"><Icon name={mod.icon} size={18} /></span>
-                    <div className="text-[10px] font-display font-bold text-muted">M{mod.number}</div>
-                    {i !== 0 && <span className="ml-auto text-muted text-xs" title="Included with enrolment">🔒</span>}
-                  </div>
-                  <div className={`text-xs sm:text-sm font-display font-bold leading-snug ${activeModule === i ? 'text-white' : 'text-white/80'} break-words`}>{mod.title}</div>
-                </button>
+                  <button
+                    key={mod.id}
+                    onClick={() => { setActiveModule(i); setMobileSheetOpen(true) }}
+                    className={`w-full text-left flex items-center gap-3 p-3.5 rounded-2xl border transition-all duration-200 ${isActive ? 'border-blue/50 bg-blue/[0.10] shadow-[0_0_18px_rgba(26,110,255,0.15)]' : 'border-white/8 bg-white/[0.02] hover:border-white/20 hover:bg-white/[0.04]'}`}
+                  >
+                    <span className={`flex-shrink-0 w-10 h-10 rounded-xl flex items-center justify-center border transition-colors ${isActive ? 'bg-blue/20 border-blue/40 text-blue-bright' : 'bg-blue/10 border-blue/15 text-blue-bright'}`}>
+                      <Icon name={mod.icon} size={19} />
+                    </span>
+                    <div className="flex-1 min-w-0">
+                      <div className="text-[10px] font-display font-bold text-muted">Module {mod.number}</div>
+                      <div className={`text-sm font-display font-bold leading-snug truncate ${isActive ? 'text-white' : 'text-white/85'}`}>{mod.title}</div>
+                    </div>
+                    {i !== 0 && <span className="flex-shrink-0 text-muted" title="Included with enrolment"><Lock size={13} /></span>}
+                  </button>
                 )
               })}
             </div>
-            {/* Detail panel — appears below the tile grid, full width.
-                On tile click, browser smooth-scrolls to this for context. */}
-            <div id="module-detail" className="w-full scroll-mt-24">
-              <Card glow className="p-8" style={{ minHeight:'480px' }}>
-                <div className="flex items-start gap-4 mb-6">
-                  <span className="flex-shrink-0 w-14 h-14 rounded-2xl bg-blue/12 border border-blue/20 flex items-center justify-center text-blue-bright"><Icon name={MODULES[activeModule].icon} size={28} /></span>
-                  <div>
-                    <div className="flex items-center gap-2 mb-2 flex-wrap">
-                      <span className="px-3 py-1 bg-blue/10 border border-blue/25 rounded-full text-xs font-display font-bold text-blue-bright">Module {MODULES[activeModule].number}</span>
-                      {(() => {
-                        const firstTier = MODULES[activeModule].lessons[0]?.tier
-                        if (firstTier && firstTier !== 'individual') { const mapped = firstTier === 'smb' ? 'journey' : firstTier === 'enterprise' ? 'pro' : firstTier; return <TierBadge tier={mapped} /> }
-                      })()}
-                    </div>
-                    <h3 className="font-display font-bold text-2xl mb-2">{MODULES[activeModule].title}</h3>
-                    <p className="text-muted text-sm">{MODULES[activeModule].description}</p>
-                  </div>
-                </div>
-                <div className="space-y-2 mb-6">
-                  {MODULES[activeModule].lessons.map((l, i) => (
-                    <div key={l.id} className="flex items-center gap-3 p-3 rounded-lg bg-white/[0.03] border border-white/5">
-                      <div className="w-6 h-6 rounded-full bg-navy-light border border-white/10 flex items-center justify-center text-xs text-muted font-display font-bold flex-shrink-0">{i + 1}</div>
-                      <span className="text-sm text-white/80 flex-1">{l.title}</span>
-                      {l.duration && <span className="text-xs text-muted flex-shrink-0">{l.duration}</span>}
-                    </div>
-                  ))}
-                </div>
-                <div className="relative flex items-start gap-3 p-5 rounded-xl bg-success/[0.07] border border-success/30 overflow-hidden">
-                  <div className="absolute inset-y-0 left-0 w-1 bg-success/60" />
-                  <span className="text-2xl mt-0.5">📋</span>
-                  <div className="flex-1">
-                    <div className="text-[10px] font-display font-bold text-success uppercase tracking-wider mb-1">You'll walk away with</div>
-                    <div className="text-base font-display font-bold text-white leading-snug">{MODULES[activeModule].deliverable}</div>
-                  </div>
-                </div>
 
-                {/* Free-preview affordance — only on Module 1 */}
-                {activeModule === 0 && (
-                  <div className="mt-4">
-                    <Link
-                      href="/preview"
-                      className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-blue/15 border border-blue/40 text-blue-bright font-display font-bold text-sm hover:bg-blue/25 transition-all duration-200"
-                    >
-                      🔓 Preview Free Lesson <span className="text-blue-bright/70 font-normal">(No Sign-up)</span>
-                    </Link>
-                  </div>
-                )}
-              </Card>
+            {/* Preview panel — DESKTOP: sticky, fixed-height, updates in place.
+                The key={activeModule} triggers a gentle cross-fade on change but
+                the panel container never moves — no page reflow, no scroll jump. */}
+            <div className="hidden lg:block sticky top-24">
+              <ModulePreview mod={MODULES[activeModule]} key={activeModule} />
             </div>
           </div>
         </div>
-      </section>
 
+        {/* Preview panel — MOBILE: slides up as a bottom sheet over the journey,
+            so selecting a module never pushes the page layout. */}
+        {mobileSheetOpen && (
+          <div className="lg:hidden fixed inset-0 z-[90] flex items-end">
+            <div className="absolute inset-0 bg-navy/70 backdrop-blur-sm journey-backdrop" onClick={() => setMobileSheetOpen(false)} aria-hidden="true" />
+            <div className="journey-sheet relative w-full max-h-[85vh] overflow-y-auto bg-navy-mid border-t border-white/12 rounded-t-3xl">
+              <div className="sticky top-0 flex justify-center pt-3 pb-2 bg-navy-mid">
+                <span className="w-10 h-1 rounded-full bg-white/20" />
+              </div>
+              <div className="px-5 pb-8">
+                <ModulePreview mod={MODULES[activeModule]} onClose={() => setMobileSheetOpen(false)} />
+              </div>
+            </div>
+          </div>
+        )}
+      </section>
 
 
       {/* Preview section removed — free-preview affordance now lives inside
           Module 1 in the curriculum, and module access is indicated by the
-          lock icons on each tile. This eliminates the duplicate content. */}
+          lock icons on each module node. This eliminates the duplicate content. */}
 
       {/* ── Learning Evolution ── */}
       <section className="py-16 border-t border-white/5">
@@ -632,3 +620,69 @@ export default function Home() {
   )
 }
 
+
+// ── ModulePreview ────────────────────────────────────────────────────────────
+// The fixed-height preview panel shown beside the journey (desktop) or in the
+// bottom sheet (mobile). It updates IN PLACE when a module is selected — the
+// container never moves, so there's no page reflow or scroll jump. A subtle
+// cross-fade (via key={activeModule} on the parent) keeps changes smooth.
+function ModulePreview({ mod, onClose }) {
+  const firstTier = mod.lessons[0]?.tier
+  const mappedTier = firstTier && firstTier !== 'individual'
+    ? (firstTier === 'smb' ? 'journey' : firstTier === 'enterprise' ? 'pro' : firstTier)
+    : null
+
+  return (
+    <Card glow className="journey-preview p-6 sm:p-8 relative">
+      {onClose && (
+        <button onClick={onClose} className="absolute top-4 right-4 w-8 h-8 rounded-full border border-white/12 text-muted hover:text-white flex items-center justify-center lg:hidden" aria-label="Close">
+          <X size={16} />
+        </button>
+      )}
+
+      <div className="flex items-start gap-4 mb-6">
+        <span className="flex-shrink-0 w-14 h-14 rounded-2xl bg-blue/12 border border-blue/20 flex items-center justify-center text-blue-bright">
+          <Icon name={mod.icon} size={28} />
+        </span>
+        <div>
+          <div className="flex items-center gap-2 mb-2 flex-wrap">
+            <span className="px-3 py-1 bg-blue/10 border border-blue/25 rounded-full text-xs font-display font-bold text-blue-bright">Module {mod.number}</span>
+            {mappedTier && <TierBadge tier={mappedTier} />}
+          </div>
+          <h3 className="font-display font-bold text-2xl mb-2 leading-tight">{mod.title}</h3>
+          <p className="text-muted text-sm leading-relaxed">{mod.description}</p>
+        </div>
+      </div>
+
+      {/* Lessons */}
+      <div className="space-y-2 mb-6">
+        {mod.lessons.map((l, i) => (
+          <div key={l.id} className="flex items-center gap-3 p-3 rounded-lg bg-white/[0.03] border border-white/5">
+            <div className="w-6 h-6 rounded-full bg-navy-light border border-white/10 flex items-center justify-center text-xs text-muted font-display font-bold flex-shrink-0">{i + 1}</div>
+            <span className="text-sm text-white/80 flex-1">{l.title}</span>
+            {l.duration && <span className="text-xs text-muted flex-shrink-0 inline-flex items-center gap-1"><Clock size={11} /> {l.duration}</span>}
+          </div>
+        ))}
+      </div>
+
+      {/* Deliverable — premium outcome */}
+      <div className="relative flex items-start gap-3 p-5 rounded-xl bg-success/[0.07] border border-success/30 overflow-hidden">
+        <div className="absolute inset-y-0 left-0 w-1 bg-success/60" />
+        <span className="text-success mt-0.5"><FileCheck2 size={22} /></span>
+        <div className="flex-1">
+          <div className="text-[10px] font-display font-bold text-success uppercase tracking-wider mb-1">You'll walk away with</div>
+          <div className="text-base font-display font-bold text-white leading-snug">{mod.deliverable}</div>
+        </div>
+      </div>
+
+      {/* Free-preview affordance — only Module 1 */}
+      {mod.number === 1 && (
+        <div className="mt-4">
+          <Link href="/preview" className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-blue/15 border border-blue/40 text-blue-bright font-display font-bold text-sm hover:bg-blue/25 transition-all duration-200">
+            <Sparkles size={16} /> Preview Free Lesson <span className="text-blue-bright/70 font-normal">(No Sign-up)</span>
+          </Link>
+        </div>
+      )}
+    </Card>
+  )
+}
