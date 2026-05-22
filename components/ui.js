@@ -1,4 +1,5 @@
 import React from 'react'
+import Icon from './Icon'
 // components/ui.js — LeO AI shared UI primitives
 import Link from 'next/link'
 import { useState, useEffect, useRef } from 'react'
@@ -97,7 +98,7 @@ export function ThemeToggle({ compact = false }) {
         }`}
         title={`Theme: ${current.label} — click to change`}
       >
-        <span style={{fontSize:'14px'}}>{current.icon}</span>
+        <span className="inline-flex"><Icon name={current.icon} size={14} /></span>
         {!compact && <span className="hidden sm:inline">{current.label}</span>}
       </button>
       {open && (
@@ -116,7 +117,7 @@ export function ThemeToggle({ compact = false }) {
                   : 'text-muted hover:text-white hover:bg-white/5'
               }`}
             >
-              <span style={{fontSize:'14px'}}>{opt.icon}</span>
+              <span className="inline-flex"><Icon name={opt.icon} size={14} /></span>
               <div className="text-left">
                 <div>{opt.label}</div>
                 <div className="text-[10px] opacity-60 font-normal">{opt.desc}</div>
@@ -257,7 +258,7 @@ export function Sidebar({ activeTab, onTab, user }) {
                 ? 'bg-blue/10 text-gray-900 font-display font-bold border border-blue/30'
                 : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
             }`}>
-            <span className="text-base w-5 text-center">{t.icon}</span>{t.label}
+            <span className="w-5 flex justify-center"><Icon name={t.icon} size={17} /></span>{t.label}
           </button>
         ))}
       </nav>
