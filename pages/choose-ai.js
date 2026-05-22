@@ -207,10 +207,10 @@ export default function ChooseAI() {
       <main className="pt-24 pb-20 min-h-screen">
         <div className="max-w-5xl mx-auto px-5 sm:px-8">
 
-          {/* ── Level 1: prompt + category grid ── */}
+          {/* ── Level 1: prompt + interactive tree ── */}
           {!active && (
             <Reveal>
-              <div className="text-center mb-12">
+              <div className="text-center mb-10">
                 <p className="text-xs uppercase tracking-[0.18em] text-blue-bright font-display font-bold mb-4">
                   AI Capability Explorer
                 </p>
@@ -218,26 +218,14 @@ export default function ChooseAI() {
                   What are you trying to achieve?
                 </h1>
                 <p className="text-muted max-w-xl mx-auto text-base sm:text-lg leading-relaxed">
-                  Pick a task below. We&rsquo;ll show you the categories of AI that fit, the tools worth knowing, and what each one is genuinely good at — no hype, no overwhelm.
+                  Each branch is a different kind of AI. Follow one to see the tools worth knowing and what each is genuinely good at — no hype, no overwhelm.
                 </p>
               </div>
 
-              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4">
-                {CATEGORIES.map((cat, i) => (
-                  <button
-                    key={cat.id}
-                    onClick={() => {
-                      setActiveId(cat.id)
-                      window.scrollTo({ top: 0, behavior: 'smooth' })
-                    }}
-                    className="group text-left p-5 rounded-2xl border border-white/8 bg-white/[0.02] hover:border-blue/40 hover:bg-blue/[0.06] transition-all duration-200 min-h-[120px] flex flex-col"
-                    style={{ animationDelay: `${i * 30}ms` }}
-                  >
-                    <span className="text-3xl mb-3 transition-transform duration-200 group-hover:scale-110">{cat.icon}</span>
-                    <span className="font-display font-bold text-sm sm:text-base leading-snug">{cat.name}</span>
-                  </button>
-                ))}
-              </div>
+              <CapabilityTree
+                categories={CATEGORIES}
+                onSelect={(id) => { setActiveId(id); window.scrollTo({ top: 0, behavior: 'smooth' }) }}
+              />
 
               <p className="text-center text-xs text-muted mt-10 max-w-lg mx-auto leading-relaxed">
                 Different AI tools serve different purposes. The goal isn&rsquo;t to find one winner — it&rsquo;s to match the right capability to the task in front of you.
@@ -323,5 +311,131 @@ export default function ChooseAI() {
 
       <Footer />
     </>
+  )
+}
+
+// ── CapabilityTree ───────────────────────────────────────────────────────────
+// Renders the 12 capabilities as an interactive tree.
+//   • Desktop/tablet (sm+): an SVG tree — central trunk, branches curving out
+//     to nodes alternating left/right, growing upward. Branches animate in.
+//   • Mobile: a vertical "vine" — the trunk runs top-to-bottom with leaf nodes
+//     alternating left/right off it. Readable, tappable, no horizontal scroll.
+// Both layouts are driven by the same `categories` array.
+function CapabilityTree({ categories, onSelect }) {
+  // Split categories into left/right columns for the desktop tree.
+  // Alternate so the tree feels balanced.
+  const positioned = categories.map((c, i) => ({
+    ...c,
+    side: i % 2 === 0 ? 'left' : 'right',
+    row: Math.floor(i / 2),
+  }))
+  const rows = Math.ceil(categories.length / 2)
+
+  // SVG geometry (desktop)
+  const ROW_H = 96            // vertical spacing between branch rows
+  const TOP_PAD = 60          // space above first branch (canopy)
+  const BOT_PAD = 70          // space below last branch (roots/base)
+  const H = TOP_PAD + rows * ROW_H + BOT_PAD
+  const W = 900
+  const cx = W / 2            // trunk centre x
+  const nodeOffsetX = 250     // how far nodes sit from the trunk
+  const branchTopY = (row) => TOP_PAD + row * ROW_H + 30
+
+  return (
+    <div className="relative">
+      {/* ───────── Desktop / tablet: SVG tree ───────── */}
+      <div className="hidden sm:block relative mx-auto" style={{ maxWidth: W }}>
+        <svg viewBox={`0 0 ${W} ${H}`} className="w-full h-auto overflow-visible" role="img" aria-label="AI capability tree">
+          <defs>
+            <linearGradient id="trunkGrad" x1="0" y1="1" x2="0" y2="0">
+              <stop offset="0%" stopColor="var(--blue)" stopOpacity="0.25" />
+              <stop offset="100%" stopColor="var(--blue)" stopOpacity="0.6" />
+            </linearGradient>
+          </defs>
+
+          {/* Trunk */}
+          <path
+            d={`M ${cx} ${H - BOT_PAD + 40} C ${cx} ${H * 0.6}, ${cx} ${H * 0.4}, ${cx} ${TOP_PAD - 10}`}
+            stroke="url(#trunkGrad)"
+            strokeWidth="8"
+            fill="none"
+            strokeLinecap="round"
+          />
+
+          {/* Branches — a curved path from trunk out to each node anchor */}
+          {positioned.map((c, i) => {
+            const y = branchTopY(c.row)
+            const dir = c.side === 'left' ? -1 : 1
+            const endX = cx + dir * nodeOffsetX
+            const startY = y + 18
+            // Cubic curve for an organic branch
+            const d = `M ${cx} ${startY} C ${cx + dir * 80} ${startY - 6}, ${endX - dir * 70} ${y - 4}, ${endX} ${y}`
+            return (
+              <path
+                key={c.id}
+                d={d}
+                stroke="var(--blue)"
+                strokeOpacity="0.4"
+                strokeWidth="3"
+                fill="none"
+                strokeLinecap="round"
+                className="capability-branch"
+                style={{ animationDelay: `${i * 90}ms` }}
+              />
+            )
+          })}
+        </svg>
+
+        {/* Node buttons positioned over the SVG anchors */}
+        <div className="absolute inset-0">
+          {positioned.map((c, i) => {
+            const y = branchTopY(c.row)
+            const dir = c.side === 'left' ? -1 : 1
+            const endX = cx + dir * nodeOffsetX
+            const leftPct = (endX / W) * 100
+            const topPct = (y / H) * 100
+            return (
+              <button
+                key={c.id}
+                onClick={() => onSelect(c.id)}
+                className="capability-node group absolute -translate-y-1/2 flex items-center gap-2.5 px-4 py-2.5 rounded-full border border-white/10 bg-white/[0.03] hover:border-blue/50 hover:bg-blue/[0.08] transition-all duration-200 whitespace-nowrap"
+                style={{
+                  left: `${leftPct}%`,
+                  top: `${topPct}%`,
+                  transform: `translate(${c.side === 'left' ? '-100%' : '0'}, -50%)`,
+                  animationDelay: `${i * 90 + 200}ms`,
+                }}
+              >
+                <span className="text-xl transition-transform duration-200 group-hover:scale-110">{c.icon}</span>
+                <span className="font-display font-bold text-sm">{c.name}</span>
+              </button>
+            )
+          })}
+        </div>
+      </div>
+
+      {/* ───────── Mobile: vertical vine ───────── */}
+      <div className="sm:hidden relative pl-6">
+        {/* vertical trunk line */}
+        <div className="absolute left-[10px] top-2 bottom-2 w-[3px] bg-gradient-to-b from-blue/60 via-blue/40 to-blue/20 rounded-full" />
+        <div className="space-y-3">
+          {categories.map((c, i) => (
+            <div key={c.id} className="relative">
+              {/* little branch stub connecting to the trunk */}
+              <div className="absolute -left-[14px] top-1/2 w-3.5 h-[2px] bg-blue/40" />
+              <button
+                onClick={() => onSelect(c.id)}
+                className="capability-node group w-full text-left flex items-center gap-3 px-4 py-3.5 rounded-2xl border border-white/8 bg-white/[0.02] hover:border-blue/40 hover:bg-blue/[0.06] transition-all duration-200"
+                style={{ animationDelay: `${i * 50}ms` }}
+              >
+                <span className="text-2xl transition-transform duration-200 group-hover:scale-110">{c.icon}</span>
+                <span className="font-display font-bold text-sm">{c.name}</span>
+                <span className="ml-auto text-muted text-xs">→</span>
+              </button>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
   )
 }
