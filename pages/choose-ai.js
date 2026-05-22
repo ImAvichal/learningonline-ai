@@ -300,12 +300,12 @@ function CapabilityMap({ categories, hoverId, setHoverId, activeId, onSelect }) 
       <div className="hidden md:block relative mx-auto" style={{ maxWidth: W }}>
         <svg viewBox={`0 0 ${W} ${H}`} className="w-full h-auto overflow-visible" role="img" aria-label="AI capability map">
           <defs>
-            <radialGradient id="rootGrad" cx="50%" cy="38%" r="65%">
-              <stop offset="0%" stopColor="#16213F" />
-              <stop offset="100%" stopColor="#0D1530" />
+            <radialGradient id="rootGrad" cx="50%" cy="35%" r="70%">
+              <stop offset="0%" stopColor="#3D8BFF" />
+              <stop offset="100%" stopColor="#1A6EFF" />
             </radialGradient>
             <radialGradient id="rootGlow" cx="50%" cy="50%" r="50%">
-              <stop offset="0%" stopColor="var(--blue)" stopOpacity="0.22" />
+              <stop offset="0%" stopColor="var(--blue)" stopOpacity="0.25" />
               <stop offset="100%" stopColor="var(--blue)" stopOpacity="0" />
             </radialGradient>
             <linearGradient id="connGrad" x1="0" y1="0" x2="1" y2="0">
@@ -350,9 +350,8 @@ function CapabilityMap({ categories, hoverId, setHoverId, activeId, onSelect }) 
             )
           })}
 
-          {/* Root node — softened navy, glassy focal point */}
-          <circle cx={cx} cy={cy} r="52" fill="url(#rootGrad)" stroke="var(--blue)" strokeOpacity="0.45" strokeWidth="1.5" className="capmap-root-core" />
-          <circle cx={cx} cy={cy} r="52" fill="none" stroke="var(--blue)" strokeOpacity="0.25" className="capmap-root-ring" />
+          {/* Root node — solid, welcoming blue focal point (no animation) */}
+          <circle cx={cx} cy={cy} r="52" fill="url(#rootGrad)" stroke="#FFFFFF" strokeOpacity="0.25" strokeWidth="1.5" />
         </svg>
 
         {/* Root label (HTML over SVG centre) */}
@@ -382,7 +381,7 @@ function CapabilityMap({ categories, hoverId, setHoverId, activeId, onSelect }) 
                 className={`capmap-node group absolute -translate-x-1/2 -translate-y-1/2 flex flex-col items-center gap-2 transition-all duration-300 ${dimmed ? 'opacity-45' : 'opacity-100'}`}
                 style={{ left: `${leftPct}%`, top: `${topPct}%`, animationDelay: `${i * 70 + 250}ms` }}
               >
-                <span className={`capmap-orbit relative w-14 h-14 rounded-2xl bg-navy-mid border flex items-center justify-center text-blue-bright shadow-lg transition-all duration-300 group-hover:-translate-y-0.5 ${isActive ? 'capmap-orbit-active border-blue/70 shadow-[0_0_24px_rgba(26,110,255,0.4)]' : 'border-white/12 group-hover:border-blue/60 group-hover:shadow-[0_0_24px_rgba(26,110,255,0.35)]'}`}
+                <span className={`capmap-orbit relative w-14 h-14 rounded-full bg-navy-mid border flex items-center justify-center text-blue-bright shadow-lg transition-all duration-300 group-hover:-translate-y-0.5 ${isActive ? 'capmap-orbit-active border-blue/70 shadow-[0_0_24px_rgba(26,110,255,0.4)]' : 'border-white/12 group-hover:border-blue/60 group-hover:shadow-[0_0_24px_rgba(26,110,255,0.35)]'}`}
                   style={{ animationDelay: `${i * 0.5}s` }}
                 >
                   <IconCmp size={24} strokeWidth={1.75} />
@@ -421,7 +420,7 @@ function CapabilityMap({ categories, hoverId, setHoverId, activeId, onSelect }) 
                   className="capmap-node group w-full text-left flex items-center gap-3 px-4 py-3 rounded-2xl border border-white/10 bg-navy-mid/60 hover:border-blue/40 hover:bg-blue/[0.06] transition-all duration-200"
                   style={{ animationDelay: `${i * 45}ms` }}
                 >
-                  <span className="relative flex-shrink-0 w-10 h-10 rounded-xl bg-blue/12 border border-blue/20 flex items-center justify-center text-blue-bright">
+                  <span className="relative flex-shrink-0 w-10 h-10 rounded-full bg-blue/12 border border-blue/20 flex items-center justify-center text-blue-bright">
                     <IconCmp size={20} strokeWidth={1.75} />
                   </span>
                   <span className="font-display font-bold text-sm flex-1">{c.name}</span>
