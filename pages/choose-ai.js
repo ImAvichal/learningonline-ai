@@ -223,6 +223,18 @@ export default function ChooseAI() {
         <div className="relative max-w-6xl mx-auto px-5 sm:px-8 pt-24 pb-24">
           {/* Header */}
           <div className="text-center mb-4 sm:mb-2">
+            {/* Brand mark — a minimal AI-inspired geometric node-cluster glyph */}
+            <div className="flex justify-center mb-5">
+              <span className="capmap-brandmark relative inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-navy-mid border border-blue/30">
+                <svg width="30" height="30" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+                  <circle cx="16" cy="16" r="4" fill="var(--blue)" />
+                  <circle cx="16" cy="5" r="2.5" fill="var(--blue)" fillOpacity="0.85" />
+                  <circle cx="26" cy="22" r="2.5" fill="var(--blue)" fillOpacity="0.85" />
+                  <circle cx="6" cy="22" r="2.5" fill="var(--blue)" fillOpacity="0.85" />
+                  <path d="M16 16 L16 5 M16 16 L26 22 M16 16 L6 22" stroke="var(--blue)" strokeWidth="1.5" strokeOpacity="0.5" />
+                </svg>
+              </span>
+            </div>
             <p className="text-xs uppercase tracking-[0.2em] text-blue-bright font-display font-bold mb-3">
               AI Capability Map
             </p>
@@ -238,6 +250,7 @@ export default function ChooseAI() {
             categories={CATEGORIES}
             hoverId={hoverId}
             setHoverId={setHoverId}
+            activeId={activeId}
             onSelect={setActiveId}
           />
 
@@ -274,7 +287,7 @@ function radialPositions(n, cx, cy, r) {
 }
 
 // ── CapabilityMap ──────────────────────────────────────────────────────────────
-function CapabilityMap({ categories, hoverId, setHoverId, onSelect }) {
+function CapabilityMap({ categories, hoverId, setHoverId, activeId, onSelect }) {
   // Desktop SVG canvas geometry
   const W = 980, H = 720
   const cx = W / 2, cy = H / 2
@@ -287,9 +300,9 @@ function CapabilityMap({ categories, hoverId, setHoverId, onSelect }) {
       <div className="hidden md:block relative mx-auto" style={{ maxWidth: W }}>
         <svg viewBox={`0 0 ${W} ${H}`} className="w-full h-auto overflow-visible" role="img" aria-label="AI capability map">
           <defs>
-            <radialGradient id="rootGrad" cx="50%" cy="50%" r="50%">
-              <stop offset="0%" stopColor="var(--blue)" stopOpacity="0.9" />
-              <stop offset="100%" stopColor="var(--blue)" stopOpacity="0.55" />
+            <radialGradient id="rootGrad" cx="50%" cy="40%" r="60%">
+              <stop offset="0%" stopColor="#0C1633" />
+              <stop offset="100%" stopColor="#060B1C" />
             </radialGradient>
             <linearGradient id="connGrad" x1="0" y1="0" x2="1" y2="0">
               <stop offset="0%" stopColor="var(--blue)" stopOpacity="0.5" />
@@ -297,21 +310,28 @@ function CapabilityMap({ categories, hoverId, setHoverId, onSelect }) {
             </linearGradient>
           </defs>
 
-          {/* Connectors — curved path root → node */}
+          {/* Connectors — curved path from just outside the root node → node.
+              Starting slightly out from centre keeps the root visually clean
+              and stops lines bleeding through the focal point. */}
           {pos.map((p, i) => {
             const c = categories[i]
             const isHot = hoverId === c.id
-            // control point pulls outward for an organic bend
-            const mx = (cx + p.x) / 2 + (p.x - cx) * 0.12
-            const my = (cy + p.y) / 2 + (p.y - cy) * 0.12
-            const d = `M ${cx} ${cy} Q ${mx} ${my} ${p.x} ${p.y}`
+            // start the line on the rim of the root node, not dead centre
+            const rim = 58
+            const dx = p.x - cx, dy = p.y - cy
+            const dist = Math.hypot(dx, dy)
+            const sx = cx + (dx / dist) * rim
+            const sy = cy + (dy / dist) * rim
+            const mx = (sx + p.x) / 2 + (p.x - cx) * 0.12
+            const my = (sy + p.y) / 2 + (p.y - cy) * 0.12
+            const d = `M ${sx} ${sy} Q ${mx} ${my} ${p.x} ${p.y}`
             return (
               <path
                 key={c.id}
                 d={d}
                 stroke={isHot ? 'var(--blue)' : 'url(#connGrad)'}
                 strokeWidth={isHot ? 3 : 2}
-                strokeOpacity={isHot ? 0.95 : 0.6}
+                strokeOpacity={isHot ? 0.95 : 0.55}
                 fill="none"
                 strokeLinecap="round"
                 className="capmap-conn"
@@ -320,9 +340,9 @@ function CapabilityMap({ categories, hoverId, setHoverId, onSelect }) {
             )
           })}
 
-          {/* Root pulse ring */}
-          <circle cx={cx} cy={cy} r="46" fill="url(#rootGrad)" className="capmap-root-core" />
-          <circle cx={cx} cy={cy} r="46" fill="none" stroke="var(--blue)" strokeOpacity="0.4" className="capmap-root-ring" />
+          {/* Root node — dark, strong anchor */}
+          <circle cx={cx} cy={cy} r="52" fill="url(#rootGrad)" stroke="var(--blue)" strokeOpacity="0.55" strokeWidth="1.5" className="capmap-root-core" />
+          <circle cx={cx} cy={cy} r="52" fill="none" stroke="var(--blue)" strokeOpacity="0.3" className="capmap-root-ring" />
         </svg>
 
         {/* Root label (HTML over SVG centre) */}
@@ -330,7 +350,7 @@ function CapabilityMap({ categories, hoverId, setHoverId, onSelect }) {
           className="absolute -translate-x-1/2 -translate-y-1/2 text-center pointer-events-none"
           style={{ left: '50%', top: '50%', width: 110 }}
         >
-          <div className="text-white font-display font-black text-xs leading-tight drop-shadow">Start<br/>here</div>
+          <div className="text-white font-display font-black text-sm leading-tight tracking-wide">START<br/>HERE</div>
         </div>
 
         {/* Node buttons positioned over SVG anchors */}
@@ -341,6 +361,7 @@ function CapabilityMap({ categories, hoverId, setHoverId, onSelect }) {
             const leftPct = (p.x / W) * 100
             const topPct = (p.y / H) * 100
             const dimmed = hoverId && hoverId !== c.id
+            const isActive = activeId === c.id
             return (
               <button
                 key={c.id}
@@ -351,11 +372,10 @@ function CapabilityMap({ categories, hoverId, setHoverId, onSelect }) {
                 className={`capmap-node group absolute -translate-x-1/2 -translate-y-1/2 flex flex-col items-center gap-2 transition-all duration-300 ${dimmed ? 'opacity-45' : 'opacity-100'}`}
                 style={{ left: `${leftPct}%`, top: `${topPct}%`, animationDelay: `${i * 70 + 250}ms` }}
               >
-                <span className="relative w-14 h-14 rounded-2xl bg-navy-mid border border-white/12 group-hover:border-blue/60 flex items-center justify-center text-blue-bright shadow-lg group-hover:shadow-[0_0_24px_rgba(26,110,255,0.35)] transition-all duration-300 group-hover:-translate-y-0.5">
+                <span className={`capmap-orbit relative w-14 h-14 rounded-2xl bg-navy-mid border flex items-center justify-center text-blue-bright shadow-lg transition-all duration-300 group-hover:-translate-y-0.5 ${isActive ? 'capmap-orbit-active border-blue/70 shadow-[0_0_24px_rgba(26,110,255,0.4)]' : 'border-white/12 group-hover:border-blue/60 group-hover:shadow-[0_0_24px_rgba(26,110,255,0.35)]'}`}
+                  style={{ animationDelay: `${i * 0.5}s` }}
+                >
                   <IconCmp size={24} strokeWidth={1.75} />
-                  {c.popular && (
-                    <span className="absolute -top-1.5 -right-1.5 w-3 h-3 rounded-full bg-amber-400 border-2 border-navy" title="Most popular" />
-                  )}
                 </span>
                 <span className="font-display font-bold text-xs text-white/90 whitespace-nowrap max-w-[120px] truncate">{c.name}</span>
               </button>
@@ -366,7 +386,6 @@ function CapabilityMap({ categories, hoverId, setHoverId, onSelect }) {
 
       {/* Legend (desktop) */}
       <div className="hidden md:flex items-center justify-center gap-5 mt-4 text-[11px] text-muted">
-        <span className="flex items-center gap-1.5"><span className="w-2.5 h-2.5 rounded-full bg-amber-400" /> Most popular</span>
         <span className="flex items-center gap-1.5"><Sparkles size={13} className="text-blue-bright" /> Tap any branch to explore</span>
       </div>
 
@@ -394,7 +413,6 @@ function CapabilityMap({ categories, hoverId, setHoverId, onSelect }) {
                 >
                   <span className="relative flex-shrink-0 w-10 h-10 rounded-xl bg-blue/12 border border-blue/20 flex items-center justify-center text-blue-bright">
                     <IconCmp size={20} strokeWidth={1.75} />
-                    {c.popular && <span className="absolute -top-1 -right-1 w-2.5 h-2.5 rounded-full bg-amber-400 border-2 border-navy" />}
                   </span>
                   <span className="font-display font-bold text-sm flex-1">{c.name}</span>
                   <span className="text-muted text-xs">→</span>
