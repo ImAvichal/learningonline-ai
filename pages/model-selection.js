@@ -3,6 +3,7 @@ import Head from 'next/head'
 import Footer from '../components/Footer'
 import { useState } from 'react'
 import { Nav, Card, SectionLabel, Button, Reveal } from '../components/ui'
+import Icon from '../components/Icon'
 import Link from 'next/link'
 
 const MODELS = [
@@ -158,7 +159,7 @@ export default function ModelSelection() {
                 { icon:'💰', title:'Volume changes everything', desc:'At 10 users, model choice costs $20/month. At 1,000 users, it costs $2,000/month. Model the economics first.' },
               ].map((p, i) => (
                 <Card key={i} className="p-6 text-center">
-                  <div className="text-3xl mb-3">{p.icon}</div>
+                  <div className="mb-3 text-blue-bright"><Icon name={p.icon} size={26} /></div>
                   <div className="font-display font-bold text-base mb-2">{p.title}</div>
                   <p className="text-sm text-muted leading-relaxed">{p.desc}</p>
                 </Card>
@@ -312,7 +313,7 @@ export default function ModelSelection() {
                     className={`flex items-center gap-2 px-4 py-2.5 rounded-xl border text-sm font-display font-bold transition-all ${
                       activeExample === i ? 'border-blue/50 bg-blue/10 text-white' : 'border-white/10 text-muted hover:border-white/20 hover:text-white'
                     }`}>
-                    <span>{ex.icon}</span>{ex.title}
+                    <span className="text-blue-bright inline-flex"><Icon name={ex.icon} size={18} /></span>{ex.title}
                   </button>
                 ))}
               </div>
@@ -321,7 +322,7 @@ export default function ModelSelection() {
                 <div className="grid lg:grid-cols-[1fr_320px] gap-8">
                   <div>
                     <div className="flex items-center gap-3 mb-4">
-                      <span className="text-4xl">{EXAMPLES[activeExample].icon}</span>
+                      <span className="flex-shrink-0 w-12 h-12 rounded-xl bg-blue/12 border border-blue/20 flex items-center justify-center text-blue-bright"><Icon name={EXAMPLES[activeExample].icon} size={24} /></span>
                       <div>
                         <h3 className="font-display font-bold text-xl">{EXAMPLES[activeExample].title}</h3>
                         <p className="text-muted text-sm">{EXAMPLES[activeExample].task}</p>
@@ -394,7 +395,7 @@ export default function ModelSelection() {
                   ].map((col, i) => (
                     <div key={i}>
                       <div className="flex items-center gap-2 mb-3">
-                        <span className="text-xl">{col.icon}</span>
+                        <span className="text-blue-bright inline-flex"><Icon name={col.icon} size={18} /></span>
                         <h3 className="font-display font-bold text-sm">{col.title}</h3>
                       </div>
                       <ul className="space-y-2">

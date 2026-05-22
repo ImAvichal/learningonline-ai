@@ -3,6 +3,7 @@ import Head from 'next/head'
 import Footer from '../components/Footer'
 import { useState } from 'react'
 import { Nav, Card, SectionLabel, Input, Spinner } from '../components/ui'
+import Icon from '../components/Icon'
 
 const QUERY_TYPES = ['General', 'Starting the Journey', 'The Pro', 'Refund Request', 'Other']
 
@@ -125,7 +126,7 @@ export default function Contact() {
                     { icon: '🤝', title: 'Bespoke Support', desc: 'Custom engagements beyond the platform — advisory, implementation, or tailored programs.' },
                   ].map(item => (
                     <div key={item.title} className="flex gap-3">
-                      <span className="text-xl flex-shrink-0">{item.icon}</span>
+                      <span className="flex-shrink-0 text-blue-bright"><Icon name={item.icon} size={20} /></span>
                       <div>
                         <div className="font-display font-bold text-sm text-white mb-0.5">{item.title}</div>
                         <div className="text-xs text-muted leading-relaxed">{item.desc}</div>

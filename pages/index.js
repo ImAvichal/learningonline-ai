@@ -4,6 +4,7 @@ import Link from 'next/link'
 import Footer from '../components/Footer'
 import { useState } from 'react'
 import { Nav, Reveal, Card, SectionLabel, Button, TierBadge, BillingToggle } from '../components/ui'
+import Icon from '../components/Icon'
 import { MODULES } from '../data/modules'
 import { TIERS, TIER_ORDER, INDUSTRIES, DISPLAY_ORDER } from '../data/tiers'
 import { useAuth } from '../lib/auth'
@@ -126,7 +127,7 @@ function DecisionTree({ onResult }) {
         {current.options.map((opt, i) => (
           <button key={i} onClick={() => choose(opt)}
             className={`w-full text-left p-4 rounded-xl border transition-all group flex items-center gap-4 ${selected === opt.label ? 'border-blue/60 bg-blue/15' : 'border-white/10 hover:border-blue/40 hover:bg-blue/8'}`}>
-            <span className="text-2xl flex-shrink-0">{opt.icon}</span>
+            <span className="flex-shrink-0 text-blue-bright"><Icon name={opt.icon} size={22} /></span>
             <span className="text-sm text-white/80 group-hover:text-white transition-colors leading-snug">{opt.label}</span>
             <svg className="w-4 h-4 text-muted group-hover:text-blue-bright flex-shrink-0 ml-auto transition-colors" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg>
           </button>
@@ -174,7 +175,7 @@ function IndustryMatcher() {
               return (
                 <button key={ind.id} onClick={() => setSelected(origIdx)}
                   className={`p-4 rounded-xl border text-left transition-all ${selected === origIdx ? 'border-blue/50 bg-blue/10' : 'border-white/8 bg-white/[0.02] hover:border-white/15'}`}>
-                  <div className="text-2xl mb-2">{ind.icon}</div>
+                  <div className="mb-2 text-blue-bright"><Icon name={ind.icon} size={22} /></div>
                   <div className={`text-xs font-display font-bold leading-tight ${selected === origIdx ? 'text-white' : 'text-white/70'}`}>{ind.name}</div>
                   <div className="mt-2">
                     <TierBadge tier={ind.recommendedTier} label={ind.recommendedTier === 'smb' ? 'Business' : TIERS[ind.recommendedTier]?.name} className="text-[9px] px-2 py-0.5" />
@@ -188,7 +189,7 @@ function IndustryMatcher() {
           {industry && tier ? (
             <Card glow className="p-8 h-full">
               <div className="flex items-start gap-4 mb-6">
-                <span className="text-5xl flex-shrink-0">{industry.icon}</span>
+                <span className="flex-shrink-0 w-14 h-14 rounded-2xl bg-blue/12 border border-blue/20 flex items-center justify-center text-blue-bright"><Icon name={industry.icon} size={28} /></span>
                 <div>
                   <h3 className="font-display font-bold text-2xl mb-2">{industry.name}</h3>
                   <div className="flex items-center gap-2 flex-wrap">
@@ -486,7 +487,7 @@ export default function Home() {
                 }}
                   className={`text-left p-4 rounded-xl border transition-all duration-200 min-h-[110px] flex flex-col ${activeModule === i ? 'border-blue/50 bg-blue/15 shadow-[0_0_18px_rgba(26,110,255,0.18)]' : 'border-white/5 bg-white/[0.02] hover:border-white/15 hover:bg-white/[0.04]'}`}>
                   <div className="flex items-start gap-2 mb-2">
-                    <span className="text-xl flex-shrink-0">{mod.icon}</span>
+                    <span className="flex-shrink-0 w-9 h-9 rounded-lg bg-blue/12 border border-blue/20 flex items-center justify-center text-blue-bright"><Icon name={mod.icon} size={18} /></span>
                     <div className="text-[10px] font-display font-bold text-muted">M{mod.number}</div>
                     {i !== 0 && <span className="ml-auto text-muted text-xs" title="Included with enrolment">🔒</span>}
                   </div>
@@ -500,7 +501,7 @@ export default function Home() {
             <div id="module-detail" className="w-full scroll-mt-24">
               <Card glow className="p-8" style={{ minHeight:'480px' }}>
                 <div className="flex items-start gap-4 mb-6">
-                  <span className="text-4xl">{MODULES[activeModule].icon}</span>
+                  <span className="flex-shrink-0 w-14 h-14 rounded-2xl bg-blue/12 border border-blue/20 flex items-center justify-center text-blue-bright"><Icon name={MODULES[activeModule].icon} size={28} /></span>
                   <div>
                     <div className="flex items-center gap-2 mb-2 flex-wrap">
                       <span className="px-3 py-1 bg-blue/10 border border-blue/25 rounded-full text-xs font-display font-bold text-blue-bright">Module {MODULES[activeModule].number}</span>

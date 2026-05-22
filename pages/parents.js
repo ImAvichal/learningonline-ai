@@ -9,6 +9,7 @@ import { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
 import { Nav, Card, SectionLabel, Reveal, Button, Spinner, LessonFeedback } from '../components/ui'
+import Icon from '../components/Icon'
 import { useAuth } from '../lib/auth'
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -780,7 +781,7 @@ export default function ParentsModule() {
                       : 'border-white/5 bg-white/[0.02] hover:border-white/10'
                   }`}>
                   <span className="text-lg flex-shrink-0 mt-0.5">
-                    {completed[l.id] ? '✅' : l.icon}
+                    {completed[l.id] ? <Icon name="✅" size={16} className="text-success" /> : <Icon name={l.icon} size={16} className="text-blue-bright" />}
                   </span>
                   <div className="flex-1 min-w-0">
                     <div className="text-[10px] text-muted font-display mb-0.5">Lesson {l.number}</div>
