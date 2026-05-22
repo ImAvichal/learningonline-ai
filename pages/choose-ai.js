@@ -18,6 +18,7 @@ import Head from 'next/head'
 import { useState } from 'react'
 import Footer from '../components/Footer'
 import { Nav, Reveal } from '../components/ui'
+import { Search, PenLine, Code2, Palette, Clapperboard, Mic, Presentation, Zap, LineChart, Bot, GraduationCap, MessagesSquare } from 'lucide-react'
 
 // ── Category data ────────────────────────────────────────────────────────────
 // Each category is self-contained. `tools` is an ordered list; tag each tool
@@ -25,7 +26,7 @@ import { Nav, Reveal } from '../components/ui'
 const CATEGORIES = [
   {
     id: 'research',
-    icon: '🔍',
+    icon: Search,
     name: 'Deep Research',
     blurb: 'Analyse large amounts of information, summarise reports, compare sources, and generate structured insights.',
     bestFor: ['Professionals', 'Analysts', 'Students', 'Consultants'],
@@ -39,7 +40,7 @@ const CATEGORIES = [
   },
   {
     id: 'writing',
-    icon: '✍️',
+    icon: PenLine,
     name: 'Writing & Text',
     blurb: 'Draft, edit, rewrite, and refine anything from emails to long-form articles and reports.',
     bestFor: ['Marketers', 'Professionals', 'Beginners', 'Founders'],
@@ -52,7 +53,7 @@ const CATEGORIES = [
   },
   {
     id: 'coding',
-    icon: '💻',
+    icon: Code2,
     name: 'Coding',
     blurb: 'Write, debug, explain, and refactor code — from quick scripts to whole features.',
     bestFor: ['Developers', 'Technical founders', 'Data teams'],
@@ -66,7 +67,7 @@ const CATEGORIES = [
   },
   {
     id: 'image',
-    icon: '🎨',
+    icon: Palette,
     name: 'Image Generation',
     blurb: 'Create illustrations, concept art, product mockups, and marketing visuals from text prompts.',
     bestFor: ['Creators', 'Marketers', 'Designers'],
@@ -79,7 +80,7 @@ const CATEGORIES = [
   },
   {
     id: 'video',
-    icon: '🎬',
+    icon: Clapperboard,
     name: 'Video Creation',
     blurb: 'Generate or edit video — from short clips and B-roll to avatar-led explainer videos.',
     bestFor: ['Creators', 'Marketers', 'Training teams'],
@@ -92,7 +93,7 @@ const CATEGORIES = [
   },
   {
     id: 'audio',
-    icon: '🎙️',
+    icon: Mic,
     name: 'Audio & Voice',
     blurb: 'Generate voiceovers, transcribe recordings, and create or clone natural-sounding speech.',
     bestFor: ['Creators', 'Podcasters', 'Training teams'],
@@ -105,7 +106,7 @@ const CATEGORIES = [
   },
   {
     id: 'presentations',
-    icon: '📊',
+    icon: Presentation,
     name: 'Presentations',
     blurb: 'Turn ideas or documents into structured, designed slide decks quickly.',
     bestFor: ['Professionals', 'Founders', 'Consultants'],
@@ -118,7 +119,7 @@ const CATEGORIES = [
   },
   {
     id: 'automation',
-    icon: '⚡',
+    icon: Zap,
     name: 'Automation',
     blurb: 'Connect apps and automate repetitive multi-step workflows without code.',
     bestFor: ['Operations', 'Founders', 'Professionals'],
@@ -131,7 +132,7 @@ const CATEGORIES = [
   },
   {
     id: 'data',
-    icon: '📈',
+    icon: LineChart,
     name: 'Data Analysis',
     blurb: 'Explore datasets, run calculations, find patterns, and produce charts and summaries.',
     bestFor: ['Analysts', 'Professionals', 'Data teams'],
@@ -144,7 +145,7 @@ const CATEGORIES = [
   },
   {
     id: 'agents',
-    icon: '🤖',
+    icon: Bot,
     name: 'AI Agents',
     blurb: 'Let AI carry out multi-step tasks autonomously — researching, deciding, and acting toward a goal.',
     bestFor: ['Developers', 'Operations', 'Enterprise users'],
@@ -157,7 +158,7 @@ const CATEGORIES = [
   },
   {
     id: 'learning',
-    icon: '🎓',
+    icon: GraduationCap,
     name: 'Learning & Education',
     blurb: 'Explain concepts, tutor a subject, create study materials, and adapt to your level.',
     bestFor: ['Students', 'Beginners', 'Parents', 'Lifelong learners'],
@@ -170,7 +171,7 @@ const CATEGORIES = [
   },
   {
     id: 'customer-service',
-    icon: '💬',
+    icon: MessagesSquare,
     name: 'Customer Service',
     blurb: 'Draft responses, triage enquiries, and power support chatbots and help centres.',
     bestFor: ['Operations', 'Founders', 'Enterprise users'],
@@ -244,7 +245,9 @@ export default function ChooseAI() {
               </button>
 
               <div className="flex items-start gap-4 mb-6">
-                <span className="text-5xl">{active.icon}</span>
+                <span className="flex-shrink-0 w-16 h-16 rounded-2xl bg-blue/12 border border-blue/25 flex items-center justify-center text-blue-bright">
+                  <active.icon size={30} strokeWidth={1.75} />
+                </span>
                 <div>
                   <h1 className="font-display font-black text-3xl sm:text-4xl leading-tight mb-2">{active.name}</h1>
                   <p className="text-muted text-base leading-relaxed max-w-2xl">{active.blurb}</p>
@@ -296,9 +299,9 @@ export default function ChooseAI() {
                     <button
                       key={c.id}
                       onClick={() => { setActiveId(c.id); window.scrollTo({ top: 0, behavior: 'smooth' }) }}
-                      className="px-3 py-1.5 rounded-full bg-white/[0.03] border border-white/8 hover:border-blue/40 hover:bg-blue/[0.06] text-xs text-white/80 transition-all"
+                      className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/[0.03] border border-white/8 hover:border-blue/40 hover:bg-blue/[0.06] text-xs text-white/80 transition-all"
                     >
-                      {c.icon} {c.name}
+                      <c.icon size={14} strokeWidth={1.75} /> {c.name}
                     </button>
                   ))}
                 </div>
@@ -406,7 +409,9 @@ function CapabilityTree({ categories, onSelect }) {
                   animationDelay: `${i * 90 + 200}ms`,
                 }}
               >
-                <span className="text-xl transition-transform duration-200 group-hover:scale-110">{c.icon}</span>
+                <span className="flex-shrink-0 w-8 h-8 rounded-lg bg-blue/12 border border-blue/20 flex items-center justify-center text-blue-bright transition-transform duration-200 group-hover:scale-110">
+                  <c.icon size={17} strokeWidth={1.75} />
+                </span>
                 <span className="font-display font-bold text-sm">{c.name}</span>
               </button>
             )
@@ -428,7 +433,9 @@ function CapabilityTree({ categories, onSelect }) {
                 className="capability-node group w-full text-left flex items-center gap-3 px-4 py-3.5 rounded-2xl border border-white/8 bg-white/[0.02] hover:border-blue/40 hover:bg-blue/[0.06] transition-all duration-200"
                 style={{ animationDelay: `${i * 50}ms` }}
               >
-                <span className="text-2xl transition-transform duration-200 group-hover:scale-110">{c.icon}</span>
+                <span className="flex-shrink-0 w-10 h-10 rounded-xl bg-blue/12 border border-blue/20 flex items-center justify-center text-blue-bright transition-transform duration-200 group-hover:scale-110">
+                  <c.icon size={20} strokeWidth={1.75} />
+                </span>
                 <span className="font-display font-bold text-sm">{c.name}</span>
                 <span className="ml-auto text-muted text-xs">→</span>
               </button>
