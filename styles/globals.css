@@ -864,3 +864,32 @@ html.light-mode .triad-def             { color: #6b7280; }
 @media (prefers-reduced-motion: reduce) {
   .capmap-orbit::before { animation: none; }
 }
+
+/* ═══════════════════════════════════════════════════════════════
+   HOMEPAGE LEARNING JOURNEY — ambient depth + stable preview
+   ═══════════════════════════════════════════════════════════════ */
+
+/* Soft ambient glow behind the journey section */
+.journey-ambient {
+  position: absolute; inset: 0; pointer-events: none;
+  background: radial-gradient(circle 600px at 50% 0%, rgba(26,110,255,0.07), transparent 65%);
+}
+
+/* Preview cross-fade: the parent uses key={activeModule}, so React remounts
+   this on change — we fade+rise it gently. Container position is fixed by the
+   sticky wrapper, so NO page reflow happens. */
+.journey-preview { animation: journey-preview-in 0.35s ease-out; }
+@keyframes journey-preview-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: none; }
+}
+
+/* Mobile bottom sheet */
+.journey-sheet { animation: journey-sheet-up 0.34s cubic-bezier(0.22,1,0.36,1); }
+@keyframes journey-sheet-up { from { transform: translateY(100%); } to { transform: translateY(0); } }
+.journey-backdrop { animation: journey-fade 0.3s ease-out; }
+@keyframes journey-fade { from { opacity: 0; } to { opacity: 1; } }
+
+@media (prefers-reduced-motion: reduce) {
+  .journey-preview, .journey-sheet, .journey-backdrop { animation: none; }
+}
