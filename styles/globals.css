@@ -804,11 +804,6 @@ html.light-mode .triad-def             { color: #6b7280; }
   @keyframes capmap-node-in-m { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
 }
 
-/* Root core soft pulse */
-.capmap-root-core { animation: capmap-pulse 4s ease-in-out infinite; transform-origin: center; transform-box: fill-box; }
-@keyframes capmap-pulse { 0%,100% { opacity: 0.85; } 50% { opacity: 1; } }
-.capmap-root-ring { animation: capmap-ring 4s ease-in-out infinite; transform-origin: center; transform-box: fill-box; }
-@keyframes capmap-ring { 0%,100% { transform: scale(1); opacity: 0.4; } 50% { transform: scale(1.15); opacity: 0.1; } }
 
 /* Detail panel slide-in */
 .capmap-panel { animation: capmap-panel-in 0.32s cubic-bezier(0.22,1,0.36,1) forwards; }
