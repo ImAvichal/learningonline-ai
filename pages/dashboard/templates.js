@@ -3,6 +3,7 @@ import { useAuth } from '../../lib/auth'
 import { getResourcesForTier } from '../../data/templates'
 import { MODULES } from '../../data/modules'
 import { Card, SectionLabel, TierBadge } from '../../components/ui'
+import Icon from '../../components/Icon'
 
 export default function TemplatesPage() {
   const { user } = useAuth()
@@ -41,7 +42,7 @@ export default function TemplatesPage() {
             return (
               <Card light key={tpl.id} hover className="p-5 flex flex-col">
                 <div className="flex items-start justify-between mb-3">
-                  <span className="text-2xl">{tpl.icon}</span>
+                  <span className="flex-shrink-0 w-10 h-10 rounded-xl bg-blue/12 border border-blue/20 flex items-center justify-center text-blue-bright"><Icon name={tpl.icon} size={20} /></span>
                   <div className="flex items-center gap-2">
                     {mod && (
                       <span className="text-[10px] text-gray-500 font-display bg-white border border-gray-200 px-2 py-0.5 rounded-full">

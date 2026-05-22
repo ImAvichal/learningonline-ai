@@ -6,6 +6,7 @@ import { useAuth, useProgress, withAuth } from '../../lib/auth'
 import NoEnrolmentMessage from '../../components/NoEnrolmentMessage'
 import { MODULES } from '../../data/modules'
 import { Sidebar, Card, ProgressBar, Button, SectionLabel, TierBadge, Reveal } from '../../components/ui'
+import Icon from '../../components/Icon'
 
 // Sub-pages (lazy-loaded as components)
 import CoursePage    from './course'
@@ -172,7 +173,7 @@ function HomeTab({ user, totalPct, completedMods, nextLesson, switchTab, goToLes
               <button key={mod.id} onClick={() => switchTab('course')} className="w-full text-left">
                 <Card light hover className={`p-4 ${isIP ? 'border-blue/25 bg-blue/[0.03]' : ''}`}>
                   <div className="flex items-center gap-4">
-                    <span className="text-2xl w-8 text-center flex-shrink-0">{mod.icon}</span>
+                    <span className="w-8 flex justify-center flex-shrink-0 text-blue-bright"><Icon name={mod.icon} size={20} /></span>
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center gap-2 mb-0.5">
                         <span className="text-xs text-gray-500 font-display">Module {mod.number}</span>

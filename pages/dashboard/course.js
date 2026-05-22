@@ -6,6 +6,7 @@ import NoEnrolmentMessage from '../../components/NoEnrolmentMessage'
 import { useRouter } from 'next/router'
 import { MODULES } from '../../data/modules'
 import { ProgressBar, TierBadge, Spinner, LessonFeedback } from '../../components/ui'
+import Icon from '../../components/Icon'
 
 // ── Quiz Component ────────────────────────────────────────────────────────────
 function ModuleQuiz({ quiz, moduleId, onComplete }) {
@@ -166,7 +167,7 @@ function ModuleQuiz({ quiz, moduleId, onComplete }) {
 // ── Lesson Content Renderer ───────────────────────────────────────────────────
 function LessonContent({ content }) {
   return (
-    <div className="bg-white border border-gray-200 rounded-2xl p-8 prose-lesson"
+    <div className="bg-white border border-gray-200 rounded-2xl p-8 prose-lesson lesson-light"
       dangerouslySetInnerHTML={{ __html: content }} />
   )
 }
@@ -325,7 +326,7 @@ export default function CoursePage() {
               <div key={mod.id}>
                 <button onClick={() => setExpanded(p => ({ ...p, [mi]: !p[mi] }))}
                   className={`w-full flex items-center gap-3 px-4 py-3 border-b border-gray-100 transition-colors ${isActiveMod ? 'bg-blue/10' : 'hover:bg-gray-50'}`}>
-                  <span className="text-base flex-shrink-0">{mod.icon}</span>
+                  <span className="flex-shrink-0 text-blue-bright"><Icon name={mod.icon} size={16} /></span>
                   <div className="flex-1 min-w-0 text-left">
                     <div className="text-[10px] text-gray-500 font-display">M{mod.number}</div>
                     <div className="text-xs font-display font-bold text-gray-900 truncate">{mod.title}</div>
