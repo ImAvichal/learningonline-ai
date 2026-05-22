@@ -16,6 +16,7 @@ import Link from 'next/link'
 import { useAuth, supabase } from '../lib/auth'
 import { Spinner, Logo } from '../components/ui'
 import { TIERS } from '../data/tiers'
+import { trackPurchase } from '../lib/gtm'
 
 export default function Success() {
   const router = useRouter()
@@ -59,6 +60,16 @@ export default function Success() {
       // Payment verified
       setTierName(data.tierId)
       setInterval(data.interval || 'monthly')
+
+      // Push purchase event to dataLayer for GTM / Google Ads conversion tracking.
+      // amount is in the smallest currency unit (cents), so divide by 100.
+      trackPurchase({
+        transactionId: session_id,
+        tier: data.tierId,
+        interval: data.interval || 'monthly',
+        value: typeof data.amount === 'number' ? data.amount / 100 : undefined,
+        currency: (data.currency || 'aud').toUpperCase(),
+      })
 
       // Refresh auth state so user.tier reflects the new entitlement
       if (refreshUser) await refreshUser()

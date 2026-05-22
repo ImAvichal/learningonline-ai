@@ -8,6 +8,7 @@ import { useRegion } from '../lib/region'
 import { REGIONAL_PRICING } from '../data/tiers'
 import { Card, Spinner, TierBadge } from '../components/ui'
 import { TIERS } from '../data/tiers'
+import { trackBeginCheckout } from '../lib/gtm'
 
 export default function Checkout() {
   const { user, loading: authLoading, updateUser } = useAuth()
@@ -51,6 +52,22 @@ export default function Checkout() {
     if (payment_success === 'true' && user && !success) grantAccess()
     if (cancelled === 'true') setError('Payment was cancelled. You can try again below.')
   }, [payment_success, cancelled, user])
+
+  // Fire begin_checkout once, when an authenticated user views the checkout
+  // for a tier they don't already own. Used for Google Ads funnel tracking
+  // and remarketing (e.g. "started checkout but didn't purchase").
+  useEffect(() => {
+    if (!router.isReady || !user || alreadyHas) return
+    const amountLabel = regionalConfig?.plans?.[tierId]?.[interval]?.amount
+    trackBeginCheckout({
+      tier: tierId,
+      interval,
+      value: typeof amountLabel === 'number' ? amountLabel : undefined,
+      currency: regionalConfig?.currency || 'AUD',
+    })
+    // Fire once per tier/interval view
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [router.isReady, user, tierId, interval, alreadyHas])
 
   const grantAccess = () => {
     updateUser({ tier: tierId, user_type: tierId, enrolledAt: new Date().toISOString() })

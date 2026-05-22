@@ -8,6 +8,7 @@ import { useAuth } from '../lib/auth'
 import { useTranslation } from '../lib/i18n'
 import { Input, Spinner, TierBadge } from '../components/ui'
 import { TIERS } from '../data/tiers'
+import { trackSignUp } from '../lib/gtm'
 
 export default function Signup() {
   const { t } = useTranslation()
@@ -38,6 +39,8 @@ export default function Signup() {
     setLoading(true)
     const res = await signup(form.email, form.password, form.name)
     if (res.success) {
+      // Push sign_up event to dataLayer for Google Ads funnel tracking.
+      trackSignUp({ method: 'email', tier: router.query.tier || undefined })
       // Determine where to send the user after successful signup:
       // 1. If they explicitly requested a tier (e.g. arrived from a paid card's "Subscribe" CTA),
       //    send them to checkout to complete the purchase.
