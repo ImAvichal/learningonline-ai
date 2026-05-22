@@ -2,6 +2,7 @@ import '../styles/globals.css'
 import { AuthProvider } from '../lib/auth'
 import { ThemeProvider } from '../lib/theme'
 import { I18nProvider } from '../lib/i18n'
+import CookieConsent from '../components/CookieConsent'
 import Head from 'next/head'
 
 export default function App({ Component, pageProps }) {
@@ -14,6 +15,7 @@ export default function App({ Component, pageProps }) {
             <meta name="theme-color" content="#F0F2F8" />
           </Head>
           <Component {...pageProps} />
+          <CookieConsent />
         </AuthProvider>
       </I18nProvider>
     </ThemeProvider>

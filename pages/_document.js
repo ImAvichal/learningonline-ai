@@ -19,6 +19,44 @@ export default function Document() {
   return (
     <Html lang="en" data-theme="light">
       <Head>
+        {/* ── Google Consent Mode v2 default state ──
+            MUST run before the GTM container loads so tags respect consent
+            from the very first pageview. We default everything that isn't
+            strictly necessary to 'denied'. The cookie banner calls
+            gtag('consent','update',...) when the user chooses.
+            'wait_for_update' gives the banner a moment to restore a saved
+            choice before tags evaluate. */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('consent', 'default', {
+  ad_storage: 'denied',
+  ad_user_data: 'denied',
+  ad_personalization: 'denied',
+  analytics_storage: 'denied',
+  functionality_storage: 'granted',
+  security_storage: 'granted',
+  wait_for_update: 500
+});
+// Restore a previously saved choice (so returning visitors aren't re-prompted
+// and their prior consent is applied before tags evaluate).
+try {
+  var saved = localStorage.getItem('leo_consent');
+  if (saved) {
+    var c = JSON.parse(saved);
+    gtag('consent', 'update', {
+      ad_storage: c.ad ? 'granted' : 'denied',
+      ad_user_data: c.ad ? 'granted' : 'denied',
+      ad_personalization: c.ad ? 'granted' : 'denied',
+      analytics_storage: c.analytics ? 'granted' : 'denied'
+    });
+  }
+} catch (e) {}`,
+          }}
+        />
+        {/* ── End Google Consent Mode v2 default ── */}
+
         {/* ── Google Tag Manager (head) ── */}
         <script
           dangerouslySetInnerHTML={{
