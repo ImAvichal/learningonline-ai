@@ -165,6 +165,7 @@ export function Nav({ transparent = false }) {
         <div className="hidden md:flex items-center gap-5 flex-1 justify-end mr-4">
           <NavLink href="/">Home</NavLink>
           <NavLink href="/mindset">{t("nav.mindset")}</NavLink>
+          <NavLink href="/choose-ai">Choose the Right AI</NavLink>
           <NavLink href="/model-selection">{t("nav.modelSelection")}</NavLink>
           <NavLink href="/glossary">{t("nav.glossary")}</NavLink>
           <NavLink href="/roadmap">{t("nav.roadmap")}</NavLink>
