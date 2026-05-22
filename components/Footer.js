@@ -87,6 +87,7 @@ export default function Footer({ variant = 'light' }) {
                 <Link href="/signup"    className={`block text-sm ${tokens.link}`}>Sign Up</Link>
                 <Link href="/dashboard" className={`block text-sm ${tokens.link}`}>Dashboard</Link>
                 <Link href="/terms"     className={`block text-sm ${tokens.link}`}>Terms &amp; Refund Policy</Link>
+                <Link href="/privacy"   className={`block text-sm ${tokens.link}`}>Privacy &amp; Cookie Policy</Link>
               </div>
             </div>
 
