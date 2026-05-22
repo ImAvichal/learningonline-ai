@@ -726,3 +726,38 @@ html.light-mode .triad-def             { color: #6b7280; }
 [data-theme="light"] .bg-amber-400.text-navy {
   color: #FFFFFF !important;
 }
+
+/* ═══════════════════════════════════════════════════════════════
+   AI CAPABILITY TREE (/choose-ai) — branch grow + node reveal
+   ═══════════════════════════════════════════════════════════════ */
+
+/* Branches "grow" by animating the stroke dash from 0 to full length */
+.capability-branch {
+  stroke-dasharray: 400;
+  stroke-dashoffset: 400;
+  animation: branch-grow 0.9s ease-out forwards;
+}
+@keyframes branch-grow {
+  to { stroke-dashoffset: 0; }
+}
+
+/* Nodes fade + rise in after their branch has grown */
+.capability-node {
+  opacity: 0;
+  animation: node-appear 0.5s ease-out forwards;
+}
+@keyframes node-appear {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; }
+}
+/* Desktop nodes use a transform for positioning, so animate opacity only there */
+@media (min-width: 640px) {
+  .capability-node { animation: node-fade 0.5s ease-out forwards; }
+  @keyframes node-fade { to { opacity: 1; } }
+}
+
+/* Respect reduced-motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .capability-branch { stroke-dashoffset: 0; animation: none; }
+  .capability-node { opacity: 1; animation: none; }
+}
