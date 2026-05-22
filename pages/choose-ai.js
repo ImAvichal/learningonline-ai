@@ -1,31 +1,34 @@
-// pages/choose-ai.js — "Choose the Right AI" capability explorer
+// pages/choose-ai.js — "Choose the Right AI" — interactive capability map
 //
-// A calm, progressive drill-down that helps users pick the right *category*
-// of AI tool for their task — reducing tool paralysis without becoming an
-// exhaustive comparison database.
+// A spatial, interconnected capability map that helps users pick the right
+// kind of AI for their task. Not a documentation page — an exploration.
 //
-// UX model:
-//   Level 1: central prompt "What are you trying to achieve?" + category grid
-//   Level 2: tap a category → detail view (what it's for, tools, why, best-for, note)
+// Presentation:
+//   • Desktop: a radial map. Root ("What are you trying to achieve?") sits at
+//     centre; 12 capability nodes are positioned around it on a deterministic
+//     radial layout (computed in code — no graph library). Curved SVG
+//     connectors trace from root to each node. Hovering a node highlights its
+//     pathway; clicking opens a detail panel that animates in OVER the map so
+//     spatial continuity is preserved (no scroll-jump).
+//   • Mobile: the same root→branches idea as a vertical traced pathway with
+//     focused node expansion. Readable, tappable, no horizontal scroll.
 //
-// The category data lives in a single CATEGORIES array so future expansion
-// (prompts, pricing tiers, tutorials, beginner/advanced paths) is a matter of
-// adding fields — no structural rework needed.
+// Depth/mood: ambient grid + radial glow background, gradient connectors,
+// soft node elevation on hover — a calm "AI operating system" feel.
 //
-// No heavy libraries. Pure React state + CSS transitions. Mobile-first.
+// All driven by one CATEGORIES array, so future expansion (prompts, pricing,
+// pairings) is additive. No heavy libraries; pure React state + SVG + CSS.
 
 import Head from 'next/head'
 import { useState } from 'react'
 import Footer from '../components/Footer'
-import { Nav, Reveal } from '../components/ui'
-import { Search, PenLine, Code2, Palette, Clapperboard, Mic, Presentation, Zap, LineChart, Bot, GraduationCap, MessagesSquare } from 'lucide-react'
+import { Nav } from '../components/ui'
+import { Search, PenLine, Code2, Palette, Clapperboard, Mic, Presentation, Zap, LineChart, Bot, GraduationCap, MessagesSquare, Sparkles, X } from 'lucide-react'
 
-// ── Category data ────────────────────────────────────────────────────────────
-// Each category is self-contained. `tools` is an ordered list; tag each tool
-// with an optional badge ('versatile' | 'free' | 'enterprise' | 'beginner').
 const CATEGORIES = [
   {
     id: 'research',
+    popular: true,
     icon: Search,
     name: 'Deep Research',
     blurb: 'Analyse large amounts of information, summarise reports, compare sources, and generate structured insights.',
@@ -40,6 +43,8 @@ const CATEGORIES = [
   },
   {
     id: 'writing',
+    popular: true,
+    beginnerStart: true,
     icon: PenLine,
     name: 'Writing & Text',
     blurb: 'Draft, edit, rewrite, and refine anything from emails to long-form articles and reports.',
@@ -53,6 +58,7 @@ const CATEGORIES = [
   },
   {
     id: 'coding',
+    popular: true,
     icon: Code2,
     name: 'Coding',
     blurb: 'Write, debug, explain, and refactor code — from quick scripts to whole features.',
@@ -67,6 +73,7 @@ const CATEGORIES = [
   },
   {
     id: 'image',
+    popular: true,
     icon: Palette,
     name: 'Image Generation',
     blurb: 'Create illustrations, concept art, product mockups, and marketing visuals from text prompts.',
@@ -119,6 +126,7 @@ const CATEGORIES = [
   },
   {
     id: 'automation',
+    popular: true,
     icon: Zap,
     name: 'Automation',
     blurb: 'Connect apps and automate repetitive multi-step workflows without code.',
@@ -192,124 +200,61 @@ const BADGES = {
   beginner:   { label: 'Great for beginners', cls: 'bg-amber-400/15 text-amber-300 border-amber-400/30' },
 }
 
+
 export default function ChooseAI() {
   const [activeId, setActiveId] = useState(null)
+  const [hoverId, setHoverId] = useState(null)
   const active = CATEGORIES.find(c => c.id === activeId)
 
   return (
     <>
       <Head>
         <title>Choose the Right AI — LeO AI</title>
-        <meta name="description" content="A calm, practical guide to choosing the right AI tool for your task. Explore categories of AI capability and find what fits — without the overwhelm." />
+        <meta name="description" content="An interactive map of the AI landscape. Explore capabilities, see which tools fit your task, and understand what each is genuinely good at — without the overwhelm." />
       </Head>
 
       <Nav />
 
-      <main className="pt-24 pb-20 min-h-screen">
-        <div className="max-w-5xl mx-auto px-5 sm:px-8">
+      <main className="relative min-h-screen overflow-hidden">
+        {/* ── Ambient background: grid + radial glow ── */}
+        <div className="capmap-bg" aria-hidden="true" />
+        <div className="capmap-glow" aria-hidden="true" />
 
-          {/* ── Level 1: prompt + interactive tree ── */}
-          {!active && (
-            <Reveal>
-              <div className="text-center mb-10">
-                <p className="text-xs uppercase tracking-[0.18em] text-blue-bright font-display font-bold mb-4">
-                  AI Capability Explorer
-                </p>
-                <h1 className="font-display font-black text-3xl sm:text-5xl mb-4 leading-tight">
-                  What are you trying to achieve?
-                </h1>
-                <p className="text-muted max-w-xl mx-auto text-base sm:text-lg leading-relaxed">
-                  Each branch is a different kind of AI. Follow one to see the tools worth knowing and what each is genuinely good at — no hype, no overwhelm.
-                </p>
-              </div>
+        <div className="relative max-w-6xl mx-auto px-5 sm:px-8 pt-24 pb-24">
+          {/* Header */}
+          <div className="text-center mb-4 sm:mb-2">
+            <p className="text-xs uppercase tracking-[0.2em] text-blue-bright font-display font-bold mb-3">
+              AI Capability Map
+            </p>
+            <h1 className="font-display font-black text-3xl sm:text-5xl leading-tight mb-3">
+              What are you trying to achieve?
+            </h1>
+            <p className="text-muted max-w-xl mx-auto text-sm sm:text-base leading-relaxed">
+              Explore the branches of the AI landscape. Each leads to the tools worth knowing — and what each one is genuinely good at.
+            </p>
+          </div>
 
-              <CapabilityTree
-                categories={CATEGORIES}
-                onSelect={(id) => { setActiveId(id); window.scrollTo({ top: 0, behavior: 'smooth' }) }}
-              />
+          <CapabilityMap
+            categories={CATEGORIES}
+            hoverId={hoverId}
+            setHoverId={setHoverId}
+            onSelect={setActiveId}
+          />
 
-              <p className="text-center text-xs text-muted mt-10 max-w-lg mx-auto leading-relaxed">
-                Different AI tools serve different purposes. The goal isn&rsquo;t to find one winner — it&rsquo;s to match the right capability to the task in front of you.
-              </p>
-            </Reveal>
-          )}
-
-          {/* ── Level 2: category detail ── */}
-          {active && (
-            <Reveal key={active.id}>
-              <button
-                onClick={() => setActiveId(null)}
-                className="inline-flex items-center gap-2 text-sm text-muted hover:text-white font-display font-bold mb-8 transition-colors"
-              >
-                ← All capabilities
-              </button>
-
-              <div className="flex items-start gap-4 mb-6">
-                <span className="flex-shrink-0 w-16 h-16 rounded-2xl bg-blue/12 border border-blue/25 flex items-center justify-center text-blue-bright">
-                  <active.icon size={30} strokeWidth={1.75} />
-                </span>
-                <div>
-                  <h1 className="font-display font-black text-3xl sm:text-4xl leading-tight mb-2">{active.name}</h1>
-                  <p className="text-muted text-base leading-relaxed max-w-2xl">{active.blurb}</p>
-                </div>
-              </div>
-
-              {/* Best for */}
-              <div className="flex flex-wrap gap-2 mb-8">
-                <span className="text-xs text-muted font-display font-bold uppercase tracking-wider mr-1 self-center">Best for:</span>
-                {active.bestFor.map(b => (
-                  <span key={b} className="px-3 py-1 rounded-full bg-white/[0.04] border border-white/10 text-xs text-white/80">{b}</span>
-                ))}
-              </div>
-
-              {/* Tools */}
-              <div className="space-y-3 mb-8">
-                {active.tools.map(tool => {
-                  const badge = tool.badge ? BADGES[tool.badge] : null
-                  return (
-                    <div key={tool.name} className="p-5 rounded-2xl border border-white/8 bg-white/[0.02]">
-                      <div className="flex items-start justify-between gap-3 mb-1.5 flex-wrap">
-                        <h3 className="font-display font-bold text-base">{tool.name}</h3>
-                        {badge && (
-                          <span className={`px-2.5 py-0.5 rounded-full border text-[10px] font-display font-bold ${badge.cls}`}>
-                            {badge.label}
-                          </span>
-                        )}
-                      </div>
-                      <p className="text-sm text-white/75 leading-relaxed">{tool.why}</p>
-                    </div>
-                  )
-                })}
-              </div>
-
-              {/* Important note */}
-              <div className="flex items-start gap-3 p-5 rounded-2xl bg-amber-400/[0.06] border border-amber-400/25 mb-10">
-                <span className="text-xl mt-0.5">💡</span>
-                <div>
-                  <div className="text-[10px] font-display font-bold text-amber-300 uppercase tracking-wider mb-1">Worth knowing</div>
-                  <p className="text-sm text-white/80 leading-relaxed">{active.note}</p>
-                </div>
-              </div>
-
-              {/* Cross-nav to other categories */}
-              <div className="border-t border-white/8 pt-8">
-                <p className="text-xs text-muted font-display font-bold uppercase tracking-wider mb-4">Explore another capability</p>
-                <div className="flex flex-wrap gap-2">
-                  {CATEGORIES.filter(c => c.id !== active.id).map(c => (
-                    <button
-                      key={c.id}
-                      onClick={() => { setActiveId(c.id); window.scrollTo({ top: 0, behavior: 'smooth' }) }}
-                      className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/[0.03] border border-white/8 hover:border-blue/40 hover:bg-blue/[0.06] text-xs text-white/80 transition-all"
-                    >
-                      <c.icon size={14} strokeWidth={1.75} /> {c.name}
-                    </button>
-                  ))}
-                </div>
-              </div>
-            </Reveal>
-          )}
-
+          <p className="text-center text-xs text-muted max-w-lg mx-auto leading-relaxed mt-6">
+            Different AI tools serve different purposes. The goal isn&rsquo;t one winner — it&rsquo;s matching the right capability to the task in front of you.
+          </p>
         </div>
+
+        {/* ── Detail panel — animates in OVER the map ── */}
+        {active && (
+          <DetailPanel
+            category={active}
+            onClose={() => setActiveId(null)}
+            onJump={(id) => setActiveId(id)}
+            allCategories={CATEGORIES}
+          />
+        )}
       </main>
 
       <Footer />
@@ -317,130 +262,229 @@ export default function ChooseAI() {
   )
 }
 
-// ── CapabilityTree ───────────────────────────────────────────────────────────
-// Renders the 12 capabilities as an interactive tree.
-//   • Desktop/tablet (sm+): an SVG tree — central trunk, branches curving out
-//     to nodes alternating left/right, growing upward. Branches animate in.
-//   • Mobile: a vertical "vine" — the trunk runs top-to-bottom with leaf nodes
-//     alternating left/right off it. Readable, tappable, no horizontal scroll.
-// Both layouts are driven by the same `categories` array.
-function CapabilityTree({ categories, onSelect }) {
-  // Split categories into left/right columns for the desktop tree.
-  // Alternate so the tree feels balanced.
-  const positioned = categories.map((c, i) => ({
-    ...c,
-    side: i % 2 === 0 ? 'left' : 'right',
-    row: Math.floor(i / 2),
-  }))
-  const rows = Math.ceil(categories.length / 2)
+// ── Radial geometry helper ────────────────────────────────────────────────────
+// Positions N nodes evenly around a circle, starting at the top.
+function radialPositions(n, cx, cy, r) {
+  const out = []
+  for (let i = 0; i < n; i++) {
+    const angle = (-90 + (360 / n) * i) * (Math.PI / 180)
+    out.push({ x: cx + r * Math.cos(angle), y: cy + r * Math.sin(angle), angle })
+  }
+  return out
+}
 
-  // SVG geometry (desktop)
-  const ROW_H = 96            // vertical spacing between branch rows
-  const TOP_PAD = 60          // space above first branch (canopy)
-  const BOT_PAD = 70          // space below last branch (roots/base)
-  const H = TOP_PAD + rows * ROW_H + BOT_PAD
-  const W = 900
-  const cx = W / 2            // trunk centre x
-  const nodeOffsetX = 250     // how far nodes sit from the trunk
-  const branchTopY = (row) => TOP_PAD + row * ROW_H + 30
+// ── CapabilityMap ──────────────────────────────────────────────────────────────
+function CapabilityMap({ categories, hoverId, setHoverId, onSelect }) {
+  // Desktop SVG canvas geometry
+  const W = 980, H = 720
+  const cx = W / 2, cy = H / 2
+  const R = 268                    // node ring radius
+  const pos = radialPositions(categories.length, cx, cy, R)
 
   return (
-    <div className="relative">
-      {/* ───────── Desktop / tablet: SVG tree ───────── */}
-      <div className="hidden sm:block relative mx-auto" style={{ maxWidth: W }}>
-        <svg viewBox={`0 0 ${W} ${H}`} className="w-full h-auto overflow-visible" role="img" aria-label="AI capability tree">
+    <>
+      {/* ───────── Desktop / tablet: radial map ───────── */}
+      <div className="hidden md:block relative mx-auto" style={{ maxWidth: W }}>
+        <svg viewBox={`0 0 ${W} ${H}`} className="w-full h-auto overflow-visible" role="img" aria-label="AI capability map">
           <defs>
-            <linearGradient id="trunkGrad" x1="0" y1="1" x2="0" y2="0">
-              <stop offset="0%" stopColor="var(--blue)" stopOpacity="0.25" />
-              <stop offset="100%" stopColor="var(--blue)" stopOpacity="0.6" />
+            <radialGradient id="rootGrad" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stopColor="var(--blue)" stopOpacity="0.9" />
+              <stop offset="100%" stopColor="var(--blue)" stopOpacity="0.55" />
+            </radialGradient>
+            <linearGradient id="connGrad" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0%" stopColor="var(--blue)" stopOpacity="0.5" />
+              <stop offset="100%" stopColor="var(--blue)" stopOpacity="0.12" />
             </linearGradient>
           </defs>
 
-          {/* Trunk */}
-          <path
-            d={`M ${cx} ${H - BOT_PAD + 40} C ${cx} ${H * 0.6}, ${cx} ${H * 0.4}, ${cx} ${TOP_PAD - 10}`}
-            stroke="url(#trunkGrad)"
-            strokeWidth="8"
-            fill="none"
-            strokeLinecap="round"
-          />
-
-          {/* Branches — a curved path from trunk out to each node anchor */}
-          {positioned.map((c, i) => {
-            const y = branchTopY(c.row)
-            const dir = c.side === 'left' ? -1 : 1
-            const endX = cx + dir * nodeOffsetX
-            const startY = y + 18
-            // Cubic curve for an organic branch
-            const d = `M ${cx} ${startY} C ${cx + dir * 80} ${startY - 6}, ${endX - dir * 70} ${y - 4}, ${endX} ${y}`
+          {/* Connectors — curved path root → node */}
+          {pos.map((p, i) => {
+            const c = categories[i]
+            const isHot = hoverId === c.id
+            // control point pulls outward for an organic bend
+            const mx = (cx + p.x) / 2 + (p.x - cx) * 0.12
+            const my = (cy + p.y) / 2 + (p.y - cy) * 0.12
+            const d = `M ${cx} ${cy} Q ${mx} ${my} ${p.x} ${p.y}`
             return (
               <path
                 key={c.id}
                 d={d}
-                stroke="var(--blue)"
-                strokeOpacity="0.4"
-                strokeWidth="3"
+                stroke={isHot ? 'var(--blue)' : 'url(#connGrad)'}
+                strokeWidth={isHot ? 3 : 2}
+                strokeOpacity={isHot ? 0.95 : 0.6}
                 fill="none"
                 strokeLinecap="round"
-                className="capability-branch"
-                style={{ animationDelay: `${i * 90}ms` }}
+                className="capmap-conn"
+                style={{ animationDelay: `${i * 70}ms` }}
               />
             )
           })}
+
+          {/* Root pulse ring */}
+          <circle cx={cx} cy={cy} r="46" fill="url(#rootGrad)" className="capmap-root-core" />
+          <circle cx={cx} cy={cy} r="46" fill="none" stroke="var(--blue)" strokeOpacity="0.4" className="capmap-root-ring" />
         </svg>
 
-        {/* Node buttons positioned over the SVG anchors */}
+        {/* Root label (HTML over SVG centre) */}
+        <div
+          className="absolute -translate-x-1/2 -translate-y-1/2 text-center pointer-events-none"
+          style={{ left: '50%', top: '50%', width: 110 }}
+        >
+          <div className="text-white font-display font-black text-xs leading-tight drop-shadow">Start<br/>here</div>
+        </div>
+
+        {/* Node buttons positioned over SVG anchors */}
         <div className="absolute inset-0">
-          {positioned.map((c, i) => {
-            const y = branchTopY(c.row)
-            const dir = c.side === 'left' ? -1 : 1
-            const endX = cx + dir * nodeOffsetX
-            const leftPct = (endX / W) * 100
-            const topPct = (y / H) * 100
+          {pos.map((p, i) => {
+            const c = categories[i]
+            const IconCmp = c.icon
+            const leftPct = (p.x / W) * 100
+            const topPct = (p.y / H) * 100
+            const dimmed = hoverId && hoverId !== c.id
             return (
               <button
                 key={c.id}
+                onMouseEnter={() => setHoverId(c.id)}
+                onMouseLeave={() => setHoverId(null)}
+                onFocus={() => setHoverId(c.id)}
                 onClick={() => onSelect(c.id)}
-                className="capability-node group absolute -translate-y-1/2 flex items-center gap-2.5 px-4 py-2.5 rounded-full border border-white/10 bg-white/[0.03] hover:border-blue/50 hover:bg-blue/[0.08] transition-all duration-200 whitespace-nowrap"
-                style={{
-                  left: `${leftPct}%`,
-                  top: `${topPct}%`,
-                  transform: `translate(${c.side === 'left' ? '-100%' : '0'}, -50%)`,
-                  animationDelay: `${i * 90 + 200}ms`,
-                }}
+                className={`capmap-node group absolute -translate-x-1/2 -translate-y-1/2 flex flex-col items-center gap-2 transition-all duration-300 ${dimmed ? 'opacity-45' : 'opacity-100'}`}
+                style={{ left: `${leftPct}%`, top: `${topPct}%`, animationDelay: `${i * 70 + 250}ms` }}
               >
-                <span className="flex-shrink-0 w-8 h-8 rounded-lg bg-blue/12 border border-blue/20 flex items-center justify-center text-blue-bright transition-transform duration-200 group-hover:scale-110">
-                  <c.icon size={17} strokeWidth={1.75} />
+                <span className="relative w-14 h-14 rounded-2xl bg-navy-mid border border-white/12 group-hover:border-blue/60 flex items-center justify-center text-blue-bright shadow-lg group-hover:shadow-[0_0_24px_rgba(26,110,255,0.35)] transition-all duration-300 group-hover:-translate-y-0.5">
+                  <IconCmp size={24} strokeWidth={1.75} />
+                  {c.popular && (
+                    <span className="absolute -top-1.5 -right-1.5 w-3 h-3 rounded-full bg-amber-400 border-2 border-navy" title="Most popular" />
+                  )}
                 </span>
-                <span className="font-display font-bold text-sm">{c.name}</span>
+                <span className="font-display font-bold text-xs text-white/90 whitespace-nowrap max-w-[120px] truncate">{c.name}</span>
               </button>
             )
           })}
         </div>
       </div>
 
-      {/* ───────── Mobile: vertical vine ───────── */}
-      <div className="sm:hidden relative pl-6">
-        {/* vertical trunk line */}
-        <div className="absolute left-[10px] top-2 bottom-2 w-[3px] bg-gradient-to-b from-blue/60 via-blue/40 to-blue/20 rounded-full" />
-        <div className="space-y-3">
-          {categories.map((c, i) => (
-            <div key={c.id} className="relative">
-              {/* little branch stub connecting to the trunk */}
-              <div className="absolute -left-[14px] top-1/2 w-3.5 h-[2px] bg-blue/40" />
-              <button
-                onClick={() => onSelect(c.id)}
-                className="capability-node group w-full text-left flex items-center gap-3 px-4 py-3.5 rounded-2xl border border-white/8 bg-white/[0.02] hover:border-blue/40 hover:bg-blue/[0.06] transition-all duration-200"
-                style={{ animationDelay: `${i * 50}ms` }}
-              >
-                <span className="flex-shrink-0 w-10 h-10 rounded-xl bg-blue/12 border border-blue/20 flex items-center justify-center text-blue-bright transition-transform duration-200 group-hover:scale-110">
-                  <c.icon size={20} strokeWidth={1.75} />
-                </span>
-                <span className="font-display font-bold text-sm">{c.name}</span>
-                <span className="ml-auto text-muted text-xs">→</span>
-              </button>
+      {/* Legend (desktop) */}
+      <div className="hidden md:flex items-center justify-center gap-5 mt-4 text-[11px] text-muted">
+        <span className="flex items-center gap-1.5"><span className="w-2.5 h-2.5 rounded-full bg-amber-400" /> Most popular</span>
+        <span className="flex items-center gap-1.5"><Sparkles size={13} className="text-blue-bright" /> Tap any branch to explore</span>
+      </div>
+
+      {/* ───────── Mobile: vertical traced pathway ───────── */}
+      <div className="md:hidden relative pl-7 mt-6">
+        {/* root marker */}
+        <div className="relative mb-4">
+          <div className="absolute -left-7 top-1/2 -translate-y-1/2 w-5 h-5 rounded-full bg-blue flex items-center justify-center">
+            <span className="w-2 h-2 rounded-full bg-white" />
+          </div>
+          <div className="text-xs font-display font-bold text-blue-bright uppercase tracking-wider">Start here</div>
+        </div>
+        {/* trunk */}
+        <div className="absolute left-[9px] top-7 bottom-3 w-[2px] bg-gradient-to-b from-blue/60 via-blue/35 to-blue/15 rounded-full" />
+        <div className="space-y-2.5">
+          {categories.map((c, i) => {
+            const IconCmp = c.icon
+            return (
+              <div key={c.id} className="relative">
+                <div className="absolute -left-[18px] top-1/2 w-4 h-[2px] bg-blue/35" />
+                <button
+                  onClick={() => onSelect(c.id)}
+                  className="capmap-node group w-full text-left flex items-center gap-3 px-4 py-3 rounded-2xl border border-white/10 bg-navy-mid/60 hover:border-blue/40 hover:bg-blue/[0.06] transition-all duration-200"
+                  style={{ animationDelay: `${i * 45}ms` }}
+                >
+                  <span className="relative flex-shrink-0 w-10 h-10 rounded-xl bg-blue/12 border border-blue/20 flex items-center justify-center text-blue-bright">
+                    <IconCmp size={20} strokeWidth={1.75} />
+                    {c.popular && <span className="absolute -top-1 -right-1 w-2.5 h-2.5 rounded-full bg-amber-400 border-2 border-navy" />}
+                  </span>
+                  <span className="font-display font-bold text-sm flex-1">{c.name}</span>
+                  <span className="text-muted text-xs">→</span>
+                </button>
+              </div>
+            )
+          })}
+        </div>
+      </div>
+    </>
+  )
+}
+
+// ── DetailPanel — slides in over the map ────────────────────────────────────────
+function DetailPanel({ category, onClose, onJump, allCategories }) {
+  const IconCmp = category.icon
+  return (
+    <div className="fixed inset-0 z-[90] flex items-stretch sm:items-center justify-end sm:justify-center">
+      {/* backdrop */}
+      <div className="absolute inset-0 bg-navy/70 backdrop-blur-sm capmap-backdrop" onClick={onClose} aria-hidden="true" />
+      {/* panel */}
+      <div
+        role="dialog"
+        aria-label={`${category.name} details`}
+        className="capmap-panel relative w-full sm:max-w-lg sm:rounded-3xl sm:my-6 bg-navy-mid border-l sm:border border-white/12 shadow-2xl overflow-y-auto"
+      >
+        <div className="p-6 sm:p-8">
+          <div className="flex items-start justify-between gap-4 mb-5">
+            <div className="flex items-center gap-3">
+              <span className="flex-shrink-0 w-14 h-14 rounded-2xl bg-blue/12 border border-blue/25 flex items-center justify-center text-blue-bright">
+                <IconCmp size={28} strokeWidth={1.75} />
+              </span>
+              <h2 className="font-display font-black text-2xl leading-tight">{category.name}</h2>
             </div>
-          ))}
+            <button onClick={onClose} className="flex-shrink-0 w-9 h-9 rounded-full border border-white/12 text-muted hover:text-white hover:border-white/30 flex items-center justify-center transition-colors" aria-label="Close">
+              <X size={18} />
+            </button>
+          </div>
+
+          <p className="text-muted text-sm leading-relaxed mb-5">{category.blurb}</p>
+
+          {/* Best-for tags */}
+          <div className="flex flex-wrap gap-2 mb-6">
+            {category.bestFor.map(b => (
+              <span key={b} className="px-3 py-1 rounded-full bg-white/[0.04] border border-white/10 text-xs text-white/80">{b}</span>
+            ))}
+          </div>
+
+          {/* Tools */}
+          <div className="text-[10px] font-display font-bold text-muted uppercase tracking-wider mb-3">Tools worth knowing</div>
+          <div className="space-y-3 mb-6">
+            {category.tools.map(tool => {
+              const badge = tool.badge ? BADGES[tool.badge] : null
+              return (
+                <div key={tool.name} className="p-4 rounded-2xl border border-white/8 bg-white/[0.02]">
+                  <div className="flex items-start justify-between gap-3 mb-1.5 flex-wrap">
+                    <h3 className="font-display font-bold text-sm">{tool.name}</h3>
+                    {badge && (
+                      <span className={`px-2.5 py-0.5 rounded-full border text-[10px] font-display font-bold ${badge.cls}`}>{badge.label}</span>
+                    )}
+                  </div>
+                  <p className="text-sm text-white/75 leading-relaxed">{tool.why}</p>
+                </div>
+              )
+            })}
+          </div>
+
+          {/* Worth knowing */}
+          <div className="flex items-start gap-3 p-4 rounded-2xl bg-amber-400/[0.06] border border-amber-400/25 mb-6">
+            <span className="text-lg mt-0.5">💡</span>
+            <div>
+              <div className="text-[10px] font-display font-bold text-amber-300 uppercase tracking-wider mb-1">Worth knowing</div>
+              <p className="text-sm text-white/80 leading-relaxed">{category.note}</p>
+            </div>
+          </div>
+
+          {/* Jump to another branch */}
+          <div className="border-t border-white/8 pt-5">
+            <div className="text-[10px] font-display font-bold text-muted uppercase tracking-wider mb-3">Explore another branch</div>
+            <div className="flex flex-wrap gap-2">
+              {allCategories.filter(c => c.id !== category.id).slice(0, 6).map(c => {
+                const CIcon = c.icon
+                return (
+                  <button key={c.id} onClick={() => onJump(c.id)} className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/[0.03] border border-white/8 hover:border-blue/40 hover:bg-blue/[0.06] text-xs text-white/80 transition-all">
+                    <CIcon size={13} strokeWidth={1.75} /> {c.name}
+                  </button>
+                )
+              })}
+            </div>
+          </div>
         </div>
       </div>
     </div>
