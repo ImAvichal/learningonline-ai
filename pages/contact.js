@@ -49,7 +49,10 @@ export default function Contact() {
 
   return (
     <>
-      <Head><title>Contact Us — LeO AI</title></Head>
+      <Head><title>Contact Us — LeO AI</title>
+        <meta name="description" content="Get in touch with LeO AI. Questions about the platform, your subscription, enterprise access, or support — we're happy to help." />
+        <link rel="canonical" href="https://www.learningonline.ai/contact" />
+      </Head>
       <Nav />
       <div className="pt-28 pb-20">
         <div className="max-w-5xl mx-auto px-6">

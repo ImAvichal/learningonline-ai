@@ -69,6 +69,15 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         />
         {/* ── End Google Tag Manager (head) ── */}
 
+        {/* ── Default social cards (pages can override og:title/description) ── */}
+        <meta property="og:site_name" content="LeO AI" />
+        <meta property="og:type" content="website" />
+        <meta property="og:image" content="https://www.learningonline.ai/og-image.png" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:image" content="https://www.learningonline.ai/og-image.png" />
+
         {/* ── Favicon / brand icon ──
             SVG favicon: retina-crisp at any size, dark/light compatible.
             The theme-color + apple meta give clean mobile-browser treatment. */}

@@ -11,6 +11,36 @@ import { useRegion } from '../lib/region'
 import { useTranslation } from '../lib/i18n'
 import { REGIONAL_PRICING } from '../data/tiers'
 
+// Pricing FAQ — visible Q&A + FAQPage schema. Answers grounded in actual
+// platform behaviour ($19/$39 tiers, 3-day refund, Journey→Pro upgrade,
+// self-service cancellation via the billing portal).
+const PRICING_FAQS = [
+  {
+    q: 'Is there a free option?',
+    a: 'Yes. The Parents & Caregivers module is completely free, with no card required. The two paid tiers — Starting the Journey and The Pro — unlock the full professional curriculum.',
+  },
+  {
+    q: 'What is the difference between Starting the Journey and The Pro?',
+    a: 'Starting the Journey covers the core foundations and execution modules. The Pro includes everything in Journey plus the advanced modules — Responsible AI, Sustainability, Multimodal AI & Orchestration, and the 90-Day Execution Plan — along with all Pro deliverables and frameworks.',
+  },
+  {
+    q: 'Can I upgrade from Journey to Pro later?',
+    a: 'Yes. You can upgrade at any time from your dashboard. Your new Pro subscription starts immediately and your existing Journey subscription is cancelled automatically, so you are never billed for both.',
+  },
+  {
+    q: 'Can I cancel anytime?',
+    a: 'Yes. You can manage or cancel your subscription yourself at any time from your account page, which opens a secure billing portal. If you cancel, your access continues until the end of the period you have already paid for.',
+  },
+  {
+    q: 'How does the refund work?',
+    a: 'If you do not believe the platform delivers measurable value within 3 days of purchase, contact us for a full refund. Approved refunds are typically processed within a few business days.',
+  },
+  {
+    q: 'What is the difference between monthly and annual billing?',
+    a: 'Annual billing is offered at a lower effective rate than paying monthly. You can choose whichever suits you at checkout, and the price shown always matches what you are billed.',
+  },
+]
+
 export default function Pricing() {
   const { t: tr } = useTranslation()
   const { user } = useAuth()
@@ -31,7 +61,24 @@ export default function Pricing() {
 
   return (
     <>
-      <Head><title>{tr("pricing.pageTitle")} — LeO AI</title></Head>
+      <Head><title>{tr("pricing.pageTitle")} — LeO AI</title>
+        <meta name="description" content="Simple, transparent pricing for LeO AI. A free Parents module, plus two paid tiers: Starting the Journey ($19/mo) and The Pro ($39/mo). Full refund within 3 days if it doesn't deliver value." />
+        <link rel="canonical" href="https://www.learningonline.ai/pricing" />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'FAQPage',
+              mainEntity: PRICING_FAQS.map(f => ({
+                '@type': 'Question',
+                name: f.q,
+                acceptedAnswer: { '@type': 'Answer', text: f.a },
+              })),
+            }),
+          }}
+        />
+      </Head>
       <Nav />
       <div className="pt-28 pb-20">
         <div className="max-w-5xl mx-auto px-6">
@@ -226,6 +273,26 @@ export default function Pricing() {
               </p>
             </div>
           </Reveal>
+        </div>
+
+        {/* FAQ — Q&A formatting for SEO + AI search */}
+        <div className="max-w-3xl mx-auto px-6 mt-20">
+          <Reveal>
+            <div className="text-center mb-10">
+              <SectionLabel>FAQ</SectionLabel>
+              <h2 className="font-display font-bold text-3xl mb-3">Pricing questions</h2>
+            </div>
+          </Reveal>
+          <div className="space-y-7">
+            {PRICING_FAQS.map((f, i) => (
+              <Reveal key={i} delay={i * 40}>
+                <div>
+                  <h3 className="font-display font-bold text-lg mb-2 text-white">{f.q}</h3>
+                  <p className="text-muted leading-relaxed">{f.a}</p>
+                </div>
+              </Reveal>
+            ))}
+          </div>
         </div>
       </div>
     <Footer variant="dark" />

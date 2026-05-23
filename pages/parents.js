@@ -627,6 +627,31 @@ const DOWNLOADABLE = {
 // PAGE COMPONENT
 // ─────────────────────────────────────────────────────────────────────────────
 
+// Parents FAQ — visible Q&A + FAQPage schema. Answers reflect the free,
+// adult-facing nature of this module.
+const PARENTS_FAQS = [
+  {
+    q: 'Is the Parents & Caregivers module really free?',
+    a: 'Yes, completely free. You can access it without a subscription or payment card. It is our way of helping families navigate AI safely.',
+  },
+  {
+    q: 'Who is this module for?',
+    a: 'It is written for parents and caregivers — the adults supporting children. It helps you understand how kids are using AI, what to be aware of, and how to guide them, rather than being a course for children themselves.',
+  },
+  {
+    q: 'Do I need any technical or AI knowledge?',
+    a: 'No. It is written in plain language for any parent or caregiver, regardless of how familiar you are with AI. It focuses on practical understanding and real conversations you can have at home.',
+  },
+  {
+    q: 'What will I learn?',
+    a: 'How children commonly use AI tools, the genuine benefits and the risks to watch for, how to set healthy boundaries, and how to have open, age-appropriate conversations about AI with your child.',
+  },
+  {
+    q: 'Is AI safe for my child?',
+    a: 'AI tools can be genuinely useful for learning, but they also carry risks around accuracy, privacy, and age-appropriateness. This module helps you make informed decisions and supervise use thoughtfully rather than giving a simple yes or no.',
+  },
+]
+
 export default function ParentsModule() {
   const { user, loading, markLessonComplete, claimParentsTier } = useAuth()
   const router = useRouter()
@@ -721,7 +746,22 @@ export default function ParentsModule() {
     <>
       <Head>
         <title>Parents & Caregivers — LeO AI</title>
-        <meta name="description" content="A free guide for parents on how kids use AI, what to watch for, and how to have the conversation." />
+        <meta name="description" content="A free guide for parents and caregivers on how kids use AI, what to watch for, and how to have the conversation — no card required." />
+        <link rel="canonical" href="https://www.learningonline.ai/parents" />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'FAQPage',
+              mainEntity: PARENTS_FAQS.map(f => ({
+                '@type': 'Question',
+                name: f.q,
+                acceptedAnswer: { '@type': 'Answer', text: f.a },
+              })),
+            }),
+          }}
+        />
       </Head>
       <Nav />
 
@@ -913,6 +953,28 @@ export default function ParentsModule() {
           </div>
         </div>
       )}
+
+      {/* FAQ — Q&A formatting for SEO + AI search */}
+      <section className="py-20 border-t border-white/5">
+        <div className="max-w-3xl mx-auto px-6">
+          <Reveal>
+            <div className="text-center mb-10">
+              <SectionLabel>FAQ</SectionLabel>
+              <h2 className="font-display font-bold text-3xl mb-3">Parent questions</h2>
+            </div>
+          </Reveal>
+          <div className="space-y-7">
+            {PARENTS_FAQS.map((f, i) => (
+              <Reveal key={i} delay={i * 40}>
+                <div>
+                  <h3 className="font-display font-bold text-lg mb-2 text-white">{f.q}</h3>
+                  <p className="text-muted leading-relaxed">{f.a}</p>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
     <Footer variant="dark" />
     </>
   )

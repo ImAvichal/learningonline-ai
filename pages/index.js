@@ -291,7 +291,21 @@ export default function Home() {
     <>
       <Head>
         <title>LeO AI — AI Anxiety → AI Awareness</title>
-        <meta name="description" content="The execution-focused AI program for professionals, business owners, and enterprise leaders. Practical AI learning pathways for professionals, business owners, and enterprise leaders." />
+        <meta name="description" content="Practical AI training that takes professionals, business owners, and leaders from AI anxiety to real AI capability — 14 modules, each producing a deliverable you can use at work." />
+        <link rel="canonical" href="https://www.learningonline.ai/" />
+        {/* Social cards */}
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="LeO AI" />
+        <meta property="og:title" content="LeO AI — AI Anxiety → AI Awareness" />
+        <meta property="og:description" content="Practical AI training that takes you from AI anxiety to real capability. 14 modules, real deliverables." />
+        <meta property="og:url" content="https://www.learningonline.ai/" />
+        <meta property="og:image" content="https://www.learningonline.ai/og-image.png" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="LeO AI — AI Anxiety → AI Awareness" />
+        <meta name="twitter:description" content="Practical AI training that takes you from AI anxiety to real capability." />
+        <meta name="twitter:image" content="https://www.learningonline.ai/og-image.png" />
         {/* FAQPage structured data — helps Google / AI search surface direct answers */}
         <script
           type="application/ld+json"
