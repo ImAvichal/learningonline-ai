@@ -1,0 +1,18 @@
+# robots.txt — LeO AI
+# Allow search engines to crawl public content; keep app/auth/transactional
+# pages out of the index.
+
+User-agent: *
+Allow: /
+
+# Keep these out of search results (private / transactional / app surfaces)
+Disallow: /dashboard
+Disallow: /checkout
+Disallow: /success
+Disallow: /course-complete
+Disallow: /login
+Disallow: /signup
+Disallow: /api/
+Disallow: /auth/
+
+Sitemap: https://www.learningonline.ai/sitemap.xml
