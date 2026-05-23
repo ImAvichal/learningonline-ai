@@ -9,6 +9,35 @@ import { Lock, X, Clock, FileCheck2, Sparkles } from 'lucide-react'
 import { MODULES } from '../data/modules'
 import { TIERS, TIER_ORDER, INDUSTRIES, DISPLAY_ORDER } from '../data/tiers'
 import { useAuth } from '../lib/auth'
+
+// ── FAQ content — used for both the on-page Q&A section and the JSON-LD
+//    FAQPage schema that Google / AI search consume for rich answers. ──
+const FAQS = [
+  {
+    q: 'What is LeO AI?',
+    a: 'LeO AI is a practical AI training platform that takes professionals, business owners, and enterprise leaders from AI anxiety to AI capability. It teaches you how to actually use AI at work through 14 structured modules, each producing a real deliverable you can apply immediately.',
+  },
+  {
+    q: 'Who is LeO AI for?',
+    a: 'It is designed for working professionals, business owners, transformation leaders, and teams who want to apply AI practically rather than just understand it in theory. There is also a dedicated Parents & Caregivers track for adults supporting children navigating AI.',
+  },
+  {
+    q: 'Do I need a technical background to use it?',
+    a: 'No. The curriculum starts with foundations and builds progressively. It is written in plain language and focuses on practical application, decision-making, and outcomes rather than coding or deep technical theory.',
+  },
+  {
+    q: 'How much does LeO AI cost?',
+    a: 'There is a free Parents & Caregivers module, and two paid subscription tiers: Starting the Journey at $19/month or $179/year, and The Pro at $39/month or $349/year. You can upgrade from Journey to Pro at any time.',
+  },
+  {
+    q: 'What will I actually be able to do after completing it?',
+    a: 'You will be able to identify high-value AI use cases, build a financial case for AI investment, design human-and-AI workflows, prepare data, choose the right tools, measure ROI, and lead responsible AI adoption — each backed by a concrete deliverable you create as you go.',
+  },
+  {
+    q: 'Is there a refund policy?',
+    a: 'Yes. If you do not believe the platform delivers measurable value within 3 days of purchase, you can contact us for a full refund.',
+  },
+]
 import { useRegion } from '../lib/region'
 import { useTranslation } from '../lib/i18n'
 import { REGIONAL_PRICING } from '../data/tiers'
@@ -263,6 +292,21 @@ export default function Home() {
       <Head>
         <title>LeO AI — AI Anxiety → AI Awareness</title>
         <meta name="description" content="The execution-focused AI program for professionals, business owners, and enterprise leaders. Practical AI learning pathways for professionals, business owners, and enterprise leaders." />
+        {/* FAQPage structured data — helps Google / AI search surface direct answers */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'FAQPage',
+              mainEntity: FAQS.map(f => ({
+                '@type': 'Question',
+                name: f.q,
+                acceptedAnswer: { '@type': 'Answer', text: f.a },
+              })),
+            }),
+          }}
+        />
       </Head>
       <Nav transparent />
 
@@ -583,6 +627,30 @@ export default function Home() {
             <Link href="/roadmap" className="text-xs text-blue hover:text-blue-bright font-display font-bold transition-colors">
               Explore the full evolution roadmap →
             </Link>
+          </div>
+        </div>
+      </section>
+
+
+      {/* ── FAQ — Q&A formatting for SEO + AI search (with JSON-LD schema) ── */}
+      <section id="faq" className="py-24 border-t border-white/5">
+        <div className="max-w-3xl mx-auto px-6">
+          <Reveal>
+            <div className="text-center mb-12">
+              <SectionLabel>FAQ</SectionLabel>
+              <h2 className="font-display font-bold text-4xl mb-4">Common questions</h2>
+              <p className="text-muted max-w-xl mx-auto">Straight answers about what LeO AI is, who it&rsquo;s for, and how it works.</p>
+            </div>
+          </Reveal>
+          <div className="space-y-8">
+            {FAQS.map((f, i) => (
+              <Reveal key={i} delay={i * 40}>
+                <div>
+                  <h3 className="font-display font-bold text-lg mb-2 text-white">{f.q}</h3>
+                  <p className="text-muted leading-relaxed">{f.a}</p>
+                </div>
+              </Reveal>
+            ))}
           </div>
         </div>
       </section>
