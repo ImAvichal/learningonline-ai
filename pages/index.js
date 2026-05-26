@@ -15,27 +15,43 @@ import { useAuth } from '../lib/auth'
 const FAQS = [
   {
     q: 'What is LeO AI?',
-    a: 'LeO AI is a practical AI training platform that takes professionals, business owners, and enterprise leaders from AI anxiety to AI capability. It teaches you how to actually use AI at work through 14 structured modules, each producing a real deliverable you can apply immediately.',
+    a: 'LeO AI is a practical, execution-focused training platform that takes professionals, business owners, and enterprise leaders from AI anxiety to AI capability. It teaches you how to actually use AI at work through structured modules that each produce a real, immediately applicable deliverable.',
   },
   {
     q: 'Who is LeO AI for?',
-    a: 'It is designed for working professionals, business owners, transformation leaders, and teams who want to apply AI practically rather than just understand it in theory. There is also a dedicated Parents & Caregivers track for adults supporting children navigating AI.',
+    a: 'It is designed for working professionals, business owners, transformation leaders, and teams who want to apply AI practically rather than just understand it in theory. We also feature a dedicated, free Parents & Caregivers track for adults supporting children navigating AI safely.',
   },
   {
     q: 'Do I need a technical background to use it?',
-    a: 'No. The curriculum starts with foundations and builds progressively. It is written in plain language and focuses on practical application, decision-making, and outcomes rather than coding or deep technical theory.',
+    a: 'No. The curriculum starts with foundations and builds progressively. It is written in plain language and focuses entirely on practical application, decision-making, and workplace outcomes rather than coding or deep technical theory.',
+  },
+  {
+    q: 'How much time do I need to commit each week?',
+    a: 'LeO AI is built specifically for busy professionals. Individual lessons are bite-sized (typically 20–25 minutes long), allowing you to make meaningful progress and build real capability by dedicating just 1 hour per week.',
+  },
+  {
+    q: 'Do I have to complete all 14 modules to get value?',
+    a: 'Not at all. The curriculum is modular. Because every single module concludes with a practical, real-world deliverable (like an AI Readiness Assessment or a prioritised workflow blueprint), you will gain immediately actionable value from the very first module you finish.',
+  },
+  {
+    q: 'AI changes incredibly fast. How often is the curriculum updated?',
+    a: 'Continuously. LeO AI is a living platform, not a static video library. As the AI landscape shifts — moving from basic prompting to complex agentic workflows — our team updates the modules and framework roadmaps so your skills remain current and future-proof.',
+  },
+  {
+    q: 'Can I expense my LeO AI subscription to my company?',
+    a: 'Yes. Upon signing up, you will receive an itemised tax invoice via email that can be submitted to your employer. Most organisations cover LeO AI under their professional development, learning & development (L&D), or innovation budgets.',
+  },
+  {
+    q: 'Do you offer corporate licensing or team packages?',
+    a: 'Yes. We offer centralised billing, team management dashboards, and custom deployment roadmaps for organisations looking to scale AI capability across departments. Please contact us to discuss corporate rates.',
   },
   {
     q: 'How much does LeO AI cost?',
-    a: 'There is a free Parents & Caregivers module, and two paid subscription tiers: Starting the Journey at $19/month or $179/year, and The Pro at $39/month or $349/year. You can upgrade from Journey to Pro at any time.',
+    a: 'Beyond our free Parents & Caregivers module, we offer two straightforward subscription tiers: Starting the Journey at $19/month (or $179/year) and The Pro at $39/month (or $349/year). You can easily upgrade from Journey to Pro at any time.',
   },
   {
-    q: 'What will I actually be able to do after completing it?',
-    a: 'You will be able to identify high-value AI use cases, build a financial case for AI investment, design human-and-AI workflows, prepare data, choose the right tools, measure ROI, and lead responsible AI adoption — each backed by a concrete deliverable you create as you go.',
-  },
-  {
-    q: 'Is there a refund policy?',
-    a: 'Yes. If you do not believe the platform delivers measurable value within 3 days of purchase, you can contact us for a full refund.',
+    q: 'What is your refund policy?',
+    a: 'We stand behind the practical value of our platform. If you explore the modules and don\'t feel LeO AI delivers measurable value to your work within 3 days of purchase, simply contact us for a prompt, 100% refund. No hoops to jump through.',
   },
 ]
 import { useRegion } from '../lib/region'
@@ -656,13 +672,18 @@ export default function Home() {
               <p className="text-muted max-w-xl mx-auto">Straight answers about what LeO AI is, who it&rsquo;s for, and how it works.</p>
             </div>
           </Reveal>
-          <div className="space-y-8">
+          <div className="space-y-3">
             {FAQS.map((f, i) => (
-              <Reveal key={i} delay={i * 40}>
-                <div>
-                  <h3 className="font-display font-bold text-lg mb-2 text-white">{f.q}</h3>
-                  <p className="text-muted leading-relaxed">{f.a}</p>
-                </div>
+              <Reveal key={i} delay={i * 30}>
+                <details className="faq-item group rounded-2xl border border-white/8 bg-white/[0.02] open:border-blue/30 open:bg-blue/[0.04] transition-colors">
+                  <summary className="flex items-center justify-between gap-4 cursor-pointer list-none px-5 sm:px-6 py-4 select-none">
+                    <span className="font-display font-bold text-base text-white leading-snug">{f.q}</span>
+                    <svg className="faq-chev flex-shrink-0 w-5 h-5 text-blue-bright transition-transform duration-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                      <polyline points="6 9 12 15 18 9" />
+                    </svg>
+                  </summary>
+                  <div className="faq-answer px-5 sm:px-6 pb-5 -mt-1 text-muted leading-relaxed">{f.a}</div>
+                </details>
               </Reveal>
             ))}
           </div>
