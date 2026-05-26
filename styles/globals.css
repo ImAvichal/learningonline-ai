@@ -912,3 +912,26 @@ html.light-mode .triad-def             { color: #6b7280; }
 @media (prefers-reduced-motion: reduce) {
   .journey-preview, .journey-sheet, .journey-backdrop { animation: none; }
 }
+
+/* ═══════════════════════════════════════════════════════════════
+   HOMEPAGE FAQ ACCORDION (#faq) — native <details>/<summary>
+   ═══════════════════════════════════════════════════════════════ */
+
+/* Hide the default disclosure triangle across browsers */
+.faq-item summary::-webkit-details-marker { display: none; }
+.faq-item summary { list-style: none; }
+
+/* Chevron rotates when the item is open */
+.faq-item[open] .faq-chev { transform: rotate(180deg); }
+
+/* Answer slides/fades in when opened */
+.faq-item[open] .faq-answer { animation: faq-slide 0.28s ease; }
+@keyframes faq-slide {
+  from { opacity: 0; transform: translateY(-4px); }
+  to   { opacity: 1; transform: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .faq-item[open] .faq-answer { animation: none; }
+  .faq-chev { transition: none; }
+}
