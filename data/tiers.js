@@ -192,25 +192,25 @@ export const REGIONAL_PRICING = {
     plans: {
       journey: {
         monthly: {
-          amount: 999,
-          label: '\u20b9999/mo',
+          amount: 499,
+          label: '\u20b9499/mo',
           stripeEnvKey: 'STRIPE_PRICE_JOURNEY_MONTHLY_INR',
         },
         annual: {
-          amount: 4999,
-          label: '\u20b94,999/yr',
+          amount: 4499,
+          label: '\u20b94,499/yr',
           stripeEnvKey: 'STRIPE_PRICE_JOURNEY_ANNUAL_INR',
         },
       },
       pro: {
         monthly: {
-          amount: 1999,
-          label: '\u20b91,999/mo',
+          amount: 999,
+          label: '\u20b9999/mo',
           stripeEnvKey: 'STRIPE_PRICE_PRO_MONTHLY_INR',
         },
         annual: {
-          amount: 9999,
-          label: '\u20b99,999/yr',
+          amount: 8999,
+          label: '\u20b98,999/yr',
           stripeEnvKey: 'STRIPE_PRICE_PRO_ANNUAL_INR',
         },
       },
@@ -222,25 +222,25 @@ export const REGIONAL_PRICING = {
     plans: {
       journey: {
         monthly: {
-          amount: 599,
-          label: '\u20b1599/mo',
+          amount: 349,
+          label: '\u20b1349/mo',
           stripeEnvKey: 'STRIPE_PRICE_JOURNEY_MONTHLY_PHP',
         },
         annual: {
-          amount: 5499,
-          label: '\u20b15,499/yr',
+          amount: 2999,
+          label: '\u20b12,999/yr',
           stripeEnvKey: 'STRIPE_PRICE_JOURNEY_ANNUAL_PHP',
         },
       },
       pro: {
         monthly: {
-          amount: 999,
-          label: '\u20b1999/mo',
+          amount: 599,
+          label: '\u20b1599/mo',
           stripeEnvKey: 'STRIPE_PRICE_PRO_MONTHLY_PHP',
         },
         annual: {
-          amount: 9499,
-          label: '\u20b19,499/yr',
+          amount: 5499,
+          label: '\u20b15,499/yr',
           stripeEnvKey: 'STRIPE_PRICE_PRO_ANNUAL_PHP',
         },
       },
