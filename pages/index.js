@@ -46,10 +46,6 @@ const FAQS = [
     a: 'Yes. We offer centralised billing, team management dashboards, and custom deployment roadmaps for organisations looking to scale AI capability across departments. Please contact us to discuss corporate rates.',
   },
   {
-    q: 'How much does LeO AI cost?',
-    a: 'Beyond our free Parents & Caregivers module, we offer two straightforward subscription tiers: Starting the Journey at $19/month (or $179/year) and The Pro at $39/month (or $349/year). You can easily upgrade from Journey to Pro at any time.',
-  },
-  {
     q: 'What is your refund policy?',
     a: 'We stand behind the practical value of our platform. If you explore the modules and don\'t feel LeO AI delivers measurable value to your work within 3 days of purchase, simply contact us for a prompt, 100% refund. No hoops to jump through.',
   },
