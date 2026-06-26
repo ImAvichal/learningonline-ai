@@ -60,30 +60,36 @@ function CheckoutAuthPanel({ returnUrl }) {
       if (Object.keys(errs).length) { setErrors(errs); return }
       setSubmitting(true)
       const res = await signup(form.email, form.password, form.name)
-      if (!res.success) {
-        const msg = res.error || ''
-        if (/already (registered|exists|been registered)|user already/i.test(msg)) {
-          setErrors({ server: 'An account with this email already exists — please sign in instead.' })
-          setMode('signin')
-        } else {
-          setErrors({ server: msg || 'Something went wrong. Please try again.' })
-        }
-        setSubmitting(false)
+      if (res.success) {
+        // Hard-navigate to the same checkout URL so a fresh mount re-reads the
+        // persisted session via init(). This avoids relying on the
+        // onAuthStateChange listener to propagate `user` in place, which is
+        // unreliable (the async listener can hold an auth lock across loadUser).
+        window.location.assign(returnUrl)
+        return
       }
-      // Success: keep the spinner. The page re-renders into the authenticated
-      // state once `user` loads — no navigation required.
+      const msg = res.error || ''
+      if (/already (registered|exists|been registered)|user already/i.test(msg)) {
+        setErrors({ server: 'An account with this email already exists — please sign in instead.' })
+        setMode('signin')
+      } else {
+        setErrors({ server: msg || 'Something went wrong. Please try again.' })
+      }
+      setSubmitting(false)
     } else {
       if (!form.email || !form.password) { setErrors({ server: 'Please enter your email and password.' }); return }
       setSubmitting(true)
       const res = await login(form.email, form.password)
-      if (!res.success) {
-        const msg = res.error || ''
-        const friendly = /invalid login credentials/i.test(msg)
-          ? 'Email or password is incorrect.'
-          : (msg || 'Could not sign in. Please try again.')
-        setErrors({ server: friendly })
-        setSubmitting(false)
+      if (res.success) {
+        window.location.assign(returnUrl)
+        return
       }
+      const msg = res.error || ''
+      const friendly = /invalid login credentials/i.test(msg)
+        ? 'Email or password is incorrect.'
+        : (msg || 'Could not sign in. Please try again.')
+      setErrors({ server: friendly })
+      setSubmitting(false)
     }
   }
 
