@@ -51,12 +51,9 @@ export default function Pricing() {
   const router   = useRouter()
 
   const handleEnrol = (tierId) => {
-    const checkoutUrl = `/checkout?tier=${tierId}&interval=${interval}`
-    if (!user) {
-      router.push(`/login?redirect=${encodeURIComponent(checkoutUrl)}`)
-      return
-    }
-    router.push(checkoutUrl)
+    // Checkout now handles authentication in-page, so route straight there
+    // for everyone — no /login bounce. Auth + payment happen on one page.
+    router.push(`/checkout?tier=${tierId}&interval=${interval}`)
   }
 
   return (

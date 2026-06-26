@@ -485,9 +485,9 @@ export default function Home() {
                           </Link>
                         )
                       }
-                      // Not logged in — login first, then checkout
+                      // Not logged in — checkout now handles auth in-page
                       return (
-                        <Link href={`/login?redirect=${encodeURIComponent(`/checkout?tier=${card.tierKey}&interval=${interval}`)}`}
+                        <Link href={`/checkout?tier=${card.tierKey}&interval=${interval}`}
                           className={`w-full text-center py-2.5 rounded-lg font-display font-bold text-sm transition-all block ${card.ctaClass}`}>
                           {card.cta}
                         </Link>
