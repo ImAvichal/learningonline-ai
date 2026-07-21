@@ -379,7 +379,7 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
             {[
               {
-                pill: t('common.freeTier'), pillClass: 'bg-success/15 border-success/30 text-success',
+                pill: t('plans.parents.badge'), pillClass: 'bg-success/15 border-success/30 text-success',
                 title: t('plans.parents.name'), price: t('common.free'), billing: t('common.freeSignInRequired'),
                 hook: t('plans.parents.hook'),
                 desc: t('plans.parents.description'),
