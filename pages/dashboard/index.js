@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { useState, useEffect } from 'react'
 import { useAuth, useProgress, withAuth } from '../../lib/auth'
 import NoEnrolmentMessage from '../../components/NoEnrolmentMessage'
+import FeedbackWidget from '../../components/FeedbackWidget'
 import { MODULES } from '../../data/modules'
 import { Sidebar, Card, ProgressBar, Button, SectionLabel, TierBadge, Reveal } from '../../components/ui'
 import Icon from '../../components/Icon'
@@ -213,6 +214,11 @@ function HomeTab({ user, totalPct, completedMods, nextLesson, switchTab, goToLes
           </div>
         </Card>
       )}
+
+      {/* Feedback */}
+      <Card light className="p-6 mt-5">
+        <FeedbackWidget course={user.tier || 'general'} />
+      </Card>
     </div>
   )
 }
