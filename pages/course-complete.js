@@ -9,6 +9,7 @@ import Head from 'next/head'
 import Footer from '../components/Footer'
 import { useRouter } from 'next/router'
 import { Nav, Reveal, Button } from '../components/ui'
+import FeedbackWidget from '../components/FeedbackWidget'
 import { useAuth } from '../lib/auth'
 
 export default function CourseComplete() {
@@ -123,6 +124,16 @@ export default function CourseComplete() {
             <p className="text-xs text-gray-500 mt-8">
               Your progress is saved automatically. You can return any time to revisit a lesson.
             </p>
+
+            {/* Post-completion feedback */}
+            <div className="mt-10 max-w-lg mx-auto text-left border-t border-gray-200 pt-8">
+              <FeedbackWidget
+                course={completedTrack}
+                title="How was this module?"
+                subtitle="30 seconds — it genuinely shapes what we build next."
+                compact
+              />
+            </div>
           </Reveal>
         </div>
       <Footer variant="dark" />
