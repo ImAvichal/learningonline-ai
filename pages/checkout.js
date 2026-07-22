@@ -321,9 +321,12 @@ export default function Checkout() {
     : isFreeTier  ? `Enrol in ${tier.name}`
     : 'Complete your enrolment'
 
+  const isJourneyTrial = tierId === 'journey'
+
   const primaryLabel = loading
     ? 'Processing…'
     : isFreeTier ? 'Enrol for free →'
+    : isJourneyTrial ? 'Start your free month →'
     : isDemo     ? `Simulate Payment — ${priceLabel}`
     : `🔒 Pay ${priceLabel} Securely`
 
@@ -431,6 +434,13 @@ export default function Checkout() {
 
                   {isFreeTier ? (
                     <p className="text-center text-xs text-muted mt-3">Instant access after enrolling · no card required</p>
+                  ) : isJourneyTrial ? (
+                    <div className="mt-4 p-4 rounded-lg bg-success/[0.06] border border-success/25 text-center max-w-md mx-auto">
+                      <div className="font-display font-bold text-sm mb-1">🎁 Free for your first month</div>
+                      <p className="text-xs text-gray-500 leading-relaxed">
+                        You won't be charged today. After 30 days it's {priceLabel} — cancel anytime before then and pay nothing.
+                      </p>
+                    </div>
                   ) : (
                     <>
                       <p className="text-center text-xs text-muted mt-3 leading-relaxed max-w-md mx-auto">

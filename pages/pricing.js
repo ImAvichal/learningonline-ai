@@ -125,6 +125,9 @@ export default function Pricing() {
                       {tid === 'parents' ? t.priceDisplay : priceFor(tid)}
                     </div>
                     <div className="text-xs text-muted mb-5">{tid === 'parents' ? tr('common.alwaysFree') : (interval === 'annual' ? 'Billed annually' : 'Billed monthly')}</div>
+                    {tid === 'journey' && (
+                      <div className="text-xs text-success font-display font-bold mb-5 -mt-3">🎁 Free for your first month, then billed as above</div>
+                    )}
                     <p className="text-sm text-white/85 leading-relaxed mb-4 flex-1">{t.description}</p>
 
                     <div className="p-3 rounded-lg bg-white/[0.03] border border-white/5 mb-5">

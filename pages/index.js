@@ -426,6 +426,9 @@ export default function Home() {
                     </span>
                   </div>
                   <div className="text-[10px] text-muted mb-4">{card.tierKey ? (interval === 'annual' ? t('common.billedAnnually') : t('common.billedMonthly')) : card.billing}</div>
+                  {card.tierKey === 'journey' && (
+                    <div className="text-[11px] text-success font-display font-bold mb-4 -mt-3">🎁 Free for your first month, then billed as above</div>
+                  )}
                   <p className="text-xs text-muted leading-relaxed mb-4">{card.desc}</p>
                   <div className="p-3 rounded-lg bg-white/[0.03] border border-white/5 mb-4">
                     <div className="text-[10px] font-display font-bold text-muted uppercase tracking-wider mb-1">{t("common.idealFor") || "Ideal for"}</div>
