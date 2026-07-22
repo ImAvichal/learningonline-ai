@@ -102,6 +102,14 @@ export default async function handler(req, res) {
     // so we can safely set address/name update fields. Remove the placeholder so Stripe handles it.
     delete sessionParams.customer_update
 
+    // Journey — first month free (Stripe trial). The card is captured at
+    // checkout but not charged until the 30-day trial ends; cancelling before
+    // then costs nothing. Scoped to Journey only — Pro has no trial. (One-time
+    // regions won't reach here in subscription mode, so they're unaffected.)
+    if (tierId === 'journey') {
+      sessionParams.subscription_data = { trial_period_days: 30 }
+    }
+
     // If a specific Stripe promotion code ID is passed, apply it directly
     if (promoCode && promoCode.startsWith('promo_')) {
       sessionParams.discounts = [{ promotion_code: promoCode }]
