@@ -4,6 +4,11 @@ import Stripe from 'stripe'
 export default async function handler(req, res) {
   if (req.method !== 'POST') return res.status(405).end()
 
+  // Journey is free (granted client-side with a 30-day clock) — never bill it here.
+  if (req.body?.tierId === 'journey') {
+    return res.status(400).json({ error: 'Journey is free — no checkout session required.' })
+  }
+
   const stripe = new Stripe(process.env.STRIPE_SECRET_KEY)
 
   // Region-aware price mapping: tier + interval + region → Stripe price ID
@@ -101,14 +106,6 @@ export default async function handler(req, res) {
     // For Stripe Checkout's subscription mode, Stripe creates the customer automatically,
     // so we can safely set address/name update fields. Remove the placeholder so Stripe handles it.
     delete sessionParams.customer_update
-
-    // Journey — first month free (Stripe trial). The card is captured at
-    // checkout but not charged until the 30-day trial ends; cancelling before
-    // then costs nothing. Scoped to Journey only — Pro has no trial. (One-time
-    // regions won't reach here in subscription mode, so they're unaffected.)
-    if (tierId === 'journey') {
-      sessionParams.subscription_data = { trial_period_days: 30 }
-    }
 
     // If a specific Stripe promotion code ID is passed, apply it directly
     if (promoCode && promoCode.startsWith('promo_')) {
