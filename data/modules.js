@@ -15,9 +15,9 @@ export const MODULES = [
         content: `<h2>What AI Actually Is</h2>
 <p>Artificial Intelligence is pattern recognition at scale. At its core, AI learns from examples and applies what it has learned to new situations. It does not think, reason, or understand in the way humans do — it predicts.</p>
 <h3>The Three Categories You Need to Know</h3>
-<p><strong>Narrow AI (where we are now):</strong> AI designed for specific tasks. GPT-4o writes text. DALL-E generates images. AlphaFold predicts protein structures. Each is exceptional at its task and useless at others.</p>
+<p><strong>Narrow AI (where we are now):</strong> AI designed for specific tasks. A chat model writes text. An image model generates images. AlphaFold predicts protein structures. Each is exceptional at its task and useless at others.</p>
 <p><strong>General AI (where we're heading):</strong> Systems that can perform any intellectual task a human can. Not here yet — but approaching faster than most organisations are prepared for.</p>
-<p><strong>Agentic AI (emerging now):</strong> AI that takes sequences of actions autonomously to achieve a goal. Already in production in leading organisations.</p>
+<p><strong>Agentic AI (operational now):</strong> AI that plans and takes sequences of actions autonomously — using tools, calling APIs, working across steps — to achieve a goal. No longer emerging: it's in mainstream production, and the hard part has shifted from "can it act" to governing how it acts.</p>
 <h3>The Gotchas Nobody Tells You</h3>
 <p><strong>Hallucination:</strong> AI confidently states things that are false. It doesn't know what it doesn't know. Always verify consequential outputs.</p>
 <p><strong>Context window limits:</strong> AI can only process a limited amount of text at once. Large documents need chunking strategies.</p>
@@ -39,8 +39,11 @@ export const MODULES = [
 <p>Choosing the wrong model is like using a forklift to move a coffee cup — technically possible, expensive, and unnecessary. Here's the framework for picking the right tool.</p>
 <h3>Large Language Models (LLMs)</h3>
 <p>Best for: text generation, summarisation, classification, question answering, code generation, translation.</p>
-<p>Key players: GPT-4o (OpenAI) · Claude 3.5 (Anthropic) · Gemini 1.5 (Google) · Llama 3 (Meta, open source)</p>
+<p>Think in capability tiers, not brand names — the specific models change every few weeks. Frontier for the hardest work; mid-tier workhorses for most production tasks; small/fast for high-volume narrow tasks; open-weight for privacy and cost control. <em>(Mid-2026: GPT-5.6, Claude Opus 4.8 / Sonnet 5, Gemini 3.x and Grok 4.5 at the frontier; strong open-weight from Meta, DeepSeek, Qwen and Mistral.)</em></p>
 <p>When to choose: Any task involving reading, writing, classifying, or reasoning over text.</p>
+<h3>Reasoning Models</h3>
+<p>Best for: multi-step logic, maths, planning, and hard code. A newer class that "thinks" step-by-step before answering — much stronger on complex problems, but slower and more expensive.</p>
+<p>When to choose: only when a task genuinely needs deliberate reasoning. Most everyday tasks don't — a standard model is faster and cheaper.</p>
 <h3>Embedding Models</h3>
 <p>Best for: semantic search, similarity matching, document retrieval (RAG systems).</p>
 <p>When to choose: When you need AI to search your own documents or knowledge base intelligently.</p>
@@ -60,7 +63,7 @@ export const MODULES = [
 <div class="real-world-box">
 <h3>🌍 From Real-World Practice</h3>
 <p><strong>Insight:</strong> Organisations routinely pay 10–50× more than necessary by using frontier models for tasks that smaller, cheaper models handle equally well.</p>
-<p><strong>Example:</strong> A retail business was using GPT-4o to classify customer support tickets into 12 categories — at $0.015 per 1K tokens. Switching to a fine-tuned GPT-4o-mini for the same task reduced cost by 90% with equivalent accuracy.</p>
+<p><strong>Example:</strong> A retail business was using a frontier model to classify customer support tickets into 12 categories. Switching to a small, fine-tuned model for the same task cut cost by ~90% with equivalent accuracy.</p>
 <p><strong>Why it matters:</strong> At scale, model selection is a financial decision, not just a technical one.</p>
 <p><strong>Implementation tip:</strong> Always benchmark 2–3 models against your specific task before committing to production. Cost and quality don't always correlate.</p>
 <p><strong>💡 What This Saves You:</strong> Correct model selection typically reduces AI running costs by 40–80% without any loss in output quality.</p>
@@ -79,7 +82,7 @@ export const MODULES = [
 <h3>The Cost Formula</h3>
 <pre>Total cost = (input tokens × input price) + (output tokens × output price)
 
-Example — GPT-4o pricing (approx):
+Example — mid-tier model pricing (illustrative):
 Input:  $2.50 per million tokens
 Output: $10.00 per million tokens
 
@@ -89,6 +92,7 @@ A task with 1,000 input tokens + 500 output tokens:
 = $0.0075 per call
 
 At 10,000 calls per day: $75/day · $2,250/month</pre>
+<p><em>The per-token rates above are illustrative — they teach the calculation method, not today's prices. Real rates have fallen sharply and keep dropping. Learn the maths, then plug in current numbers (see the model-landscape reference).</em></p>
 <h3>Token Optimisation Strategies</h3>
 <p><strong>Compress your prompts:</strong> Remove unnecessary words from system prompts. A 500-token prompt run 10,000 times costs as much as 5 million extra input tokens monthly.</p>
 <p><strong>Use cheaper models for simple tasks:</strong> Classification, simple extraction, and formatting tasks don't need frontier models.</p>
@@ -119,7 +123,7 @@ At 10,000 calls per day: $75/day · $2,250/month</pre>
     ],
     quiz: {
       questions: [
-        { id: 'q1-1', text: 'A customer service team wants to automatically classify 2,000 support tickets per day into 8 categories. Which approach gives the best cost-to-quality ratio?', options: ['Use GPT-4o for maximum accuracy', 'Use a fine-tuned smaller model for classification', 'Use keyword matching rules instead', 'Use GPT-4o-mini with a well-crafted prompt and test accuracy first'], correct: 3, explanation: 'Testing a cheaper model first is the right approach. Classification is a task where smaller models often match frontier model performance at a fraction of the cost.' },
+        { id: 'q1-1', text: 'A customer service team wants to automatically classify 2,000 support tickets per day into 8 categories. Which approach gives the best cost-to-quality ratio?', options: ['Use a frontier model for maximum accuracy', 'Use a fine-tuned smaller model for classification', 'Use keyword matching rules instead', 'Use a small/fast model with a well-crafted prompt and test accuracy first'], correct: 3, explanation: 'Testing a cheaper model first is the right approach. Classification is a task where smaller models often match frontier model performance at a fraction of the cost.' },
         { id: 'q1-2', text: 'Your system prompt is 800 tokens and runs 50,000 times per month. At $2.50 per million input tokens, what is your monthly prompt cost alone?', options: ['$1.00', '$10.00', '$100.00', '$1,000.00'], correct: 2, explanation: '800 tokens × 50,000 = 40,000,000 tokens. At $2.50/million = $100/month. This is why prompt compression matters at scale.' },
         { id: 'q1-3', text: 'An AI summarises a report and includes a legal precedent that sounds authoritative but doesn\'t exist. This is an example of:', options: ['A training data error', 'Hallucination', 'Context window overflow', 'Model bias'], correct: 1, explanation: 'Hallucination is when AI generates plausible but false information. It\'s one of the most critical failure modes to design around.' },
         { id: 'q1-4', text: 'Which model type would you choose to build a system that lets employees search your internal policy documents using natural language?', options: ['A large language model only', 'An image generation model', 'An embedding model combined with an LLM (RAG system)', 'A speech-to-text model'], correct: 2, explanation: 'RAG (Retrieval-Augmented Generation) combines embedding models for search with LLMs for answer generation. The right architecture for knowledge base search.' },
@@ -299,6 +303,7 @@ Support effort: 2 hrs/week × $65/hr × 52 = $6,760/year
 Data maintenance: $2,000/year
 Governance review: $1,500/year
 Total annual maintenance: $12,085/year</pre>
+<p><em>The $0.000005/token rate is illustrative — model the method, not the sticker price. Per-token rates keep falling, so re-check current pricing when you build your own case.</em></p>
 <p><strong>5-Year Total Cost:</strong></p>
 <pre>5-Year Cost = Implementation + (Annual Maintenance × 5)
             = $9,500 + ($12,085 × 5)
@@ -522,7 +527,7 @@ Pattern 4 — Agent Pattern
 <div class="real-world-box">
 <h3>🌍 From Real-World Practice</h3>
 <p><strong>Insight:</strong> The "best" AI model is the one that meets your accuracy requirements at the lowest cost — not the most powerful one available.</p>
-<p><strong>Example:</strong> A retail business evaluated GPT-4o, Claude 3.5, and GPT-4o-mini for product description generation. GPT-4o-mini matched the quality of the others for this specific task at 95% lower cost. The difference over 12 months: $2,400 vs $48,000 in API costs.</p>
+<p><strong>Example:</strong> A retail business benchmarked a frontier model, a mid-tier model, and a small/fast model for product description generation. The small model matched the others' quality for this specific task at ~95% lower cost. The lesson: <strong>right-size before you reach for a flagship</strong> — the best model is the cheapest one that clears your quality bar.</p>
 <p><strong>Why it matters:</strong> Model selection is a business decision, not just a technical one. Always benchmark before committing.</p>
 <p><strong>Implementation tip:</strong> Create a model evaluation matrix for your specific use case — score each candidate on accuracy, speed, cost, and data privacy compliance. Run 100 real examples before deciding.</p>
 <p><strong>💡 What This Saves You:</strong> Structured architecture decisions save organisations an average of 40–70% in AI infrastructure costs compared to choosing based on brand recognition alone.</p>
@@ -779,7 +784,7 @@ User: [case history text]</pre>
 <p><strong>Inference energy:</strong> A single GPT-4 query consumes approximately 10× the energy of a standard Google search. At 10,000 queries per day, that's the energy equivalent of 100,000 searches daily.</p>
 <p><strong>Data centre water usage:</strong> AI data centres use significant water for cooling. Microsoft reported that training GPT-4 consumed approximately 700,000 litres of water.</p>
 <h3>Sustainability Optimisation Strategies</h3>
-<p><strong>Right-size your model:</strong> Using a smaller model for tasks that don't require frontier capabilities is both cost-effective and more energy-efficient. GPT-4o-mini uses significantly less energy per call than GPT-4o.</p>
+<p><strong>Right-size your model:</strong> Using a smaller model for tasks that don't require frontier capabilities is both cost-effective and more energy-efficient. A small model uses significantly less energy per call than a frontier model.</p>
 <p><strong>Implement caching:</strong> Caching responses for repeated queries eliminates redundant AI calls entirely. For FAQ-style applications, cache hit rates of 40–70% are achievable.</p>
 <p><strong>Batch processing:</strong> Processing multiple requests in a single API call is more energy-efficient than individual calls. Applicable for non-real-time use cases.</p>
 <p><strong>Choose green infrastructure:</strong> Cloud providers differ significantly in their renewable energy commitments. Google Cloud and Microsoft Azure both offer carbon-neutral commitments in certain regions.</p>
@@ -809,8 +814,8 @@ User: [case history text]</pre>
     ],
     quiz: {
       questions: [
-        { id: 'q11-1', text: 'Your AI system makes 200,000 calls per month to GPT-4o. You discover 60% of calls ask similar questions. What is the most impactful sustainability action?', options: ['Switch to a different cloud provider', 'Implement response caching — eliminating 120,000 redundant calls per month', 'Reduce the number of users', 'Switch to a smaller model only'], correct: 1, explanation: 'Caching eliminates calls entirely — the most effective sustainability and cost action. 60% cache hit rate means 120,000 fewer calls, 120,000 fewer energy-consuming inferences.' },
-        { id: 'q11-2', text: 'From a sustainability perspective, using GPT-4o for simple text classification tasks instead of a smaller model is:', options: ['Recommended for maximum accuracy', 'Wasteful — larger models consume more energy and cost more for tasks smaller models handle equally well', 'Required for enterprise use cases', 'No different from a sustainability standpoint'], correct: 1, explanation: 'Right-sizing models is fundamental to sustainable AI. Larger models consume significantly more energy per inference. If a smaller model meets accuracy requirements, it should be used.' },
+        { id: 'q11-1', text: 'Your AI system makes 200,000 calls per month to a frontier model. You discover 60% of calls ask similar questions. What is the most impactful sustainability action?', options: ['Switch to a different cloud provider', 'Implement response caching — eliminating 120,000 redundant calls per month', 'Reduce the number of users', 'Switch to a smaller model only'], correct: 1, explanation: 'Caching eliminates calls entirely — the most effective sustainability and cost action. 60% cache hit rate means 120,000 fewer calls, 120,000 fewer energy-consuming inferences.' },
+        { id: 'q11-2', text: 'From a sustainability perspective, using a frontier model for simple text classification tasks instead of a smaller model is:', options: ['Recommended for maximum accuracy', 'Wasteful — larger models consume more energy and cost more for tasks smaller models handle equally well', 'Required for enterprise use cases', 'No different from a sustainability standpoint'], correct: 1, explanation: 'Right-sizing models is fundamental to sustainable AI. Larger models consume significantly more energy per inference. If a smaller model meets accuracy requirements, it should be used.' },
         { id: 'q11-3', text: 'Your organisation is required to include AI in its annual sustainability disclosure. What metrics should you track?', options: ['Only the number of AI users', 'Compute energy consumption, estimated carbon emissions, water usage (if applicable), and efficiency improvements over time', 'Model accuracy scores', 'API call volumes only'], correct: 1, explanation: 'Meaningful sustainability disclosure requires actual impact metrics, not proxy metrics. Cloud providers offer carbon dashboards that provide the underlying data for these calculations.' },
         { id: 'q11-4', text: 'Batch processing AI requests rather than real-time processing primarily benefits:', options: ['Response quality', 'User experience', 'Energy efficiency and cost — multiple items processed together require less overhead than individual calls', 'Model accuracy'], correct: 2, explanation: 'Batching reduces per-unit energy and cost by eliminating repeated API connection overhead. Applicable for any use case that doesn\'t require immediate real-time response.' },
         { id: 'q11-5', text: 'Why is there a strong alignment between AI cost optimisation and AI sustainability?', options: ['There isn\'t — they often conflict', 'Because energy consumption directly drives both token costs and carbon emissions — reducing one reduces the other', 'Because cheaper models are always more sustainable', 'Because sustainability reporting reduces model prices'], correct: 1, explanation: 'Token cost reflects compute cost, which reflects energy consumption. Every optimisation that reduces tokens (caching, right-sizing, prompt compression) reduces both cost and energy use simultaneously.' },
@@ -898,12 +903,12 @@ Standard Q&A responses   → Automated   → Escalations & experience design</pr
         id: 'm13-l1', number: 1, tier: 'enterprise', duration: '30 min',
         title: 'Text, Image, Voice: Designing Multimodal Workflows',
         content: `<h2>Beyond Text: The Multimodal Opportunity</h2>
-<p>The next wave of AI value in business doesn't come from better text models — it comes from combining modalities. Text plus image plus voice plus action creates workflows that weren't possible two years ago.</p>
+<p>The next wave of AI value in business doesn't come from better text models — it comes from combining modalities. Text plus image plus voice plus action creates workflows that were impractical only a short time ago.</p>
 <h3>The Four Modalities and Their Business Applications</h3>
 <p><strong>Text (LLMs):</strong> The foundation. Summarisation, classification, generation, reasoning. The modality with the most mature tooling and the widest range of applications.</p>
 <p><strong>Image (Vision models):</strong> Document processing (invoices, forms, medical images), quality inspection, visual search, content moderation, accessibility (image description).</p>
 <p><strong>Voice (Speech models):</strong> Call centre analytics, meeting transcription and summarisation, voice-enabled workflows, real-time translation, accessibility.</p>
-<p><strong>Structured action (Agentic AI):</strong> Autonomous multi-step task execution using tools — web search, database query, API calls, form completion. Emerging rapidly.</p>
+<p><strong>Structured action (Agentic AI):</strong> Autonomous multi-step task execution using tools — web search, database query, API calls, form completion. Now operational and moving fast — the frontier has shifted to governing agents, not building them.</p>
 <h3>Multimodal Workflow Design</h3>
 <pre>Example: Invoice Processing Workflow
   Step 1: Image model → Extract structured data from invoice image
