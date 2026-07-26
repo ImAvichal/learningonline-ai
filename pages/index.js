@@ -422,12 +422,12 @@ export default function Home() {
                   <p className="text-xs text-white/40 italic mb-3">{card.hook}</p>
                   <div className="flex items-baseline gap-2 mb-1">
                     <span className="font-display font-black text-white leading-none whitespace-nowrap" style={{fontSize: 'clamp(18px, 2.2vw, 24px)'}}>
-                      {card.tierKey ? priceFor(card.tierKey) : card.price}
+                      {card.tierKey === 'journey' ? 'Free' : card.tierKey ? priceFor(card.tierKey) : card.price}
                     </span>
                   </div>
-                  <div className="text-[10px] text-muted mb-4">{card.tierKey ? (interval === 'annual' ? t('common.billedAnnually') : t('common.billedMonthly')) : card.billing}</div>
+                  <div className="text-[10px] text-muted mb-4">{card.tierKey === 'journey' ? 'Free for one month' : card.tierKey ? (interval === 'annual' ? t('common.billedAnnually') : t('common.billedMonthly')) : card.billing}</div>
                   {card.tierKey === 'journey' && (
-                    <div className="text-[11px] text-success font-display font-bold mb-4 -mt-3">🎁 Free for your first month, then billed as above</div>
+                    <div className="text-[11px] text-success font-display font-bold mb-4 -mt-3">🎁 No card required · we'll remind you before it ends</div>
                   )}
                   <p className="text-xs text-muted leading-relaxed mb-4">{card.desc}</p>
                   <div className="p-3 rounded-lg bg-white/[0.03] border border-white/5 mb-4">
