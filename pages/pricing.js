@@ -123,11 +123,11 @@ export default function Pricing() {
 
                     <TierBadge tier={tid} label={t.label} className="mb-4" />
                     <div className="font-display font-black mb-1 leading-none whitespace-nowrap overflow-hidden" style={{fontSize: 'clamp(22px, 2.4vw, 28px)'}}>
-                      {tid === 'parents' ? t.priceDisplay : tid === 'journey' ? 'Free' : priceFor(tid)}
+                      {tid === 'parents' ? t.priceDisplay : priceFor(tid)}
                     </div>
-                    <div className="text-xs text-muted mb-5">{tid === 'parents' ? tr('common.alwaysFree') : tid === 'journey' ? 'Free for one month' : 'One payment · yours for good'}</div>
+                    <div className="text-xs text-muted mb-5">{tid === 'parents' ? tr('common.alwaysFree') : 'One payment · yours for good'}</div>
                     {tid === 'journey' && (
-                      <div className="text-xs text-success font-display font-bold mb-5 -mt-3">🎁 No card required · we'll remind you before it ends</div>
+                      <div className="text-xs text-success font-display font-bold mb-5 -mt-3">🎁 First month free — no card required</div>
                     )}
                     {tid === 'pro' && (
                       <div className="text-xs text-success font-display font-bold mb-5 -mt-3">Includes 12 months of content updates</div>
