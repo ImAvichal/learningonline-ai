@@ -8,7 +8,6 @@ import { Nav, Reveal, Card, SectionLabel, Button, TierBadge, BillingToggle } fro
 import { TIERS, TIER_ORDER, DISPLAY_ORDER } from '../data/tiers'
 import { useAuth } from '../lib/auth'
 import { useRegion } from '../lib/region'
-import RegionSelector from '../components/RegionSelector'
 import { useTranslation } from '../lib/i18n'
 import { REGIONAL_PRICING } from '../data/tiers'
 
@@ -92,11 +91,6 @@ export default function Pricing() {
               </p>
             </div>
           </Reveal>
-
-          {/* Pricing region selector */}
-          <div className="flex justify-center mb-8">
-            <RegionSelector />
-          </div>
 
           {/* Tier cards */}
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto mb-14">

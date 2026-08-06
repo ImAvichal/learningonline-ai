@@ -30,7 +30,7 @@ const FAQS = [
     a: 'LeO AI is built specifically for busy professionals. Individual lessons are bite-sized (typically 20–25 minutes long), allowing you to make meaningful progress and build real capability by dedicating just 1 hour per week.',
   },
   {
-    q: 'Do I have to complete all 14 modules to get value?',
+    q: 'Do I have to complete all 16 modules to get value?',
     a: 'Not at all. The curriculum is modular. Because every single module concludes with a practical, real-world deliverable (like an AI Readiness Assessment or a prioritised workflow blueprint), you will gain immediately actionable value from the very first module you finish.',
   },
   {
@@ -51,7 +51,6 @@ const FAQS = [
   },
 ]
 import { useRegion } from '../lib/region'
-import RegionSelector from '../components/RegionSelector'
 import { useTranslation } from '../lib/i18n'
 import { REGIONAL_PRICING } from '../data/tiers'
 
@@ -285,13 +284,13 @@ export default function Home() {
   const [activePhase,   setActivePhase]   = useState(0)
   const [mobileSheetOpen, setMobileSheetOpen] = useState(false)
 
-  // Curriculum phases — group the 14 modules into 3 chronological phases.
+  // Curriculum phases — group the 16 modules into 3 chronological phases.
   // moduleIndices are 0-based indices into MODULES. `stage` gives each phase an
   // evolution-themed framing for the journey visualisation.
   const PHASES = [
     { label: 'Phase 1', title: 'Foundations & Strategy',     stage: 'Awareness',      moduleIndices: [0, 1, 2, 3] },
     { label: 'Phase 2', title: 'Technical Execution & ROI',  stage: 'Implementation', moduleIndices: [4, 5, 6, 7, 8] },
-    { label: 'Phase 3', title: 'Governance, Scale & Action', stage: 'Leadership',     moduleIndices: [9, 10, 11, 12, 13] },
+    { label: 'Phase 3', title: 'Governance, Scale & Action', stage: 'Leadership',     moduleIndices: [9, 10, 11, 12, 13, 14, 15] },
   ]
   // Ensure the active module always belongs to the active phase.
   const selectPhase = (phaseIdx) => {
@@ -304,13 +303,13 @@ export default function Home() {
     <>
       <Head>
         <title>LeO AI — AI Anxiety → AI Awareness</title>
-        <meta name="description" content="Practical AI training that takes professionals, business owners, and leaders from AI anxiety to real AI capability — 14 modules, each producing a deliverable you can use at work." />
+        <meta name="description" content="Practical AI training that takes professionals, business owners, and leaders from AI anxiety to real AI capability — 16 modules, each producing a deliverable you can use at work." />
         <link rel="canonical" href="https://www.learningonline.ai/" />
         {/* Social cards */}
         <meta property="og:type" content="website" />
         <meta property="og:site_name" content="LeO AI" />
         <meta property="og:title" content="LeO AI — AI Anxiety → AI Awareness" />
-        <meta property="og:description" content="Practical AI training that takes you from AI anxiety to real capability. 14 modules, real deliverables." />
+        <meta property="og:description" content="Practical AI training that takes you from AI anxiety to real capability. 16 modules, real deliverables." />
         <meta property="og:url" content="https://www.learningonline.ai/" />
         <meta property="og:image" content="https://www.learningonline.ai/og-image.png" />
         <meta property="og:image:width" content="1200" />
@@ -372,10 +371,6 @@ export default function Home() {
             </div>
           </Reveal>
           
-          <div className="flex justify-center mb-6">
-            <RegionSelector />
-          </div>
-
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
             {[
               {
