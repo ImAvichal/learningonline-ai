@@ -51,6 +51,7 @@ const FAQS = [
   },
 ]
 import { useRegion } from '../lib/region'
+import RegionSelector from '../components/RegionSelector'
 import { useTranslation } from '../lib/i18n'
 import { REGIONAL_PRICING } from '../data/tiers'
 
@@ -371,6 +372,10 @@ export default function Home() {
             </div>
           </Reveal>
           
+          <div className="flex justify-center mb-6">
+            <RegionSelector />
+          </div>
+
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
             {[
               {
