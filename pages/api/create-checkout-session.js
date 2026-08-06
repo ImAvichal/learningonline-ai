@@ -4,55 +4,14 @@ import Stripe from 'stripe'
 export default async function handler(req, res) {
   if (req.method !== 'POST') return res.status(405).end()
 
-  // Journey is free (granted client-side with a 30-day clock) — never bill it here.
-  if (req.body?.tierId === 'journey') {
-    return res.status(400).json({ error: 'Journey is free — no checkout session required.' })
-  }
-
   const stripe = new Stripe(process.env.STRIPE_SECRET_KEY)
 
-  // Region-aware price mapping: tier + interval + region → Stripe price ID
+  // Region-aware ONE-TIME price mapping: tier + region → Stripe price ID (non-recurring)
   const priceMap = {
-    AU: {
-      journey: {
-        monthly: process.env.STRIPE_PRICE_JOURNEY_MONTHLY,
-        annual:  process.env.STRIPE_PRICE_JOURNEY_ANNUAL,
-      },
-      pro: {
-        monthly: process.env.STRIPE_PRICE_PRO_MONTHLY,
-        annual:  process.env.STRIPE_PRICE_PRO_ANNUAL,
-      },
-    },
-    IN: {
-      journey: {
-        monthly: process.env.STRIPE_PRICE_JOURNEY_MONTHLY_INR,
-        annual:  process.env.STRIPE_PRICE_JOURNEY_ANNUAL_INR,
-      },
-      pro: {
-        monthly: process.env.STRIPE_PRICE_PRO_MONTHLY_INR,
-        annual:  process.env.STRIPE_PRICE_PRO_ANNUAL_INR,
-      },
-    },
-    PH: {
-      journey: {
-        monthly: process.env.STRIPE_PRICE_JOURNEY_MONTHLY_PHP,
-        annual:  process.env.STRIPE_PRICE_JOURNEY_ANNUAL_PHP,
-      },
-      pro: {
-        monthly: process.env.STRIPE_PRICE_PRO_MONTHLY_PHP,
-        annual:  process.env.STRIPE_PRICE_PRO_ANNUAL_PHP,
-      },
-    },
-    US: {
-      journey: {
-        monthly: process.env.STRIPE_PRICE_JOURNEY_MONTHLY_USD,
-        annual:  process.env.STRIPE_PRICE_JOURNEY_ANNUAL_USD,
-      },
-      pro: {
-        monthly: process.env.STRIPE_PRICE_PRO_MONTHLY_USD,
-        annual:  process.env.STRIPE_PRICE_PRO_ANNUAL_USD,
-      },
-    },
+    AU: { journey: process.env.STRIPE_PRICE_JOURNEY_ONETIME,     pro: process.env.STRIPE_PRICE_PRO_ONETIME },
+    IN: { journey: process.env.STRIPE_PRICE_JOURNEY_ONETIME_INR, pro: process.env.STRIPE_PRICE_PRO_ONETIME_INR },
+    PH: { journey: process.env.STRIPE_PRICE_JOURNEY_ONETIME_PHP, pro: process.env.STRIPE_PRICE_PRO_ONETIME_PHP },
+    US: { journey: process.env.STRIPE_PRICE_JOURNEY_ONETIME_USD, pro: process.env.STRIPE_PRICE_PRO_ONETIME_USD },
   }
 
   // Legacy aliases (map old tier IDs to new structure)
@@ -61,12 +20,11 @@ export default async function handler(req, res) {
   const { tierId: rawTierId, interval = 'monthly', region = 'AU', userId, email, name, promoCode } = req.body
   const tierId = tierAliasMap[rawTierId] || rawTierId
   const safeRegion = priceMap[region] ? region : 'AU'
-  const tierPrices = priceMap[safeRegion][tierId]
-  if (!tierPrices) return res.status(400).json({ error: `Invalid plan: ${tierId}` })
-  const priceId = tierPrices[interval]
+  const priceId = priceMap[safeRegion][tierId]
+  if (priceId === undefined && !priceMap[safeRegion].hasOwnProperty(tierId)) return res.status(400).json({ error: `Invalid plan: ${tierId}` })
   if (!priceId) {
     const suffixMap = { AU: '', IN: '_INR', PH: '_PHP', US: '_USD' }
-    const envVarName = `STRIPE_PRICE_${tierId.toUpperCase()}_${interval.toUpperCase()}${suffixMap[safeRegion] || ''}`
+    const envVarName = `STRIPE_PRICE_${tierId.toUpperCase()}_ONETIME${suffixMap[safeRegion] || ''}`
     return res.status(400).json({ 
       error: `Stripe price not configured for ${tierId} ${interval} (${safeRegion}). Please set ${envVarName} in environment variables.` 
     })
@@ -79,7 +37,11 @@ export default async function handler(req, res) {
     const sessionParams = {
       payment_method_types: ['card'],
       line_items: [{ price: priceId, quantity: 1 }],
-      mode: 'subscription',
+      mode: 'payment',
+      // One-time model: create a Customer + a proper invoice so buyers can
+      // expense the purchase and ABN details land on it.
+      customer_creation: 'always',
+      invoice_creation: { enabled: true },
       customer_email: email,
       client_reference_id: userId,
       metadata: { userId, tierId, interval, region: safeRegion, name: name || '', promoCode: promoCode || '' },
