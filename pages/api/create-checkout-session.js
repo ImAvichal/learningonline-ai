@@ -7,26 +7,27 @@ export default async function handler(req, res) {
   const stripe = new Stripe(process.env.STRIPE_SECRET_KEY)
 
   // Region-aware ONE-TIME price mapping: tier + region → Stripe price ID (non-recurring)
+  // One MULTI-CURRENCY price per tier (AUD default + INR/PHP/USD currency
+  // options on the same Price object). The session's `currency` param below
+  // selects which option Stripe presents, keeping it in lock-step with the
+  // region OUR site showed the user.
   const priceMap = {
-    AU: { journey: process.env.STRIPE_PRICE_JOURNEY_ONETIME,     pro: process.env.STRIPE_PRICE_PRO_ONETIME },
-    IN: { journey: process.env.STRIPE_PRICE_JOURNEY_ONETIME_INR, pro: process.env.STRIPE_PRICE_PRO_ONETIME_INR },
-    PH: { journey: process.env.STRIPE_PRICE_JOURNEY_ONETIME_PHP, pro: process.env.STRIPE_PRICE_PRO_ONETIME_PHP },
-    US: { journey: process.env.STRIPE_PRICE_JOURNEY_ONETIME_USD, pro: process.env.STRIPE_PRICE_PRO_ONETIME_USD },
+    journey: process.env.STRIPE_PRICE_JOURNEY_ONETIME,
+    pro:     process.env.STRIPE_PRICE_PRO_ONETIME,
   }
+  const currencyByRegion = { AU: 'aud', IN: 'inr', PH: 'php', US: 'usd' }
 
   // Legacy aliases (map old tier IDs to new structure)
   const tierAliasMap = { individual: 'journey', smb: 'journey', enterprise: 'pro' }
 
   const { tierId: rawTierId, interval = 'monthly', region = 'AU', userId, email, name, promoCode } = req.body
   const tierId = tierAliasMap[rawTierId] || rawTierId
-  const safeRegion = priceMap[region] ? region : 'AU'
-  const priceId = priceMap[safeRegion][tierId]
-  if (priceId === undefined && !priceMap[safeRegion].hasOwnProperty(tierId)) return res.status(400).json({ error: `Invalid plan: ${tierId}` })
+  const safeRegion = currencyByRegion[region] ? region : 'AU'
+  if (!priceMap.hasOwnProperty(tierId)) return res.status(400).json({ error: `Invalid plan: ${tierId}` })
+  const priceId = priceMap[tierId]
   if (!priceId) {
-    const suffixMap = { AU: '', IN: '_INR', PH: '_PHP', US: '_USD' }
-    const envVarName = `STRIPE_PRICE_${tierId.toUpperCase()}_ONETIME${suffixMap[safeRegion] || ''}`
-    return res.status(400).json({ 
-      error: `Stripe price not configured for ${tierId} ${interval} (${safeRegion}). Please set ${envVarName} in environment variables.` 
+    return res.status(400).json({
+      error: `Stripe price not configured for ${tierId}. Please set STRIPE_PRICE_${tierId.toUpperCase()}_ONETIME in environment variables.`
     })
   }
 
@@ -38,6 +39,8 @@ export default async function handler(req, res) {
       payment_method_types: ['card'],
       line_items: [{ price: priceId, quantity: 1 }],
       mode: 'payment',
+      // Present the currency our site promised for this region (multi-currency price).
+      currency: currencyByRegion[safeRegion],
       // One-time model: create a Customer + a proper invoice so buyers can
       // expense the purchase and ABN details land on it.
       customer_creation: 'always',
