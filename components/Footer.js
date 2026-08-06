@@ -1,3 +1,4 @@
+import RegionBadge from './RegionBadge'
 // components/Footer.js — Site-wide footer.
 //
 // Two variants:
@@ -106,7 +107,7 @@ export default function Footer({ variant = 'light' }) {
 
         {/* Fine print */}
         <div className={`flex flex-col md:flex-row justify-between items-center pt-6 border-t ${tokens.divider} gap-3 text-xs ${tokens.finePrint}`}>
-          <p>© {new Date().getFullYear()} LeO AI · learningonline.ai</p>
+          <p>© {new Date().getFullYear()} LeO AI · learningonline.ai <RegionBadge className="opacity-60" /></p>
           <p className="leading-relaxed text-center md:text-right">
             <span className={`font-bold ${tokens.finePrintBold}`}>{safeT('pricing.moneyBack.title', '3-day refund policy')}</span>
             <span> — </span>
