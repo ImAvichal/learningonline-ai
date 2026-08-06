@@ -38,7 +38,7 @@ export const TIERS = {
     name: 'Starting the Journey',
     label: 'Starting the Journey',
     price: 19,
-    priceDisplay: 'Free for a month',
+    priceDisplay: '$149 one-time',
     priceMonthly: 19,
     priceAnnual: 179,
     priceMonthlyDisplay: '$19/mo',
