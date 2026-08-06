@@ -38,7 +38,7 @@ export const TIERS = {
     name: 'Starting the Journey',
     label: 'Starting the Journey',
     price: 19,
-    priceDisplay: '$19/mo',
+    priceDisplay: 'Free for a month',
     priceMonthly: 19,
     priceAnnual: 179,
     priceMonthlyDisplay: '$19/mo',
@@ -70,7 +70,7 @@ export const TIERS = {
     name: 'The Pro',
     label: 'The Pro',
     price: 39,
-    priceDisplay: '$39/mo',
+    priceDisplay: '$299 one-time',
     priceMonthly: 39,
     priceAnnual: 349,
     priceMonthlyDisplay: '$39/mo',
@@ -91,7 +91,7 @@ export const TIERS = {
       'All 14 modules and frameworks',
     ],
     modules: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
-    cta: 'Start The Pro',
+    cta: 'Get Pro — One Payment',
     highlighted: false,
     stripeEnvKeyMonthly: 'STRIPE_PRICE_PRO_MONTHLY',
     stripeEnvKeyAnnual: 'STRIPE_PRICE_PRO_ANNUAL',
@@ -157,124 +157,40 @@ export const INDUSTRIES = [
 ]
 
 export const REGIONAL_PRICING = {
+  // ONE-TIME pricing model (v2.0): a single payment per tier, per region.
+  // 'label' is the displayed launch price; 'listLabel' (optional) is the
+  // anchor list price for promo framing. stripeEnvKey must point to a
+  // ONE-TIME (non-recurring) Stripe Price object.
   AU: {
     currency: 'AUD',
     symbol: '$',
     plans: {
-      journey: {
-        monthly: {
-          amount: 19,
-          label: '$19/mo',
-          stripeEnvKey: 'STRIPE_PRICE_JOURNEY_MONTHLY',
-        },
-        annual: {
-          amount: 179,
-          label: '$179/yr',
-          stripeEnvKey: 'STRIPE_PRICE_JOURNEY_ANNUAL',
-        },
-      },
-      pro: {
-        monthly: {
-          amount: 39,
-          label: '$39/mo',
-          stripeEnvKey: 'STRIPE_PRICE_PRO_MONTHLY',
-        },
-        annual: {
-          amount: 349,
-          label: '$349/yr',
-          stripeEnvKey: 'STRIPE_PRICE_PRO_ANNUAL',
-        },
-      },
+      journey: { oneTime: { amount: 149, label: '$149', stripeEnvKey: 'STRIPE_PRICE_JOURNEY_ONETIME' } },
+      pro:     { oneTime: { amount: 299, label: '$299', stripeEnvKey: 'STRIPE_PRICE_PRO_ONETIME' } },
     },
   },
   IN: {
     currency: 'INR',
     symbol: '\u20b9',
     plans: {
-      journey: {
-        monthly: {
-          amount: 499,
-          label: '\u20b9499/mo',
-          stripeEnvKey: 'STRIPE_PRICE_JOURNEY_MONTHLY_INR',
-        },
-        annual: {
-          amount: 4499,
-          label: '\u20b94,499/yr',
-          stripeEnvKey: 'STRIPE_PRICE_JOURNEY_ANNUAL_INR',
-        },
-      },
-      pro: {
-        monthly: {
-          amount: 999,
-          label: '\u20b9999/mo',
-          stripeEnvKey: 'STRIPE_PRICE_PRO_MONTHLY_INR',
-        },
-        annual: {
-          amount: 8999,
-          label: '\u20b98,999/yr',
-          stripeEnvKey: 'STRIPE_PRICE_PRO_ANNUAL_INR',
-        },
-      },
+      journey: { oneTime: { amount: 499, label: '\u20b9499', listLabel: '\u20b9999', stripeEnvKey: 'STRIPE_PRICE_JOURNEY_ONETIME_INR' } },
+      pro:     { oneTime: { amount: 1999, label: '\u20b91,999', listLabel: '\u20b92,999', stripeEnvKey: 'STRIPE_PRICE_PRO_ONETIME_INR' } },
     },
   },
   PH: {
     currency: 'PHP',
     symbol: '\u20b1',
     plans: {
-      journey: {
-        monthly: {
-          amount: 349,
-          label: '\u20b1349/mo',
-          stripeEnvKey: 'STRIPE_PRICE_JOURNEY_MONTHLY_PHP',
-        },
-        annual: {
-          amount: 2999,
-          label: '\u20b12,999/yr',
-          stripeEnvKey: 'STRIPE_PRICE_JOURNEY_ANNUAL_PHP',
-        },
-      },
-      pro: {
-        monthly: {
-          amount: 599,
-          label: '\u20b1599/mo',
-          stripeEnvKey: 'STRIPE_PRICE_PRO_MONTHLY_PHP',
-        },
-        annual: {
-          amount: 5499,
-          label: '\u20b15,499/yr',
-          stripeEnvKey: 'STRIPE_PRICE_PRO_ANNUAL_PHP',
-        },
-      },
+      journey: { oneTime: { amount: 599, label: '\u20b1599', listLabel: '\u20b1999', stripeEnvKey: 'STRIPE_PRICE_JOURNEY_ONETIME_PHP' } },
+      pro:     { oneTime: { amount: 1999, label: '\u20b11,999', listLabel: '\u20b12,999', stripeEnvKey: 'STRIPE_PRICE_PRO_ONETIME_PHP' } },
     },
   },
   US: {
     currency: 'USD',
-    symbol: '$',
+    symbol: 'US$',
     plans: {
-      journey: {
-        monthly: {
-          amount: 19,
-          label: '$19/mo',
-          stripeEnvKey: 'STRIPE_PRICE_JOURNEY_MONTHLY_USD',
-        },
-        annual: {
-          amount: 179,
-          label: '$179/yr',
-          stripeEnvKey: 'STRIPE_PRICE_JOURNEY_ANNUAL_USD',
-        },
-      },
-      pro: {
-        monthly: {
-          amount: 39,
-          label: '$39/mo',
-          stripeEnvKey: 'STRIPE_PRICE_PRO_MONTHLY_USD',
-        },
-        annual: {
-          amount: 349,
-          label: '$349/yr',
-          stripeEnvKey: 'STRIPE_PRICE_PRO_ANNUAL_USD',
-        },
-      },
+      journey: { oneTime: { amount: 99, label: 'US$99', stripeEnvKey: 'STRIPE_PRICE_JOURNEY_ONETIME_USD' } },
+      pro:     { oneTime: { amount: 199, label: 'US$199', stripeEnvKey: 'STRIPE_PRICE_PRO_ONETIME_USD' } },
     },
   },
 }
