@@ -27,7 +27,7 @@ function reminderEmail(name, daysLeft) {
 
 A quick heads-up — your complimentary month of Journey ends ${when}.
 
-We'd love to know what you thought. If Journey's been useful and you'd like to keep going, Pro unlocks the full curriculum and every template.
+We'd love to know what you thought. If it's been useful, you can own Journey outright with a single payment — or go Pro for the full curriculum and all 40 templates. One payment, yours for good, no subscription.
 
 See your options: ${APP_URL}/pricing
 
@@ -42,7 +42,7 @@ The LearningOnline.ai team`
       <tr><td style="padding:8px 40px;font-size:15px;line-height:1.6;color:#2a3350;">
         <p style="margin:0 0 16px;">Hi ${firstName},</p>
         <p style="margin:0 0 16px;">A quick heads-up — your complimentary month of <strong>Journey</strong> ends ${when}. We'd love to know what you thought.</p>
-        <p style="margin:0 0 16px;">If it's been useful and you'd like to keep going, <strong>Pro</strong> unlocks the full curriculum and every template.</p>
+        <p style="margin:0 0 16px;">If it's been useful, you can <strong>own Journey outright</strong> with a single payment — or go <strong>Pro</strong> for the full curriculum and all 40 templates. One payment, yours for good, no subscription.</p>
       </td></tr>
       <tr><td align="center" style="padding:8px 40px 36px;"><a href="${APP_URL}/pricing" style="display:inline-block;background:#1A6EFF;color:#fff;text-decoration:none;font-weight:700;font-size:15px;padding:14px 32px;border-radius:10px;">See your options →</a></td></tr>
       <tr><td style="padding:20px 40px;border-top:1px solid #eceff5;"><p style="margin:0;color:#8a93a8;font-size:12px;">From AI anxiety to AI awareness. · <a href="${APP_URL}" style="color:#1A6EFF;text-decoration:none;">learningonline.ai</a></p></td></tr>
