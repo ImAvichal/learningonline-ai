@@ -88,7 +88,7 @@ export const TIERS = {
       'Multimodal AI orchestration',
       'AI economics and cost management',
       '90-day execution roadmap',
-      'All 14 modules and frameworks',
+      'All 16 modules and frameworks',
     ],
     modules: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
     cta: 'Get Pro — One Payment',

@@ -74,6 +74,12 @@ export const RESOURCES = [
   // Module 14 — Execution Plan
   { id: '90-day-roadmap',      moduleId: 'module-14', tier: 'pro', title: '90-Day Execution Roadmap',    format: 'XLSX', icon: '🗓️', desc: 'Week-by-week roadmap from approved use case to live production AI.' },
   { id: 'execution-tracker',   moduleId: 'module-14', tier: 'pro', title: 'Execution Tracker',           format: 'XLSX', icon: '✅', desc: 'Track progress, blockers, and milestones across your 90-day plan.' },
+
+  // Module 15 — AI Security & Data Protection (Pro)
+  { id: 'ai-security-checklist', moduleId: 'module-15', tier: 'pro', title: 'AI Security Assessment Checklist', format: 'PDF',  icon: '🔐', desc: 'Pre-deployment assessment: prompt injection, tool access, RAG permissions, vendor terms, and incident readiness.' },
+
+  // Module 16 — AI Policy for Government & Providers (Pro)
+  { id: 'ai-policy-framework',   moduleId: 'module-16', tier: 'pro', title: 'AI Policy Framework Template',    format: 'DOCX', icon: '🏛️', desc: 'Complete 14-section policy skeleton: scope, acceptable use, risk tiers, oversight, ethics, sustainability, incident response, and review cadence.' },
 ]
 
 export const getResourcesForTier = (tier) => {
