@@ -179,7 +179,12 @@ export default function Checkout() {
   const tier    = TIERS[tierId] || TIERS.journey
   const { region } = useRegion()
   const regionalConfig = REGIONAL_PRICING[region] || REGIONAL_PRICING.AU
-  const priceLabel = regionalConfig?.plans?.[tierId]?.[interval]?.label || tier.priceDisplay
+  const priceLabel = regionalConfig?.plans?.[tierId]?.oneTime?.label || tier.priceDisplay
+
+  // Journey: the free month is the trial. If this user's month is used/expired,
+  // Journey becomes a normal one-time purchase instead of a second free grant.
+  const journeyMonthUsed = !!(user?.journeyExpiresAt && new Date(user.journeyExpiresAt).getTime() < Date.now())
+  const isJourneyFree = tierId === 'journey' && !journeyMonthUsed
 
   const isFreeTier = tierId === 'parents' || tier.free === true
 
@@ -207,7 +212,7 @@ export default function Checkout() {
   // begin_checkout — fire once for an authenticated user viewing a paid tier they don't own
   useEffect(() => {
     if (!router.isReady || !user || alreadyHas || isFreeTier) return
-    const amountLabel = regionalConfig?.plans?.[tierId]?.[interval]?.amount
+    const amountLabel = regionalConfig?.plans?.[tierId]?.oneTime?.amount
     trackBeginCheckout({
       tier: tierId,
       interval,
@@ -340,8 +345,6 @@ export default function Checkout() {
     : isJourneyFree ? `Start your free month of ${tier.name}`
     : 'Complete your enrolment'
 
-  const isJourneyFree = tierId === 'journey'
-
   const primaryLabel = loading
     ? 'Processing…'
     : isFreeTier ? 'Enrol for free →'
@@ -387,7 +390,7 @@ export default function Checkout() {
                             You'll unlock the remaining modules: <strong>Responsible AI</strong>, <strong>Sustainability</strong>, <strong>Multimodal AI & Orchestration</strong>, and the <strong>90-Day Execution Plan</strong> — plus all Pro deliverables and frameworks.
                           </p>
                           <div className="text-xs text-muted leading-relaxed">
-                            <strong className="text-white/80">Billing:</strong> Your Pro subscription starts today at {priceLabel} and bills from now on. Your existing {TIERS[user.tier]?.name} subscription will be cancelled automatically, so you won't be billed for it again.
+                            <strong className="text-white/80">Billing:</strong> One payment of {priceLabel} — Pro is yours for good, including 12 months of content updates. No subscription, nothing recurring.
                           </div>
                         </div>
                       </div>
@@ -457,13 +460,13 @@ export default function Checkout() {
                     <div className="mt-4 p-4 rounded-lg bg-success/[0.06] border border-success/25 text-center max-w-md mx-auto">
                       <div className="font-display font-bold text-sm mb-1">🎁 Free for one month</div>
                       <p className="text-xs text-gray-500 leading-relaxed">
-                        No card, no charge. We'll remind you before it ends — then you can upgrade to Pro to keep going.
+                        No card, no charge. We'll remind you before it ends — then you can own Journey or go Pro with a single payment. No subscription.
                       </p>
                     </div>
                   ) : (
                     <>
                       <p className="text-center text-xs text-muted mt-3 leading-relaxed max-w-md mx-auto">
-                        <span className="font-bold">3-day refund policy</span> — request a refund within 72 hours of enrolment if you don't believe the platform delivers value. <span className="italic">Approved refunds processed in 3–5 business days.</span>
+                        <span className="font-bold">7-day refund policy</span> — request a refund within 7 days of purchase if you don't believe the platform delivers value. <span className="italic">Approved refunds processed in 3–5 business days.</span>
                       </p>
                       <p className="text-center text-[10px] text-muted/70 mt-1">Instant access after payment</p>
                     </>
@@ -481,7 +484,7 @@ export default function Checkout() {
                   <div>
                     <div className="font-display font-bold text-sm">LeO AI</div>
                     <div className="text-xs text-muted mt-0.5">
-                      {tier.name}{isFreeTier ? ' · Free module' : isJourneyFree ? ' · Free for one month' : ` · ${interval === 'annual' ? 'Annual' : 'Monthly'}`}
+                      {tier.name}{isFreeTier ? ' · Free module' : isJourneyFree ? ' · Free for one month' : ' · One-time purchase'}
                     </div>
                     <TierBadge tier={tierId} label={tier.label} className="mt-2" />
                   </div>
@@ -500,7 +503,7 @@ export default function Checkout() {
                 <div className="space-y-1.5">
                   {((isFreeTier || isJourneyFree)
                     ? ['🔒 256-bit SSL encryption', '📧 Confirmation to your email', '♾️ Instant access', '🎁 No card required']
-                    : ['🔒 256-bit SSL encryption', '💳 Powered by Stripe', '📧 Receipt to your email', '♾️ Instant access', '🛡️ 3-day refund policy']
+                    : ['🔒 256-bit SSL encryption', '💳 Powered by Stripe', '📧 Receipt to your email', '♾️ Instant access', '📅 12 months of content updates included', '🛡️ 7-day refund policy']
                   ).map(s => (
                     <div key={s} className="text-xs text-muted">{s}</div>
                   ))}

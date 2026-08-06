@@ -47,7 +47,7 @@ export default function Pricing() {
   const [interval, setInterval] = useState('monthly') // Default to monthly (lower upfront)
   const { region } = useRegion()
   const regionalConfig = REGIONAL_PRICING[region] || REGIONAL_PRICING.AU
-  const priceFor = (tierKey) => regionalConfig?.plans?.[tierKey]?.[interval]?.label || '—'
+  const priceFor = (tierKey) => regionalConfig?.plans?.[tierKey]?.oneTime?.label || '—'
   const router   = useRouter()
 
   const handleEnrol = (tierId) => {
@@ -92,11 +92,6 @@ export default function Pricing() {
             </div>
           </Reveal>
 
-          {/* Billing toggle */}
-          <div className="flex justify-center mb-8">
-            <BillingToggle interval={interval} onChange={setInterval} />
-          </div>
-
           {/* Tier cards */}
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto mb-14">
             {DISPLAY_ORDER.map((tid, i) => {
@@ -124,9 +119,12 @@ export default function Pricing() {
                     <div className="font-display font-black mb-1 leading-none whitespace-nowrap overflow-hidden" style={{fontSize: 'clamp(22px, 2.4vw, 28px)'}}>
                       {tid === 'parents' ? t.priceDisplay : tid === 'journey' ? 'Free' : priceFor(tid)}
                     </div>
-                    <div className="text-xs text-muted mb-5">{tid === 'parents' ? tr('common.alwaysFree') : tid === 'journey' ? 'Free for one month' : (interval === 'annual' ? 'Billed annually' : 'Billed monthly')}</div>
+                    <div className="text-xs text-muted mb-5">{tid === 'parents' ? tr('common.alwaysFree') : tid === 'journey' ? 'Free for one month' : 'One payment · yours for good'}</div>
                     {tid === 'journey' && (
                       <div className="text-xs text-success font-display font-bold mb-5 -mt-3">🎁 No card required · we'll remind you before it ends</div>
+                    )}
+                    {tid === 'pro' && (
+                      <div className="text-xs text-success font-display font-bold mb-5 -mt-3">Includes 12 months of content updates</div>
                     )}
                     <p className="text-sm text-white/85 leading-relaxed mb-4 flex-1">{t.description}</p>
 

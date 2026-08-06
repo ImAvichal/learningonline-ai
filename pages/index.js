@@ -278,7 +278,7 @@ export default function Home() {
   const [interval, setInterval] = useState('monthly')
   const { region } = useRegion()
   const regionalConfig = REGIONAL_PRICING[region] || REGIONAL_PRICING.AU
-  const priceFor = (tierKey) => regionalConfig?.plans?.[tierKey]?.[interval]?.label || '—'
+  const priceFor = (tierKey) => regionalConfig?.plans?.[tierKey]?.oneTime?.label || '—'
   const [activeModule,  setActiveModule]  = useState(0)
   const [activeSection, setActiveSection] = useState('tree')
   const [activePhase,   setActivePhase]   = useState(0)
@@ -371,11 +371,6 @@ export default function Home() {
             </div>
           </Reveal>
           
-          {/* Billing toggle */}
-          <div className="flex justify-center mb-6">
-            <BillingToggle interval={interval} onChange={setInterval} />
-          </div>
-
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
             {[
               {
@@ -425,9 +420,12 @@ export default function Home() {
                       {card.tierKey === 'journey' ? 'Free' : card.tierKey ? priceFor(card.tierKey) : card.price}
                     </span>
                   </div>
-                  <div className="text-[10px] text-muted mb-4">{card.tierKey === 'journey' ? 'Free for one month' : card.tierKey ? (interval === 'annual' ? t('common.billedAnnually') : t('common.billedMonthly')) : card.billing}</div>
+                  <div className="text-[10px] text-muted mb-4">{card.tierKey === 'journey' ? 'Free for one month' : card.tierKey ? 'One payment · yours for good' : card.billing}</div>
                   {card.tierKey === 'journey' && (
                     <div className="text-[11px] text-success font-display font-bold mb-4 -mt-3">🎁 No card required · we'll remind you before it ends</div>
+                  )}
+                  {card.tierKey === 'pro' && (
+                    <div className="text-[11px] text-success font-display font-bold mb-4 -mt-3">Includes 12 months of content updates</div>
                   )}
                   <p className="text-xs text-muted leading-relaxed mb-4">{card.desc}</p>
                   <div className="p-3 rounded-lg bg-white/[0.03] border border-white/5 mb-4">
