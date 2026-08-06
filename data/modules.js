@@ -1196,6 +1196,73 @@ Week 12 — Measure & Report
 <li><a href="https://oecd.ai" target="_blank" rel="noopener">OECD AI Principles and policy observatory</a></li>
 </ul>`,
       },
+      {
+        id: 'm16-l4', number: 4, tier: 'enterprise', duration: '30 min',
+        title: 'The AI Policy Framework — Complete Reference Document',
+        content: `<h2>How to Use This Document</h2>
+<p>This is the full AI Policy Framework, written out section by section with model clauses you can adapt. It is deliberately written as a working document, not an essay: copy the structure, keep the clauses that fit, rewrite the ones that do not, and delete what does not apply. Three rules before you start: give every section a <strong>named owner</strong>, replace every bracketed placeholder with a real decision, and set a review date before you call it done. A policy nobody owns, or that still contains placeholders, is a draft — not a policy.</p>
+
+<h3>Section 1 — Purpose, Scope and Definitions</h3>
+<p>States why the policy exists and precisely what it covers — including AI embedded in procured software, not just chatbots.</p>
+<p><strong>Model clause:</strong> <em>"This policy governs the acquisition, development, deployment and use of artificial intelligence systems by [organisation], including AI capabilities embedded within third-party products. An 'AI system' is any system that generates content, predictions, recommendations or decisions from machine-learned models. A 'consequential decision' is one affecting a person's rights, entitlements, employment, finances, safety or access to services."</em></p>
+
+<h3>Section 2 — Acceptable and Prohibited Use</h3>
+<p>Defines what staff may do, with which data classes, on which approved tools — and the hard prohibitions.</p>
+<p><strong>Model clause:</strong> <em>"Staff may use approved AI tools for drafting, analysis, summarisation and research using data classified Public or Internal. The following are prohibited without written approval: entering Confidential or Restricted data into any AI service not on the approved register; using AI to make fully automated consequential decisions about individuals; and using AI to impersonate any person."</em></p>
+
+<h3>Section 3 — Risk Classification and Approval Gates</h3>
+<p>A tiering rubric mirroring regulatory logic, with approval effort proportionate to risk.</p>
+<p><strong>Model clause:</strong> <em>"Every AI use case is classified before deployment as Minimal, Limited, or High risk. High-risk systems — those making or materially informing consequential decisions, or operating in safety-relevant contexts — require a completed impact assessment, security review and executive approval before deployment, and re-approval on any material change."</em></p>
+
+<h3>Section 4 — Human Oversight</h3>
+<p>Where a human must review, approve, or be able to intervene and reverse.</p>
+<p><strong>Model clause:</strong> <em>"For every high-risk system, a nominated human reviewer must be able to understand the system's recommendation, override it, and reverse its effects. AI may draft, rank and recommend; the release of any consequential decision remains a human act, recorded with the reviewer's identity."</em></p>
+
+<h3>Section 5 — Transparency and Disclosure</h3>
+<p>When people must be told they are dealing with AI.</p>
+<p><strong>Model clause:</strong> <em>"Individuals will be informed when they are interacting with an AI system rather than a person, and when content they receive was substantially AI-generated. Where automated processing materially influences a decision about an individual, that fact, and the route to human review, will be disclosed."</em></p>
+
+<h3>Section 6 — Data Governance and Privacy</h3>
+<p>Classification-before-connection, minimisation, residency, retention.</p>
+<p><strong>Model clause:</strong> <em>"No AI system may be connected to organisational data until that data is classified. Personal information is minimised or masked before processing wherever the task allows. AI interaction logs are records: they are retained for [period], stored in [jurisdiction], and covered by the same access controls as the data they contain."</em></p>
+
+<h3>Section 7 — Security</h3>
+<p>The engineering controls, made mandatory.</p>
+<p><strong>Model clause:</strong> <em>"AI systems operate under least-privilege tool access; content read by an AI system is treated as untrusted input; retrieval systems enforce the requesting user's permissions at query time; credentials are never placed in prompts; and all tool invocations by agentic systems are logged and monitored."</em></p>
+
+<h3>Section 8 — Procurement and Third Parties</h3>
+<p>The questions every supplier answers, in the contract.</p>
+<p><strong>Model clause:</strong> <em>"Before engagement, every AI supplier must state in writing: whether customer data is used to train their models; data retention periods and locations; evaluation and testing evidence for the offered capability; incident notification timeframes; and their alignment with recognised AI management standards. These representations form part of the contract."</em></p>
+
+<h3>Section 9 — Ethics, Fairness and Bias</h3>
+<p>Fairness you can evidence, and a route to contest.</p>
+<p><strong>Model clause:</strong> <em>"Systems affecting people are tested on data representative of the affected population before deployment, and their outcomes monitored across relevant groups in production. Any individual subject to an AI-influenced decision may request human review. Fairness testing and monitoring results are documented and retained."</em></p>
+
+<h3>Section 10 — Sustainability and Environmental Impact</h3>
+<p>Environmental intent converted into enforceable engineering and procurement rules.</p>
+<p><strong>Model clause:</strong> <em>"AI capability is right-sized by default: the smallest model that meets the quality requirement is preferred. Suppliers are asked to disclose energy-efficiency information, which is weighed in procurement. Where AI compute becomes material, its energy footprint is included in the organisation's sustainability reporting."</em></p>
+
+<h3>Section 11 — Incident Response</h3>
+<p>What counts as an AI incident, and what happens next.</p>
+<p><strong>Model clause:</strong> <em>"AI incidents include: unauthorised disclosure of data through an AI system; manipulation of an AI system to act outside its authorisation; materially harmful or discriminatory outputs affecting individuals; and use of unapproved AI services with restricted data. Incidents follow the organisational incident process, with [role] notified within [timeframe], and every incident concludes with a review that feeds back into this policy."</em></p>
+
+<h3>Section 12 — Training and Capability</h3>
+<p>Policy without capability is theatre.</p>
+<p><strong>Model clause:</strong> <em>"All staff complete AI awareness training within [period] of commencement and refresh it [annually]. Staff who build, approve or operate high-risk systems complete role-specific training covering this policy's security, oversight and fairness obligations before assuming those duties."</em></p>
+
+<h3>Section 13 — Roles and Accountability</h3>
+<p>Named owners, and where accountability for AI-influenced decisions sits.</p>
+<p><strong>Model clause:</strong> <em>"This policy is owned by [role]. Each AI system has a nominated System Owner accountable for its compliance. Accountability for any AI-influenced decision rests with the accountable human or organisational role — never with the system itself."</em></p>
+
+<h3>Section 14 — Review Cadence</h3>
+<p>The policy states its own expiry conditions.</p>
+<p><strong>Model clause:</strong> <em>"This policy is reviewed every six months, and immediately upon: enactment of applicable AI regulation; a High-severity AI incident; or organisational adoption of a materially new class of AI capability. Each review records what changed and why."</em></p>
+
+<h2>Adapting the Framework</h2>
+<p><strong>Government and public sector:</strong> strengthen Sections 4, 5 and 9 — add public registers of automated decision-making where required, community consultation for systems with broad citizen impact, and alignment with records and FOI obligations. Procurement (Section 8) becomes your strongest lever: what you require of suppliers shapes the market.</p>
+<p><strong>Providers:</strong> Sections 3, 7 and 8 are your sales enablement in disguise — a provider who can hand a government buyer their risk classification, testing evidence and data-use terms without being asked wins the tender against one who cannot.</p>
+<p><strong>Implementation checklist:</strong> every section has a named owner · no bracketed placeholders remain · the approved-tools register exists and is current · the risk rubric has been applied to every live AI system · training is scheduled · the first review date is in the calendar. When all six are true, you have a policy.</p>`,
+      },
     ],
     quiz: {
       questions: [
