@@ -22,7 +22,13 @@ export default async function handler(req, res) {
 
   const { tierId: rawTierId, interval = 'monthly', region = 'AU', userId, email, name, promoCode } = req.body
   const tierId = tierAliasMap[rawTierId] || rawTierId
-  const safeRegion = currencyByRegion[region] ? region : 'AU'
+  // ANTI-ARBITRAGE: billing region is derived SERVER-SIDE from the request's
+  // own geolocation (Vercel edge header). The client-supplied region is only a
+  // fallback for local dev, where geo headers don't exist. Users can change
+  // what the page DISPLAYS, but not the currency they're billed in.
+  const geoCountry = req.headers['x-vercel-ip-country'] || null
+  const geoRegion = geoCountry ? ({ IN: 'IN', PH: 'PH', US: 'US' }[geoCountry] || 'AU') : null
+  const safeRegion = geoRegion || (currencyByRegion[region] ? region : 'AU')
   if (!priceMap.hasOwnProperty(tierId)) return res.status(400).json({ error: `Invalid plan: ${tierId}` })
   const priceId = priceMap[tierId]
   if (!priceId) {
