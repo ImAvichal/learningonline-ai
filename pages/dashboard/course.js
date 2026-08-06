@@ -9,7 +9,7 @@ import { ProgressBar, TierBadge, Spinner, LessonFeedback } from '../../component
 import Icon from '../../components/Icon'
 
 // ── Quiz Component ────────────────────────────────────────────────────────────
-function ModuleQuiz({ quiz, moduleId, onComplete }) {
+function ModuleQuiz({ quiz, moduleId, onComplete, onContinue, continueLabel }) {
   const [current,  setCurrent]  = useState(0)
   const [selected, setSelected] = useState(null)
   const [answered, setAnswered] = useState(false)
@@ -97,6 +97,15 @@ function ModuleQuiz({ quiz, moduleId, onComplete }) {
               : 'Take time to re-read the module lessons. Focus on the Real-World Practice sections — they contain the most practical context. Retake the quiz when ready.'}
           </p>
         </div>
+
+        {onContinue && (
+          <div className="mt-6 text-center">
+            <button onClick={onContinue}
+              className="px-8 py-3.5 bg-blue hover:bg-blue-bright text-white font-display font-bold rounded-lg transition-all shadow-[0_0_24px_rgba(26,110,255,0.35)]">
+              {continueLabel || 'Continue →'}
+            </button>
+          </div>
+        )}
       </div>
     )
   }
@@ -203,16 +212,23 @@ export default function CoursePage() {
   if (loading) return null
   if (!user) return null
 
-  // Authenticated but not enrolled — show preview message
-  if (!user.tier && !user.isDevUser) {
+  // Authenticated but not enrolled (or free Parents tier) — show preview message
+  if ((!user.tier || user.tier === 'parents') && !user.isDevUser) {
     return <NoEnrolmentMessage context="course" />
   }
 
-  const tierOrder = ['journey', 'pro']
-  const userLevel  = tierOrder.indexOf(user?.tier || 'journey')
+  // Lesson tiers use the CONTENT vocabulary (individual/smb → Journey level,
+  // enterprise → Pro level); user tiers use journey/pro. Map both sides
+  // explicitly — comparing across vocabularies with indexOf returns -1, which
+  // passes `<=` for everyone and silently disables tier gating entirely
+  // (the bug that let Journey accounts open Pro-only modules).
+  const LESSON_TIER_RANK = { individual: 0, smb: 0, enterprise: 1 }
+  const USER_TIER_RANK   = { journey: 0, pro: 1 }
+  const userLevel = USER_TIER_RANK[user?.tier] ?? (user?.isDevUser ? 1 : 0)
+  const lessonAccessible = (l) => (LESSON_TIER_RANK[l.tier] ?? 1) <= userLevel
 
   const accessible = MODULES.flatMap((m, mi) =>
-    m.lessons.filter(l => tierOrder.indexOf(l.tier) <= userLevel)
+    m.lessons.filter(lessonAccessible)
       .map((l, li) => ({ ...l, moduleIdx: mi, moduleId: m.id, moduleNumber: m.number, moduleTitle: m.title, moduleIcon: m.icon }))
   )
 
@@ -292,6 +308,16 @@ export default function CoursePage() {
     setQuizScores(s => ({ ...s, [activeMod.id]: { correct, total, pct: Math.round((correct/total)*100) } }))
   }
 
+  // From the quiz results screen: next accessible lesson, or course completion
+  // when this was the final module — the previous dead end.
+  const handleQuizContinue = () => {
+    if (nextLesson) {
+      goTo(nextLesson)
+    } else {
+      router.push(`/course-complete?track=${user?.tier || 'unknown'}`)
+    }
+  }
+
   const totalPct = getTotalProgress()
 
   return (
@@ -315,7 +341,7 @@ export default function CoursePage() {
 
         <div className="flex-1 overflow-y-auto">
           {MODULES.map((mod, mi) => {
-            const modLessons = mod.lessons.filter(l => tierOrder.indexOf(l.tier) <= userLevel)
+            const modLessons = mod.lessons.filter(lessonAccessible)
             if (!modLessons.length) return null
             const modProg    = getModuleProgress(mod)
             const isExpanded = !!expanded[mi]
@@ -408,7 +434,7 @@ export default function CoursePage() {
                 <h1 className="font-display font-black text-2xl sm:text-3xl mb-2 break-words">Module Quiz: {activeMod.title}</h1>
                 <p className="text-gray-500">{activeMod.quiz.questions.length} scenario-based questions. Instant feedback on each answer.</p>
               </div>
-              <ModuleQuiz quiz={activeMod.quiz} moduleId={activeMod.id} onComplete={handleQuizComplete} />
+              <ModuleQuiz quiz={activeMod.quiz} moduleId={activeMod.id} onComplete={handleQuizComplete} onContinue={handleQuizContinue} continueLabel={nextLesson ? 'Continue to next module →' : 'Complete course 🎉'} />
               {nextLesson && (
                 <div className="mt-6 text-center">
                   <button onClick={() => { setShowQuiz(false); goTo(nextLesson) }}
