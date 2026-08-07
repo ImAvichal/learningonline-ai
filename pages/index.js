@@ -345,45 +345,17 @@ export default function Home() {
             <h1 className="font-display font-black leading-[1.05] tracking-tight mb-4" style={{ fontSize:'clamp(26px,3.8vw,44px)' }}>
               {t("hero.tagline")}
             </h1>
-            <p className="text-base text-muted leading-relaxed max-w-lg mx-auto mb-7">
+            <p className="text-base text-muted leading-relaxed max-w-lg mx-auto mb-1">
               {t("hero.subtitle")}
             </p>
 
-            {user?.tier ? (
+            <p className="text-xs text-white/30 mb-4 font-display tracking-widest uppercase">
+            </p>
+            {user?.tier && (
               <div className="flex flex-wrap gap-3 justify-center">
                 <Button variant="large" href="/dashboard">Go to Dashboard →</Button>
               </div>
-            ) : (
-              <>
-                <div className="flex flex-wrap gap-3 justify-center">
-                  <Button variant="large" href="#learning-tracks">{t("hero.ctaPrimary")}</Button>
-                  <Button variant="ghost" href="#learning-tracks">{t("hero.ctaSecondary")}</Button>
-                </div>
-                <p className="text-xs text-muted/70 mt-3">No card required for your first month · cancel anytime</p>
-              </>
             )}
-          </div>
-        </div>
-      </section>
-
-      {/* ── Confidence section — who this is for, and what changes for them ── */}
-      <section className="py-14">
-        <div className="max-w-5xl mx-auto px-6">
-          <div className="grid md:grid-cols-2 gap-5">
-            <div className="rounded-2xl border border-white/8 bg-white/[0.02] p-7">
-              <div className="text-2xl mb-3">👨‍👩‍👧</div>
-              <h3 className="font-display font-bold text-lg mb-2">For parents &amp; caregivers</h3>
-              <p className="text-sm text-muted leading-relaxed">
-                Know how kids are actually using AI, and have the conversation with confidence — not guesswork. Free, no card required.
-              </p>
-            </div>
-            <div className="rounded-2xl border border-white/8 bg-white/[0.02] p-7">
-              <div className="text-2xl mb-3">💼</div>
-              <h3 className="font-display font-bold text-lg mb-2">For professionals</h3>
-              <p className="text-sm text-muted leading-relaxed">
-                Use AI at work without second-guessing yourself — practical skills for real tasks, not theory. First month free.
-              </p>
-            </div>
           </div>
         </div>
       </section>
@@ -643,6 +615,49 @@ export default function Home() {
           lock icons on each module node. This eliminates the duplicate content. */}
 
       {/* ── Learning Evolution ── */}
+      <section className="py-16 border-t border-white/5">
+        <div className="max-w-5xl mx-auto px-6">
+          <div className="text-center mb-12">
+            <SectionLabel>{t("evolution.label")}</SectionLabel>
+            <h2 className="font-display font-bold text-3xl mb-3">{t("evolution.heading")}</h2>
+            <p className="text-muted max-w-lg mx-auto text-sm">{t("evolution.subtitle")}</p>
+          </div>
+
+          {/* Horizontal metro line — scrollable */}
+          <div className="overflow-x-auto pb-6 -mx-6 px-6">
+            <div className="flex min-w-[900px]">
+              {[
+                { title: t('evolution.stages.beta.title'), desc: t('evolution.stages.beta.desc'), dot: 'bg-gray-300 dark:bg-white/25', active: false },
+                { title: t('evolution.stages.v1.title'), desc: t('evolution.stages.v1.desc'), dot: 'bg-success', active: true },
+                { title: t('evolution.stages.industry.title'), desc: t('evolution.stages.industry.desc'), dot: 'bg-blue', active: false },
+                { title: t('evolution.stages.agents.title'), desc: t('evolution.stages.agents.desc'), dot: 'bg-amber-400', active: false },
+                { title: 'Agentic Organisations', desc: 'Connected AI ecosystems and orchestrated operations.', dot: 'bg-purple-400', active: false },
+                { title: 'Human + AI', desc: 'Long-term collaboration between humans and intelligent systems.', dot: 'bg-gray-300 dark:bg-white/15', active: false },
+              ].map((s, i, arr) => (
+                <div key={i} className="flex-1 relative" style={{ minWidth: '140px' }}>
+                  {/* Node row: dot + line */}
+                  <div className="flex items-center">
+                    <div className={`w-3 h-3 rounded-full flex-shrink-0 ${s.dot} ${s.active ? 'ring-4 ring-success/20' : ''}`} />
+                    {i < arr.length - 1 && <div className={`h-px flex-1 ${s.active ? 'bg-success/30' : 'bg-gray-200 dark:bg-white/8'}`} />}
+                  </div>
+                  {/* Label below */}
+                  <div className="pr-6 mt-3">
+                    <div className={`text-xs font-display font-bold leading-tight ${s.active ? 'text-success' : 'text-gray-700 dark:text-white/50'}`}>{s.title}</div>
+                    <p className="text-[10px] text-gray-400 dark:text-white/25 mt-1 leading-relaxed">{s.desc}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="text-center mt-8">
+            <Link href="/roadmap" className="text-xs text-blue hover:text-blue-bright font-display font-bold transition-colors">
+              Explore the full evolution roadmap →
+            </Link>
+          </div>
+        </div>
+      </section>
+
 
       {/* ── FAQ — Q&A formatting for SEO + AI search (with JSON-LD schema) ── */}
       <section id="faq" className="py-24 border-t border-white/5">
