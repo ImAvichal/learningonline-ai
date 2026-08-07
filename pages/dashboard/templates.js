@@ -17,15 +17,11 @@ export default function TemplatesPage() {
     enterprise: resources.filter(t => t.tier === 'enterprise'),
   }
 
-  const handleDownload = (tpl) => {
-    // Production: fetch signed URL from Supabase Storage, then trigger download
-    // const { data } = await supabase.storage.from('templates').createSignedUrl(`${tpl.id}.${tpl.format.toLowerCase()}`, 60)
-    // window.location.href = data.signedUrl
-    alert(
-      `In production, "${tpl.name}.${tpl.format.toLowerCase()}" downloads via a signed Supabase Storage URL.\n\n` +
-      `Upload your actual files to Supabase Storage bucket "templates" using the matching filename.`
-    )
-  }
+  // HONEST STATE: no template files exist in storage yet — this UI must never
+  // claim a download that doesn't happen. Once real files are uploaded to
+  // Supabase Storage, wire handleDownload to createSignedUrl + redirect and
+  // remove the "Coming soon" badge below.
+  const TEMPLATES_LIVE = false
 
   const TierSection = ({ tierId, label, items }) => {
     if (!items.length) return null
@@ -56,12 +52,18 @@ export default function TemplatesPage() {
                 </div>
                 <h3 className="font-display font-bold text-sm text-gray-900 mb-2">{tpl.name}</h3>
                 <p className="text-xs text-gray-500 leading-relaxed flex-1 mb-4">{tpl.desc}</p>
-                <button
-                  onClick={() => handleDownload(tpl)}
-                  className="w-full py-2.5 border border-gray-200 text-gray-500 hover:text-white hover:border-blue hover:bg-blue/10 font-display font-bold text-xs rounded-lg transition-all"
-                >
-                  ↓ Download {tpl.format}
-                </button>
+                {TEMPLATES_LIVE ? (
+                  <button
+                    onClick={() => handleDownload(tpl)}
+                    className="w-full py-2.5 border border-gray-200 text-gray-500 hover:text-white hover:border-blue hover:bg-blue/10 font-display font-bold text-xs rounded-lg transition-all"
+                  >
+                    ↓ Download {tpl.format}
+                  </button>
+                ) : (
+                  <div className="w-full py-2.5 border border-dashed border-gray-200 text-gray-400 font-display font-bold text-xs rounded-lg text-center">
+                    Coming soon
+                  </div>
+                )}
               </Card>
             )
           })}
