@@ -126,17 +126,17 @@ export default function Pricing() {
                     {tid === 'pro' && (
                       <div className="text-xs text-success font-display font-bold mb-5 -mt-3">Includes 12 months of content updates</div>
                     )}
-                    <p className="text-sm text-white/85 leading-relaxed mb-4 flex-1">{t.description}</p>
+                    <p className="text-sm text-gray-600 leading-relaxed mb-4 flex-1">{t.description}</p>
 
                     <div className="p-3 rounded-lg bg-white/[0.03] border border-white/5 mb-5">
                       <div className="text-[10px] font-display font-bold text-muted uppercase tracking-wider mb-1">{tr("common.idealFor") || "Ideal for"}</div>
-                      <p className="text-xs text-white/70 leading-relaxed">{t.idealFor}</p>
+                      <p className="text-xs text-gray-500 leading-relaxed">{t.idealFor}</p>
                     </div>
 
                     <ul className="space-y-2.5 mb-7">
                       {t.features.map((f, fi) => (
                         <li key={fi} className="flex items-start justify-between gap-3 text-sm pb-2 border-b border-gray-100 dark:border-white/5 last:border-0">
-                          <span className="text-white/85 leading-relaxed flex-1">{f}</span>
+                          <span className="text-gray-700 leading-relaxed flex-1">{f}</span>
                           <span className="text-success font-bold flex-shrink-0 mt-0.5">✓</span>
                         </li>
                       ))}
@@ -219,7 +219,7 @@ export default function Pricing() {
                       <tr key={feature} className="border-b border-white/[0.04] hover:bg-white/[0.02]">
                         <td className="p-4 text-muted text-sm">{feature}</td>
                         {[a,b].map((v, i) => (
-                          <td key={i} className={`p-4 text-center font-bold text-sm ${v==='✓'?'text-success':'text-white/15'}`}>{v}</td>
+                          <td key={i} className={`p-4 text-center font-bold text-sm ${v==='✓'?'text-success':'text-gray-300'}`}>{v}</td>
                         ))}
                       </tr>
                     ))}

@@ -386,11 +386,11 @@ export default function Checkout() {
                           <div className="font-display font-bold text-base mb-2">
                             Upgrading from {TIERS[user.tier]?.name} to {tier.name}
                           </div>
-                          <p className="text-sm text-white/85 leading-relaxed mb-3">
+                          <p className="text-sm text-gray-700 leading-relaxed mb-3">
                             You'll unlock the remaining modules: <strong>Responsible AI</strong>, <strong>Sustainability</strong>, <strong>Multimodal AI & Orchestration</strong>, and the <strong>90-Day Execution Plan</strong> — plus all Pro deliverables and frameworks.
                           </p>
                           <div className="text-xs text-muted leading-relaxed">
-                            <strong className="text-white/80">Billing:</strong> One payment of {priceLabel} — Pro is yours for good, including 12 months of content updates. No subscription, nothing recurring.
+                            <strong className="text-gray-700">Billing:</strong> One payment of {priceLabel} — Pro is yours for good, including 12 months of content updates. No subscription, nothing recurring.
                           </div>
                         </div>
                       </div>
@@ -422,7 +422,7 @@ export default function Checkout() {
                         <div className="flex items-center gap-3">
                           <span className="text-xl">🎁</span>
                           <div>
-                            <div className="font-display font-bold text-sm text-white">No payment required</div>
+                            <div className="font-display font-bold text-sm text-gray-900">No payment required</div>
                             <div className="text-xs text-muted">{isJourneyFree ? "Journey is free for one month — no card needed." : "This module is free — you'll get instant access after enrolling."}</div>
                           </div>
                         </div>
