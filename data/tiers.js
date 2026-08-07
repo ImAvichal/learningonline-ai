@@ -197,10 +197,13 @@ export const REGIONAL_PRICING = {
 
 export const DEFAULT_REGION = 'AU'
 
-// Helper: get pricing label for a tier + interval + region
-export function getPriceLabel(tierId, interval, region = DEFAULT_REGION) {
+// Single source of truth for the one-time price label shown for a tier in a
+// region. All pricing UI (homepage, pricing page, checkout) should call this
+// rather than reaching into REGIONAL_PRICING directly — three independent
+// copies of this lookup previously existed and could silently drift.
+export function getPriceLabel(tierId, region = DEFAULT_REGION) {
   const config = REGIONAL_PRICING[region] || REGIONAL_PRICING[DEFAULT_REGION]
-  return config?.plans?.[tierId]?.[interval]?.label || ''
+  return config?.plans?.[tierId]?.oneTime?.label || ''
 }
 
 // Helper: get currency symbol for region
