@@ -15,6 +15,21 @@
   --muted:     #7A8AAD;
   --border:    rgba(255,255,255,0.07);
   --card:      rgba(255,255,255,0.03);
+
+  /* Radius scale — v2.0 visual refresh. Consistent, generous rounding reads as
+     premium/calm rather than sharp/technical. Use these instead of one-off
+     border-radius values so the whole app moves together. */
+  --radius-sm: 8px;    /* chips, small controls */
+  --radius-md: 12px;   /* buttons, inputs */
+  --radius-lg: 20px;   /* cards — was 8-12px, feels tighter/dated at that size */
+  --radius-xl: 28px;   /* hero panels, modals */
+
+  /* Shadow scale — soft ambient elevation, not hard drop-shadows. Opacity is
+     deliberately low (2-6%) so it reads as depth, not decoration. */
+  --shadow-sm: 0 1px 3px rgba(5,9,26,0.06), 0 1px 2px rgba(5,9,26,0.04);
+  --shadow-md: 0 4px 16px rgba(5,9,26,0.06), 0 2px 6px rgba(5,9,26,0.04);
+  --shadow-lg: 0 12px 40px rgba(5,9,26,0.08), 0 4px 12px rgba(5,9,26,0.05);
+  --shadow-glow: 0 0 32px rgba(26,110,255,0.10);
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -250,6 +265,12 @@ html.light-mode .triad-def             { color: #6b7280; }
   --muted:     #5A6480;
   --border:    rgba(0,0,0,0.08);
   --card:      rgba(0,0,0,0.03);
+
+  /* Shadows need more contrast on white than on dark navy to read as elevated. */
+  --shadow-sm: 0 1px 3px rgba(16,24,54,0.06), 0 1px 2px rgba(16,24,54,0.04);
+  --shadow-md: 0 6px 20px rgba(16,24,54,0.07), 0 2px 6px rgba(16,24,54,0.04);
+  --shadow-lg: 0 16px 48px rgba(16,24,54,0.10), 0 4px 12px rgba(16,24,54,0.05);
+  --shadow-glow: 0 0 32px rgba(26,110,255,0.08);
 }
 
 /* ── Base ── */
