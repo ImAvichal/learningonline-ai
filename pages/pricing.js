@@ -5,7 +5,7 @@ import Head from 'next/head'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { Nav, Reveal, Card, SectionLabel, Button, TierBadge, BillingToggle } from '../components/ui'
-import { TIERS, TIER_ORDER, DISPLAY_ORDER } from '../data/tiers'
+import { TIERS, TIER_ORDER, DISPLAY_ORDER, getPriceLabel } from '../data/tiers'
 import { useAuth } from '../lib/auth'
 import { useRegion } from '../lib/region'
 import { useTranslation } from '../lib/i18n'
@@ -47,7 +47,7 @@ export default function Pricing() {
   const [interval, setInterval] = useState('monthly') // Default to monthly (lower upfront)
   const { region } = useRegion()
   const regionalConfig = REGIONAL_PRICING[region] || REGIONAL_PRICING.AU
-  const priceFor = (tierKey) => regionalConfig?.plans?.[tierKey]?.oneTime?.label || '—'
+  const priceFor = (tierKey) => getPriceLabel(tierKey, region) || '—'
   const router   = useRouter()
 
   const handleEnrol = (tierId) => {

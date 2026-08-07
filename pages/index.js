@@ -7,7 +7,7 @@ import { Nav, Reveal, Card, SectionLabel, Button, TierBadge, BillingToggle } fro
 import Icon from '../components/Icon'
 import { Lock, X, Clock, FileCheck2, Sparkles } from 'lucide-react'
 import { MODULES } from '../data/modules'
-import { TIERS, TIER_ORDER, INDUSTRIES, DISPLAY_ORDER } from '../data/tiers'
+import { TIERS, TIER_ORDER, INDUSTRIES, DISPLAY_ORDER, getPriceLabel } from '../data/tiers'
 import { useAuth } from '../lib/auth'
 
 // ── FAQ content — used for both the on-page Q&A section and the JSON-LD
@@ -278,7 +278,7 @@ export default function Home() {
   const [interval, setInterval] = useState('monthly')
   const { region } = useRegion()
   const regionalConfig = REGIONAL_PRICING[region] || REGIONAL_PRICING.AU
-  const priceFor = (tierKey) => regionalConfig?.plans?.[tierKey]?.oneTime?.label || '—'
+  const priceFor = (tierKey) => getPriceLabel(tierKey, region) || '—'
   const [activeModule,  setActiveModule]  = useState(0)
   const [activeSection, setActiveSection] = useState('tree')
   const [activePhase,   setActivePhase]   = useState(0)

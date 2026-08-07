@@ -21,7 +21,7 @@ import { useAuth } from '../lib/auth'
 import { useRegion } from '../lib/region'
 import { REGIONAL_PRICING } from '../data/tiers'
 import { Card, Spinner, TierBadge, Input } from '../components/ui'
-import { TIERS } from '../data/tiers'
+import { TIERS, getPriceLabel } from '../data/tiers'
 import { trackBeginCheckout } from '../lib/gtm'
 
 // ── In-page auth panel (left column when not signed in) ──────────────────────
@@ -179,7 +179,7 @@ export default function Checkout() {
   const tier    = TIERS[tierId] || TIERS.journey
   const { region } = useRegion()
   const regionalConfig = REGIONAL_PRICING[region] || REGIONAL_PRICING.AU
-  const priceLabel = regionalConfig?.plans?.[tierId]?.oneTime?.label || tier.priceDisplay
+  const priceLabel = getPriceLabel(tierId, region) || tier.priceDisplay
 
   // Journey: the free month is the trial. If this user's month is used/expired,
   // Journey becomes a normal one-time purchase instead of a second free grant.
