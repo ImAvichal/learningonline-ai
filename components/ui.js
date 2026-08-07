@@ -297,14 +297,15 @@ export function Card({ children, className = '', glow = false, hover = false, li
   // Two variants:
   //   - dark (default) — used on homepage/marketing pages with dark backgrounds
   //   - light — used on dashboard pages with light gray backgrounds
+  // rounded-[20px] = --radius-lg. One place controls card rounding app-wide.
   const base = light
-    ? 'bg-white border border-gray-200 rounded-xl'
-    : 'bg-white/[0.03] border border-white/[0.07] rounded-xl'
+    ? 'bg-white border border-gray-200 rounded-[20px] shadow-[var(--shadow-sm)]'
+    : 'bg-white/[0.03] border border-white/[0.07] rounded-[20px]'
   const glowCls = glow
-    ? (light ? 'shadow-md border-blue/30' : 'shadow-[0_0_40px_rgba(26,110,255,0.08)] border-blue/20')
+    ? (light ? 'shadow-[var(--shadow-md)] border-blue/30' : 'shadow-[var(--shadow-glow)] border-blue/20')
     : ''
   const hoverCls = hover
-    ? (light ? 'hover:border-blue/40 hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300' : 'hover:border-blue/40 hover:-translate-y-1 transition-all duration-300')
+    ? (light ? 'hover:border-blue/40 hover:shadow-[var(--shadow-lg)] hover:-translate-y-0.5 transition-all duration-300' : 'hover:border-blue/40 hover:-translate-y-1 transition-all duration-300')
     : ''
   return (
     <div style={style} className={`${base} ${glowCls} ${hoverCls} ${className}`}>
