@@ -59,7 +59,7 @@ function buildEmail(name) {
 
 You're one of our early members, and we're building LearningOnline.ai around what people like you actually need — so we'd genuinely love your feedback.
 
-As a thank-you, Journey — our practical, real-world AI learning track — is now free for one month. No card, no charge. You've got the full month to explore, and we'll remind you before it ends.
+As a thank-you, Journey — our practical, real-world AI learning track — is now yours, permanently. No payment, no catch, nothing to renew.
 
 Here's the ask: as you go through it, tell us what's working, what's confusing, and what's missing. There's a quick feedback panel right on your dashboard, and every response directly shapes what we build next. Honest, critical feedback is the most useful kind — don't hold back.
 
@@ -88,7 +88,7 @@ The LearningOnline.ai team`
         <tr><td class="pad" style="padding:16px 40px 8px;font-size:15px;line-height:1.6;color:#2a3350;">
           <p style="margin:0 0 16px;">Hi ${firstName},</p>
           <p style="margin:0 0 16px;">You're one of our early members, and we're building LearningOnline.ai around what people like you actually need — so your feedback genuinely matters to us.</p>
-          <p style="margin:0 0 16px;">As a thank-you, <strong>Journey</strong> — our practical, real-world AI learning track — is now <strong>free for one month</strong>. No card, no charge. You’ve got the full month to explore, and we’ll remind you before it ends.</p>
+          <p style="margin:0 0 16px;">As a thank-you, <strong>Journey</strong> — our practical, real-world AI learning track — is now <strong>yours, permanently</strong>. No payment, no catch, nothing to renew.</p>
           <p style="margin:0 0 16px;">Here's the ask: as you go through it, tell us what's working, what's confusing, and what's missing. There's a quick <strong>feedback panel right on your dashboard</strong>, and every response directly shapes what we build next. Honest, critical feedback is the most useful kind — please don't hold back.</p>
         </td></tr>
         <tr><td class="btn" align="center" style="padding:8px 40px 36px;">
