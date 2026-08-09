@@ -1,8 +1,1 @@
-{
-  "crons": [
-    {
-      "path": "/api/cron/journey-expiry",
-      "schedule": "0 8 * * *"
-    }
-  ]
-}
+{}
