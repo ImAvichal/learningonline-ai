@@ -58,7 +58,7 @@ export const TIERS = {
       'Ongoing updates within the current release cycle',
     ],
     modules: [1, 2, 3, 4, 5, 6, 7, 8, 9, 12],
-    cta: 'Start Free Month',
+    cta: 'Get Journey — One Payment',
     trialLabel: 'Free for your first month',
     highlighted: true,
     stripeEnvKeyMonthly: 'STRIPE_PRICE_JOURNEY_MONTHLY',
