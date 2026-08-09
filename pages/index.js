@@ -421,9 +421,6 @@ export default function Home() {
                     </span>
                   </div>
                   <div className="text-[10px] text-muted mb-4">{card.tierKey ? 'One payment · yours for good' : card.billing}</div>
-                  {card.tierKey === 'journey' && (
-                    <div className="text-[11px] text-success font-display font-bold mb-4 -mt-3">🎁 First month free — no card required</div>
-                  )}
                   {card.tierKey === 'pro' && (
                     <div className="text-[11px] text-success font-display font-bold mb-4 -mt-3">Includes 12 months of content updates</div>
                   )}

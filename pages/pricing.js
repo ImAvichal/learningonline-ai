@@ -120,9 +120,6 @@ export default function Pricing() {
                       {tid === 'parents' ? t.priceDisplay : priceFor(tid)}
                     </div>
                     <div className="text-xs text-muted mb-5">{tid === 'parents' ? tr('common.alwaysFree') : 'One payment · yours for good'}</div>
-                    {tid === 'journey' && (
-                      <div className="text-xs text-success font-display font-bold mb-5 -mt-3">🎁 First month free — no card required</div>
-                    )}
                     {tid === 'pro' && (
                       <div className="text-xs text-success font-display font-bold mb-5 -mt-3">Includes 12 months of content updates</div>
                     )}

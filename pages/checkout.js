@@ -181,11 +181,10 @@ export default function Checkout() {
   const regionalConfig = REGIONAL_PRICING[region] || REGIONAL_PRICING.AU
   const priceLabel = getPriceLabel(tierId, region) || tier.priceDisplay
 
-  // Journey: the free month is the trial. If this user's month is used/expired,
-  // Journey becomes a normal one-time purchase instead of a second free grant.
-  const journeyMonthUsed = !!(user?.journeyExpiresAt && new Date(user.journeyExpiresAt).getTime() < Date.now())
-  const isJourneyFree = tierId === 'journey' && !journeyMonthUsed
-
+  // Journey v2.1: reverted to a straightforward one-time purchase (matching
+  // Pro) — buy once, 7-day refund. No free-card-free trial. Existing users who
+  // received the earlier free-month grant were grandfathered permanently via
+  // migration rather than losing access when this model changed.
   const isFreeTier = tierId === 'parents' || tier.free === true
 
   const [loading, setLoading] = useState(false)
@@ -236,24 +235,6 @@ export default function Checkout() {
       router.push('/dashboard')
     } catch (err) {
       setError('Could not complete enrolment. Please try again.')
-      setLoading(false)
-    }
-  }
-
-  // Journey is free for one month. If this user already used their month, send
-  // them to Pro rather than granting a second free month.
-  const handleJourneyGrant = async () => {
-    if (user?.journeyExpiresAt && new Date(user.journeyExpiresAt).getTime() < Date.now()) {
-      setError('Your free month of Journey has ended. Upgrade to Pro to keep learning.')
-      return
-    }
-    setLoading(true); setError('')
-    try {
-      const expires = new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString()
-      await updateUser({ tier: 'journey', journeyExpiresAt: expires, enrolledAt: new Date().toISOString() })
-      router.push('/dashboard')
-    } catch (err) {
-      setError('Could not start your free month. Please try again.')
       setLoading(false)
     }
   }
@@ -342,17 +323,15 @@ export default function Checkout() {
     ? `You're enrolling in ${tier.name}`
     : isUpgrade   ? 'Upgrade your subscription'
     : isFreeTier  ? `Enrol in ${tier.name}`
-    : isJourneyFree ? `Start your free month of ${tier.name}`
     : 'Complete your enrolment'
 
   const primaryLabel = loading
     ? 'Processing…'
     : isFreeTier ? 'Enrol for free →'
-    : isJourneyFree ? 'Start your free month →'
     : isDemo     ? `Simulate Payment — ${priceLabel}`
     : `🔒 Pay ${priceLabel} Securely`
 
-  const onPrimary = isFreeTier ? handleFreeEnrol : isJourneyFree ? handleJourneyGrant : handlePay
+  const onPrimary = isFreeTier ? handleFreeEnrol : handlePay
 
   // ── Main two-column checkout ──
   return (
@@ -415,15 +394,15 @@ export default function Checkout() {
 
                   <Card className="p-6 mb-5">
                     <div className="text-xs font-display font-bold text-muted uppercase tracking-wider mb-4">
-                      {(isFreeTier || isJourneyFree) ? 'Enrolment' : 'Payment'}
+                      {isFreeTier ? 'Enrolment' : 'Payment'}
                     </div>
-                    {(isFreeTier || isJourneyFree) ? (
+                    {isFreeTier ? (
                       <div className="p-4 rounded-lg bg-success/8 border border-success/20">
                         <div className="flex items-center gap-3">
                           <span className="text-xl">🎁</span>
                           <div>
                             <div className="font-display font-bold text-sm text-gray-900">No payment required</div>
-                            <div className="text-xs text-muted">{isJourneyFree ? "Journey is free for one month — no card needed." : "This module is free — you'll get instant access after enrolling."}</div>
+                            <div className="text-xs text-muted">This module is free — you'll get instant access after enrolling.</div>
                           </div>
                         </div>
                       </div>
@@ -456,13 +435,6 @@ export default function Checkout() {
 
                   {isFreeTier ? (
                     <p className="text-center text-xs text-muted mt-3">Instant access after enrolling · no card required</p>
-                  ) : isJourneyFree ? (
-                    <div className="mt-4 p-4 rounded-lg bg-success/[0.06] border border-success/25 text-center max-w-md mx-auto">
-                      <div className="font-display font-bold text-sm mb-1">🎁 Free for one month</div>
-                      <p className="text-xs text-gray-500 leading-relaxed">
-                        No card, no charge. We'll remind you before it ends — then you can own Journey or go Pro with a single payment. No subscription.
-                      </p>
-                    </div>
                   ) : (
                     <>
                       <p className="text-center text-xs text-muted mt-3 leading-relaxed max-w-md mx-auto">
@@ -484,7 +456,7 @@ export default function Checkout() {
                   <div>
                     <div className="font-display font-bold text-sm">LeO AI</div>
                     <div className="text-xs text-muted mt-0.5">
-                      {tier.name}{isFreeTier ? ' · Free module' : isJourneyFree ? ' · Free for one month' : ' · One-time purchase'}
+                      {tier.name}{isFreeTier ? ' · Free module' : ' · One-time purchase'}
                     </div>
                     <TierBadge tier={tierId} label={tier.label} className="mt-2" />
                   </div>
@@ -498,10 +470,10 @@ export default function Checkout() {
                 </div>
                 <div className="flex justify-between items-baseline pt-4 border-t border-white/5 mb-6">
                   <span className="font-display font-bold">Total</span>
-                  <span className="font-display font-black whitespace-nowrap" style={{fontSize: 'clamp(20px, 2.4vw, 26px)'}}>{isJourneyFree ? 'Free' : priceLabel}</span>
+                  <span className="font-display font-black whitespace-nowrap" style={{fontSize: 'clamp(20px, 2.4vw, 26px)'}}>{priceLabel}</span>
                 </div>
                 <div className="space-y-1.5">
-                  {((isFreeTier || isJourneyFree)
+                  {(isFreeTier
                     ? ['🔒 256-bit SSL encryption', '📧 Confirmation to your email', '♾️ Instant access', '🎁 No card required']
                     : ['🔒 256-bit SSL encryption', '💳 Powered by Stripe', '📧 Receipt to your email', '♾️ Instant access', '📅 12 months of content updates included', '🛡️ 7-day refund policy']
                   ).map(s => (
