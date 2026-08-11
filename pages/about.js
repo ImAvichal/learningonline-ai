@@ -1,5 +1,6 @@
 import Head from 'next/head'
 import { Nav, Reveal, SectionLabel } from '../components/ui'
+import Footer from '../components/Footer'
 import { useAuth } from '../lib/auth'
 
 export default function About() {
@@ -79,9 +80,8 @@ export default function About() {
           </div>
         </section>
 
-        {/* ── Footer spacer ── */}
-        <div className="py-10" />
       </main>
+      <Footer variant="light" />
     </>
   )
 }

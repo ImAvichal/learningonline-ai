@@ -1,5 +1,6 @@
 import Head from 'next/head'
 import { Nav, Reveal, SectionLabel, Card } from '../components/ui'
+import Footer from '../components/Footer'
 import { useAuth } from '../lib/auth'
 
 const STAGES = [
@@ -176,8 +177,8 @@ export default function Roadmap() {
           </div>
         </section>
 
-        <div className="py-10" />
       </main>
+      <Footer variant="light" />
     </>
   )
 }

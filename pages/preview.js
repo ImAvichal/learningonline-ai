@@ -7,6 +7,7 @@ import Head from 'next/head'
 import { useState } from 'react'
 import Link from 'next/link'
 import { Nav, Card, SectionLabel, Reveal, Button } from '../components/ui'
+import Footer from '../components/Footer'
 import { useAuth } from '../lib/auth'
 
 const PREVIEW_LESSONS = [
@@ -250,6 +251,7 @@ export default function Preview() {
           </div>
         </div>
       </div>
+      <Footer variant="light" />
     </>
   )
 }

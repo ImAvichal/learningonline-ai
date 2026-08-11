@@ -144,7 +144,7 @@ export default function Privacy() {
         </div>
       </main>
 
-      <Footer />
+      <Footer variant="light" />
     </>
   )
 }

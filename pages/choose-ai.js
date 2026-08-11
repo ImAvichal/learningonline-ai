@@ -270,7 +270,7 @@ export default function ChooseAI() {
         )}
       </main>
 
-      <Footer />
+      <Footer variant="dark" />
     </>
   )
 }
