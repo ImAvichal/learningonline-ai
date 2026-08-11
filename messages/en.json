@@ -57,16 +57,17 @@
   "plans": {
     "parents": {
       "name": "Parents & Caregivers",
-      "badge": "Free for a limited time",
+      "badge": "Free forever",
       "tagline": "Free pathway for families",
       "hook": "9 practical modules · Helping families navigate AI confidently.",
-      "description": "Complimentary for a limited time when you create your free LearningOnline.ai account — a calm, practical guide for families navigating AI safely together.",
+      "description": "Free, always, when you create your LearningOnline.ai account — a calm, practical guide for families navigating AI safely together.",
       "idealFor": "Parents who want to understand AI's impact on family life and protect their kids while embracing the technology.",
       "cta": "Start Free Module",
       "ctaLoggedOut": "Sign In to Access"
     },
     "journey": {
       "name": "Starting the Journey",
+      "badge": "🛡️ 7-Day Money-Back Guarantee",
       "tagline": "Practical AI confidence",
       "hook": "Practical AI awareness, foundational learning, and operational implementation guidance.",
       "description": "Build genuine AI fluency. Learn how AI thinks, how to use it well, and how to apply it across personal and professional contexts.",
