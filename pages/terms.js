@@ -30,7 +30,7 @@ export default function Terms() {
     <>
       <Head>
         <title>Terms & Refund Policy — LeO AI</title>
-        <meta name="description" content="Plain-English terms of use, payment terms, and our 3-day refund policy for LeO AI." />
+        <meta name="description" content="Plain-English terms of use, payment terms, and our 7-day refund policy for LeO AI." />
       </Head>
 
       <Nav />
@@ -59,8 +59,8 @@ export default function Terms() {
               </p>
               <ul className="space-y-2.5 text-gray-700 text-[15px]">
                 <li className="flex gap-2.5"><span className="text-blue flex-shrink-0">→</span><span>LeO AI is a learning platform. You pay for access to the modules in your tier.</span></li>
-                <li className="flex gap-2.5"><span className="text-blue flex-shrink-0">→</span><span>Paid subscriptions renew monthly or annually until you cancel.</span></li>
-                <li className="flex gap-2.5"><span className="text-blue flex-shrink-0">→</span><span><strong>3-day refund window</strong> — request a refund within 72 hours of enrolment.</span></li>
+                <li className="flex gap-2.5"><span className="text-blue flex-shrink-0">→</span><span>Paid tiers are a one-time payment — pay once and it&apos;s yours for good, including 12 months of content updates.</span></li>
+                <li className="flex gap-2.5"><span className="text-blue flex-shrink-0">→</span><span><strong>7-day refund window</strong> — request a refund within 7 days of purchase.</span></li>
                 <li className="flex gap-2.5"><span className="text-blue flex-shrink-0">→</span><span>Approved refunds are processed in 3–5 business days.</span></li>
                 <li className="flex gap-2.5"><span className="text-blue flex-shrink-0">→</span><span>Request refunds via the <Link href="/contact" className="text-blue hover:underline font-bold">Contact page</Link> &mdash; select &ldquo;Refund Request&rdquo;.</span></li>
               </ul>
@@ -86,8 +86,8 @@ export default function Terms() {
               </p>
               <ul className="space-y-2 list-disc pl-5">
                 <li><strong>Parents &amp; Caregivers</strong> &mdash; a free module covering AI fundamentals for families. Sign-in required.</li>
-                <li><strong>Starting the Journey</strong> &mdash; paid subscription covering practical AI capability for professionals.</li>
-                <li><strong>The Pro</strong> &mdash; paid subscription including everything in Starting the Journey, plus enterprise-scale leadership content.</li>
+                <li><strong>Starting the Journey</strong> &mdash; a one-time purchase covering practical AI capability for professionals, including 12 months of content updates.</li>
+                <li><strong>The Pro</strong> &mdash; a one-time purchase including everything in Starting the Journey, plus enterprise-scale leadership content and 12 months of content updates.</li>
               </ul>
               <p>
                 Your access starts immediately after successful payment. Your progress is saved automatically.
@@ -96,22 +96,22 @@ export default function Terms() {
 
             <Section id="payment" title="3. Payment and billing">
               <p>
-                Paid subscriptions are billed monthly or annually based on what you chose at checkout. Payments are processed securely by Stripe; we don&apos;t see or store your card details.
+                Starting the Journey and The Pro are both one-time payments, made once at checkout. Payments are processed securely by Stripe; we don&apos;t see or store your card details. There is no subscription and nothing bills you again after your purchase.
               </p>
               <p>
-                Subscriptions renew automatically at the end of each billing period until you cancel. You can cancel at any time &mdash; just email us via the <Link href="/contact" className="text-blue hover:underline">Contact page</Link> and we&apos;ll process it. Your access continues to the end of the period you&apos;ve already paid for.
+                If you upgrade from Starting the Journey to The Pro, you only pay the difference between what you already paid and the price of The Pro &mdash; never the full Pro price twice.
               </p>
               <p>
                 Prices are shown in your local currency where supported (AUD, INR, PHP, USD). Local taxes may apply where required by law.
               </p>
             </Section>
 
-            <Section id="refunds" title="4. 3-Day refund policy">
+            <Section id="refunds" title="4. 7-Day refund policy">
               <p>
-                <strong>You may request a refund within 3 days (72 hours) of enrolment</strong> if you don&apos;t believe the platform delivers value for your learning journey.
+                <strong>You may request a refund within 7 days of purchase</strong> if you don&apos;t believe the platform delivers value for your learning journey.
               </p>
               <p>
-                The 72-hour window starts from the timestamp of your successful payment.
+                The 7-day window starts from the timestamp of your successful payment.
               </p>
               <p>
                 To request a refund:
@@ -119,7 +119,7 @@ export default function Terms() {
               <ol className="space-y-2 list-decimal pl-5">
                 <li>Visit the <Link href="/contact" className="text-blue hover:underline">Contact page</Link></li>
                 <li>Select <strong>&ldquo;Refund Request&rdquo;</strong> from the enquiry type dropdown</li>
-                <li>Briefly tell us why &mdash; this helps us improve, but is not required for approval within the 3-day window</li>
+                <li>Briefly tell us why &mdash; this helps us improve, but is not required for approval within the 7-day window</li>
                 <li>Submit the form</li>
               </ol>
               <p>

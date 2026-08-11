@@ -73,7 +73,7 @@ export default function Contact() {
                   <h2 className="font-display font-bold text-2xl mb-3">Message received</h2>
                   <p className="text-muted leading-relaxed max-w-sm mx-auto">
                     {form.query_type === 'Refund Request' ? (
-                      <>Thanks {form.name?.split(' ')[0] || 'for reaching out'}. We've sent a confirmation to <strong className="text-white">{form.email}</strong>. Refund requests within the 3-day policy are typically processed in 3–5 business days.</>
+                      <>Thanks {form.name?.split(' ')[0] || 'for reaching out'}. We've sent a confirmation to <strong className="text-white">{form.email}</strong>. Refund requests within the 7-day policy are typically processed in 3–5 business days.</>
                     ) : (
                       <>Thanks for reaching out. We've sent a confirmation to <strong className="text-white">{form.email}</strong>, and we'll get back to you within 1 business day.</>
                     )}
@@ -112,7 +112,7 @@ export default function Contact() {
                       className="w-full py-4 bg-blue hover:bg-blue-bright text-white font-display font-bold rounded-xl transition-all shadow-[0_0_24px_rgba(26,110,255,0.4)] disabled:opacity-50 flex items-center justify-center gap-2">
                       {loading ? <><Spinner /> Sending...</> : 'Send Message →'}
                     </button>
-                    <p className="text-xs text-muted mt-4 leading-relaxed">Refund requests can be submitted via this form by selecting 'Refund Request' above. Our 3-day policy applies (72 hours from enrolment) — see our Terms & Refund Policy for details.</p>
+                    <p className="text-xs text-muted mt-4 leading-relaxed">Refund requests can be submitted via this form by selecting 'Refund Request' above. Our 7-day policy applies (7 days from purchase) — see our Terms & Refund Policy for details.</p>
               </form>
                 </Card>
               )}

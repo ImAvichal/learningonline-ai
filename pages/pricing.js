@@ -12,7 +12,7 @@ import { useTranslation } from '../lib/i18n'
 import { REGIONAL_PRICING } from '../data/tiers'
 
 // Pricing FAQ — visible Q&A + FAQPage schema. Answers grounded in actual
-// platform behaviour ($19/$39 tiers, 3-day refund, Journey→Pro upgrade,
+// platform behaviour (one-time-purchase tiers, 7-day refund, Journey→Pro upgrade,
 // self-service cancellation via the billing portal).
 const PRICING_FAQS = [
   {
@@ -59,7 +59,7 @@ export default function Pricing() {
   return (
     <>
       <Head><title>{tr("pricing.pageTitle")} — LeO AI</title>
-        <meta name="description" content="Simple, transparent pricing for LeO AI. A free Parents module, plus two paid tiers: Starting the Journey ($19/mo) and The Pro ($39/mo). Full refund within 3 days if it doesn't deliver value." />
+        <meta name="description" content="Simple, transparent pricing for LeO AI. A free Parents module, plus two one-time-purchase tiers: Starting the Journey and The Pro. Full refund within 7 days if it doesn't deliver value." />
         <link rel="canonical" href="https://www.learningonline.ai/pricing" />
         <script
           type="application/ld+json"
@@ -230,9 +230,9 @@ export default function Pricing() {
           <Reveal>
             <Card className="p-8 text-center mb-8">
               <div className="text-4xl mb-4">🛡️</div>
-              <h3 className="font-display font-bold text-xl mb-3">3-Day Refund Policy</h3>
+              <h3 className="font-display font-bold text-xl mb-3">7-Day Money-Back Guarantee</h3>
               <p className="text-muted max-w-md mx-auto text-sm leading-relaxed">
-                You may request a refund within 72 hours of enrolment if you don't believe the platform delivers value for your learning journey. Approved refunds are typically processed within 3–5 business days.
+                You may request a full refund within 7 days of purchase if you don't believe the platform delivers value for your learning journey. Approved refunds are typically processed within 3–5 business days.
               </p>
             </Card>
           </Reveal>
