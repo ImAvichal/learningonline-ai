@@ -1,15 +1,20 @@
 // pages/api/admin/send-journey-campaign.js
 //
-// Admin-only. Replaces the CLI script for day-to-day use — runs entirely on
-// Vercel using the env vars already configured there (RESEND_API_KEY,
-// EMAIL_FROM, BUSINESS_ADDRESS), no terminal required.
+// Admin-only. Runs entirely on Vercel using the env vars already configured
+// there (RESEND_API_KEY, EMAIL_FROM, BUSINESS_ADDRESS), no terminal required.
 //
-// GET  → dry-run preview: who WOULD receive this, how many already have.
-// POST → actually sends. Idempotent via the campaign_sends table (unique on
-//        campaign+email) — safe to click twice, nobody gets emailed twice.
+// GET  → everyone on the target tier, each tagged with whether they've
+//        already received this campaign — lets the admin page render a full
+//        checklist (checkbox for not-yet-sent, a "Sent" badge for the rest)
+//        rather than an all-or-nothing send.
+// POST → sends to an EXPLICIT list of emails the admin selected. Re-validated
+//        server-side against the real candidate/not-yet-sent list — the
+//        client's checkbox state is never trusted blindly, both so a stale
+//        page can't re-send to someone, and so nobody outside the target
+//        tier could be emailed by a tampered request.
 //        Body { test: true } sends ONE copy to the calling admin's own email
-//        instead of the real recipient list — does NOT touch campaign_sends,
-//        so it never counts as (or blocks) a real send to that address.
+//        instead — does NOT touch campaign_sends, so it never counts as (or
+//        blocks) a real send to that address.
 
 import { requireAdmin } from '../../../lib/adminAuth'
 import { buildJourneyUpgradeEmail, sendCampaignEmail } from '../../../lib/campaigns'
@@ -38,22 +43,27 @@ export default async function handler(req, res) {
       .not('email', 'is', null)
     if (qErr) throw qErr
 
-    const { data: alreadySent, error: sErr } = await supabase
+    const { data: alreadySentRows, error: sErr } = await supabase
       .from('campaign_sends')
       .select('email')
       .eq('campaign', CAMPAIGN)
     if (sErr) throw sErr
-    const sentSet = new Set((alreadySent || []).map((r) => r.email.toLowerCase()))
+    const sentSet = new Set((alreadySentRows || []).map((r) => r.email.toLowerCase()))
 
-    const recipients = (candidates || []).filter((u) => !sentSet.has(u.email.toLowerCase()))
+    const allRecipients = (candidates || []).map((u) => ({
+      email: u.email,
+      name: u.full_name,
+      alreadySent: sentSet.has(u.email.toLowerCase()),
+    }))
+    const notYetSent = allRecipients.filter((r) => !r.alreadySent)
 
     if (req.method === 'GET') {
       return res.status(200).json({
         campaign: CAMPAIGN,
-        totalOnTier: candidates?.length || 0,
-        alreadySent: sentSet.size,
-        toSend: recipients.length,
-        recipients: recipients.map((r) => ({ email: r.email, name: r.full_name })),
+        totalOnTier: allRecipients.length,
+        alreadySent: allRecipients.length - notYetSent.length,
+        toSend: notYetSent.length,
+        allRecipients,
         resendConfigured: !!RESEND_KEY,
         businessAddressConfigured: !!BUSINESS_ADDRESS,
       })
@@ -68,8 +78,7 @@ export default async function handler(req, res) {
     }
 
     // ── Test send: one copy to the admin's own address, real content, no
-    // tracking side-effects. Lets you literally see the email before any of
-    // the 26 real recipients do. ──
+    // tracking side-effects. ──
     if (req.body?.test === true) {
       if (!admin.user.email) return res.status(400).json({ error: 'No email on file for your admin account.' })
       const { subject, text, html } = buildJourneyUpgradeEmail(admin.user.full_name, { appUrl: APP_URL, businessAddress: BUSINESS_ADDRESS })
@@ -77,16 +86,28 @@ export default async function handler(req, res) {
       return res.status(200).json({ test: true, sentTo: admin.user.email })
     }
 
-    if (recipients.length === 0) {
-      return res.status(200).json({ sent: 0, failed: 0, message: 'Nothing to send — everyone on this tier has already received this campaign.' })
+    // ── Real send: explicit selection required. The client sends the emails
+    // it wants; we re-derive the truth (who's a real candidate, who's not
+    // already sent) and only ever act on the intersection — this is what
+    // makes it safe even if the page's state is stale or tampered with. ──
+    const requested = Array.isArray(req.body?.emails)
+      ? new Set(req.body.emails.map((e) => String(e).toLowerCase()))
+      : null
+    if (!requested || requested.size === 0) {
+      return res.status(400).json({ error: 'No recipients selected. Pick at least one person to send to.' })
+    }
+
+    const toSend = notYetSent.filter((r) => requested.has(r.email.toLowerCase()))
+    if (toSend.length === 0) {
+      return res.status(200).json({ sent: 0, failed: 0, message: 'Nothing to send — the people selected have already received this, or aren\'t on the Journey tier.' })
     }
 
     let sent = 0, failed = 0
     const failures = []
 
-    for (const r of recipients) {
+    for (const r of toSend) {
       try {
-        const { subject, text, html } = buildJourneyUpgradeEmail(r.full_name, { appUrl: APP_URL, businessAddress: BUSINESS_ADDRESS })
+        const { subject, text, html } = buildJourneyUpgradeEmail(r.name, { appUrl: APP_URL, businessAddress: BUSINESS_ADDRESS })
         await sendCampaignEmail({ apiKey: RESEND_KEY, from: FROM, replyTo: REPLY_TO, to: r.email, subject, html, text })
         // Record success immediately — if a later recipient fails, everyone
         // sent so far is still safely marked, so a retry won't double-email.
