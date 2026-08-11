@@ -35,19 +35,23 @@ const FAQS = [
   },
   {
     q: 'AI changes incredibly fast. How often is the curriculum updated?',
-    a: 'Continuously. LeO AI is a living platform, not a static video library. As the AI landscape shifts — moving from basic prompting to complex agentic workflows — our team updates the modules and framework roadmaps so your skills remain current and future-proof.',
+    a: 'On a regular review cycle, not a fixed release schedule. As the AI landscape shifts, we refresh model references, pricing examples, and framework guidance so your skills stay current — rather than leaving you with a static, dated video library.',
   },
   {
-    q: 'Can I expense my LeO AI subscription to my company?',
-    a: 'Yes. Upon signing up, you will receive an itemised tax invoice via email that can be submitted to your employer. Most organisations cover LeO AI under their professional development, learning & development (L&D), or innovation budgets.',
+    q: 'Is LeO AI a subscription?',
+    a: 'No. Starting the Journey and The Pro are both one-time payments — pay once and it is yours for good, including 12 months of content updates. There is nothing to renew and nothing that bills you again.',
+  },
+  {
+    q: 'Can I expense my LeO AI purchase to my company?',
+    a: 'Yes. Upon purchase, you will receive an itemised tax invoice via email that can be submitted to your employer. Most organisations cover LeO AI under their professional development, learning & development (L&D), or innovation budgets.',
   },
   {
     q: 'Do you offer corporate licensing or team packages?',
-    a: 'Yes. We offer centralised billing, team management dashboards, and custom deployment roadmaps for organisations looking to scale AI capability across departments. Please contact us to discuss corporate rates.',
+    a: 'Not yet as a self-serve option — but we are actively building this and would love to hear from you if you are considering AI training for your team. Contact us and we will work out something that fits.',
   },
   {
     q: 'What is your refund policy?',
-    a: 'We stand behind the practical value of our platform. If you explore the modules and don\'t feel LeO AI delivers measurable value to your work within 3 days of purchase, simply contact us for a prompt, 100% refund. No hoops to jump through.',
+    a: 'We stand behind the practical value of our platform. If you explore the modules and don\'t feel LeO AI delivers measurable value to your work within 7 days of purchase, simply contact us for a prompt, full refund. No hoops to jump through.',
   },
 ]
 import { useRegion } from '../lib/region'

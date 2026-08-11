@@ -17,27 +17,27 @@ import { REGIONAL_PRICING } from '../data/tiers'
 const PRICING_FAQS = [
   {
     q: 'Is there a free option?',
-    a: 'Yes. The Parents & Caregivers module is completely free, with no card required. The two paid tiers — Starting the Journey and The Pro — unlock the full professional curriculum.',
+    a: 'Yes. The Parents & Caregivers module is completely free, forever, with no card required. The two paid tiers — Starting the Journey and The Pro — unlock the full professional curriculum.',
+  },
+  {
+    q: 'Is this a subscription?',
+    a: 'No. Both Starting the Journey and The Pro are one-time payments — pay once and it is yours for good, including 12 months of content updates. Nothing renews and nothing bills you again.',
   },
   {
     q: 'What is the difference between Starting the Journey and The Pro?',
-    a: 'Starting the Journey covers the core foundations and execution modules. The Pro includes everything in Journey plus the advanced modules — Responsible AI, Sustainability, Multimodal AI & Orchestration, and the 90-Day Execution Plan — along with all Pro deliverables and frameworks.',
+    a: 'Starting the Journey covers the core foundations and execution modules. The Pro includes everything in Journey plus the advanced modules — Responsible AI, Sustainability, Multimodal AI & Orchestration, the 90-Day Execution Plan, AI Security & Data Protection, and AI Policy for Government & Providers — along with all Pro deliverables and frameworks.',
   },
   {
     q: 'Can I upgrade from Journey to Pro later?',
-    a: 'Yes. You can upgrade at any time from your dashboard. Your new Pro subscription starts immediately and your existing Journey subscription is cancelled automatically, so you are never billed for both.',
+    a: 'Yes, any time from your dashboard. You only pay the difference between what you already paid for Journey and the price of Pro — never the full Pro price again.',
   },
   {
-    q: 'Can I cancel anytime?',
-    a: 'Yes. You can manage or cancel your subscription yourself at any time from your account page, which opens a secure billing portal. If you cancel, your access continues until the end of the period you have already paid for.',
+    q: 'What is your refund policy?',
+    a: 'Every purchase carries a 7-day money-back guarantee. If you do not believe the platform delivers measurable value within 7 days, contact us for a full refund — no hoops to jump through.',
   },
   {
-    q: 'How does the refund work?',
-    a: 'If you do not believe the platform delivers measurable value within 3 days of purchase, contact us for a full refund. Approved refunds are typically processed within a few business days.',
-  },
-  {
-    q: 'What is the difference between monthly and annual billing?',
-    a: 'Annual billing is offered at a lower effective rate than paying monthly. You can choose whichever suits you at checkout, and the price shown always matches what you are billed.',
+    q: 'Does pricing differ by country?',
+    a: 'Yes. We detect your region automatically and show local pricing for Australia, the United States, India, and the Philippines, so what you see is what you are billed — in your local currency.',
   },
 ]
 
