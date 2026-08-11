@@ -385,7 +385,7 @@ export default function Home() {
                 cardClass: 'border-success/25 bg-success/[0.02]',
               },
               {
-                pill: t('plans.journey.name'), pillClass: 'bg-blue/15 border-blue/30 text-blue-bright', mostPopular: true,
+                pill: t('plans.journey.badge'), pillClass: 'bg-success/15 border-success/30 text-success', mostPopular: true,
                 title: t('plans.journey.name'), tierKey: 'journey', popular: true,
                 hook: t('plans.journey.hook'),
                 desc: t('plans.journey.description'),
