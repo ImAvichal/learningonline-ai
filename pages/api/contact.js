@@ -71,7 +71,7 @@ async function notifyTeam({ name, email, company, query_type, message }) {
     : `[LeO AI Contact] ${query_type} — ${name}`
 
   const html = `<!DOCTYPE html><html><body style="font-family:-apple-system,sans-serif;color:#0a1628;padding:24px;max-width:600px;margin:0 auto;">
-    ${isRefund ? '<div style="background:#fff3cd;border:1px solid #ffc107;padding:12px 16px;border-radius:8px;margin-bottom:20px;font-weight:600;">⚠️ Refund request — respond within 72 hours of original purchase</div>' : ''}
+    ${isRefund ? '<div style="background:#fff3cd;border:1px solid #ffc107;padding:12px 16px;border-radius:8px;margin-bottom:20px;font-weight:600;">⚠️ Refund request — respond promptly (7-day refund window)</div>' : ''}
     <h2 style="margin:0 0 16px;">${query_type} enquiry from ${escapeHtml(name)}</h2>
     <table cellpadding="6" style="border-collapse:collapse;font-size:14px;width:100%;">
       <tr><td style="color:#6b7891;width:120px;">Name</td><td><strong>${escapeHtml(name)}</strong></td></tr>
@@ -108,7 +108,7 @@ async function confirmToSubmitter({ name, email, query_type }) {
     : "We've received your message — LeO AI"
 
   const introCopy = isRefund
-    ? "We've received your refund request and will review it shortly. Refund requests within the 3-day policy window are typically approved and processed within 3–5 business days."
+    ? "We've received your refund request and will review it shortly. Refund requests within the 7-day policy window are typically approved and processed within 3–5 business days."
     : "We've received your message and will get back to you within one business day."
 
   const text = `Hi ${firstName},
