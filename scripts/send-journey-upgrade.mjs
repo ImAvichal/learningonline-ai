@@ -25,7 +25,7 @@
 //   NEXT_PUBLIC_SUPABASE_URL   (or SUPABASE_URL)   — your project URL
 //   SUPABASE_SERVICE_ROLE_KEY                       — service role key (server-side only!)
 //   RESEND_API_KEY                                  — Resend API key
-//   EMAIL_FROM        (optional) default: 'LeO AI <hello@learningonline.ai>'
+//   EMAIL_FROM        (optional) default: 'Avi & Mini <hello@learningonline.ai>'
 //   EMAIL_REPLY_TO    (optional) default: 'hello@learningonline.ai'
 //   BUSINESS_ADDRESS  REQUIRED before a real send — physical mailing address
 //                      for the compliance footer (Australian Spam Act 2003).
@@ -41,7 +41,7 @@ const CAMPAIGN = 'journey-upgrade-2026'  // must match pages/api/admin/send-jour
 const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL || process.env.SUPABASE_URL
 const SERVICE_KEY  = process.env.SUPABASE_SERVICE_ROLE_KEY
 const RESEND_KEY   = process.env.RESEND_API_KEY
-const FROM         = process.env.EMAIL_FROM || 'LeO AI <hello@learningonline.ai>'
+const FROM         = process.env.EMAIL_FROM || 'Avi & Mini <hello@learningonline.ai>'
 const REPLY_TO      = process.env.EMAIL_REPLY_TO || 'hello@learningonline.ai'
 const BUSINESS_ADDRESS = process.env.BUSINESS_ADDRESS || ''
 const TIER          = process.env.TIER || 'journey'
