@@ -1,17 +1,15 @@
 // pages/api/create-checkout-session.js
 //
-// Three purchase paths, all region-aware:
-//   1. Journey (fresh signup)  → SUBSCRIPTION mode, 7-day trial, card captured
-//      today, charged once on day 8, then never renews (see webhook).
-//   2. Pro (fresh purchase)    → PAYMENT mode, one-time, unchanged from before —
-//      "leave instant buy for Pro" means this branch's behaviour is untouched.
-//   3. Pro (upgrade from a Journey user who was ALREADY CHARGED)
-//                              → PAYMENT mode, but the price is computed
-//      server-side as (Pro price − amount actually paid for Journey), using
-//      Stripe's inline price_data since the discount is unique per user.
-//      A Journey user still mid-trial (never charged) does NOT get this
-//      discount — they pay full Pro price, and the existing webhook logic
-//      already cancels their pending trial subscription automatically.
+// One-time purchases for both tiers (mode: 'payment', charged immediately —
+// no trial). Two paths, both region-aware:
+//   1. Fresh purchase  — full price for the tier being bought.
+//   2. Upgrade         — if the user already has a COMPLETED, actually-paid
+//      purchase of the lower tier (Journey), Pro is priced as the
+//      difference, computed server-side via Stripe's inline price_data
+//      since the exact discount is unique per user (it depends on what they
+//      actually paid, not just today's list price).
+// Both tiers carry a 7-day money-back guarantee (handled as a manual refund
+// via Stripe, not a delayed/trial charge) — see pages/checkout.js copy.
 import Stripe from 'stripe'
 import { createClient } from '@supabase/supabase-js'
 
@@ -20,20 +18,17 @@ export default async function handler(req, res) {
 
   const stripe = new Stripe(process.env.STRIPE_SECRET_KEY)
 
-  // One MULTI-CURRENCY price per product (AUD default + INR/PHP/USD currency
-  // options on the same Price object) — same pattern as the existing one-time
-  // prices. JOURNEY_TRIAL must be a RECURRING (monthly) price — Stripe trials
-  // only exist on subscriptions — but because we cancel it after the single
-  // charge (see webhook), it behaves as a one-off fee to the customer.
+  // One MULTI-CURRENCY price per tier (AUD default + INR/PHP/USD currency
+  // options on the same Price object). The session's `currency` param below
+  // selects which option Stripe presents, keeping it in lock-step with the
+  // region OUR site showed the user.
   const priceMap = {
-    journey: process.env.STRIPE_PRICE_JOURNEY_ONETIME,   // used only for legacy/demo fallback
-    journeyTrial: process.env.STRIPE_PRICE_JOURNEY_TRIAL, // the real Journey signup path
+    journey: process.env.STRIPE_PRICE_JOURNEY_ONETIME,
     pro:     process.env.STRIPE_PRICE_PRO_ONETIME,
   }
   const currencyByRegion = { AU: 'aud', IN: 'inr', PH: 'php', US: 'usd' }
-  // Regional Pro/Journey list prices in MINOR units (cents/paise/centavos),
-  // for computing an upgrade discount. Mirrors data/tiers.js REGIONAL_PRICING
-  // — kept here in minor units since that's what Stripe/purchases.amount use.
+  // Regional list prices in MINOR units (cents/paise/centavos), for computing
+  // an upgrade discount. Mirrors data/tiers.js REGIONAL_PRICING.
   const MINOR_UNIT_PRICING = {
     AU: { journey: 14900, pro: 29900 },
     US: { journey: 9900,  pro: 19900 },
@@ -52,17 +47,17 @@ export default async function handler(req, res) {
   const geoRegion = geoCountry ? ({ IN: 'IN', PH: 'PH', US: 'US' }[geoCountry] || 'AU') : null
   const safeRegion = geoRegion || (currencyByRegion[region] ? region : 'AU')
 
-  if (!['journey', 'pro'].includes(tierId)) {
-    return res.status(400).json({ error: `Invalid plan: ${tierId}` })
-  }
+  if (!priceMap.hasOwnProperty(tierId)) return res.status(400).json({ error: `Invalid plan: ${tierId}` })
 
   console.log('[Stripe] Creating session for', { tierId, region: safeRegion })
 
   try {
     const baseParams = {
       payment_method_types: ['card'],
+      mode: 'payment',
       currency: currencyByRegion[safeRegion],
       customer_creation: 'always',
+      invoice_creation: { enabled: true },
       customer_email: email,
       client_reference_id: userId,
       allow_promotion_codes: true,
@@ -75,42 +70,17 @@ export default async function handler(req, res) {
       baseParams.discounts = [{ promotion_code: promoCode }]
     }
 
-    // ── PATH 1: Journey — 7-day free trial, card captured now, charged once
     let session
 
-    if (tierId === 'journey') {
-      const priceId = priceMap.journeyTrial
-      if (!priceId) {
-        return res.status(400).json({
-          error: 'Stripe price not configured for the Journey trial. Please set STRIPE_PRICE_JOURNEY_TRIAL in environment variables (a RECURRING multi-currency price).',
-        })
-      }
-      session = await stripe.checkout.sessions.create({
-        ...baseParams,
-        mode: 'subscription',
-        line_items: [{ price: priceId, quantity: 1 }],
-        // Force card capture even though $0 is due today (default Checkout
-        // behaviour may skip payment-method collection when nothing is due).
-        payment_method_collection: 'always',
-        subscription_data: {
-          trial_period_days: 7,
-          metadata: { userId, tierId: 'journey', region: safeRegion, name: name || '', purchaseType: 'trial' },
-        },
-        metadata: { userId, tierId: 'journey', region: safeRegion, name: name || '', purchaseType: 'trial' },
-      })
-
-    // ── PATH 2 & 3: Pro — instant buy (fresh) or upgrade (discounted) ──
-    } else {
-      if (!userId) return res.status(400).json({ error: 'Missing userId' })
-
-      // Detect an upgrade: has this user ALREADY BEEN CHARGED for Journey?
-      // (payment_status='completed' AND amount > 0 — a purchase row with
-      // amount=0 means they're still mid-trial and haven't paid yet, so they
-      // are NOT eligible for the discount and pay full Pro price instead.)
+    // ── Upgrade detection: only Pro purchases can be an upgrade (there's
+    // nothing lower than Journey to upgrade from). Checks for a COMPLETED,
+    // actually-paid Journey purchase — amount > 0 rules out any edge case
+    // where a purchase row exists but nothing was ever charged. ──
+    if (tierId === 'pro' && userId) {
       const supabase = createClient(process.env.NEXT_PUBLIC_SUPABASE_URL, process.env.SUPABASE_SERVICE_ROLE_KEY)
       const { data: journeyPurchases } = await supabase
         .from('purchases')
-        .select('amount, currency, created_at')
+        .select('amount')
         .eq('user_id', userId)
         .eq('tier', 'journey')
         .eq('payment_status', 'completed')
@@ -119,12 +89,9 @@ export default async function handler(req, res) {
         .limit(1)
 
       const alreadyPaid = journeyPurchases?.[0]?.amount || 0
-      const proListPriceMinor = MINOR_UNIT_PRICING[safeRegion].pro
 
       if (alreadyPaid > 0) {
-        // Upgrade path — charge only the difference, floored at a minimum of
-        // 50 minor units (Stripe's practical minimum charge) to avoid a $0
-        // line item; if the credit fully covers Pro, treat as a free upgrade.
+        const proListPriceMinor = MINOR_UNIT_PRICING[safeRegion].pro
         const diff = Math.max(proListPriceMinor - alreadyPaid, 0)
         console.log('[Stripe] Upgrade detected — already paid', alreadyPaid, '| Pro list', proListPriceMinor, '| charging', diff)
 
@@ -140,7 +107,6 @@ export default async function handler(req, res) {
 
         session = await stripe.checkout.sessions.create({
           ...baseParams,
-          mode: 'payment',
           line_items: [{
             price_data: {
               currency: currencyByRegion[safeRegion],
@@ -150,23 +116,24 @@ export default async function handler(req, res) {
             },
             quantity: 1,
           }],
-          invoice_creation: { enabled: true },
           metadata: { userId, tierId: 'pro', region: safeRegion, name: name || '', purchaseType: 'upgrade' },
         })
-      } else {
-        // Fresh Pro purchase — unchanged, exactly as before.
-        const priceId = priceMap.pro
-        if (!priceId) {
-          return res.status(400).json({ error: 'Stripe price not configured for pro. Please set STRIPE_PRICE_PRO_ONETIME in environment variables.' })
-        }
-        session = await stripe.checkout.sessions.create({
-          ...baseParams,
-          mode: 'payment',
-          line_items: [{ price: priceId, quantity: 1 }],
-          invoice_creation: { enabled: true },
-          metadata: { userId, tierId: 'pro', region: safeRegion, name: name || '', purchaseType: 'fresh' },
+      }
+    }
+
+    // ── Fresh purchase (Journey, or Pro with no prior Journey purchase) ──
+    if (!session) {
+      const priceId = priceMap[tierId]
+      if (!priceId) {
+        return res.status(400).json({
+          error: `Stripe price not configured for ${tierId}. Please set STRIPE_PRICE_${tierId.toUpperCase()}_ONETIME in environment variables.`,
         })
       }
+      session = await stripe.checkout.sessions.create({
+        ...baseParams,
+        line_items: [{ price: priceId, quantity: 1 }],
+        metadata: { userId, tierId, region: safeRegion, name: name || '', purchaseType: 'fresh' },
+      })
     }
 
     res.status(200).json({ url: session.url })

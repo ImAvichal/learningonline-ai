@@ -11,7 +11,7 @@
 
 import Stripe from 'stripe'
 import { createClient } from '@supabase/supabase-js'
-import { sendPurchaseConfirmation, sendPaymentFailedEmail, sendTrialEndingReminder } from '../../lib/emails'
+import { sendPurchaseConfirmation, sendPaymentFailedEmail } from '../../lib/emails'
 
 // Legacy tier names → new consolidated tier names
 const TIER_MIGRATION = { individual: 'journey', smb: 'journey', enterprise: 'pro' }
@@ -66,14 +66,6 @@ export default async function handler(req, res) {
 
       case 'invoice.payment_failed':
         await handlePaymentFailed(event.data.object, supabase, stripe)
-        break
-
-      case 'invoice.payment_succeeded':
-        await handlePaymentSucceeded(event.data.object, supabase, stripe)
-        break
-
-      case 'customer.subscription.trial_will_end':
-        await handleTrialWillEnd(event.data.object, supabase)
         break
 
       default:
@@ -322,9 +314,11 @@ async function handleSubscriptionUpdated(subscription, supabase) {
 }
 
 // ─── invoice.payment_failed ──────────────────────────────────────────────────
-// Don't revoke here — Stripe's Smart Retries (configured in the Dashboard)
-// will retry automatically. If retries are exhausted, Stripe cancels the
-// subscription, which fires customer.subscription.deleted → revokes there.
+// Neither tier uses subscriptions as of v2.3 (both charge immediately via
+// mode: 'payment', which doesn't generate Invoice objects at all — a failed
+// card is handled synchronously on Stripe's own checkout page, never reaches
+// this webhook). Kept as harmless defensive handling in case a future
+// subscription-based product is added.
 async function handlePaymentFailed(invoice, supabase, stripe) {
   console.warn(`[webhook] Payment failed for customer ${invoice.customer}, invoice ${invoice.id}`)
   try {
@@ -341,58 +335,3 @@ async function handlePaymentFailed(invoice, supabase, stripe) {
   }
 }
 
-// ─── invoice.payment_succeeded ───────────────────────────────────────────────
-// Fires when the Journey trial's day-7/8 charge actually succeeds. Two jobs:
-//   1. Record the real amount paid (the original checkout.session.completed
-//      recorded amount=0, since nothing was due at trial signup — this is
-//      what makes the later "charge only the difference" upgrade math work).
-//   2. Schedule the subscription to cancel at period end so it NEVER renews
-//      into a second charge — this is what makes a subscription behave as a
-//      one-off fee rather than an ongoing monthly charge.
-async function handlePaymentSucceeded(invoice, supabase, stripe) {
-  if (!invoice.subscription) return  // one-time-payment invoices have none
-
-  // Only act on the transition OUT of the trial (amount actually charged).
-  if (!invoice.amount_paid || invoice.amount_paid <= 0) return
-
-  console.log(`[webhook] Trial charge succeeded for subscription ${invoice.subscription}: ${invoice.amount_paid} ${invoice.currency}`)
-
-  try {
-    await supabase
-      .from('purchases')
-      .update({ amount: invoice.amount_paid, currency: invoice.currency, payment_status: 'completed' })
-      .eq('stripe_subscription_id', invoice.subscription)
-  } catch (err) {
-    console.error('[webhook] Could not update purchase amount (non-fatal):', err.message)
-  }
-
-  try {
-    await stripe.subscriptions.update(invoice.subscription, { cancel_at_period_end: true })
-    console.log(`[webhook] ✓ Subscription ${invoice.subscription} set to cancel at period end (one-off charge complete, will not renew)`)
-  } catch (err) {
-    console.error(`[webhook] ⚠️ MANUAL ACTION REQUIRED: could not schedule cancellation for ${invoice.subscription} — it may renew next month. Reason: ${err.message}`)
-  }
-}
-
-// ─── customer.subscription.trial_will_end ────────────────────────────────────
-// Stripe fires this natively 3 days before a trial ends — the reminder email
-// asked for. (Stripe's timing here is fixed at T-3 and isn't configurable to
-// an exact T-2 without a separate scheduled job; T-3 is close enough and is
-// the standard, well-tested mechanism for this exact purpose.)
-async function handleTrialWillEnd(subscription, supabase) {
-  const { data: profile } = await supabase
-    .from('users_profile')
-    .select('id, email, full_name')
-    .eq('stripe_customer_id', subscription.customer)
-    .maybeSingle()
-  if (!profile?.email) return
-  try {
-    await sendTrialEndingReminder({
-      to: profile.email,
-      name: profile.full_name,
-      trialEnd: subscription.trial_end,
-    })
-  } catch (err) {
-    console.error('[webhook] Trial-ending reminder email error (non-fatal):', err.message)
-  }
-}
