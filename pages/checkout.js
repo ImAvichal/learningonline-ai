@@ -181,10 +181,11 @@ export default function Checkout() {
   const regionalConfig = REGIONAL_PRICING[region] || REGIONAL_PRICING.AU
   const priceLabel = getPriceLabel(tierId, region) || tier.priceDisplay
 
-  // Journey v2.2: 7-day free trial, card captured up front, charged once on
-  // day 8 (Stripe subscription-with-trial under the hood, cancelled right
-  // after the single charge so it never renews). Cancel anytime in the first
-  // 7 days at no charge via the account page's billing portal link.
+  // Journey v2.3: straightforward immediate one-time charge (same mechanism
+  // as Pro), backed by a 7-day money-back guarantee rather than a delayed
+  // charge — simpler and lower-risk than a trial, and avoids "free trial"
+  // language attached to an actual charge, which is a real compliance
+  // trip-wire in several jurisdictions.
   const isFreeTier = tierId === 'parents' || tier.free === true
 
   const [loading, setLoading] = useState(false)
@@ -199,7 +200,6 @@ export default function Checkout() {
   const userRank   = user?.tier && user.tier !== 'parents' ? (TIER_RANK[user.tier] ?? 0) : -1
   const targetRank = TIER_RANK[tierId] ?? 0
   const isUpgrade  = userRank >= 0 && userRank < targetRank
-  const isJourneyTrial = tierId === 'journey' && !isUpgrade
   const alreadyHas = userRank >= targetRank && user?.tier !== 'parents' && !isFreeTier
 
   // Demo-mode / legacy success handling (kept — harmless, supports no-Stripe preview)
@@ -322,16 +322,14 @@ export default function Checkout() {
 
   const headingText = !user
     ? `You're enrolling in ${tier.name}`
-    : isUpgrade      ? 'Upgrade your subscription'
-    : isFreeTier      ? `Enrol in ${tier.name}`
-    : isJourneyTrial  ? 'Start your free 7-day trial'
+    : isUpgrade   ? 'Upgrade your subscription'
+    : isFreeTier  ? `Enrol in ${tier.name}`
     : 'Complete your enrolment'
 
   const primaryLabel = loading
     ? 'Processing…'
-    : isFreeTier      ? 'Enrol for free →'
-    : isJourneyTrial  ? 'Start my free 7-day trial →'
-    : isDemo          ? `Simulate Payment — ${priceLabel}`
+    : isFreeTier ? 'Enrol for free →'
+    : isDemo     ? `Simulate Payment — ${priceLabel}`
     : `🔒 Pay ${priceLabel} Securely`
 
   const onPrimary = isFreeTier ? handleFreeEnrol : handlePay
@@ -409,19 +407,6 @@ export default function Checkout() {
                           </div>
                         </div>
                       </div>
-                    ) : isJourneyTrial ? (
-                      <div className="p-4 rounded-lg bg-success/8 border border-success/20">
-                        <div className="flex items-center gap-3 mb-2">
-                          <span className="text-xl">🎁</span>
-                          <div>
-                            <div className="font-display font-bold text-sm text-gray-900">7 days free — card required</div>
-                            <div className="text-xs text-muted">You won't be charged today.</div>
-                          </div>
-                        </div>
-                        <div className="text-xs text-muted leading-relaxed pl-9">
-                          On day 8 you'll be charged <strong>{priceLabel}</strong> once — not a subscription. Cancel any time in the first 7 days from your account page and pay nothing.
-                        </div>
-                      </div>
                     ) : isDemo ? (
                       <div className="p-3 rounded-lg bg-amber-400/10 border border-amber-400/20 text-xs text-amber-400">
                         ⚠️ Demo mode — Stripe keys not configured. Click Pay to simulate enrolment.
@@ -453,14 +438,10 @@ export default function Checkout() {
                     <p className="text-center text-xs text-muted mt-3">Instant access after enrolling · no card required</p>
                   ) : (
                     <>
-                      {!isJourneyTrial && (
-                        <>
-                          <p className="text-center text-xs text-muted mt-3 leading-relaxed max-w-md mx-auto">
-                            <span className="font-bold">7-day refund policy</span> — request a refund within 7 days of purchase if you don't believe the platform delivers value. <span className="italic">Approved refunds processed in 3–5 business days.</span>
-                          </p>
-                          <p className="text-center text-[10px] text-muted/70 mt-1">Instant access after payment</p>
-                        </>
-                      )}
+                      <p className="text-center text-xs text-muted mt-3 leading-relaxed max-w-md mx-auto">
+                        <span className="font-bold">7-day money-back guarantee</span> — request a full refund within 7 days of purchase if you don't believe the platform delivers value. <span className="italic">Approved refunds processed in 3–5 business days.</span>
+                      </p>
+                      <p className="text-center text-[10px] text-muted/70 mt-1">Instant access after payment</p>
                     </>
                   )}
                 </>
@@ -476,7 +457,7 @@ export default function Checkout() {
                   <div>
                     <div className="font-display font-bold text-sm">LeO AI</div>
                     <div className="text-xs text-muted mt-0.5">
-                      {tier.name}{isFreeTier ? ' · Free module' : isJourneyTrial ? ' · 7-day free trial' : ' · One-time purchase'}
+                      {tier.name}{isFreeTier ? ' · Free module' : ' · One-time purchase'}
                     </div>
                     <TierBadge tier={tierId} label={tier.label} className="mt-2" />
                   </div>
@@ -495,7 +476,7 @@ export default function Checkout() {
                 <div className="space-y-1.5">
                   {(isFreeTier
                     ? ['🔒 256-bit SSL encryption', '📧 Confirmation to your email', '♾️ Instant access', '🎁 No card required']
-                    : ['🔒 256-bit SSL encryption', '💳 Powered by Stripe', '📧 Receipt to your email', '♾️ Instant access', '📅 12 months of content updates included', '🛡️ 7-day refund policy']
+                    : ['🔒 256-bit SSL encryption', '💳 Powered by Stripe', '📧 Receipt to your email', '♾️ Instant access', '📅 12 months of content updates included', '🛡️ 7-day money-back guarantee']
                   ).map(s => (
                     <div key={s} className="text-xs text-muted">{s}</div>
                   ))}
