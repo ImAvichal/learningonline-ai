@@ -7,6 +7,9 @@
 // GET  → dry-run preview: who WOULD receive this, how many already have.
 // POST → actually sends. Idempotent via the campaign_sends table (unique on
 //        campaign+email) — safe to click twice, nobody gets emailed twice.
+//        Body { test: true } sends ONE copy to the calling admin's own email
+//        instead of the real recipient list — does NOT touch campaign_sends,
+//        so it never counts as (or blocks) a real send to that address.
 
 import { requireAdmin } from '../../../lib/adminAuth'
 import { buildJourneyUpgradeEmail, sendCampaignEmail } from '../../../lib/campaigns'
@@ -63,6 +66,17 @@ export default async function handler(req, res) {
         error: 'BUSINESS_ADDRESS is not set. Australian commercial email law requires a physical postal address in the footer — set BUSINESS_ADDRESS in Vercel (Settings → Environment Variables) before sending.',
       })
     }
+
+    // ── Test send: one copy to the admin's own address, real content, no
+    // tracking side-effects. Lets you literally see the email before any of
+    // the 26 real recipients do. ──
+    if (req.body?.test === true) {
+      if (!admin.user.email) return res.status(400).json({ error: 'No email on file for your admin account.' })
+      const { subject, text, html } = buildJourneyUpgradeEmail(admin.user.full_name, { appUrl: APP_URL, businessAddress: BUSINESS_ADDRESS })
+      await sendCampaignEmail({ apiKey: RESEND_KEY, from: FROM, replyTo: REPLY_TO, to: admin.user.email, subject, html, text })
+      return res.status(200).json({ test: true, sentTo: admin.user.email })
+    }
+
     if (recipients.length === 0) {
       return res.status(200).json({ sent: 0, failed: 0, message: 'Nothing to send — everyone on this tier has already received this campaign.' })
     }
