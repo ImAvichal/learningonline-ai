@@ -25,7 +25,7 @@ export default async function handler(req, res) {
   const supabase = admin.supabase
 
   const RESEND_KEY = process.env.RESEND_API_KEY
-  const FROM = process.env.EMAIL_FROM || 'LeO AI <hello@learningonline.ai>'
+  const FROM = process.env.EMAIL_FROM || 'Avi & Mini <hello@learningonline.ai>'
   const REPLY_TO = process.env.EMAIL_REPLY_TO || 'hello@learningonline.ai'
   const APP_URL = process.env.NEXT_PUBLIC_APP_URL || 'https://www.learningonline.ai'
   const BUSINESS_ADDRESS = process.env.BUSINESS_ADDRESS || ''
