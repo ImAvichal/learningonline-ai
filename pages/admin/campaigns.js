@@ -14,18 +14,25 @@ export default function AdminCampaigns() {
   const [confirming, setConfirming] = useState(false)
   const [sending, setSending] = useState(false)
   const [result, setResult]   = useState(null)
+  const [testSending, setTestSending] = useState(false)
+  const [testResult, setTestResult]   = useState(null)
+  const [testError, setTestError]     = useState('')
 
-  const authedFetch = useCallback(async (method) => {
+  const authedFetch = useCallback(async (method, body) => {
     const { data: { session } } = await supabase.auth.getSession()
     if (!session) throw new Error('Please sign in with an admin account.')
     const res = await fetch('/api/admin/send-journey-campaign', {
       method,
-      headers: { Authorization: `Bearer ${session.access_token}` },
+      headers: {
+        Authorization: `Bearer ${session.access_token}`,
+        ...(body ? { 'Content-Type': 'application/json' } : {}),
+      },
+      ...(body ? { body: JSON.stringify(body) } : {}),
     })
     if (res.status === 401 || res.status === 403) throw new Error('You do not have admin access.')
-    const body = await res.json().catch(() => ({}))
-    if (!res.ok) throw new Error(body.error || 'Request failed')
-    return body
+    const responseBody = await res.json().catch(() => ({}))
+    if (!res.ok) throw new Error(responseBody.error || 'Request failed')
+    return responseBody
   }, [])
 
   const loadPreview = useCallback(async () => {
@@ -52,6 +59,18 @@ export default function AdminCampaigns() {
       setError(err.message)
     } finally {
       setSending(false)
+    }
+  }
+
+  const handleTestSend = async () => {
+    setTestSending(true); setTestError(''); setTestResult(null)
+    try {
+      const body = await authedFetch('POST', { test: true })
+      setTestResult(body)
+    } catch (err) {
+      setTestError(err.message)
+    } finally {
+      setTestSending(false)
     }
   }
 
@@ -103,6 +122,29 @@ export default function AdminCampaigns() {
                   BUSINESS_ADDRESS isn't set in Vercel. Required by Australian law for commercial email — set it (Settings → Environment Variables) before sending.
                 </div>
               )}
+
+              {/* Test send — see the real email land in your own inbox before any real recipient does */}
+              <div className="rounded-xl border border-gray-200 bg-gray-50 p-4 mb-6">
+                <div className="flex items-center justify-between gap-3">
+                  <div>
+                    <div className="text-sm font-display font-bold">Test it first</div>
+                    <div className="text-xs text-gray-500 mt-0.5">Sends the exact email to your own inbox — not tracked, doesn't affect the count above.</div>
+                  </div>
+                  <button
+                    onClick={handleTestSend}
+                    disabled={testSending || !preview.resendConfigured || !preview.businessAddressConfigured}
+                    className="px-4 py-2 border border-gray-300 hover:border-blue text-gray-700 hover:text-blue disabled:opacity-40 disabled:cursor-not-allowed font-display font-bold text-xs rounded-lg transition-all whitespace-nowrap"
+                  >
+                    {testSending ? 'Sending…' : 'Send test to myself'}
+                  </button>
+                </div>
+                {testResult && (
+                  <div className="mt-3 text-xs text-success">✓ Sent to {testResult.sentTo} — check your inbox.</div>
+                )}
+                {testError && (
+                  <div className="mt-3 text-xs text-red-500">{testError}</div>
+                )}
+              </div>
 
               {preview.toSend > 0 && (
                 <details className="mb-6">
