@@ -3,21 +3,20 @@
 //
 // Specifically covers:
 //   - Terms page exists and is reachable from CTAs + footer
-//   - All "7-day refund" references have been replaced with "3-day"
+//   - The refund policy is 7-day (updated from the original 3-day policy)
 //   - Resume Learning button goes to the user's NEXT INCOMPLETE lesson,
 //     not Lesson 1 (the bug the brief was about)
 
 import { test, expect } from '@playwright/test'
 
 test.describe('Terms & Refund Policy page', () => {
-  test('terms page exists and renders the 3-day policy', async ({ page }) => {
+  test('terms page exists and renders the 7-day policy', async ({ page }) => {
     await page.goto('/terms')
     await expect(page).toHaveTitle(/Terms.*Refund.*LeO AI/)
     await expect(page.getByRole('heading', { name: /Terms.*Refund Policy/i })).toBeVisible()
 
     // Critical content checks
-    await expect(page.getByText(/3-day refund window/i)).toBeVisible()
-    await expect(page.getByText(/72 hours/i).first()).toBeVisible()
+    await expect(page.getByText(/7-day refund window/i)).toBeVisible()
     await expect(page.getByText(/3.{1,3}5 business days/i).first()).toBeVisible()
     await expect(page.getByText(/Refund Request/i).first()).toBeVisible()
   })
@@ -40,24 +39,24 @@ test.describe('Terms & Refund Policy page', () => {
 })
 
 test.describe('Refund wording consistency', () => {
-  // Each of these pages should ONLY mention 3-day, never 7-day
+  // Each of these pages should ONLY mention 7-day, never the old 3-day policy
   const pagesToCheck = ['/', '/pricing', '/checkout', '/contact']
 
   for (const path of pagesToCheck) {
-    test(`${path} does not mention "7-day" or "7 day" refund`, async ({ page }) => {
+    test(`${path} does not mention the old "3-day" refund policy`, async ({ page }) => {
       await page.goto(path)
       const bodyText = await page.locator('body').textContent()
-      // Check for any 7-day refund-related phrase
-      expect(bodyText).not.toMatch(/7[\s-]?day.{0,30}(money|refund|guarantee)/i)
-      expect(bodyText).not.toMatch(/within 7 days/i)
+      expect(bodyText).not.toMatch(/3[\s-]?day.{0,30}(money|refund|guarantee)/i)
+      expect(bodyText).not.toMatch(/within 3 days/i)
+      expect(bodyText).not.toMatch(/72.{0,10}hours?/i)
     })
   }
 
-  test('checkout shows 3-day refund policy', async ({ page }) => {
-    await page.goto('/checkout?tier=journey&interval=monthly')
+  test('checkout shows 7-day refund policy', async ({ page }) => {
+    await page.goto('/checkout?tier=journey')
     // Even logged out, the sidebar/trust copy should be present in HTML
     const html = await page.content()
-    expect(html).toMatch(/3-day refund/i)
+    expect(html).toMatch(/7-day (refund|money-back)/i)
   })
 
   test('contact form has "Refund Request" option', async ({ page }) => {
