@@ -47,7 +47,7 @@
     "subtitle": "Learn how to actually use AI at work — and guide the people who look to you for answers. No hype, no fear, no jargon.",
     "ctaPrimary": "View Plans",
     "ctaSecondary": "Find My Program",
-    "trustLine": "Built in Australia · AUD pricing inc. GST · 3-day refund policy"
+    "trustLine": "Built in Australia · AUD pricing inc. GST · 7-day refund policy"
   },
   "learningPaths": {
     "label": "LEARNING PATHS",
@@ -99,11 +99,11 @@
   "pricing": {
     "pageTitle": "Pricing",
     "pageHeading": "Choose your tier",
-    "pageSubtitle": "Two paid tiers. One free module. Full refund within 3 days of purchase if the platform doesn't deliver measurable value.",
+    "pageSubtitle": "Two one-time-purchase tiers. One free module. Full refund within 7 days of purchase if the platform doesn't deliver measurable value.",
     "comparisonTitle": "What's included",
     "moneyBack": {
-      "title": "3-day refund policy",
-      "body": "If you don't believe the platform delivers measurable value within 3 days of purchase, contact us for a full refund.",
+      "title": "7-day refund policy",
+      "body": "If you don't believe the platform delivers measurable value within 7 days of purchase, contact us for a full refund.",
       "tagline": "Processed in 3–5 business days."
     }
   },
@@ -144,13 +144,13 @@
       "stripe": "Powered by Stripe",
       "receipt": "Receipt to your email",
       "access": "Instant access",
-      "guarantee": "3-day refund policy"
+      "guarantee": "7-day refund policy"
     }
   },
   "footer": {
     "tagline": "Practical AI learning designed to reduce anxiety through clarity and structure.",
     "rights": "All rights reserved.",
-    "moneyBackLine": "3-day refund policy — request a refund within 72 hours of enrolment if the platform doesn't deliver value for you. Approved refunds processed in 3–5 business days.",
+    "moneyBackLine": "7-day refund policy — request a refund within 7 days of purchase if the platform doesn't deliver value for you. Approved refunds processed in 3–5 business days.",
     "stripeLine": "Secure payments via Stripe"
   },
   "languageNotice": {
