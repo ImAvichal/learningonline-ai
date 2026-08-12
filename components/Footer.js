@@ -71,7 +71,8 @@ export default function Footer({ variant = 'light' }) {
               <div className={`text-xs font-display font-bold uppercase tracking-wider mb-3 ${tokens.columnHeading}`}>Platform</div>
               <div className="space-y-2">
                 <Link href="/"                className={`block text-sm ${tokens.link}`}>Home</Link>
-                <Link href="/model-selection" className={`block text-sm ${tokens.link}`}>Choosing the Right AI</Link>
+                <Link href="/choose-ai" className={`block text-sm ${tokens.link}`}>Choose the Right AI</Link>
+                <Link href="/model-selection" className={`block text-sm ${tokens.link}`}>Model Selection Guide</Link>
                 <Link href="/mindset"         className={`block text-sm ${tokens.link}`}>Mindset</Link>
                 <Link href="/glossary"        className={`block text-sm ${tokens.link}`}>Jargon Buster</Link>
                 <Link href="/roadmap"         className={`block text-sm ${tokens.link}`}>Learning Evolution</Link>

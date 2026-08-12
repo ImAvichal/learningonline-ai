@@ -166,10 +166,7 @@ export function Nav({ transparent = false }) {
         <div className="hidden md:flex items-center gap-5 flex-1 justify-end mr-4">
           <NavLink href="/">Home</NavLink>
           <NavLink href="/mindset">{t("nav.mindset")}</NavLink>
-          <NavLink href="/choose-ai">Choose the Right AI</NavLink>
-          <NavLink href="/model-selection">{t("nav.modelSelection")}</NavLink>
-          <NavLink href="/glossary">{t("nav.glossary")}</NavLink>
-          <NavLink href="/roadmap">{t("nav.roadmap")}</NavLink>
+          <NavLink href="/pricing">Pricing</NavLink>
           <NavLink href="/about">{t("nav.about")}</NavLink>
         </div>
         <div className="hidden md:flex items-center gap-3">
@@ -201,10 +198,8 @@ export function Nav({ transparent = false }) {
       {open && (
         <div className="md:hidden bg-navy-mid border-t border-white/5 px-6 py-4 space-y-3">
           <MobileLink href="/" onClick={() => setOpen(false)}>Home</MobileLink>
-          <MobileLink href="/mindset"    onClick={() => setOpen(false)}>Mindset</MobileLink>
-          <MobileLink href="/model-selection" onClick={() => setOpen(false)}>Choosing the Right AI</MobileLink>
-          <MobileLink href="/glossary" onClick={() => setOpen(false)}>Jargon Buster</MobileLink>
-          <MobileLink href="/roadmap" onClick={() => setOpen(false)}>Learning Evolution</MobileLink>
+          <MobileLink href="/mindset" onClick={() => setOpen(false)}>Mindset</MobileLink>
+          <MobileLink href="/pricing" onClick={() => setOpen(false)}>Pricing</MobileLink>
           <MobileLink href="/about" onClick={() => setOpen(false)}>About</MobileLink>
           {!user && (
             <>
