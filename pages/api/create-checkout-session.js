@@ -80,7 +80,7 @@ export default async function handler(req, res) {
       const supabase = createClient(process.env.NEXT_PUBLIC_SUPABASE_URL, process.env.SUPABASE_SERVICE_ROLE_KEY)
       const { data: journeyPurchases } = await supabase
         .from('purchases')
-        .select('amount')
+        .select('amount, currency')
         .eq('user_id', userId)
         .eq('tier', 'journey')
         .eq('payment_status', 'completed')
@@ -88,7 +88,19 @@ export default async function handler(req, res) {
         .order('created_at', { ascending: false })
         .limit(1)
 
-      const alreadyPaid = journeyPurchases?.[0]?.amount || 0
+      const lastJourneyPurchase = journeyPurchases?.[0] || null
+      // SAFETY: only credit the previous purchase if it was made in the SAME
+      // currency as this checkout. Subtracting an amount recorded in one
+      // currency (e.g. USD cents) from a Pro price in another (e.g. INR
+      // paise) is comparing different units and produces a nonsensical,
+      // under-charged result — this guard is what prevents that.
+      const currencyMatches = lastJourneyPurchase?.currency?.toLowerCase() === currencyByRegion[safeRegion]
+      const alreadyPaid = currencyMatches ? lastJourneyPurchase.amount : 0
+
+      if (lastJourneyPurchase && !currencyMatches) {
+        console.warn('[Stripe] Upgrade purchase found but currency mismatch — not discounting.',
+          'Recorded:', lastJourneyPurchase.currency, '| Current:', currencyByRegion[safeRegion])
+      }
 
       if (alreadyPaid > 0) {
         const proListPriceMinor = MINOR_UNIT_PRICING[safeRegion].pro
