@@ -196,22 +196,30 @@ export default function Pricing() {
                   </thead>
                   <tbody>
                     {[
-                      ['AI Foundations & token awareness',    '✓','✓'],
-                      ['Key roles & leadership frameworks',   '✓','✓'],
-                      ['Use case identification',             '✓','✓'],
-                      ['Module Q&A scoring',                  '✓','✓'],
-                      ['Cheat sheets & prompt guides',        '✓','✓'],
-                      ['Use case prioritisation & 5-yr model','✓','✓'],
-                      
-                      ['Data readiness program',              '✓','✓'],
-                      ['ROI modelling & business case',       '✓','✓'],
-                      ['People & change adoption toolkit',    '✓','✓'],
-                      ['Responsible AI framework',            '—','✓'],
-                      ['Sustainability & AI program',         '—','✓'],
-                      ['Multimodal AI & orchestration',       '—','✓'],
-                      ['AI economics & cost management',      '—','✓'],
-                      ['90-Day execution roadmap',            '—','✓'],
-                      ['Ongoing release-cycle updates',       '✓','✓'],
+                      // Journey modules (1-9, 12) — all 16 modules mapped 1:1 to
+                      // data/modules.js so this table can never silently drift
+                      // from what's actually in the curriculum.
+                      ['1. AI Foundations',                          '✓','✓'],
+                      ['2. Key Roles in AI Programs',                '✓','✓'],
+                      ['3. Identifying Use Cases',                   '✓','✓'],
+                      ['4. Use Case Prioritisation',                 '✓','✓'],
+                      ['5. Workflow Design',                         '✓','✓'],
+                      ['6. Data Readiness & Structuring',            '✓','✓'],
+                      ['7. Tools & Infrastructure',                  '✓','✓'],
+                      ['8. Building Your Use Cases',                 '✓','✓'],
+                      ['9. ROI & Measurement',                       '✓','✓'],
+                      ['12. People, Change & Adoption',              '✓','✓'],
+                      // Pro-exclusive modules (10, 11, 13-16)
+                      ['10. Responsible AI',                         '—','✓'],
+                      ['11. Sustainability & AI',                    '—','✓'],
+                      ['13. Multimodal AI & Orchestration',          '—','✓'],
+                      ['14. 90-Day Execution Plan',                  '—','✓'],
+                      ['15. AI Security & Data Protection',          '—','✓'],
+                      ['16. AI Policy for Government & Providers',   '—','✓'],
+                      // Non-module inclusions
+                      ['Module Q&A scoring',                         '✓','✓'],
+                      ['Cheat sheets & prompt guides',                '✓','✓'],
+                      ['12 months of content updates',                '✓','✓'],
                     ].map(([feature, a, b]) => (
                       <tr key={feature} className="border-b border-white/[0.04] hover:bg-white/[0.02]">
                         <td className="p-4 text-muted text-sm">{feature}</td>
