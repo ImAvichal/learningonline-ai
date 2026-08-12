@@ -116,11 +116,6 @@ export default function Footer({ variant = 'light' }) {
             <span>{safeT('pricing.moneyBack.tagline', 'Processed in 3–5 business days.')}</span>
           </p>
         </div>
-
-        {/* Legal trading-name line — small, last */}
-        <div className={`mt-4 pt-3 border-t ${tokens.divider} text-center text-[11px] ${tokens.finePrint} leading-relaxed`}>
-          Learning Online AI is a registered trading name of Praise Consulting Pty Ltd.
-        </div>
       </div>
     </footer>
   )
