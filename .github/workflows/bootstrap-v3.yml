@@ -2,127 +2,40 @@ name: Bootstrap V3 Release
 
 on:
   push:
-    branches: [release/self-sustaining-v3]
+    branches:
+      - release/self-sustaining-v3
 
 permissions:
   contents: write
 
 jobs:
   apply:
+    if: ${{ !contains(github.event.head_commit.message, '[v3-applied]') }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
         with:
           ref: release/self-sustaining-v3
           fetch-depth: 0
-      - name: Apply integrated V3 changes
-        shell: bash
+      - name: Decode release payload
         run: |
-          python - <<'PY'
-          from pathlib import Path
-          import json
-          root = Path('.')
-
-          # Regional launch pricing: Pro is ₹499 in India and the PHP equivalent (₱330).
-          p = root/'data/tiers.js'; s = p.read_text()
-          s = s.replace("pro:     { oneTime: { amount: 1999, label: '\\u20b91,999', listLabel: '\\u20b92,999', stripeEnvKey: 'STRIPE_PRICE_PRO_ONETIME_INR' } },", "pro:     { oneTime: { amount: 499, label: '\\u20b9499', listLabel: '\\u20b91,999', stripeEnvKey: 'STRIPE_PRICE_PRO_ONETIME_INR' } },")
-          s = s.replace("pro:     { oneTime: { amount: 1999, label: '\\u20b11,999', listLabel: '\\u20b12,999', stripeEnvKey: 'STRIPE_PRICE_PRO_ONETIME_PHP' } },", "pro:     { oneTime: { amount: 330, label: '\\u20b1330', listLabel: '\\u20b11,999', stripeEnvKey: 'STRIPE_PRICE_PRO_ONETIME_PHP' } },")
-          p.write_text(s)
-
-          # Secure checkout identity: derive user server-side from Supabase token.
-          p = root/'pages/api/create-checkout-session.js'; s = p.read_text()
-          s = s.replace("IN: { journey: 49900, pro: 199900 },\n    PH: { journey: 59900, pro: 199900 },", "IN: { journey: 49900, pro: 49900 },\n    PH: { journey: 59900, pro: 33000 },")
-          s = s.replace("const { tierId: rawTierId, region = 'AU', userId, email, name, promoCode } = req.body\n  const tierId = tierAliasMap[rawTierId] || rawTierId", "const { tierId: rawTierId, region = 'AU', name, promoCode } = req.body\n  const tierId = tierAliasMap[rawTierId] || rawTierId\n\n  const authHeader = req.headers.authorization || ''\n  const accessToken = authHeader.startsWith('Bearer ') ? authHeader.slice(7) : null\n  if (!accessToken) return res.status(401).json({ error: 'Please sign in before checkout.' })\n  const supabase = createClient(process.env.NEXT_PUBLIC_SUPABASE_URL, process.env.SUPABASE_SERVICE_ROLE_KEY)\n  const { data: authData, error: authError } = await supabase.auth.getUser(accessToken)\n  if (authError || !authData?.user) return res.status(401).json({ error: 'Your session has expired. Please sign in again.' })\n  const userId = authData.user.id\n  const email = authData.user.email")
-          s = s.replace("      const supabase = createClient(process.env.NEXT_PUBLIC_SUPABASE_URL, process.env.SUPABASE_SERVICE_ROLE_KEY)\n      const { data: journeyPurchases } = await supabase", "      const { data: journeyPurchases } = await supabase")
-          p.write_text(s)
-
-          # Combined checkout passes authenticated token; never grants demo access in production.
-          p = root/'pages/checkout.js'; s = p.read_text()
-          s = s.replace("import { useAuth } from '../lib/auth'", "import { useAuth, supabase } from '../lib/auth'")
-          s = s.replace("if (isConfigured) {\n        const res = await fetch('/api/create-checkout-session', {", "if (isConfigured) {\n        const { data: { session } } = await supabase.auth.getSession()\n        if (!session?.access_token) throw new Error('Your session has expired. Please sign in again.')\n        const res = await fetch('/api/create-checkout-session', {")
-          s = s.replace("headers: { 'Content-Type': 'application/json' },\n          body: JSON.stringify({ tierId, interval, region, userId: user.id, email: user.email, name: user.name }),", "headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${session.access_token}` },\n          body: JSON.stringify({ tierId, interval, region, name: user.name }),")
-          s = s.replace("      } else {\n        await new Promise(r => setTimeout(r, 1600))\n        grantAccess()\n      }", "      } else {\n        if (typeof window !== 'undefined' && ['localhost', '127.0.0.1'].includes(window.location.hostname)) {\n          await new Promise(r => setTimeout(r, 500))\n          grantAccess()\n        } else {\n          throw new Error('Payments are temporarily unavailable. Please contact hello@learningonline.ai.')\n        }\n      }")
-          p.write_text(s)
-
-          # Every new signup gets Journey for 30 days.
-          p = root/'lib/auth.js'; s = p.read_text()
-          old = """            // Baseline free tier — never NULL. A brand-new account starts on the
-            // free 'parents' base; paid enrolment (Journey or Pro, both one-time
-            // purchases as of v2.1) upgrades this via the Stripe webhook.
-            user_type: 'parents',
-            selected_tier: 'parents',
-"""
-          new = """            // Launch offer: every new account receives Journey for 30 days.
-            // Parents & Caregivers remains available as the complimentary track.
-            user_type: 'journey',
-            selected_tier: 'journey',
-            journey_expires_at: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString(),
-            journey_reminder_sent_at: null,
-"""
-          s = s.replace(old, new)
-          s = s.replace("tier: 'parents',\n            progress: {},", "tier: 'journey',\n            journeyExpiresAt: newProfile.journey_expires_at,\n            progress: {},")
-          p.write_text(s)
-
-          # Campaign only goes to complimentary Journey-trial users, never paid owners.
-          p = root/'pages/api/admin/send-journey-campaign.js'; s = p.read_text()
-          s = s.replace(".select('id, email, full_name')", ".select('id, email, full_name, journey_expires_at')")
-          s = s.replace(".eq('selected_tier', TARGET_TIER)\n      .not('email', 'is', null)", ".eq('selected_tier', TARGET_TIER)\n      .not('journey_expires_at', 'is', null)\n      .not('email', 'is', null)")
-          p.write_text(s)
-
-          # Checkout verification must belong to the signed-in user; paid ownership clears trial expiry.
-          p = root/'pages/api/verify-checkout.js'; s = p.read_text()
-          s = s.replace("  const { session_id } = req.body\n  if (!session_id) return res.status(400).json({ error: 'Missing session_id' })\n", "  const { session_id } = req.body\n  if (!session_id) return res.status(400).json({ error: 'Missing session_id' })\n  const authHeader = req.headers.authorization || ''\n  const accessToken = authHeader.startsWith('Bearer ') ? authHeader.slice(7) : null\n  if (!accessToken) return res.status(401).json({ error: 'Please sign in to verify this checkout.' })\n")
-          s = s.replace("  try {\n    // Step 1: Retrieve the session from Stripe", "  try {\n    const { data: authData, error: authError } = await supabase.auth.getUser(accessToken)\n    if (authError || !authData?.user) return res.status(401).json({ error: 'Your session has expired. Please sign in again.' })\n\n    // Step 1: Retrieve the session from Stripe")
-          s = s.replace("      })\n    }\n\n    // Step 4: Idempotently create/update entitlement", "      })\n    }\n    if (userId !== authData.user.id) return res.status(403).json({ error: 'This checkout belongs to a different account.' })\n\n    // Step 4: Idempotently create/update entitlement")
-          s = s.replace("          stripe_customer_id: session.customer,\n        })", "          stripe_customer_id: session.customer,\n          journey_expires_at: null,\n          journey_reminder_sent_at: null,\n        })")
-          s = s.replace("          user_type: tierId,\n        })", "          user_type: tierId,\n          journey_expires_at: null,\n          journey_reminder_sent_at: null,\n        })")
-          p.write_text(s)
-
-          p = root/'pages/success.js'; s = p.read_text()
-          s = s.replace("      const res = await fetch('/api/verify-checkout', {\n        method: 'POST',\n        headers: { 'Content-Type': 'application/json' },", "      const { data: { session } } = await supabase.auth.getSession()\n      if (!session?.access_token) { setState('error'); setErrorMsg('Please sign in again so we can verify your payment.'); return }\n      const res = await fetch('/api/verify-checkout', {\n        method: 'POST',\n        headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${session.access_token}` },")
-          p.write_text(s)
-
-          (root/'vercel.json').write_text('''{
-            "$schema": "https://openapi.vercel.sh/vercel.json",
-            "crons": [
-              { "path": "/api/cron/journey-expiry", "schedule": "15 0 * * *" },
-              { "path": "/api/cron/commercial-health", "schedule": "30 0 * * 1" }
-            ]
-          }\n''')
-
-          pkg = json.loads((root/'package.json').read_text())
-          pkg['scripts']['check:release'] = 'node scripts/release-check.mjs'
-          pkg['scripts']['content:refresh'] = 'node scripts/content-refresh.mjs'
-          (root/'package.json').write_text(json.dumps(pkg, indent=2) + '\n')
-
-          (root/'scripts').mkdir(exist_ok=True)
-          (root/'scripts/release-check.mjs').write_text('''import fs from 'node:fs'\nconst files=['data/tiers.js','pages/checkout.js','pages/api/create-checkout-session.js','pages/api/verify-checkout.js','pages/api/cron/journey-expiry.js','pages/api/cron/commercial-health.js']; for(const f of files){if(!fs.existsSync(f)) throw new Error(`Missing ${f}`)}\nconst tiers=fs.readFileSync('data/tiers.js','utf8'); const api=fs.readFileSync('pages/api/create-checkout-session.js','utf8'); const auth=fs.readFileSync('lib/auth.js','utf8'); const campaign=fs.readFileSync('pages/api/admin/send-journey-campaign.js','utf8');\nconst checks=[['India Pro ₹499',tiers.includes("amount: 499, label: '\\\\u20b9499'")],['Philippines Pro ₱330',tiers.includes("amount: 330, label: '\\\\u20b1330'")],['Checkout auth verified server-side',api.includes('supabase.auth.getUser(accessToken)')],['New signup Journey trial',auth.includes("selected_tier: 'journey'")&&auth.includes('30 * 24 * 60 * 60 * 1000')],['Campaign only trial users',campaign.includes(".not('journey_expires_at', 'is', null)")]]; let bad=false; for(const [n,ok] of checks){console.log(`${ok?'✓':'✗'} ${n}`); if(!ok) bad=true} if(bad) process.exit(1);\n''')
-
-          (root/'scripts/content-refresh.mjs').write_text('''import fs from 'node:fs'\nconst key=process.env.ANTHROPIC_API_KEY; if(!key){console.log('ANTHROPIC_API_KEY not configured; skipping.'); process.exit(0)}\nconst urls=['https://platform.openai.com/docs/models','https://docs.anthropic.com/en/docs/about-claude/models/overview','https://ai.google.dev/gemini-api/docs/models']; const src=[]; for(const url of urls){try{const r=await fetch(url,{headers:{'user-agent':'LearningOnline.ai content freshness bot/1.0'}}); if(!r.ok) throw new Error(String(r.status)); const t=(await r.text()).replace(/<script[\\s\\S]*?<\\/script>/gi,' ').replace(/<style[\\s\\S]*?<\\/style>/gi,' ').replace(/<[^>]+>/g,' ').replace(/\\s+/g,' ').slice(0,18000); src.push(`SOURCE: ${url}\\n${t}`)}catch(e){console.warn(url,e.message)}} if(!src.length) process.exit(0);\nconst path='data/ai-landscape.js'; const current=fs.readFileSync(path,'utf8'); const prompt=`Maintain LearningOnline.ai's AI landscape reference. Update ONLY facts clearly supported by the official extracts. Do not change exports/schema, pricing, auth, curriculum or pedagogical framing. Return only the complete replacement JS file. If nothing material changed, return the current file byte-for-byte.\\n\\nCURRENT:\\n${current}\\n\\nSOURCES:\\n${src.join('\\n\\n')}`; const r=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'x-api-key':key,'anthropic-version':'2023-06-01','content-type':'application/json'},body:JSON.stringify({model:process.env.CONTENT_REFRESH_MODEL||'claude-sonnet-4-5',max_tokens:12000,temperature:0,messages:[{role:'user',content:prompt}]})}); if(!r.ok) throw new Error(`Anthropic ${r.status}: ${await r.text()}`); const b=await r.json(); const out=b.content?.filter(x=>x.type==='text').map(x=>x.text).join('\\n').trim(); if(!out||!out.includes('export')||out.includes('```')) throw new Error('Invalid generated content'); if(out!==current.trim()){fs.writeFileSync(path,out+'\\n'); console.log('Updated AI landscape')} else console.log('No material change');\n''')
-
-          (root/'pages/api/cron/commercial-health.js').write_text('''import { createClient } from '@supabase/supabase-js'\nconst APP_URL=process.env.NEXT_PUBLIC_APP_URL||'https://www.learningonline.ai'; const TO=process.env.BUSINESS_REPORT_EMAIL||process.env.EMAIL_REPLY_TO||'hello@learningonline.ai';\nexport default async function handler(req,res){const secret=process.env.CRON_SECRET;if(!secret||req.headers.authorization!==`Bearer ${secret}`)return res.status(401).json({error:'Unauthorised'});const sb=createClient(process.env.NEXT_PUBLIC_SUPABASE_URL,process.env.SUPABASE_SERVICE_ROLE_KEY,{auth:{persistSession:false}});const since=new Date(Date.now()-7*24*60*60*1000).toISOString();const [{data:users},{data:purchases},{data:feedback}]=await Promise.all([sb.from('users_profile').select('id,selected_tier,created_at,journey_expires_at').gte('created_at',since),sb.from('purchases').select('tier,amount,currency,region,payment_status,created_at').eq('payment_status','completed').gte('created_at',since),sb.from('feedback').select('rating,feedback_type,created_at').gte('created_at',since)]);const revenue={};for(const p of purchases||[]){const k=(p.currency||'unknown').toUpperCase();revenue[k]=(revenue[k]||0)+(p.amount||0)}const rr=(feedback||[]).filter(f=>Number(f.rating)>0);const avg=rr.length?rr.reduce((a,b)=>a+Number(b.rating),0)/rr.length:null;const summary={signups:users?.length||0,purchases:purchases?.length||0,revenueMinorUnitsByCurrency:revenue,feedback:feedback?.length||0,averageRating:avg?Number(avg.toFixed(2)):null,generatedAt:new Date().toISOString()};if(process.env.RESEND_API_KEY){const text=`LearningOnline.ai weekly commercial health\\n\\nNew signups: ${summary.signups}\\nCompleted purchases: ${summary.purchases}\\nRevenue (minor units, by currency): ${JSON.stringify(revenue)}\\nFeedback items: ${summary.feedback}\\nAverage rating: ${summary.averageRating??'n/a'}\\n\\nDashboard: ${APP_URL}/admin/feedback\\n\\nCurrencies are intentionally not added together.`;await fetch('https://api.resend.com/emails',{method:'POST',headers:{Authorization:`Bearer ${process.env.RESEND_API_KEY}`,'Content-Type':'application/json'},body:JSON.stringify({from:process.env.EMAIL_FROM||'LeO AI <hello@learningonline.ai>',to:TO,subject:'LearningOnline.ai — weekly commercial health',text})}).catch(()=>{})}return res.status(200).json({ok:true,...summary})}\n''')
-
-          (root/'.github/workflows/quality-gate.yml').write_text('''name: Quality Gate\non: [pull_request]\npermissions:\n  contents: read\njobs:\n  validate:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n      - uses: actions/setup-node@v4\n        with: { node-version: '20', cache: 'npm' }\n      - run: npm ci\n      - run: npm run check:release\n      - run: npm run build\n        env:\n          NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}\n          NEXT_PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.NEXT_PUBLIC_SUPABASE_ANON_KEY }}\n          NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY: ${{ secrets.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY }}\n''')
-
-          (root/'.github/workflows/content-refresh.yml').write_text('''name: Controlled AI Content Refresh\non:\n  schedule:\n    - cron: '20 20 * * 0'\n  workflow_dispatch:\npermissions:\n  contents: write\n  pull-requests: write\njobs:\n  refresh:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n        with: { fetch-depth: 0 }\n      - uses: actions/setup-node@v4\n        with: { node-version: '20', cache: 'npm' }\n      - run: npm ci\n      - run: npm run content:refresh\n        env:\n          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}\n          CONTENT_REFRESH_MODEL: ${{ vars.CONTENT_REFRESH_MODEL }}\n      - run: npm run check:release\n      - id: diff\n        run: if git diff --quiet -- data/ai-landscape.js; then echo 'changed=false' >> "$GITHUB_OUTPUT"; else echo 'changed=true' >> "$GITHUB_OUTPUT"; fi\n      - if: steps.diff.outputs.changed == 'true'\n        env: { GH_TOKEN: '${{ github.token }}' }\n        run: |\n          BRANCH="automation/content-refresh-$(date +%Y%m%d)"\n          git config user.name learningonline-content-bot\n          git config user.email actions@users.noreply.github.com\n          git checkout -b "$BRANCH"\n          git add data/ai-landscape.js\n          git commit -m "chore(content): refresh AI landscape from official sources"\n          git push origin "$BRANCH"\n          gh pr create --base main --head "$BRANCH" --title "Automated AI landscape refresh" --body "Official-source, controlled refresh. Core curriculum, pricing, authentication and payments are outside bot scope."\n''')
-
-          (root/'AUTOMATION-OPERATING-MODEL.md').write_text('''# LearningOnline.ai — Self-Sustaining Operating Model\n\nGitHub `main` is the production source of truth; Vercel deploys from GitHub; Supabase is the source of truth for users, entitlements, progress, purchases, feedback and commercial telemetry.\n\n## Automated loops\n- Weekly official-source AI landscape refresh, limited to `data/ai-landscape.js`, proposed through a PR.\n- Every release PR runs release invariants and a clean Next.js build, alongside existing Playwright tests.\n- Daily Journey expiry/reminder cron.\n- Weekly commercial-health summary: signups, purchases, feedback and revenue separated by currency.\n\n## Guardrails\nPricing, payment logic, database DDL, mass email and core curriculum changes require explicit reviewed releases.\n\n## Launch markets\nAustralia remains the higher-value benchmark. India launches Pro at ₹499 one-time. Philippines launches Pro at ₱330 one-time. Scale paid acquisition only after conversion data establishes a sustainable CAC ceiling.\n\n## Secrets\nGitHub Actions needs Supabase public values and optional `ANTHROPIC_API_KEY`. Vercel needs existing Supabase/Stripe/Resend secrets plus `CRON_SECRET` and `BUSINESS_REPORT_EMAIL`.\n''')
-
-          # This bootstrap is one-shot; remove itself before committing the real release.
-          (root/'.github/workflows/bootstrap-v3.yml').unlink()
-          PY
-      - name: Validate transformed files
+          cat .release/v3.part* | base64 -d > /tmp/v3patch.tar.gz
+          tar -xzf /tmp/v3patch.tar.gz
+          rm -rf .release
+          rm -f .github/workflows/bootstrap-v3.yml
+      - name: Validate release invariants
         run: |
           node --check pages/api/create-checkout-session.js
           node --check pages/api/verify-checkout.js
+          node --check pages/api/stripe-webhook.js
           node --check pages/api/admin/send-journey-campaign.js
           node --check pages/api/cron/commercial-health.js
           node --check lib/auth.js
-          npm run check:release
-      - name: Commit integrated release to branch
+          node scripts/release-check.mjs
+      - name: Commit integrated release
         run: |
           git config user.name "LearningOnline Release Bot"
           git config user.email "actions@users.noreply.github.com"
           git add -A
-          git commit -m "feat: self-sustaining platform, trial and market launch controls"
+          git commit -m "feat: integrated self-sustaining v3 release [v3-applied]"
           git push origin HEAD:release/self-sustaining-v3
