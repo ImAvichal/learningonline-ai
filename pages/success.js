@@ -43,9 +43,15 @@ export default function Success() {
     try {
       // Call backend to verify the Stripe session was paid AND grant entitlement
       // (acts as backup if webhook hasn't fired yet)
+      const { data: { session } } = await supabase.auth.getSession()
+      if (!session?.access_token) {
+        setState('error')
+        setErrorMsg('Please sign in again so we can verify your payment.')
+        return
+      }
       const res = await fetch('/api/verify-checkout', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${session.access_token}` },
         body: JSON.stringify({ session_id }),
       })
 

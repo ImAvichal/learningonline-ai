@@ -30,6 +30,10 @@ export default async function handler(req, res) {
   const { session_id } = req.body
   if (!session_id) return res.status(400).json({ error: 'Missing session_id' })
 
+  const authHeader = req.headers.authorization || ''
+  const accessToken = authHeader.startsWith('Bearer ') ? authHeader.slice(7) : null
+  if (!accessToken) return res.status(401).json({ error: 'Please sign in to verify this checkout.' })
+
   const stripe = new Stripe(process.env.STRIPE_SECRET_KEY)
   const supabase = createClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL,
@@ -37,6 +41,9 @@ export default async function handler(req, res) {
   )
 
   try {
+    const { data: authData, error: authError } = await supabase.auth.getUser(accessToken)
+    if (authError || !authData?.user) return res.status(401).json({ error: 'Your session has expired. Please sign in again.' })
+
     // Step 1: Retrieve the session from Stripe (server-to-server, can't be spoofed)
     const session = await stripe.checkout.sessions.retrieve(session_id)
 
@@ -56,6 +63,9 @@ export default async function handler(req, res) {
       return res.status(400).json({
         error: 'Session missing required metadata (userId/tierId)',
       })
+    }
+    if (userId !== authData.user.id) {
+      return res.status(403).json({ error: 'This checkout belongs to a different account.' })
     }
 
     // Step 4: Idempotently create/update entitlement
@@ -104,6 +114,8 @@ export default async function handler(req, res) {
           selected_tier: tierId,
           user_type: tierId,
           stripe_customer_id: session.customer,
+          journey_expires_at: null,
+          journey_reminder_sent_at: null,
         })
         .eq('id', userId)
     } else {
@@ -116,6 +128,8 @@ export default async function handler(req, res) {
         .update({
           selected_tier: tierId,
           user_type: tierId,
+          journey_expires_at: null,
+          journey_reminder_sent_at: null,
         })
         .eq('id', userId)
     }

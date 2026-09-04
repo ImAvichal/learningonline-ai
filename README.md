@@ -37,7 +37,6 @@ Update Stripe products to match new prices.
 
 ## Dev Bypass
 ```
-https://learningonline.ai/dashboard?dev_key=loa_dev_avi_2025
 ```
 
 ## Local Setup

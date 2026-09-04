@@ -181,7 +181,7 @@ export const REGIONAL_PRICING = {
     currency: 'PHP',
     symbol: '\u20b1',
     plans: {
-      journey: { oneTime: { amount: 599, label: '\u20b1599', listLabel: '\u20b1999', stripeEnvKey: 'STRIPE_PRICE_JOURNEY_ONETIME_PHP' } },
+      journey: { oneTime: { amount: 330, label: '\u20b1330', listLabel: '\u20b1999', stripeEnvKey: 'STRIPE_PRICE_JOURNEY_ONETIME_PHP' } },
       pro:     { oneTime: { amount: 1999, label: '\u20b11,999', listLabel: '\u20b12,999', stripeEnvKey: 'STRIPE_PRICE_PRO_ONETIME_PHP' } },
     },
   },

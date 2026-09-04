@@ -33,12 +33,24 @@ export default async function handler(req, res) {
     AU: { journey: 14900, pro: 29900 },
     US: { journey: 9900,  pro: 19900 },
     IN: { journey: 49900, pro: 199900 },
-    PH: { journey: 59900, pro: 199900 },
+    PH: { journey: 33000, pro: 199900 },
   }
 
   const tierAliasMap = { individual: 'journey', smb: 'journey', enterprise: 'pro' }
-  const { tierId: rawTierId, region = 'AU', userId, email, name, promoCode } = req.body
+  const { tierId: rawTierId, region = 'AU', name, promoCode } = req.body
   const tierId = tierAliasMap[rawTierId] || rawTierId
+
+  const authHeader = req.headers.authorization || ''
+  const accessToken = authHeader.startsWith('Bearer ') ? authHeader.slice(7) : null
+  if (!accessToken) return res.status(401).json({ error: 'Please sign in before checkout.' })
+
+  const supabase = createClient(process.env.NEXT_PUBLIC_SUPABASE_URL, process.env.SUPABASE_SERVICE_ROLE_KEY)
+  const { data: authData, error: authError } = await supabase.auth.getUser(accessToken)
+  if (authError || !authData?.user) {
+    return res.status(401).json({ error: 'Your session has expired. Please sign in again.' })
+  }
+  const userId = authData.user.id
+  const email = authData.user.email
 
   // ANTI-ARBITRAGE: billing region is derived SERVER-SIDE from the request's
   // own geolocation (Vercel edge header). The client-supplied region is only a
@@ -77,7 +89,6 @@ export default async function handler(req, res) {
     // actually-paid Journey purchase — amount > 0 rules out any edge case
     // where a purchase row exists but nothing was ever charged. ──
     if (tierId === 'pro' && userId) {
-      const supabase = createClient(process.env.NEXT_PUBLIC_SUPABASE_URL, process.env.SUPABASE_SERVICE_ROLE_KEY)
       const { data: journeyPurchases } = await supabase
         .from('purchases')
         .select('amount, currency')
@@ -109,7 +120,7 @@ export default async function handler(req, res) {
 
         if (diff <= 0) {
           // Fully covered — grant Pro directly without a Stripe charge.
-          await supabase.from('users_profile').update({ selected_tier: 'pro', user_type: 'pro' }).eq('id', userId)
+          await supabase.from('users_profile').update({ selected_tier: 'pro', user_type: 'pro', journey_expires_at: null, journey_reminder_sent_at: null }).eq('id', userId)
           await supabase.from('purchases').insert({
             user_id: userId, tier: 'pro', amount: 0, currency: currencyByRegion[safeRegion],
             payment_status: 'completed', region: safeRegion,

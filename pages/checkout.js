@@ -17,7 +17,7 @@ import Head from 'next/head'
 import Link from 'next/link'
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
-import { useAuth } from '../lib/auth'
+import { useAuth, supabase } from '../lib/auth'
 import { useRegion } from '../lib/region'
 import { REGIONAL_PRICING } from '../data/tiers'
 import { Card, Spinner, TierBadge, Input } from '../components/ui'
@@ -248,16 +248,20 @@ export default function Checkout() {
       const isConfigured = stripeKey && !stripeKey.includes('YOUR_KEY') && stripeKey.startsWith('pk_')
 
       if (isConfigured) {
+        const { data: { session } } = await supabase.auth.getSession()
+        if (!session?.access_token) throw new Error('Your session has expired. Please sign in again.')
         const res = await fetch('/api/create-checkout-session', {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ tierId, interval, region, userId: user.id, email: user.email, name: user.name }),
+          headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${session.access_token}` },
+          body: JSON.stringify({ tierId, interval, region, name: user.name }),
         })
         if (!res.ok) { const b = await res.json(); throw new Error(b.error || 'Server error') }
         const { url } = await res.json()
         window.location.href = url
       } else {
-        await new Promise(r => setTimeout(r, 1600))
+        const isLocal = typeof window !== 'undefined' && ['localhost', '127.0.0.1'].includes(window.location.hostname)
+        if (!isLocal) throw new Error('Payments are temporarily unavailable. Please contact hello@learningonline.ai.')
+        await new Promise(r => setTimeout(r, 500))
         grantAccess()
       }
     } catch (err) {
