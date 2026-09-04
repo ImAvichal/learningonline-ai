@@ -22,7 +22,7 @@ jobs:
           cat .release/v3.part* | base64 -d > /tmp/v3patch.tar.gz
           tar -xzf /tmp/v3patch.tar.gz
           rm -rf .release
-          rm -f .github/workflows/bootstrap-v3.yml
+          rm -f .github/workflows/quality-gate.yml .github/workflows/content-refresh.yml
       - name: Validate release invariants
         run: |
           node --check pages/api/create-checkout-session.js
