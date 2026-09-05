@@ -1,10 +1,10 @@
 # .github/workflows/e2e.yml
-# Runs E2E tests on every PR + nightly against production preview.
+# Production E2E checks run after main deployment and nightly.
+# Pull requests are validated by quality-gate.yml + Vercel Preview.
 
 name: E2E Tests
 
 on:
-  pull_request:
   push:
     branches: [main]
   schedule:
@@ -33,6 +33,7 @@ jobs:
     name: User journey tests
     runs-on: ubuntu-latest
     needs: smoke
+    if: ${{ secrets.TEST_USER_EMAIL != '' && secrets.TEST_USER_PASSWORD != '' }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -52,7 +53,6 @@ jobs:
           name: playwright-journey-report
           path: playwright-report/
 
-  # Only runs on schedule (nightly), not every PR — Stripe test mode but slow
   payment:
     name: Payment flow tests
     runs-on: ubuntu-latest
