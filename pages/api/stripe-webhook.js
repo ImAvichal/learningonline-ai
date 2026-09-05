@@ -137,6 +137,8 @@ async function handleCheckoutCompleted(session, supabase) {
     selected_tier: tierId,
     user_type: tierId,
     stripe_customer_id: session.customer,
+    journey_expires_at: null,
+    journey_reminder_sent_at: null,
   }, { onConflict: 'id' })
 
   console.log(`[webhook] ✓ ${tierId} access granted to ${userId}`)

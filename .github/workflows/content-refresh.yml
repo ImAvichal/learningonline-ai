@@ -1,0 +1,47 @@
+name: Controlled AI Content Refresh
+
+on:
+  schedule:
+    - cron: '20 20 * * 0'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: npm
+      - run: npm ci
+      - run: npm run content:refresh
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          CONTENT_REFRESH_MODEL: ${{ vars.CONTENT_REFRESH_MODEL }}
+      - run: npm run check:release
+      - id: diff
+        run: |
+          if git diff --quiet -- data/ai-landscape.js; then
+            echo 'changed=false' >> "$GITHUB_OUTPUT"
+          else
+            echo 'changed=true' >> "$GITHUB_OUTPUT"
+          fi
+      - if: steps.diff.outputs.changed == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          BRANCH="automation/content-refresh-$(date +%Y%m%d)"
+          git config user.name learningonline-content-bot
+          git config user.email actions@users.noreply.github.com
+          git checkout -b "$BRANCH"
+          git add data/ai-landscape.js
+          git commit -m "chore(content): refresh AI landscape from official sources"
+          git push origin "$BRANCH"
+          gh pr create --base main --head "$BRANCH" --title "Automated AI landscape refresh" --body "Official-source, controlled refresh. Core curriculum, pricing, authentication and payments are outside bot scope."

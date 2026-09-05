@@ -1,0 +1,42 @@
+name: Final Auth Hardening Fix
+
+on:
+  push:
+    branches:
+      - release/self-sustaining-v3
+
+permissions:
+  contents: write
+
+jobs:
+  fix:
+    if: ${{ !contains(github.event.head_commit.message, '[auth-fix-applied]') }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: release/self-sustaining-v3
+          fetch-depth: 0
+      - name: Remove obsolete client dev bypass block
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p=Path('lib/auth.js')
+          s=p.read_text()
+          start=s.index('    // ── Dev bypass (unchanged)')
+          end=s.index('    const init = async () => {', start)
+          s=s[:start]+s[end:]
+          p.write_text(s)
+          PY
+          if grep -q 'DEV_KEY\|dev_key' lib/auth.js; then
+            echo 'Dev bypass reference remains' >&2
+            exit 1
+          fi
+          node --check lib/auth.js
+      - name: Commit fix
+        run: |
+          git config user.name "LearningOnline Release Bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add lib/auth.js
+          git commit -m "fix: remove obsolete client dev bypass [auth-fix-applied]"
+          git push origin HEAD:release/self-sustaining-v3

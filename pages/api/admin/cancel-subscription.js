@@ -21,7 +21,7 @@
 
 import Stripe from 'stripe'
 import { requireAdmin } from '../../../lib/adminAuth'
-import { sendCancellationEmail } from '../../../lib/emails'
+import { sendCancellationEmail } from '../../../lib/emails.cancellation'
 
 export default async function handler(req, res) {
   if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' })

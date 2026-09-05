@@ -38,8 +38,9 @@ export default async function handler(req, res) {
   try {
     const { data: candidates, error: qErr } = await supabase
       .from('users_profile')
-      .select('id, email, full_name')
+      .select('id, email, full_name, journey_expires_at')
       .eq('selected_tier', TARGET_TIER)
+      .not('journey_expires_at', 'is', null)
       .not('email', 'is', null)
     if (qErr) throw qErr
 
