@@ -1,127 +1,112 @@
 // data/ai-landscape.js
-// ─────────────────────────────────────────────────────────────────────────────
-// SINGLE SOURCE OF TRUTH for fast-moving AI facts referenced across the
-// curriculum (model names, indicative prices, regulatory dates).
-//
-// WHY THIS FILE EXISTS: model names and prices change every few weeks and
-// regulation shifts every few months. Hard-coding them into 14 modules of
-// lesson HTML guarantees the course goes stale. Update THIS file on a regular
-// cadence instead — lessons should reference these tiers and principles rather
-// than pinning specific product names.
-//
-// Everything below is a point-in-time snapshot. Treat figures as INDICATIVE and
-// verify against primary sources before relying on them for a business case.
-// ─────────────────────────────────────────────────────────────────────────────
+// Fast-moving AI facts used as the course's current-landscape reference.
+// Durable lessons should teach capability tiers and decision principles; this
+// file supplies dated examples that can be refreshed without rewriting them.
 
-export const LANDSCAPE_LAST_REVIEWED = '2026-07-25'
+export const LANDSCAPE_LAST_REVIEWED = '2026-09-05'
 export const LANDSCAPE_REVIEW_CADENCE =
-  'Review quarterly, or whenever a major model family or regulatory change lands.'
+  'Review weekly against primary vendor and regulator sources; publish material changes with a learner-facing change log.'
 
-// ── Model landscape ──────────────────────────────────────────────────────────
-// Teach by CAPABILITY TIER, not by brand. The specific names are examples only
-// and date quickly; the tiering and the "use when" guidance are the durable
-// lesson. The field is currently producing a new state-of-the-art model roughly
-// every couple of weeks, so expect the example names to move.
 export const MODEL_TIERS = [
   {
     id: 'frontier',
     label: 'Frontier / flagship',
-    useWhen:
-      'Hardest reasoning, ambiguous or high-stakes work, long-horizon agentic tasks. The most capable — and most expensive — option.',
+    useWhen: 'Hardest reasoning, coding, research, multimodal and long-horizon agentic work. Use only when the quality gain clears the extra cost, latency and governance burden.',
     examples: [
-      'OpenAI GPT-5.6 (flagship family)',
-      'Anthropic Claude Opus 4.8 (plus the frontier Mythos tier above it)',
-      'Google Gemini 3.x Pro',
-      'xAI Grok 4.5',
+      'OpenAI GPT-6 Astra (September 2026 rollout; availability may be limited)',
+      'OpenAI GPT-5.6 Sol',
+      'Anthropic Claude Fable 5.1 / Claude Mythos 5.1',
+      'Anthropic Claude Opus 5',
+      'Google Gemini 3.6 Flash / Gemini 3.5 family',
     ],
-    indicativeCost: '~$2–15 per M input / $10–60 per M output tokens',
+    indicativeCost: 'Pricing changes frequently — benchmark current vendor pricing against your own task and volume before selecting a model.',
   },
   {
     id: 'mid',
     label: 'Mid-tier / workhorse',
-    useWhen:
-      'The right default for most production workloads — strong quality at a fraction of frontier cost.',
-    examples: [
-      'Anthropic Claude Sonnet 5',
-      'Google Gemini 3.x Flash',
-      'OpenAI GPT-5.6 (mid tier)',
-    ],
-    indicativeCost: '~$1–5 per M input / $5–15 per M output tokens',
+    useWhen: 'The default for most production workloads: strong quality, lower latency and lower unit cost than the flagship tier.',
+    examples: ['Anthropic Claude Sonnet 5', 'Google Gemini 3.6 Flash / 3.5 Flash', 'Current OpenAI general-purpose production models'],
+    indicativeCost: 'Treat cost per completed task — not cost per token alone — as the decision metric.',
   },
   {
     id: 'small',
     label: 'Small / fast',
-    useWhen:
-      'High-volume, well-defined tasks — classification, extraction, routing, simple drafting. Frequently matches big models on a narrow task at a fraction of the cost. Right-size before reaching for a flagship.',
-    examples: [
-      'Anthropic Claude Haiku 4.5',
-      'Google Gemini Flash-Lite',
-      'Small / "mini" variants across vendors',
-    ],
-    indicativeCost: '~$0.10–1 per M input / $0.40–4 per M output tokens',
+    useWhen: 'High-volume, well-defined classification, extraction, routing and simple drafting. Test this tier first for narrow tasks.',
+    examples: ['Google Gemini 3.5 Flash-Lite', 'Small / mini variants across major vendors', 'Task-specific open-weight models'],
+    indicativeCost: 'Usually the lowest hosted cost and latency; verify accuracy on a representative evaluation set.',
   },
   {
-    id: 'reasoning',
-    label: 'Reasoning-tuned',
-    useWhen:
-      'Multi-step logic, maths, planning, and hard code. Worth the extra latency and cost ONLY when the task genuinely needs deliberate step-by-step reasoning — most tasks do not.',
-    examples: [
-      'Extended-thinking / reasoning modes now built into the frontier families (OpenAI o-series lineage, Claude extended thinking, Gemini "thinking")',
-    ],
-    indicativeCost:
-      'A premium over the equivalent non-reasoning model; billed on total tokens including the hidden reasoning tokens.',
+    id: 'agentic',
+    label: 'Agentic / computer-use capable',
+    useWhen: 'Multi-step tasks that require tools, applications, browsers or APIs. The design problem is permissions, approvals, observability and recovery — not simply whether the model can act.',
+    examples: ['Google Gemini 3.5 Flash computer use', 'Gemini Spark', 'OpenAI computer-use capable reasoning models', 'Claude long-running agent workflows'],
+    indicativeCost: 'Model the full trajectory: reasoning + tool calls + retries + external API costs. Agent cost can be many times a single chat response.',
+  },
+  {
+    id: 'multimodal',
+    label: 'Native multimodal',
+    useWhen: 'Workflows combining text, images, audio, video or live interaction. Prefer native multimodal models where they simplify orchestration and improve context continuity.',
+    examples: ['Google Gemini Omni / Omni Flash', 'Gemini 3.5 Live Translate', 'Frontier OpenAI and Anthropic multimodal families'],
+    indicativeCost: 'Price and latency vary materially by modality. Measure the whole workflow, not just text-token rates.',
   },
   {
     id: 'open',
     label: 'Open-weight',
-    useWhen:
-      'Data-residency and privacy control, self-hosting, cost control at scale, and fine-tuning. Now within single-digit percentage points of the proprietary leaders on many benchmarks.',
-    examples: [
-      'Meta (Llama / Muse lineage)',
-      'DeepSeek V4',
-      'Alibaba Qwen 3.x',
-      'Mistral',
-    ],
-    indicativeCost:
-      'Lowest — self-hosted (you pay infrastructure) or roughly $0.30–2 per M tokens via hosted providers.',
+    useWhen: 'Self-hosting, customisation, privacy/data-residency control and cost optimisation at sustained scale.',
+    examples: ['Meta open-weight families', 'DeepSeek', 'Qwen', 'Mistral'],
+    indicativeCost: 'Include infrastructure, operations, evaluation and security costs when comparing with hosted APIs.',
   },
 ]
 
-// ── Cost trend — teach the direction, not the sticker price ──────────────────
 export const COST_TREND_NOTE =
-  'Inference prices have fallen roughly an order of magnitude per year. Model your cost FLOOR and re-check pricing each quarter — never build a business case around today\u2019s per-token price.'
+  'Model capability and price are moving quickly. Re-benchmark regularly and optimise for cost per successful business outcome, not brand prestige or a static token price.'
 
-// ── Regulatory landscape — verify dates, this is actively shifting ───────────
+export const CURRENT_AI_SHIFTS = [
+  {
+    title: 'AI is moving from answering to acting',
+    summary: 'Computer use, tool calling and persistent agents are becoming mainstream. Teach least privilege, approval gates, audit trails and rollback alongside prompting.',
+  },
+  {
+    title: 'Multimodality is becoming native',
+    summary: 'Text, image, audio and video increasingly live in one model family, reducing the need for separate pipelines while increasing privacy and evaluation requirements.',
+  },
+  {
+    title: 'Model choice is now a routing decision',
+    summary: 'Strong teams route work by complexity, risk, latency and cost rather than choosing one model for everything.',
+  },
+  {
+    title: 'Capability requires stronger safeguards',
+    summary: 'More capable agents increase the impact of mistakes and misuse. Human approval for consequential actions, scoped tools and continuous evaluation are production requirements.',
+  },
+]
+
 export const AI_REGULATION = [
   {
     framework: 'EU AI Act (Regulation 2024/1689)',
-    whatItIs:
-      'The world\u2019s first comprehensive, risk-tiered AI law. Extraterritorial — it applies to anyone placing AI on the EU market, wherever they are based. Penalties up to 7% of global turnover.',
-    keyDates: [
-      'In force 1 Aug 2024, rolling out in phases.',
-      '2 Aug 2025 — general-purpose AI (GPAI) obligations, governance structures and the penalty regime begin.',
-      '2 Aug 2026 — transparency duties (Art. 50), full GPAI enforcement and the penalty regime start to bite.',
-      'High-risk (Annex III) obligations deferred to 2 Dec 2027, and product-embedded high-risk (Annex I) to 2 Aug 2028, under the Digital Omnibus agreed May 2026.',
-    ],
+    whatItIs: 'Comprehensive, risk-tiered AI regulation with phased obligations. Exact implementation dates can change, so verify the European Commission implementation timeline before making compliance decisions.',
+    keyDates: ['In force since 2024 with obligations phasing in through subsequent years.', 'Treat high-risk, transparency and general-purpose AI obligations as separate compliance workstreams and verify current dates before deployment.'],
   },
   {
     framework: 'ISO/IEC 42001',
-    whatItIs:
-      'The certifiable AI Management System standard — the "how do we govern AI operationally" standard enterprises adopt to demonstrate assurance to customers and regulators.',
+    whatItIs: 'Certifiable AI management-system standard for operational governance, accountability and continual improvement.',
   },
   {
     framework: 'NIST AI Risk Management Framework (US)',
-    whatItIs:
-      'A voluntary but widely referenced framework for identifying and managing AI risk across the system lifecycle.',
+    whatItIs: 'Widely used voluntary lifecycle framework organised around Govern, Map, Measure and Manage.',
   },
   {
     framework: 'Australia',
-    whatItIs:
-      'A voluntary AI Safety Standard is in effect, with proposed mandatory guardrails for high-risk AI in development. Sector regulators are issuing guidance and running assurance sandboxes.',
+    whatItIs: 'Use the Australian Government AI safety guidance, Privacy Act obligations and sector-specific regulation as the baseline; verify current mandatory requirements for your sector and use case.',
   },
 ]
 
-// ── Convenience helpers for lessons / a future "current landscape" page ──────
+export const PRIMARY_REFRESH_SOURCES = [
+  { name: 'OpenAI release notes', url: 'https://openai.com/products/release-notes/' },
+  { name: 'OpenAI model release notes', url: 'https://help.openai.com/en/articles/9624314' },
+  { name: 'Anthropic newsroom', url: 'https://www.anthropic.com/news' },
+  { name: 'Google AI updates', url: 'https://blog.google/innovation-and-ai/technology/ai/' },
+  { name: 'NIST AI RMF', url: 'https://www.nist.gov/itl/ai-risk-management-framework' },
+]
+
 export const modelTier = (id) => MODEL_TIERS.find((t) => t.id === id) || null
-export const regulation = (name) =>
-  AI_REGULATION.find((r) => r.framework.toLowerCase().includes(name.toLowerCase())) || null
+export const regulation = (name) => AI_REGULATION.find((r) => r.framework.toLowerCase().includes(name.toLowerCase())) || null
