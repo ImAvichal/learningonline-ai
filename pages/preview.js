@@ -17,11 +17,11 @@ const PREVIEW_LESSONS = [
     title: 'What AI Actually Is (and Isn\'t)',
     duration: '8 min',
     content: `
-      <h2>AI is pattern recognition at scale — not magic.</h2>
-      <p>Every AI system you've ever used — ChatGPT, Google Search, Netflix recommendations — does one thing: it finds patterns in data and uses them to predict the most useful next output.</p>
-      <p>That's it. There's no understanding. No consciousness. No judgment. Just very sophisticated pattern matching, applied very fast, at very large scale.</p>
+      <h2>AI learns patterns and generates useful outputs — but it has limits.</h2>
+      <p>Modern AI systems can recognise patterns, generate content, analyse information and use tools. Different systems work differently: a recommendation engine is not the same as a conversational assistant.</p>
+      <p>AI can perform sophisticated reasoning tasks, but its answers are not guaranteed to be correct. Avoid treating fluent language as proof of understanding or reliability. Check important claims against trusted sources.</p>
       <h3>The definition that matters for business</h3>
-      <p>For the purposes of running and growing a business, AI is a tool that can automate or augment specific, well-defined tasks — as long as those tasks involve recognising patterns in structured or semi-structured data.</p>
+      <p>For the purposes of running and growing a business, AI can support well-defined tasks such as summarisation, drafting, classification and research. Reliable business use requires clear objectives, suitable data, evaluation and human oversight.</p>
       <h3>What AI IS:</h3>
       <ul>
         <li>Pattern recognition applied to your data</li>
@@ -41,9 +41,9 @@ const PREVIEW_LESSONS = [
       <div class="real-world-box">
         <h3>🌍 From Real-World Practice</h3>
         <p><strong>Insight:</strong> The most common reason AI projects fail isn't the technology. It's that the organisation tried to automate a process they hadn't properly defined first.</p>
-        <p><strong>Example:</strong> A 200-person professional services firm spent $180K building an AI that "improves proposal quality." After six months, adoption was 4%. The problem: nobody could define what "quality" meant. Without a definition, the AI had nothing to learn. The project was shelved.</p>
+        <p><strong>Example:</strong> Consider a hypothetical professional services firm building an AI proposal assistant without defining quality or measuring staff adoption. The tool might produce polished text while failing to improve win rates or reduce review time.</p>
         <p><strong>Implementation tip:</strong> Before any AI project, complete this sentence in one sentence: "We will know AI is working when [specific measurable outcome]." If you can't complete it, don't start yet.</p>
-        <p><strong>💡 What This Saves You:</strong> Organisations that define success criteria before build begin are 3× more likely to deploy successfully.</p>
+        <p><strong>💡 What This Saves You:</strong> Defining success measures before implementation makes it easier to test whether a system is delivering value. No universal success-rate multiplier is assumed.</p>
       </div>
     `,
   },
@@ -53,26 +53,23 @@ const PREVIEW_LESSONS = [
     title: 'Tokens: The Currency of AI',
     duration: '10 min',
     content: `
-      <h2>Every AI API call is priced in tokens. Understanding tokens = controlling costs.</h2>
-      <p>A token is approximately 4 characters, or about ¾ of a word. When you send text to an AI model and receive a response, both the input and output are measured and billed in tokens.</p>
-      <h3>Why this matters immediately</h3>
-      <p>Token costs look tiny in isolation — fractions of a cent per call. But at business scale, they compound fast. A customer service team processing 1,000 emails a day at 500 tokens each is running 500,000 tokens daily. At GPT-4o pricing, that's $1.25/day — fine. But if someone chose GPT-4o for a task that GPT-4o-mini handles equally well, they're paying 17× more than necessary.</p>
+      <h2>Many AI APIs charge by tokens. Learn the maths before you scale.</h2>
+      <p>Tokens are units used to measure model input and output. In English, one token is often roughly three-quarters of a word, but the exact count varies by language and model.</p>
+      <h3>Why this matters</h3>
+      <p>Suppose a team processes 1,000 emails each day, using 500 input tokens per email. That is 500,000 input tokens daily. At an <strong>illustrative</strong> input rate of US$1 per million tokens, input processing costs US$0.50 per day. Output tokens, other tools, retries and infrastructure add further costs.</p>
       <h3>The two costs you need to know</h3>
       <ul>
-        <li><strong>Input tokens:</strong> Everything you send to the model (your prompt + context)</li>
-        <li><strong>Output tokens:</strong> Everything the model sends back — costs 4–6× more than input</li>
+        <li><strong>Input tokens:</strong> Your instructions, documents and context sent to the model.</li>
+        <li><strong>Output tokens:</strong> The model's generated response. Input and output prices can differ substantially by model.</li>
       </ul>
-      <h3>Quick cost reference (USD, Q1 2025)</h3>
-      <ul>
-        <li>GPT-4o: $2.50 input / $10.00 output per million tokens</li>
-        <li>GPT-4o-mini: $0.15 input / $0.60 output per million tokens</li>
-        <li>Claude Haiku: $0.25 input / $1.25 output per million tokens</li>
-      </ul>
+      <h3>Worked example — illustrative rates, not a live price list</h3>
+      <p>Assume a model charges US$1 per million input tokens and US$5 per million output tokens. A request with 1,000 input tokens and 500 output tokens costs US$0.001 + US$0.0025 = <strong>US$0.0035 per request</strong>, before any additional charges.</p>
+      <p>For current rates, always check the provider's <a href="https://platform.openai.com/pricing" target="_blank" rel="noopener noreferrer">official pricing</a>, <a href="https://platform.claude.com/docs/en/about-claude/pricing" target="_blank" rel="noopener noreferrer">Claude pricing</a> or <a href="https://ai.google.dev/gemini-api/docs/pricing" target="_blank" rel="noopener noreferrer">Gemini pricing</a>. Prices and model availability change.</p>
       <div class="real-world-box">
         <h3>🌍 From Real-World Practice</h3>
         <p><strong>Insight:</strong> Most organisations choose their AI model based on capability demos, not cost at scale. The right question is never "what's the best model?" — it's "what's the cheapest model that meets my accuracy requirement?"</p>
-        <p><strong>Example:</strong> A retail company ran 800 support email classifications per day. Using GPT-4o: $219/year. Using GPT-4o-mini (same accuracy on their specific task): $13/year. Difference: $206/year. Small at this scale — but they had 14 other AI use cases in the pipeline. Choosing the right model across all 15 use cases saved over $40,000/year.</p>
-        <p><strong>💡 What This Saves You:</strong> Always benchmark 2–3 models before committing. The cheapest model that meets your accuracy threshold is the right model.</p>
+        <p><strong>Example:</strong> Illustrative comparison: 800 emails a day at 300 input tokens each is 240,000 input tokens daily. At US$1 per million input tokens that costs US$0.24/day; at US$0.10 it costs US$0.024/day. The difference is about US$79 a year at 365 days of use, excluding output tokens and other costs. Only compare options after measuring accuracy and safety on your own data.</p>
+        <p><strong>💡 What This Saves You:</strong> Benchmark several suitable models for quality, safety, latency, privacy and total cost. Choose the lowest-cost option that meets all your requirements.</p>
       </div>
     `,
   },
@@ -88,18 +85,18 @@ const SAMPLE_QUIZ = [
       'Build a proof of concept',
     ],
     correct: 1,
-    explanation: 'Without a specific, measurable definition of success, there\'s nothing for AI to optimise toward. This is the #1 cause of AI project failure.',
+    explanation: 'Without a specific, measurable definition of success, there\'s nothing for AI to optimise toward. Unclear success measures are a common project risk; the lesson does not claim a universal ranking.',
   },
   {
-    q: 'Your AI classification system processes 500 emails/day. GPT-4o costs $2.50/million input tokens. GPT-4o-mini costs $0.15/million. Both achieve 92% accuracy on your task. What should you do?',
+    q: 'Two AI models achieve the same measured classification accuracy and meet your safety and privacy requirements. Model B costs less for the same workload. What should you do?',
     options: [
-      'Use GPT-4o — it\'s more capable',
-      'Use GPT-4o-mini — same accuracy at 17× lower cost',
-      'Use both in parallel',
-      'Upgrade to Claude Sonnet for better results',
+      'Always choose the more expensive model',
+      'Prefer Model B after validating quality, latency and total cost',
+      'Use both models in parallel forever',
+      'Choose based only on which model is newest',
     ],
     correct: 1,
-    explanation: 'When two models achieve the same accuracy on a specific task, always choose the cheaper option. At 500 emails/day with ~300 tokens each, the saving is significant at scale.',
+    explanation: 'Compare models on your actual workload. Once quality, safety, privacy and latency requirements are met, total cost becomes a useful deciding factor.',
   },
 ]
 
@@ -176,7 +173,7 @@ export default function Preview() {
               <div className="pt-4">
                 <Link href="/pricing"
                   className="block w-full py-3 text-center bg-blue hover:bg-blue-bright text-white font-display font-bold text-xs rounded-lg transition-all shadow-[0_0_16px_rgba(26,110,255,0.3)]">
-                  Unlock All 14 Modules →
+                  Explore the Full Curriculum →
                 </Link>
               </div>
             </div>
