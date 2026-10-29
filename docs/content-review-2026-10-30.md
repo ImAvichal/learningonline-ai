@@ -35,7 +35,10 @@
 
 - Confirmed 16 numbered module records in `data/modules.js`.
 - Confirmed stale GPT-4o / Claude 3.5 / Gemini 1.5 price references removed from the updated public preview, glossary and model-selection guide.
-- **Not yet verified:** Next.js production build, Playwright tests, accessibility, mobile rendering, live internal links, checkout, authentication, security, or a protected Vercel preview.
+- **Vercel preview build:** READY for the reviewed content commit. This confirms a preview build completed, **not** a production release or end-to-end functional verification.
+- **GitHub Quality Gate:** FAILED at `npm run check:release`; `npm run build` was skipped. The failing India (₹499) and Philippines (₱330) assertions expect Unicode-escaped strings with spaces, while `data/tiers.js` uses literal currency symbols and compact formatting. The displayed prices match the intended values; this is a brittle textual assertion, not evidence of a price change. Do not change prices to satisfy it. Fix tests separately.
+- **Dependency security warning:** `npm ci` reported **8 vulnerabilities (3 moderate, 4 high, 1 critical)** and warned that `next@14.2.5` has a known security issue. Requires dependency/security remediation before production approval.
+- **Not yet verified:** Playwright tests, accessibility, mobile rendering, live internal links, checkout, authentication, or full production security regression.
 - **Release:** Draft PR only. Do not merge or publish until build, security and production-stability checks pass.
 
 ## Next review
