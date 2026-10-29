@@ -26,7 +26,7 @@ export default function Home() {
         <link rel="canonical" href="https://www.learningonline.ai/" />
       </Head>
       <Nav />
-      <main className="bg-navy text-white min-h-screen">
+      <main className="leo-readable bg-navy text-white min-h-screen">
         <section className="relative overflow-hidden pt-32 pb-24 sm:pt-40 sm:pb-32">
           <div className="absolute -top-24 right-[-15%] h-[500px] w-[500px] rounded-full bg-blue/15 blur-[110px] pointer-events-none" />
           <div className="absolute bottom-[-150px] left-[-10%] h-[350px] w-[350px] rounded-full bg-blue/10 blur-[100px] pointer-events-none" />
@@ -108,6 +108,24 @@ export default function Home() {
 
         <section className="py-24 text-center"><div className="max-w-2xl mx-auto px-6"><Clock3 className="text-blue-bright mx-auto mb-5" size={28}/><h2 className="font-display font-black text-3xl sm:text-4xl mb-4">Your AI learning starts here.</h2><p className="text-white/60 mb-8">Explore a lesson without committing to a course. See whether our practical approach works for you.</p><Link href="/preview" className="inline-flex items-center gap-2 rounded-xl bg-blue hover:bg-blue-bright px-8 py-4 font-display font-bold">Explore the free lesson <ArrowRight size={18}/></Link></div></section>
       </main>
+      <style jsx global>{`
+        .leo-readable { font-size: 17px; }
+        .leo-readable p { line-height: 1.8; }
+        .leo-readable .text-white\\/45,
+        .leo-readable .text-white\\/50,
+        .leo-readable .text-white\\/55,
+        .leo-readable .text-white\\/60,
+        .leo-readable .text-white\\/65 { color: #d1daed; }
+        .leo-readable .text-sm { font-size: 1rem; line-height: 1.75; }
+        .leo-readable .text-xs { font-size: .85rem; line-height: 1.5; }
+        .leo-readable h1, .leo-readable h2, .leo-readable h3 { letter-spacing: -0.025em; }
+        .leo-readable a:focus-visible { outline: 3px solid #8ab7ff; outline-offset: 4px; }
+        @media (max-width: 640px) {
+          .leo-readable { font-size: 16px; }
+          .leo-readable h1 { line-height: 1.15; }
+          .leo-readable section { scroll-margin-top: 5rem; }
+        }
+      `}</style>
       <Footer variant="dark" />
     </>
   )
