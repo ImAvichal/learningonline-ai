@@ -3,7 +3,7 @@
 // Durable lessons should teach capability tiers and decision principles; this
 // file supplies dated examples that can be refreshed without rewriting them.
 
-export const LANDSCAPE_LAST_REVIEWED = '2026-09-05'
+export const LANDSCAPE_LAST_REVIEWED = '2026-10-30'
 export const LANDSCAPE_REVIEW_CADENCE =
   'Review weekly against primary vendor and regulator sources; publish material changes with a learner-facing change log.'
 
@@ -13,11 +13,11 @@ export const MODEL_TIERS = [
     label: 'Frontier / flagship',
     useWhen: 'Hardest reasoning, coding, research, multimodal and long-horizon agentic work. Use only when the quality gain clears the extra cost, latency and governance burden.',
     examples: [
-      'OpenAI GPT-6 Astra (September 2026 rollout; availability may be limited)',
-      'OpenAI GPT-5.6 Sol',
-      'Anthropic Claude Fable 5.1 / Claude Mythos 5.1',
-      'Anthropic Claude Opus 5',
-      'Google Gemini 3.6 Flash / Gemini 3.5 family',
+      'OpenAI GPT-6 Astra (verify availability)',
+      'OpenAI GPT-6.1 Sol',
+      'Anthropic Claude Fable 5.1 / Claude Mythos 5.1 (check access)',
+      'Anthropic Claude Opus 5.5',
+      'Google Gemini 4 Argon',
     ],
     indicativeCost: 'Pricing changes frequently — benchmark current vendor pricing against your own task and volume before selecting a model.',
   },
@@ -25,28 +25,28 @@ export const MODEL_TIERS = [
     id: 'mid',
     label: 'Mid-tier / workhorse',
     useWhen: 'The default for most production workloads: strong quality, lower latency and lower unit cost than the flagship tier.',
-    examples: ['Anthropic Claude Sonnet 5', 'Google Gemini 3.6 Flash / 3.5 Flash', 'Current OpenAI general-purpose production models'],
+    examples: ['Anthropic Claude Sonnet 5.5', 'Google Gemini 3.8 Flash', 'OpenAI GPT-6.1 Sol (check task fit)'],
     indicativeCost: 'Treat cost per completed task — not cost per token alone — as the decision metric.',
   },
   {
     id: 'small',
     label: 'Small / fast',
     useWhen: 'High-volume, well-defined classification, extraction, routing and simple drafting. Test this tier first for narrow tasks.',
-    examples: ['Google Gemini 3.5 Flash-Lite', 'Small / mini variants across major vendors', 'Task-specific open-weight models'],
+    examples: ['Anthropic Claude Haiku 5.5', 'Small / mini variants across major vendors', 'Task-specific open-weight models'],
     indicativeCost: 'Usually the lowest hosted cost and latency; verify accuracy on a representative evaluation set.',
   },
   {
     id: 'agentic',
     label: 'Agentic / computer-use capable',
     useWhen: 'Multi-step tasks that require tools, applications, browsers or APIs. The design problem is permissions, approvals, observability and recovery — not simply whether the model can act.',
-    examples: ['Google Gemini 3.5 Flash computer use', 'Gemini Spark', 'OpenAI computer-use capable reasoning models', 'Claude long-running agent workflows'],
+    examples: ['Computer-use capable models (check current model docs)', 'Managed agent tools (check current availability)', 'OpenAI computer-use capable reasoning models', 'Claude long-running agent workflows'],
     indicativeCost: 'Model the full trajectory: reasoning + tool calls + retries + external API costs. Agent cost can be many times a single chat response.',
   },
   {
     id: 'multimodal',
     label: 'Native multimodal',
     useWhen: 'Workflows combining text, images, audio, video or live interaction. Prefer native multimodal models where they simplify orchestration and improve context continuity.',
-    examples: ['Google Gemini Omni / Omni Flash', 'Gemini 3.5 Live Translate', 'Frontier OpenAI and Anthropic multimodal families'],
+    examples: ['Google multimodal models (check supported modalities)', 'Current live voice and translation models (check docs)', 'Frontier OpenAI and Anthropic multimodal families'],
     indicativeCost: 'Price and latency vary materially by modality. Measure the whole workflow, not just text-token rates.',
   },
   {
@@ -101,10 +101,10 @@ export const AI_REGULATION = [
 ]
 
 export const PRIMARY_REFRESH_SOURCES = [
-  { name: 'OpenAI release notes', url: 'https://openai.com/products/release-notes/' },
-  { name: 'OpenAI model release notes', url: 'https://help.openai.com/en/articles/9624314' },
-  { name: 'Anthropic newsroom', url: 'https://www.anthropic.com/news' },
-  { name: 'Google AI updates', url: 'https://blog.google/innovation-and-ai/technology/ai/' },
+  { name: 'OpenAI model catalogue', url: 'https://developers.openai.com/api/docs/models' },
+  { name: 'OpenAI API pricing', url: 'https://platform.openai.com/pricing' },
+  { name: 'Claude model documentation', url: 'https://platform.claude.com/docs/en/about-claude/models/overview' },
+  { name: 'Google Gemini models', url: 'https://ai.google.dev/gemini-api/docs/models' },
   { name: 'NIST AI RMF', url: 'https://www.nist.gov/itl/ai-risk-management-framework' },
 ]
 
