@@ -1,4 +1,4 @@
-// data/modules.js — Full 14-module Le On AI curriculum
+// data/modules.js — Full LeO AI curriculum; module count is derived from MODULES
 // Each module includes: lessons, Q&A questions, real-world practice section
 
 export const MODULES = [
@@ -13,7 +13,7 @@ export const MODULES = [
         id: 'm1-l1', number: 1, tier: 'individual', duration: '20 min',
         title: 'Introduction to AI: What It Is and Isn\'t',
         content: `<h2>What AI Actually Is</h2>
-<p>Artificial Intelligence is pattern recognition at scale. At its core, AI learns from examples and applies what it has learned to new situations. It does not think, reason, or understand in the way humans do — it predicts.</p>
+<p>Artificial Intelligence is pattern recognition at scale. At its core, AI learns from examples and applies what it has learned to new situations. It is not the same as human understanding or judgement; generated answers can be convincing and still be wrong.</p>
 <h3>The Three Categories You Need to Know</h3>
 <p><strong>Narrow AI (where we are now):</strong> AI designed for specific tasks. A chat model writes text. An image model generates images. AlphaFold predicts protein structures. Each is exceptional at its task and useless at others.</p>
 <p><strong>General AI (where we're heading):</strong> Systems that can perform any intellectual task a human can. Not here yet — but approaching faster than most organisations are prepared for.</p>
@@ -26,7 +26,7 @@ export const MODULES = [
 <div class="real-world-box">
 <h3>🌍 From Real-World Practice</h3>
 <p><strong>Insight:</strong> Most AI failures in business aren't technical — they're expectational. Teams deploy AI expecting a human-like understanding of context and get confused outputs instead.</p>
-<p><strong>Example:</strong> A legal team deployed an AI to review contracts. It performed well on standard clauses but hallucinated precedents that didn't exist. Nobody checked — and two contracts were sent to clients with fabricated legal references.</p>
+<p><strong>Example:</strong> Illustrative scenario: a legal team uses AI to review contracts. If staff accept fabricated legal precedents without checking, inaccurate references could reach clients.</p>
 <p><strong>Why it matters:</strong> Without understanding AI's fundamental limitations, you design workflows that create liability rather than value.</p>
 <p><strong>Implementation tip:</strong> Before any deployment, document your "failure modes" — what happens when AI is wrong? Design for that scenario first.</p>
 <p><strong>💡 What This Saves You:</strong> Understanding AI limitations before deployment prevents costly rework, reputational risk, and the single most common cause of AI project abandonment.</p>
@@ -39,7 +39,7 @@ export const MODULES = [
 <p>Choosing the wrong model is like using a forklift to move a coffee cup — technically possible, expensive, and unnecessary. Here's the framework for picking the right tool.</p>
 <h3>Large Language Models (LLMs)</h3>
 <p>Best for: text generation, summarisation, classification, question answering, code generation, translation.</p>
-<p>Think in capability tiers, not brand names — the specific models change every few weeks. Frontier for the hardest work; mid-tier workhorses for most production tasks; small/fast for high-volume narrow tasks; open-weight for privacy and cost control. <em>(Mid-2026: GPT-5.6, Claude Opus 4.8 / Sonnet 5, Gemini 3.x and Grok 4.5 at the frontier; strong open-weight from Meta, DeepSeek, Qwen and Mistral.)</em></p>
+<p>Think in capability tiers, not brand names — the specific models change every few weeks. Frontier for the hardest work; mid-tier workhorses for most production tasks; small/fast for high-volume narrow tasks; open-weight for privacy and cost control. <em>(Model names and rankings change rapidly. For current options, check the official model catalogues from OpenAI, Anthropic and Google rather than relying on a fixed list in this lesson.)</em></p>
 <p>When to choose: Any task involving reading, writing, classifying, or reasoning over text.</p>
 <h3>Reasoning Models</h3>
 <p>Best for: multi-step logic, maths, planning, and hard code. A newer class that "thinks" step-by-step before answering — much stronger on complex problems, but slower and more expensive.</p>
@@ -62,11 +62,11 @@ export const MODULES = [
   Multiple inputs → Multimodal or orchestrated pipeline</pre>
 <div class="real-world-box">
 <h3>🌍 From Real-World Practice</h3>
-<p><strong>Insight:</strong> Organisations routinely pay 10–50× more than necessary by using frontier models for tasks that smaller, cheaper models handle equally well.</p>
+<p><strong>Insight:</strong> Using a frontier model for every task can be unnecessarily expensive. Measure accuracy, latency, privacy and total cost for each workload.</p>
 <p><strong>Example:</strong> A retail business was using a frontier model to classify customer support tickets into 12 categories. Switching to a small, fine-tuned model for the same task cut cost by ~90% with equivalent accuracy.</p>
 <p><strong>Why it matters:</strong> At scale, model selection is a financial decision, not just a technical one.</p>
 <p><strong>Implementation tip:</strong> Always benchmark 2–3 models against your specific task before committing to production. Cost and quality don't always correlate.</p>
-<p><strong>💡 What This Saves You:</strong> Correct model selection typically reduces AI running costs by 40–80% without any loss in output quality.</p>
+<p><strong>💡 What This Saves You:</strong> Appropriate model selection can reduce cost, but savings and quality must be demonstrated on your own workload.</p>
 </div>`,
       },
       {
@@ -78,7 +78,7 @@ export const MODULES = [
 <p>A token is approximately 4 characters of text, or about ¾ of a word. The sentence "The quick brown fox" is roughly 5 tokens. A typical business email is 100–300 tokens. A 10-page report is 3,000–5,000 tokens.</p>
 <h3>Input vs Output Tokens</h3>
 <p><strong>Input tokens:</strong> Everything you send to the model — your system prompt, the user message, any documents or context. You pay for every token the model reads.</p>
-<p><strong>Output tokens:</strong> Everything the model generates in response. Output tokens typically cost 3–5× more than input tokens.</p>
+<p><strong>Output tokens:</strong> Everything the model generates in response. Input and output prices often differ; check the current provider rate for your chosen model.</p>
 <h3>The Cost Formula</h3>
 <pre>Total cost = (input tokens × input price) + (output tokens × output price)
 
@@ -94,7 +94,7 @@ A task with 1,000 input tokens + 500 output tokens:
 At 10,000 calls per day: $75/day · $2,250/month</pre>
 <p><em>The per-token rates above are illustrative — they teach the calculation method, not today's prices. Real rates have fallen sharply and keep dropping. Learn the maths, then plug in current numbers (see the model-landscape reference).</em></p>
 <h3>Token Optimisation Strategies</h3>
-<p><strong>Compress your prompts:</strong> Remove unnecessary words from system prompts. A 500-token prompt run 10,000 times costs as much as 5 million extra input tokens monthly.</p>
+<p><strong>Compress your prompts:</strong> Remove unnecessary words from system prompts. A 500-token prompt sent 10,000 times adds 5 million input tokens across those calls, before any caching discounts.</p>
 <p><strong>Use cheaper models for simple tasks:</strong> Classification, simple extraction, and formatting tasks don't need frontier models.</p>
 <p><strong>Implement caching:</strong> Cache responses for identical or near-identical inputs. Reduces costs dramatically for FAQ-style use cases.</p>
 <p><strong>Chunk strategically:</strong> Don't send entire documents when only sections are relevant. Retrieve only the necessary context.</p>
@@ -110,7 +110,7 @@ At 10,000 calls per day: $75/day · $2,250/month</pre>
 <h3>📚 Further Reading</h3>
 <p>To go deeper on the foundations of how AI actually works:</p>
 <ul>
-<li><strong>Stanford AI Index Report 2024</strong> — annual data-driven snapshot of where AI actually is. Free, ~500 pages, dip in and out. <a href="https://aiindex.stanford.edu/report/" target="_blank" rel="noopener">aiindex.stanford.edu/report</a></li>
+<li><strong>Stanford AI Index Report 2026</strong> — annual data-driven snapshot of where AI actually is. Free, ~500 pages, dip in and out. <a href="https://hai.stanford.edu/ai-index" target="_blank" rel="noopener">aiindex.stanford.edu/report</a></li>
 <li><strong>Andrej Karpathy — "Intro to Large Language Models"</strong> (1 hour video) — the clearest general-audience explanation of how LLMs work, from a founding member of OpenAI. <a href="https://www.youtube.com/watch?v=zjkBMFhNj_g" target="_blank" rel="noopener">youtube.com/watch?v=zjkBMFhNj_g</a></li>
 <li><strong>Andrej Karpathy — "Deep Dive into LLMs like ChatGPT"</strong> — Karpathy's newer follow-up with updated material on how models like ChatGPT work under the hood. Available on his YouTube channel: <a href="https://karpathy.ai" target="_blank" rel="noopener">karpathy.ai</a></li>
 <li><strong>Anthropic — Building with Claude documentation</strong> — vendor-neutral foundational concepts (tokens, context windows, prompt design) explained well. <a href="https://docs.claude.com" target="_blank" rel="noopener">docs.claude.com</a></li>
@@ -248,7 +248,7 @@ Low Value   │ Avoid        │ Low-hanging
         { id: 'q3-1', text: 'A marketing team spends 3 hours per week creating social media post summaries from blog content. An AI solution could automate this in 2 weeks. How would you classify this opportunity?', options: ['High value, high complexity — strategic bet', 'Low value, low complexity — quick win', 'High value, low complexity — ideal starting point', 'Low value, high complexity — avoid'], correct: 2, explanation: 'Content summarisation is a proven AI capability (low complexity). 3 hours/week per person at scale is meaningful value. Classic quick win profile.' },
         { id: 'q3-2', text: 'Which of these signals best indicates a strong AI use case?', options: ['The task is novel and creative each time it\'s performed', 'The task is performed frequently, follows a pattern, and has clear inputs and outputs', 'The task requires deep human judgment and emotional intelligence', 'The task is currently performed by senior leadership'], correct: 1, explanation: 'Frequency + pattern + clear I/O is the AI use case trifecta. AI thrives on repetition and consistency.' },
         { id: 'q3-3', text: 'Your organisation has identified 12 potential AI use cases. What\'s the most effective way to narrow to the right 3 to pursue first?', options: ['Choose the 3 that sound most innovative', 'Choose the 3 that the CEO is most excited about', 'Score each against value, complexity, data availability, and team readiness', 'Choose the 3 that other companies in your industry are doing'], correct: 2, explanation: 'Structured scoring removes bias and politics from use case selection. It\'s the foundation of Module 4\'s prioritisation framework.' },
-        { id: 'q3-4', text: 'Which data signal most strongly suggests an AI use case is viable?', options: ['The process exists but no data has been collected', 'Historical data of 6+ months exists in a structured format', 'Data exists but is spread across 7 different systems with no integration', 'Data is collected on paper forms'], correct: 1, explanation: 'Structured historical data is the highest readiness signal. AI needs examples to learn from. Clean, accessible data dramatically reduces implementation time and risk.' },
+        { id: 'q3-4', text: 'Which data signal most strongly suggests an AI use case is viable?', options: ['The process exists but no data has been collected', 'Historical data of 6+ months exists in a structured format', 'Data exists but is spread across 7 different systems with no integration', 'Data is collected on paper forms'], correct: 1, explanation: 'Structured historical data is the highest readiness signal. Relevant, trustworthy data and clear evaluation criteria improve readiness. Not every use case requires training a model on historical examples.' },
         { id: 'q3-5', text: 'A task requires an experienced employee to make a judgment call based on their 10 years of experience — the criteria aren\'t documented anywhere. Is this a good early AI use case?', options: ['Yes — AI can replicate any human judgment', 'No — undocumented judgment criteria make this high-risk and high-complexity', 'Yes — if you train the AI on that employee\'s outputs', 'No — AI can never make judgment calls'], correct: 1, explanation: 'Undocumented expert judgment is one of the hardest AI problems. It\'s not impossible, but it\'s a Horizon 2-3 use case, not a first deployment.' },
       ],
     },
@@ -411,7 +411,7 @@ Pattern 5: AI Decides → Human Monitors
 <h3>📚 Further Reading</h3>
 <p>On designing workflows where AI and humans work together — when AI acts, when humans gate, and when both are needed.</p>
 <ul>
-<li><strong>Elementum AI — "Human-in-the-Loop Workflows: A Complete Guide"</strong> — Distinguishes HITL (human approves each output) from HOTL (human monitors aggregate behaviour). Notes EU AI Act Article 14 now mandates HITL for high-risk systems. <a href="https://www.elementum.ai/blog/human-in-the-loop-workflows" target="_blank" rel="noopener">www.elementum.ai/blog/human-in-the-loop-workflows</a></li>
+<li><strong>Elementum AI — "Human-in-the-Loop Workflows: A Complete Guide"</strong> — Distinguishes HITL (human approves each output) from HOTL (human monitors aggregate behaviour). Notes EU AI Act Article 14 requires appropriate human oversight for high-risk AI systems; it does not prescribe human approval of every individual output in every case. <a href="https://www.elementum.ai/blog/human-in-the-loop-workflows" target="_blank" rel="noopener">www.elementum.ai/blog/human-in-the-loop-workflows</a></li>
 <li><strong>Elementum AI — "Human-in-the-Loop Agentic AI: When You Need Both"</strong> — Decision framework for embedding human oversight in agent workflows across finance, healthcare, customer service, and IT operations. <a href="https://www.elementum.ai/blog/human-in-the-loop-agentic-ai" target="_blank" rel="noopener">www.elementum.ai/blog/human-in-the-loop-agentic-ai</a></li>
 <li><strong>StackAI — "Human-in-the-Loop AI Agents: Designing Approval Workflows"</strong> — Practical patterns for separation of duties, auditability, and approval queues — including the critical principle that gating after a side effect isn't approval. <a href="https://www.stackai.com/insights/human-in-the-loop-ai-agents-how-to-design-approval-workflows-for-safe-and-scalable-automation" target="_blank" rel="noopener">www.stackai.com/insights/human-in-the-loop-ai-agents-how-to-design-approval-workflows-for-safe-and-scalable-automation</a></li>
 <li><strong>Microsoft — "Building Human-in-the-loop AI Workflows with Microsoft Agent Framework"</strong> — Walkthrough using a fraud detection example, combining deterministic orchestration with autonomous AI agents — useful pattern reference even if you're not on Microsoft stack. <a href="https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/building-human-in-the-loop-ai-workflows-with-microsoft-agent-framework/4460342" target="_blank" rel="noopener">techcommunity.microsoft.com/blog/azure-ai-foundry-blog/building-human-in-the-loop-ai-workflows-with-microsoft-agent-framework/4460342</a></li>
