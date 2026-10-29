@@ -197,7 +197,7 @@ const TERMS = [
     short: '',
     category: 'Model & Architecture',
     definition: 'The process of exposing a model to large amounts of data so it learns patterns, relationships, and capabilities.',
-    simple: 'How the model gets smart. GPT-4 was trained on hundreds of billions of words from the internet and books. This is a one-time process done by the model provider.',
+    simple: "Models learn statistical patterns during training on datasets. The training methods, data and disclosure practices vary by provider.",
     example: 'You don\'t train models as a business — you use pre-trained models. The training was done by OpenAI, Anthropic, or Google. Your job is to use them well.',
     matters: 'You need to know this exists but you\'ll almost never do it. Understanding it helps explain why AI knows some things and not others, and why it has knowledge cutoffs.',
     related: ['Fine-tuning', 'Machine Learning (ML)', 'Deep Learning'],
@@ -582,7 +582,7 @@ const TERMS = [
     category: 'Performance & Trade-offs',
     definition: 'The trade-off between AI model capability and cost — the goal is the cheapest model that meets the required performance threshold.',
     simple: 'More expensive models are not always better for your use case. The goal is the cheapest model that meets your accuracy requirement. Always benchmark before committing.',
-    example: 'Email classification: GPT-4o (frontier, $219/yr) vs GPT-4o-mini (efficient, $13/yr) achieve 94% vs 91% accuracy on this specific task. $206/yr difference for 3% accuracy. Correct choice: mini.',
+    example: "Illustrative model comparison: two options achieve different accuracy and cost on the same classification task. Evaluate the impact of errors before selecting the cheaper option.",
     matters: 'Most organisations default to frontier models out of caution. This is unnecessarily expensive. Benchmark first — it takes one afternoon and saves thousands per year.',
     related: ['Accuracy', 'Cost per Token', 'Latency', 'Token Efficiency'],
   },
@@ -722,13 +722,13 @@ const TERMS = [
     related: ['AI Governance', 'Responsible AI', 'Data Leakage', 'Auditability'],
   },
 
-  // ── MODERN AI 2025 ────────────────────────────────────────────────────────
+  // ── MODERN AI 2026 ────────────────────────────────────────────────────────
   {
     term: 'Multimodal AI',
     short: '',
-    category: 'Modern AI (2025)',
+    category: 'Modern AI (2026)',
     definition: 'AI systems that can process and generate multiple types of input/output — text, images, audio, video — in a single model.',
-    simple: 'AI that can see, hear, and read — not just process text. GPT-4o and Claude 3.5 Sonnet are natively multimodal.',
+    simple: "Modern multimodal models can handle combinations of text, images, audio or video; supported inputs and outputs vary by model.",
     example: 'Customer sends a photo of a damaged product + a complaint text. Multimodal AI processes both together: identifies the damage type from the image, reads the complaint, drafts a response.',
     matters: 'Multimodal AI unlocks use cases that text-only AI can\'t handle: form processing, quality inspection, document extraction from scanned images, voice-to-action workflows.',
     related: ['Large Language Model (LLM)', 'Generative AI', 'Tool Use / Tool Calling', 'AI Agent'],
@@ -736,7 +736,7 @@ const TERMS = [
   {
     term: 'AI Copilots',
     short: '',
-    category: 'Modern AI (2025)',
+    category: 'Modern AI (2026)',
     definition: 'AI tools embedded in existing applications that assist users with tasks — providing suggestions, completions, and automation within familiar interfaces.',
     simple: 'AI built into the tools you already use. Microsoft 365 Copilot in Word and Excel. GitHub Copilot in your IDE. Salesforce Einstein in your CRM.',
     example: 'Microsoft 365 Copilot: drafts email replies, creates PowerPoint from Word docs, generates Excel formulas, summarises Teams meeting recordings. All within existing Microsoft tools.',
@@ -746,7 +746,7 @@ const TERMS = [
   {
     term: 'AI Assistants',
     short: '',
-    category: 'Modern AI (2025)',
+    category: 'Modern AI (2026)',
     definition: 'Standalone AI tools that help users complete tasks through conversation — ChatGPT, Claude, Gemini, and similar products.',
     simple: 'The chat interfaces. You type, it responds. Great for one-off tasks, drafting, research, and analysis. Less suited to high-volume automated workflows.',
     example: 'A consultant uses Claude to analyse a 40-page report, draft a client update, prepare presentation talking points, and check a contract clause — in 35 minutes of total AI interaction.',
@@ -756,7 +756,7 @@ const TERMS = [
   {
     term: 'Autonomous Systems',
     short: '',
-    category: 'Modern AI (2025)',
+    category: 'Modern AI (2026)',
     definition: 'AI systems that operate independently to complete complex goals — planning, executing, and adapting without ongoing human input.',
     simple: 'AI that runs itself. You set the goal; it figures out and executes everything needed. Highest capability, highest risk. Requires careful guardrail design.',
     example: 'Autonomous competitive intelligence system: runs weekly, searches competitor websites, extracts pricing/feature changes, compares with prior week, flags significant changes, emails the product team.',
@@ -830,7 +830,7 @@ const CATEGORIES = [
   'Performance & Trade-offs',
   'Risks & Limitations',
   'Governance & Responsibility',
-  'Modern AI (2025)',
+  'Modern AI (2026)',
   'Practical Business',
 ]
 
