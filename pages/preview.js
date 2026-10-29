@@ -39,8 +39,8 @@ const PREVIEW_LESSONS = [
         <li>The same as what you see in ChatGPT (production AI requires engineering)</li>
       </ul>
       <div class="real-world-box">
-        <h3>🌍 From Real-World Practice</h3>
-        <p><strong>Insight:</strong> The most common reason AI projects fail isn't the technology. It's that the organisation tried to automate a process they hadn't properly defined first.</p>
+        <h3>🌍 Illustrative scenario</h3>
+        <p><strong>Insight:</strong> A common implementation risk is automating a process before defining how success will be measured.</p>
         <p><strong>Example:</strong> Consider a hypothetical professional services firm building an AI proposal assistant without defining quality or measuring staff adoption. The tool might produce polished text while failing to improve win rates or reduce review time.</p>
         <p><strong>Implementation tip:</strong> Before any AI project, complete this sentence in one sentence: "We will know AI is working when [specific measurable outcome]." If you can't complete it, don't start yet.</p>
         <p><strong>💡 What This Saves You:</strong> Defining success measures before implementation makes it easier to test whether a system is delivering value. No universal success-rate multiplier is assumed.</p>
@@ -66,8 +66,8 @@ const PREVIEW_LESSONS = [
       <p>Assume a model charges US$1 per million input tokens and US$5 per million output tokens. A request with 1,000 input tokens and 500 output tokens costs US$0.001 + US$0.0025 = <strong>US$0.0035 per request</strong>, before any additional charges.</p>
       <p>For current rates, always check the provider's <a href="https://platform.openai.com/pricing" target="_blank" rel="noopener noreferrer">official pricing</a>, <a href="https://platform.claude.com/docs/en/about-claude/pricing" target="_blank" rel="noopener noreferrer">Claude pricing</a> or <a href="https://ai.google.dev/gemini-api/docs/pricing" target="_blank" rel="noopener noreferrer">Gemini pricing</a>. Prices and model availability change.</p>
       <div class="real-world-box">
-        <h3>🌍 From Real-World Practice</h3>
-        <p><strong>Insight:</strong> Most organisations choose their AI model based on capability demos, not cost at scale. The right question is never "what's the best model?" — it's "what's the cheapest model that meets my accuracy requirement?"</p>
+        <h3>🌍 Illustrative scenario</h3>
+        <p><strong>Insight:</strong> Model selection should balance quality, safety, privacy, latency and cost. A model that looks impressive in a demo may not be the best choice for a routine task.</p>
         <p><strong>Example:</strong> Illustrative comparison: 800 emails a day at 300 input tokens each is 240,000 input tokens daily. At US$1 per million input tokens that costs US$0.24/day; at US$0.10 it costs US$0.024/day. The difference is about US$79 a year at 365 days of use, excluding output tokens and other costs. Only compare options after measuring accuracy and safety on your own data.</p>
         <p><strong>💡 What This Saves You:</strong> Benchmark several suitable models for quality, safety, latency, privacy and total cost. Choose the lowest-cost option that meets all your requirements.</p>
       </div>
