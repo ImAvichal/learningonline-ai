@@ -22,8 +22,8 @@ const campaignMailer = fs.readFileSync('lib/campaigns.js', 'utf8')
 const cancellationMailer = fs.readFileSync('lib/emails.cancellation.js', 'utf8')
 const emailSafety = fs.readFileSync('lib/email-safety.js', 'utf8')
 const checks = [
-  ['India Journey is ₹499', tiers.includes("amount: 499, label: '\\u20b9499'")],
-  ['Philippines Journey is ₱330', tiers.includes("amount: 330, label: '\\u20b1330'")],
+  ['India Journey is ₹499', /amount:\s*499\s*,\s*label:\s*['"](?:₹|\\u20b9)499['"]/.test(tiers)],
+  ['Philippines Journey is ₱330', /amount:\s*330\s*,\s*label:\s*['"](?:₱|\\u20b1)330['"]/.test(tiers)],
   ['Checkout identity verified server-side', api.includes('supabase.auth.getUser(accessToken)')],
   ['New account receives 30-day Journey', auth.includes("selected_tier: 'journey'") && auth.includes('30 * 24 * 60 * 60 * 1000')],
   ['Campaign limited to expiring Journey trials', campaignApi.includes(".not('journey_expires_at', 'is', null)")],
