@@ -3,7 +3,7 @@
 // Durable lessons should teach capability tiers and decision principles; this
 // file supplies dated examples that can be refreshed without rewriting them.
 
-export const LANDSCAPE_LAST_REVIEWED = '2026-10-30'
+export const LANDSCAPE_LAST_REVIEWED = '2026-10-31'
 export const LANDSCAPE_REVIEW_CADENCE =
   'Review weekly against primary vendor and regulator sources; publish material changes with a learner-facing change log.'
 
@@ -15,7 +15,7 @@ export const MODEL_TIERS = [
     examples: [
       'OpenAI GPT-6 Astra (verify availability)',
       'OpenAI GPT-6.1 Sol',
-      'Anthropic Claude Fable 5.1 / Claude Mythos 5.1 (check access)',
+      'Anthropic Claude Fable 5.1 (check platform access)',
       'Anthropic Claude Opus 5.5',
       'Google Gemini 4 Argon',
     ],
@@ -32,7 +32,7 @@ export const MODEL_TIERS = [
     id: 'small',
     label: 'Small / fast',
     useWhen: 'High-volume, well-defined classification, extraction, routing and simple drafting. Test this tier first for narrow tasks.',
-    examples: ['Anthropic Claude Haiku 5.5', 'Small / mini variants across major vendors', 'Task-specific open-weight models'],
+    examples: ['Anthropic Claude Haiku 5.5', 'Google Gemini 3.5 Flash-Lite', 'OpenAI GPT-6 Luna', 'Small / mini variants across major vendors', 'Task-specific open-weight models'],
     indicativeCost: 'Usually the lowest hosted cost and latency; verify accuracy on a representative evaluation set.',
   },
   {
@@ -75,6 +75,10 @@ export const CURRENT_AI_SHIFTS = [
     summary: 'Strong teams route work by complexity, risk, latency and cost rather than choosing one model for everything.',
   },
   {
+    title: 'Model retirement deadlines require migration planning',
+    summary: 'OpenAI announced on 14 October 2026 that selected GPT-4o and GPT-4.1 API snapshots are scheduled for shutdown on 14 January 2027. Google lists a 17 November 2026 shutdown date for Gemini 3.1 Flash TTS preview. Check vendor deprecation pages and test replacements before deadlines.',
+  },
+  {
     title: 'Capability requires stronger safeguards',
     summary: 'More capable agents increase the impact of mistakes and misuse. Human approval for consequential actions, scoped tools and continuous evaluation are production requirements.',
   },
@@ -103,8 +107,10 @@ export const AI_REGULATION = [
 export const PRIMARY_REFRESH_SOURCES = [
   { name: 'OpenAI model catalogue', url: 'https://developers.openai.com/api/docs/models' },
   { name: 'OpenAI API pricing', url: 'https://platform.openai.com/pricing' },
+  { name: 'OpenAI API deprecations', url: 'https://developers.openai.com/api/docs/deprecations' },
   { name: 'Claude model documentation', url: 'https://platform.claude.com/docs/en/about-claude/models/overview' },
   { name: 'Google Gemini models', url: 'https://ai.google.dev/gemini-api/docs/models' },
+  { name: 'Gemini model deprecations', url: 'https://ai.google.dev/gemini-api/docs/deprecations' },
   { name: 'NIST AI RMF', url: 'https://www.nist.gov/itl/ai-risk-management-framework' },
 ]
 
