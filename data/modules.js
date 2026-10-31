@@ -63,7 +63,7 @@ export const MODULES = [
 <div class="real-world-box">
 <h3>🌍 From Real-World Practice</h3>
 <p><strong>Insight:</strong> Using a frontier model for every task can be unnecessarily expensive. Measure accuracy, latency, privacy and total cost for each workload.</p>
-<p><strong>Example:</strong> A retail business was using a frontier model to classify customer support tickets into 12 categories. Switching to a small, fine-tuned model for the same task cut cost by ~90% with equivalent accuracy.</p>
+<p><strong>Example:</strong> Illustrative scenario (not a verified customer case): A retailer classifies support tickets into 12 categories. It benchmarks a smaller model against a larger model using labelled tickets, measuring accuracy, difficult cases, response time and total cost before considering a switch. Do not assume a fixed percentage saving.</p>
 <p><strong>Why it matters:</strong> At scale, model selection is a financial decision, not just a technical one.</p>
 <p><strong>Implementation tip:</strong> Always benchmark 2–3 models against your specific task before committing to production. Cost and quality don't always correlate.</p>
 <p><strong>💡 What This Saves You:</strong> Appropriate model selection can reduce cost, but savings and quality must be demonstrated on your own workload.</p>
@@ -101,7 +101,7 @@ At 10,000 calls per day: $75/day · $2,250/month</pre>
 <div class="real-world-box">
 <h3>🌍 From Real-World Practice</h3>
 <p><strong>Insight:</strong> Teams that don't model token costs before deployment routinely discover their "cheap" AI solution costs more than the headcount it was meant to replace.</p>
-<p><strong>Example:</strong> A financial services firm built an AI document review tool. Initial testing on 50 documents worked fine. When scaled to 5,000 documents per day — each averaging 8,000 tokens — monthly AI costs hit $180,000. They hadn't modelled volume.</p>
+<p><strong>Example:</strong> Illustrative scenario (not a verified customer case): A document-review team tests on 50 files, then plans for 5,000 documents per day at 8,000 input tokens each. That is 40 million input tokens daily before outputs, retries and other charges. Multiply the volume by the provider's current rates to estimate spend; do not treat an invented monthly bill as an observed result.</p>
 <p><strong>Why it matters:</strong> Token costs are the hidden variable in every AI business case. Missing them invalidates your ROI model.</p>
 <p><strong>Implementation tip:</strong> Always calculate your expected monthly token spend before building. Use the formula in Module 4's cost model.</p>
 <p><strong>💡 What This Saves You:</strong> Understanding tokens before deployment prevents the single most common AI budget shock — discovering real costs only after going live.</p>
@@ -223,7 +223,7 @@ Low Value   │ Avoid        │ Low-hanging
 <div class="real-world-box">
 <h3>🌍 From Real-World Practice</h3>
 <p><strong>Insight:</strong> The best AI use cases are rarely the most exciting ones. They're the ones that address the most painful, repetitive, data-rich processes — which are often invisible to leadership.</p>
-<p><strong>Example:</strong> A hospitality chain wanted to build an AI concierge (exciting, complex, high-risk). Meanwhile, their staff spent 4 hours per day manually compiling daily occupancy and F&B reports from 3 systems. The report automation took 3 weeks to build, saved $240K annually, and built organisational confidence for bigger initiatives.</p>
+<p><strong>Example:</strong> Illustrative scenario (not a verified customer case): A hospitality group considers an AI concierge but first tests automating its daily occupancy and food-and-beverage reporting. Compare implementation effort, staff review time, report accuracy and actual hours saved before calculating a return. No annual saving is assumed.</p>
 <p><strong>Why it matters:</strong> Starting with the right use case creates the proof of concept that funds the next five.</p>
 <p><strong>Implementation tip:</strong> Run a "time audit" — ask 10 people across different functions to log tasks for one week. The highest-volume, most repetitive items are your first wave of opportunities.</p>
 <p><strong>💡 What This Saves You:</strong> Selecting the right first use case prevents the most expensive mistake in AI programs — spending 6 months on a complex use case that fails, demoralising the team and exhausting the budget.</p>
@@ -462,7 +462,7 @@ Step 6: MONITOR    → Ongoing quality tracking in production</pre>
 <div class="real-world-box">
 <h3>🌍 From Real-World Practice</h3>
 <p><strong>Insight:</strong> Data readiness is consistently underestimated. Teams allocate 20% of project time to data and 80% to building. In practice, data work takes 60–80% of the total project time.</p>
-<p><strong>Example:</strong> A financial services firm spent 4 months building an AI credit assessment tool. When tested on real data, accuracy was 52% — barely better than random. Root cause: customer income data across 3 legacy systems used different formats, different currency assumptions, and different date ranges. The model had learned patterns from inconsistent data. Three months of data work followed before retraining.</p>
+<p><strong>Example:</strong> Illustrative scenario (not a verified customer case): A lender finds that income records use inconsistent currencies, date ranges and formats across legacy systems. Before using AI in credit decisions, the team standardises data, checks for bias and errors, and requires appropriate human oversight. Do not assume a measured accuracy or timeline without a documented evaluation.</p>
 <p><strong>Why it matters:</strong> Data problems discovered in production are 10× more expensive to fix than data problems discovered before build.</p>
 <p><strong>Implementation tip:</strong> Run a data quality audit on your intended AI data source before writing a single line of code or prompt. Score it across the 5 dimensions. Anything below 3/5 on quality or structure needs remediation before proceeding.</p>
 <p><strong>💡 What This Saves You:</strong> A data readiness assessment before build typically saves 2–4 months of rework and prevents the most demoralising outcome in AI programs — a technically correct system producing wrong answers.</p>
@@ -527,7 +527,7 @@ Pattern 4 — Agent Pattern
 <div class="real-world-box">
 <h3>🌍 From Real-World Practice</h3>
 <p><strong>Insight:</strong> The "best" AI model is the one that meets your accuracy requirements at the lowest cost — not the most powerful one available.</p>
-<p><strong>Example:</strong> A retail business benchmarked a frontier model, a mid-tier model, and a small/fast model for product description generation. The small model matched the others' quality for this specific task at ~95% lower cost. The lesson: <strong>right-size before you reach for a flagship</strong> — the best model is the cheapest one that clears your quality bar.</p>
+<p><strong>Example:</strong> Illustrative scenario (not a verified customer case): A retailer compares several models for product-description drafting. A smaller model may meet its quality threshold at lower cost, but this must be demonstrated on representative products, with factual and brand checks. No universal percentage saving or quality equivalence is implied.</p>
 <p><strong>Why it matters:</strong> Model selection is a business decision, not just a technical one. Always benchmark before committing.</p>
 <p><strong>Implementation tip:</strong> Create a model evaluation matrix for your specific use case — score each candidate on accuracy, speed, cost, and data privacy compliance. Run 100 real examples before deciding.</p>
 <p><strong>💡 What This Saves You:</strong> Structured architecture decisions save organisations an average of 40–70% in AI infrastructure costs compared to choosing based on brand recognition alone.</p>
@@ -611,7 +611,7 @@ User: [case history text]</pre>
 <div class="real-world-box">
 <h3>🌍 From Real-World Practice</h3>
 <p><strong>Insight:</strong> The difference between a prompt that works in testing and one that works in production is almost always edge case handling. Production data is messier than test data.</p>
-<p><strong>Example:</strong> A telco built a case summarisation tool. Testing on 50 clean examples gave 94% accuracy. In production, 12% of cases had missing fields, non-English characters, or internal codes the model hadn't seen. Accuracy dropped to 71% in week one. Edge case testing before go-live would have caught this.</p>
+<p><strong>Example:</strong> Illustrative scenario (not a verified customer case): A telecom provider pilots case summaries on clean records, then discovers production cases with missing fields, mixed languages and internal codes. A realistic test set should include those edge cases and report separate accuracy and safety results before launch. No measured performance drop is claimed.</p>
 <p><strong>Why it matters:</strong> Production failures erode trust in AI faster than any other cause. One bad output seen by the wrong person can set a program back by months.</p>
 <p><strong>Implementation tip:</strong> Collect 200 real examples from production data before testing. Include the 10% most unusual cases. If your prompt handles those, it handles anything.</p>
 <p><strong>💡 What This Saves You:</strong> Systematic prompt testing before deployment prevents the trust damage of public AI failures — which typically cost 3–6 months of adoption recovery time.</p>
@@ -737,7 +737,7 @@ User: [case history text]</pre>
 <div class="real-world-box">
 <h3>🌍 From Real-World Practice</h3>
 <p><strong>Insight:</strong> The organisations that treat responsible AI as a compliance checkbox are the ones that end up in the news for the wrong reasons.</p>
-<p><strong>Example:</strong> A recruitment platform deployed AI screening that achieved 85% efficiency improvement. 18 months later, an audit revealed the model was systematically downranking candidates from certain postcodes — a proxy for socioeconomic background. The business faced regulatory investigation, significant legal costs, and had to rebuild their entire screening process. Bias testing before deployment would have cost $15,000. The remediation cost $2.3 million.</p>
+<p><strong>Example:</strong> Illustrative scenario (not a verified customer case): A recruitment team considers AI-assisted screening. It tests for unfair differences across relevant candidate groups and potential proxy variables such as postcode, documents limitations, and keeps accountable human review and an appeal process. Bias can cause serious legal and ethical harm; no invented investigation, penalty or remediation cost is presented. For Australian organisations, consult the <a href="https://www.oaic.gov.au/privacy/privacy-guidance-for-organisations-and-government-agencies/guidance-on-privacy-and-the-use-of-commercially-available-ai-products" target="_blank" rel="noopener noreferrer">OAIC guidance on AI and privacy</a>.</p>
 <p><strong>Why it matters:</strong> AI bias and governance failures are not edge cases — they're predictable outcomes of deploying AI without responsible design.</p>
 <p><strong>Implementation tip:</strong> Before any AI deployment, complete a Responsible AI checklist covering: bias testing, explainability requirements, data privacy review, governance ownership, and incident response plan.</p>
 <p><strong>💡 What This Saves You:</strong> Responsible AI design prevents the most catastrophic AI outcomes — regulatory action, litigation, and reputational damage — which routinely cost 100× more than the prevention.</p>
@@ -792,7 +792,7 @@ User: [case history text]</pre>
 <div class="real-world-box">
 <h3>🌍 From Real-World Practice</h3>
 <p><strong>Insight:</strong> Sustainability and cost efficiency in AI are almost perfectly aligned — the strategies that reduce energy consumption reduce costs by the same proportion.</p>
-<p><strong>Example:</strong> A retail business running 500,000 AI queries per month implemented response caching for their top 200 FAQ queries. Cache hit rate reached 55% within 30 days. Result: 275,000 fewer AI calls per month, 45% reduction in AI costs, and a measurable reduction in their compute carbon footprint that was reported in their annual sustainability disclosure.</p>
+<p><strong>Example:</strong> Illustrative scenario (not a verified customer case): A retailer evaluates caching for frequently repeated FAQ answers. Calculate the share of requests eligible for reuse, check how quickly answers become stale, and measure actual cost and energy effects. A cache-hit rate does not translate directly into the same percentage reduction in total AI costs or emissions.</p>
 <p><strong>Why it matters:</strong> As ESG reporting requirements expand, AI's environmental impact will become a material disclosure item for many organisations. Building sustainable AI practices now avoids future compliance costs.</p>
 <p><strong>Implementation tip:</strong> Add an "AI Energy Efficiency" metric to your AI governance dashboard: track tokens consumed per unit of value delivered. Optimise this metric over time as you would any operational efficiency metric.</p>
 <p><strong>💡 What This Saves You:</strong> Sustainable AI practices reduce operating costs by 20–50% through right-sizing and caching while positioning your organisation ahead of emerging ESG disclosure requirements for AI.</p>
@@ -862,7 +862,7 @@ Standard Q&A responses   → Automated   → Escalations & experience design</pr
 <div class="real-world-box">
 <h3>🌍 From Real-World Practice</h3>
 <p><strong>Insight:</strong> The organisations with highest AI adoption rates share one characteristic — they actively co-created opportunity maps showing staff what new roles and activities become available when AI handles the routine.</p>
-<p><strong>Example:</strong> A financial services contact centre deployed AI to handle 60% of routine enquiries. Before launch, leadership presented two scenarios: "AI replaces 40% of staff" vs "AI frees 40% of staff time to handle complex cases and become AI quality reviewers, with a 15% salary uplift for those roles". Same technology. Completely different adoption outcome — 87% adoption in the second scenario vs projected resistance and attrition in the first.</p>
+<p><strong>Example:</strong> Illustrative scenario (not a verified customer case): A contact centre explores AI assistance for routine enquiries. Leadership compares workforce-reduction messaging with a reskilling and quality-review plan. Ask employees about concerns, define meaningful roles and measure adoption and service quality; do not claim an invented adoption rate or salary outcome.</p>
 <p><strong>Why it matters:</strong> How you frame AI transformation determines whether your best people stay and adopt it, or leave and undermine it.</p>
 <p><strong>Implementation tip:</strong> Before announcing any AI initiative, draft the "opportunity map" — a concrete description of what people will do with the time recovered. Make this the centrepiece of your communication, not the technology.</p>
 <p><strong>💡 What This Saves You:</strong> Effective change management prevents the 40–70% of AI programs that technically succeed but fail through non-adoption — delivering none of the projected value despite full investment.</p>
@@ -1034,7 +1034,7 @@ Week 12 — Measure & Report
 <div class="real-world-box">
 <h3>🌍 From Real-World Practice</h3>
 <p><strong>Insight:</strong> The teams that complete successful 90-day AI deployments share one discipline: they protect the plan from scope creep relentlessly. Every week of scope expansion adds two weeks of delay.</p>
-<p><strong>Example:</strong> A professional services firm planned a 90-day deployment of an AI proposal drafting tool. At week 6, leadership requested they also automate the pricing model and client reporting. The project lead declined, delivered the drafting tool on day 88, reported 68% time reduction in proposal creation, and used that result to secure a larger budget for the expanded scope in the next quarter. The alternative — agreeing to scope expansion — would have delivered nothing on day 90 and likely nothing by month 6.</p>
+<p><strong>Example:</strong> Illustrative scenario (not a verified customer case): A professional services team agrees a limited proposal-drafting pilot. When additional pricing and reporting features are requested, it records them for a later phase and measures drafting quality, review time and user adoption against the original scope. No unverified delivery date or time-saving percentage is asserted.</p>
 <p><strong>Why it matters:</strong> A delivered 60% solution is worth infinitely more than a perfect solution that never ships.</p>
 <p><strong>Implementation tip:</strong> Create a "parking lot" for good ideas that arrive mid-project. Write them down, acknowledge them, commit to evaluating them in the next planning cycle. This respects the idea without derailing the delivery.</p>
 <p><strong>💡 What This Saves You:</strong> Disciplined 90-day execution produces the proof of value that funds every subsequent AI investment. Without it, AI programs are perpetually "in progress" and perpetually vulnerable to cancellation.</p>
