@@ -110,7 +110,7 @@ At 10,000 calls per day: $75/day · $2,250/month</pre>
 <h3>📚 Further Reading</h3>
 <p>To go deeper on the foundations of how AI actually works:</p>
 <ul>
-<li><strong>Stanford AI Index Report 2026</strong> — annual data-driven snapshot of where AI actually is. Free, ~500 pages, dip in and out. <a href="https://hai.stanford.edu/ai-index" target="_blank" rel="noopener">aiindex.stanford.edu/report</a></li>
+<li><strong>Stanford AI Index Report 2026</strong> — annual data-driven snapshot of where AI actually is. Free, ~500 pages, dip in and out. <a href="https://hai.stanford.edu/ai-index" target="_blank" rel="noopener">hai.stanford.edu/ai-index</a></li>
 <li><strong>Andrej Karpathy — "Intro to Large Language Models"</strong> (1 hour video) — the clearest general-audience explanation of how LLMs work, from a founding member of OpenAI. <a href="https://www.youtube.com/watch?v=zjkBMFhNj_g" target="_blank" rel="noopener">youtube.com/watch?v=zjkBMFhNj_g</a></li>
 <li><strong>Andrej Karpathy — "Deep Dive into LLMs like ChatGPT"</strong> — Karpathy's newer follow-up with updated material on how models like ChatGPT work under the hood. Available on his YouTube channel: <a href="https://karpathy.ai" target="_blank" rel="noopener">karpathy.ai</a></li>
 <li><strong>Anthropic — Building with Claude documentation</strong> — vendor-neutral foundational concepts (tokens, context windows, prompt design) explained well. <a href="https://docs.claude.com" target="_blank" rel="noopener">docs.claude.com</a></li>
