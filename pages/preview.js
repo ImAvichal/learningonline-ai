@@ -163,7 +163,7 @@ export default function Preview() {
 
               {/* Locked lessons */}
               <div className="text-xs font-display font-bold text-muted uppercase tracking-wider mt-5 mb-3">Full Curriculum</div>
-              {['Module 2 — Key Roles', 'Module 3 — Use Cases', 'Module 4 — Prioritisation', '+ 10 more modules'].map(m => (
+              {['Module 2 — Key Roles', 'Module 3 — Use Cases', 'Module 4 — Prioritisation', '+ 12 more modules'].map(m => (
                 <div key={m} className="p-3 rounded-xl border border-white/5 bg-white/[0.01] flex items-center gap-2">
                   <span className="text-xs text-muted/50">🔒</span>
                   <span className="text-xs text-muted/50 leading-snug">{m}</span>
