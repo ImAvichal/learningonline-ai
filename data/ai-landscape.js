@@ -3,7 +3,7 @@
 // Durable lessons should teach capability tiers and decision principles; this
 // file supplies dated examples that can be refreshed without rewriting them.
 
-export const LANDSCAPE_LAST_REVIEWED = '2026-10-31'
+export const LANDSCAPE_LAST_REVIEWED = '2026-11-01'
 export const LANDSCAPE_REVIEW_CADENCE =
   'Review weekly against primary vendor and regulator sources; publish material changes with a learner-facing change log.'
 
@@ -76,7 +76,7 @@ export const CURRENT_AI_SHIFTS = [
   },
   {
     title: 'Model retirement deadlines require migration planning',
-    summary: 'OpenAI announced on 14 October 2026 that selected GPT-4o and GPT-4.1 API snapshots are scheduled for shutdown on 14 January 2027. Google lists a 17 November 2026 shutdown date for Gemini 3.1 Flash TTS preview. Check vendor deprecation pages and test replacements before deadlines.',
+    summary: 'OpenAI announced on 14 October 2026 that selected GPT-4o and GPT-4.1 API snapshots are scheduled for shutdown on 14 January 2027. Google lists 17 November 2026 shutdown dates for Gemini 3.1 Flash TTS preview and Gemini 3.1 Flash Live preview, with Gemini 3.8 TTS and Gemini 3.8 Live respectively recommended as replacements. Check vendor deprecation pages and test replacements before deadlines.',
   },
   {
     title: 'Capability requires stronger safeguards',
