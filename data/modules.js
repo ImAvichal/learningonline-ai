@@ -159,11 +159,11 @@ At 10,000 calls per day: $75/day · $2,250/month</pre>
 <p><strong>Why they matter:</strong> Translates business requirements into working AI systems. Without this role, business ideas stay ideas.</p>
 <h3>Role 5: Change Lead</h3>
 <p><strong>What they own:</strong> Adoption strategy, training, communication, resistance management, and measuring behavioural change.</p>
-<p><strong>Why they matter:</strong> Technology is 20% of an AI program. Adoption is 80%. Without a change lead, tools get built and ignored.</p>
+<p><strong>Why they matter:</strong> Change management is essential to successful adoption. Without an accountable change lead, a technically sound system may never become part of everyday work.</p>
 <div class="real-world-box">
 <h3>🌍 From Real-World Practice</h3>
-<p><strong>Insight:</strong> In 90% of stalled AI programs, at least two of these five roles are either unfilled or held by people without genuine authority.</p>
-<p><strong>Example:</strong> A government agency built an AI document classifier over 6 months. When they tried to deploy, IT blocked it citing data governance concerns. There was no Data Owner in the program — data governance hadn't been included from day one. The project was delayed by 4 months.</p>
+<p><strong>Insight:</strong> Illustrative lesson: an AI initiative can stall when data ownership, delivery accountability or change leadership is missing.</p>
+<p><strong>Example:</strong> Hypothetical scenario: a public-sector team prototypes a document classifier without assigning a data owner. Before deployment, governance reviewers identify unresolved access and retention questions, forcing the team to revisit the design.</p>
 <p><strong>Why it matters:</strong> Each missing role creates a specific type of failure. Knowing which role is weak tells you exactly where your program will break.</p>
 <p><strong>Implementation tip:</strong> Complete the Role Mapping template before writing a single line of code or prompt. Names against each role — not departments.</p>
 <p><strong>💡 What This Saves You:</strong> Clear role mapping prevents the two most common and expensive AI program failures: governance blockers and adoption collapse.</p>
@@ -463,9 +463,9 @@ Step 6: MONITOR    → Ongoing quality tracking in production</pre>
 <h3>🌍 From Real-World Practice</h3>
 <p><strong>Insight:</strong> Data readiness is consistently underestimated. Teams allocate 20% of project time to data and 80% to building. In practice, data work takes 60–80% of the total project time.</p>
 <p><strong>Example:</strong> Illustrative scenario (not a verified customer case): A lender finds that income records use inconsistent currencies, date ranges and formats across legacy systems. Before using AI in credit decisions, the team standardises data, checks for bias and errors, and requires appropriate human oversight. Do not assume a measured accuracy or timeline without a documented evaluation.</p>
-<p><strong>Why it matters:</strong> Data problems discovered in production are 10× more expensive to fix than data problems discovered before build.</p>
+<p><strong>Why it matters:</strong> Data quality problems identified after deployment can require expensive rework, remediation and retesting. Estimate costs using your own project evidence rather than a universal multiplier.</p>
 <p><strong>Implementation tip:</strong> Run a data quality audit on your intended AI data source before writing a single line of code or prompt. Score it across the 5 dimensions. Anything below 3/5 on quality or structure needs remediation before proceeding.</p>
-<p><strong>💡 What This Saves You:</strong> A data readiness assessment before build typically saves 2–4 months of rework and prevents the most demoralising outcome in AI programs — a technically correct system producing wrong answers.</p>
+<p><strong>💡 What This Saves You:</strong> A data readiness assessment can reduce avoidable rework and the risk of a technically functional system producing unreliable outputs. Measure benefits against your own baseline.</p>
 </div>
 <div class="further-reading-box">
 <h3>📚 Further Reading</h3>
@@ -780,9 +780,9 @@ User: [case history text]</pre>
         content: `<h2>AI Has a Carbon Footprint</h2>
 <p>Every AI inference — every call to a language model — consumes energy. At individual scale, this is negligible. At enterprise scale, with millions of calls per month, it becomes a meaningful part of your organisation's environmental footprint.</p>
 <h3>The Energy Reality</h3>
-<p><strong>Training vs inference:</strong> Training a large model like GPT-4 consumed an estimated 50+ gigawatt-hours of electricity — equivalent to the annual energy use of several hundred homes. Your usage doesn't contribute to training costs, but inference at scale adds up.</p>
-<p><strong>Inference energy:</strong> A single GPT-4 query consumes approximately 10× the energy of a standard Google search. At 10,000 queries per day, that's the energy equivalent of 100,000 searches daily.</p>
-<p><strong>Data centre water usage:</strong> AI data centres use significant water for cooling. Microsoft reported that training GPT-4 consumed approximately 700,000 litres of water.</p>
+<p><strong>Training vs inference:</strong> Training large AI models requires substantial computing resources, but specific electricity estimates vary by model, hardware, data centre and methodology. Running a model also consumes electricity. Use published methodology and measured usage when reporting an environmental footprint.</p>
+<p><strong>Inference energy:</strong> Energy per AI request varies with the model, prompt and response length, hardware, batching and data-centre efficiency. Avoid a fixed AI-versus-search multiplier unless a credible source measures comparable workloads.</p>
+<p><strong>Data centre water usage:</strong> Some data centres use water for cooling, and electricity generation can also have water impacts. Water consumption depends on facility design, climate and energy supply; do not attribute a model-specific figure without a verifiable source and methodology.</p>
 <h3>Sustainability Optimisation Strategies</h3>
 <p><strong>Right-size your model:</strong> Using a smaller model for tasks that don't require frontier capabilities is both cost-effective and more energy-efficient. A small model uses significantly less energy per call than a frontier model.</p>
 <p><strong>Implement caching:</strong> Caching responses for repeated queries eliminates redundant AI calls entirely. For FAQ-style applications, cache hit rates of 40–70% are achievable.</p>
@@ -915,7 +915,7 @@ Standard Q&A responses   → Automated   → Escalations & experience design</pr
   Step 2: LLM → Validate extracted data against expected format
   Step 3: LLM → Flag anomalies and generate exception report  
   Step 4: API → Post validated invoice to accounting system
-  Result: 95% straight-through processing, 5% human review queue</pre>
+  Illustrative outcome: measure validated straight-through processing and human-review rates during a controlled pilot</pre>
 <h3>Orchestration Layer Design</h3>
 <p>Orchestration is the layer that coordinates multiple AI models and tools to complete a complex task. It handles routing (which model for which task), context management (passing relevant information between steps), error handling, and monitoring.</p>
 <pre>Orchestration components:
@@ -955,7 +955,7 @@ Standard Q&A responses   → Automated   → Escalations & experience design</pr
         { id: 'q13-1', text: 'A customer sends a photo of a damaged product alongside a written complaint. Which AI architecture handles this most effectively?', options: ['Text-only LLM that reads the written complaint', 'A multimodal model or orchestrated pipeline that processes both the image (damage assessment) and text (complaint classification) together', 'Image model only', 'Route to a human — AI can\'t handle this'], correct: 1, explanation: 'Multimodal processing enables simultaneous handling of both inputs. The image provides damage evidence that the text cannot convey — combining both gives complete context for automated resolution.' },
         { id: 'q13-2', text: 'Your orchestrated AI workflow calls an image model, then an LLM, then an API, totalling 8,000 tokens per transaction. At 1,000 transactions per day, how does this compare in cost to a text-only workflow using 1,500 tokens?', options: ['Same cost', 'The orchestrated workflow costs approximately 5.3× more in token terms — image tokens are also priced differently', 'The orchestrated workflow is cheaper because it\'s automated', 'Cannot be compared'], correct: 1, explanation: 'Multi-step orchestrated workflows multiply token costs at each step. Image tokens are priced separately and typically at a premium. Cost modelling must account for every step in the pipeline.' },
         { id: 'q13-3', text: 'What is the primary purpose of an orchestration layer in a multi-model AI workflow?', options: ['To make the AI smarter', 'To reduce hallucination', 'To coordinate multiple models and tools — routing, context passing, error handling, and monitoring', 'To improve response speed'], correct: 2, explanation: 'Orchestration is the coordination infrastructure of multi-model workflows. Without it, multi-model systems become unmanageable, costs spiral, and errors compound across steps.' },
-        { id: 'q13-4', text: 'A voice AI transcription service has 95% accuracy for Australian English but 72% accuracy for customers with strong accents. What should you do?', options: ['Accept 72% as reasonable for accented speech', 'Implement a confidence threshold — below 85% accuracy routes to human transcription, with ongoing accent-specific model fine-tuning', 'Remove the service for those customer segments', 'Use a different language model'], correct: 1, explanation: 'Accuracy thresholds with human fallback maintain service quality while you improve model performance for underserved segments. This is responsible AI design for multimodal systems.' },
+        { id: 'q13-4', text: 'Hypothetical evaluation: transcription quality is substantially worse for speakers with certain accents. What should you do?', options: ['Accept 72% as reasonable for accented speech', 'Test quality across representative accent groups, route uncertain or high-impact transcripts to human review, and evaluate improvements before rollout', 'Remove the service for those customer segments', 'Use a different language model'], correct: 1, explanation: 'Evaluate performance on representative speech samples, investigate disparities and provide human review for uncertain or consequential transcripts. A model confidence score is not the same as a measured group-level accuracy rate.' },
         { id: 'q13-5', text: 'What is the recommended approach when introducing multimodal AI to an organisation new to AI?', options: ['Deploy full multimodal orchestration immediately for maximum impact', 'Start with one modality, prove value and build capability, then add the second modality to the same workflow', 'Skip text-only AI and go straight to multimodal', 'Use multimodal only for enterprise tier'], correct: 1, explanation: 'Phased modality introduction reduces risk and builds organisational confidence. Each modality adds complexity and cost. Proving value before adding complexity is the right sequencing.' },
       ],
     },
