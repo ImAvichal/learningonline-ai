@@ -3,7 +3,7 @@
 // Durable lessons should teach capability tiers and decision principles; this
 // file supplies dated examples that can be refreshed without rewriting them.
 
-export const LANDSCAPE_LAST_REVIEWED = '2026-11-01'
+export const LANDSCAPE_LAST_REVIEWED = '2026-11-02'
 export const LANDSCAPE_REVIEW_CADENCE =
   'Review weekly against primary vendor and regulator sources; publish material changes with a learner-facing change log.'
 
@@ -79,6 +79,14 @@ export const CURRENT_AI_SHIFTS = [
     summary: 'OpenAI announced on 14 October 2026 that selected GPT-4o and GPT-4.1 API snapshots are scheduled for shutdown on 14 January 2027. Google lists 17 November 2026 shutdown dates for Gemini 3.1 Flash TTS preview and Gemini 3.1 Flash Live preview, with Gemini 3.8 TTS and Gemini 3.8 Live respectively recommended as replacements. Check vendor deprecation pages and test replacements before deadlines.',
   },
   {
+    title: 'Late-2026 OpenAI API retirements need attention',
+    summary: 'OpenAI lists 30 November 2026 for reusable prompts, 1 December 2026 for selected older image models, and 11 December 2026 for specified GPT-5 and o3 API snapshots. These are endpoint/model-specific deadlines; check the official deprecations table and test supported replacements before migration.',
+  },
+  {
+    title: 'Speech API migrations can require workflow changes',
+    summary: 'OpenAI lists 6 January 2027 shutdown dates for tts-1, tts-1-hd and specified GPT-4o mini TTS models. Its recommended gpt-realtime-2.1-mini replacement uses the Realtime API rather than the existing /v1/audio/speech endpoint; this is not a drop-in model-ID change.',
+  },
+  {
     title: 'Capability requires stronger safeguards',
     summary: 'More capable agents increase the impact of mistakes and misuse. Human approval for consequential actions, scoped tools and continuous evaluation are production requirements.',
   },
@@ -111,6 +119,7 @@ export const PRIMARY_REFRESH_SOURCES = [
   { name: 'Claude model documentation', url: 'https://platform.claude.com/docs/en/about-claude/models/overview' },
   { name: 'Google Gemini models', url: 'https://ai.google.dev/gemini-api/docs/models' },
   { name: 'Gemini model deprecations', url: 'https://ai.google.dev/gemini-api/docs/deprecations' },
+  { name: 'IEA Energy and AI report', url: 'https://www.iea.org/reports/energy-and-ai' },
   { name: 'NIST AI RMF', url: 'https://www.nist.gov/itl/ai-risk-management-framework' },
 ]
 
