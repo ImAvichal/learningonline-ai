@@ -620,7 +620,7 @@ User: [case history text]</pre>
 <h3>📚 Further Reading</h3>
 <p>On prompt design and testing — the difference between a prompt that works in demos and one that survives production.</p>
 <ul>
-<li><strong>Anthropic — Prompt Engineering documentation</strong> — Official, regularly updated guidance from one of the major model labs. Covers chain-of-thought, examples, system prompts, XML tags for structure. <a href="https://docs.claude.com/en/docs/build-with-claude/prompt-engineering/overview" target="_blank" rel="noopener">docs.claude.com/en/docs/build-with-claude/prompt-engineering/overview</a></li>
+<li><strong>Anthropic — Prompt Engineering documentation</strong> — Official, regularly updated guidance from one of the major model labs. Covers chain-of-thought, examples, system prompts, XML tags for structure. <a href="https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/overview" target="_blank" rel="noopener">docs.claude.com/en/docs/build-with-claude/prompt-engineering/overview</a></li>
 <li><strong>Anthropic — AI Fluency course (free, Deep Dive 2: Effective Prompting)</strong> — Free structured course covering effective prompting techniques and evaluation. Accessible to non-engineers. <a href="https://www.anthropic.com/ai-fluency" target="_blank" rel="noopener">www.anthropic.com/ai-fluency</a></li>
 <li><strong>Steve Kinney — "Prompt Engineering Across the OpenAI, Anthropic, and Gemini APIs"</strong> — Practical guide for writing reliable prompts across providers. Strong on the difference between 'works' and 'works reliably' — which is where production breaks. <a href="https://stevekinney.com/writing/prompt-engineering-frontier-llms" target="_blank" rel="noopener">stevekinney.com/writing/prompt-engineering-frontier-llms</a></li>
 <li><strong>AWS Bedrock — "Prompt engineering techniques and best practices: Learn by doing with Anthropic's Claude"</strong> — Hands-on walkthrough with worked examples. Good starting point if you're new to structured prompting. <a href="https://aws.amazon.com/blogs/machine-learning/prompt-engineering-techniques-and-best-practices-learn-by-doing-with-anthropics-claude-3-on-amazon-bedrock/" target="_blank" rel="noopener">aws.amazon.com/blogs/machine-learning/prompt-engineering-techniques-and-best-practices-learn-by-doing-with-anthropics-claude-3-on-amazon-bedrock</a></li>
@@ -825,7 +825,7 @@ User: [case history text]</pre>
   {
     id: 'module-12', number: 12, icon: '🤝',
     title: 'People, Change & Adoption',
-    description: 'Technology is 20% of an AI program. People are 80%. Build the adoption strategy that makes AI stick — and the opportunity map that makes people want it to.',
+    description: 'AI adoption depends on people, processes and technology. Build a change strategy that helps teams use AI safely and turn useful ideas into measurable outcomes.',
     deliverable: 'Adoption Strategy + Opportunity Creation Plan',
     templateId: 'adoption-plan',
     lessons: [
