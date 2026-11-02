@@ -3,7 +3,7 @@
 // Durable lessons should teach capability tiers and decision principles; this
 // file supplies dated examples that can be refreshed without rewriting them.
 
-export const LANDSCAPE_LAST_REVIEWED = '2026-11-02'
+export const LANDSCAPE_LAST_REVIEWED = '2026-11-03'
 export const LANDSCAPE_REVIEW_CADENCE =
   'Review weekly against primary vendor and regulator sources; publish material changes with a learner-facing change log.'
 
@@ -81,6 +81,14 @@ export const CURRENT_AI_SHIFTS = [
   {
     title: 'Late-2026 OpenAI API retirements need attention',
     summary: 'OpenAI lists 30 November 2026 for reusable prompts, 1 December 2026 for selected older image models, and 11 December 2026 for specified GPT-5 and o3 API snapshots. These are endpoint/model-specific deadlines; check the official deprecations table and test supported replacements before migration.',
+  },
+  {
+    title: 'Gemini 2.5 Pro and Flash API aliases change on 1 December 2026',
+    summary: 'Google says API calls to gemini-2.5-pro will automatically route to gemini-3.8-flash, while gemini-2.5-flash will route to gemini-3.5-flash-lite, from 1 December 2026. The replacements have different capabilities, breaking API changes and billing rates. Test task quality, parameters and costs before this date; gemini-2.5-flash-lite is not part of this retirement.',
+  },
+  {
+    title: 'OpenAI Evals and Agent Builder have 30 November 2026 retirement deadlines',
+    summary: 'OpenAI says existing Evals became read-only on 31 October 2026, with the Evals dashboard/API and Agent Builder scheduled to shut down on 30 November 2026. This is separate from the reusable prompts API retirement on the same date. Migrate evaluation workflows and agent-building projects using the vendor migration guides; ChatKit is not part of the Agent Builder shutdown.',
   },
   {
     title: 'Speech API migrations can require workflow changes',
