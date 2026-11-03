@@ -3,7 +3,7 @@
 // Durable lessons should teach capability tiers and decision principles; this
 // file supplies dated examples that can be refreshed without rewriting them.
 
-export const LANDSCAPE_LAST_REVIEWED = '2026-11-03'
+export const LANDSCAPE_LAST_REVIEWED = '2026-11-04'
 export const LANDSCAPE_REVIEW_CADENCE =
   'Review weekly against primary vendor and regulator sources; publish material changes with a learner-facing change log.'
 
@@ -83,8 +83,8 @@ export const CURRENT_AI_SHIFTS = [
     summary: 'OpenAI lists 30 November 2026 for reusable prompts, 1 December 2026 for selected older image models, and 11 December 2026 for specified GPT-5 and o3 API snapshots. These are endpoint/model-specific deadlines; check the official deprecations table and test supported replacements before migration.',
   },
   {
-    title: 'Gemini 2.5 Pro and Flash API aliases change on 1 December 2026',
-    summary: 'Google says API calls to gemini-2.5-pro will automatically route to gemini-3.8-flash, while gemini-2.5-flash will route to gemini-3.5-flash-lite, from 1 December 2026. The replacements have different capabilities, breaking API changes and billing rates. Test task quality, parameters and costs before this date; gemini-2.5-flash-lite is not part of this retirement.',
+    title: 'Gemini 2.5 stable API models: no shutdown date announced',
+    summary: 'As reviewed on 4 November 2026, Google explicitly says gemini-2.5-pro and gemini-2.5-flash are not deprecated and have no announced shutdown date. Access is limited for new users; Google recommends newer models for new projects. Earlier course copy incorrectly claimed automatic rerouting on 1 December 2026. Do not teach that claim. Check official deprecations and evaluate any voluntary migration for quality, API compatibility, safety and cost.',
   },
   {
     title: 'OpenAI Evals and Agent Builder have 30 November 2026 retirement deadlines',
