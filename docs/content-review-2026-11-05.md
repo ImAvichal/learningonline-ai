@@ -33,11 +33,11 @@ OpenAI's API deprecations page lists **26 February 2027** shutdown for `whisper-
 2. Replaced 4 November's obsolete Gemini 2.5 no-shutdown-date statement with the current official 1 December automatic reroute details, including different destination models and billing.
 3. Added the OpenAI 26 February 2027 transcription model sunset and migration precautions.
 4. Canonicalised the Claude documentation source URL.
-5. Added this dated review; no pricing, entitlement, authentication, checkout, customer data, emails or deployment configuration changed.
+5. In Module 9's research references, narrowed MIT Sloan's 90% KPI improvement finding to the specific subgroup using AI to create new KPIs, and linked to MIT Sloan's accessible summary (https://mitsloan.mit.edu/ideas-made-to-matter/generative-ai-smart-kpis-and-discovery-groups-new-mit-sloan-management-review). Removed an unverified generic 84% AI-tool discovery claim from the adjacent practitioner-framework reference.\n6. Added this dated review; no pricing, entitlement, authentication, checkout, customer data, emails or deployment configuration changed.
 
 ## Validation and release blockers
 
-- Static content assertions passed while preparing the change (targeted text replacement, one landscape export, expected previous notice removed); **not** a complete runtime test.
+- Static content assertions passed while preparing the change, including verification of the narrowed KPI claim and removal of the 84% claim (targeted text replacement, one landscape export, expected previous notice removed); **not** a complete runtime test.
 - Previous PR #4 head `3623ffa` had a successful Vercel preview build, but GitHub Quality Gate failed at `npm run check:release`; the application build step was skipped.
 - The regional-price check fix is separate in draft PR #5 and is not merged.
 - Main still pins Next.js 14.2.5. Dependency security remediation and authenticated browser tests (signup, checkout, entitlements, email privacy, access controls), complete link crawl and production stability verification remain outstanding.
