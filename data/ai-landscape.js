@@ -3,7 +3,7 @@
 // Durable lessons should teach capability tiers and decision principles; this
 // file supplies dated examples that can be refreshed without rewriting them.
 
-export const LANDSCAPE_LAST_REVIEWED = '2026-11-04'
+export const LANDSCAPE_LAST_REVIEWED = '2026-11-05'
 export const LANDSCAPE_REVIEW_CADENCE =
   'Review weekly against primary vendor and regulator sources; publish material changes with a learner-facing change log.'
 
@@ -83,8 +83,8 @@ export const CURRENT_AI_SHIFTS = [
     summary: 'OpenAI lists 30 November 2026 for reusable prompts, 1 December 2026 for selected older image models, and 11 December 2026 for specified GPT-5 and o3 API snapshots. These are endpoint/model-specific deadlines; check the official deprecations table and test supported replacements before migration.',
   },
   {
-    title: 'Gemini 2.5 stable API models: no shutdown date announced',
-    summary: 'As reviewed on 4 November 2026, Google explicitly says gemini-2.5-pro and gemini-2.5-flash are not deprecated and have no announced shutdown date. Access is limited for new users; Google recommends newer models for new projects. Earlier course copy incorrectly claimed automatic rerouting on 1 December 2026. Do not teach that claim. Check official deprecations and evaluate any voluntary migration for quality, API compatibility, safety and cost.',
+    title: 'Gemini 2.5 Pro and Flash API reroute on 1 December 2026',
+    summary: 'As verified against Google’s live deprecations table on 5 November 2026, gemini-2.5-pro is deprecated and API calls will automatically route to gemini-3.8-flash on 1 December 2026; gemini-2.5-flash will route to gemini-3.5-flash-lite on the same date. The replacement model’s billing rates apply. The separate gemini-2.5-flash-lite is not deprecated and has no announced shutdown date. Google documents breaking API changes: test prompts, structured outputs, latency, safety, accuracy and costs before migration. This supersedes the 4 November no-shutdown-date guidance, which was accurate to the source reviewed then but is no longer current.',
   },
   {
     title: 'OpenAI Evals and Agent Builder have 30 November 2026 retirement deadlines',
@@ -93,6 +93,10 @@ export const CURRENT_AI_SHIFTS = [
   {
     title: 'Speech API migrations can require workflow changes',
     summary: 'OpenAI lists 6 January 2027 shutdown dates for tts-1, tts-1-hd and specified GPT-4o mini TTS models. Its recommended gpt-realtime-2.1-mini replacement uses the Realtime API rather than the existing /v1/audio/speech endpoint; this is not a drop-in model-ID change.',
+  },
+  {
+    title: 'OpenAI transcription API models retire on 26 February 2027',
+    summary: 'OpenAI lists 26 February 2027 shutdown dates for whisper-1, gpt-4o-transcribe, gpt-4o-mini-transcribe and gpt-4o-transcribe-diarize (including the specified snapshot). Recommended replacements include gpt-live-transcribe or gpt-transcribe. Evaluate streaming, diarization, language coverage, privacy, latency, output formats and integration changes before switching.',
   },
   {
     title: 'Capability requires stronger safeguards',
@@ -124,7 +128,7 @@ export const PRIMARY_REFRESH_SOURCES = [
   { name: 'OpenAI model catalogue', url: 'https://developers.openai.com/api/docs/models' },
   { name: 'OpenAI API pricing', url: 'https://platform.openai.com/pricing' },
   { name: 'OpenAI API deprecations', url: 'https://developers.openai.com/api/docs/deprecations' },
-  { name: 'Claude model documentation', url: 'https://platform.claude.com/docs/en/about-claude/models/overview' },
+  { name: 'Claude model documentation', url: 'https://platform.claude.com/docs/en/models/overview' },
   { name: 'Google Gemini models', url: 'https://ai.google.dev/gemini-api/docs/models' },
   { name: 'Gemini model deprecations', url: 'https://ai.google.dev/gemini-api/docs/deprecations' },
   { name: 'IEA Energy and AI report', url: 'https://www.iea.org/reports/energy-and-ai' },
