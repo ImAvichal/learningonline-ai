@@ -3,7 +3,7 @@
 // Durable lessons should teach capability tiers and decision principles; this
 // file supplies dated examples that can be refreshed without rewriting them.
 
-export const LANDSCAPE_LAST_REVIEWED = '2026-11-06'
+export const LANDSCAPE_LAST_REVIEWED = '2026-11-07'
 export const LANDSCAPE_REVIEW_CADENCE =
   'Review weekly against primary vendor and regulator sources; publish material changes with a learner-facing change log.'
 
@@ -89,6 +89,10 @@ export const CURRENT_AI_SHIFTS = [
   {
     title: 'OpenAI Evals and Agent Builder have 30 November 2026 retirement deadlines',
     summary: 'OpenAI says existing Evals became read-only on 31 October 2026, with the Evals dashboard/API and Agent Builder scheduled to shut down on 30 November 2026. This is separate from the reusable prompts API retirement on the same date. Migrate evaluation workflows and agent-building projects using the vendor migration guides; ChatKit is not part of the Agent Builder shutdown.',
+  },
+  {
+    title: 'Preview model retirements can have shorter migration windows',
+    summary: 'On 5 November 2026, OpenAI deprecated the specialised gpt-5.5-cyber-preview API model with a 1 February 2027 shutdown date. This is not a general GPT-5.5 shutdown. Before building a business-critical workflow around a preview model, check the vendor deprecations page and, where available, the API model shutdown_date field; maintain tested alternatives and a migration plan.',
   },
   {
     title: 'Speech API migrations can require workflow changes',
