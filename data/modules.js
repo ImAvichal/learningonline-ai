@@ -1,4 +1,4 @@
-// data/modules.js — Full 14-module Le On AI curriculum
+// data/modules.js — Full LeO AI curriculum; module count is derived from MODULES
 // Each module includes: lessons, Q&A questions, real-world practice section
 
 export const MODULES = [
@@ -13,7 +13,7 @@ export const MODULES = [
         id: 'm1-l1', number: 1, tier: 'individual', duration: '20 min',
         title: 'Introduction to AI: What It Is and Isn\'t',
         content: `<h2>What AI Actually Is</h2>
-<p>Artificial Intelligence is pattern recognition at scale. At its core, AI learns from examples and applies what it has learned to new situations. It does not think, reason, or understand in the way humans do — it predicts.</p>
+<p>Artificial Intelligence is pattern recognition at scale. At its core, AI learns from examples and applies what it has learned to new situations. It is not the same as human understanding or judgement; generated answers can be convincing and still be wrong.</p>
 <h3>The Three Categories You Need to Know</h3>
 <p><strong>Narrow AI (where we are now):</strong> AI designed for specific tasks. A chat model writes text. An image model generates images. AlphaFold predicts protein structures. Each is exceptional at its task and useless at others.</p>
 <p><strong>General AI (where we're heading):</strong> Systems that can perform any intellectual task a human can. Not here yet — but approaching faster than most organisations are prepared for.</p>
@@ -26,7 +26,7 @@ export const MODULES = [
 <div class="real-world-box">
 <h3>🌍 From Real-World Practice</h3>
 <p><strong>Insight:</strong> Most AI failures in business aren't technical — they're expectational. Teams deploy AI expecting a human-like understanding of context and get confused outputs instead.</p>
-<p><strong>Example:</strong> A legal team deployed an AI to review contracts. It performed well on standard clauses but hallucinated precedents that didn't exist. Nobody checked — and two contracts were sent to clients with fabricated legal references.</p>
+<p><strong>Example:</strong> Illustrative scenario: a legal team uses AI to review contracts. If staff accept fabricated legal precedents without checking, inaccurate references could reach clients.</p>
 <p><strong>Why it matters:</strong> Without understanding AI's fundamental limitations, you design workflows that create liability rather than value.</p>
 <p><strong>Implementation tip:</strong> Before any deployment, document your "failure modes" — what happens when AI is wrong? Design for that scenario first.</p>
 <p><strong>💡 What This Saves You:</strong> Understanding AI limitations before deployment prevents costly rework, reputational risk, and the single most common cause of AI project abandonment.</p>
@@ -39,7 +39,7 @@ export const MODULES = [
 <p>Choosing the wrong model is like using a forklift to move a coffee cup — technically possible, expensive, and unnecessary. Here's the framework for picking the right tool.</p>
 <h3>Large Language Models (LLMs)</h3>
 <p>Best for: text generation, summarisation, classification, question answering, code generation, translation.</p>
-<p>Think in capability tiers, not brand names — the specific models change every few weeks. Frontier for the hardest work; mid-tier workhorses for most production tasks; small/fast for high-volume narrow tasks; open-weight for privacy and cost control. <em>(Mid-2026: GPT-5.6, Claude Opus 4.8 / Sonnet 5, Gemini 3.x and Grok 4.5 at the frontier; strong open-weight from Meta, DeepSeek, Qwen and Mistral.)</em></p>
+<p>Think in capability tiers, not brand names — the specific models change every few weeks. Frontier for the hardest work; mid-tier workhorses for most production tasks; small/fast for high-volume narrow tasks; open-weight for privacy and cost control. <em>(Model names and rankings change rapidly. For current options, check the official model catalogues from OpenAI, Anthropic and Google rather than relying on a fixed list in this lesson.)</em></p>
 <p>When to choose: Any task involving reading, writing, classifying, or reasoning over text.</p>
 <h3>Reasoning Models</h3>
 <p>Best for: multi-step logic, maths, planning, and hard code. A newer class that "thinks" step-by-step before answering — much stronger on complex problems, but slower and more expensive.</p>
@@ -62,11 +62,11 @@ export const MODULES = [
   Multiple inputs → Multimodal or orchestrated pipeline</pre>
 <div class="real-world-box">
 <h3>🌍 From Real-World Practice</h3>
-<p><strong>Insight:</strong> Organisations routinely pay 10–50× more than necessary by using frontier models for tasks that smaller, cheaper models handle equally well.</p>
-<p><strong>Example:</strong> A retail business was using a frontier model to classify customer support tickets into 12 categories. Switching to a small, fine-tuned model for the same task cut cost by ~90% with equivalent accuracy.</p>
+<p><strong>Insight:</strong> Using a frontier model for every task can be unnecessarily expensive. Measure accuracy, latency, privacy and total cost for each workload.</p>
+<p><strong>Example:</strong> Illustrative scenario (not a verified customer case): A retailer classifies support tickets into 12 categories. It benchmarks a smaller model against a larger model using labelled tickets, measuring accuracy, difficult cases, response time and total cost before considering a switch. Do not assume a fixed percentage saving.</p>
 <p><strong>Why it matters:</strong> At scale, model selection is a financial decision, not just a technical one.</p>
 <p><strong>Implementation tip:</strong> Always benchmark 2–3 models against your specific task before committing to production. Cost and quality don't always correlate.</p>
-<p><strong>💡 What This Saves You:</strong> Correct model selection typically reduces AI running costs by 40–80% without any loss in output quality.</p>
+<p><strong>💡 What This Saves You:</strong> Appropriate model selection can reduce cost, but savings and quality must be demonstrated on your own workload.</p>
 </div>`,
       },
       {
@@ -78,7 +78,7 @@ export const MODULES = [
 <p>A token is approximately 4 characters of text, or about ¾ of a word. The sentence "The quick brown fox" is roughly 5 tokens. A typical business email is 100–300 tokens. A 10-page report is 3,000–5,000 tokens.</p>
 <h3>Input vs Output Tokens</h3>
 <p><strong>Input tokens:</strong> Everything you send to the model — your system prompt, the user message, any documents or context. You pay for every token the model reads.</p>
-<p><strong>Output tokens:</strong> Everything the model generates in response. Output tokens typically cost 3–5× more than input tokens.</p>
+<p><strong>Output tokens:</strong> Everything the model generates in response. Input and output prices often differ; check the current provider rate for your chosen model.</p>
 <h3>The Cost Formula</h3>
 <pre>Total cost = (input tokens × input price) + (output tokens × output price)
 
@@ -94,14 +94,14 @@ A task with 1,000 input tokens + 500 output tokens:
 At 10,000 calls per day: $75/day · $2,250/month</pre>
 <p><em>The per-token rates above are illustrative — they teach the calculation method, not today's prices. Real rates have fallen sharply and keep dropping. Learn the maths, then plug in current numbers (see the model-landscape reference).</em></p>
 <h3>Token Optimisation Strategies</h3>
-<p><strong>Compress your prompts:</strong> Remove unnecessary words from system prompts. A 500-token prompt run 10,000 times costs as much as 5 million extra input tokens monthly.</p>
+<p><strong>Compress your prompts:</strong> Remove unnecessary words from system prompts. A 500-token prompt sent 10,000 times adds 5 million input tokens across those calls, before any caching discounts.</p>
 <p><strong>Use cheaper models for simple tasks:</strong> Classification, simple extraction, and formatting tasks don't need frontier models.</p>
 <p><strong>Implement caching:</strong> Cache responses for identical or near-identical inputs. Reduces costs dramatically for FAQ-style use cases.</p>
 <p><strong>Chunk strategically:</strong> Don't send entire documents when only sections are relevant. Retrieve only the necessary context.</p>
 <div class="real-world-box">
 <h3>🌍 From Real-World Practice</h3>
 <p><strong>Insight:</strong> Teams that don't model token costs before deployment routinely discover their "cheap" AI solution costs more than the headcount it was meant to replace.</p>
-<p><strong>Example:</strong> A financial services firm built an AI document review tool. Initial testing on 50 documents worked fine. When scaled to 5,000 documents per day — each averaging 8,000 tokens — monthly AI costs hit $180,000. They hadn't modelled volume.</p>
+<p><strong>Example:</strong> Illustrative scenario (not a verified customer case): A document-review team tests on 50 files, then plans for 5,000 documents per day at 8,000 input tokens each. That is 40 million input tokens daily before outputs, retries and other charges. Multiply the volume by the provider's current rates to estimate spend; do not treat an invented monthly bill as an observed result.</p>
 <p><strong>Why it matters:</strong> Token costs are the hidden variable in every AI business case. Missing them invalidates your ROI model.</p>
 <p><strong>Implementation tip:</strong> Always calculate your expected monthly token spend before building. Use the formula in Module 4's cost model.</p>
 <p><strong>💡 What This Saves You:</strong> Understanding tokens before deployment prevents the single most common AI budget shock — discovering real costs only after going live.</p>
@@ -110,7 +110,7 @@ At 10,000 calls per day: $75/day · $2,250/month</pre>
 <h3>📚 Further Reading</h3>
 <p>To go deeper on the foundations of how AI actually works:</p>
 <ul>
-<li><strong>Stanford AI Index Report 2024</strong> — annual data-driven snapshot of where AI actually is. Free, ~500 pages, dip in and out. <a href="https://aiindex.stanford.edu/report/" target="_blank" rel="noopener">aiindex.stanford.edu/report</a></li>
+<li><strong>Stanford AI Index Report 2026</strong> — annual data-driven snapshot of where AI actually is. Free, ~500 pages, dip in and out. <a href="https://hai.stanford.edu/ai-index" target="_blank" rel="noopener">hai.stanford.edu/ai-index</a></li>
 <li><strong>Andrej Karpathy — "Intro to Large Language Models"</strong> (1 hour video) — the clearest general-audience explanation of how LLMs work, from a founding member of OpenAI. <a href="https://www.youtube.com/watch?v=zjkBMFhNj_g" target="_blank" rel="noopener">youtube.com/watch?v=zjkBMFhNj_g</a></li>
 <li><strong>Andrej Karpathy — "Deep Dive into LLMs like ChatGPT"</strong> — Karpathy's newer follow-up with updated material on how models like ChatGPT work under the hood. Available on his YouTube channel: <a href="https://karpathy.ai" target="_blank" rel="noopener">karpathy.ai</a></li>
 <li><strong>Anthropic — Building with Claude documentation</strong> — vendor-neutral foundational concepts (tokens, context windows, prompt design) explained well. <a href="https://docs.claude.com" target="_blank" rel="noopener">docs.claude.com</a></li>
@@ -159,11 +159,11 @@ At 10,000 calls per day: $75/day · $2,250/month</pre>
 <p><strong>Why they matter:</strong> Translates business requirements into working AI systems. Without this role, business ideas stay ideas.</p>
 <h3>Role 5: Change Lead</h3>
 <p><strong>What they own:</strong> Adoption strategy, training, communication, resistance management, and measuring behavioural change.</p>
-<p><strong>Why they matter:</strong> Technology is 20% of an AI program. Adoption is 80%. Without a change lead, tools get built and ignored.</p>
+<p><strong>Why they matter:</strong> Change management is essential to successful adoption. Without an accountable change lead, a technically sound system may never become part of everyday work.</p>
 <div class="real-world-box">
 <h3>🌍 From Real-World Practice</h3>
-<p><strong>Insight:</strong> In 90% of stalled AI programs, at least two of these five roles are either unfilled or held by people without genuine authority.</p>
-<p><strong>Example:</strong> A government agency built an AI document classifier over 6 months. When they tried to deploy, IT blocked it citing data governance concerns. There was no Data Owner in the program — data governance hadn't been included from day one. The project was delayed by 4 months.</p>
+<p><strong>Insight:</strong> Illustrative lesson: an AI initiative can stall when data ownership, delivery accountability or change leadership is missing.</p>
+<p><strong>Example:</strong> Hypothetical scenario: a public-sector team prototypes a document classifier without assigning a data owner. Before deployment, governance reviewers identify unresolved access and retention questions, forcing the team to revisit the design.</p>
 <p><strong>Why it matters:</strong> Each missing role creates a specific type of failure. Knowing which role is weak tells you exactly where your program will break.</p>
 <p><strong>Implementation tip:</strong> Complete the Role Mapping template before writing a single line of code or prompt. Names against each role — not departments.</p>
 <p><strong>💡 What This Saves You:</strong> Clear role mapping prevents the two most common and expensive AI program failures: governance blockers and adoption collapse.</p>
@@ -223,7 +223,7 @@ Low Value   │ Avoid        │ Low-hanging
 <div class="real-world-box">
 <h3>🌍 From Real-World Practice</h3>
 <p><strong>Insight:</strong> The best AI use cases are rarely the most exciting ones. They're the ones that address the most painful, repetitive, data-rich processes — which are often invisible to leadership.</p>
-<p><strong>Example:</strong> A hospitality chain wanted to build an AI concierge (exciting, complex, high-risk). Meanwhile, their staff spent 4 hours per day manually compiling daily occupancy and F&B reports from 3 systems. The report automation took 3 weeks to build, saved $240K annually, and built organisational confidence for bigger initiatives.</p>
+<p><strong>Example:</strong> Illustrative scenario (not a verified customer case): A hospitality group considers an AI concierge but first tests automating its daily occupancy and food-and-beverage reporting. Compare implementation effort, staff review time, report accuracy and actual hours saved before calculating a return. No annual saving is assumed.</p>
 <p><strong>Why it matters:</strong> Starting with the right use case creates the proof of concept that funds the next five.</p>
 <p><strong>Implementation tip:</strong> Run a "time audit" — ask 10 people across different functions to log tasks for one week. The highest-volume, most repetitive items are your first wave of opportunities.</p>
 <p><strong>💡 What This Saves You:</strong> Selecting the right first use case prevents the most expensive mistake in AI programs — spending 6 months on a complex use case that fails, demoralising the team and exhausting the budget.</p>
@@ -248,7 +248,7 @@ Low Value   │ Avoid        │ Low-hanging
         { id: 'q3-1', text: 'A marketing team spends 3 hours per week creating social media post summaries from blog content. An AI solution could automate this in 2 weeks. How would you classify this opportunity?', options: ['High value, high complexity — strategic bet', 'Low value, low complexity — quick win', 'High value, low complexity — ideal starting point', 'Low value, high complexity — avoid'], correct: 2, explanation: 'Content summarisation is a proven AI capability (low complexity). 3 hours/week per person at scale is meaningful value. Classic quick win profile.' },
         { id: 'q3-2', text: 'Which of these signals best indicates a strong AI use case?', options: ['The task is novel and creative each time it\'s performed', 'The task is performed frequently, follows a pattern, and has clear inputs and outputs', 'The task requires deep human judgment and emotional intelligence', 'The task is currently performed by senior leadership'], correct: 1, explanation: 'Frequency + pattern + clear I/O is the AI use case trifecta. AI thrives on repetition and consistency.' },
         { id: 'q3-3', text: 'Your organisation has identified 12 potential AI use cases. What\'s the most effective way to narrow to the right 3 to pursue first?', options: ['Choose the 3 that sound most innovative', 'Choose the 3 that the CEO is most excited about', 'Score each against value, complexity, data availability, and team readiness', 'Choose the 3 that other companies in your industry are doing'], correct: 2, explanation: 'Structured scoring removes bias and politics from use case selection. It\'s the foundation of Module 4\'s prioritisation framework.' },
-        { id: 'q3-4', text: 'Which data signal most strongly suggests an AI use case is viable?', options: ['The process exists but no data has been collected', 'Historical data of 6+ months exists in a structured format', 'Data exists but is spread across 7 different systems with no integration', 'Data is collected on paper forms'], correct: 1, explanation: 'Structured historical data is the highest readiness signal. AI needs examples to learn from. Clean, accessible data dramatically reduces implementation time and risk.' },
+        { id: 'q3-4', text: 'Which data signal most strongly suggests an AI use case is viable?', options: ['The process exists but no data has been collected', 'Historical data of 6+ months exists in a structured format', 'Data exists but is spread across 7 different systems with no integration', 'Data is collected on paper forms'], correct: 1, explanation: 'Structured historical data is the highest readiness signal. Relevant, trustworthy data and clear evaluation criteria improve readiness. Not every use case requires training a model on historical examples.' },
         { id: 'q3-5', text: 'A task requires an experienced employee to make a judgment call based on their 10 years of experience — the criteria aren\'t documented anywhere. Is this a good early AI use case?', options: ['Yes — AI can replicate any human judgment', 'No — undocumented judgment criteria make this high-risk and high-complexity', 'Yes — if you train the AI on that employee\'s outputs', 'No — AI can never make judgment calls'], correct: 1, explanation: 'Undocumented expert judgment is one of the hardest AI problems. It\'s not impossible, but it\'s a Horizon 2-3 use case, not a first deployment.' },
       ],
     },
@@ -411,7 +411,7 @@ Pattern 5: AI Decides → Human Monitors
 <h3>📚 Further Reading</h3>
 <p>On designing workflows where AI and humans work together — when AI acts, when humans gate, and when both are needed.</p>
 <ul>
-<li><strong>Elementum AI — "Human-in-the-Loop Workflows: A Complete Guide"</strong> — Distinguishes HITL (human approves each output) from HOTL (human monitors aggregate behaviour). Notes EU AI Act Article 14 now mandates HITL for high-risk systems. <a href="https://www.elementum.ai/blog/human-in-the-loop-workflows" target="_blank" rel="noopener">www.elementum.ai/blog/human-in-the-loop-workflows</a></li>
+<li><strong>Elementum AI — "Human-in-the-Loop Workflows: A Complete Guide"</strong> — Distinguishes HITL (human approves each output) from HOTL (human monitors aggregate behaviour). Notes EU AI Act Article 14 requires appropriate human oversight for high-risk AI systems; it does not prescribe human approval of every individual output in every case. <a href="https://www.elementum.ai/blog/human-in-the-loop-workflows" target="_blank" rel="noopener">www.elementum.ai/blog/human-in-the-loop-workflows</a></li>
 <li><strong>Elementum AI — "Human-in-the-Loop Agentic AI: When You Need Both"</strong> — Decision framework for embedding human oversight in agent workflows across finance, healthcare, customer service, and IT operations. <a href="https://www.elementum.ai/blog/human-in-the-loop-agentic-ai" target="_blank" rel="noopener">www.elementum.ai/blog/human-in-the-loop-agentic-ai</a></li>
 <li><strong>StackAI — "Human-in-the-Loop AI Agents: Designing Approval Workflows"</strong> — Practical patterns for separation of duties, auditability, and approval queues — including the critical principle that gating after a side effect isn't approval. <a href="https://www.stackai.com/insights/human-in-the-loop-ai-agents-how-to-design-approval-workflows-for-safe-and-scalable-automation" target="_blank" rel="noopener">www.stackai.com/insights/human-in-the-loop-ai-agents-how-to-design-approval-workflows-for-safe-and-scalable-automation</a></li>
 <li><strong>Microsoft — "Building Human-in-the-loop AI Workflows with Microsoft Agent Framework"</strong> — Walkthrough using a fraud detection example, combining deterministic orchestration with autonomous AI agents — useful pattern reference even if you're not on Microsoft stack. <a href="https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/building-human-in-the-loop-ai-workflows-with-microsoft-agent-framework/4460342" target="_blank" rel="noopener">techcommunity.microsoft.com/blog/azure-ai-foundry-blog/building-human-in-the-loop-ai-workflows-with-microsoft-agent-framework/4460342</a></li>
@@ -462,10 +462,10 @@ Step 6: MONITOR    → Ongoing quality tracking in production</pre>
 <div class="real-world-box">
 <h3>🌍 From Real-World Practice</h3>
 <p><strong>Insight:</strong> Data readiness is consistently underestimated. Teams allocate 20% of project time to data and 80% to building. In practice, data work takes 60–80% of the total project time.</p>
-<p><strong>Example:</strong> A financial services firm spent 4 months building an AI credit assessment tool. When tested on real data, accuracy was 52% — barely better than random. Root cause: customer income data across 3 legacy systems used different formats, different currency assumptions, and different date ranges. The model had learned patterns from inconsistent data. Three months of data work followed before retraining.</p>
-<p><strong>Why it matters:</strong> Data problems discovered in production are 10× more expensive to fix than data problems discovered before build.</p>
+<p><strong>Example:</strong> Illustrative scenario (not a verified customer case): A lender finds that income records use inconsistent currencies, date ranges and formats across legacy systems. Before using AI in credit decisions, the team standardises data, checks for bias and errors, and requires appropriate human oversight. Do not assume a measured accuracy or timeline without a documented evaluation.</p>
+<p><strong>Why it matters:</strong> Data quality problems identified after deployment can require expensive rework, remediation and retesting. Estimate costs using your own project evidence rather than a universal multiplier.</p>
 <p><strong>Implementation tip:</strong> Run a data quality audit on your intended AI data source before writing a single line of code or prompt. Score it across the 5 dimensions. Anything below 3/5 on quality or structure needs remediation before proceeding.</p>
-<p><strong>💡 What This Saves You:</strong> A data readiness assessment before build typically saves 2–4 months of rework and prevents the most demoralising outcome in AI programs — a technically correct system producing wrong answers.</p>
+<p><strong>💡 What This Saves You:</strong> A data readiness assessment can reduce avoidable rework and the risk of a technically functional system producing unreliable outputs. Measure benefits against your own baseline.</p>
 </div>
 <div class="further-reading-box">
 <h3>📚 Further Reading</h3>
@@ -527,7 +527,7 @@ Pattern 4 — Agent Pattern
 <div class="real-world-box">
 <h3>🌍 From Real-World Practice</h3>
 <p><strong>Insight:</strong> The "best" AI model is the one that meets your accuracy requirements at the lowest cost — not the most powerful one available.</p>
-<p><strong>Example:</strong> A retail business benchmarked a frontier model, a mid-tier model, and a small/fast model for product description generation. The small model matched the others' quality for this specific task at ~95% lower cost. The lesson: <strong>right-size before you reach for a flagship</strong> — the best model is the cheapest one that clears your quality bar.</p>
+<p><strong>Example:</strong> Illustrative scenario (not a verified customer case): A retailer compares several models for product-description drafting. A smaller model may meet its quality threshold at lower cost, but this must be demonstrated on representative products, with factual and brand checks. No universal percentage saving or quality equivalence is implied.</p>
 <p><strong>Why it matters:</strong> Model selection is a business decision, not just a technical one. Always benchmark before committing.</p>
 <p><strong>Implementation tip:</strong> Create a model evaluation matrix for your specific use case — score each candidate on accuracy, speed, cost, and data privacy compliance. Run 100 real examples before deciding.</p>
 <p><strong>💡 What This Saves You:</strong> Structured architecture decisions save organisations an average of 40–70% in AI infrastructure costs compared to choosing based on brand recognition alone.</p>
@@ -611,7 +611,7 @@ User: [case history text]</pre>
 <div class="real-world-box">
 <h3>🌍 From Real-World Practice</h3>
 <p><strong>Insight:</strong> The difference between a prompt that works in testing and one that works in production is almost always edge case handling. Production data is messier than test data.</p>
-<p><strong>Example:</strong> A telco built a case summarisation tool. Testing on 50 clean examples gave 94% accuracy. In production, 12% of cases had missing fields, non-English characters, or internal codes the model hadn't seen. Accuracy dropped to 71% in week one. Edge case testing before go-live would have caught this.</p>
+<p><strong>Example:</strong> Illustrative scenario (not a verified customer case): A telecom provider pilots case summaries on clean records, then discovers production cases with missing fields, mixed languages and internal codes. A realistic test set should include those edge cases and report separate accuracy and safety results before launch. No measured performance drop is claimed.</p>
 <p><strong>Why it matters:</strong> Production failures erode trust in AI faster than any other cause. One bad output seen by the wrong person can set a program back by months.</p>
 <p><strong>Implementation tip:</strong> Collect 200 real examples from production data before testing. Include the 10% most unusual cases. If your prompt handles those, it handles anything.</p>
 <p><strong>💡 What This Saves You:</strong> Systematic prompt testing before deployment prevents the trust damage of public AI failures — which typically cost 3–6 months of adoption recovery time.</p>
@@ -620,7 +620,7 @@ User: [case history text]</pre>
 <h3>📚 Further Reading</h3>
 <p>On prompt design and testing — the difference between a prompt that works in demos and one that survives production.</p>
 <ul>
-<li><strong>Anthropic — Prompt Engineering documentation</strong> — Official, regularly updated guidance from one of the major model labs. Covers chain-of-thought, examples, system prompts, XML tags for structure. <a href="https://docs.claude.com/en/docs/build-with-claude/prompt-engineering/overview" target="_blank" rel="noopener">docs.claude.com/en/docs/build-with-claude/prompt-engineering/overview</a></li>
+<li><strong>Anthropic — Prompt Engineering documentation</strong> — Official, regularly updated guidance from one of the major model labs. Covers chain-of-thought, examples, system prompts, XML tags for structure. <a href="https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/overview" target="_blank" rel="noopener">docs.claude.com/en/docs/build-with-claude/prompt-engineering/overview</a></li>
 <li><strong>Anthropic — AI Fluency course (free, Deep Dive 2: Effective Prompting)</strong> — Free structured course covering effective prompting techniques and evaluation. Accessible to non-engineers. <a href="https://www.anthropic.com/ai-fluency" target="_blank" rel="noopener">www.anthropic.com/ai-fluency</a></li>
 <li><strong>Steve Kinney — "Prompt Engineering Across the OpenAI, Anthropic, and Gemini APIs"</strong> — Practical guide for writing reliable prompts across providers. Strong on the difference between 'works' and 'works reliably' — which is where production breaks. <a href="https://stevekinney.com/writing/prompt-engineering-frontier-llms" target="_blank" rel="noopener">stevekinney.com/writing/prompt-engineering-frontier-llms</a></li>
 <li><strong>AWS Bedrock — "Prompt engineering techniques and best practices: Learn by doing with Anthropic's Claude"</strong> — Hands-on walkthrough with worked examples. Good starting point if you're new to structured prompting. <a href="https://aws.amazon.com/blogs/machine-learning/prompt-engineering-techniques-and-best-practices-learn-by-doing-with-anthropics-claude-3-on-amazon-bedrock/" target="_blank" rel="noopener">aws.amazon.com/blogs/machine-learning/prompt-engineering-techniques-and-best-practices-learn-by-doing-with-anthropics-claude-3-on-amazon-bedrock</a></li>
@@ -689,8 +689,8 @@ User: [case history text]</pre>
 <li><strong>Agility at Scale — "AI Performance Metrics and KPIs: The Complete Enterprise Guide"</strong> — Three-bucket framework (Model Quality, System Quality, Business Impact) with 34+ specific indicators. Most comprehensive single resource on AI measurement. <a href="https://agility-at-scale.com/ai/strategy/performance-metrics-and-kpis/" target="_blank" rel="noopener">agility-at-scale.com/ai/strategy/performance-metrics-and-kpis</a></li>
 <li><strong>Agility at Scale — "Generative AI KPIs: Enterprise Metrics for Measuring AI Performance"</strong> — GenAI-specific extension of the framework above. Adds Human-AI Interaction and Ethical/Environmental considerations as distinct measurement categories. <a href="https://agility-at-scale.com/ai/generative/genai-performance-metrics-and-kpis/" target="_blank" rel="noopener">agility-at-scale.com/ai/generative/genai-performance-metrics-and-kpis</a></li>
 <li><strong>Gartner — "AI Value Metrics That Actually Prove ROI to Your Board"</strong> — Ten board-level metrics that translate AI operational gains into financial outcomes the CFO and board recognise. <a href="https://www.gartner.com/en/articles/ai-value-metrics" target="_blank" rel="noopener">www.gartner.com/en/articles/ai-value-metrics</a></li>
-<li><strong>MIT Sloan Management Review — Smart KPI research</strong> — Research showing 90% of organisations using AI to enhance KPIs report meaningful improvements — when measurement is designed in from the start, not bolted on. <a href="https://sloanreview.mit.edu/article/the-future-of-strategic-measurement-enhancing-kpis-with-ai/" target="_blank" rel="noopener">sloanreview.mit.edu/article/the-future-of-strategic-measurement-enhancing-kpis-with-ai</a></li>
-<li><strong>Larridin — "AI Measurement Frameworks: Building Repeatable Assessment Process"</strong> — Practical four-element framework. Notes the typical 84% finding: organisations discover more AI tools in use than they realised once they audit properly. <a href="https://larridin.com/blog/ai-measurement-framework" target="_blank" rel="noopener">larridin.com/blog/ai-measurement-framework</a></li>
+<li><strong>MIT Sloan Management Review — Smart KPI research</strong> — MIT Sloan reports that, among organisations using AI to create new KPIs, 90% reported KPI improvements in its cited research. This is a finding about that surveyed subgroup, not a guaranteed outcome for AI projects. <a href="https://mitsloan.mit.edu/ideas-made-to-matter/generative-ai-smart-kpis-and-discovery-groups-new-mit-sloan-management-review" target="_blank" rel="noopener">sloanreview.mit.edu/article/the-future-of-strategic-measurement-enhancing-kpis-with-ai</a></li>
+<li><strong>Larridin — "AI Measurement Frameworks: Building Repeatable Assessment Process"</strong> — Practical four-element framework. Use as a practitioner framework rather than evidence for a universal discovery rate; validate any numerical findings against your own inventory. <a href="https://larridin.com/blog/ai-measurement-framework" target="_blank" rel="noopener">larridin.com/blog/ai-measurement-framework</a></li>
 </ul>
 <p><em>None of these are affiliated with LeO AI. They\'re here because they\'re genuinely useful.</em></p>
 </div>
@@ -737,7 +737,7 @@ User: [case history text]</pre>
 <div class="real-world-box">
 <h3>🌍 From Real-World Practice</h3>
 <p><strong>Insight:</strong> The organisations that treat responsible AI as a compliance checkbox are the ones that end up in the news for the wrong reasons.</p>
-<p><strong>Example:</strong> A recruitment platform deployed AI screening that achieved 85% efficiency improvement. 18 months later, an audit revealed the model was systematically downranking candidates from certain postcodes — a proxy for socioeconomic background. The business faced regulatory investigation, significant legal costs, and had to rebuild their entire screening process. Bias testing before deployment would have cost $15,000. The remediation cost $2.3 million.</p>
+<p><strong>Example:</strong> Illustrative scenario (not a verified customer case): A recruitment team considers AI-assisted screening. It tests for unfair differences across relevant candidate groups and potential proxy variables such as postcode, documents limitations, and keeps accountable human review and an appeal process. Bias can cause serious legal and ethical harm; no invented investigation, penalty or remediation cost is presented. For Australian organisations, consult the <a href="https://www.oaic.gov.au/privacy/privacy-guidance-for-organisations-and-government-agencies/guidance-on-privacy-and-the-use-of-commercially-available-ai-products" target="_blank" rel="noopener noreferrer">OAIC guidance on AI and privacy</a>.</p>
 <p><strong>Why it matters:</strong> AI bias and governance failures are not edge cases — they're predictable outcomes of deploying AI without responsible design.</p>
 <p><strong>Implementation tip:</strong> Before any AI deployment, complete a Responsible AI checklist covering: bias testing, explainability requirements, data privacy review, governance ownership, and incident response plan.</p>
 <p><strong>💡 What This Saves You:</strong> Responsible AI design prevents the most catastrophic AI outcomes — regulatory action, litigation, and reputational damage — which routinely cost 100× more than the prevention.</p>
@@ -780,9 +780,9 @@ User: [case history text]</pre>
         content: `<h2>AI Has a Carbon Footprint</h2>
 <p>Every AI inference — every call to a language model — consumes energy. At individual scale, this is negligible. At enterprise scale, with millions of calls per month, it becomes a meaningful part of your organisation's environmental footprint.</p>
 <h3>The Energy Reality</h3>
-<p><strong>Training vs inference:</strong> Training a large model like GPT-4 consumed an estimated 50+ gigawatt-hours of electricity — equivalent to the annual energy use of several hundred homes. Your usage doesn't contribute to training costs, but inference at scale adds up.</p>
-<p><strong>Inference energy:</strong> A single GPT-4 query consumes approximately 10× the energy of a standard Google search. At 10,000 queries per day, that's the energy equivalent of 100,000 searches daily.</p>
-<p><strong>Data centre water usage:</strong> AI data centres use significant water for cooling. Microsoft reported that training GPT-4 consumed approximately 700,000 litres of water.</p>
+<p><strong>Training vs inference:</strong> Training large AI models requires substantial computing resources, but specific electricity estimates vary by model, hardware, data centre and methodology. Running a model also consumes electricity. Use published methodology and measured usage when reporting an environmental footprint.</p>
+<p><strong>Inference energy:</strong> Energy per AI request varies with the model, prompt and response length, hardware, batching and data-centre efficiency. Avoid a fixed AI-versus-search multiplier unless a credible source measures comparable workloads.</p>
+<p><strong>Data centre water usage:</strong> Some data centres use water for cooling, and electricity generation can also have water impacts. Water consumption depends on facility design, climate and energy supply; do not attribute a model-specific figure without a verifiable source and methodology.</p>
 <h3>Sustainability Optimisation Strategies</h3>
 <p><strong>Right-size your model:</strong> Using a smaller model for tasks that don't require frontier capabilities is both cost-effective and more energy-efficient. A small model uses significantly less energy per call than a frontier model.</p>
 <p><strong>Implement caching:</strong> Caching responses for repeated queries eliminates redundant AI calls entirely. For FAQ-style applications, cache hit rates of 40–70% are achievable.</p>
@@ -792,7 +792,7 @@ User: [case history text]</pre>
 <div class="real-world-box">
 <h3>🌍 From Real-World Practice</h3>
 <p><strong>Insight:</strong> Sustainability and cost efficiency in AI are almost perfectly aligned — the strategies that reduce energy consumption reduce costs by the same proportion.</p>
-<p><strong>Example:</strong> A retail business running 500,000 AI queries per month implemented response caching for their top 200 FAQ queries. Cache hit rate reached 55% within 30 days. Result: 275,000 fewer AI calls per month, 45% reduction in AI costs, and a measurable reduction in their compute carbon footprint that was reported in their annual sustainability disclosure.</p>
+<p><strong>Example:</strong> Illustrative scenario (not a verified customer case): A retailer evaluates caching for frequently repeated FAQ answers. Calculate the share of requests eligible for reuse, check how quickly answers become stale, and measure actual cost and energy effects. A cache-hit rate does not translate directly into the same percentage reduction in total AI costs or emissions.</p>
 <p><strong>Why it matters:</strong> As ESG reporting requirements expand, AI's environmental impact will become a material disclosure item for many organisations. Building sustainable AI practices now avoids future compliance costs.</p>
 <p><strong>Implementation tip:</strong> Add an "AI Energy Efficiency" metric to your AI governance dashboard: track tokens consumed per unit of value delivered. Optimise this metric over time as you would any operational efficiency metric.</p>
 <p><strong>💡 What This Saves You:</strong> Sustainable AI practices reduce operating costs by 20–50% through right-sizing and caching while positioning your organisation ahead of emerging ESG disclosure requirements for AI.</p>
@@ -825,7 +825,7 @@ User: [case history text]</pre>
   {
     id: 'module-12', number: 12, icon: '🤝',
     title: 'People, Change & Adoption',
-    description: 'Technology is 20% of an AI program. People are 80%. Build the adoption strategy that makes AI stick — and the opportunity map that makes people want it to.',
+    description: 'AI adoption depends on people, processes and technology. Build a change strategy that helps teams use AI safely and turn useful ideas into measurable outcomes.',
     deliverable: 'Adoption Strategy + Opportunity Creation Plan',
     templateId: 'adoption-plan',
     lessons: [
@@ -862,7 +862,7 @@ Standard Q&A responses   → Automated   → Escalations & experience design</pr
 <div class="real-world-box">
 <h3>🌍 From Real-World Practice</h3>
 <p><strong>Insight:</strong> The organisations with highest AI adoption rates share one characteristic — they actively co-created opportunity maps showing staff what new roles and activities become available when AI handles the routine.</p>
-<p><strong>Example:</strong> A financial services contact centre deployed AI to handle 60% of routine enquiries. Before launch, leadership presented two scenarios: "AI replaces 40% of staff" vs "AI frees 40% of staff time to handle complex cases and become AI quality reviewers, with a 15% salary uplift for those roles". Same technology. Completely different adoption outcome — 87% adoption in the second scenario vs projected resistance and attrition in the first.</p>
+<p><strong>Example:</strong> Illustrative scenario (not a verified customer case): A contact centre explores AI assistance for routine enquiries. Leadership compares workforce-reduction messaging with a reskilling and quality-review plan. Ask employees about concerns, define meaningful roles and measure adoption and service quality; do not claim an invented adoption rate or salary outcome.</p>
 <p><strong>Why it matters:</strong> How you frame AI transformation determines whether your best people stay and adopt it, or leave and undermine it.</p>
 <p><strong>Implementation tip:</strong> Before announcing any AI initiative, draft the "opportunity map" — a concrete description of what people will do with the time recovered. Make this the centrepiece of your communication, not the technology.</p>
 <p><strong>💡 What This Saves You:</strong> Effective change management prevents the 40–70% of AI programs that technically succeed but fail through non-adoption — delivering none of the projected value despite full investment.</p>
@@ -915,7 +915,7 @@ Standard Q&A responses   → Automated   → Escalations & experience design</pr
   Step 2: LLM → Validate extracted data against expected format
   Step 3: LLM → Flag anomalies and generate exception report  
   Step 4: API → Post validated invoice to accounting system
-  Result: 95% straight-through processing, 5% human review queue</pre>
+  Illustrative outcome: measure validated straight-through processing and human-review rates during a controlled pilot</pre>
 <h3>Orchestration Layer Design</h3>
 <p>Orchestration is the layer that coordinates multiple AI models and tools to complete a complex task. It handles routing (which model for which task), context management (passing relevant information between steps), error handling, and monitoring.</p>
 <pre>Orchestration components:
@@ -955,7 +955,7 @@ Standard Q&A responses   → Automated   → Escalations & experience design</pr
         { id: 'q13-1', text: 'A customer sends a photo of a damaged product alongside a written complaint. Which AI architecture handles this most effectively?', options: ['Text-only LLM that reads the written complaint', 'A multimodal model or orchestrated pipeline that processes both the image (damage assessment) and text (complaint classification) together', 'Image model only', 'Route to a human — AI can\'t handle this'], correct: 1, explanation: 'Multimodal processing enables simultaneous handling of both inputs. The image provides damage evidence that the text cannot convey — combining both gives complete context for automated resolution.' },
         { id: 'q13-2', text: 'Your orchestrated AI workflow calls an image model, then an LLM, then an API, totalling 8,000 tokens per transaction. At 1,000 transactions per day, how does this compare in cost to a text-only workflow using 1,500 tokens?', options: ['Same cost', 'The orchestrated workflow costs approximately 5.3× more in token terms — image tokens are also priced differently', 'The orchestrated workflow is cheaper because it\'s automated', 'Cannot be compared'], correct: 1, explanation: 'Multi-step orchestrated workflows multiply token costs at each step. Image tokens are priced separately and typically at a premium. Cost modelling must account for every step in the pipeline.' },
         { id: 'q13-3', text: 'What is the primary purpose of an orchestration layer in a multi-model AI workflow?', options: ['To make the AI smarter', 'To reduce hallucination', 'To coordinate multiple models and tools — routing, context passing, error handling, and monitoring', 'To improve response speed'], correct: 2, explanation: 'Orchestration is the coordination infrastructure of multi-model workflows. Without it, multi-model systems become unmanageable, costs spiral, and errors compound across steps.' },
-        { id: 'q13-4', text: 'A voice AI transcription service has 95% accuracy for Australian English but 72% accuracy for customers with strong accents. What should you do?', options: ['Accept 72% as reasonable for accented speech', 'Implement a confidence threshold — below 85% accuracy routes to human transcription, with ongoing accent-specific model fine-tuning', 'Remove the service for those customer segments', 'Use a different language model'], correct: 1, explanation: 'Accuracy thresholds with human fallback maintain service quality while you improve model performance for underserved segments. This is responsible AI design for multimodal systems.' },
+        { id: 'q13-4', text: 'Hypothetical evaluation: transcription quality is substantially worse for speakers with certain accents. What should you do?', options: ['Accept 72% as reasonable for accented speech', 'Test quality across representative accent groups, route uncertain or high-impact transcripts to human review, and evaluate improvements before rollout', 'Remove the service for those customer segments', 'Use a different language model'], correct: 1, explanation: 'Evaluate performance on representative speech samples, investigate disparities and provide human review for uncertain or consequential transcripts. A model confidence score is not the same as a measured group-level accuracy rate.' },
         { id: 'q13-5', text: 'What is the recommended approach when introducing multimodal AI to an organisation new to AI?', options: ['Deploy full multimodal orchestration immediately for maximum impact', 'Start with one modality, prove value and build capability, then add the second modality to the same workflow', 'Skip text-only AI and go straight to multimodal', 'Use multimodal only for enterprise tier'], correct: 1, explanation: 'Phased modality introduction reduces risk and builds organisational confidence. Each modality adds complexity and cost. Proving value before adding complexity is the right sequencing.' },
       ],
     },
@@ -1034,7 +1034,7 @@ Week 12 — Measure & Report
 <div class="real-world-box">
 <h3>🌍 From Real-World Practice</h3>
 <p><strong>Insight:</strong> The teams that complete successful 90-day AI deployments share one discipline: they protect the plan from scope creep relentlessly. Every week of scope expansion adds two weeks of delay.</p>
-<p><strong>Example:</strong> A professional services firm planned a 90-day deployment of an AI proposal drafting tool. At week 6, leadership requested they also automate the pricing model and client reporting. The project lead declined, delivered the drafting tool on day 88, reported 68% time reduction in proposal creation, and used that result to secure a larger budget for the expanded scope in the next quarter. The alternative — agreeing to scope expansion — would have delivered nothing on day 90 and likely nothing by month 6.</p>
+<p><strong>Example:</strong> Illustrative scenario (not a verified customer case): A professional services team agrees a limited proposal-drafting pilot. When additional pricing and reporting features are requested, it records them for a later phase and measures drafting quality, review time and user adoption against the original scope. No unverified delivery date or time-saving percentage is asserted.</p>
 <p><strong>Why it matters:</strong> A delivered 60% solution is worth infinitely more than a perfect solution that never ships.</p>
 <p><strong>Implementation tip:</strong> Create a "parking lot" for good ideas that arrive mid-project. Write them down, acknowledge them, commit to evaluating them in the next planning cycle. This respects the idea without derailing the delivery.</p>
 <p><strong>💡 What This Saves You:</strong> Disciplined 90-day execution produces the proof of value that funds every subsequent AI investment. Without it, AI programs are perpetually "in progress" and perpetually vulnerable to cancellation.</p>

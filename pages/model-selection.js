@@ -7,80 +7,226 @@ import Icon from '../components/Icon'
 import Link from 'next/link'
 
 const MODELS = [
-  { name:'GPT-4o',            provider:'OpenAI',    inputUSD:'$2.50',  outputUSD:'$10.00', inputAUD:'$3.88',  outputAUD:'$15.50', speed:'Medium',    context:'128K', privacy:'Azure',      best:'Complex reasoning, multimodal, long documents',      tier:'frontier' },
-  { name:'GPT-4o-mini',       provider:'OpenAI',    inputUSD:'$0.15',  outputUSD:'$0.60',  inputAUD:'$0.23',  outputAUD:'$0.93',  speed:'Fast',      context:'128K', privacy:'Azure',      best:'High-volume classification, extraction, triage',     tier:'efficient' },
-  { name:'Claude 3.5 Sonnet', provider:'Anthropic', inputUSD:'$3.00',  outputUSD:'$15.00', inputAUD:'$4.65',  outputAUD:'$23.25', speed:'Medium',    context:'200K', privacy:'AWS Bedrock', best:'Nuanced reasoning, long documents, report generation', tier:'frontier' },
-  { name:'Claude 3 Haiku',    provider:'Anthropic', inputUSD:'$0.25',  outputUSD:'$1.25',  inputAUD:'$0.39',  outputAUD:'$1.94',  speed:'Very Fast', context:'200K', privacy:'AWS Bedrock', best:'High-volume simple tasks, summarisation at scale',    tier:'efficient' },
-  { name:'Gemini 1.5 Pro',    provider:'Google',    inputUSD:'$1.25',  outputUSD:'$5.00',  inputAUD:'$1.94',  outputAUD:'$7.75',  speed:'Medium',    context:'1M',   privacy:'Vertex AI',  best:'Ultra-long context, multimodal, document processing', tier:'frontier' },
-  { name:'Gemini 1.5 Flash',  provider:'Google',    inputUSD:'$0.075', outputUSD:'$0.30',  inputAUD:'$0.12',  outputAUD:'$0.47',  speed:'Very Fast', context:'1M',   privacy:'Vertex AI',  best:'Speed-optimised, high-volume, cost-sensitive tasks',  tier:'efficient' },
-  { name:'Llama 3.1 70B',     provider:'Meta (OSS)',inputUSD:'Self-hosted', outputUSD:'Self-hosted', inputAUD:'~$500–5K/mo infra', outputAUD:'', speed:'Variable', context:'128K', privacy:'Full control', best:'On-premise, data sovereignty, no external API', tier:'opensource' },
-  { name:'Mistral Large',     provider:'Mistral',   inputUSD:'$2.00',  outputUSD:'$6.00',  inputAUD:'$3.10',  outputAUD:'$9.30',  speed:'Medium',    context:'128K', privacy:'Azure',      best:'European data residency requirements',                tier:'frontier' },
+  {
+    "name": "GPT-6 Astra",
+    "provider": "OpenAI",
+    "inputUSD": "Check live",
+    "outputUSD": "Check live",
+    "inputAUD": "Check live",
+    "outputAUD": "Check live",
+    "speed": "Benchmark",
+    "context": "Check docs",
+    "privacy": "Verify deployment",
+    "best": "Complex reasoning; check access",
+    "tier": "frontier"
+  },
+  {
+    "name": "GPT-6.1 Sol",
+    "provider": "OpenAI",
+    "inputUSD": "Check live",
+    "outputUSD": "Check live",
+    "inputAUD": "Check live",
+    "outputAUD": "Check live",
+    "speed": "Benchmark",
+    "context": "Check docs",
+    "privacy": "Verify deployment",
+    "best": "Professional work and reasoning",
+    "tier": "frontier"
+  },
+  {
+    "name": "GPT-6 Luna",
+    "provider": "OpenAI",
+    "inputUSD": "Check live",
+    "outputUSD": "Check live",
+    "inputAUD": "Check live",
+    "outputAUD": "Check live",
+    "speed": "Benchmark",
+    "context": "Check docs",
+    "privacy": "Verify deployment",
+    "best": "Cost-sensitive everyday tasks",
+    "tier": "efficient"
+  },
+  {
+    "name": "Claude Opus 5.5",
+    "provider": "Anthropic",
+    "inputUSD": "Check live",
+    "outputUSD": "Check live",
+    "inputAUD": "Check live",
+    "outputAUD": "Check live",
+    "speed": "Benchmark",
+    "context": "Check docs",
+    "privacy": "Verify deployment",
+    "best": "Complex coding and knowledge work",
+    "tier": "frontier"
+  },
+  {
+    "name": "Claude Sonnet 5.5",
+    "provider": "Anthropic",
+    "inputUSD": "Check live",
+    "outputUSD": "Check live",
+    "inputAUD": "Check live",
+    "outputAUD": "Check live",
+    "speed": "Benchmark",
+    "context": "Check docs",
+    "privacy": "Verify deployment",
+    "best": "Writing, analysis and development",
+    "tier": "efficient"
+  },
+  {
+    "name": "Claude Haiku 5.5",
+    "provider": "Anthropic",
+    "inputUSD": "Check live",
+    "outputUSD": "Check live",
+    "inputAUD": "Check live",
+    "outputAUD": "Check live",
+    "speed": "Benchmark",
+    "context": "Check docs",
+    "privacy": "Verify deployment",
+    "best": "High-volume classification and extraction",
+    "tier": "efficient"
+  },
+  {
+    "name": "Gemini 4 Argon",
+    "provider": "Google",
+    "inputUSD": "Check live",
+    "outputUSD": "Check live",
+    "inputAUD": "Check live",
+    "outputAUD": "Check live",
+    "speed": "Benchmark",
+    "context": "Check docs",
+    "privacy": "Verify deployment",
+    "best": "Complex reasoning; check features",
+    "tier": "frontier"
+  },
+  {
+    "name": "Gemini 3.8 Flash",
+    "provider": "Google",
+    "inputUSD": "Check live",
+    "outputUSD": "Check live",
+    "inputAUD": "Check live",
+    "outputAUD": "Check live",
+    "speed": "Benchmark",
+    "context": "Check docs",
+    "privacy": "Verify deployment",
+    "best": "Fast, high-volume tasks",
+    "tier": "efficient"
+  },
+  {
+    "name": "Open-weight models",
+    "provider": "Various",
+    "inputUSD": "Check live",
+    "outputUSD": "Check live",
+    "inputAUD": "Check live",
+    "outputAUD": "Check live",
+    "speed": "Benchmark",
+    "context": "Check docs",
+    "privacy": "Verify deployment",
+    "best": "Self-hosted use cases; check licences",
+    "tier": "opensource"
+  }
 ]
 
 const EXAMPLES = [
   {
-    id: 'triage',
-    title: 'Customer Support Triage',
-    icon: '🎫',
-    task: 'Classify 800 support emails/day into 12 categories',
-    input: '300 tokens/email average',
-    volume: '800 calls/day',
-    costs: [
-      { model: 'GPT-4o',      daily: '$0.60',  monthly: '$18',   annual: '$219' },
-      { model: 'GPT-4o-mini', daily: '$0.04',  monthly: '$1.10', annual: '$13' },
-      { model: 'Claude Haiku',daily: '$0.06',  monthly: '$1.80', annual: '$22' },
+    "id": "triage",
+    "title": "Customer Support Triage",
+    "icon": "🎫",
+    "task": "Classify 800 support emails/day",
+    "input": "300 input tokens/email",
+    "volume": "800 calls/day",
+    "costs": [
+      {
+        "model": "Illustrative US$1/M input",
+        "daily": "US$0.24",
+        "monthly": "US$7.20",
+        "annual": "US$87.60"
+      },
+      {
+        "model": "Illustrative US$0.10/M input",
+        "daily": "US$0.024",
+        "monthly": "US$0.72",
+        "annual": "US$8.76"
+      }
     ],
-    recommendation: 'GPT-4o-mini or Claude Haiku',
-    reasoning: 'Classification is a proven task for smaller models. Run 500 test examples first. If accuracy ≥ 90%, deploy the cheaper model. Save $200+/year with negligible quality loss.',
-    saving: '94% cost reduction vs GPT-4o',
+    "recommendation": "Benchmark accuracy, safety and cost",
+    "reasoning": "Input-only calculation, assuming 30-day months and 365-day years. Output tokens, retries, caching and infrastructure are additional. Test on representative emails.",
+    "saving": "Illustrative input-cost difference; not an observed customer saving"
   },
   {
-    id: 'report',
-    title: 'Executive Report Generation',
-    icon: '📊',
-    task: 'Generate weekly 3-page narrative from 5 data sources',
-    input: '8,000 tokens/report average',
-    volume: '1 report/week',
-    costs: [
-      { model: 'GPT-4o',          daily: '$0.05', monthly: '$0.20', annual: '$1.69' },
-      { model: 'Claude 3.5 Sonnet',daily: '$0.04', monthly: '$0.17', annual: '$1.40' },
-      { model: 'GPT-4o-mini',     daily: '$0.003',monthly: '$0.01', annual: '$0.10' },
+    "id": "report",
+    "title": "Executive Report Generation",
+    "icon": "📊",
+    "task": "Draft a weekly report from several sources",
+    "input": "8,000 input tokens/report",
+    "volume": "1 report/week",
+    "costs": [
+      {
+        "model": "Illustrative US$1/M input",
+        "daily": "~US$0.001",
+        "monthly": "~US$0.03",
+        "annual": "~US$0.42"
+      },
+      {
+        "model": "Illustrative US$0.10/M input",
+        "daily": "<US$0.001",
+        "monthly": "<US$0.01",
+        "annual": "~US$0.04"
+      }
     ],
-    recommendation: 'Claude 3.5 Sonnet or GPT-4o',
-    reasoning: 'At this volume, cost difference is irrelevant (<$2/year). Choose based on output quality — benchmark both on your actual data. Claude Sonnet often produces more nuanced narrative from complex inputs. Don\'t use mini — reasoning quality matters here.',
-    saving: 'Quality decision, not cost decision at low volume',
+    "recommendation": "Prioritise evidence quality and review effort",
+    "reasoning": "Input-only illustration. Output tokens and staff review may dominate total cost. Test factual accuracy and citations.",
+    "saving": "No ROI claim without measuring review time and output cost"
   },
   {
-    id: 'rag',
-    title: 'Document Archive Search (RAG)',
-    icon: '🗄️',
-    task: 'Answer questions over 10-year contract database (50,000 docs)',
-    input: '5,000 tokens/query (retrieved chunks)',
-    volume: '200 queries/day',
-    costs: [
-      { model: 'GPT-4o',      daily: '$2.50', monthly: '$75',   annual: '$913' },
-      { model: 'GPT-4o-mini', daily: '$0.15', monthly: '$4.50', annual: '$55' },
-      { model: 'Claude Haiku',daily: '$0.25', monthly: '$7.50', annual: '$91' },
+    "id": "rag",
+    "title": "Document Archive Search (RAG)",
+    "icon": "🗄️",
+    "task": "Answer questions over a document archive",
+    "input": "5,000 input tokens/query",
+    "volume": "200 queries/day",
+    "costs": [
+      {
+        "model": "Illustrative US$1/M input",
+        "daily": "US$1.00",
+        "monthly": "US$30",
+        "annual": "US$365"
+      },
+      {
+        "model": "Illustrative US$0.10/M input",
+        "daily": "US$0.10",
+        "monthly": "US$3",
+        "annual": "US$36.50"
+      }
     ],
-    recommendation: 'GPT-4o-mini for retrieval Q&A',
-    reasoning: 'RAG architecture means the retrieved context does the heavy lifting. The LLM just synthesises clear chunks — this doesn\'t require frontier reasoning. Accuracy difference vs GPT-4o: typically < 5% for well-structured RAG. Cost difference: 17×.',
-    saving: '94% cost reduction with <5% quality impact',
+    "recommendation": "Test retrieval and answer grounding",
+    "reasoning": "Input-only illustration. Embeddings, storage, output and human verification are additional costs.",
+    "saving": "Input cost is only one part of total RAG cost"
   },
   {
-    id: 'meeting',
-    title: 'Meeting Transcription + Action Items',
-    icon: '🎙️',
-    task: 'Transcribe 20 meetings/day (45 min avg), extract action items',
-    input: 'Whisper transcription + 4,000 tokens/meeting for LLM',
-    volume: '20 meetings/day',
-    costs: [
-      { model: 'Whisper + Claude Haiku', daily: '$5.42', monthly: '$163', annual: '$1,978' },
-      { model: 'Whisper + GPT-4o',       daily: '$5.50', monthly: '$165', annual: '$2,013' },
+    "id": "meeting",
+    "title": "Meeting Transcription + Action Items",
+    "icon": "🎙️",
+    "task": "Transcribe meetings and draft action items",
+    "input": "Audio plus extracted text",
+    "volume": "20 meetings/day",
+    "costs": [
+      {
+        "model": "Audio transcription",
+        "daily": "Varies",
+        "monthly": "Varies",
+        "annual": "Varies"
+      },
+      {
+        "model": "Text extraction",
+        "daily": "Varies",
+        "monthly": "Varies",
+        "annual": "Varies"
+      }
     ],
-    recommendation: 'Whisper (transcription) + Claude Haiku (extraction)',
-    reasoning: 'Action item extraction is a structured extraction task — perfect for Haiku. Whisper dominates the cost. At 10 staff saving 30 min/day of note-taking at $100/hr: $365,000/year value vs $1,978/year cost. ROI: 18,450%.',
-    saving: '$363,022/year net benefit',
-  },
+    "recommendation": "Price audio and text separately",
+    "reasoning": "Audio duration, transcription accuracy, generated text and human correction determine cost. Obtain consent and check privacy.",
+    "saving": "No assumed labour saving or guaranteed return"
+  }
 ]
 
 const DECISION_STEPS = [
@@ -119,7 +265,7 @@ const DECISION_STEPS = [
 
 export default function ModelSelection() {
   const [activeExample, setActiveExample] = useState(0)
-  const [currency, setCurrency]           = useState('AUD')
+
   const [filterTier, setFilterTier]       = useState('all')
 
   const filteredModels = MODELS.filter(m => filterTier === 'all' || m.tier === filterTier)
@@ -142,8 +288,8 @@ export default function ModelSelection() {
               Choose the Right AI Model
             </h1>
             <p className="text-muted text-xl max-w-2xl mx-auto mb-6">
-              Most organisations use models that are 10× more expensive than necessary.
-              This framework tells you exactly which model to use — and why.
+              Model capabilities, availability and prices change quickly.
+              Compare quality, privacy, latency and total cost on your own tasks.
             </p>
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-amber-400/30 bg-amber-400/10 text-amber-400 text-xs font-display font-bold">
               ⚡ From Module 1 &amp; Module 7 — Le On AI Curriculum
@@ -154,9 +300,9 @@ export default function ModelSelection() {
           <Reveal>
             <div className="grid md:grid-cols-3 gap-4 mb-14">
               {[
-                { icon:'🎯', title:'Right-size first', desc:'The best model is the cheapest one that meets your accuracy requirement. Benchmark before committing.' },
+                { icon:'🎯', title:'Right-size first', desc:'Choose the least costly model that meets quality, safety, privacy and latency requirements. Benchmark before committing.' },
                 { icon:'⚡', title:'Standardise orchestration', desc:'Don\'t standardise on one model. Standardise on your orchestration layer and swap models freely.' },
-                { icon:'💰', title:'Volume changes everything', desc:'At 10 users, model choice costs $20/month. At 1,000 users, it costs $2,000/month. Model the economics first.' },
+                { icon:'💰', title:'Volume changes everything', desc:'Estimate real usage: input and output tokens, tools, retries, caching and human review.' },
               ].map((p, i) => (
                 <Card key={i} className="p-6 text-center">
                   <div className="mb-3 text-blue-bright"><Icon name={p.icon} size={26} /></div>
@@ -207,13 +353,13 @@ export default function ModelSelection() {
                     </thead>
                     <tbody>
                       {[
-                        ['Accuracy critical + quality matters',           'Any',   '→ GPT-4o or Claude Sonnet', 'text-blue-bright'],
-                        ['High volume + accuracy ≥ 90% verified',        'High',  '→ GPT-4o-mini or Claude Haiku', 'text-success'],
-                        ['Ultra-long context (>100K tokens)',             'Any',   '→ Gemini 1.5 Pro (1M context)', 'text-amber-400'],
-                        ['Data must not leave Australia',                 'Any',   '→ Azure OpenAI (AUS region) or AWS Bedrock (Sydney)', 'text-purple-400'],
-                        ['Maximum cost efficiency',                       'High',  '→ Gemini 1.5 Flash or Claude Haiku', 'text-success'],
-                        ['On-premise / no external API',                  'Any',   '→ Llama 3.1 70B (self-hosted)', 'text-amber-400'],
-                        ['European data residency',                       'Any',   '→ Mistral Large (Azure EU)', 'text-purple-400'],
+                        ['Accuracy critical + quality matters',           'Any',   '→ Evaluate capable models with domain-specific tests', 'text-blue-bright'],
+                        ['High volume + accuracy ≥ 90% verified',        'High',  '→ Benchmark smaller, efficient models', 'text-success'],
+                        ['Ultra-long context (>100K tokens)',             'Any',   '→ Check current context limits and retrieval options', 'text-amber-400'],
+                        ['Data must not leave Australia',                 'Any',   '→ Verify contractual processing and storage regions', 'text-purple-400'],
+                        ['Maximum cost efficiency',                       'High',  '→ Benchmark efficient models and caching', 'text-success'],
+                        ['On-premise / no external API',                  'Any',   '→ Evaluate licensed open-weight deployments', 'text-amber-400'],
+                        ['European data residency',                       'Any',   '→ Confirm EU-region deployment and data controls', 'text-purple-400'],
                       ].map(([condition, vol, direction, color], i) => (
                         <tr key={i} className="border-b border-white/[0.04] hover:bg-white/[0.02]">
                           <td className="p-3 text-sm text-white/80">{condition}</td>
@@ -234,20 +380,17 @@ export default function ModelSelection() {
               <div className="flex items-center justify-between mb-5 flex-wrap gap-3">
                 <div>
                   <h2 className="font-display font-bold text-3xl mb-1">Model Comparison</h2>
-                  <p className="text-muted text-sm">All prices per 1 million tokens. Updated Q1 2025.</p>
+                  <p className="text-muted text-sm">Examples reviewed 30 October 2026. Check vendors for current pricing, limits and availability.</p>
                 </div>
                 <div className="flex items-center gap-2">
                   <span className="text-xs text-muted">Filter:</span>
-                  {[['all','All Models'],['frontier','Frontier'],['efficient','Efficient'],['opensource','Open Source']].map(([val,label]) => (
+                  {[['all','All Models'],['frontier','Frontier'],['efficient','Efficient'],['opensource','Open-weight']].map(([val,label]) => (
                     <button key={val} onClick={() => setFilterTier(val)}
                       className={`px-3 py-1.5 rounded-full text-xs font-display font-bold border transition-all ${filterTier === val ? 'bg-blue border-blue text-white' : 'border-white/10 text-muted hover:border-white/20 hover:text-white'}`}>
                       {label}
                     </button>
                   ))}
-                  <button onClick={() => setCurrency(c => c === 'AUD' ? 'USD' : 'AUD')}
-                    className="px-3 py-1.5 rounded-full text-xs font-display font-bold border border-white/10 text-muted hover:text-white ml-2">
-                    {currency}
-                  </button>
+                  <span className="text-xs text-muted">Check vendor pricing</span>
                 </div>
               </div>
 
@@ -272,15 +415,15 @@ export default function ModelSelection() {
                           <td className="p-4">
                             <div className="font-display font-bold text-sm text-white">{m.name}</div>
                             <div className={`text-[10px] mt-0.5 font-display font-bold ${m.tier === 'frontier' ? 'text-blue-bright' : m.tier === 'efficient' ? 'text-success' : 'text-amber-400'}`}>
-                              {m.tier === 'frontier' ? 'Frontier' : m.tier === 'efficient' ? 'Efficient ✓' : 'Open Source'}
+                              {m.tier === 'frontier' ? 'Frontier' : m.tier === 'efficient' ? 'Efficient ✓' : 'Open-weight'}
                             </div>
                           </td>
                           <td className="p-4 text-sm text-muted">{m.provider}</td>
                           <td className="p-4 text-sm text-right font-display font-bold text-white">
-                            {currency === 'AUD' ? m.inputAUD : m.inputUSD}
+                            {m.inputUSD}
                           </td>
                           <td className="p-4 text-sm text-right font-display font-bold text-white">
-                            {currency === 'AUD' ? m.outputAUD : m.outputUSD}
+                            {m.outputUSD}
                           </td>
                           <td className="p-4 text-sm text-muted">{m.speed}</td>
                           <td className="p-4 text-sm text-muted">{m.context}</td>
@@ -292,10 +435,10 @@ export default function ModelSelection() {
                   </table>
                 </div>
                 <div className="px-4 py-3 border-t border-white/5 text-xs text-muted">
-                  Prices in {currency}. AUD conversion at 1.55×. Verify at provider pricing pages before committing.
-                  <a href="https://openai.com/pricing" target="_blank" rel="noopener noreferrer" className="text-blue-bright ml-1 hover:underline">OpenAI</a> ·
-                  <a href="https://anthropic.com/pricing" target="_blank" rel="noopener noreferrer" className="text-blue-bright ml-1 hover:underline">Anthropic</a> ·
-                  <a href="https://cloud.google.com/vertex-ai/pricing" target="_blank" rel="noopener noreferrer" className="text-blue-bright ml-1 hover:underline">Google</a>
+                  Rates vary by model, region, caching and processing tier. No live prices or FX estimates are shown.
+                  <a href="https://platform.openai.com/pricing" target="_blank" rel="noopener noreferrer" className="text-blue-bright ml-1 hover:underline">OpenAI</a> ·
+                  <a href="https://platform.claude.com/docs/en/about-claude/pricing" target="_blank" rel="noopener noreferrer" className="text-blue-bright ml-1 hover:underline">Anthropic</a> ·
+                  <a href="https://ai.google.dev/gemini-api/docs/pricing" target="_blank" rel="noopener noreferrer" className="text-blue-bright ml-1 hover:underline">Google</a>
                 </div>
               </Card>
             </div>
@@ -304,8 +447,8 @@ export default function ModelSelection() {
           {/* Real-world examples */}
           <Reveal>
             <div className="mb-14">
-              <h2 className="font-display font-bold text-3xl mb-2">Real-World Cost Examples</h2>
-              <p className="text-muted mb-6">Actual cost calculations for common business AI use cases.</p>
+              <h2 className="font-display font-bold text-3xl mb-2">Illustrative Cost Scenarios</h2>
+              <p className="text-muted mb-6">Input-only calculations, not vendor quotes or observed customer savings. Output and infrastructure costs are excluded unless noted.</p>
 
               <div className="flex gap-2 mb-5 flex-wrap">
                 {EXAMPLES.map((ex, i) => (
@@ -385,7 +528,7 @@ export default function ModelSelection() {
           <Reveal>
             <div className="mb-14">
               <h2 className="font-display font-bold text-3xl mb-2">When to Mix Models</h2>
-              <p className="text-muted mb-6">The highest-ROI architecture uses different models for different steps.</p>
+              <p className="text-muted mb-6">Mixing models can help when different steps have different quality, speed and cost requirements.</p>
               <Card className="p-7">
                 <div className="grid md:grid-cols-3 gap-6 mb-6">
                   {[
@@ -409,9 +552,9 @@ export default function ModelSelection() {
                 <div className="p-4 rounded-xl bg-amber-400/5 border border-amber-400/20">
                   <div className="text-xs font-display font-bold text-amber-400 uppercase tracking-wider mb-2">The Mixing Pattern — Example</div>
                   <div className="text-sm text-white/80 leading-relaxed">
-                    <strong className="text-white">Step 1:</strong> Small model classifies (99% of volume, very cheap)<br/>
-                    <strong className="text-white">Step 2:</strong> Below 70% confidence → route to frontier model (1% of volume)<br/>
-                    <strong className="text-white">Result:</strong> 99% cost reduction on classification with frontier accuracy on edge cases
+                    <strong className="text-white">Step 1:</strong> A smaller model classifies routine cases after validation<br/>
+                    <strong className="text-white">Step 2:</strong> Low-confidence or sensitive cases → route to a stronger model or human reviewer<br/>
+                    <strong className="text-white">Result:</strong> Evaluate the trade-off using real accuracy, escalation and cost data
                   </div>
                 </div>
               </Card>
@@ -425,7 +568,7 @@ export default function ModelSelection() {
               <div className="grid md:grid-cols-2 gap-5">
                 <Card className="p-6 border-red-400/20 bg-red-400/[0.02]">
                   <div className="text-xs font-display font-bold text-red-400 uppercase tracking-wider mb-3">❌ Wrong approach</div>
-                  <div className="font-display font-bold text-base text-white mb-2">"We will standardise on GPT-4o for all AI use cases."</div>
+                  <div className="font-display font-bold text-base text-white mb-2">"We will use one model for every AI use case."</div>
                   <ul className="space-y-1.5 text-sm text-muted">
                     <li>→ Over-engineered for simple tasks</li>
                     <li>→ Over-budget at scale</li>
@@ -453,7 +596,7 @@ export default function ModelSelection() {
                     'Quarterly model review — are newer, cheaper models now viable?',
                     'Model retirement policy — deprecate when better options available',
                     'Data residency map — document where each model processes data',
-                    'Model abstraction layer — code never calls GPT-4o directly',
+                    'Model abstraction layer — avoid hard-coding a single model',
                   ].map((item, i) => (
                     <div key={i} className="flex gap-3 p-3 rounded-lg bg-white/[0.03] border border-white/5">
                       <span className="text-blue text-sm flex-shrink-0">□</span>
