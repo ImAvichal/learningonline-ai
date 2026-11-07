@@ -3,7 +3,7 @@
 // Durable lessons should teach capability tiers and decision principles; this
 // file supplies dated examples that can be refreshed without rewriting them.
 
-export const LANDSCAPE_LAST_REVIEWED = '2026-11-07'
+export const LANDSCAPE_LAST_REVIEWED = '2026-11-08'
 export const LANDSCAPE_REVIEW_CADENCE =
   'Review weekly against primary vendor and regulator sources; publish material changes with a learner-facing change log.'
 
@@ -111,6 +111,18 @@ export const CURRENT_AI_SHIFTS = [
     summary: 'A document, website or email can contain prompt-injection instructions aimed at an AI assistant. For agent workflows, test adversarial inputs, constrain tool permissions and output formats, keep an auditable trail and require human approval for consequential actions. Validate against source material rather than treating generated answers as verified facts.',
   },
   {
+    title: 'New image-generation models expand format and editing choices',
+    summary: 'On 4 November 2026, OpenAI released GPT Image 2.6 Sunburst and Flare. Its Image API documentation describes SVG and animated GIF output, complexity controls, and markup-guided editing. Practical exercise: compare a simple graphic across quality/complexity settings; verify text, accessibility, editability, permissions and final output manually. Availability and pricing must be checked before production use.',
+  },
+  {
+    title: 'Specialised AI models require purpose-specific governance',
+    summary: 'On 5 November 2026, OpenAI introduced GPT-6-Cyber for authorised defensive security work. Do not treat specialised models as general replacements or grant unrestricted system access: define approved scope, isolate test environments, log activity and require human review before acting on findings.',
+  },
+  {
+    title: 'Model upgrades can break generation-parameter compatibility',
+    summary: 'Anthropic documents removal of temperature, top_p and top_k in API version 2026-10-21, with non-default settings also rejected for some newer models on older API versions. When migrating, verify supported request parameters as well as model IDs, evaluate outputs on representative tasks, and do not assume a fixed temperature setting is portable across model families.',
+  },
+  {
     title: 'Capability requires stronger safeguards',
     summary: 'More capable agents increase the impact of mistakes and misuse. Human approval for consequential actions, scoped tools and continuous evaluation are production requirements.',
   },
@@ -140,6 +152,8 @@ export const PRIMARY_REFRESH_SOURCES = [
   { name: 'OpenAI model catalogue', url: 'https://developers.openai.com/api/docs/models' },
   { name: 'OpenAI API pricing', url: 'https://platform.openai.com/pricing' },
   { name: 'OpenAI API deprecations', url: 'https://developers.openai.com/api/docs/deprecations' },
+  { name: 'OpenAI API changelog', url: 'https://developers.openai.com/api/docs/changelog' },
+  { name: 'OpenAI image generation guide', url: 'https://developers.openai.com/api/docs/guides/image-generation' },
   { name: 'Claude model documentation', url: 'https://platform.claude.com/docs/en/models/overview' },
   { name: 'Claude model deprecations', url: 'https://platform.claude.com/docs/en/about-claude/model-deprecations' },
   { name: 'OpenAI safety best practices', url: 'https://developers.openai.com/api/docs/guides/safety-best-practices' },
