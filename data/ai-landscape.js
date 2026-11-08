@@ -3,7 +3,7 @@
 // Durable lessons should teach capability tiers and decision principles; this
 // file supplies dated examples that can be refreshed without rewriting them.
 
-export const LANDSCAPE_LAST_REVIEWED = '2026-11-08'
+export const LANDSCAPE_LAST_REVIEWED = '2026-11-09'
 export const LANDSCAPE_REVIEW_CADENCE =
   'Review weekly against primary vendor and regulator sources; publish material changes with a learner-facing change log.'
 
@@ -123,6 +123,14 @@ export const CURRENT_AI_SHIFTS = [
     summary: 'Anthropic documents removal of temperature, top_p and top_k in API version 2026-10-21, with non-default settings also rejected for some newer models on older API versions. When migrating, verify supported request parameters as well as model IDs, evaluate outputs on representative tasks, and do not assume a fixed temperature setting is portable across model families.',
   },
   {
+    title: 'Automatic agent review is an additional control, not a blanket authorisation',
+    summary: 'OpenAI added optional automatic review for eligible Agents API sessions on 30 October 2026. It can approve or deny supported tool and permission requests, but does not replace sandboxing, network restrictions, application-level authorisation or human approval for consequential actions. Exercise: compare an agent that drafts a supplier payment with one permitted to submit it; require explicit human sign-off for the payment, even when automated review is enabled.',
+  },
+  {
+    title: 'Voice agents can make outbound SIP calls, with consent and oversight requirements',
+    summary: 'On 2 November 2026 OpenAI made outbound SIP calling available through GPT-Live for all API organisations using a SIP provider. Exercise: design a hypothetical appointment-reminder workflow that discloses AI use, checks permission to contact, minimises personal data, provides human escalation and handles call failures without duplicate dialling. No real calls are needed for this lesson.',
+  },
+  {
     title: 'Capability requires stronger safeguards',
     summary: 'More capable agents increase the impact of mistakes and misuse. Human approval for consequential actions, scoped tools and continuous evaluation are production requirements.',
   },
@@ -160,6 +168,8 @@ export const PRIMARY_REFRESH_SOURCES = [
   { name: 'Google Gemini models', url: 'https://ai.google.dev/gemini-api/docs/models' },
   { name: 'Gemini model deprecations', url: 'https://ai.google.dev/gemini-api/docs/deprecations' },
   { name: 'IEA Energy and AI report', url: 'https://www.iea.org/reports/energy-and-ai' },
+  { name: 'OpenAI Agents API automatic review', url: 'https://developers.openai.com/api/docs/guides/agents-api/sessions/approvals' },
+  { name: 'OpenAI GPT-Live session API', url: 'https://developers.openai.com/api/reference/resources/live/methods/create' },
   { name: 'NIST AI RMF', url: 'https://www.nist.gov/itl/ai-risk-management-framework' },
 ]
 
