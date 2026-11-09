@@ -3,7 +3,7 @@
 // Durable lessons should teach capability tiers and decision principles; this
 // file supplies dated examples that can be refreshed without rewriting them.
 
-export const LANDSCAPE_LAST_REVIEWED = '2026-11-09'
+export const LANDSCAPE_LAST_REVIEWED = '2026-11-10'
 export const LANDSCAPE_REVIEW_CADENCE =
   'Review weekly against primary vendor and regulator sources; publish material changes with a learner-facing change log.'
 
@@ -15,7 +15,7 @@ export const MODEL_TIERS = [
     examples: [
       'OpenAI GPT-6 Astra (verify availability)',
       'OpenAI GPT-6.1 Sol',
-      'Anthropic Claude Fable 5.1 (check platform access)',
+      'Anthropic Claude Fable 5.2 (check platform access)',
       'Anthropic Claude Opus 5.5',
       'Google Gemini 4 Argon',
     ],
@@ -75,18 +75,20 @@ export const CURRENT_AI_SHIFTS = [
     summary: 'Strong teams route work by complexity, risk, latency and cost rather than choosing one model for everything.',
   },
   {
-    title: 'Model retirement deadlines require migration planning',
-    summary: 'OpenAI announced on 14 October 2026 that selected GPT-4o and GPT-4.1 API snapshots are scheduled for shutdown on 14 January 2027. Google lists 17 November 2026 shutdown dates for Gemini 3.1 Flash TTS preview and Gemini 3.1 Flash Live preview, with Gemini 3.8 TTS and Gemini 3.8 Live respectively recommended as replacements. Check vendor deprecation pages and test replacements before deadlines.',
+    title: 'Claude Fable 5.2 expands high-complexity AI choices',
+    summary: 'Anthropic announced Claude Fable 5.2 and restricted-access Claude Mythos 5.2 on 9 November 2026. Fable 5.2 is available through the Claude API as claude-fable-5-2; Anthropic recommends starting with Opus 5.5 for most work and considering Fable for difficult, open-ended reasoning and long-horizon agents. Fable includes safeguards for sensitive cybersecurity and biology tasks; Mythos access requires vetting. Exercise: use synthetic, non-sensitive technical tasks to compare Fable and Opus for factual accuracy, completion rate, latency, cost per successful task and refusal/escalation behaviour. Treat vendor benchmark results as claims to test, not guaranteed outcomes.',
   },
   {
+    title: 'Model retirement deadlines require migration planning',
+    summary: 'OpenAI announced on 14 October 2026 that selected GPT-4o and GPT-4.1 API snapshots are scheduled for shutdown on 14 January 2027. Preview-model deadlines can differ from stable-model deadlines and across platforms. Verify the current vendor deprecations table and test replacements before scheduling migrations.',
+  }  {
     title: 'Late-2026 OpenAI API retirements need attention',
     summary: 'OpenAI lists 30 November 2026 for reusable prompts, 1 December 2026 for selected older image models, and 11 December 2026 for specified GPT-5 and o3 API snapshots. These are endpoint/model-specific deadlines; check the official deprecations table and test supported replacements before migration.',
   },
   {
-    title: 'Gemini 2.5 Pro and Flash API reroute on 1 December 2026',
-    summary: 'As verified against Google’s live deprecations table on 5 November 2026, gemini-2.5-pro is deprecated and API calls will automatically route to gemini-3.8-flash on 1 December 2026; gemini-2.5-flash will route to gemini-3.5-flash-lite on the same date. The replacement model’s billing rates apply. The separate gemini-2.5-flash-lite is not deprecated and has no announced shutdown date. Google documents breaking API changes: test prompts, structured outputs, latency, safety, accuracy and costs before migration. This supersedes the 4 November no-shutdown-date guidance, which was accurate to the source reviewed then but is no longer current.',
-  },
-  {
+    title: 'Verify Gemini model lifecycle by exact API model and platform',
+    summary: 'Do not teach an automatic 1 December 2026 reroute of stable gemini-2.5-pro and gemini-2.5-flash as an established fact: accessible snapshots of Google\'s official Gemini API deprecations table list no announced shutdown date for these stable IDs, while previously recorded information conflicted. Check the current official table, release notes and the exact platform before advising a migration. For preview models, verify the earliest possible shutdown date and test quality, structured outputs, latency and cost.',
+  }  {
     title: 'OpenAI Evals and Agent Builder have 30 November 2026 retirement deadlines',
     summary: 'OpenAI says existing Evals became read-only on 31 October 2026, with the Evals dashboard/API and Agent Builder scheduled to shut down on 30 November 2026. This is separate from the reusable prompts API retirement on the same date. Migrate evaluation workflows and agent-building projects using the vendor migration guides; ChatKit is not part of the Agent Builder shutdown.',
   },
@@ -163,6 +165,7 @@ export const PRIMARY_REFRESH_SOURCES = [
   { name: 'OpenAI API changelog', url: 'https://developers.openai.com/api/docs/changelog' },
   { name: 'OpenAI image generation guide', url: 'https://developers.openai.com/api/docs/guides/image-generation' },
   { name: 'Claude model documentation', url: 'https://platform.claude.com/docs/en/models/overview' },
+  { name: 'Anthropic Fable 5.2 launch (9 November 2026)', url: 'https://www.anthropic.com/claude-fable-and-mythos-5-2' },
   { name: 'Claude model deprecations', url: 'https://platform.claude.com/docs/en/about-claude/model-deprecations' },
   { name: 'OpenAI safety best practices', url: 'https://developers.openai.com/api/docs/guides/safety-best-practices' },
   { name: 'Google Gemini models', url: 'https://ai.google.dev/gemini-api/docs/models' },
