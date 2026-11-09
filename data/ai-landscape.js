@@ -81,14 +81,16 @@ export const CURRENT_AI_SHIFTS = [
   {
     title: 'Model retirement deadlines require migration planning',
     summary: 'OpenAI announced on 14 October 2026 that selected GPT-4o and GPT-4.1 API snapshots are scheduled for shutdown on 14 January 2027. Preview-model deadlines can differ from stable-model deadlines and across platforms. Verify the current vendor deprecations table and test replacements before scheduling migrations.',
-  }  {
+  },
+  {
     title: 'Late-2026 OpenAI API retirements need attention',
     summary: 'OpenAI lists 30 November 2026 for reusable prompts, 1 December 2026 for selected older image models, and 11 December 2026 for specified GPT-5 and o3 API snapshots. These are endpoint/model-specific deadlines; check the official deprecations table and test supported replacements before migration.',
   },
   {
     title: 'Verify Gemini model lifecycle by exact API model and platform',
     summary: 'Do not teach an automatic 1 December 2026 reroute of stable gemini-2.5-pro and gemini-2.5-flash as an established fact: accessible snapshots of Google\'s official Gemini API deprecations table list no announced shutdown date for these stable IDs, while previously recorded information conflicted. Check the current official table, release notes and the exact platform before advising a migration. For preview models, verify the earliest possible shutdown date and test quality, structured outputs, latency and cost.',
-  }  {
+  },
+  {
     title: 'OpenAI Evals and Agent Builder have 30 November 2026 retirement deadlines',
     summary: 'OpenAI says existing Evals became read-only on 31 October 2026, with the Evals dashboard/API and Agent Builder scheduled to shut down on 30 November 2026. This is separate from the reusable prompts API retirement on the same date. Migrate evaluation workflows and agent-building projects using the vendor migration guides; ChatKit is not part of the Agent Builder shutdown.',
   },
