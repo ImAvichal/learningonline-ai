@@ -49,7 +49,7 @@ Source: https://platform.claude.com/docs/en/about-claude/model-deprecations
 3. `data/ai-landscape.js`: add Anthropic's 9 November announcement to the primary-source register.
 4. `docs/content-review-2026-11-10.md`: document sources, uncertainty, scope, release checks and outstanding issues.
 
-**Targeted static assertions before commit:** 8 passed (review date, new model, source URL, removed two unverified absolutes, exports retained, no commercial terms, changed content). These do not replace CI/build, dependency audit, end-to-end tests, accessibility, authenticated learner journeys, or complete link crawling.
+**Targeted source assertions:** 8 initial content/scope assertions passed. Post-write inspection also detected two malformed object separators introduced by the replacement operation; these were immediately corrected in a follow-up content-only commit (`6911b58`). The corrected file was re-read and verified for 19 landscape entries, expected exports, date, source URL and no malformed joins. **A successful build/CI run is still required**; the static assertions alone did not catch the original syntax error. These checks do not replace dependency audit, end-to-end tests, accessibility, authenticated learner journeys, or complete link crawling.
 
 ## NEXT / release hold
 
