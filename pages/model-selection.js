@@ -274,7 +274,7 @@ export default function ModelSelection() {
     <>
       <Head>
         <title>AI Model Selection Guide — Le On AI</title>
-        <meta name="description" content="How to choose the right AI model for your business. Decision tree, cost comparison, and real-world examples." />
+        <meta name="description" content="How to choose the right AI model for your business. Decision tree, illustrative cost scenarios, and evaluation guidance." />
       </Head>
       <Nav />
 
@@ -301,7 +301,7 @@ export default function ModelSelection() {
             <div className="grid md:grid-cols-3 gap-4 mb-14">
               {[
                 { icon:'🎯', title:'Right-size first', desc:'Choose the least costly model that meets quality, safety, privacy and latency requirements. Benchmark before committing.' },
-                { icon:'⚡', title:'Standardise orchestration', desc:'Don\'t standardise on one model. Standardise on your orchestration layer and swap models freely.' },
+                { icon:'⚡', title:'Standardise orchestration', desc:'Avoid unnecessary dependence on one model. Use an orchestration layer, then test API compatibility, output quality and safety before switching models.' },
                 { icon:'💰', title:'Volume changes everything', desc:'Estimate real usage: input and output tokens, tools, retries, caching and human review.' },
               ].map((p, i) => (
                 <Card key={i} className="p-6 text-center">
@@ -580,8 +580,8 @@ export default function ModelSelection() {
                   <div className="text-xs font-display font-bold text-success uppercase tracking-wider mb-3">✓ Right approach</div>
                   <div className="font-display font-bold text-base text-white mb-2">"We standardise on our orchestration layer and abstract model selection."</div>
                   <ul className="space-y-1.5 text-sm text-muted">
-                    <li>→ Switch models without changing code</li>
-                    <li>→ A/B test models in production</li>
+                    <li>→ Reduce migration effort; still test model and API compatibility</li>
+                    <li>→ Evaluate on synthetic or approved data before controlled rollout</li>
                     <li>→ Apply cost governance centrally</li>
                     <li>→ Compliance and monitoring in one place</li>
                   </ul>
@@ -594,7 +594,7 @@ export default function ModelSelection() {
                     'Maintain a Model Registry — approved models by use case type',
                     'Set cost thresholds — alert if per-use-case token cost exceeds budget',
                     'Quarterly model review — are newer, cheaper models now viable?',
-                    'Model retirement policy — deprecate when better options available',
+                    'Model retirement policy — track vendor deadlines and validate replacements',
                     'Data residency map — document where each model processes data',
                     'Model abstraction layer — avoid hard-coding a single model',
                   ].map((item, i) => (
