@@ -3,7 +3,7 @@
 // Durable lessons should teach capability tiers and decision principles; this
 // file supplies dated examples that can be refreshed without rewriting them.
 
-export const LANDSCAPE_LAST_REVIEWED = '2026-11-11'
+export const LANDSCAPE_LAST_REVIEWED = '2026-11-12'
 export const LANDSCAPE_REVIEW_CADENCE =
   'Review weekly against primary vendor and regulator sources; publish material changes with a learner-facing change log.'
 
@@ -92,12 +92,12 @@ export const CURRENT_AI_SHIFTS = [
     summary: 'OpenAI lists 30 November 2026 for reusable prompts, 1 December 2026 for selected older image models, and 11 December 2026 for specified GPT-5 and o3 API snapshots. These are endpoint/model-specific deadlines; check the official deprecations table and test supported replacements before migration.',
   },
   {
-    title: 'Gemini 2.5 stable API routes change on 1 December 2026',
-    summary: 'Google now explicitly lists gemini-2.5-pro and gemini-2.5-flash as deprecated in its Gemini API deprecations table. Effective 1 December 2026, API requests to gemini-2.5-pro automatically route to gemini-3.8-flash; gemini-2.5-flash requests route to gemini-3.5-flash-lite. The replacement model billing rates apply and migration guides warn of breaking API changes. The separate gemini-2.5-flash-lite stable model has no announced shutdown date. Exercise: inventory exact model IDs, test quality, structured output, safety, latency and total cost on representative synthetic tasks before the transition. Dates listed by Google are earliest possible retirement dates and can be updated.',
+    title: 'Verify Gemini retirement notices by exact model and platform',
+    summary: 'As reviewed 12 November 2026, indexed versions of Google’s official Gemini API deprecations table disagree about shutdown dates for stable gemini-2.5-pro and gemini-2.5-flash: some show no announced date, while others show earlier retirement dates. Do not teach a 1 December 2026 automatic-routing deadline as established until the canonical current API documentation and platform-specific release notes agree. Exercise: inventory exact model IDs and API platform, compare dated official notices, then test supported alternatives on synthetic tasks for quality, structured output, safety, latency and cost.',
   },
   {
-    title: 'Selected Gemini audio previews have earliest shutdown dates of 17 November 2026',
-    summary: 'Google lists 17 November 2026 as the earliest possible shutdown date for gemini-3.1-flash-tts-preview, gemini-3.1-flash-live-preview, gemini-2.5-flash-preview-tts, gemini-2.5-pro-preview-tts and gemini-2.5-flash-native-audio-preview-12-2025. Supported replacements include Gemini 3.8 Flash TTS, Flash-Lite TTS and Live depending on the endpoint. These dates apply to the listed preview IDs, not all Gemini voice models. Test speech quality, latency, permissions and API compatibility before migration.',
+    title: 'Gemini audio preview retirement dates need endpoint-specific verification',
+    summary: 'Google’s indexed Gemini API deprecations tables also disagree on shutdown dates for several Live and text-to-speech preview model IDs. Do not assert a blanket 17 November 2026 retirement. Check the current documentation for the exact model and platform, record the source retrieval date, and test replacement speech quality, latency and API compatibility before changing production integrations.',
   },
   {
     title: 'OpenAI Evals and Agent Builder have 30 November 2026 retirement deadlines',
