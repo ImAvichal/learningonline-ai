@@ -313,6 +313,29 @@ export default function ModelSelection() {
             </div>
           </Reveal>
 
+          {/* Provider access exercise — reviewed 16 November 2026 */}
+          <Reveal>
+            <Card className="p-6 mb-14">
+              <h2 className="font-display font-bold text-xl mb-3">Practical exercise: Is a model actually available to your project?</h2>
+              <p className="text-sm text-muted mb-3">
+                A model appearing in a provider catalogue does not guarantee that your API project can generate with it.
+                Access may depend on the platform, project history, permissions and billing eligibility.
+              </p>
+              <ol className="list-decimal pl-5 space-y-2 text-sm text-muted">
+                <li>In a test project, list available model IDs and note the exact API version and provider.</li>
+                <li>Make one minimal, non-sensitive generation request using the exact model ID; do not expose API keys in screenshots or logs.</li>
+                <li>Record the HTTP status and redacted provider error. A 404 alone does not prove a global model retirement.</li>
+                <li>Check project eligibility, billing and the provider's model lifecycle documentation separately before selecting a supported alternative.</li>
+              </ol>
+              <p className="text-xs text-muted mt-4">
+                Source: Google AI Developers Forum, staff clarification dated 6 November 2026.
+                {' '}<a className="underline" href="https://discuss.ai.google.dev/t/gemini-2-5-flash-metadata-succeeds-but-generatecontent-returned-http-404-request-for-project-eligibility-clarification/197853" target="_blank" rel="noopener noreferrer">Read provider clarification</a>.
+                {' '}<a className="underline" href="https://ai.google.dev/gemini-api/docs/deprecations" target="_blank" rel="noopener noreferrer">Check Gemini lifecycle notices</a>.
+                Last reviewed 16 November 2026.
+              </p>
+            </Card>
+          </Reveal>
+
           {/* Decision steps */}
           <Reveal>
             <div className="mb-14">
