@@ -255,7 +255,8 @@ const LESSONS = [
 
 <p><strong>Ages 12–15 (critical thinking and norms):</strong></p>
 <ul>
-<li>"What do you think about using AI for homework? What's the line for you?"</li>
+<li>"When do you think using AI for homework helps you learn, and when does it become cheating or letting AI do the work for you?"</li>
+<li>"If AI helped you complete an assignment, how would you explain what you used it for to your teacher?"</li>
 <li>"Have you ever gotten information from AI that turned out to be wrong?"</li>
 <li>"How do your friends use AI? What do you think about that?"</li>
 <li>"If you could ask AI anything without anyone knowing, what would you ask?"</li>
