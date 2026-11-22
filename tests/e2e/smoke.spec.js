@@ -64,6 +64,21 @@ test('printable parent guide opens and offers PDF printing', async ({ page }) =>
   await expect(page.getByRole('heading', { name: 'Conversation Starters by Age' })).toBeVisible()
   await expect(page.getByRole('heading', { name: 'Warning Signs Worth a Conversation' })).toBeVisible()
   await expect(page.getByRole('heading', { name: 'Weekly Check-In Template' })).toBeVisible()
+  // Both checklists should form balanced side-by-side columns on A4 with no overflow.
+  const printLayout = await page.evaluate(() => {
+    const pages = [...document.querySelectorAll('.paper')]
+    const panels = [...document.querySelectorAll('.principlePanel')]
+    const a = pages[0].getBoundingClientRect()
+    const b = pages[1].getBoundingClientRect()
+    const left = panels[0].getBoundingClientRect()
+    const right = panels[1].getBoundingClientRect()
+    const footer = pages[0].querySelector('.folio').getBoundingClientRect()
+    return { pageOneHeight: a.height, pageTwoHeight: b.height, columnsAligned: Math.abs(left.top-right.top) < 2, twoColumns: right.left > left.right, footerInside: footer.bottom <= a.bottom+2 }
+  })
+  expect(printLayout.pageOneHeight).toBeLessThanOrEqual(printLayout.pageTwoHeight + 2)
+  expect(printLayout.columnsAligned).toBe(true)
+  expect(printLayout.twoColumns).toBe(true)
+  expect(printLayout.footerInside).toBe(true)
   await expect(page.locator('.itemList').first().locator('li')).toHaveCount(10)
   await expect(page.locator('.itemList').nth(1).locator('li')).toHaveCount(10)
   await expect(page.locator('.ageList li')).toHaveCount(8)
