@@ -75,7 +75,7 @@ const LESSONS = [
     content: `<h2>What your children are actually doing with AI</h2>
 <p>Understanding how kids use AI — not how adults fear they use it — is essential for having useful conversations at home. The reality is more nuanced, more varied, and in many ways more interesting than the headlines suggest.</p>
 
-<h3>The 6 Ways Kids Use AI Most Commonly</h3>
+<h3>Six Ways Children May Encounter AI</h3>
 <table>
 <thead><tr><th>Use</th><th>What It Looks Like</th><th>Considerations</th><th>Ask your child</th></tr></thead>
 <tbody>
@@ -84,7 +84,7 @@ const LESSONS = [
 <tr><td><strong>Social/emotional conversations</strong></td><td>Talking to AI about problems, feelings, social situations — especially when they don't want to talk to a person</td><td>Check tool age rules and school policy</td><td>Have you tried this?</td></tr>
 <tr><td><strong>Learning and curiosity</strong></td><td>Deep-diving topics: "How does a black hole work?" "Why did Rome fall?" "What happens when you die?"</td><td>Check tool age rules and school policy</td><td>Have you tried this?</td></tr>
 <tr><td><strong>Gaming and entertainment</strong></td><td>AI-generated game characters, AI NPCs, AI opponents that adapt — this is now mainstream in gaming</td><td>Check tool age rules and school policy</td><td>Have you tried this?</td></tr>
-<tr><td><strong>Social media consumption</strong></td><td>The recommendation algorithms on TikTok, YouTube, and Instagram are AI — this is the most pervasive use</td><td>Check tool age rules and school policy</td><td>Have you tried this?</td></tr>
+<tr><td><strong>Social media consumption</strong></td><td>The recommendation algorithms on TikTok, YouTube, and Instagram are AI — this is one of the most widespread background uses</td><td>Check tool age rules and school policy</td><td>Have you tried this?</td></tr>
 </tbody>
 </table>
 
@@ -93,15 +93,15 @@ const LESSONS = [
 <ul>
 <li><strong>Some children use AI to avoid thinking</strong> — copying outputs without understanding. This is a genuine concern.</li>
 <li><strong>Some children use AI as a tutor</strong> — asking it to explain concepts they didn't understand in class, then doing the work themselves. This is genuinely useful.</li>
-<li><strong>Most children do both</strong> — depending on the subject, the deadline, and how much they care about the task.</li>
+<li><strong>A child may use AI in different ways across different tasks</strong> — ask what they used and whether they can explain their decisions.</li>
 </ul>
-<p>The useful question is not "did you use AI?" but "do you understand this?" If your child can explain what they submitted in their own words, the learning happened. If they can't, it didn't — regardless of whether AI was involved.</p>
+<p>The useful question is not "did you use AI?" but "do you understand this?" Being able to explain their work in their own words is one useful sign of understanding, though it is not a complete assessment. Follow school rules about disclosure and permitted use.</p>
 
 <h3>The Emotional Support Pattern — Worth Knowing</h3>
 <p>A growing number of teenagers use AI chatbots for emotional support — to process feelings, talk through social situations, or discuss things they're embarrassed to raise with adults. This is not inherently concerning, but it warrants awareness:</p>
 <ul>
-<li>AI is patient, never judges, and never gets frustrated — qualities that can be appealing to teenagers who fear disappointing the people around them</li>
-<li>AI cannot assess risk — it cannot identify when a child needs real support versus conversation</li>
+<li>AI can appear patient, nonjudgmental, and endlessly available — qualities that can be appealing to teenagers who fear disappointing the people around them</li>
+<li>AI responses are not a reliable substitute for human safeguarding or professional assessment, even when a product flags risk</li>
 <li>The behaviour is not a sign that your child doesn't trust you — it may be a sign they're navigating something they're not ready to share</li>
 </ul>
 
