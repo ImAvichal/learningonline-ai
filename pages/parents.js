@@ -53,17 +53,17 @@ const LESSONS = [
 <h3>Key Insights</h3>
 <ul>
 <li><strong>AI is already in your home.</strong> If your family uses YouTube, TikTok, Netflix, or any voice assistant — your children are already interacting with AI daily.</li>
-<li><strong>The "sounds confident" problem.</strong> AI generates responses that sound authoritative even when they're wrong. Children (and adults) instinctively trust confident answers. This is the #1 literacy issue to address.</li>
+<li><strong>The "sounds confident" problem.</strong> AI generates responses that sound authoritative even when they're wrong. Children (and adults) instinctively trust confident answers. This is a central AI literacy issue to address.</li>
 <li><strong>AI feels like a friend.</strong> Chatbots are designed to be warm, patient, and responsive. Children can form emotional attachments to AI in ways that deserve parental awareness — not panic, but awareness.</li>
 </ul>
 
 <div class="real-world-box">
-<h3>🌍 From Real-World Practice</h3>
+<h3>🌍 Illustrative Family Scenario</h3>
 <p><strong>Insight:</strong> Parents who understand what AI is — even at a basic level — have far more productive conversations with their children about it than parents who approach it with fear or dismissal.</p>
-<p><strong>Example:</strong> A parent discovered their 13-year-old had been using ChatGPT to help write creative stories for months. Rather than reacting with alarm, the parent — who had taken 20 minutes to understand what ChatGPT is — was able to ask: "What do you like about using it? What does it do well? What does it do badly?" The conversation became collaborative rather than confrontational. The child ended up explaining the limitations of AI to their parent — which built exactly the critical thinking skills the parent was hoping for.</p>
-<p><strong>Why it matters:</strong> Your children will use AI regardless of whether you engage with it. The question is whether they'll use it thoughtfully or blindly. Your engagement determines which.</p>
+<p><strong>Fictional example:</strong> A parent discovered their 13-year-old had been using ChatGPT to help write creative stories for months. Rather than reacting with alarm, the parent — who had taken 20 minutes to understand what ChatGPT is — was able to ask: "What do you like about using it? What does it do well? What does it do badly?" The conversation became collaborative rather than confrontational. The child ended up explaining the limitations of AI to their parent — which built exactly the critical thinking skills the parent was hoping for.</p>
+<p><strong>Why it matters:</strong> Your children will use AI regardless of whether you engage with it. The question is whether they'll use it thoughtfully or blindly. Your engagement can help children build better habits.</p>
 <p><strong>What parents should do:</strong> Spend 30 minutes this week trying ChatGPT or Claude yourself. Ask it something you know the answer to. Notice when it's right, when it's overconfident, and when it's wrong. You will have better conversations with your child from a place of personal experience.</p>
-<p><strong>What this prevents:</strong> Children forming uncritical dependence on AI for answers — treating it as infallible rather than as a useful but fallible tool.</p>
+<p><strong>What this helps address:</strong> Children forming uncritical dependence on AI for answers — treating it as infallible rather than as a useful but fallible tool.</p>
 </div>`,
   },
   {
@@ -113,12 +113,12 @@ const LESSONS = [
 </ul>
 
 <div class="real-world-box">
-<h3>🌍 From Real-World Practice</h3>
+<h3>🌍 Illustrative Family Scenario</h3>
 <p><strong>Insight:</strong> Parents who ask curious, open questions about their children's AI use consistently report learning things they didn't expect — and finding more opportunity than risk.</p>
-<p><strong>Example:</strong> A parent of a 15-year-old assumed AI use was limited to essay writing. In a 20-minute dinner conversation, they discovered their child had used AI to: research a career they were curious about, help understand why a friendship had become complicated, co-write a fantasy story with AI as a "writing partner," and teach themselves basic Python programming by asking AI to explain each concept step by step. None of this was known to the parent. None of it was harmful. All of it reflected genuine curiosity and self-directed learning.</p>
+<p><strong>Fictional example:</strong> A parent of a 15-year-old assumed AI use was limited to essay writing. In a 20-minute dinner conversation, they discovered their child had used AI to: research a career they were curious about, help understand why a friendship had become complicated, co-write a fantasy story with AI as a "writing partner," and teach themselves basic Python programming by asking AI to explain each concept step by step. None of this was known to the parent. None of it was harmful. All of it reflected genuine curiosity and self-directed learning.</p>
 <p><strong>Why it matters:</strong> Your assumptions about how your children use AI are probably incomplete. The gap between what parents imagine and what children actually do is significant — and closing that gap requires curiosity, not surveillance.</p>
 <p><strong>What parents should do:</strong> Ask open questions once a week: "What's something interesting you've done with AI lately?" Not "have you been using AI for homework?" Framing matters.</p>
-<p><strong>What this prevents:</strong> Treating legitimate, thoughtful AI use as suspicious — which damages trust and makes children less likely to come to you when they do encounter something genuinely concerning.</p>
+<p><strong>What this helps address:</strong> Treating legitimate, thoughtful AI use as suspicious — which damages trust and makes children less likely to come to you when they do encounter something genuinely concerning.</p>
 </div>`,
   },
   {
@@ -165,12 +165,12 @@ const LESSONS = [
 </ul>
 
 <div class="real-world-box">
-<h3>🌍 From Real-World Practice</h3>
+<h3>🌍 Illustrative Family Scenario</h3>
 <p><strong>Insight:</strong> The families who navigate AI best are not the ones with the strictest rules or the most permissive approach. They're the ones who've made AI a normal topic of dinner table conversation — something to be curious about and think critically about together.</p>
-<p><strong>Example:</strong> Two families, both with 14-year-olds. Family A banned AI tools entirely. Their child used them anyway via friends' phones and felt no need to tell parents about AI-related concerns. Family B discussed AI openly, acknowledged both benefits and risks, and established clear household rules together. Their child came to them 6 months later when a classmate showed them an AI-generated deepfake image being circulated as real. They handled it together. Family A's child saw the same image. Said nothing.</p>
+<p><strong>Fictional example:</strong> Two families, both with 14-year-olds. Family A banned AI tools entirely. Their child used them anyway via friends' phones and felt no need to tell parents about AI-related concerns. Family B discussed AI openly, acknowledged both benefits and risks, and established clear household rules together. Their child came to them 6 months later when a classmate showed them an AI-generated deepfake image being circulated as real. They handled it together. Family A's child saw the same image. Said nothing.</p>
 <p><strong>Why it matters:</strong> Children who can't talk to parents about AI will navigate its risks alone. The goal is not to prevent use — it's to be the trusted adult they turn to when something concerning happens.</p>
 <p><strong>What parents should do:</strong> Aim to be the person your child comes to with AI questions and concerns — not the last to know. That requires being curious about it yourself, not afraid of it.</p>
-<p><strong>What this prevents:</strong> Children handling inappropriate AI content, misinformation, or emotional over-reliance in isolation — without parental awareness until the consequences are already visible.</p>
+<p><strong>What this helps address:</strong> Children handling inappropriate AI content, misinformation, or emotional over-reliance in isolation — without parental awareness until the consequences are already visible.</p>
 </div>`,
   },
   {
@@ -227,12 +227,12 @@ const LESSONS = [
 </ul>
 
 <div class="real-world-box">
-<h3>🌍 From Real-World Practice</h3>
+<h3>🌍 Illustrative Family Scenario</h3>
 <p><strong>Insight:</strong> The warning signs parents most need to act on are usually not dramatic. They're subtle patterns that only become visible if you're paying attention and have an open enough relationship for your child to show you their digital life.</p>
-<p><strong>Example:</strong> A parent noticed their 16-year-old becoming increasingly anxious and withdrawn over several weeks. Digital life seemed normal. After a gentle conversation, it emerged that the child had been using an AI chatbot for emotional support — processing anxiety about their future — and the AI had, through repeated conversation, reinforced a spiral of catastrophic thinking rather than providing balance. The AI was doing what it's designed to do: responding to the emotional register of the conversation. It had no capacity to notice the pattern was harmful. The parent intervening, getting their child professional support, and having honest conversations about what AI can and cannot provide — changed the trajectory.</p>
+<p><strong>Fictional example:</strong> A parent noticed their 16-year-old becoming increasingly anxious and withdrawn over several weeks. Digital life seemed normal. After a gentle conversation, it emerged that the child had been using an AI chatbot for emotional support — processing anxiety about their future — and the AI had, through repeated conversation, reinforced a spiral of catastrophic thinking rather than providing balance. The AI was doing what it's designed to do: responding to the emotional register of the conversation. It had no capacity to notice the pattern was harmful. The parent intervening, getting their child professional support, and having honest conversations about what AI can and cannot provide — changed the trajectory.</p>
 <p><strong>Why it matters:</strong> AI cannot notice when a pattern of use is harmful to a child. Parents can. This is irreplaceable.</p>
 <p><strong>What parents should do:</strong> Pay attention to emotional patterns, not just screen time. How is your child feeling? Have they been more withdrawn? More anxious? These signals matter more than what app they're using.</p>
-<p><strong>What this prevents:</strong> AI use that inadvertently compounds mental health challenges — the risk that grows when AI replaces human connection without parents knowing.</p>
+<p><strong>What this helps address:</strong> AI use that inadvertently compounds mental health challenges — the risk that grows when AI replaces human connection without parents knowing.</p>
 </div>`,
   },
   {
@@ -290,12 +290,12 @@ const LESSONS = [
 </ul>
 
 <div class="real-world-box">
-<h3>🌍 From Real-World Practice</h3>
+<h3>🌍 Illustrative Family Scenario</h3>
 <p><strong>Insight:</strong> The single most effective thing a parent can do for their child's AI literacy is model curiosity — ask questions, try things, admit uncertainty. Children who see their parents engaging thoughtfully with technology do the same.</p>
-<p><strong>Example:</strong> A parent with no technical background started spending 15 minutes a week exploring AI tools — trying ChatGPT, reading one article about AI, asking their child to show them what they use. Within 6 weeks, their 13-year-old spontaneously started sharing their AI projects and questions. Not because the parent became an expert — but because the child saw that their parent was genuinely interested. The conversation became a shared activity rather than a monitoring exercise.</p>
+<p><strong>Fictional example:</strong> A parent with no technical background started spending 15 minutes a week exploring AI tools — trying ChatGPT, reading one article about AI, asking their child to show them what they use. Within 6 weeks, their 13-year-old spontaneously started sharing their AI projects and questions. Not because the parent became an expert — but because the child saw that their parent was genuinely interested. The conversation became a shared activity rather than a monitoring exercise.</p>
 <p><strong>Why it matters:</strong> Children talk to parents who are curious. They hide from parents who only ask to check up on them. The relationship predicts the conversation, and the conversation predicts the safety.</p>
 <p><strong>What parents should do:</strong> Commit to one AI-related conversation per week. Not a serious talk — a casual question over dinner. "I read something interesting about AI today — want to hear it?" starts the habit.</p>
-<p><strong>What this prevents:</strong> The silence that allows concerning AI use to develop without parental awareness — which is far more dangerous than imperfect parental knowledge of the technology.</p>
+<p><strong>What this helps address:</strong> The silence that allows concerning AI use to develop without parental awareness — which is far more dangerous than imperfect parental knowledge of the technology.</p>
 </div>`,
   },
   {
@@ -342,12 +342,12 @@ const LESSONS = [
 <p>These three questions, asked genuinely and without agenda, keep the channel open.</p>
 
 <div class="real-world-box">
-<h3>🌍 From Real-World Practice</h3>
+<h3>🌍 Illustrative Family Scenario</h3>
 <p><strong>Insight:</strong> The most effective household AI norms are short, principled, and co-created. A list of 20 rules is not followed. Three principles, developed together, are internalized.</p>
-<p><strong>Example:</strong> A family of four (children aged 11 and 15) held a 30-minute family meeting to create their "AI House Rules." The parents came with a draft. The children rewrote it — clarifying the homework rule (which the parents had made too vague), removing a rule they found insulting (no AI for creative work, which they argued against convincingly), and adding a rule the parents hadn't thought of (AI cannot be used for arguments between family members — a specific incident had occurred). The final document was one page, five principles, signed by all four family members. 18 months later, all principles were still being honoured and discussed. The process of creating them together was more valuable than any individual rule.</p>
+<p><strong>Fictional example:</strong> A family of four (children aged 11 and 15) held a 30-minute family meeting to create their "AI House Rules." The parents came with a draft. The children rewrote it — clarifying the homework rule (which the parents had made too vague), removing a rule they found insulting (no AI for creative work, which they argued against convincingly), and adding a rule the parents hadn't thought of (AI cannot be used for arguments between family members — a specific incident had occurred). The final document was one page, five principles, signed by all four family members. 18 months later, all principles were still being honoured and discussed. The process of creating them together was more valuable than any individual rule.</p>
 <p><strong>Why it matters:</strong> Rules imposed without voice create resentment and workarounds. Rules created together create ownership and compliance — even when parents aren't watching.</p>
 <p><strong>What parents should do:</strong> Hold a family meeting. Present AI as something to navigate together. Ask for input. Be willing to change your mind if your children make a good argument. The goal is principles they'll apply when you're not in the room.</p>
-<p><strong>What this prevents:</strong> Secret AI use that operates entirely outside household awareness and values — which is what happens when children have no voice in the norms they're expected to follow.</p>
+<p><strong>What this helps address:</strong> Secret AI use that operates entirely outside household awareness and values — which is what happens when children have no voice in the norms they're expected to follow.</p>
 </div>`,
   },
   {
@@ -389,12 +389,12 @@ const LESSONS = [
 </ol>
 
 <div class="real-world-box">
-<h3>🌍 From Real-World Practice</h3>
+<h3>🌍 Illustrative Family Scenario</h3>
 <p><strong>Insight:</strong> Boundaries that children understand the reason for are maintained independently. Boundaries that are just rules are maintained only when someone is watching.</p>
-<p><strong>Example:</strong> A parent discovered their 13-year-old had been using AI to write an entire school essay. Rather than immediate punishment, the parent asked three questions: What made you do this? Do you understand the material the essay was about? What do you think the problem is with submitting work that isn't yours? The child's answers revealed: extreme anxiety about a deadline, genuine misunderstanding of a key concept, and a reasonable understanding of why academic integrity matters. The consequence addressed all three: a rewrite done by the child (with AI help to understand, not to write), a conversation with the teacher, and a plan for handling deadline anxiety. Six months later, the child came to their parent proactively about a similar situation — before using AI to avoid it.</p>
+<p><strong>Fictional example:</strong> A parent discovered their 13-year-old had been using AI to write an entire school essay. Rather than immediate punishment, the parent asked three questions: What made you do this? Do you understand the material the essay was about? What do you think the problem is with submitting work that isn't yours? The child's answers revealed: extreme anxiety about a deadline, genuine misunderstanding of a key concept, and a reasonable understanding of why academic integrity matters. The consequence addressed all three: a rewrite done by the child (with AI help to understand, not to write), a conversation with the teacher, and a plan for handling deadline anxiety. Six months later, the child came to their parent proactively about a similar situation — before using AI to avoid it.</p>
 <p><strong>Why it matters:</strong> How parents respond to the first boundary crossing determines whether children come to them with the second one. Respond in ways that keep the conversation open.</p>
 <p><strong>What parents should do:</strong> When boundaries are crossed, aim to understand before you judge. The child's explanation will tell you what actually needs addressing — which is often not what you initially assumed.</p>
-<p><strong>What this prevents:</strong> Children managing AI-related issues in secret rather than with parental support — which is the most dangerous outcome of the most heavy-handed responses.</p>
+<p><strong>What this helps address:</strong> Children managing AI-related issues in secret rather than with parental support — which is the most dangerous outcome of the most heavy-handed responses.</p>
 </div>`,
   },
   {
@@ -439,12 +439,12 @@ const LESSONS = [
 </ol>
 
 <div class="real-world-box">
-<h3>🌍 From Real-World Practice</h3>
+<h3>🌍 Illustrative Family Scenario</h3>
 <p><strong>Insight:</strong> The children who will thrive in an AI-augmented world are not necessarily the ones who use AI most — they're the ones who use it most thoughtfully, with clear human judgment guiding the tool rather than the tool guiding them.</p>
-<p><strong>Example:</strong> A high school teacher observing students use AI for research projects noted a clear pattern: students who used AI as a starting point and then developed original analysis consistently produced better work than students who used AI as an ending point. The first group used AI to understand the landscape of a topic faster — then applied their own thinking. The second group used AI to avoid thinking. Two years later, at university, the pattern continued. The first group adapted to AI-enabled academic environments. The second group struggled when original thought was required.</p>
+<p><strong>Fictional example:</strong> A high school teacher observing students use AI for research projects noted a clear pattern: students who used AI as a starting point and then developed original analysis consistently produced better work than students who used AI as an ending point. The first group used AI to understand the landscape of a topic faster — then applied their own thinking. The second group used AI to avoid thinking. Two years later, at university, the pattern continued. The first group adapted to AI-enabled academic environments. The second group struggled when original thought was required.</p>
 <p><strong>Why it matters:</strong> The relationship your child develops with AI during these years — whether AI is a tool they direct or a shortcut they rely on — will shape their capacity to thrive in every future environment they enter.</p>
 <p><strong>What parents should do:</strong> Talk about the future with your children. Not with anxiety — with curiosity. "What do you think your job might look like in 15 years? What do you think AI will and won't be able to do?" These conversations build the future-orientation and adaptability that matters more than any specific skill.</p>
-<p><strong>What this prevents:</strong> Children arriving at adulthood as passive consumers of AI output rather than active, critical directors of AI tools — the distinction that will define opportunity and outcomes in the careers ahead.</p>
+<p><strong>What this helps address:</strong> Children arriving at adulthood as passive consumers of AI output rather than active, critical directors of AI tools — the distinction that will define opportunity and outcomes in the careers ahead.</p>
 </div>`,
   },
   {
@@ -529,9 +529,9 @@ const LESSONS = [
 <p>The goal of these conversations is not surveillance — it's partnership. You're building your child's judgment together, not policing their screen time.</p>
 
 <div class="real-world-box">
-<h3>🌍 From Real-World Practice</h3>
+<h3>🌍 Illustrative Family Scenario</h3>
 <p><strong>Insight:</strong> Parents who use AI alongside their children — even occasionally — report significantly less anxiety about their child's AI use and significantly better conversations about digital literacy.</p>
-<p><strong>Example:</strong> A parent of a 12-year-old sat down with their child and asked ChatGPT to help plan a family holiday. Together, they evaluated the suggestions, found two factual errors (a restaurant that had closed, a museum with wrong opening hours), and had a conversation about why AI gets things wrong. The child independently started checking AI homework answers the following week — without being told to. One shared experience changed the dynamic more than months of rules.</p>
+<p><strong>Fictional example:</strong> A parent of a 12-year-old sat down with their child and asked ChatGPT to help plan a family holiday. Together, they evaluated the suggestions, found two factual errors (a restaurant that had closed, a museum with wrong opening hours), and had a conversation about why AI gets things wrong. The child independently started checking AI homework answers the following week — without being told to. One shared experience changed the dynamic more than months of rules.</p>
 <p><strong>Why it matters:</strong> Children learn judgment through experience, not instruction. The most effective AI parenting strategy is modelling thoughtful use — not restricting access.</p>
 </div>
 <div class="further-reading-box">
