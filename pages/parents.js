@@ -11,6 +11,7 @@ import Link from 'next/link'
 import { Nav, Card, SectionLabel, Reveal, Button, Spinner, LessonFeedback } from '../components/ui'
 import Icon from '../components/Icon'
 import { useAuth } from '../lib/auth'
+import { PARENT_REFRESH_BY_ID } from '../data/parent-lesson-refresh'
 
 // ─────────────────────────────────────────────────────────────────────────────
 // MODULE CONTENT
@@ -877,7 +878,7 @@ export default function ParentsModule() {
                     <h2 className="font-display font-bold text-2xl">{lesson.title}</h2>
                   </div>
                 </div>
-                <div className="overflow-x-auto" dangerouslySetInnerHTML={{ __html: lesson.content }} />
+                <div className="overflow-x-auto" dangerouslySetInnerHTML={{ __html: lesson.content + (PARENT_REFRESH_BY_ID[lesson.id] || '') }} />
                   <LessonFeedback user={user} moduleId="parents" lessonId={lesson.id} />
               </div>
 
