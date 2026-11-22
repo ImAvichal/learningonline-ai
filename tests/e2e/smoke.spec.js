@@ -32,8 +32,9 @@ test('/pricing shows all tiers with current one-time pricing', async ({ page }) 
   await expect(page.getByText('Starting the Journey', { exact: true }).first()).toBeVisible()
   await expect(page.getByText('The Pro', { exact: true }).first()).toBeVisible()
   // Default/Australia pricing. Regional pricing is separately enforced by release invariants/server checkout.
-  await expect(page.getByText(/\$149/).first()).toBeVisible()
-  await expect(page.getByText(/\$299/).first()).toBeVisible()
+  // Regional prices depend on visitor geography; validate any approved Journey and Pro display.
+  await expect(page.getByText(/(?:\$149|US\$99|₹499|₱330)/).first()).toBeVisible()
+  await expect(page.getByText(/(?:\$299|US\$199|₹1,999|₱1,999)/).first()).toBeVisible()
 })
 
 test('protected routes redirect to login when logged out', async ({ page }) => {
@@ -49,4 +50,15 @@ test('checkout page handles missing tier param gracefully', async ({ page }) => 
 test('success page handles missing session_id gracefully', async ({ page }) => {
   await page.goto('/success')
   await expect(page.getByText(/No payment session|verifying|Could not verify/i)).toBeVisible()
+})
+
+test('printable parent guide opens and offers PDF printing', async ({ page }) => {
+  await page.goto('/parent-guide')
+  await expect(page.getByRole('heading', { name: 'Our Family AI Agreement' })).toBeVisible()
+  await expect(page.getByRole('button', { name: /Print or save as PDF/i })).toBeVisible()
+  await expect(page.getByText(/Six questions to ask together/i)).toBeVisible()
+  await expect(page.getByText(/Our family checklist/i)).toBeVisible()
+  await page.emulateMedia({ media: 'print' })
+  await expect(page.locator('.sheet')).toBeVisible()
+  await expect(page.locator('.screen-tools')).toBeHidden()
 })
