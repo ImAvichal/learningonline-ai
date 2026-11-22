@@ -15,10 +15,12 @@ test.beforeEach(async ({ page }) => {
 test('homepage loads with correct branding', async ({ page }) => {
   await page.goto('/')
   await expect(page).toHaveTitle(/LeO AI/)
-  await expect(page.getByRole('heading', { name: /AI is changing fast/i })).toBeVisible()
-  await expect(page.getByRole('link', { name: /Try a free lesson/i }).first()).toHaveAttribute('href', '/preview')
-  await expect(page.getByRole('link', { name: /Explore free learning/i }).first()).toHaveAttribute('href', '/parents')
-  await expect(page.getByRole('link', { name: /Explore learning options/i }).first()).toHaveAttribute('href', '/pricing')
+  await expect(page.getByRole('heading', { name: /AI Anxiety.*AI Awareness/i })).toBeVisible()
+  await expect(page.getByText('Parents & Caregivers', { exact: true }).first()).toBeVisible()
+  await expect(page.getByText('Starting the Journey', { exact: true }).first()).toBeVisible()
+  await expect(page.getByText('The Pro', { exact: true }).first()).toBeVisible()
+  // Protect the previously established homepage learning-tier presentation against accidental replacement.
+  await expect(page.locator('#learning-tracks')).toBeVisible()
 })
 
 test('/parents route exists', async ({ page }) => {
