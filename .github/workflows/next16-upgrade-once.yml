@@ -19,6 +19,7 @@ jobs:
       - name: Upgrade Next.js and generate a consistent lockfile
         run: |
           npm install --package-lock-only --ignore-scripts --save-exact next@16.4.6
+          npm audit fix --ignore-scripts || true
           npm ci
           npm run check:release
           npm run build
@@ -26,6 +27,8 @@ jobs:
           NEXT_PUBLIC_SUPABASE_URL: https://example.supabase.co
           NEXT_PUBLIC_SUPABASE_ANON_KEY: ci-placeholder-anon-key
           NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY: pk_test_ci_placeholder
+      - name: Show unresolved dependency vulnerabilities
+        run: npm audit --audit-level=high || true
       - name: Commit lockfile and package upgrade to branch only
         run: |
           git config user.name 'leO-security-upgrade-bot'
