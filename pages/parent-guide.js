@@ -61,9 +61,6 @@ export const originalGuide = {
     "Let the conversation go where the child takes it",
   ],
 }
-function Checklist({items, tone}) {
-  return <ul className="itemList">{items.map((item,i)=><li key={i}><span aria-hidden="true" className={tone==='dont'?'mark bad':'mark good'}>{tone==='dont'?'×':'✓'}</span><span>{item}</span></li>)}</ul>
-}
 export default function ParentGuide() {
   return <>
     <Head>
@@ -75,10 +72,27 @@ export default function ParentGuide() {
       <button type="button" onClick={()=>window.print()}>Print or save as PDF</button>
     </div>
     <main className="guide" aria-label="AI at Home — Parent Guide">
-      <article className="paper">
-        <header><p className="eyebrow">LeO AI · learningonline.ai</p><h1>AI at Home</h1><p className="subtitle">Parent Guide</p><p className="description">A practical, keep-handy guide for everyday conversations about AI with children.</p></header>
-        <section aria-labelledby="dos"><div className="sectionHead"><span className="sectionIcon green">✓</span><h2 id="dos">Do's</h2></div><Checklist items={originalGuide.dos}/></section>
-        <section aria-labelledby="donts"><div className="sectionHead"><span className="sectionIcon red">×</span><h2 id="donts">Don'ts</h2></div><Checklist tone="dont" items={originalGuide.donts}/></section>
+      <article className="paper firstPage">
+        <header className="compactHeader">
+          <p className="eyebrow">LeO AI · learningonline.ai</p>
+          <h1>AI at Home</h1>
+          <p className="subtitle">Parent Guide</p>
+          <p className="description">A practical, keep-handy guide for everyday conversations about AI with children.</p>
+        </header>
+        <div className="principles">
+          <section className="principlePanel" aria-labelledby="dos">
+            <div className="sectionHead"><span className="sectionIcon green">✓</span><h2 id="dos">Do's</h2></div>
+            <ul className="itemList">{originalGuide.dos.map((item,i)=>
+              <li key={i}><span aria-hidden="true" className="mark good">✓</span><span>{item}</span></li>
+            )}</ul>
+          </section>
+          <section className="principlePanel" aria-labelledby="donts">
+            <div className="sectionHead"><span className="sectionIcon red">×</span><h2 id="donts">Don'ts</h2></div>
+            <ul className="itemList">{originalGuide.donts.map((item,i)=>
+              <li key={i}><span aria-hidden="true" className="mark bad">×</span><span>{item}</span></li>
+            )}</ul>
+          </section>
+        </div>
         <footer className="folio"><span>AI AT HOME · PARENT GUIDE</span><span>01 / 02</span></footer>
       </article>
       <article className="paper">
@@ -117,9 +131,17 @@ export default function ParentGuide() {
       h2 { font-size:16px; margin:0; color:#17304b; }
       ul,ol { margin:0; padding:0; }
       .itemList,.ageList,.simpleList,.tickList { list-style:none; }
-      .itemList li { display:flex; gap:9px; align-items:flex-start; font-size:11.4px; line-height:1.38; padding:4px 8px; border-bottom:1px solid #edf1f4; }
-      .itemList li:nth-child(odd) { background:#f7f9fa; }
-      .mark { display:inline-flex; width:16px; height:16px; flex-shrink:0; justify-content:center; align-items:center; border-radius:50%; font-size:11px; margin-top:0px; font-weight:700; }
+      /* Page one: two symmetrical editorial columns, matching page two's header and section styles. */
+      .firstPage .compactHeader { margin-bottom:17px; }
+      .firstPage .subtitle { font-size:16px; margin:3px 0 4px; }
+      .principles { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:17px; align-items:start; }
+      .principlePanel { min-width:0; margin:0; }
+      .principlePanel .sectionHead { margin-bottom:11px; padding-bottom:8px; border-bottom:1px solid #e3ecf0; }
+      .itemList { display:grid; gap:6px; }
+      .itemList li { display:flex; gap:9px; align-items:flex-start; min-width:0; min-height:54px; font-size:11.25px; line-height:1.38; padding:9px 10px; border:1px solid #e6eef1; border-radius:7px; background:#f6fafb; break-inside:avoid; }
+      .principlePanel:nth-child(2) .itemList li { background:#fdf8f7; border-color:#f1e7e5; }
+      .itemList li span:last-child { min-width:0; overflow-wrap:break-word; }
+      .mark { display:inline-flex; width:17px; height:17px; flex-shrink:0; justify-content:center; align-items:center; border-radius:50%; font-size:11px; margin-top:0px; font-weight:700; }
       .good { background:#e1f0e8; color:#216d50; }.bad { background:#f8e8e7; color:#a13e3b; }
       .ageList li { display:flex; gap:10px; font-size:10.7px; line-height:1.35; padding:5px 7px; border-bottom:1px solid #edf1f4; align-items:start; }
       .ageList li:nth-child(odd) { background:#f5f9fb; }
@@ -143,7 +165,9 @@ export default function ParentGuide() {
       @media screen and (max-width:800px) {
         .screenTools { flex-wrap:wrap; }
         .paper { width:100%; min-height:0; padding:24px 18px; }
-        .simpleList,.tickList { grid-template-columns:1fr; }
+        .simpleList,.tickList,.principles { grid-template-columns:1fr; }
+        .principles { gap:20px; }
+        .itemList li { min-height:0; }
         .age { flex-basis:75px; }
       }
     `}</style>
