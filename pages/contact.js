@@ -50,7 +50,7 @@ export default function Contact() {
   return (
     <>
       <Head><title>Contact Us — LeO AI</title>
-        <meta name="description" content="Get in touch with LeO AI. Questions about the platform, your subscription, enterprise access, or support — we're happy to help." />
+        <meta name="description" content="Get in touch with LeO AI. Questions about the platform, learning options, enterprise access, or support — we're happy to help." />
         <link rel="canonical" href="https://www.learningonline.ai/contact" />
       </Head>
       <Nav />
@@ -124,8 +124,8 @@ export default function Contact() {
                 <h3 className="font-display font-bold text-base mb-4">How we can help</h3>
                 <div className="space-y-4">
                   {[
-                    { icon: '🚀', title: 'Starting the Journey', desc: 'Questions about the $19/month program and what\'s included.' },
-                    { icon: '⚡', title: 'The Pro', desc: 'Enterprise-scale AI orchestration, governance, and operating models — $39/month.' },
+                    { icon: '🚀', title: 'Starting the Journey', desc: 'Questions about the Starting the Journey course, inclusions, and current purchase options.' },
+                    { icon: '⚡', title: 'The Pro', desc: 'Enterprise AI learning, governance, operating models, and current purchase options.' },
                     { icon: '🤝', title: 'Bespoke Support', desc: 'Custom engagements beyond the platform — advisory, implementation, or tailored programs.' },
                   ].map(item => (
                     <div key={item.title} className="flex gap-3">
