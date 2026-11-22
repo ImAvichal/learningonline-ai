@@ -26,7 +26,7 @@ const LESSONS = [
     icon: '🧠',
     content: `<h2>AI in plain language — no tech background needed</h2>
 <p>Artificial Intelligence is software that learns from patterns. When your child uses ChatGPT to help write an essay, or asks Siri a question, or plays a game that adapts to their skill level — that's AI. It's not magic. It's not a person. It's a very sophisticated pattern-matching system that has been trained on enormous amounts of text, images, or other data.</p>
-<p>The most important thing to understand as a parent: <strong>AI does not think or feel.</strong> It predicts what the most useful response would be, based on patterns it learned. This distinction matters enormously when your child forms a relationship with it.</p>
+<p>The most important thing to understand as a parent: <strong>AI-generated responses are not a substitute for human care or judgement.</strong> A chatbot can sound caring and confident without being a trusted person. Experts continue to debate questions about AI consciousness, so focus on practical boundaries that protect your child.</p>
 
 <h3>The Three Types Your Child Will Encounter</h3>
 <table>
@@ -40,13 +40,13 @@ const LESSONS = [
 
 <h3>What AI Can and Cannot Do</h3>
 <table>
-<thead><tr><th>AI CAN</th><th>AI CANNOT</th></tr></thead>
+<thead><tr><th>AI CAN</th><th>IMPORTANT LIMITATION</th></tr></thead>
 <tbody>
-<tr><td>Generate text that sounds confident and human</td><td>Know if what it says is true</td></tr>
-<tr><td>Answer almost any question</td><td>Tell the difference between a right answer and a plausible-sounding wrong one</td></tr>
-<tr><td>Adapt to your child's communication style</td><td>Genuinely care about your child's wellbeing</td></tr>
-<tr><td>Be available 24/7</td><td>Replace human connection, empathy, or judgment</td></tr>
-<tr><td>Help with almost any creative or intellectual task</td><td>Guarantee accuracy — it makes things up confidently</td></tr>
+<tr><td>Generate text that sounds confident and human</td><td>May be inaccurate; verify important claims with reliable sources</td></tr>
+<tr><td>Answer almost any question</td><td>Can still produce plausible but incorrect explanations, even when asked to check its work</td></tr>
+<tr><td>Adapt to your child's communication style</td><td>Cannot replace trusted adults or professional support</td></tr>
+<tr><td>Be available 24/7</td><td>Should not replace human relationships or important decisions</td></tr>
+<tr><td>Help with almost any creative or intellectual task</td><td>Cannot guarantee accuracy; check consequential information independently</td></tr>
 </tbody>
 </table>
 
@@ -77,14 +77,14 @@ const LESSONS = [
 
 <h3>The 6 Ways Kids Use AI Most Commonly</h3>
 <table>
-<thead><tr><th>Use</th><th>What It Looks Like</th><th>Age Group</th><th>Parents Often Know?</th></tr></thead>
+<thead><tr><th>Use</th><th>What It Looks Like</th><th>Considerations</th><th>Ask your child</th></tr></thead>
 <tbody>
-<tr><td><strong>Homework assistance</strong></td><td>Asking AI to explain a concept, help structure an essay, check maths working, translate text</td><td>10+</td><td>Sometimes</td></tr>
-<tr><td><strong>Creative projects</strong></td><td>Co-writing stories, generating game ideas, creating art, composing music, building characters</td><td>8+</td><td>Rarely</td></tr>
-<tr><td><strong>Social/emotional conversations</strong></td><td>Talking to AI about problems, feelings, social situations — especially when they don't want to talk to a person</td><td>12+</td><td>Almost never</td></tr>
-<tr><td><strong>Learning and curiosity</strong></td><td>Deep-diving topics: "How does a black hole work?" "Why did Rome fall?" "What happens when you die?"</td><td>10+</td><td>Sometimes</td></tr>
-<tr><td><strong>Gaming and entertainment</strong></td><td>AI-generated game characters, AI NPCs, AI opponents that adapt — this is now mainstream in gaming</td><td>8+</td><td>Rarely</td></tr>
-<tr><td><strong>Social media consumption</strong></td><td>The recommendation algorithms on TikTok, YouTube, and Instagram are AI — this is the most pervasive use</td><td>All ages</td><td>Often not framed as "AI"</td></tr>
+<tr><td><strong>Homework assistance</strong></td><td>Asking AI to explain a concept, help structure an essay, check maths working, translate text</td><td>Check tool age rules and school policy</td><td>Have you tried this?</td></tr>
+<tr><td><strong>Creative projects</strong></td><td>Co-writing stories, generating game ideas, creating art, composing music, building characters</td><td>Check tool age rules and school policy</td><td>Have you tried this?</td></tr>
+<tr><td><strong>Social/emotional conversations</strong></td><td>Talking to AI about problems, feelings, social situations — especially when they don't want to talk to a person</td><td>Check tool age rules and school policy</td><td>Have you tried this?</td></tr>
+<tr><td><strong>Learning and curiosity</strong></td><td>Deep-diving topics: "How does a black hole work?" "Why did Rome fall?" "What happens when you die?"</td><td>Check tool age rules and school policy</td><td>Have you tried this?</td></tr>
+<tr><td><strong>Gaming and entertainment</strong></td><td>AI-generated game characters, AI NPCs, AI opponents that adapt — this is now mainstream in gaming</td><td>Check tool age rules and school policy</td><td>Have you tried this?</td></tr>
+<tr><td><strong>Social media consumption</strong></td><td>The recommendation algorithms on TikTok, YouTube, and Instagram are AI — this is the most pervasive use</td><td>Check tool age rules and school policy</td><td>Have you tried this?</td></tr>
 </tbody>
 </table>
 
@@ -937,19 +937,9 @@ export default function ParentsModule() {
               ))}
             </div>
             <div className="px-6 pb-6">
-              <button onClick={() => {
-                const text = DOWNLOADABLE.sections.map(s =>
-                  s.heading + '\n' + s.items.map(i => '• ' + i).join('\n')
-                ).join('\n\n')
-                const blob = new Blob([`AI AT HOME — PARENT GUIDE\nlearningonline.ai\n\n${text}`], { type: 'text/plain' })
-                const url  = URL.createObjectURL(blob)
-                const a    = document.createElement('a')
-                a.href = url; a.download = 'AI-at-Home-Parent-Guide.txt'; a.click()
-                URL.revokeObjectURL(url)
-              }}
-                className="w-full py-3 bg-success/10 border border-success/30 text-success font-display font-bold text-sm rounded-lg hover:bg-success/20 transition-all">
-                Download Guide (.txt)
-              </button>
+              <Link href="/parent-guide" className="block text-center w-full py-3 bg-success/10 border border-success/30 text-success font-display font-bold text-sm rounded-lg hover:bg-success/20 transition-all">
+                Open printable A4 guide · Print / Save PDF
+              </Link>
             </div>
           </div>
         </div>
