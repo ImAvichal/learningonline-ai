@@ -1,4 +1,4 @@
-// pages/pricing.js — Subscription pricing: $19/mo Journey, $39/mo Pro
+// pages/pricing.js — One-time purchase pricing (regional labels are sourced from data/tiers.js)
 import { useState } from 'react'
 import Footer from '../components/Footer'
 import Head from 'next/head'
@@ -77,23 +77,23 @@ export default function Pricing() {
         />
       </Head>
       <Nav />
-      <div className="pt-28 pb-20">
-        <div className="max-w-5xl mx-auto px-6">
+      <main className="pt-28 pb-16">
+        <div className="max-w-6xl mx-auto px-5 sm:px-6">
 
           <Reveal>
-            <div className="text-center mb-14">
+            <div className="text-center mb-10 sm:mb-12">
               <SectionLabel>{tr("pricing.pageTitle")}</SectionLabel>
               <h1 className="font-display font-black tracking-tight mb-4" style={{ fontSize: 'clamp(36px,5vw,58px)' }}>
                 {tr("pricing.pageHeading")}
               </h1>
-              <p className="text-muted text-xl max-w-lg mx-auto">
+              <p className="text-muted text-base sm:text-lg leading-relaxed max-w-2xl mx-auto">
                 {tr("pricing.pageSubtitle")}
               </p>
             </div>
           </Reveal>
 
           {/* Tier cards */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto mb-14">
+          <div data-testid="pricing-grid" className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 items-stretch gap-5 lg:gap-6 w-full mb-12">
             {DISPLAY_ORDER.map((tid, i) => {
               const t     = TIERS[tid]
               const tierRank = { parents: 0, journey: 1, pro: 2 }
@@ -103,8 +103,8 @@ export default function Pricing() {
               const accessibleViaHigher = user?.tier && userRank > cardRank  // e.g. user is 'pro', card is 'journey'
               const upgradeAvailable = user?.tier && userRank < cardRank   // e.g. user is 'journey', card is 'pro'
               return (
-                <Reveal key={tid} delay={i * 80}>
-                  <div className={`relative rounded-2xl border p-7 flex flex-col h-full transition-all hover:-translate-y-1 ${
+                <Reveal key={tid} delay={i * 80} className="h-full min-w-0">
+                  <div className={`relative rounded-2xl border p-5 sm:p-6 lg:p-7 flex flex-col h-full min-w-0 transition-all hover:-translate-y-1 ${
                     t.highlighted
                       ? 'border-amber-400/40 bg-amber-400/[0.03] shadow-[0_0_50px_rgba(245,158,11,0.08)]'
                       : 'border-white/8 bg-white/[0.02]'
@@ -123,14 +123,14 @@ export default function Pricing() {
                     {tid === 'pro' && (
                       <div className="text-xs text-success font-display font-bold mb-5 -mt-3">Includes 12 months of content updates</div>
                     )}
-                    <p className="text-sm text-gray-600 leading-relaxed mb-4 flex-1">{t.description}</p>
+                    <p className="text-sm text-gray-600 leading-relaxed mb-5 min-h-0">{t.description}</p>
 
                     <div className="p-3 rounded-lg bg-white/[0.03] border border-white/5 mb-5">
                       <div className="text-[10px] font-display font-bold text-muted uppercase tracking-wider mb-1">{tr("common.idealFor") || "Ideal for"}</div>
                       <p className="text-xs text-gray-500 leading-relaxed">{t.idealFor}</p>
                     </div>
 
-                    <ul className="space-y-2.5 mb-7">
+                    <ul className="space-y-2.5 mb-7 flex-1">
                       {t.features.map((f, fi) => (
                         <li key={fi} className="flex items-start justify-between gap-3 text-sm pb-2 border-b border-gray-100 dark:border-white/5 last:border-0">
                           <span className="text-gray-700 leading-relaxed flex-1">{f}</span>
@@ -297,8 +297,8 @@ export default function Pricing() {
             ))}
           </div>
         </div>
-      </div>
-    <Footer variant="dark" />
+      </main>
+    <Footer variant="light" />
     </>
   )
 }
