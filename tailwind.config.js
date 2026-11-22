@@ -14,8 +14,8 @@ module.exports = {
         muted:   '#7A8AAD',
       },
       fontFamily: {
-        display: ['Syne', 'sans-serif'],
-        body:    ['DM Sans', 'sans-serif'],
+        display: ['var(--font-leo-display)', 'Syne', 'sans-serif'],
+        body:    ['var(--font-leo-body)', 'DM Sans', 'sans-serif'],
       },
     },
   },

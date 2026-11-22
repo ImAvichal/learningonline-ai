@@ -92,3 +92,27 @@ test('printable parent guide opens and offers PDF printing', async ({ page }) =>
   await expect(page.locator('.screenTools')).toBeHidden()
   await expect(page.locator('.screen-tools')).toBeHidden()
 })
+
+
+test('brand typography is self-hosted and consistent on homepage and pricing', async ({ page }) => {
+  for (const route of ['/', '/pricing']) {
+    await page.goto(route)
+    const fonts = await page.evaluate(async () => {
+      await document.fonts.ready
+      const root = document.querySelector('.leo-font-root')
+      const heading = document.querySelector('h1')
+      const rootStyle = getComputedStyle(root)
+      return {
+        bodyVariable: rootStyle.getPropertyValue('--font-leo-body').trim(),
+        headingVariable: rootStyle.getPropertyValue('--font-leo-display').trim(),
+        headingFont: getComputedStyle(heading).fontFamily,
+        bodyFont: rootStyle.fontFamily,
+      }
+    })
+    expect(fonts.bodyVariable.length).toBeGreaterThan(3)
+    expect(fonts.headingVariable.length).toBeGreaterThan(3)
+    // Browsers quote fallback family names differently; verify the named primary families.
+    expect(fonts.headingFont).toMatch(/Syne/i)
+    expect(fonts.bodyFont).toMatch(/DM.Sans/i)
+  }
+})
