@@ -90,3 +90,39 @@ test('printable parent guide opens and offers PDF printing', async ({ page }) =>
   await expect(page.locator('.screenTools')).toBeHidden()
   await expect(page.locator('.screen-tools')).toBeHidden()
 })
+
+
+test('course completion keeps its footer below all content', async ({ page }) => {
+  await page.goto('/course-complete?track=parents')
+  await expect(page.getByRole('heading', { name: /completed Parents & Caregivers/i })).toBeVisible()
+  await expect(page.getByText('How was this module?')).toBeVisible()
+  const bounds = await page.evaluate(() => {
+    const main = document.querySelector('main').getBoundingClientRect()
+    const footer = document.querySelector('footer').getBoundingClientRect()
+    return { mainBottom: main.bottom, footerTop: footer.top, overflow: document.documentElement.scrollWidth > window.innerWidth + 2 }
+  })
+  expect(bounds.footerTop).toBeGreaterThanOrEqual(bounds.mainBottom - 2)
+  expect(bounds.overflow).toBe(false)
+})
+
+test('pricing cards use responsive columns without overlapping or sideways scrolling', async ({ page }) => {
+  await page.goto('/pricing')
+  const cards = page.getByTestId('pricing-grid').locator(':scope > div')
+  await expect(cards).toHaveCount(3)
+  const layout = await page.evaluate(() => {
+    const items = [...document.querySelectorAll('[data-testid="pricing-grid"] > div')].map(el => el.getBoundingClientRect())
+    return {
+      narrow: window.innerWidth < 1024,
+      widths: items.map(r => r.width),
+      tops: items.map(r => r.top),
+      overlap: items.some((r,i) => items.some((other,j) => i !== j && r.left < other.right - 2 && r.right > other.left + 2 && r.top < other.bottom - 2 && r.bottom > other.top + 2)),
+      overflow: document.documentElement.scrollWidth > window.innerWidth + 2,
+    }
+  })
+  expect(layout.overlap).toBe(false)
+  expect(layout.overflow).toBe(false)
+  if (!layout.narrow) {
+    expect(layout.widths.every(w => w >= 280)).toBe(true)
+    expect(Math.max(...layout.tops) - Math.min(...layout.tops)).toBeLessThan(3)
+  }
+})
