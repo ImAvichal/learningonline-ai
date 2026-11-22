@@ -102,7 +102,7 @@ export default function ParentGuide() {
       .screenTools { width:min(210mm,calc(100% - 32px)); margin:18px auto; display:flex; justify-content:space-between; gap:16px; align-items:center; font:600 14px Arial,sans-serif; }
       .screenTools :global(a) { color:#165b89; text-decoration:none; }
       button { background:#155a83; color:#fff; border:0; padding:12px 18px; border-radius:8px; font-weight:700; cursor:pointer; }
-      .paper { width:210mm; min-height:297mm; padding:16mm 17mm 13mm; margin:0 auto 18px; background:#fff; box-shadow:0 5px 24px #17324a24; display:flex; flex-direction:column; }
+      .paper { box-sizing:border-box; width:210mm; min-height:297mm; padding:16mm 17mm 13mm; margin:0 auto 18px; background:#fff; box-shadow:0 5px 24px #17324a24; display:flex; flex-direction:column; }
       header { padding-bottom:12px; border-bottom:3px solid #19809b; margin-bottom:14px; }
       .eyebrow { font-size:10px; text-transform:uppercase; font-weight:800; letter-spacing:2px; color:#187c95; margin:0 0 10px; }
       h1 { font-size:32px; line-height:1.08; margin:0; letter-spacing:-.8px; color:#17304b; }
