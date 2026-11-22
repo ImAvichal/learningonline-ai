@@ -33,8 +33,8 @@ test('/pricing shows all tiers with current one-time pricing', async ({ page }) 
   await expect(page.getByText('The Pro', { exact: true }).first()).toBeVisible()
   // Default/Australia pricing. Regional pricing is separately enforced by release invariants/server checkout.
   // Regional prices depend on visitor geography; validate any approved Journey and Pro display.
-  await expect(page.getByText(/(?:\\$149|US\\$99|₹499|₱330)/).first()).toBeVisible()
-  await expect(page.getByText(/(?:\\$299|US\\$199|₹1,999|₱1,999)/).first()).toBeVisible()
+  await expect(page.getByText(/(?:\$149|US\$99|₹499|₱330)/).first()).toBeVisible()
+  await expect(page.getByText(/(?:\$299|US\$199|₹1,999|₱1,999)/).first()).toBeVisible()
 })
 
 test('protected routes redirect to login when logged out', async ({ page }) => {
