@@ -13,23 +13,24 @@ export const MODULES = [
         id: 'm1-l1', number: 1, tier: 'individual', duration: '20 min',
         title: 'Introduction to AI: What It Is and Isn\'t',
         content: `<h2>What AI Actually Is</h2>
-<p>Artificial Intelligence is pattern recognition at scale. At its core, AI learns from examples and applies what it has learned to new situations. It is not the same as human understanding or judgement; generated answers can be convincing and still be wrong.</p>
+<p>Many AI systems learn statistical patterns from examples and use them to classify, predict or generate new outputs. Different systems use different methods, so treat this as a practical introduction rather than a complete technical definition. It is not the same as human understanding or judgement; generated answers can be convincing and still be wrong.</p>
 <h3>The Three Categories You Need to Know</h3>
 <p><strong>Narrow AI (where we are now):</strong> AI designed for specific tasks. Different systems are optimised for different tasks: some generate text or images, while others predict protein structures. General-purpose models can perform many tasks, so evaluate their strengths and limits rather than assuming each system does only one thing.</p>
 <p><strong>General AI (research goal):</strong> A proposed level of broadly adaptable AI capability across many cognitive tasks. Definitions and tests differ, and there is no reliable timetable for achieving it.</p>
-<p><strong>Agentic AI (operational now):</strong> AI that plans and takes sequences of actions autonomously — using tools, calling APIs, working across steps — to achieve a goal. No longer emerging: it's in mainstream production, and the hard part has shifted from "can it act" to governing how it acts.</p>
+<p><strong>Agentic AI (operational now):</strong> AI systems that can plan and execute sequences of actions using tools or APIs, sometimes with human approval. These capabilities are used in production, but reliability, permissions, oversight and safe recovery vary by system and use case.</p>
 <h3>The Gotchas Nobody Tells You</h3>
 <p><strong>Hallucination:</strong> AI confidently states things that are false. It doesn't know what it doesn't know. Always verify consequential outputs.</p>
 <p><strong>Context window limits:</strong> AI can only process a limited amount of text at once. Large documents need chunking strategies.</p>
-<p><strong>Training data cutoffs:</strong> Models don't know about events after their training date. Supplement with retrieval systems for current information.</p>
+<p><strong>Information freshness:</strong> A model without web, retrieval or other current-data tools may lack recent information. Check the source date and use authorised up-to-date data for time-sensitive decisions.</p>
 <p><strong>Inconsistency:</strong> The same prompt can produce different outputs. Design for variability — don't assume deterministic results.</p>
+<p><strong>Verified references:</strong> The <a href="https://www.nist.gov/publications/artificial-intelligence-risk-management-framework-generative-artificial-intelligence" target="_blank" rel="noopener noreferrer">NIST Generative AI Risk Management Profile</a> describes practical risk-management considerations. The <a href="https://www.iso.org/standard/42001" target="_blank" rel="noopener noreferrer">ISO/IEC 42001 AI management-system standard</a> addresses organisational governance. For current model costs, check <a href="https://developers.openai.com/api/docs/pricing" target="_blank" rel="noopener noreferrer">provider pricing</a> directly rather than treating examples in this course as live quotes.</p>
 <div class="real-world-box">
 <h3>🌍 From Real-World Practice</h3>
-<p><strong>Insight:</strong> Most AI failures in business aren't technical — they're expectational. Teams deploy AI expecting a human-like understanding of context and get confused outputs instead.</p>
+<p><strong>Insight:</strong> AI projects can struggle because of unclear expectations, poor data, integration challenges, insufficient oversight or weak adoption. Setting realistic expectations is one part of managing these risks.</p>
 <p><strong>Example:</strong> Illustrative scenario: a legal team uses AI to review contracts. If staff accept fabricated legal precedents without checking, inaccurate references could reach clients.</p>
 <p><strong>Why it matters:</strong> Without understanding AI's fundamental limitations, you design workflows that create liability rather than value.</p>
 <p><strong>Implementation tip:</strong> Before any deployment, document your "failure modes" — what happens when AI is wrong? Design for that scenario first.</p>
-<p><strong>💡 What This Saves You:</strong> Understanding AI limitations before deployment prevents costly rework, reputational risk, and the single most common cause of AI project abandonment.</p>
+<p><strong>💡 What This Saves You:</strong> Understanding AI limitations before deployment can reduce avoidable rework and reputational risk. Design verification, monitoring and fallback controls for the actual task.</p>
 </div>`,
       },
       {
@@ -73,9 +74,9 @@ export const MODULES = [
         id: 'm1-l3', number: 3, tier: 'individual', duration: '22 min',
         title: 'Tokens: The Currency of AI',
         content: `<h2>Understanding Tokens</h2>
-<p>Every time you use an AI model, you're spending tokens. Tokens are the fundamental unit of AI computation — and misunderstanding them is one of the most common causes of budget overruns in AI programs.</p>
+<p>Every time you use an AI model, you're spending tokens. Many generative-model APIs measure usage in tokens. Incorrect token-volume assumptions can contribute to budget overruns.</p>
 <h3>What Is a Token?</h3>
-<p>A token is approximately 4 characters of text, or about ¾ of a word. The sentence "The quick brown fox" is roughly 5 tokens. A typical business email is 100–300 tokens. A 10-page report is 3,000–5,000 tokens.</p>
+<p>In English, one token is often around a few characters, but counts vary considerably by language, formatting and tokenizer. Count tokens using the provider's current tokenizer for your actual inputs and outputs instead of relying on page or word estimates.</p>
 <h3>Input vs Output Tokens</h3>
 <p><strong>Input tokens:</strong> Everything you send to the model — your system prompt, the user message, any documents or context. You pay for every token the model reads.</p>
 <p><strong>Output tokens:</strong> Everything the model generates in response. Input and output prices often differ; check the current provider rate for your chosen model.</p>
@@ -113,7 +114,7 @@ At 10,000 calls per day: $75/day · $2,250/month</pre>
 <li><strong>Stanford AI Index Report 2026</strong> — annual data-driven snapshot of where AI actually is. Free, ~500 pages, dip in and out. <a href="https://hai.stanford.edu/ai-index" target="_blank" rel="noopener">hai.stanford.edu/ai-index</a></li>
 <li><strong>Andrej Karpathy — "Intro to Large Language Models"</strong> (1 hour video) — the clearest general-audience explanation of how LLMs work, from a founding member of OpenAI. <a href="https://www.youtube.com/watch?v=zjkBMFhNj_g" target="_blank" rel="noopener">youtube.com/watch?v=zjkBMFhNj_g</a></li>
 <li><strong>Andrej Karpathy — "Deep Dive into LLMs like ChatGPT"</strong> — Karpathy's newer follow-up with updated material on how models like ChatGPT work under the hood. Available on his YouTube channel: <a href="https://karpathy.ai" target="_blank" rel="noopener">karpathy.ai</a></li>
-<li><strong>Anthropic — Building with Claude documentation</strong> — vendor-neutral foundational concepts (tokens, context windows, prompt design) explained well. <a href="https://docs.claude.com" target="_blank" rel="noopener">docs.claude.com</a></li>
+<li><strong>Anthropic — Building with Claude documentation</strong> — useful provider-specific explanations of tokens, context windows and prompt design; cross-check with other vendors. <a href="https://docs.claude.com" target="_blank" rel="noopener">docs.claude.com</a></li>
 <li><strong>OpenAI — Research index</strong> — peer-reviewed papers and announcements from one of the most influential labs. <a href="https://openai.com/research/" target="_blank" rel="noopener">openai.com/research</a></li>
 </ul>
 <p><em>None of these are affiliated with LeO AI. They\'re here because they\'re genuinely useful.</em></p>
@@ -536,7 +537,7 @@ Pattern 4 — Agent Pattern
 <h3>📚 Further Reading</h3>
 <p>Practical references on model selection, pricing comparisons, and architecture decisions — keep these bookmarked, the landscape moves quickly.</p>
 <ul>
-<li><strong>BenchLM.ai — "LLM API Pricing Comparison 2026"</strong> — Current pricing for every major model with cost-per-task analysis. Live pricing table updated regularly. The reference to bookmark. <a href="https://benchlm.ai/blog/posts/llm-pricing-2026" target="_blank" rel="noopener">benchlm.ai/blog/posts/llm-pricing-2026</a></li>
+<li><strong>BenchLM.ai — "LLM API Pricing Comparison 2026"</strong> — A third-party snapshot that may be useful for comparing API costs; verify any current rate on the actual provider's pricing page before budgeting. <a href="https://benchlm.ai/blog/posts/llm-pricing-2026" target="_blank" rel="noopener">benchlm.ai/blog/posts/llm-pricing-2026</a></li>
 <li><strong>CloudZero — "LLM API Pricing Comparison In 2026: Every Major Model, Ranked By Cost"</strong> — Includes a five-step framework for converting per-token pricing into cost-per-completed-task — the metric your CFO actually cares about. <a href="https://www.cloudzero.com/blog/llm-api-pricing-comparison/" target="_blank" rel="noopener">www.cloudzero.com/blog/llm-api-pricing-comparison</a></li>
 <li><strong>Iternal — "The Definitive LLM Selection & Benchmarks Guide"</strong> — Routing different requests to different models based on task complexity, latency, and cost. Quarterly-updated benchmark scores across all major models. <a href="https://iternal.ai/llm-selection-guide" target="_blank" rel="noopener">iternal.ai/llm-selection-guide</a></li>
 <li><strong>Premai — "SLM vs. LLM: The Enterprise Decision Guide With Real Cost Data"</strong> — When a smaller specialised model beats a frontier model — including the break-even point for self-hosting (around 2M tokens/day). <a href="https://blog.premai.io/slm-vs-llm-the-enterprise-decision-guide-with-real-cost-data-and-benchmarks/" target="_blank" rel="noopener">blog.premai.io/slm-vs-llm-the-enterprise-decision-guide-with-real-cost-data-and-benchmarks</a></li>
@@ -1282,8 +1283,15 @@ export const ALL_LESSONS = MODULES.flatMap(m =>
   }))
 )
 
+// Learner plans (parents/journey/pro) and lesson tiers (individual/smb/enterprise)
+// are different vocabularies. Resolve them explicitly so paid progress and access
+// never silently admit enterprise lessons to Journey learners.
 export const getLessonsForTier = (tier) => {
-  const order = ['individual', 'smb', 'enterprise']
-  const level = order.indexOf(tier)
-  return ALL_LESSONS.filter(l => order.indexOf(l.tier) <= level)
+  const levelByTier = {
+    parents: -1, journey: 1, pro: 2,
+    individual: 0, smb: 1, enterprise: 2,
+  }
+  const levelByLesson = { individual: 0, smb: 1, enterprise: 2 }
+  const level = levelByTier[tier] ?? -1
+  return ALL_LESSONS.filter(l => (levelByLesson[l.tier] ?? 99) <= level)
 }

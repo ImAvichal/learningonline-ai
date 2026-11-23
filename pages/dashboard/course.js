@@ -5,6 +5,8 @@ import MultimodalDiagram from '../../components/MultimodalDiagram'
 import NoEnrolmentMessage from '../../components/NoEnrolmentMessage'
 import { useRouter } from 'next/router'
 import { MODULES } from '../../data/modules'
+import { JOURNEY_PRACTICE, JOURNEY_LESSON_PROMPTS } from '../../data/journey-practice'
+import Link from 'next/link'
 import { ProgressBar, TierBadge, Spinner, LessonFeedback } from '../../components/ui'
 import Icon from '../../components/Icon'
 
@@ -208,15 +210,6 @@ export default function CoursePage() {
     }
   }, [router.isReady, router.query.lesson])
 
-  // Unauthenticated — wait for redirect
-  if (loading) return null
-  if (!user) return null
-
-  // Authenticated but not enrolled (or free Parents tier) — show preview message
-  if ((!user.tier || user.tier === 'parents') && !user.isDevUser) {
-    return <NoEnrolmentMessage context="course" />
-  }
-
   // Lesson tiers use the CONTENT vocabulary (individual/smb → Journey level,
   // enterprise → Pro level); user tiers use journey/pro. Map both sides
   // explicitly — comparing across vocabularies with indexOf returns -1, which
@@ -263,6 +256,25 @@ export default function CoursePage() {
   const [showQuiz,       setShowQuiz]       = useState(false)
   const [quizScores,     setQuizScores]     = useState({})
   const mainRef = useRef(null)
+  const seededForAccount = useRef(null)
+
+  // Authentication resolves after the first render. Initialise resume only
+  // once the account and its stored progress are available, without resetting
+  // the learner's selection each time a lesson is marked complete.
+  useEffect(() => {
+    if (loading || !user?.id) return
+    const key = `${user.id}:${user.tier || (user.isDevUser ? 'pro' : 'none')}`
+    if (seededForAccount.current === key) return
+    seededForAccount.current = key
+    const target = getInitialLesson()
+    if (!target) return
+    const idx = MODULES.findIndex(m => m.lessons.some(l => l.id === target))
+    setActiveLessonId(target)
+    if (idx >= 0) {
+      setActiveModIdx(idx)
+      setExpanded(p => ({ ...p, [idx]: true }))
+    }
+  }, [loading, user?.id, user?.tier, user?.isDevUser])
 
   const activeLesson = accessible.find(l => l.id === activeLessonId)
   const activeMod    = MODULES[activeModIdx]
@@ -319,6 +331,13 @@ export default function CoursePage() {
   }
 
   const totalPct = getTotalProgress()
+
+  // Never return before the course player's state hooks. Auth may settle after mount,
+  // and conditional useState/useRef calls otherwise break React's Rules of Hooks.
+  if (loading || !user) return null
+  if ((!user.tier || user.tier === 'parents') && !user.isDevUser) {
+    return <NoEnrolmentMessage context="course" />
+  }
 
   return (
     <div className="flex min-h-screen">
@@ -460,7 +479,43 @@ export default function CoursePage() {
               </div>
 
               <LessonContent content={activeLesson.content} />
+              {activeLesson && JOURNEY_LESSON_PROMPTS[activeLesson.id] && (
+                <div className="my-5 flex gap-3 rounded-xl border border-blue/20 bg-blue/5 p-4" data-testid="journey-lesson-practice">
+                  <span aria-hidden="true" className="text-xl">✍️</span>
+                  <div>
+                    <div className="mb-1 text-[11px] font-display font-bold uppercase tracking-wider text-blue-bright">Try it yourself</div>
+                    <p className="text-sm text-gray-700 leading-relaxed">{JOURNEY_LESSON_PROMPTS[activeLesson.id]}</p>
+                  </div>
+                </div>
+              )}
               {activeLessonId === 'm13-l3' && <MultimodalDiagram />}
+
+              {/* A single practical exercise per Journey module, on its final lesson.
+                  Optional and non-persistent: existing progress and quiz scoring are unchanged. */}
+              {isLastLessonInModule && JOURNEY_PRACTICE[activeMod?.id] && (
+                <section className="my-6 rounded-2xl border border-blue/20 bg-white shadow-sm p-5 sm:p-7" aria-label="Put this module into practice" data-testid="journey-practice">
+                  <div className="flex flex-wrap items-center justify-between gap-3 mb-3">
+                    <div className="text-xs font-display font-extrabold uppercase tracking-wider text-blue-bright">Put it into practice · {JOURNEY_PRACTICE[activeMod.id].time}</div>
+                    <Link href="/journey-guide" className="text-xs font-display font-bold text-blue-bright underline underline-offset-4 hover:text-blue">
+                      Printable Journey Workbook →
+                    </Link>
+                  </div>
+                  <h2 className="font-display text-xl font-bold text-gray-900 mb-2">{JOURNEY_PRACTICE[activeMod.id].title}</h2>
+                  <p className="text-sm text-gray-600 leading-relaxed mb-4">{JOURNEY_PRACTICE[activeMod.id].objective}</p>
+                  <details className="group rounded-xl border border-gray-200 bg-gray-50 p-4">
+                    <summary className="cursor-pointer font-display font-bold text-sm text-gray-900">Show the step-by-step exercise</summary>
+                    <ol className="mt-4 ml-5 list-decimal space-y-2 text-sm leading-relaxed text-gray-700">
+                      {JOURNEY_PRACTICE[activeMod.id].steps.map((step,i) => <li key={i}>{step}</li>)}
+                    </ol>
+                    <div className="mt-4 rounded-lg bg-green-50 border border-green-100 p-3 text-sm text-gray-700">
+                      <strong className="block text-green-800 mb-1">Your evidence</strong>
+                      {JOURNEY_PRACTICE[activeMod.id].evidence}
+                    </div>
+                    <p className="mt-3 text-sm text-gray-600"><strong>Reflect:</strong> {JOURNEY_PRACTICE[activeMod.id].reflection}</p>
+                    <p className="mt-3 text-xs text-gray-500">Use fictional or authorised data only. Activities do not affect your saved course progress.</p>
+                  </details>
+                </section>
+              )}
 
               {/* Deliverable callout at end of module */}
               {isLastLessonInModule && activeMod && (

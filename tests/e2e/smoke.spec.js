@@ -129,3 +129,22 @@ test('brand typography is self-hosted and consistent on homepage and pricing', a
     expect(fonts.bodyFont).toMatch(/DM.Sans/i)
   }
 })
+
+test('Journey workbook is gated for visitors without paid access', async ({ page }) => {
+  await page.goto('/journey-guide')
+  await expect(page.locator('body')).toBeVisible()
+  await expect(page.getByText('Your practical AI workbook', { exact: true })).toHaveCount(0)
+})
+
+test('Journey completion flows to a distinct footer below the celebration', async ({ page }) => {
+  await page.goto('/course-complete?track=journey')
+  await expect(page.getByRole('heading', { name: /completed Starting the Journey/i })).toBeVisible()
+  await expect(page.getByRole('link', { name: /Explore The Pro/i })).toHaveAttribute('href', '/pricing')
+  const geometry = await page.evaluate(() => {
+    const main = document.querySelector('main').getBoundingClientRect()
+    const footer = document.querySelector('footer').getBoundingClientRect()
+    return { mainBottom: main.bottom, footerTop: footer.top, horizontalScroll: document.documentElement.scrollWidth > window.innerWidth + 2 }
+  })
+  expect(geometry.footerTop).toBeGreaterThanOrEqual(geometry.mainBottom - 2)
+  expect(geometry.horizontalScroll).toBe(false)
+})
