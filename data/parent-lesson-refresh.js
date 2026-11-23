@@ -1,6 +1,6 @@
-// Reviewed 2026-11-23. Parent-facing activities; content-only additions.
+// Reviewed 2026-11-24. Parent-facing activities; content-only additions.
 // Preserve existing p-l1..p-l9 IDs and completion semantics.
-export const PARENT_REFRESH_REVIEWED = '23 November 2026'
+export const PARENT_REFRESH_REVIEWED = '24 November 2026'
 const ACTIVITIES = [
   {
     "id": "p-l1",
@@ -24,7 +24,7 @@ const ACTIVITIES = [
     "id": "p-l4",
     "title": "Privacy and synthetic examples",
     "exercise": "Rewrite a fictional prompt containing a student name, school, timetable and report into a non-identifying request for generic study advice.",
-    "caution": "Never upload student identifiers, private messages, health details, school records or classmates' images to an unapproved tool."
+    "caution": "For unapproved tools, do not upload student identifiers, private messages, health details, school records or classmates' images. NSW public school students in Years 5–12 can use NSWEduChat for schoolwork: NSW Education permits some identifying information in this approved service, but still advises against sensitive or confidential information."
   },
   {
     "id": "p-l5",
@@ -36,7 +36,7 @@ const ACTIVITIES = [
     "id": "p-l6",
     "title": "A practical homework agreement",
     "exercise": "For a fictional Year 7 maths problem, request hints, solve it yourself, and explain the reasoning without AI. Agree when AI must be acknowledged.",
-    "caution": "Do not submit AI-generated work as original when school rules prohibit it. Ask teachers about permitted use."
+    "caution": "Do not submit AI-generated work as original when school rules prohibit it. Ask teachers about permitted use and disclosure. For NSW public schools, NSWEduChat is available to Years 5–12 for schoolwork; students should disclose and appropriately cite its use in assessment when permitted."
   },
   {
     "id": "p-l7",
@@ -59,7 +59,8 @@ const ACTIVITIES = [
 ]
 const sources = [
   ['Australian eSafety Commissioner — parents and carers', 'https://www.esafety.gov.au/parents'],
-  ['NSW Government — safe AI for families', 'https://www.nsw.gov.au/education-and-training/digital-citizenship/parents-and-carers/safe-ai'],
+  ['NSW Education — NSWEduChat student and parent guidance', 'https://education.nsw.gov.au/schooling/parents-and-carers/artificial-intelligence/student-use-of-nsweduchat'],
+  ['eSafety — AI chatbots and companions', 'https://www.esafety.gov.au/newsroom/media-releases/new-safety-advisory-warns-unrestricted-chatbots-threaten-child-development'],
   ['UNESCO — generative AI in education and research', 'https://www.unesco.org/en/articles/guidance-generative-ai-education-and-research'],
 ]
 const safe = value => String(value).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;')
