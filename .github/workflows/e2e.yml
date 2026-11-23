@@ -68,6 +68,43 @@ jobs:
           name: playwright-journey-report
           path: playwright-report/
 
+  journey_paid:
+    name: Authenticated Starting the Journey
+    runs-on: ubuntu-24.04
+    needs: smoke
+    steps:
+      - id: credentials
+        env:
+          TEST_JOURNEY_EMAIL: ${{ secrets.TEST_JOURNEY_EMAIL }}
+          TEST_JOURNEY_PASSWORD: ${{ secrets.TEST_JOURNEY_PASSWORD }}
+        run: |
+          if [ -n "$TEST_JOURNEY_EMAIL" ] && [ -n "$TEST_JOURNEY_PASSWORD" ]; then
+            echo 'ready=true' >> "$GITHUB_OUTPUT"
+          else
+            echo 'ready=false' >> "$GITHUB_OUTPUT"
+            echo 'NOT VERIFIED: dedicated paid Journey test account credentials are not configured.'
+          fi
+      - if: steps.credentials.outputs.ready == 'true'
+        uses: actions/checkout@v4
+      - if: steps.credentials.outputs.ready == 'true'
+        uses: actions/setup-node@v4
+        with: { node-version: '20', cache: 'npm' }
+      - if: steps.credentials.outputs.ready == 'true'
+        run: npm ci
+      - if: steps.credentials.outputs.ready == 'true'
+        run: npx playwright install --with-deps chromium
+      - if: steps.credentials.outputs.ready == 'true'
+        run: npx playwright test journey-learner
+        env:
+          TEST_BASE_URL: https://www.learningonline.ai
+          TEST_JOURNEY_EMAIL: ${{ secrets.TEST_JOURNEY_EMAIL }}
+          TEST_JOURNEY_PASSWORD: ${{ secrets.TEST_JOURNEY_PASSWORD }}
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: playwright-journey-paid-report
+          path: playwright-report/
+
   payment:
     name: Payment flow tests
     runs-on: ubuntu-24.04
