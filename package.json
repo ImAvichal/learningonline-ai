@@ -13,7 +13,8 @@
     "test:ui": "playwright test --ui",
     "test:headed": "playwright test --headed",
     "check:release": "node scripts/release-check.mjs",
-    "content:refresh": "node scripts/content-refresh.mjs"
+    "content:refresh": "node scripts/content-refresh.mjs",
+    "check:journey": "node scripts/check-journey.mjs"
   },
   "dependencies": {
     "@stripe/stripe-js": "^4.1.0",
