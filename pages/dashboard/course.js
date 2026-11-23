@@ -256,6 +256,25 @@ export default function CoursePage() {
   const [showQuiz,       setShowQuiz]       = useState(false)
   const [quizScores,     setQuizScores]     = useState({})
   const mainRef = useRef(null)
+  const seededForAccount = useRef(null)
+
+  // Authentication resolves after the first render. Initialise resume only
+  // once the account and its stored progress are available, without resetting
+  // the learner's selection each time a lesson is marked complete.
+  useEffect(() => {
+    if (loading || !user?.id) return
+    const key = `${user.id}:${user.tier || (user.isDevUser ? 'pro' : 'none')}`
+    if (seededForAccount.current === key) return
+    seededForAccount.current = key
+    const target = getInitialLesson()
+    if (!target) return
+    const idx = MODULES.findIndex(m => m.lessons.some(l => l.id === target))
+    setActiveLessonId(target)
+    if (idx >= 0) {
+      setActiveModIdx(idx)
+      setExpanded(p => ({ ...p, [idx]: true }))
+    }
+  }, [loading, user?.id, user?.tier, user?.isDevUser])
 
   const activeLesson = accessible.find(l => l.id === activeLessonId)
   const activeMod    = MODULES[activeModIdx]
