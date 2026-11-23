@@ -5,7 +5,7 @@ import { useState, useEffect } from 'react'
 import { useAuth, useProgress, withAuth } from '../../lib/auth'
 import NoEnrolmentMessage from '../../components/NoEnrolmentMessage'
 import FeedbackWidget from '../../components/FeedbackWidget'
-import { MODULES } from '../../data/modules'
+import { MODULES, getLessonsForTier } from '../../data/modules'
 import { Sidebar, Card, ProgressBar, Button, SectionLabel, TierBadge, Reveal } from '../../components/ui'
 import Icon from '../../components/Icon'
 
@@ -42,16 +42,11 @@ function Dashboard() {
     return <NoEnrolmentMessage context="dashboard" />
   }
 
-  const tierOrder = ['journey', 'pro']
-  const userLevel  = tierOrder.indexOf(user.tier || 'journey')
-  const accessible = MODULES.flatMap(m =>
-    m.lessons.filter(l => tierOrder.indexOf(l.tier) <= userLevel)
-      .map(l => ({ ...l, moduleId:m.id, moduleNumber:m.number, moduleTitle:m.title }))
-  )
-
-  const totalPct      = getTotalProgress()
-  const nextLesson    = getNextLesson(accessible)
-  const completedMods = MODULES.filter(m => m.lessons.every(l => isCompleted(l.id))).length
+  const accessible = getLessonsForTier(user.isDevUser ? 'pro' : user.tier)
+  const visibleModules = MODULES.filter(m => accessible.some(l => l.moduleId === m.id))
+  const totalPct = getTotalProgress()
+  const nextLesson = getNextLesson(accessible)
+  const completedMods = visibleModules.filter(m => m.lessons.every(l => isCompleted(l.id))).length
 
   return (
     <>
@@ -59,7 +54,7 @@ function Dashboard() {
       <div className="min-h-screen flex bg-gray-50">
         <Sidebar activeTab={tab} onTab={switchTab} user={user} />
         <main className="flex-1 lg:ml-56 min-h-screen overflow-auto">
-          {tab === 'home'      && <HomeTab user={user} totalPct={totalPct} completedMods={completedMods} nextLesson={nextLesson} switchTab={switchTab} goToLesson={goToLesson} getModuleProgress={getModuleProgress} isCompleted={isCompleted} />}
+          {tab === 'home'      && <HomeTab user={user} totalPct={totalPct} completedMods={completedMods} nextLesson={nextLesson} visibleModules={visibleModules} completedModules={visibleModules.length} switchTab={switchTab} goToLesson={goToLesson} getModuleProgress={getModuleProgress} isCompleted={isCompleted} />}
           {tab === 'course'    && <CoursePage />}
           {tab === 'account'   && <AccountPage />}
         </main>
@@ -68,7 +63,13 @@ function Dashboard() {
   )
 }
 
-function HomeTab({ user, totalPct, completedMods, nextLesson, switchTab, goToLesson, getModuleProgress, isCompleted }) {
+// The resume target for a module is always within the learner's purchased tier.
+function accessibleForDashboard(module, user) {
+  const allowedIds = new Set(getLessonsForTier(user.isDevUser ? 'pro' : user.tier).map(l => l.id))
+  return module.lessons.filter(l => allowedIds.has(l.id))
+}
+
+function HomeTab({ user, totalPct, completedMods, nextLesson, visibleModules, completedModules, switchTab, goToLesson, getModuleProgress, isCompleted }) {
   return (
     <div className="p-8 lg:p-10 max-w-4xl">
       <div className="mb-8">
@@ -83,7 +84,7 @@ function HomeTab({ user, totalPct, completedMods, nextLesson, switchTab, goToLes
       <div className="grid grid-cols-3 gap-4 mb-6">
         {[
           { val:`${totalPct}%`,       label:'Progress',  sub:'course complete',        color:'text-blue-bright' },
-          { val:`${completedMods}/8`, label:'Modules',   sub:'completed',              color:'text-success' },
+          { val:`${completedMods}/${completedModules}`, label:'Modules',   sub:'completed',              color:'text-success' },
           { val:'∞',                  label:'Access',    sub:'lifetime · all updates', color:'text-success' },
         ].map((k,i) => (
           <Card light key={i} className="p-5">
@@ -93,6 +94,22 @@ function HomeTab({ user, totalPct, completedMods, nextLesson, switchTab, goToLes
           </Card>
         ))}
       </div>
+
+      {/* Printable exercises for all ten Starting the Journey modules. */}
+      {(user.tier === 'journey' || user.tier === 'pro' || user.isDevUser) && (
+        <Card light className="p-5 mb-5 border-blue/20">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+            <div>
+              <div className="text-[11px] font-display font-bold text-blue-bright uppercase tracking-wider mb-1">Practical workbook</div>
+              <h2 className="font-display font-bold text-lg text-gray-900">Turn each module into a real work product</h2>
+              <p className="text-sm text-gray-500 mt-1">Ten applied exercises, checklists and reflection questions. Print or save as PDF.</p>
+            </div>
+            <Link href="/journey-guide" className="inline-flex flex-shrink-0 items-center justify-center rounded-lg border border-blue/30 px-4 py-3 text-sm font-display font-bold text-blue-bright hover:bg-blue/5">
+              Open workbook →
+            </Link>
+          </div>
+        </Card>
+      )}
 
       {/* Progress */}
       <Card light className="p-5 mb-5">
@@ -166,12 +183,14 @@ function HomeTab({ user, totalPct, completedMods, nextLesson, switchTab, goToLes
       <div className="mb-6">
         <div className="text-xs font-display font-bold text-gray-500 uppercase tracking-widest mb-4">All Modules</div>
         <div className="space-y-3">
-          {MODULES.map(mod => {
+          {visibleModules.map(mod => {
+            const modLessons = accessibleForDashboard(mod, user)
+            const resumeLesson = modLessons.find(l => !isCompleted(l.id)) || modLessons[0]
             const prog  = getModuleProgress(mod)
             const isDone = prog === 100
             const isIP   = prog > 0 && prog < 100
             return (
-              <button key={mod.id} onClick={() => switchTab('course')} className="w-full text-left">
+              <button key={mod.id} onClick={() => goToLesson(resumeLesson.id)} className="w-full text-left">
                 <Card light hover className={`p-4 ${isIP ? 'border-blue/25 bg-blue/[0.03]' : ''}`}>
                   <div className="flex items-center gap-4">
                     <span className="w-8 flex justify-center flex-shrink-0 text-blue-bright"><Icon name={mod.icon} size={20} /></span>
