@@ -5,7 +5,7 @@ import MultimodalDiagram from '../../components/MultimodalDiagram'
 import NoEnrolmentMessage from '../../components/NoEnrolmentMessage'
 import { useRouter } from 'next/router'
 import { MODULES } from '../../data/modules'
-import { JOURNEY_PRACTICE } from '../../data/journey-practice'
+import { JOURNEY_PRACTICE, JOURNEY_LESSON_PROMPTS } from '../../data/journey-practice'
 import Link from 'next/link'
 import { ProgressBar, TierBadge, Spinner, LessonFeedback } from '../../components/ui'
 import Icon from '../../components/Icon'
@@ -479,6 +479,15 @@ export default function CoursePage() {
               </div>
 
               <LessonContent content={activeLesson.content} />
+              {activeLesson && JOURNEY_LESSON_PROMPTS[activeLesson.id] && (
+                <div className="my-5 flex gap-3 rounded-xl border border-blue/20 bg-blue/5 p-4" data-testid="journey-lesson-practice">
+                  <span aria-hidden="true" className="text-xl">✍️</span>
+                  <div>
+                    <div className="mb-1 text-[11px] font-display font-bold uppercase tracking-wider text-blue-bright">Try it yourself</div>
+                    <p className="text-sm text-gray-700 leading-relaxed">{JOURNEY_LESSON_PROMPTS[activeLesson.id]}</p>
+                  </div>
+                </div>
+              )}
               {activeLessonId === 'm13-l3' && <MultimodalDiagram />}
 
               {/* A single practical exercise per Journey module, on its final lesson.
