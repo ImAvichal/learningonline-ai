@@ -32,6 +32,19 @@ test('/parents route exists', async ({ page }) => {
 
 test('/pricing shows all tiers with current one-time pricing', async ({ page }) => {
   await page.goto('/pricing')
+  // Pricing cards show the same named tier headings as the homepage, ahead of their prices.
+  const expected = [['parents', 'Parents & Caregivers'], ['journey', 'Starting the Journey'], ['pro', 'The Pro']]
+  for (const [key, title] of expected) {
+    const heading = page.getByTestId(`pricing-title-${key}`)
+    await expect(heading).toHaveText(title)
+    await expect(heading).toBeVisible()
+    const structure = await heading.evaluate(el => {
+      const price = el.nextElementSibling
+      return { tag: el.tagName.toLowerCase(), priceFollows: price?.textContent?.trim() || '' }
+    })
+    expect(structure.tag).toBe('h2')
+    expect(structure.priceFollows.length).toBeGreaterThan(0)
+  }
   await expect(page.getByText('Starting the Journey', { exact: true }).first()).toBeVisible()
   await expect(page.getByText('The Pro', { exact: true }).first()).toBeVisible()
   // Default/Australia pricing. Regional pricing is separately enforced by release invariants/server checkout.
