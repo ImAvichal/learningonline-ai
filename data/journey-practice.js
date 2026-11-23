@@ -133,4 +133,20 @@ export const JOURNEY_PRACTICE = {
     reflection: 'How will users report that the new workflow is making their job harder or less safe?',
   },
 }
+// One small reflection/action for every existing Journey lesson (IDs are unchanged).
+export const JOURNEY_LESSON_PROMPTS = {
+  'm1-l1': 'Explain one task AI can assist with, one limitation, and who must check the result.',
+  'm1-l2': 'Compare two model types against a real requirement using quality, privacy and cost criteria.',
+  'm1-l3': 'Estimate input/output token volume for a fictional task, then recalculate at twice the usage.',
+  'm2-l1': 'Name the decision owners for business outcomes, data, delivery and human review.',
+  'm3-l1': 'Describe one AI use case with a current baseline and a simpler non-AI alternative.',
+  'm4-l1': 'Score three opportunities consistently and explain your most uncertain weighting.',
+  'm4-l2': 'Build a best/base/worst cost scenario including human review, rework and support.',
+  'm5-l1': 'Mark the human approval, exception and manual fallback steps in an existing workflow.',
+  'm6-l1': 'Clean a fictional ten-row dataset and document one validation rule per key field.',
+  'm7-l1': 'Compare build, buy and configure against security, support and integration constraints.',
+  'm8-l1': 'Test one prompt on five different fictional inputs and log both successes and failures.',
+  'm9-l1': 'Define baseline, benefits, costs and stop conditions for a small measurable pilot.',
+  'm12-l1': 'Draft a user-training message and a 30-day review plan with feedback channels.',
+}
 export const JOURNEY_MODULE_IDS = Object.keys(JOURNEY_PRACTICE)
