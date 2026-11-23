@@ -1282,8 +1282,15 @@ export const ALL_LESSONS = MODULES.flatMap(m =>
   }))
 )
 
+// Learner plans (parents/journey/pro) and lesson tiers (individual/smb/enterprise)
+// are different vocabularies. Resolve them explicitly so paid progress and access
+// never silently admit enterprise lessons to Journey learners.
 export const getLessonsForTier = (tier) => {
-  const order = ['individual', 'smb', 'enterprise']
-  const level = order.indexOf(tier)
-  return ALL_LESSONS.filter(l => order.indexOf(l.tier) <= level)
+  const levelByTier = {
+    parents: -1, journey: 1, pro: 2,
+    individual: 0, smb: 1, enterprise: 2,
+  }
+  const levelByLesson = { individual: 0, smb: 1, enterprise: 2 }
+  const level = levelByTier[tier] ?? -1
+  return ALL_LESSONS.filter(l => (levelByLesson[l.tier] ?? 99) <= level)
 }
