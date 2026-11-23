@@ -51,6 +51,9 @@ export default function JourneyGuide() {
             </article>
           })}
         </div>
+        <aside className="curriculumFootnote" aria-label="Workbook module numbering note">
+          <strong>Module numbering note:</strong> Modules <strong>10 — Responsible AI</strong> and <strong>11 — Sustainability &amp; AI</strong> are part of <strong>The Pro</strong> course. Starting the Journey therefore continues from Module 09 to Module 12 — People, Change &amp; Adoption. The numbering follows the full curriculum.
+        </aside>
         <footer className="guideFooter">LeO AI · Starting the Journey · Practical Workbook · learningonline.ai</footer>
       </main>
       <style jsx>{`
@@ -80,6 +83,8 @@ export default function JourneyGuide() {
         .evidence strong,.reflection strong { display:block; font-size:10px; text-transform:uppercase; letter-spacing:.7px; margin-bottom:3px; }
         .responseArea { border-top:1px dashed #c9d4df; margin-top:13px; padding-top:8px; color:#637287; font-size:10px; }
         .responseArea span { display:block; padding:10px 0 0; color:#cad3de; overflow:hidden; }
+        .curriculumFootnote { margin-top:20px; padding:11px 14px; border:1px solid #dbe7f5; border-left:3px solid #1a6eff; background:#f4f8fd; border-radius:6px; color:#435675; font-size:11px; line-height:1.55; break-inside:avoid; page-break-inside:avoid; }
+        .curriculumFootnote strong { color:#174f8c; }
         .guideFooter { margin-top:24px; padding-top:10px; border-top:1px solid #dde5ed; font-size:10px; color:#728095; text-align:center; }
         @page { size:A4; margin:12mm; }
         @media print {

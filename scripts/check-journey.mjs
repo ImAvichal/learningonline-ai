@@ -14,7 +14,11 @@ const expectedModuleIds = expectedModuleNumbers.map(n => `module-${n}`)
 const journey = getLessonsForTier('journey')
 const pro = getLessonsForTier('pro')
 const parents = getLessonsForTier('parents')
+const workbookSource = readFileSync('pages/journey-guide.js', 'utf8')
 const checks = [
+  ['Journey workbook retains full-curriculum module numbering', workbookSource.includes("String(module?.number || idx+1).padStart") && !workbookSource.includes('JOURNEY MODULE')],
+  ['Journey workbook footnote names the two Pro-only modules', workbookSource.includes('10 — Responsible AI') && workbookSource.includes('11 — Sustainability &amp; AI') && workbookSource.includes('part of <strong>The Pro</strong>')],
+
   ['Exactly ten Journey modules are defined', expectedModuleIds.length === 10 && expectedModuleIds.every(id => JOURNEY_MODULE_IDS.includes(id)) && JOURNEY_MODULE_IDS.length === 10],
   ['All ten Journey modules exist in source', expectedModuleIds.every(id => MODULES.some(m => m.id === id))],
   ['Exactly thirteen current Journey lessons are accessible', journey.length === 13],
