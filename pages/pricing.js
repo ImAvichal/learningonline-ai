@@ -115,7 +115,11 @@ export default function Pricing() {
                       </div>
                     )}
 
-                    <TierBadge tier={tid} label={t.label} className="mb-4" />
+                    <TierBadge tier={tid} label={t.label} className="mb-3" />
+                    {/* Match the prominent learning-path titles on the homepage. */}
+                    <h2 className="font-display font-bold text-lg leading-snug mb-3 text-white" data-testid={`pricing-title-${tid}`}>
+                      {t.name}
+                    </h2>
                     <div className="font-display font-black mb-1 leading-none whitespace-nowrap overflow-hidden" style={{fontSize: 'clamp(22px, 2.4vw, 28px)'}}>
                       {tid === 'parents' ? t.priceDisplay : priceFor(tid)}
                     </div>
