@@ -34,14 +34,13 @@ export default function JourneyGuide() {
             <span>10 modules</span><span>Self-paced</span><span>Printable A4</span><span>No personal data required</span>
           </div>
           <p className="instructions">How to use: complete one exercise after its module, capture the evidence listed, and revisit the reflection question before moving forward. These are optional activities; your lesson completion is still saved in the course.</p>
-          <p className="courseNote"><strong>Why the module numbers differ:</strong> This workbook numbers the ten Starting the Journey exercises from 01 to 10. In the full LeO AI curriculum, Modules 10 (Responsible AI) and 11 (Sustainability &amp; AI) are part of The Pro. The final Journey exercise, People, Change &amp; Adoption, corresponds to full curriculum Module 12. No course content has been removed.</p>
         </header>
         <div className="moduleGrid">
           {JOURNEY_MODULE_IDS.map((id, idx) => {
             const exercise = JOURNEY_PRACTICE[id]
             const module = MODULES.find(m => m.id === id)
             return <article className="exercise" key={id}>
-              <div className="moduleEyebrow">JOURNEY MODULE {String(idx + 1).padStart(2,'0')} <span>· {exercise.time}</span>{module?.number !== idx + 1 && <span className="coreRef"> · Full course M{module?.number}</span>}</div>
+              <div className="moduleEyebrow">MODULE {String(module?.number || idx+1).padStart(2,'0')} <span>· {exercise.time}</span></div>
               <h2>{module?.title}</h2>
               <h3>{exercise.title}</h3>
               <p className="objective">{exercise.objective}</p>
@@ -52,6 +51,9 @@ export default function JourneyGuide() {
             </article>
           })}
         </div>
+        <aside className="curriculumFootnote" aria-label="Workbook module numbering note">
+          <strong>Module numbering note:</strong> Modules <strong>10 — Responsible AI</strong> and <strong>11 — Sustainability &amp; AI</strong> are part of <strong>The Pro</strong> course. Starting the Journey therefore continues from Module 09 to Module 12 — People, Change &amp; Adoption. The numbering follows the full curriculum.
+        </aside>
         <footer className="guideFooter">LeO AI · Starting the Journey · Practical Workbook · learningonline.ai</footer>
       </main>
       <style jsx>{`
@@ -65,9 +67,6 @@ export default function JourneyGuide() {
         .subtitle { color:#2675ba; font-size:20px; font-weight:700; margin:5px 0 13px; }
         .intro,.instructions { font-size:13px; line-height:1.6; max-width:750px; color:#44546b; }
         .instructions { margin:14px 0 0; }
-        .courseNote { font-size:11.5px; line-height:1.55; color:#435675; background:#f1f6fd; border-left:3px solid #1a6eff; padding:10px 13px; margin:13px 0 0; border-radius:0 6px 6px 0; }
-        .courseNote strong { color:#174f8c; }
-        .coreRef { color:#65758b; }
         .pillRow { display:flex; gap:8px; flex-wrap:wrap; margin-top:17px; }
         .pillRow span { border-radius:100px; background:#e9f2ff; color:#1763a7; padding:6px 10px; font-size:11px; font-weight:700; }
         .moduleGrid { display:grid; grid-template-columns:1fr 1fr; gap:18px; align-items:start; }
@@ -84,6 +83,8 @@ export default function JourneyGuide() {
         .evidence strong,.reflection strong { display:block; font-size:10px; text-transform:uppercase; letter-spacing:.7px; margin-bottom:3px; }
         .responseArea { border-top:1px dashed #c9d4df; margin-top:13px; padding-top:8px; color:#637287; font-size:10px; }
         .responseArea span { display:block; padding:10px 0 0; color:#cad3de; overflow:hidden; }
+        .curriculumFootnote { margin-top:20px; padding:11px 14px; border:1px solid #dbe7f5; border-left:3px solid #1a6eff; background:#f4f8fd; border-radius:6px; color:#435675; font-size:11px; line-height:1.55; break-inside:avoid; page-break-inside:avoid; }
+        .curriculumFootnote strong { color:#174f8c; }
         .guideFooter { margin-top:24px; padding-top:10px; border-top:1px solid #dde5ed; font-size:10px; color:#728095; text-align:center; }
         @page { size:A4; margin:12mm; }
         @media print {
