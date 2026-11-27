@@ -1,8 +1,7 @@
 import Head from 'next/head'
 import Link from 'next/link'
 
-// This resource preserves the original AI-at-Home-Parent-Guide.txt content.
-// Changes to presentation must not silently remove or rewrite the source guide.
+// Family guide content review, 28 November 2026: age eligibility, privacy, school assessment and chatbot safety.
 export const originalGuide = {
   dos: [
     "Try AI tools yourself — your personal experience makes every conversation better",
@@ -10,10 +9,10 @@ export const originalGuide = {
     "Ask curious questions: \"What did you use AI for this week?\"",
     "Co-create household AI norms with your children's input",
     "Model verification habits: \"Let's check that\"",
-    "Acknowledge when you don't know something about AI",
-    "Protect your child's time for independent thinking and struggling with hard problems",
+    "Use fictional names and details in unapproved tools; never enter sensitive records.",
+    "Try problems independently first; ask AI for hints only if school rules permit.",
     "Invest in human activities, relationships, and social development",
-    "Stay informed — one article about AI per week is enough",
+    "Keep learning as tools and school rules change; use trusted sources.",
     "Respond to AI-related boundary crossings with curiosity before judgment",
   ],
   donts: [
@@ -22,16 +21,16 @@ export const originalGuide = {
     "Don't assume your child's AI use is purely for avoiding work",
     "Don't use \"have you been using AI?\" as your opening question",
     "Don't accept AI as the only authority — teach verification as a family habit",
-    "Don't rely solely on technical controls — relationship and conversation are more effective",
-    "Don't ignore signs of emotional over-reliance on AI chatbots",
+    "Combine age-appropriate controls, supervision and open conversations.",
+    "If a chatbot causes distress or encourages secrecy, stop the chat and seek trusted adult support.",
     "Don't let AI-related discipline destroy the trust needed for future conversations",
     "Don't pretend to understand AI if you don't — curiosity is better than false expertise",
     "Don't treat this as a one-time conversation — it needs to evolve as the technology does",
   ],
   ages: [
-    ['Ages 8–11', '"Shall we try asking AI something together?"'],
+    ['Ages 8–11', '"Shall I demonstrate AI using fictional details? ChatGPT is 13+; teens need parental consent."'],
     ['Ages 8–11', '"Did you know YouTube uses AI to choose what shows you next videos?"'],
-    ['Ages 12–15', '"What do you think is the right line for using AI on homework?"'],
+    ['Ages 12–15', '"What does your school allow? Ask your teacher how to disclose and cite AI use."'],
     ['Ages 12–15', '"Have you ever caught AI being wrong about something?"'],
     ['Ages 16+', '"What do you think AI will mean for the career you\'re thinking about?"'],
     ['Ages 16+', '"What are you most curious about — and most concerned about — with AI?"'],
@@ -77,7 +76,7 @@ export default function ParentGuide() {
           <p className="eyebrow">LeO AI · learningonline.ai</p>
           <h1>AI at Home</h1>
           <p className="subtitle">Parent Guide</p>
-          <p className="description">A practical, keep-handy guide for everyday conversations about AI with children.</p>
+          <p className="description">A practical guide for family conversations. NSW public school Years 5–12 can use NSWEduChat for schoolwork; follow teacher instructions.</p>
         </header>
         <div className="principles">
           <section className="principlePanel" aria-labelledby="dos">
@@ -107,6 +106,7 @@ export default function ParentGuide() {
           <ol className="numbered">{originalGuide.weekly.map((item,i)=><li key={i}>{item}</li>)}</ol>
           <ul className="tickList">{originalGuide.weeklyChecklist.map((item,i)=><li key={i}><span className="emptyBox" aria-hidden="true"/>{item}</li>)}</ul>
         </section>
+        <p className="description">Reviewed 28 November 2026 · Sources: <a href="https://www.esafety.gov.au/research/talking-to-machines-childrens-experiences-with-ai-assistants-and-companions">eSafety</a> · <a href="https://education.nsw.gov.au/schooling/parents-and-carers/artificial-intelligence/student-use-of-nsweduchat">NSW Education</a> · <a href="https://help.openai.com/en/articles/8313401-is-chatgpt-safe-for-all-ages">OpenAI age guidance</a>.</p>
         <footer className="folio"><span>AI AT HOME · PARENT GUIDE</span><span>02 / 02</span></footer>
       </article>
     </main>
